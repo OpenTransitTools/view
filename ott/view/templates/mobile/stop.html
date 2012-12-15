@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*- 
-<%inherit file="layout.mako"/>
-
 <!-- mako question: how can an inherited stylesheet add to the header section ??? -->
 <link rel="stylesheet" href="/css/stop.css">
 
@@ -22,6 +20,3 @@
 <p>
 <a href="${request.route_url('form')}">New Search</a>
 </p>
-
-
-<%include file="vote.mako" args="stop_id=request.params['stop_id'], user_id=-111"/>

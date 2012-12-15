@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<%def name="title()">Transit Tracker</%def>
+<%def name="h1_title()"> </%def>
+<%def name="header()"></%def>
+<%def name="js_onload()"></%def>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>${self.title()}</title>
+<meta name="viewport" content="width=device-width" />
+<link href="/css/mobile.css" rel="stylesheet" type="text/css" />
+<link href="/images/favicon.ico" rel="shortcut icon" />
+<link href="/images/m/trimet-logo-iphone.png" rel="apple-touch-icon" />
+<%include file="/shared/analytics.html"/>
+${self.header()}
+</head>
+
+<body>
+${h.emergency_content()|n,decode.utf8}
+
+<h1><a href="http://trimet.org/m/" class="image"><img src="/images/m/trimet-logo.gif" border="0" align="left" /></a>${self.h1_title()}</h1>
+
+${next.body()}
+
+<p class="footer" align="center">
+    Feedback: <a href="mailto:transittracker@trimet.org">transittracker@trimet.org</a>
+</p>
+<p class="footer-links" align="center">
+	<a href="/m/index.htm">Mobile site</a> - <a href="/index.htm">Standard site</a><br />
+	<a href="/m/terms.htm">Terms of Use</a> - <a href="/m/privacy.htm">Privacy Policy</a> - &copy; ${h.year()} TriMet
+</p>
+</body>
+</html>
