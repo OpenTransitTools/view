@@ -1,7 +1,7 @@
 <%inherit file="/base/index.html"/>
+<%namespace name="lib" file="/base/lib.mako"/>
 
 <%def name="title()">TriMet: TransitTracker - Real-time bus and MAX arrivals</%def>
-<%def name="js_onload()">document.stopidform.locationID.focus();</%def>
 
 <style type="text/css">
 <!--
@@ -19,7 +19,7 @@ form.stopid-form input {
 }
 -->
 </style>
-<p class="mobile"><a href="${self.url_domain()}/arrivals/small/pickroute.html"><span>Mobile</span></a></p>
+<p class="mobile"><a href="${lib.url_domain()}/arrivals/small/pickroute.html"><span>Mobile</span></a></p>
 
 <div class="transittracker-form">
     <div id="transittracker-form-index" class="transittracker-form-top">
@@ -31,7 +31,7 @@ form.stopid-form input {
 
         <div style="width:600px;"><!--for IE6-->
             <div style="width:240px; float:left; padding-left:20px; clear: both;">
-                <form action="${self.url_for(controller='main', action='tracker')}" name="stopidform">
+                <form action="${lib.url_for(controller='main', action='tracker')}" name="stopidform">
                     <fieldset>
                         <label for="locationID">Enter a Stop ID number:</label>
                         <input type="text" name="locationID" id="locationID" maxlength="5" style="float:left; margin-right:10px;" />
@@ -49,15 +49,15 @@ form.stopid-form input {
                 <img src="/images/structure/form-or.gif" />
             </div>
             <div style="width:290px; float:left;">
-                    ${self.form(self.url_for(controller='main', action='route_stops_list'), method='get', class_='form-style')}
+                    ${lib.form(lib.url_for(controller='main', action='route_stops_list'), method='get', class_='form-style')}
                     <fieldset>
                         <label for="route">Select a line:</label>
-                        ${self.select('route', [], self.route_select_options())}
+                        ${lib.select('route', [], lib.route_select_options())}
                     </fieldset>
                     <fieldset class="submit2">
                         <input tabindex="9" type="submit" value="Select line" id="submit" onclick="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm Select-a-line submit']);" />
                     </fieldset>
-                ${self.end_form()}
+                ${lib.end_form()}
             </div>
             <p class="clear">&nbsp;</p>
         </div>

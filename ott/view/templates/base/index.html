@@ -1,17 +1,7 @@
-## -*- coding: utf-8 -*-
+## -*- coding: utf-8 -*- 
+<%namespace name="lib" file="/base/lib.mako"/>
+
 <%def name="title()">TriMet: Transit Tracker</%def>
-<%def name="header()"></%def>
-<%def name="js_onload()"></%def>
-<%def name="mainContentStyle()"></%def>
-
-<%def name="url_domain()">http://trimet.org</%def>
-
-<%def name="form(url='', method='get', class_='form-style')"></%def>
-<%def name="end_form()"></%def>
-<%def name="select(name='route', stuff=[], options='')"></%def>
-<%def name="route_select_options()"></%def>
-<%def name="url_for(controller='main', action='route_stops_list')"></%def>
-<%def name="emergency_content()"></%def>
 
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -28,19 +18,19 @@
     <title>${self.title()}</title>
     
     <%include file="/shared/head-top.html"/>
-    <link rel="stylesheet" href="${self.url_domain()}/css/content.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="${self.url_domain()}/css/triptools.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="${self.url_domain()}/css/transittracker.css" type="text/css" />
-    ${self.header()}
+    <link rel="stylesheet" href="${lib.url_domain()}/css/content.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="${lib.url_domain()}/css/triptools.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="${lib.url_domain()}/css/transittracker.css" type="text/css" />
+    ${lib.header()}
     <%include file="/shared/head-bottom.html"/>
 </head>
 
 
 
-<body class="standard" onLoad="${self.js_onload()}">
+<body class="standard" onLoad="${lib.js_onload()}">
 
     <%include file="/shared/topnav.html"/>
-    ${self.emergency_content()|n,decode.utf8}
+    ${lib.emergency_content()|n,decode.utf8}
 
     <header id="header-wrap" class="group">
         <%include file="/shared/nav.html"/>
@@ -48,11 +38,11 @@
         <div id="triptools-wrap" class="group">
             <nav id="triptools">
                 <ul id="triptools-tabs">
-                    <li id="tripplanner"><a href="${self.url_domain()}/index.htm" title="Get step-by-step travel directions"><span>Trip Planner</span></a><div class="triptools-pointer"></div></li>
-                    <li id="transittracker" class="selected"><a href="${self.url_domain()}/arrivals/index.htm" title="Get real-time arrival information for buses and trains"><span>TransitTracker</span></a><div class="triptools-pointer"></div></li>
-                    <li id="schedulesmap"><a href="${self.url_domain()}/schedules/index.htm" title="View timetables, system maps and route maps"><span>Maps &amp; Schedules</span></a><div class="triptools-pointer"></div></li>
-                    <li id="stopsstations"><a href="${self.url_domain()}/stopsandstations/index.htm" title="Find nearby stops, look up a Stop ID or get service info"><span>Stops &amp; Stations</span></a><div class="triptools-pointer"></div></li>
-                    <li id="servicealerts"><a href="${self.url_domain()}/alerts/index.htm" title="See current and future delays, detours and closures"><span>Service Alerts</span></a><div class="triptools-pointer"></div></li>
+                    <li id="tripplanner"><a href="${lib.url_domain()}/index.htm" title="Get step-by-step travel directions"><span>Trip Planner</span></a><div class="triptools-pointer"></div></li>
+                    <li id="transittracker" class="selected"><a href="${lib.url_domain()}/arrivals/index.htm" title="Get real-time arrival information for buses and trains"><span>TransitTracker</span></a><div class="triptools-pointer"></div></li>
+                    <li id="schedulesmap"><a href="${lib.url_domain()}/schedules/index.htm" title="View timetables, system maps and route maps"><span>Maps &amp; Schedules</span></a><div class="triptools-pointer"></div></li>
+                    <li id="stopsstations"><a href="${lib.url_domain()}/stopsandstations/index.htm" title="Find nearby stops, look up a Stop ID or get service info"><span>Stops &amp; Stations</span></a><div class="triptools-pointer"></div></li>
+                    <li id="servicealerts"><a href="${lib.url_domain()}/alerts/index.htm" title="See current and future delays, detours and closures"><span>Service Alerts</span></a><div class="triptools-pointer"></div></li>
                 </ul>
             </nav><!-- end #triptools -->
         </div><!-- end #triptools-wrap -->
@@ -63,7 +53,7 @@
         <div id="content" class="group">
             <a name="content"></a>
 
-            <section id="main" ${self.mainContentStyle()} class="main">
+            <section id="main" ${lib.mainContentStyle()} class="main">
                 <%include file="/shared/share.html"/>
                  ${next.body()}
                
@@ -76,12 +66,12 @@
                 
                     <p>TransitTracker&trade; estimates when your bus or train will arrive at your stop, based on the vehicle's last reported location.</p>
                     <ul class="links" style="padding-top:0;">
-                        <li><a href="${self.url_domain()}/transittracker/about.htm">How it works</a></li>
+                        <li><a href="${lib.url_domain()}/transittracker/about.htm">How it works</a></li>
                     </ul>
                 
                 </div>
                 <p class="feedback">
-                    <a href="${self.url_domain()}/mailforms/ttfeedback">Got feedback?<br />Let us know.</a>
+                    <a href="${lib.url_domain()}/mailforms/ttfeedback">Got feedback?<br />Let us know.</a>
                 </p>
             </aside><!-- end #sidebar -->
 % endif
