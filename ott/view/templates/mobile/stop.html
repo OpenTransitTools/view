@@ -1,22 +1,102 @@
-# -*- coding: utf-8 -*- 
-<!-- mako question: how can an inherited stylesheet add to the header section ??? -->
-<link rel="stylesheet" href="/css/stop.css">
+<%inherit file="/base/index.html"/>
+<%namespace name="lib" file="/shared/lib.mako"/>
+
+<%def name="title()">TriMet: TransitTracker - Real-time bus and MAX arrivals</%def>
+
+<style type="text/css">
+<!--
+/*stop id form overrides */
+form.stopid-form {
+    min-width: 400px;
+    max-width: 400px;
+    width: 400px;
+}
+form.stopid-form fieldset {
+    display:inline;
+}
+form.stopid-form input {
+    width: 255px;
+}
+-->
+</style>
+<p class="mobile"><a href="${lib.url_domain()}/arrivals/small/pickroute.html"><span>${_(u"Mobile")}</span></a></p>
+
+<div class="transittracker-form">
+    <div id="transittracker-form-index" class="transittracker-form-top">
+
+        <div class="tt-icon">
+            <h1>TransitTracker</h1>
+            <div class="tagline"><p>Next arrivals in real time</p></div>
+        </div>
+
+        <div style="width:600px;"><!--for IE6-->
+            <div style="width:240px; float:left; padding-left:20px; clear: both;">
+                <form action="${lib.url_for(controller='main', action='tracker')}" name="stopidform">
+                    <fieldset>
+                        <label for="locationID">Enter a Stop ID number:</label>
+                        <input type="text" name="locationID" id="locationID" maxlength="5" style="float:left; margin-right:10px;" />
+                        <p style="padding-top:9px;"><a href="#" onclick="return hs.htmlExpand(this, { contentId: 'highslide-html' } )" class="highslide image">What's my Stop ID?</a></p>
+                    </fieldset>
+                    <fieldset class="submit">
+                        <input tabindex="9" type="submit" value="Get arrivals" id="submit" onclick="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm StopID submit']);" />
+                    </fieldset>
+                </form>
+% if hasattr(c, 'error_message'):
+                    <p class="error" style="margin-top:10px;">${c.error_message}</p>
+% endif
+            </div>
+            <div style="width:50px; float:left;">
+                <img src="${lib.url_domain()}/images/structure/form-or.gif" />
+            </div>
+            <div style="width:290px; float:left;">
+                    ${lib.form(lib.url_for(controller='main', action='route_stops_list'), method='get', class_='form-style')}
+                    <fieldset>
+                        <label for="route">Select a line:</label>
+                        ${lib.select('route', [], lib.route_select_options())}
+                    </fieldset>
+                    <fieldset class="submit2">
+                        <input tabindex="9" type="submit" value="Select line" id="submit" onclick="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm Select-a-line submit']);" />
+                    </fieldset>
+                ${lib.end_form()}
+            </div>
+            <p class="clear">&nbsp;</p>
+        </div>
+        
+    </div>
+    <div class="transittracker-form-bottom"></div>
+</div>
+
+<%doc>
+    <p>During snow and ice, for some routes TransitTracker may have difficulty projecting how many minutes remain before the bus arrives at your stop. 
+    When this happens, TransitTracker will instead tell you how far away the bus is from your stop.</p> 
+</%doc>
 
 
-<h1>${_(u"Stop Details")}</h1>
+<div class="highslide-html-content" id="highslide-html" style="width:500px;">
+    <div class="highslide-header">
+        <ul>
+            <li class="highslide-move"><a href="#" onclick="return false">Move</a></li>
+            <li class="highslide-close"><a href="#" onclick="return hs.close(this)">Close</a></li>
+        </ul>
+    </div>
+    <div class="highslide-body" style="text-align:left;">
+        <h3>What's a Stop ID?</h3>
+        <p>Every TriMet stop has a unique Stop ID number that is up to 5 digits long. You can use this number to get real-time arrival information from TransitTracker&trade; on the web, from a touch-tone phone or from a mobile device.</p>
+        <h3>Find your Stop ID number</h3>
+        <p>Enter an address, intersection or landmark to see nearby stops and their ID numbers.</p>
+        
+        <form method="post" action="/go/cgi-bin/cstops.pl" class="stopid-form" >
+            <input type="hidden" name="action" value="entry" />
+            <fieldset>
+                <input type="text" name="Loc" value="Address, intersection or landmark" onfocus="doClear(this); doClassHighlight(this);" onblur="doText(this); doClassRegular(this);" class="regular" />
+            </fieldset>
+            <fieldset>
+                 <input type="submit" id="submit" value="Get Stop ID" alt="Find your Stop ID number" />
+            </fieldset>
+        </form>
+        <p>&nbsp;</p>
+        <p>We've posted Stop ID numbers at about half of our stops, and we're adding more every month.</p>
+        <p><a href="#" onclick="return hs.close(this)" class="image"><img src="${lib.url_domain()}/images/transittracker/stopids.jpg" alt="Stop ID locations" /></a></p>
+    </div>
+</div>
 
-<h5>${_(u"Stop ID")}: ${request.params['stop_id']}</h5>
-%if stop_name:
-<h5>Name: ${stop_name}</h5>
-%if shelter:
-<h6>NOTE: good news, there is a shelter at this stop!</h6>
-%endif
-%endif
-%if latlon:
-<iframe width='350px' height='250px' frameborder='0' scrolling='no' marginheight='0' marginwidth='0' 
-  src='http://maps.google.com/maps?output=svembed&layer=c&cbp=13,,,,&cbll=${latlon}&ll=${latlon}&z=17'>
-</iframe>
-%endif
-<p>
-<a href="${request.route_url('form')}">New Search</a>
-</p>
