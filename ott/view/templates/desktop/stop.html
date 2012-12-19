@@ -1,15 +1,23 @@
 <%inherit file="/base/index.html"/>
 <%namespace name="lib" file="/shared/lib.mako"/>
 
-<%def name="title()">TriMet: TransitTracker - Real-time bus and MAX arrivals</%def>
+<%def name="title()">${_(u"TriMet: Stops and Stations")}</%def>
 
 <%def name="route_select_form(url='/stopsandstations/route_stops_list', tabindex='9')">
 <form action="${url}" class="form-style" method="get">
     <fieldset>
         <label for="route">${_(u"Select a line:")}</label>
         <select id="route" name="route">
-            <option value="100">MAX Blue Line</option>
-            <option value="6">6-Martin Luther King Jr Blvd</option>
+        <%
+          #r1=({id:'100', name:'MAX Blue Line'})
+          #r2={id:6,   name:'6-Martin Luther King Jr Blvd'}
+          r1='MAX Blue Line'
+          r2='6-Martin Luther King Jr Blvd'
+          routes=[r1, r2]
+        %>
+        %for r in routes:
+            <option value='${r}'>${r}</option>
+        %endfor
         </select>
         <p class="instructions">
             &nbsp;
