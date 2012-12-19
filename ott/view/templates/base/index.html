@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="${lib.url_domain()}/css/content.css" type="text/css" media="all" />
     <link rel="stylesheet" href="${lib.url_domain()}/css/triptools.css" type="text/css" media="all" />
     <link rel="stylesheet" href="${lib.url_domain()}/css/transittracker.css" type="text/css" />
+    <link rel="stylesheet" href="${lib.url_domain()}/css/stopsstations.css" type="text/css" />
     ${lib.header()}
     <%include file="/shared/head-bottom.html"/>
 </head>
-
 
 
 <body class="standard" onLoad="${lib.js_onload()}">
@@ -56,7 +56,6 @@
             <section id="main" ${lib.mainContentStyle()} class="main">
                 <%include file="/shared/share.html"/>
                  ${next.body()}
-               
             </section><!-- end #main -->
 
 % if hasattr(c, 'skip_sidebar') == False:

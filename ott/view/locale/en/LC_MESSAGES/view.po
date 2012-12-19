@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2012-12-18 17:44-0800\n"
+"POT-Creation-Date: 2012-12-19 00:44-0800\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -17,8 +17,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: ott/view/templates/desktop/stop.html:22
+#: ott/view/templates/desktop/stop.html:9
+msgid "Select a line:"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:19
+msgid "Select"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:40
 #: ott/view/templates/mobile/stop.html:22
 msgid "Mobile"
 msgstr ""
+
+#: ott/view/templates/desktop/stop.html:46
+msgid "Stops & Stations"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:59
+msgid "Find stops and stations:"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:61
+msgid "Address, intersection, landmark or Stop ID"
+msgstr ""
+
+#~ msgid "Stop & Station"
+#~ msgstr ""
 

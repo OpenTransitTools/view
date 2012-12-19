@@ -54,6 +54,26 @@ def destop_stop_view(request):
     return ret_val
 
 
+@view_config(route_name='mstop', renderer='mobile/stop.html')
+def mobile_stop_view(request):
+    '''
+       what do i do?
+
+       1. query db service for this stop's info
+       2. ...
+    '''
+    ret_val = {}
+    stop_id = get_first_param_as_int(request, 'stop_id')
+
+    if stop_id is not None:
+        pass
+
+    log.info(ret_val)
+    return ret_val
+
+
+
+
 def get_first_param_as_int(request, name, def_val=None):
     '''
         utility function
@@ -92,8 +112,9 @@ def make_views(config):
 
 
     # routes setup
-    config.add_route('index', '/')
-    config.add_route('stop', '/stop')
+    config.add_route('index',  '/')
+    config.add_route('stop',   '/stop')
+    config.add_route('mstop',  '/mobile/stop')
 
     here = os.path.dirname(os.path.abspath(__file__))
     config.add_static_view('css',    os.path.join(here, 'static/css'))

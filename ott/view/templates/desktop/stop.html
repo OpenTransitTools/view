@@ -3,6 +3,24 @@
 
 <%def name="title()">TriMet: TransitTracker - Real-time bus and MAX arrivals</%def>
 
+<%def name="route_select_form(url='/stopsandstations/route_stops_list', tabindex='9')">
+<form action="${url}" class="form-style" method="get">
+    <fieldset>
+        <label for="route">${_(u"Select a line:")}</label>
+        <select id="route" name="route">
+            <option value="100">MAX Blue Line</option>
+            <option value="6">6-Martin Luther King Jr Blvd</option>
+        </select>
+        <p class="instructions">
+            &nbsp;
+        </p>
+    </fieldset>
+    <fieldset class="submit2">
+        <input tabindex="${tabindex}" type="submit" id="submit" value='${_(u"Select")}' onclick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);" />
+    </fieldset>
+</form>
+</%def>
+
 <style type="text/css">
 <!--
 /*stop id form overrides */
@@ -21,81 +39,40 @@ form.stopid-form input {
 </style>
 <p class="mobile"><a href="${lib.url_domain()}/arrivals/small/pickroute.html"><span>${_(u"Mobile")}</span></a></p>
 
-<div class="transittracker-form">
-    <div id="transittracker-form-index" class="transittracker-form-top">
+<div class="stops-form">
+    <div id="stops-form-index" class="stops-form-top">
 
-        <div class="tt-icon">
-            <h1>TransitTracker</h1>
-            <div class="tagline"><p>Next arrivals in real time</p></div>
+        <div class="stops-icon">
+            <h1>${_(u"Stops & Stations")}</h1>
+            <div class="tagline"><p>&nbsp;</p></div>
         </div>
 
         <div style="width:600px;"><!--for IE6-->
             <div style="width:240px; float:left; padding-left:20px; clear: both;">
-                <form action="${lib.url_for(controller='main', action='tracker')}" name="stopidform">
+                <form name="cstops" id="cstops_id" method="get" action="/go/cgi-bin/cstops.pl" class="form-style">
+                <input type="hidden" name="action" value="entry">
+                <input type="hidden" name="resptype" value="U">
+                <!-- F: Formatted, U: Unformatted -->
+                <input type="hidden" name="lang" value="en"  />
+                <input type="hidden" name="noCat" value="Landmark"  />
                     <fieldset>
-                        <label for="locationID">Enter a Stop ID number:</label>
-                        <input type="text" name="locationID" id="locationID" maxlength="5" style="float:left; margin-right:10px;" />
-                        <p style="padding-top:9px;"><a href="#" onclick="return hs.htmlExpand(this, { contentId: 'highslide-html' } )" class="highslide image">What's my Stop ID?</a></p>
+                        <label for="locationID">${_(u"Find stops and stations:")}</label>
+                        <input name="Loc" type="text" value="" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="15" maxlength="80" />
+                        <p class="instructions">${_(u"Address, intersection, landmark or Stop ID")}</p>
                     </fieldset>
                     <fieldset class="submit">
-                        <input tabindex="9" type="submit" value="Get arrivals" id="submit" onclick="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm StopID submit']);" />
+                        <input tabindex="9" type="submit" value="Find stops" id="submit" onclick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);" />
                     </fieldset>
                 </form>
-% if hasattr(c, 'error_message'):
-                    <p class="error" style="margin-top:10px;">${c.error_message}</p>
-% endif
             </div>
             <div style="width:50px; float:left;">
-                <img src="${lib.url_domain()}/images/structure/form-or.gif" />
+                <img src="${lib.url_domain()}/v3/images/structure/form-or.gif" />
             </div>
             <div style="width:290px; float:left;">
-                    ${lib.form(lib.url_for(controller='main', action='route_stops_list'), method='get', class_='form-style')}
-                    <fieldset>
-                        <label for="route">Select a line:</label>
-                        ${lib.select('route', [], lib.route_select_options())}
-                    </fieldset>
-                    <fieldset class="submit2">
-                        <input tabindex="9" type="submit" value="Select line" id="submit" onclick="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm Select-a-line submit']);" />
-                    </fieldset>
-                ${lib.end_form()}
+                ${route_select_form()}
             </div>
             <p class="clear">&nbsp;</p>
         </div>
-        
-    </div>
-    <div class="transittracker-form-bottom"></div>
-</div>
-
-<%doc>
-    <p>During snow and ice, for some routes TransitTracker may have difficulty projecting how many minutes remain before the bus arrives at your stop. 
-    When this happens, TransitTracker will instead tell you how far away the bus is from your stop.</p> 
-</%doc>
-
-
-<div class="highslide-html-content" id="highslide-html" style="width:500px;">
-    <div class="highslide-header">
-        <ul>
-            <li class="highslide-move"><a href="#" onclick="return false">Move</a></li>
-            <li class="highslide-close"><a href="#" onclick="return hs.close(this)">Close</a></li>
-        </ul>
-    </div>
-    <div class="highslide-body" style="text-align:left;">
-        <h3>What's a Stop ID?</h3>
-        <p>Every TriMet stop has a unique Stop ID number that is up to 5 digits long. You can use this number to get real-time arrival information from TransitTracker&trade; on the web, from a touch-tone phone or from a mobile device.</p>
-        <h3>Find your Stop ID number</h3>
-        <p>Enter an address, intersection or landmark to see nearby stops and their ID numbers.</p>
-        
-        <form method="post" action="/go/cgi-bin/cstops.pl" class="stopid-form" >
-            <input type="hidden" name="action" value="entry" />
-            <fieldset>
-                <input type="text" name="Loc" value="Address, intersection or landmark" onfocus="doClear(this); doClassHighlight(this);" onblur="doText(this); doClassRegular(this);" class="regular" />
-            </fieldset>
-            <fieldset>
-                 <input type="submit" id="submit" value="Get Stop ID" alt="Find your Stop ID number" />
-            </fieldset>
-        </form>
-        <p>&nbsp;</p>
-        <p>We've posted Stop ID numbers at about half of our stops, and we're adding more every month.</p>
-        <p><a href="#" onclick="return hs.close(this)" class="image"><img src="${lib.url_domain()}/images/transittracker/stopids.jpg" alt="Stop ID locations" /></a></p>
-    </div>
-</div>
+    </div> <!-- id="stops-form-index" class="stops-form-top" -->
+    <div class="stops-form-bottom"></div>
+</div> <!-- class="stops-form" -->
