@@ -4,16 +4,10 @@ import logging
 from pyramid.events import NewRequest
 from pyramid.events import subscriber
 from pyramid.events import ApplicationCreated
-
-from pyramid.exceptions import NotFound
-from pyramid.httpexceptions import HTTPFound
-
-from pyramid.config import Configurator
-from pyramid.session import UnencryptedCookieSessionFactoryConfig
-
 from wsgiref.simple_server import make_server
 
 from ott.view.views import make_views
+from ott.view.views import make_config
 
 # TODO: how to do this via .ini file
 logging.basicConfig()
@@ -62,23 +56,10 @@ def main():
     mako_dir = os.path.join(here, 'templates')
     log.info(here + " " + mako_dir)
 
-    settings = {}
-    settings['reload_all'] = True
-    settings['debug_all'] = True
+    # make the mako views
+    settings={}
     settings['mako.directories'] = mako_dir
-    settings['pyramid.default_locale_name'] = 'en'
-
-    # session factory
-    session_factory = UnencryptedCookieSessionFactoryConfig('itsaseekreet')
-
-    # configuration setup
-    config = Configurator(settings=settings, session_factory=session_factory)
-
-    # internationalization ... @see: locale/subscribers.py for more info
-    config.add_translation_dirs('ott.view:locale')
-    config.add_subscriber('ott.view.locale.subscribers.add_renderer_globals', 'pyramid.events.BeforeRender')
-    config.add_subscriber('ott.view.locale.subscribers.add_localizer', 'pyramid.events.NewRequest')
-
+    config=make_config(settings)
     make_views(config)
 
     # serve app
@@ -86,7 +67,6 @@ def main():
     server = make_server('0.0.0.0', 8080, app)
     server.serve_forever()
     get_settings()
-
 
 
 if __name__ == '__main__':

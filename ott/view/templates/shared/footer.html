@@ -1,3 +1,4 @@
+<%namespace name="lib" file="/shared/lib.mako"/>
 <div id="footer-wrap" class="group">
     <div id="footer" class="group">
         <section id="footer-trimet" class="group">
@@ -124,4 +125,4 @@
     <p>&copy; <!--#config timefmt="%Y"--><!--#echo var="DATE_LOCAL" --> TriMet</p>
 </div>
 
-<script type="text/javascript" src="/scripts/basic.js"></script><!-- basic global scripts -->
+<script type="text/javascript" src="${lib.url_domain()}/scripts/basic.js"></script><!-- basic global scripts -->

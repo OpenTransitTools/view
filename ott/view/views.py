@@ -5,6 +5,9 @@ from pyramid.view import view_config
 from pyramid.config import Configurator
 from pyramid.session import UnencryptedCookieSessionFactoryConfig
 from pyramid.response import Response
+from pyramid.config import Configurator
+
+
 
 log = logging.getLogger(__file__)
 log.setLevel(logging.INFO)
@@ -98,3 +101,24 @@ def make_views(config):
     config.add_static_view('images', os.path.join(here, 'static/images'))
 
     config.scan()
+
+
+def make_config(settings):
+    ''' make the config 
+    '''
+    settings['reload_all'] = True
+    settings['debug_all'] = True
+    settings['pyramid.default_locale_name'] = 'en'
+
+    # session factory
+    session_factory = UnencryptedCookieSessionFactoryConfig('itsaseekreet')
+
+    # configuration setup
+    config = Configurator(settings=settings, session_factory=session_factory)
+
+    # internationalization ... @see: locale/subscribers.py for more info
+    config.add_translation_dirs('ott.view:locale')
+    config.add_subscriber('ott.view.locale.subscribers.add_renderer_globals', 'pyramid.events.BeforeRender')
+    config.add_subscriber('ott.view.locale.subscribers.add_localizer', 'pyramid.events.NewRequest')
+
+    return config
