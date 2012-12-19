@@ -1,5 +1,5 @@
 <%inherit file="/base/index.html"/>
-<%namespace name="lib" file="/base/lib.mako"/>
+<%namespace name="lib" file="/shared/lib.mako"/>
 
 <%def name="title()">TriMet: TransitTracker - Real-time bus and MAX arrivals</%def>
 
@@ -46,7 +46,7 @@ form.stopid-form input {
 % endif
             </div>
             <div style="width:50px; float:left;">
-                <img src="/images/structure/form-or.gif" />
+                <img src="${lib.url_domain()}/images/structure/form-or.gif" />
             </div>
             <div style="width:290px; float:left;">
                     ${lib.form(lib.url_for(controller='main', action='route_stops_list'), method='get', class_='form-style')}
@@ -96,6 +96,6 @@ form.stopid-form input {
         </form>
         <p>&nbsp;</p>
         <p>We've posted Stop ID numbers at about half of our stops, and we're adding more every month.</p>
-        <p><a href="#" onclick="return hs.close(this)" class="image"><img src="/images/transittracker/stopids.jpg" alt="Stop ID locations" /></a></p>
+        <p><a href="#" onclick="return hs.close(this)" class="image"><img src="${lib.url_domain()}/images/transittracker/stopids.jpg" alt="Stop ID locations" /></a></p>
     </div>
 </div>
