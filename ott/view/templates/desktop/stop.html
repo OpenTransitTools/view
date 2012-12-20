@@ -8,15 +8,8 @@
     <fieldset>
         <label for="route">${_(u"Select a line:")}</label>
         <select id="route" name="route">
-        <%
-          #r1=({id:'100', name:'MAX Blue Line'})
-          #r2={id:6,   name:'6-Martin Luther King Jr Blvd'}
-          r1='MAX Blue Line'
-          r2='6-Martin Luther King Jr Blvd'
-          routes=[r1, r2]
-        %>
         %for r in routes:
-            <option value='${r}'>${r}</option>
+            <option value="${r['id']}">${r['name']}</option>
         %endfor
         </select>
         <p class="instructions">

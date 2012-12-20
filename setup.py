@@ -5,6 +5,7 @@ required_eggs = [
     'pyramid',
     'Babel',
     'lingua',
+    'simplejson',
 ]
 
 #

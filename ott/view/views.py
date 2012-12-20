@@ -1,5 +1,8 @@
 import os
 import logging
+logging.basicConfig()
+log = logging.getLogger(__file__)
+log.setLevel(logging.INFO)
 
 from pyramid.view import view_config
 from pyramid.config import Configurator
@@ -7,11 +10,10 @@ from pyramid.session import UnencryptedCookieSessionFactoryConfig
 from pyramid.response import Response
 from pyramid.config import Configurator
 
+from ott.view.model import Model
+from ott.view.model_mock import ModelMock
 
-
-log = logging.getLogger(__file__)
-log.setLevel(logging.INFO)
-
+model = ModelMock()
 
 @view_config(context='pyramid.exceptions.NotFound', renderer='notfound.mako')
 def notfound_view(self):
@@ -50,7 +52,8 @@ def destop_stop_view(request):
     if stop_id is not None:
         pass
 
-    log.info(ret_val)
+    ret_val['routes'] = model.get_routes()['routes']
+
     return ret_val
 
 
