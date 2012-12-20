@@ -9,10 +9,16 @@ from wsgiref.simple_server import make_server
 from ott.view.view.views import make_views
 from ott.view.view.views import make_config
 
+from ott.view.model import Model
+from ott.view.model_mock import ModelMock
+model = ModelMock()
+
+
 # TODO: how to do this via .ini file
 logging.basicConfig()
 log = logging.getLogger(__file__)
 log.setLevel(logging.INFO)
+
 
 @subscriber(ApplicationCreated)
 def application_created_subscriber(event):
@@ -35,6 +41,7 @@ def new_request_subscriber(event):
     '''
     log.debug("new request called -- request is 'started'")
     request = event.request
+    request.model = model
     settings = request.registry.settings
     request.add_finished_callback(cleanup)
 
@@ -61,6 +68,7 @@ def main():
     settings['mako.directories'] = mako_dir
     config=make_config(settings)
     make_views(config)
+    config.scan()
 
     # serve app
     app = config.make_wsgi_app()
@@ -71,3 +79,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+

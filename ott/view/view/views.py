@@ -13,10 +13,6 @@ from pyramid.config import Configurator
 import ott.view.view.desktop
 import ott.view.view.mobile
 
-from ott.view.model import Model
-from ott.view.model_mock import ModelMock
-model = ModelMock()
-
 @view_config(context='pyramid.exceptions.NotFound', renderer='notfound.mako')
 def notfound_view(self):
     '''
