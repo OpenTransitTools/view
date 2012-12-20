@@ -6,8 +6,8 @@ from pyramid.events import subscriber
 from pyramid.events import ApplicationCreated
 from wsgiref.simple_server import make_server
 
-from ott.view.views import make_views
-from ott.view.views import make_config
+from ott.view.view.views import make_views
+from ott.view.view.views import make_config
 
 # TODO: how to do this via .ini file
 logging.basicConfig()
