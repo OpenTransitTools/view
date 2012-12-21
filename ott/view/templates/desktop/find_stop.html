@@ -1,14 +1,21 @@
-<%inherit file="/base/index.html"/>
+<%inherit file="/desktop/base.html"/>
 
 <%namespace name="util"  file="/shared/util.mako"/>
 <%namespace name="rs"    file="/shared/route_select.mako"/>
 
 <%def name="title()">${_(u'TriMet: Stops and Stations')}</%def>
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
+</%def>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Stops, stations"/>
+    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
+</%def>
+
 <% 
 ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
 ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
 %>
-
 
 <style type="text/css">
 <!--

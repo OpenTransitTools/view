@@ -104,8 +104,12 @@ def make_views(config, model):
 
     # routes setup
     config.add_route('index',       '/')
-    config.add_route('find_stop',   '/find_stop')
-    config.add_route('mfind_stop',  '/mobile/find_stop')
+    config.add_route('tracker_desktop',   '/arrivals')
+    config.add_route('find_stop_desktop', '/find_stop')
+    config.add_route('stop_desktop',      '/stop')
+    
+    config.add_route('find_stop_mobile',  '/mobile/find_stop')
+    config.add_route('stop_mobile',       '/mobile/stop')
 
     here   = os.path.dirname(os.path.abspath(__file__))
     parent = os.path.abspath(os.path.join(here, os.path.pardir))

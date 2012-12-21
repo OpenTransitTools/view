@@ -1,7 +1,10 @@
 ## -*- coding: utf-8 -*- 
 <%namespace name="util" file="/shared/util.mako"/>
 
-<%def name="title()">TriMet: Transit Tracker</%def>
+<%def name="title()">ABSTRACT title()</%def>
+<%def name="app_css()"><!-- ABSTRACT app_css() --></%def>
+<%def name="meta_data()"><!-- ABSTRACT meta_data() --></%def>
+<%def name="header()"><!-- ABSTRACT header() --></%def>
 
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -11,18 +14,15 @@
 <!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]--><head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="Keywords" content="Tracker arrivals"/>
-    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
     <meta name="robots" content="all"/>
-
+    ${self.meta_data()}
     <title>${self.title()}</title>
-    
+
     <%include file="/shared/head-top.html"/>
     <link rel="stylesheet" href="${util.url_domain()}/css/content.css" type="text/css" media="all" />
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools.css" type="text/css" media="all" />
-    <link rel="stylesheet" href="${util.url_domain()}/css/transittracker.css" type="text/css" />
-    <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
-    ${util.header()}
+    ${self.app_css()}
+    ${self.header()}
     <%include file="/shared/head-bottom.html"/>
 </head>
 

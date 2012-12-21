@@ -1,0 +1,27 @@
+<%inherit file="/base/small_index.html"/>
+<%def name="h1_title()">TransitTracker</%def>
+<%def name="title()">TriMet Mobile: TransitTracker: Select a Stop</%def>
+
+<% seperator_shown = False %>
+<h2 class="padding">${c.route.desc}</h2>
+
+% for direction in c.route.directions():
+    ${h.form(h.url_for(controller='small', action='tracker'), method='get', class_='form-style')}
+        ${h.hidden('dir', value=direction.dir)}
+	${h.hidden('route', value=c.route.routeNumber)}
+        <fieldset class="normal">
+	    <label for="stopID">${direction.desc}</label>
+            ${h.select('stopID', [], h.stop_options(direction.stops()), class_='ttform', id=None)}
+        </fieldset>
+        <fieldset class="submit2">
+            <input type="submit" value="Get arrivals" />
+        </fieldset>
+    </form>
+    % if seperator_shown == False:
+	<% seperator_shown = True %>
+    <div class="or-div">
+        <p class="or-p"></p>
+        <span class="or">&nbsp;or&nbsp;</span>
+    </div>
+    % endif
+% endfor

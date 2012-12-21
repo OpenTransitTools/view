@@ -1,6 +1,5 @@
 ## -*- coding: utf-8 -*-
 
-<%def name="header()"></%def>
 <%def name="js_onload()"></%def>
 <%def name="mainContentStyle()"></%def>
 

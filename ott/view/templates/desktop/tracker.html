@@ -1,7 +1,16 @@
-<%inherit file="/base/index.html"/>
-<%namespace name="lib" file="/shared/lib.mako"/>
+<%inherit file="base.html"/>
+
+<%namespace name="util" file="/shared/util.mako"/>
+<%namespace name="rs"   file="/shared/route_select.mako"/>
 
 <%def name="title()">TriMet: TransitTracker - Real-time bus and MAX arrivals</%def>
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/transittracker.css" type="text/css" />
+</%def>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Tracker arrivals"/>
+    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
+</%def>
 
 <style type="text/css">
 <!--
@@ -19,7 +28,7 @@ form.stopid-form input {
 }
 -->
 </style>
-<p class="mobile"><a href="${lib.url_domain()}/arrivals/small/pickroute.html"><span>${_(u"Mobile")}</span></a></p>
+<p class="mobile"><a href="${util.url_domain()}/arrivals/small/pickroute.html"><span>${_(u"Mobile")}</span></a></p>
 
 <div class="transittracker-form">
     <div id="transittracker-form-index" class="transittracker-form-top">
@@ -31,7 +40,7 @@ form.stopid-form input {
 
         <div style="width:600px;"><!--for IE6-->
             <div style="width:240px; float:left; padding-left:20px; clear: both;">
-                <form action="${lib.url_for(controller='main', action='tracker')}" name="stopidform">
+                <form action="${util.url_for(controller='main', action='tracker')}" name="stopidform">
                     <fieldset>
                         <label for="locationID">Enter a Stop ID number:</label>
                         <input type="text" name="locationID" id="locationID" maxlength="5" style="float:left; margin-right:10px;" />
@@ -46,18 +55,11 @@ form.stopid-form input {
 % endif
             </div>
             <div style="width:50px; float:left;">
-                <img src="${lib.url_domain()}/images/structure/form-or.gif" />
+                <img src="${util.url_domain()}/images/structure/form-or.gif" />
             </div>
             <div style="width:290px; float:left;">
-                    ${lib.form(lib.url_for(controller='main', action='route_stops_list'), method='get', class_='form-style')}
-                    <fieldset>
-                        <label for="route">Select a line:</label>
-                        ${lib.select('route', [], lib.route_select_options())}
-                    </fieldset>
-                    <fieldset class="submit2">
-                        <input tabindex="9" type="submit" value="Select line" id="submit" onclick="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm Select-a-line submit']);" />
-                    </fieldset>
-                ${lib.end_form()}
+                    <% ga_select_route="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm Select-a-line submit']);" %>
+                    ${rs.route_select_form('route_stops_list', routes, ga_select_route)}
             </div>
             <p class="clear">&nbsp;</p>
         </div>
@@ -96,7 +98,7 @@ form.stopid-form input {
         </form>
         <p>&nbsp;</p>
         <p>We've posted Stop ID numbers at about half of our stops, and we're adding more every month.</p>
-        <p><a href="#" onclick="return hs.close(this)" class="image"><img src="${lib.url_domain()}/images/transittracker/stopids.jpg" alt="Stop ID locations" /></a></p>
+        <p><a href="#" onclick="return hs.close(this)" class="image"><img src="${util.url_domain()}/images/transittracker/stopids.jpg" alt="Stop ID locations" /></a></p>
     </div>
 </div>
 
