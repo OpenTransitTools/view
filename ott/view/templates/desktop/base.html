@@ -11,6 +11,12 @@
 <%def name="side_bar()"><!-- ABSTRACT side_bar() --></%def>
 <%def name="mainContentStyle()"></%def>
 
+<%def name="planner_selected()"></%def>
+<%def name="tracker_selected()"></%def>
+<%def name="schedule_selected()"></%def>
+<%def name="stations_selected()"></%def>
+<%def name="alerts_selected()"></%def>
+
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -43,11 +49,11 @@
         <div id="triptools-wrap" class="group">
             <nav id="triptools">
                 <ul id="triptools-tabs">
-                    <li id="tripplanner"><a href="${util.url_domain()}/index.htm" title="Get step-by-step travel directions"><span>Trip Planner</span></a><div class="triptools-pointer"></div></li>
-                    <li id="transittracker" class="selected"><a href="${util.url_domain()}/arrivals/index.htm" title="Get real-time arrival information for buses and trains"><span>TransitTracker</span></a><div class="triptools-pointer"></div></li>
-                    <li id="schedulesmap"><a href="${util.url_domain()}/schedules/index.htm" title="View timetables, system maps and route maps"><span>Maps &amp; Schedules</span></a><div class="triptools-pointer"></div></li>
-                    <li id="stopsstations"><a href="${util.url_domain()}/stopsandstations/index.htm" title="Find nearby stops, look up a Stop ID or get service info"><span>Stops &amp; Stations</span></a><div class="triptools-pointer"></div></li>
-                    <li id="servicealerts"><a href="${util.url_domain()}/alerts/index.htm" title="See current and future delays, detours and closures"><span>Service Alerts</span></a><div class="triptools-pointer"></div></li>
+                    <li id="tripplanner"    ${self.planner_selected()}><a href="${util.url_domain()}/index.htm" title="Get step-by-step travel directions"><span>Trip Planner</span></a><div class="triptools-pointer"></div></li>
+                    <li id="transittracker" ${self.tracker_selected()}><a href="${util.url_domain()}/arrivals/index.htm" title="Get real-time arrival information for buses and trains"><span>TransitTracker</span></a><div class="triptools-pointer"></div></li>
+                    <li id="schedulesmap"   ${self.schedule_selected()}><a href="${util.url_domain()}/schedules/index.htm" title="View timetables, system maps and route maps"><span>Maps &amp; Schedules</span></a><div class="triptools-pointer"></div></li>
+                    <li id="stopsstations"  ${self.stations_selected()}><a href="${util.url_domain()}/stopsandstations/index.htm" title="Find nearby stops, look up a Stop ID or get service info"><span>Stops &amp; Stations</span></a><div class="triptools-pointer"></div></li>
+                    <li id="servicealerts"  ${self.alerts_selected()}><a href="${util.url_domain()}/alerts/index.htm" title="See current and future delays, detours and closures"><span>Service Alerts</span></a><div class="triptools-pointer"></div></li>
                 </ul>
             </nav><!-- end #triptools -->
         </div><!-- end #triptools-wrap -->
@@ -63,11 +69,11 @@
                  ${next.body()}
             </section><!-- end #main -->
 
-    % if hasattr(c, 'skip_sidebar') == False:
-            ${self.side_bar()}
-    % else:
-            <!-- sidebar intentionally skipped via attribute 'skip_sidebar' -->
-    % endif
+            % if hasattr(c, 'skip_sidebar') == False:
+                ${self.side_bar()}
+            % else:
+                    <!-- sidebar intentionally skipped via attribute 'skip_sidebar' -->
+            % endif
 
         </div><!-- end #content -->
     </div><!-- end #content-wrap -->
