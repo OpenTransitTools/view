@@ -1,26 +1,14 @@
 <%inherit file="/base/index.html"/>
-<%namespace name="lib" file="/shared/lib.mako"/>
 
-<%def name="title()">${_(u"TriMet: Stops and Stations")}</%def>
+<%namespace name="util"  file="/shared/util.mako"/>
+<%namespace name="rs"    file="/shared/route_select.mako"/>
 
-<%def name="route_select_form(url='/stopsandstations/route_stops_list', tabindex='9')">
-<form action="${url}" class="form-style" method="get">
-    <fieldset>
-        <label for="route">${_(u"Select a line:")}</label>
-        <select id="route" name="route">
-        %for r in routes:
-            <option value="${r['id']}">${r['name']}</option>
-        %endfor
-        </select>
-        <p class="instructions">
-            &nbsp;
-        </p>
-    </fieldset>
-    <fieldset class="submit2">
-        <input tabindex="${tabindex}" type="submit" id="submit" value='${_(u"Select")}' onclick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);" />
-    </fieldset>
-</form>
-</%def>
+<%def name="title()">${_(u'TriMet: Stops and Stations')}</%def>
+<% 
+ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
+ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
+%>
+
 
 <style type="text/css">
 <!--
@@ -38,13 +26,13 @@ form.stopid-form input {
 }
 -->
 </style>
-<p class="mobile"><a href="${lib.url_domain()}/arrivals/small/pickroute.html"><span>${_(u"Mobile")}</span></a></p>
+<p class="mobile"><a href="${util.url_domain()}/arrivals/small/pickroute.html"><span>${_(u'Mobile')}</span></a></p>
 
 <div class="stops-form">
     <div id="stops-form-index" class="stops-form-top">
 
         <div class="stops-icon">
-            <h1>${_(u"Stops & Stations")}</h1>
+            <h1>${_(u'Stops & Stations')}</h1>
             <div class="tagline"><p>&nbsp;</p></div>
         </div>
 
@@ -57,20 +45,20 @@ form.stopid-form input {
                 <input type="hidden" name="lang" value="en"  />
                 <input type="hidden" name="noCat" value="Landmark"  />
                     <fieldset>
-                        <label for="locationID">${_(u"Find stops and stations:")}</label>
+                        <label for="locationID">${_(u'Find stops and stations:')}</label>
                         <input name="Loc" type="text" value="" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="15" maxlength="80" />
-                        <p class="instructions">${_(u"Address, intersection, landmark or Stop ID")}</p>
+                        <p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>
                     </fieldset>
                     <fieldset class="submit">
-                        <input tabindex="9" type="submit" value="Find stops" id="submit" onclick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);" />
+                        <input tabindex="9" type="submit" value="${_(u'Find stops')}" id="submit" onclick="${ga_find_stop}" />
                     </fieldset>
                 </form>
             </div>
             <div style="width:50px; float:left;">
-                <img src="${lib.url_domain()}/v3/images/structure/form-or.gif" />
+                <img src="${util.url_domain()}/v3/images/structure/form-or.gif" />
             </div>
             <div style="width:290px; float:left;">
-                ${route_select_form()}
+             ${rs.route_select_form('/stop', routes, ga_select_route)}
             </div>
             <p class="clear">&nbsp;</p>
         </div>
