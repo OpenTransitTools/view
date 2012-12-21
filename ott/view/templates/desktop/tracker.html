@@ -12,6 +12,24 @@
     <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
 </%def>
 
+<%def name="side_bar()">
+            <aside id="aside" class="aside">
+                <div id="icon" class="icon-transittracker">
+                    <p class="time"><span id="clock"><!--Current time: 12:34:56pm--></span></p>
+                
+                    <p>TransitTracker&trade; estimates when your bus or train will arrive at your stop, based on the vehicle's last reported location.</p>
+                    <ul class="links" style="padding-top:0;">
+                        <li><a href="${util.url_domain()}/transittracker/about.htm">How it works</a></li>
+                    </ul>
+                
+                </div>
+                <p class="feedback">
+                    <a href="${util.url_domain()}/mailforms/ttfeedback">Got feedback?<br />Let us know.</a>
+                </p>
+            </aside><!-- end #sidebar -->
+</%def>
+
+
 <style type="text/css">
 <!--
 /*stop id form overrides */

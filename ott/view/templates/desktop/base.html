@@ -1,10 +1,15 @@
 ## -*- coding: utf-8 -*- 
 <%namespace name="util" file="/shared/util.mako"/>
 
+<!-- BELOW ARE THE ABSTRACT METHODS (to be overridden by sub-classsed templates) that populate this base page -->
 <%def name="title()">ABSTRACT title()</%def>
 <%def name="app_css()"><!-- ABSTRACT app_css() --></%def>
 <%def name="meta_data()"><!-- ABSTRACT meta_data() --></%def>
 <%def name="header()"><!-- ABSTRACT header() --></%def>
+<%def name="js_onload()">/** ABSTRACT js_onload() **/</%def>
+<%def name="emergency_content()"><!-- ABSTRACT emergency_content() --></%def>
+<%def name="side_bar()"><!-- ABSTRACT side_bar() --></%def>
+<%def name="mainContentStyle()"></%def>
 
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
@@ -27,10 +32,10 @@
 </head>
 
 
-<body class="standard" onLoad="${util.js_onload()}">
+<body class="standard" onLoad="${self.js_onload()}">
 
     <%include file="/shared/topnav.html"/>
-    ${util.emergency_content()|n,decode.utf8}
+    ${self.emergency_content()|n,decode.utf8}
 
     <header id="header-wrap" class="group">
         <%include file="/shared/nav.html"/>
@@ -53,27 +58,16 @@
         <div id="content" class="group">
             <a name="content"></a>
 
-            <section id="main" ${util.mainContentStyle()} class="main">
+            <section id="main" ${self.mainContentStyle()} class="main">
                 <%include file="/shared/share.html"/>
                  ${next.body()}
             </section><!-- end #main -->
 
-% if hasattr(c, 'skip_sidebar') == False:
-            <aside id="aside" class="aside">
-                <div id="icon" class="icon-transittracker">
-                    <p class="time"><span id="clock"><!--Current time: 12:34:56pm--></span></p>
-                
-                    <p>TransitTracker&trade; estimates when your bus or train will arrive at your stop, based on the vehicle's last reported location.</p>
-                    <ul class="links" style="padding-top:0;">
-                        <li><a href="${util.url_domain()}/transittracker/about.htm">How it works</a></li>
-                    </ul>
-                
-                </div>
-                <p class="feedback">
-                    <a href="${util.url_domain()}/mailforms/ttfeedback">Got feedback?<br />Let us know.</a>
-                </p>
-            </aside><!-- end #sidebar -->
-% endif
+    % if hasattr(c, 'skip_sidebar') == False:
+            ${self.side_bar()}
+    % else:
+            <!-- sidebar intentionally skipped via attribute 'skip_sidebar' -->
+    % endif
 
         </div><!-- end #content -->
     </div><!-- end #content-wrap -->
