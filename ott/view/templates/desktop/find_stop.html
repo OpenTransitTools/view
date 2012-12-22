@@ -1,7 +1,7 @@
 <%inherit file="/desktop/base.html"/>
 
 <%namespace name="util"  file="/shared/util.mako"/>
-<%namespace name="rs"    file="/shared/route_select.mako"/>
+<%namespace name="rs"   file="/shared/route_select.mako"/>
 
 <%def name="title()">${_(u'TriMet: Stops and Stations')}</%def>
 <%def name="app_css()">
@@ -15,13 +15,13 @@
             <!-- begin #sidebar -->
             <aside id="aside" class="aside">
                 <div id="icon" class="icon-stops">
-                    <h2>Related</h2>  
+                    <h2>${_(u'Related')}</h2>  
                     <ul class="links">
-                        <li><a href="/transitcenters/index.htm">Transit Centers</a></li>
-                        <li><a href="/max/stations/index.htm">MAX Light Rail stations</a></li>
-                        <li><a href="/wes/stations.htm">WES Commuter Rail stations</a></li>
-                        <li><a href="/parkandride/index.htm">Park &amp; Ride lots </a> </li>
-                        <li><a href="/portlandmall/index.htm">Portland Transit Mall</a></li>
+                        <li><a href="/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
+                        <li><a href="/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
+                        <li><a href="/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
+                        <li><a href="/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
+                        <li><a href="/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
                     </ul>
                 </div>
             </aside>
@@ -51,7 +51,7 @@ form.stopid-form input {
 }
 -->
 </style>
-<p class="mobile"><a href="${util.url_domain()}/arrivals/small/pickroute.html"><span>${_(u'Mobile')}</span></a></p>
+<p class="mobile"><a href="${util.url_domain()}/mobile/find_stop"><span>${_(u'Mobile')}</span></a></p>
 
 <div class="stops-form">
     <div id="stops-form-index" class="stops-form-top">
@@ -63,7 +63,7 @@ form.stopid-form input {
 
         <div style="width:600px;"><!--for IE6-->
             <div style="width:240px; float:left; padding-left:20px; clear: both;">
-                <form name="cstops" id="cstops_id" method="get" action="/go/cgi-bin/cstops.pl" class="form-style">
+                <form name="cstops" id="cstops_id" method="get" action="stop" class="form-style">
                 <input type="hidden" name="action" value="entry">
                 <input type="hidden" name="resptype" value="U">
                 <!-- F: Formatted, U: Unformatted -->

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2012-12-22 00:39+0000\n"
+"POT-Creation-Date: 2012-12-22 02:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,43 @@ msgstr ""
 "Generated-By: Babel 0.9.6\n"
 
 #: ott/view/templates/desktop/find_stop.html:6
+#: ott/view/templates/desktop/stop.html:15
 msgid "TriMet: Stops and Stations"
 msgstr ""
 
+#: ott/view/templates/desktop/find_stop.html:18
+#: ott/view/templates/desktop/stop.html:27
+msgid "Related"
+msgstr ""
+
+#: ott/view/templates/desktop/find_stop.html:20
+msgid "Transit Centers"
+msgstr ""
+
+#: ott/view/templates/desktop/find_stop.html:21
+msgid "MAX Light Rail stations"
+msgstr ""
+
+#: ott/view/templates/desktop/find_stop.html:22
+msgid "WES Commuter Rail stations"
+msgstr ""
+
+#: ott/view/templates/desktop/find_stop.html:23
+msgid "Park & Ride lots"
+msgstr ""
+
+#: ott/view/templates/desktop/find_stop.html:24
+msgid "Portland Transit Mall"
+msgstr ""
+
 #: ott/view/templates/desktop/find_stop.html:54
+#: ott/view/templates/desktop/stop.html:61
 #: ott/view/templates/desktop/tracker.html:48
 msgid "Mobile"
 msgstr ""
 
 #: ott/view/templates/desktop/find_stop.html:60
+#: ott/view/templates/desktop/stop.html:67
 msgid "Stops & Stations"
 msgstr ""
 
@@ -40,6 +68,74 @@ msgstr ""
 
 #: ott/view/templates/desktop/find_stop.html:78
 msgid "Find stops"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:15 ott/view/templates/desktop/stop.html:74
+msgid "Stop ID"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:29
+msgid "Find closest stops to"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:30
+msgid "TriMet: Trip Planner Help"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:30
+msgid "Trip Planner tips & help"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:33
+msgid "Having problems? Click here for technical support."
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:80 ott/view/templates/desktop/stop.html:82
+msgid "View on Interactive Map"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:80
+msgid "(High-speed connection recommended)"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:84
+msgid "High-speed connection recommended"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:88
+msgid "Served by"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:93 ott/view/templates/desktop/stop.html:99
+msgid "Next arrivals"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:94 ott/view/templates/desktop/stop.html:100
+msgid "Schedule"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:95
+msgid "Route info"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:98
+msgid "All routes"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:102
+msgid "Amenities"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:114
+msgid "Plan a trip"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:115
+msgid "to here"
+msgstr ""
+
+#: ott/view/templates/desktop/stop.html:117
+msgid "from here"
 msgstr ""
 
 #: ott/view/templates/shared/route_select.mako:7

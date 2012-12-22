@@ -66,13 +66,13 @@
 
             <section id="main" ${self.mainContentStyle()} class="main">
                 <%include file="/shared/share.html"/>
-                 ${next.body()}
+                ${next.body()}
             </section><!-- end #main -->
 
             % if hasattr(c, 'skip_sidebar') == False:
                 ${self.side_bar()}
             % else:
-                    <!-- sidebar intentionally skipped via attribute 'skip_sidebar' -->
+                <!-- sidebar intentionally skipped via attribute 'skip_sidebar' -->
             % endif
 
         </div><!-- end #content -->
