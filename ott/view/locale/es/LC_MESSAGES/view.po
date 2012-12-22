@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2012-12-19 00:44-0800\n"
+"POT-Creation-Date: 2012-12-22 00:39+0000\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -17,28 +17,36 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
 
-#: ott/view/templates/desktop/stop.html:9
-msgid "Select a line:"
-msgstr ""
+#: ott/view/templates/desktop/find_stop.html:6
+msgid "TriMet: Stops and Stations"
+msgstr "TriMet: Paradas y Estaciones"
 
-#: ott/view/templates/desktop/stop.html:19
-msgid "Select"
-msgstr "Consultar"
-
-#: ott/view/templates/desktop/stop.html:40
-#: ott/view/templates/mobile/stop.html:22
+#: ott/view/templates/desktop/find_stop.html:54
+#: ott/view/templates/desktop/tracker.html:48
 msgid "Mobile"
 msgstr "Móvil"
 
-#: ott/view/templates/desktop/stop.html:46
+#: ott/view/templates/desktop/find_stop.html:60
 msgid "Stops & Stations"
 msgstr "Paradas y Estaciones"
 
-#: ott/view/templates/desktop/stop.html:59
+#: ott/view/templates/desktop/find_stop.html:73
 msgid "Find stops and stations:"
-msgstr "Find paradas y estaciones"
+msgstr "Find paradas y estaciones:"
 
-#: ott/view/templates/desktop/stop.html:61
+#: ott/view/templates/desktop/find_stop.html:75
 msgid "Address, intersection, landmark or Stop ID"
-msgstr ""
+msgstr "El Address, intersection, landmark or Stop ID"
+
+#: ott/view/templates/desktop/find_stop.html:78
+msgid "Find stops"
+msgstr "El find paradas"
+
+#: ott/view/templates/shared/route_select.mako:7
+msgid "Select a line:"
+msgstr "El selection a lina:"
+
+#: ott/view/templates/shared/route_select.mako:19
+msgid "Select"
+msgstr "Consultar"
 
