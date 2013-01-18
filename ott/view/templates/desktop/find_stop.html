@@ -63,7 +63,7 @@ form.stopid-form input {
 
         <div style="width:600px;"><!--for IE6-->
             <div style="width:240px; float:left; padding-left:20px; clear: both;">
-                <form name="cstops" id="cstops_id" method="get" action="/stop.html" class="form-style">
+                <form name="cstops" id="cstops_id" method="get" action="/stop_geocode.html" class="form-style">
                     <fieldset>
                         <label for="locationID">${_(u'Find stops and stations:')}</label>
                         <input name="geocode_form" type="text" value="" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="15" maxlength="80" />
@@ -78,7 +78,7 @@ form.stopid-form input {
                 <img src="${util.url_domain()}/v3/images/structure/form-or.gif" />
             </div>
             <div style="width:290px; float:left;">
-                ${rs.route_select_form('/stop.html', routes, ga_select_route)}
+                ${rs.route_select_form('/route_stop_list.html', routes, ga_select_route)}
             </div>
             <p class="clear">&nbsp;</p>
         </div>

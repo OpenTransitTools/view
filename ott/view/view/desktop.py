@@ -1,7 +1,34 @@
 from pyramid.view import view_config
 
+
 @view_config(route_name='stop_desktop', renderer='desktop/stop.html')
 def stop(request):
+    '''
+       what do i do?
+       1. ...
+       2. ...
+    '''
+    ret_val = {}
+    ret_val['stop'] = request.model.get_stop()
+
+    return ret_val
+
+
+@view_config(route_name='stop_geocode_desktop', renderer='desktop/stop_geocode.html')
+def stop_geocode(request):
+    '''
+       what do i do?
+       1. ...
+       2. ...
+    '''
+    ret_val = {}
+    ret_val['stop'] = request.model.get_stop()
+
+    return ret_val
+
+
+@view_config(route_name='route_stop_desktop', renderer='desktop/route_stop_list.html')
+def route_stop(request):
     '''
        what do i do?
        1. ...
@@ -22,6 +49,19 @@ def find_stop(request):
     '''
     ret_val = {}
     ret_val['routes'] = request.model.get_routes()['routes']
+
+    return ret_val
+
+
+@view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
+def feedback(request):
+    '''
+       what do i do?
+       1. ...
+       2. ...
+    '''
+    ret_val = {}
+    ret_val['stop'] = request.model.get_stop()
 
     return ret_val
 

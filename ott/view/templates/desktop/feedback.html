@@ -19,7 +19,7 @@
                       <li><a href="/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
                     </ul>
                 </div>
-                <p class="feedback"><a href="/feedback.html?app=stop&stopID=${stop['id']}">${_(u'Having problems? Click here for technical support.')}</a></p>
+                <p class="feedback"><a href="feedback.cgi?lang=eny1=-122.675681&Id=1&acode1=LA&locID=2&x1=45.420598">${_(u'Having problems? Click here for technical support.')}</a></p>
             </aside>
             <!-- end #sidebar -->
 </%def>
@@ -68,9 +68,9 @@ form.stopid-form input {
         </div>
         <div id="stopinfo">
             <h3 class="imageRight">
-                <img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/275/height/275/zoom/6/extraparams/format_options=layout:scale/id/${stop['id']}" title="${_(u'View on Interactive Map')} ${_(u'(High-speed connection recommended)')}"/>
+                <img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/275/height/275/zoom/6/extraparams/format_options=layout:scale/id/2" title="${_(u'View on Interactive Map')} ${_(u'(High-speed connection recommended)')}"/>
                 <p class="map" style="width:220px;">
-                    <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">${_(u'View on Interactive Map')}</a>
+                    <a href="http://ride.trimet.org/?zoom=16&pLat=45.420598&pLon=-122.675681&pText=A%20Ave%20%26amp%3B%20Chandler">${_(u'View on Interactive Map')}</a>
                     <br/>
                     <span class="secondary">${_(u'High-speed connection recommended')}</span>
                 </p>

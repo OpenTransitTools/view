@@ -103,13 +103,18 @@ def make_views(config, model):
     config.add_renderer(".html", "pyramid.mako_templating.renderer_factory")
 
     # routes setup
-    config.add_route('index',       '/')
-    config.add_route('tracker_desktop',   '/arrivals')
-    config.add_route('find_stop_desktop', '/find_stop.html')
-    config.add_route('stop_desktop',      '/stop.html')
-    
-    config.add_route('find_stop_mobile',  '/mobile/find_stop.html')
-    config.add_route('stop_mobile',       '/mobile/stop.html')
+    config.add_route('index',                 '/')
+    config.add_route('tracker_desktop',       '/arrivals')
+
+    config.add_route('find_stop_desktop',     '/find_stop.html')
+    config.add_route('route_stop_desktop',    '/route_stop_list.html')
+    config.add_route('stop_desktop',          '/stop.html')
+    config.add_route('stop_geocode_desktop',  '/stop_geocode.html')
+    config.add_route('feedback_desktop',      '/feedback.html')
+
+    config.add_route('find_stop_mobile',      '/mobile/find_stop.html')
+    config.add_route('stop_mobile',           '/mobile/stop.html')
+    config.add_route('feedback_mobile',       '/mobile/feedback.html')
 
     here   = os.path.dirname(os.path.abspath(__file__))
     parent = os.path.abspath(os.path.join(here, os.path.pardir))
