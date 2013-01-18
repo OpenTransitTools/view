@@ -1,0 +1,40 @@
+{
+    "schedules" : [
+        {
+            "id"    : 1, 
+            "name"  : "1 Vermont to 45th Ave",
+            "url"   : "http://trimet.org/schedules/r001.htm",
+            "alert" : "alert_route1",
+            "times" : [
+                "6:45am", "7:45am", "8:15am", "8:45am"
+            ]
+        }
+        ,
+        {
+            "id"    : 1, 
+            "name"  : "1 Downtown Only",
+            "url"   : "http://trimet.org/schedules/r001.htm",
+            "alert" : "alert_route1",
+            "times" : [
+                "9:15am", "9:45am", "10:15am"
+            ]
+        }
+        ,
+        {
+            "id"    : 1, 
+            "name"  : "1 Vermont Shattuck Loop via Maplewood",
+            "url"   : "http://trimet.org/schedules/r001.htm",
+            "alert" : "alert_route1",
+            "times" : [
+                "4:15pm", "4:45pm", "5:15pm", "5:44pm"
+            ]
+        }
+    ],
+
+    "alerts" : {
+        "alert_route1" : {
+            "name"  : "1-Vermont",
+            "alert" : "On January 21, Martin Luther King Jr. Day, this line will not be in service. Many bus lines will run on weekday schedules and some will run on Saturday schedules. MAX Light Rail and WES Commuter Rail will run on regular weekday schedules. TriMet customer service offices will be closed."
+        }
+    }
+}
