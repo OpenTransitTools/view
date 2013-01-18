@@ -68,7 +68,9 @@ form.stopid-form input {
         </div>
         <div id="stopinfo">
             <h3 class="imageRight">
+                <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">
                 <img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/275/height/275/zoom/6/extraparams/format_options=layout:scale/id/${stop['id']}" title="${_(u'View on Interactive Map')} ${_(u'(High-speed connection recommended)')}"/>
+                </a>
                 <p class="map" style="width:220px;">
                     <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">${_(u'View on Interactive Map')}</a>
                     <br/>
