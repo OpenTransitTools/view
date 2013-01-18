@@ -1,7 +1,7 @@
 <%inherit file="/desktop/base.html"/>
-
 <%namespace name="util"  file="/shared/util.mako"/>
-<%def name="title()">${_(u'TriMet: Stops and Stations')} - ${_(u'Stop ID')} ${stop['id']} - ${stop['name']}</%def>
+
+<%def name="title()">${_(u'TriMet: Stops and Stations')} - ${route_stops['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
 </%def>
@@ -15,98 +15,223 @@
                 <div id="icon" class="icon-stops">
                     <h2>${_(u'Related')}</h2>  
                     <ul class="links">
-                      <li><a href="nearest_stops?lang=en&X=-122.675681&Y=45.420598">${_(u'Find closest stops to')} ${stop['name']}</a></li>
-                      <li><a href="/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
+                        <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
+                        <li><a href="${util.url_domain()}/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
+                        <li><a href="${util.url_domain()}/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
+                        <li><a href="${util.url_domain()}/parkandride/index.htm">${_(u'Park & Ride lots')}</a> </li>
+                        <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
                     </ul>
                 </div>
-                <p class="feedback"><a href="/feedback.html?app=stop&stopID=${stop['id']}">${_(u'Having problems? Click here for technical support.')}</a></p>
+                <p class="feedback"><a href="/feedback.html?app=route_stop_list">${_(u'Having problems? Click here for technical support.')}</a></p>
             </aside>
             <!-- end #sidebar -->
 </%def>
 
+
 <%def name="stations_selected()">class="selected"</%def>
 
-<% 
-ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
-ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
-%>
-
-<style type="text/css">
-<!--
-/*stop id form overrides */
-form.stopid-form {
-    min-width: 400px;
-    max-width: 400px;
-    width: 400px;
-}
-form.stopid-form fieldset {
-    display:inline;
-}
-form.stopid-form input {
-    width: 255px;
-}
--->
-</style>
-<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
+<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${route_stops['id']}"><span>${_(u'Mobile')}</span></a></p>
 
 <div class="stops-form">
-    <div class="stopshomelink">
-        <a href="/find_stop.html" class="image"></a>
-    </div>
-    <div class="stops-form-top" id="stops-form">
+    <div class="stopshomelink"><a href="/stopsandstations/index.htm" class="image"></a></div>
+    <div id="stops-form" class="stops-form-top">
         <div class="stops-icon">
             <h1>${_(u'Stops & Stations')}</h1>
-            <div class="tagline">
-                <p>&nbsp;</p>
-            </div>
+            <div class="tagline"><p>&nbsp;</p></div>
         </div>
-        <div class="stops-content">
-            <p style="float:right"><b></b></p>
-            <h2 class="stop">${_(u'Stop ID')} ${stop['id']}</h2>
-            <p class="stop-location">${stop['name']} ${_(u'in')} ${stop['city']}</p>
-            <p class="stopid"></p>
-        </div>
-        <div id="stopinfo">
-            <h3 class="imageRight">
-                <img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/275/height/275/zoom/6/extraparams/format_options=layout:scale/id/${stop['id']}" title="${_(u'View on Interactive Map')} ${_(u'(High-speed connection recommended)')}"/>
-                <p class="map" style="width:220px;">
-                    <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">${_(u'View on Interactive Map')}</a>
-                    <br/>
-                    <span class="secondary">${_(u'High-speed connection recommended')}</span>
-                </p>
-                <p class="clear">&nbsp;</p>
-            </h3>
-            <h3>${_(u'Served by')}</h3>
-            for x in ...
-            <p>
-                <span class="bold">37-Lake Grove</span>
-                <br/>To Lake Oswego TC<br/>
-                <a class="hide" href="/arrivals/tracker.html?locationID=2&route=037">${_(u'Next arrivals')}</a>
-                / <a href="sched.pl?lang=en&line=037&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598">${_(u'Schedule')}</a> 
-                / <a href="/schedules/r037.htm" title = "Show map and schedules for this route.">${_(u'Route info')}</a>
-            </p>
-            <p>
-                <span class="bold">${_(u'All routes')}</span><br/>
-                <a class="hide" href="/arrivals/tracker.html?locationID=2">${_(u'Next arrivals')}</a>
-                / <a href="sched.pl?lang=en&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598">${_(u'Schedule')}</a>
-            </p>
-            <h3>${_(u'Amenities')}</h3>
-            <ul class="amenities">
-                TODO: how to manage a localized set of attribute string????
-                for a in amenities ...
-                <li>No shelter</li>
-                <li>Stop is on the near side of the intersection</li>
-                <li>Pavement at back door of bus</li>
-                <li>Curb ramp near stop</li>
-                <li>Pavement at front door of bus</li>
-                <li>Sidewalk at stop</li>
-                <li>Crosswalk</li>
-            </ul>
-            <h3>${_(u'Plan a trip')}</h3>
-                <p class="link"><a href="plantrip.cgi?to=2&lang=en">${_(u'to here')}</a>
-                &ndash; 
-                <a href="plantrip.cgi?from=2&lang=en">${_(u'from here')}</a></p>
-        </div> <!-- stop info -->
-    </div> <!-- class="stops-form-top" -->
-    <div class="stops-form-bottom">&nbsp;</div>
-</div> <!-- class="stops-form" -->
+
+        <h2 class="route">${route_stops['name']}</h2>
+            <form action="/stop.html?stopID=" method="get">
+                <input type="hidden" name="action" value="entry" />
+                <fieldset class="normal">
+                    <label>To Tigard TC</label>
+                    <select name="Loc" class="ttform" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
+                        <option value="10855">Parkrose/ Sumner Transit Center </option>
+                        <option value="5145">NE Sandy &amp; 91st</option>
+                        <option value="5052">NE Sandy &amp; Prescott</option>
+                        <option value="5144">NE Sandy &amp; 88th</option>
+                        <option value="5140">NE Sandy &amp; 86th</option>
+                        <option value="5139">NE Sandy &amp; 82nd</option>
+                        <option value="5136">NE Sandy &amp; 79th</option>
+                        <option value="5133">NE Sandy &amp; 77th</option>
+                        <option value="5127">NE Sandy &amp; 74th</option>
+                        <option value="5125">NE Sandy &amp; Fremont</option>
+                        <option value="5122">NE Sandy &amp; 69th</option>
+                        <option value="5119">NE Sandy &amp; 67th</option>
+                        <option value="5114">NE Sandy &amp; 64th</option>
+                        <option value="5113">NE Sandy &amp; 62nd</option>
+                        <option value="5107">NE Sandy &amp; 59th</option>
+                        <option value="5105">NE Sandy &amp; 57th</option>
+                        <option value="5103">NE Sandy &amp; 54th</option>
+                        <option value="5100">NE Sandy &amp; 52nd</option>
+                        <option value="5098">NE Sandy &amp; 50th</option>
+                        <option value="5093">NE Sandy &amp; 47th</option>
+                        <option value="10834">NE Sandy &amp; 44th</option>
+                        <option value="9756">NE Sandy &amp; 42nd</option>
+                        <option value="11313">NE Sandy &amp; Cesar Chavez Blvd</option>
+                        <option value="5081">NE Sandy &amp; 35th</option>
+                        <option value="5080">NE Sandy &amp; 33rd</option>
+                        <option value="5077">NE Sandy &amp; 31st</option>
+                        <option value="5069">NE Sandy &amp; 28th</option>
+                        <option value="5068">NE Sandy &amp; 26th</option>
+                        <option value="5067">NE Sandy &amp; 24th</option>
+                        <option value="5063">NE Sandy &amp; 20th</option>
+                        <option value="5062">NE Sandy &amp; 18th</option>
+                        <option value="5060">NE Sandy &amp; 16th</option>
+                        <option value="5058">NE Sandy &amp; 14th</option>
+                        <option value="13328">NE Couch &amp; 12th</option>
+                        <option value="13329">NE Couch &amp; 7th</option>
+                        <option value="13330">NE Couch &amp; M L King</option>
+                        <option value="689">W Burnside &amp; Burnside Bridge</option>
+                        <option value="7631">SW 5th &amp; Pine</option>
+                        <option value="7625">SW 5th &amp; Morrison</option>
+                        <option value="7612">SW 5th &amp; Madison</option>
+                        <option value="7807">SW 6th &amp; Yamhill</option>
+                        <option value="7616">SW 5th &amp; Market</option>
+                        <option value="10491">SW 5th &amp; Hall</option>
+                        <option value="7588">SW 5th &amp; Broadway</option>
+                        <option value="7591">SW 5th &amp; Caruthers</option>
+                        <option value="175">SW Barbur &amp; Hooker St</option>
+                        <option value="198">SW Barbur &amp; Woods</option>
+                        <option value="196">SW Barbur &amp; Whitaker</option>
+                        <option value="185">SW Barbur &amp; Pennoyer</option>
+                        <option value="176">SW Barbur &amp; Lane</option>
+                        <option value="173">SW Barbur &amp; Hamilton</option>
+                        <option value="155">4900 Block SW Barbur</option>
+                        <option value="188">SW Barbur &amp; Capitol Hwy</option>
+                        <option value="181">SW Barbur &amp; Parkhill Dr</option>
+                        <option value="207">SW Barbur &amp; 3rd</option>
+                        <option value="191">SW Barbur &amp; Terwilliger</option>
+                        <option value="199">SW Barbur &amp; Bertha</option>
+                        <option value="200">SW Barbur &amp; 13th</option>
+                        <option value="201">SW Barbur &amp; Evans</option>
+                        <option value="170">SW Barbur &amp; Capitol Hill</option>
+                        <option value="10844">SW Barbur &amp; Spring Garden</option>
+                        <option value="165">SW Barbur &amp; Barbur Ct</option>
+                        <option value="194">8900 Block SW Barbur</option>
+                        <option value="187">SW Barbur &amp; Primrose</option>
+                        <option value="163">SW Barbur &amp; Alice</option>
+                        <option value="164">SW Barbur &amp; Taylors Ferry</option>
+                        <option value="8213">Barbur Transit Center </option>
+                        <option value="10845">SW Barbur &amp; Huber</option>
+                        <option value="178">SW Barbur &amp; Luradel</option>
+                        <option value="152">10700 Block SW Barbur</option>
+                        <option value="209">SW Barbur &amp; 53rd</option>
+                        <option value="153">11100 Block SW Barbur</option>
+                        <option value="184">11200 Block SW Barbur</option>
+                        <option value="4326">SW Pacific Hwy &amp; 65th</option>
+                        <option value="4328">SW Pacific Hwy &amp; 69th</option>
+                        <option value="4329">SW Pacific Hwy &amp; 71st</option>
+                        <option value="4249">SW Pacific Hwy &amp; 72nd</option>
+                        <option value="10639">11600 Block SW Pacific Hwy</option>
+                        <option value="4305">SW Pacific Hwy &amp; 78th</option>
+                        <option value="4253">11700 Block SW Pacific Hwy</option>
+                        <option value="4319">SW Pacific Hwy &amp; Warner</option>
+                        <option value="3673">SW Main &amp; Scoffins</option>
+                        <option value="8210">Tigard Transit Center </option>
+                    </select>
+                </fieldset>
+                <fieldset class="submit">
+                    <input tabindex="9" type="submit" value="Select stop" id="select" />
+                </fieldset>
+            </form>
+            <div class="or-bar"><img src="${util.url_domain()}/v3/images/structure/form-or-bar.gif" width="600" height="28" /></div>
+            <form action="/stop.html?stopID=" method="get">
+                <input type="hidden" name="action" value="entry" />
+                <fieldset class="normal">
+                    <label>To Parkrose/Sumner TC</label>
+                    <select name="Loc" class="ttform" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
+                        <option value="8210">Tigard Transit Center </option>
+                        <option value="3669">SW Main &amp; Pacific Hwy</option>
+                        <option value="4290">SW Pacific Hwy &amp; Hall</option>
+                        <option value="4252">11700 Block SW Pacific Hwy</option>
+                        <option value="4251">11600 Block SW Pacific Hwy</option>
+                        <option value="9648">SW Pacific Hwy &amp; 74th (Park &amp; Ride)</option>
+                        <option value="4284">SW Pacific Hwy &amp; 72nd</option>
+                        <option value="4248">11500 Block SW Pacific Hwy</option>
+                        <option value="4327">SW Pacific Hwy &amp; 68th</option>
+                        <option value="211">SW Pacific Hwy &amp; 64th</option>
+                        <option value="183">11200 Block SW Barbur</option>
+                        <option value="154">11100 Block SW Barbur</option>
+                        <option value="210">SW Barbur &amp; 53rd</option>
+                        <option value="179">SW Barbur &amp; Luradel</option>
+                        <option value="150">10100 Block SW Barbur</option>
+                        <option value="168">SW Barbur &amp; Capitol Hwy</option>
+                        <option value="212">Barbur Transit Center</option>
+                        <option value="160">9500 Block SW Barbur</option>
+                        <option value="162">SW Barbur &amp; Alice</option>
+                        <option value="208">SW Barbur &amp; 30th</option>
+                        <option value="10849">SW Barbur &amp; 26th Way</option>
+                        <option value="159">SW Barbur &amp; 26th Ave</option>
+                        <option value="11031">SW Barbur &amp; 22nd</option>
+                        <option value="202">SW Barbur &amp; 19th</option>
+                        <option value="180">SW Barbur &amp; Moss</option>
+                        <option value="11271">SW Barbur &amp; 13th</option>
+                        <option value="10848">SW Barbur &amp; Bertha</option>
+                        <option value="193">SW Barbur &amp; Terwilliger</option>
+                        <option value="203">SW Barbur &amp; 2nd</option>
+                        <option value="167">SW Barbur &amp; Brier</option>
+                        <option value="182">SW Barbur &amp; Nebraska</option>
+                        <option value="189">SW Barbur &amp; Slavin/Capitol Hwy</option>
+                        <option value="156">4900 Block SW Barbur</option>
+                        <option value="172">SW Barbur &amp; Hamilton</option>
+                        <option value="177">SW Barbur &amp; Lane</option>
+                        <option value="186">SW Barbur &amp; Pennoyer</option>
+                        <option value="195">SW Barbur &amp; Whitaker</option>
+                        <option value="197">SW Barbur &amp; Woods</option>
+                        <option value="174">SW Barbur &amp; Hooker St</option>
+                        <option value="12762">SW 4th &amp; Caruthers</option>
+                        <option value="12763">SW 4th &amp; Hall</option>
+                        <option value="7772">SW 6th &amp; Market</option>
+                        <option value="7765">SW 6th &amp; Jefferson</option>
+                        <option value="7807">SW 6th &amp; Yamhill</option>
+                        <option value="7782">SW 6th &amp; Oak</option>
+                        <option value="792">W Burnside &amp; SW 6th</option>
+                        <option value="772">W Burnside &amp; SW 4th</option>
+                        <option value="9526">W Burnside &amp; SW 2nd</option>
+                        <option value="704">E Burnside &amp; NE Grand</option>
+                        <option value="820">E Burnside &amp; SE 8th</option>
+                        <option value="13327">E Burnside &amp; SE Sandy</option>
+                        <option value="6839">NE 16th &amp; Sandy</option>
+                        <option value="5061">NE Sandy &amp; 18th</option>
+                        <option value="5044">NE Sandy &amp; Flanders</option>
+                        <option value="5066">NE Sandy &amp; 24th</option>
+                        <option value="5049">NE Sandy &amp; Lawrence</option>
+                        <option value="5070">NE Sandy &amp; 28th</option>
+                        <option value="5076">NE Sandy &amp; 31st</option>
+                        <option value="5079">NE Sandy &amp; 33rd</option>
+                        <option value="5048">NE Sandy &amp; Imperial</option>
+                        <option value="10793">NE Sandy &amp; 38th</option>
+                        <option value="10794">NE Sandy &amp; 40th</option>
+                        <option value="5087">NE Sandy &amp; 42nd</option>
+                        <option value="5091">NE Sandy &amp; 44th</option>
+                        <option value="5094">NE Sandy &amp; 47th</option>
+                        <option value="5097">NE Sandy &amp; 50th</option>
+                        <option value="5054">NE Sandy &amp; Sacramento</option>
+                        <option value="5102">NE Sandy &amp; 54th</option>
+                        <option value="5104">NE Sandy &amp; 57th</option>
+                        <option value="5110">NE Sandy &amp; 60th</option>
+                        <option value="5112">NE Sandy &amp; 62nd</option>
+                        <option value="5115">NE Sandy &amp; 65th</option>
+                        <option value="5118">NE Sandy &amp; 67th</option>
+                        <option value="5123">NE Sandy &amp; 70th</option>
+                        <option value="5045">NE Sandy &amp; Fremont</option>
+                        <option value="10795">NE Sandy &amp; 74th</option>
+                        <option value="5132">NE Sandy &amp; 77th</option>
+                        <option value="5135">NE Sandy &amp; 79th</option>
+                        <option value="5138">NE Sandy &amp; 82nd</option>
+                        <option value="5046">NE Sandy &amp; Grotto</option>
+                        <option value="13651">NE Sandy &amp; 87th</option>
+                        <option value="5051">NE Sandy &amp; Prescott</option>
+                        <option value="5146">NE Sandy &amp; 92nd</option>
+                        <option value="10853">Parkrose/ Sumner Transit Center</option>
+                    </select>
+                </fieldset>
+                <fieldset class="submit">
+                    <input tabindex="9" type="submit" value="Select stop" id="select" />
+                </fieldset>
+            </form>
+        <p>&nbsp;</p>
+    </div>
+    <div class="stops-form-bottom"></div>
+</div>

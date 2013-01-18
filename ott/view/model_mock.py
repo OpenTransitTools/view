@@ -25,13 +25,15 @@ def get_json(file):
 
 
 class ModelMock(Model):
-    def get_routes(self): return get_json('route.json')
-    def get_stop(self):   return get_json('stop.json')
+    def get_route_stops_list(self): return get_json('route_stop_list.json')
+    def get_routes(self):           return get_json('route.json')
+    def get_stop(self):             return get_json('stop.json')
 
 
 def main():
     m=ModelMock()
     print m.get_stop()
+    print m.get_route_stops_list()
     routes=m.get_routes()['routes']
     for r in routes:
         print r

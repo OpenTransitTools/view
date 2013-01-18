@@ -28,14 +28,14 @@ def stop_geocode(request):
 
 
 @view_config(route_name='route_stop_desktop', renderer='desktop/route_stop_list.html')
-def route_stop(request):
+def route_stops_list(request):
     '''
        what do i do?
        1. ...
        2. ...
     '''
     ret_val = {}
-    ret_val['stop'] = request.model.get_stop()
+    ret_val['route_stops'] = request.model.get_route_stops_list()
 
     return ret_val
 
