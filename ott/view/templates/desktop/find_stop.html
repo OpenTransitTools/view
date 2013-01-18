@@ -63,15 +63,10 @@ form.stopid-form input {
 
         <div style="width:600px;"><!--for IE6-->
             <div style="width:240px; float:left; padding-left:20px; clear: both;">
-                <form name="cstops" id="cstops_id" method="get" action="stop" class="form-style">
-                <input type="hidden" name="action" value="entry">
-                <input type="hidden" name="resptype" value="U">
-                <!-- F: Formatted, U: Unformatted -->
-                <input type="hidden" name="lang" value="en"  />
-                <input type="hidden" name="noCat" value="Landmark"  />
+                <form name="cstops" id="cstops_id" method="get" action="/stop.html" class="form-style">
                     <fieldset>
                         <label for="locationID">${_(u'Find stops and stations:')}</label>
-                        <input name="Loc" type="text" value="" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="15" maxlength="80" />
+                        <input name="geocode_form" type="text" value="" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="15" maxlength="80" />
                         <p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>
                     </fieldset>
                     <fieldset class="submit">
@@ -83,7 +78,7 @@ form.stopid-form input {
                 <img src="${util.url_domain()}/v3/images/structure/form-or.gif" />
             </div>
             <div style="width:290px; float:left;">
-             ${rs.route_select_form('/stop', routes, ga_select_route)}
+                ${rs.route_select_form('/stop.html', routes, ga_select_route)}
             </div>
             <p class="clear">&nbsp;</p>
         </div>

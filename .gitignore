@@ -39,4 +39,4 @@ nosetests.xml
 /.pydevproject~
 *.bak
 *.db
-/gtfs.zip
+/gtfs.zipdocs/Stops Web Flow.zargo~

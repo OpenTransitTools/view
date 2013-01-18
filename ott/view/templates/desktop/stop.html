@@ -1,18 +1,7 @@
 <%inherit file="/desktop/base.html"/>
 
 <%namespace name="util"  file="/shared/util.mako"/>
-
-
-<% 
-  ### http://trimet.org/go/cgi-bin/cstops.pl?action=entry&resptype=U&noCat=Landmark&Loc=2&lang=en
-  ### http://trimet.org/go/cgi-bin/cstops.pl?action=entry&resptype=U&noCat=Landmark&Loc=2&lang=es 
-
-  id=2
-  name='Lake O stop 2'
-  # <%def name="title()">${_(u'TriMet: Stops and Stations')} - ${_(u'Stop ID')} ${id} - ${name}</%def>
-%>
-
-<%def name="title()">${_(u'TriMet: Stops and Stations')} - ${_(u'Stop ID')} </%def>
+<%def name="title()">${_(u'TriMet: Stops and Stations')} - ${_(u'Stop ID')} ${stop['id']} - ${stop['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
 </%def>
@@ -26,7 +15,7 @@
                 <div id="icon" class="icon-stops">
                     <h2>${_(u'Related')}</h2>  
                     <ul class="links">
-                      <li><a href="nearest_stops?lang=en&X=-122.675681&Y=45.420598">${_(u'Find closest stops to')} A Ave &amp; Chandler</a></li>
+                      <li><a href="nearest_stops?lang=en&X=-122.675681&Y=45.420598">${_(u'Find closest stops to')} ${stop['name']}</a></li>
                       <li><a href="/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
                     </ul>
                 </div>
@@ -61,7 +50,9 @@ form.stopid-form input {
 <p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
 
 <div class="stops-form">
-    <div class="stopshomelink"><a href="/find_stop" class="image"></a></div>
+    <div class="stopshomelink">
+        <a href="/find_stop.html" class="image"></a>
+    </div>
     <div class="stops-form-top" id="stops-form">
         <div class="stops-icon">
             <h1>${_(u'Stops & Stations')}</h1>
@@ -71,8 +62,8 @@ form.stopid-form input {
         </div>
         <div class="stops-content">
             <p style="float:right"><b></b></p>
-            <h2 class="stop">${_(u'Stop ID')} 2</h2>
-            <p class="stop-location">A Ave &amp; Chandler in Lake Oswego Eastbound</p>
+            <h2 class="stop">${_(u'Stop ID')} ${stop['id']}</h2>
+            <p class="stop-location">${stop['name']} ${_(u'in')} ${stop['city']}</p>
             <p class="stopid"></p>
         </div>
         <div id="stopinfo">

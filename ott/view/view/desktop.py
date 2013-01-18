@@ -8,7 +8,7 @@ def stop(request):
        2. ...
     '''
     ret_val = {}
-    ret_val['routes'] = request.model.get_routes()['routes']
+    ret_val['stop'] = request.model.get_stop()
 
     return ret_val
 
