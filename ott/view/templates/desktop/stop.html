@@ -77,30 +77,26 @@ form.stopid-form input {
                 <p class="clear">&nbsp;</p>
             </h3>
             <h3>${_(u'Served by')}</h3>
-            for x in ...
+            %for r in stop['routes']:
             <p>
-                <span class="bold">37-Lake Grove</span>
-                <br/>To Lake Oswego TC<br/>
-                <a class="hide" href="/arrivals/tracker.html?locationID=2&route=037">${_(u'Next arrivals')}</a>
-                / <a href="sched.pl?lang=en&line=037&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598">${_(u'Schedule')}</a> 
-                / <a href="/schedules/r037.htm" title = "Show map and schedules for this route.">${_(u'Route info')}</a>
+                <span class="bold">${r['name']}</span>
+                <br/>${r['direction']}<br/>
+                <a class="hide" href="${r['tracker_url']}">${_(u'Next arrivals')}</a>
+                / <a href="/stop_schedule.html?route=${r['id']}">${_(u'Schedule')}</a> 
+                / <a href="${r['url']}" title = "${_(u'Show map and schedules for this route')}.">${_(u'Route info')}</a>
             </p>
+            %endfor
             <p>
                 <span class="bold">${_(u'All routes')}</span><br/>
-                <a class="hide" href="/arrivals/tracker.html?locationID=2">${_(u'Next arrivals')}</a>
-                / <a href="sched.pl?lang=en&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598">${_(u'Schedule')}</a>
+                <a class="hide" href="${stop['tracker_url']}">${_(u'Next arrivals')}</a>
+                / <a href="/stop_schedule.html">${_(u'Schedule')}</a>
             </p>
             <h3>${_(u'Amenities')}</h3>
             <ul class="amenities">
-                TODO: how to manage a localized set of attribute string????
-                for a in amenities ...
-                <li>No shelter</li>
-                <li>Stop is on the near side of the intersection</li>
-                <li>Pavement at back door of bus</li>
-                <li>Curb ramp near stop</li>
-                <li>Pavement at front door of bus</li>
-                <li>Sidewalk at stop</li>
-                <li>Crosswalk</li>
+                <!-- TODO: how to manage a localized set of attribute string???? -->
+                %for a in stop['amenities']:
+                <li>${a}</li>
+                %endfor
             </ul>
             <h3>${_(u'Plan a trip')}</h3>
                 <p class="link"><a href="plantrip.cgi?to=2&lang=en">${_(u'to here')}</a>
