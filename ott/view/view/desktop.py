@@ -14,6 +14,33 @@ def stop(request):
     return ret_val
 
 
+@view_config(route_name='stop_schedule_desktop', renderer='desktop/stop_schedule.html')
+def stop_schedule(request):
+    '''
+       what do i do?
+       1. ...
+       2. ...
+    '''
+    #TODO: how to localize these here in python????
+    #today=_(u'Today')
+    #more=_(u'more')
+    today='Today'
+    more='more'
+
+    ret_val = {}
+    ret_val['tabs'] = [
+        {"name":today},
+        {"name":"1/19", "url":"/stop_schedule.html?route=19&date=01/19/2013"},
+        {"name":"1/20", "url":"/stop_schedule.html?route=19&date=01/20/2013"},
+        {"name":more,   "url":"/stop_schedule.html?route=19&date=01/20/2013&more"}
+    ]
+    ret_val['stop'] = request.model.get_stop_schedule_single()
+    #ret_val['stop'] = request.model.get_stop_schedule_multiple()
+    #ret_val['stop'] = request.model.get_stop_schedule_by_time()
+
+    return ret_val
+
+
 @view_config(route_name='stop_geocode_desktop', renderer='desktop/stop_geocode.html')
 def stop_geocode(request):
     '''
