@@ -15,8 +15,6 @@
                 <div id="icon" class="icon-stops">
                     <h2>${_(u'Related')}</h2>  
                     <ul class="links">
-                      <li><a href="nearest_stops?lang=en&X=-122.675681&Y=45.420598">${_(u'Find closest stops to')} ${stop['name']}</a></li>
-                      <li><a href="/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
                     </ul>
                 </div>
                 <p class="feedback"><a href="/feedback.html?app=stop&stopID=${stop['id']}">${_(u'Having problems? Click here for technical support.')}</a></p>
@@ -25,88 +23,3 @@
 </%def>
 
 <%def name="stations_selected()">class="selected"</%def>
-
-<% 
-ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
-ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
-%>
-
-<style type="text/css">
-<!--
-/*stop id form overrides */
-form.stopid-form {
-    min-width: 400px;
-    max-width: 400px;
-    width: 400px;
-}
-form.stopid-form fieldset {
-    display:inline;
-}
-form.stopid-form input {
-    width: 255px;
-}
--->
-</style>
-<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
-
-<div class="stops-form">
-    <div class="stopshomelink">
-        <a href="/find_stop.html" class="image"></a>
-    </div>
-    <div class="stops-form-top" id="stops-form">
-        <div class="stops-icon">
-            <h1>${_(u'Stops & Stations')}</h1>
-            <div class="tagline">
-                <p>&nbsp;</p>
-            </div>
-        </div>
-        <div class="stops-content">
-            <p style="float:right"><b></b></p>
-            <h2 class="stop">${_(u'Stop ID')} ${stop['id']}</h2>
-            <p class="stop-location">${stop['name']} ${_(u'in')} ${stop['city']}</p>
-            <p class="stopid"></p>
-        </div>
-        <div id="stopinfo">
-            <h3 class="imageRight">
-                <img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/275/height/275/zoom/6/extraparams/format_options=layout:scale/id/${stop['id']}" title="${_(u'View on Interactive Map')} ${_(u'(High-speed connection recommended)')}"/>
-                <p class="map" style="width:220px;">
-                    <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">${_(u'View on Interactive Map')}</a>
-                    <br/>
-                    <span class="secondary">${_(u'High-speed connection recommended')}</span>
-                </p>
-                <p class="clear">&nbsp;</p>
-            </h3>
-            <h3>${_(u'Served by')}</h3>
-            for x in ...
-            <p>
-                <span class="bold">37-Lake Grove</span>
-                <br/>To Lake Oswego TC<br/>
-                <a class="hide" href="/arrivals/tracker.html?locationID=2&route=037">${_(u'Next arrivals')}</a>
-                / <a href="sched.pl?lang=en&line=037&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598">${_(u'Schedule')}</a> 
-                / <a href="/schedules/r037.htm" title = "Show map and schedules for this route.">${_(u'Route info')}</a>
-            </p>
-            <p>
-                <span class="bold">${_(u'All routes')}</span><br/>
-                <a class="hide" href="/arrivals/tracker.html?locationID=2">${_(u'Next arrivals')}</a>
-                / <a href="sched.pl?lang=en&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598">${_(u'Schedule')}</a>
-            </p>
-            <h3>${_(u'Amenities')}</h3>
-            <ul class="amenities">
-                TODO: how to manage a localized set of attribute string????
-                for a in amenities ...
-                <li>No shelter</li>
-                <li>Stop is on the near side of the intersection</li>
-                <li>Pavement at back door of bus</li>
-                <li>Curb ramp near stop</li>
-                <li>Pavement at front door of bus</li>
-                <li>Sidewalk at stop</li>
-                <li>Crosswalk</li>
-            </ul>
-            <h3>${_(u'Plan a trip')}</h3>
-                <p class="link"><a href="plantrip.cgi?to=2&lang=en">${_(u'to here')}</a>
-                &ndash; 
-                <a href="plantrip.cgi?from=2&lang=en">${_(u'from here')}</a></p>
-        </div> <!-- stop info -->
-    </div> <!-- class="stops-form-top" -->
-    <div class="stops-form-bottom">&nbsp;</div>
-</div> <!-- class="stops-form" -->

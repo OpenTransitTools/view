@@ -1,4 +1,5 @@
 from pyramid.view import view_config
+import utils
 
 
 @view_config(route_name='stop_desktop', renderer='desktop/stop.html')
@@ -21,19 +22,8 @@ def stop_schedule(request):
        1. ...
        2. ...
     '''
-    #TODO: how to localize these here in python????
-    #today=_(u'Today')
-    #more=_(u'more')
-    today='Today'
-    more='more'
-
     ret_val = {}
-    ret_val['tabs'] = [
-        {"name":today},
-        {"name":"1/19", "url":"/stop_schedule.html?route=19&date=01/19/2013"},
-        {"name":"1/20", "url":"/stop_schedule.html?route=19&date=01/20/2013"},
-        {"name":more,   "url":"/stop_schedule.html?route=19&date=01/20/2013&more"}
-    ]
+    ret_val['tabs'] = utils.get_svc_date_tabs(request.date, '/stop_schedule.html?route=19') 
     ret_val['stop'] = request.model.get_stop_schedule_single()
     #ret_val['stop'] = request.model.get_stop_schedule_multiple()
     #ret_val['stop'] = request.model.get_stop_schedule_by_time()
