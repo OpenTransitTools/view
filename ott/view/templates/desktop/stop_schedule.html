@@ -42,6 +42,18 @@
         %endfor
         </p>
     </div>
+    
+    <p>
+    <form name="sched" id="sched_id" method="GET" action="sched.pl" class="form-style">
+        <input type="hidden" name="lang" value="" />
+        <input type="hidden" name="loc1" value="9848" />
+        <input type="hidden" name="line" value="100" />
+        <input type="hidden" name="x1" value="45.522199" />
+        <input type="hidden" name="y1" value="-122.991021" />
+        ${util.month_select()}${util.day_select()}
+        <input name="submit" type="submit" value="${_(u'Select')}" tabindex="12" />
+    </form>
+    </p>
 
 <h2><a href="/go/cgi-bin/cstops.pl?lang=en&action=entry&resptype=U&Loc=7765">Stop ID 7765</a>
  19-Woodstock/Glisan 
