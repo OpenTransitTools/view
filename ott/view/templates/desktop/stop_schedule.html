@@ -57,14 +57,21 @@
     </form>
     </p>
 
-<h2><a href="/go/cgi-bin/cstops.pl?lang=en&action=entry&resptype=U&Loc=7765">Stop ID 7765</a>
- 19-Woodstock/Glisan 
-[<a href="/go/cgi-bin/sched.pl?lang=en&loc1=7765&y1=-122.680762&Id=15961&acode1=PO&x1=45.514868">all routes</a>]
-</h2>
-   <p class="stopid"> Schedule for Friday, January 18, 2013 </p>
-
-<p class="stopid"><b>by destination</b> <a href="/go/cgi-bin/sched.pl?lang=en&line=019&loc1=7765&y1=-122.680762&Id=15961&acode1=PO&x1=45.514868&Sort=T">[sort by time]</a></p><p><strong>Departures from <a href="stop_info.pl?lang=en&Id=15961&acode1=PO&x1=45.514868&y1=-122.680762&date=1/18/13" title = "Click for more information about this stop">SW 6th &amp; Jefferson (Stop&nbsp;ID&nbsp;7765) </a>
-</strong>  </p>
+    <h2>
+        <a href="/stop.html?stopID=7765">${_(u'Stop ID')} 7765</a>
+        19-Woodstock/Glisan 
+        [<a href="/stop_schedule.html?stopID=&route=">${_(u'all routes')}</a>]
+    </h2>
+    <p class="stopid">${_(u'Schedule for')} Friday, January 18, 2013</p>
+    <p class="stopid">
+        <% by_dest = 'sort' in request.params and request.params['sort'] == 'destination' %>
+        ${util.link_or_strong(_(u'by destination'), by_dest, '/stop_schedule.html?stopID=&route=&sort=destination', _('sort'))}
+        ${util.link_or_strong(_(u'by time'), not by_dest, '/stop_schedule.html?stopID=&route=&sort=time', _('sort'))}
+    </p>
+    <p>
+        <strong>${_(u'Departures from')} <a href="/stop.html?date=1/18/13" title = "${_(u'Click for more information about this stop')}">SW 6th &amp; Jefferson (${_(u'Stop ID')}&nbsp;7765)</a>
+        </strong>
+    </p>
     <p> <a class="hide" href="/arrivals/tracker.html?locationID=7765&route=19&direction=1"><img src="/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="Next arrivals" title="Next arrivals"/></a>
 <b><a href="/schedules/r019.htm" title = "Show map and schedules for this route.">19 Downtown Only</a>&nbsp;<a href="#alerts" class="alert"><img border="0" src="/v3/images/tripplanner/alert.png" alt="See footnote" title="See footnote"/></a>
 </b><br/> 7:27am
