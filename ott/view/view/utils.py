@@ -1,5 +1,15 @@
 import datetime
+from calendar import monthrange
 
+def get_day_info(dt=datetime.date.today()):
+    st,end=monthrange(dt.year, dt.month)
+    ret_val = {
+        'year'    : dt.year,
+        'month'   : dt.month,
+        'numdays' : end,
+        'day'     : dt.day
+    }
+    return ret_val
 
 
 def get_svc_date_tabs(date, uri):
@@ -20,9 +30,7 @@ def get_svc_date_tabs(date, uri):
         {"name":"1/20", "url": uri + "&date=01/20/2013"},
         {"name":more,   "url": uri + "&date=01/20/2013&more"}
     ]
-
     return ret_val
-
 
 def get_first_param_as_int(request, name, def_val=None):
     '''

@@ -50,8 +50,10 @@
         <input type="hidden" name="line" value="100" />
         <input type="hidden" name="x1" value="45.522199" />
         <input type="hidden" name="y1" value="-122.991021" />
-        ${util.month_select()}${util.day_select()}
+        %if more_form:
+        ${util.month_select(more_form['month'])}${util.day_select(more_form['day'], more_form['numdays'])}
         <input name="submit" type="submit" value="${_(u'Select')}" tabindex="12" />
+         %endif
     </form>
     </p>
 
