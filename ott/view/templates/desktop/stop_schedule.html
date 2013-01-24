@@ -42,7 +42,7 @@
         %endfor
         </p>
     </div>
-    
+
     <p>
     <form name="sched" id="sched_id" method="GET" action="sched.pl" class="form-style">
         <input type="hidden" name="lang" value="" />
@@ -62,7 +62,7 @@
         19-Woodstock/Glisan 
         [<a href="/stop_schedule.html?stopID=&route=">${_(u'all routes')}</a>]
     </h2>
-    <p class="stopid">${_(u'Schedule for')} Friday, January 18, 2013</p>
+    <p class="stopid">${_(u'Schedule for')} ${pretty_date}</p>
     <p class="stopid">
         <% by_dest = 'sort' in request.params and request.params['sort'] == 'destination' %>
         ${util.link_or_strong(_(u'by destination'), by_dest, '/stop_schedule.html?stopID=&route=&sort=destination', _('sort'))}
@@ -72,12 +72,12 @@
         <strong>${_(u'Departures from')} <a href="/stop.html?date=1/18/13" title = "${_(u'Click for more information about this stop')}">SW 6th &amp; Jefferson (${_(u'Stop ID')}&nbsp;7765)</a>
         </strong>
     </p>
-    <p> <a class="hide" href="/arrivals/tracker.html?locationID=7765&route=19&direction=1"><img src="/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="Next arrivals" title="Next arrivals"/></a>
-<b><a href="/schedules/r019.htm" title = "Show map and schedules for this route.">19 Downtown Only</a>&nbsp;<a href="#alerts" class="alert"><img border="0" src="/v3/images/tripplanner/alert.png" alt="See footnote" title="See footnote"/></a>
-</b><br/> 7:27am
- 8:05am
- 8:32am
- 9:24am
-<p> <a class="hide" href="/arrivals/tracker.html?locationID=7765&route=19&direction=1"><img src="/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="Next arrivals" title="Next arrivals"/></a>
-<b><a href="/schedules/r019.htm" title = "Show map and schedules for this route.">19 Glisan to Gateway TC</a>&nbsp;<a href="#alerts" class="alert"><img border="0" src="/v3/images/tripplanner/alert.png" alt="See footnote" title="See footnote"/></a>
-</b><br/>
+    <p>
+        <a class="hide" href="${util.url_domain()}/arrivals/tracker.html?locationID=7765&route=19&direction=1"><img src="${util.url_domain()}/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="${_(u'Next arrivals')}" title="${_(u'Next arrivals')}"/></a>
+        <strong><a href="${util.url_domain()}/schedules/r019.htm" title = "${_(u'Show map and schedules for this route')}.">19 Downtown Only</a>&nbsp;<a href="#alerts" class="alert"><img border="0" src="${util.url_domain()}/v3/images/tripplanner/alert.png" alt="${_(u'See footnote')}" title="${_(u'See footnote')}"/></a></strong>
+        <br/>
+        7:27am
+        8:05am
+        8:32am
+        9:24am
+    </p>

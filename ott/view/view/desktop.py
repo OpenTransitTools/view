@@ -22,9 +22,12 @@ def stop_schedule(request):
        1. ...
        2. ...
     '''
+    date = utils.get_first_param_as_date(request.date)
+
     ret_val = {}
-    ret_val['more_form'] = utils.get_day_info()
-    ret_val['tabs'] = utils.get_svc_date_tabs(request.date, '/stop_schedule.html?route=19') 
+    ret_val['more_form']   = utils.get_day_info()
+    ret_val['pretty_date'] = utils.pretty_date(date)
+    ret_val['tabs'] = utils.get_svc_date_tabs(date, '/stop_schedule.html?route=19') 
     ret_val['stop'] = request.model.get_stop_schedule_single()
     #ret_val['stop'] = request.model.get_stop_schedule_multiple()
     #ret_val['stop'] = request.model.get_stop_schedule_by_time()
