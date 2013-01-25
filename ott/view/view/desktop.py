@@ -22,7 +22,8 @@ def stop_schedule(request):
        1. ...
        2. ...
     '''
-    date = utils.get_first_param_as_date(request.date)
+    date = utils.get_first_param_as_date(request)
+    more = utils.get_first_param(request, 'more')
 
     ret_val = {}
     ret_val['more_form']   = utils.get_day_info()

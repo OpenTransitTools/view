@@ -12,7 +12,7 @@ def get_day_info(dt=datetime.date.today()):
     return ret_val
 
 
-def pretty_date(dt=datetime.date.today(), fmt='%A %B, %d, %Y'):
+def pretty_date(dt=datetime.date.today(), fmt='%A, %B %d, %Y'):
     return dt.strftime(fmt)
 
 
@@ -30,8 +30,8 @@ def get_svc_date_tabs(dt, uri, fmt='%m/%d/%Y', smfmt='%m/%d'):
 
     ret_val = [
         {"name":today},
-        {"name":dt.strftime(smfmt), "url": uri + "&date=" + dt.strftime(fmt)},
-        {"name":d1.strftime(smfmt), "url": uri + "&date=" + d1.strftime(fmt)},
+        {"name":dt.strftime(smfmt).lstrip('0').replace('/0','/'), "url": uri + "&date=" + dt.strftime(fmt)},
+        {"name":d1.strftime(smfmt).lstrip('0').replace('/0','/'), "url": uri + "&date=" + d1.strftime(fmt)},
         {"name":more,   "url": uri + "&more&date=" + d2.strftime(fmt)}
     ]
     return ret_val

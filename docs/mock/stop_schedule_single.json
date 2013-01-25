@@ -1,38 +1,57 @@
 {
-    "schedules" : [
-        {
-            "id"    : 1, 
+    "id":"7765",
+    "name":"SW 6th & Jefferson",
+    "city":"Portland",
+    "lat":"45.514868",
+    "lon":"-122.680762",
+    "tracker_url":"http://trimet.org/arrivals/tracker.html",
+
+    "single_route" : "1 Vermont",
+
+    "patterns" : {
+        "1" : {
+            "route" : "1", 
             "name"  : "1 Vermont to 45th Ave",
             "url"   : "http://trimet.org/schedules/r001.htm",
-            "alert" : "alert_route1",
-            "times" : [
-                "6:45am", "7:45am", "8:15am", "8:45am"
-            ]
+            "alert" : "1",
+            "ntimes": 6,
+            "ptimes": 0.6
         }
         ,
-        {
-            "id"    : 1, 
+        "2" : {
+            "route" : "1", 
             "name"  : "1 Downtown Only",
             "url"   : "http://trimet.org/schedules/r001.htm",
-            "alert" : "alert_route1",
-            "times" : [
-                "9:15am", "9:45am", "10:15am"
-            ]
+            "alert" : "1",
+            "ntimes": 1,
+            "ptimes": 0.1
         }
         ,
-        {
-            "id"    : 1, 
+        "3" : {
+            "route" : "1", 
             "name"  : "1 Vermont Shattuck Loop via Maplewood",
             "url"   : "http://trimet.org/schedules/r001.htm",
-            "alert" : "alert_route1",
-            "times" : [
-                "4:15pm", "4:45pm", "5:15pm", "5:44pm"
-            ]
+            "ntimes": 4,
+            "ptimes": 0.4
         }
+    },
+
+    "schedule" : [
+        {"t":"6:45am",  "p":"2"},
+        {"t":"7:45am",  "p":"1"},
+        {"t":"8:15am",  "p":"1"},
+        {"t":"8:45am",  "p":"1"},
+        {"t":"9:15am",  "p":"1"},
+        {"t":"9:45am",  "p":"1"},
+        {"t":"10:15am", "p":"1"},
+        {"t":"4:15pm",  "p":"3"},
+        {"t":"4:45pm",  "p":"3"},
+        {"t":"5:15pm",  "p":"3"},
+        {"t":"5:44pm",  "p":"3"}
     ],
 
     "alerts" : {
-        "alert_route1" : {
+        "1" : {
             "name"  : "1-Vermont",
             "alert" : "On January 21, Martin Luther King Jr. Day, this line will not be in service. Many bus lines will run on weekday schedules and some will run on Saturday schedules. MAX Light Rail and WES Commuter Rail will run on regular weekday schedules. TriMet customer service offices will be closed."
         }
