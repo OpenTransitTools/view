@@ -2,8 +2,11 @@
 
 <%namespace name="util"  file="/shared/util.mako"/>
 
+<!-- mako template ... url parameter variables -->
 <% sort_val     = 'time' if 'sort' in request.params and request.params['sort'] == 'time' else 'destination' %>
 <% sort_by_time = True   if 'sort' in request.params and request.params['sort'] == 'time' else False %>
+<% date  = '' if 'date'  not in request.params else request.params['date']  %>
+<% route = '' if 'route' not in request.params else request.params['route'] %>
 
 <%def name="title()">${_(u'TriMet: Stops and Stations')}</%def>
 <%def name="app_css()">
@@ -19,8 +22,9 @@
                 <div id="icon" class="icon-schedules">
                     <h2>${_(u'Related')}</h2>  
                     <ul class="links">
-                      <li><a href="http://ride.trimet.org?from=7765&date=1/18/13&mapit=I" title="Plan trip on interactive map (fast connection recommended)">Try out the Interactive Map Trip Planner</a> </li>
-                      <li><a href="/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
+                      <!-- TODO why doesn't &date={date} work in this scope ... no date from above available here -->
+                      <li><a href="http://ride.trimet.org?from=${stop['id']}&mapit=I" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">${_(u'Try out the Interactive Map Trip Planner')}</a></li>
+                      <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
                     </ul>
                 </div>
                 <p class="feedback"><a href="/feedback.html">${_(u'Having problems? Click here for technical support.')}</a></p>
@@ -45,9 +49,11 @@
         </p>
     </div>
 
+    %if 'more' in request.params:
     <p>
         <form name="select_date" id="select_date_id" method="GET" action="/stop_schedule.html" class="form-style">
-            <input type="hidden" name="stopID" value="9848" />
+            <input type="hidden" name="stopID" value="${stop['id']}" />
+            <input type="hidden" name="date"   value="${date}" />
             <input type="hidden" name="sort" value="${sort_val}" />
             %if more_form:
             ${util.month_select(more_form['month'])}${util.day_select(more_form['day'], more_form['numdays'])}
@@ -55,25 +61,36 @@
              %endif
         </form>
     </p>
+    %endif
 
     <h2 class="stop">
-        ${_(u'Stop ID')} <a href="/stop.html?stopID=${stop['id']}">${stop['id']}</a>
+        ${_(u'Stop ID')} <a href="/stop.html?stopID=${stop['id']}&date=${date}">${stop['id']}</a>
         %if 'single_route' in stop:
         ${stop['single_route']}
-        [<a href="/stop_schedule.html?sort=${sort_val}&stopID=&route=">${_(u'all routes')}</a>]
+        [<a href="/stop_schedule.html?stopID=${stop['id']}&date=${date}&sort=${sort_val}">${_(u'all routes')}</a>]
         %endif
     </h2>
     <p class="stopid">${_(u'Schedule for')} ${pretty_date}</p>
     <p class="stopid">
-        ${util.link_or_strong(_(u'by destination'), not sort_by_time, '/stop_schedule.html?stopID=&route=&sort=destination', _('sort'))}
-        ${util.link_or_strong(_(u'by time'), sort_by_time, '/stop_schedule.html?stopID=&route=&sort=time', _('sort'))}
+        <% u = "/stop_schedule.html?stopID={0}&route={1}&date={2}".format(stop['id'], route, date) %>
+        ${util.link_or_strong(_(u'by destination'), not sort_by_time, u + '&sort=destination', _('sort'))}
+        ${util.link_or_strong(_(u'by time'), sort_by_time, u + '&sort=time', _('sort'))}
     </p>
     <p>
-        <strong>${_(u'Departures from')} <a href="/stop.html?date=1/18/13" title = "${_(u'Click for more information about this stop')}">SW 6th &amp; Jefferson (${_(u'Stop ID')}&nbsp;7765)</a></strong>
+        <strong>${_(u'Departures from')}
+            <a href="/stop.html?stopID=${stop['id']}&date=${date}" title = "${_(u'Click for more information about this stop')}">${stop['name']} (${_(u'Stop ID')}&nbsp;${stop['id']})</a>
+        </strong>
     </p>
     <p>
-        <a class="hide" href="${util.url_domain()}/arrivals/tracker.html?locationID=7765&route=19&direction=1"><img src="${util.url_domain()}/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="${_(u'Next arrivals')}" title="${_(u'Next arrivals')}"/></a>
-        <strong><a href="${util.url_domain()}/schedules/r019.htm" title = "${_(u'Show map and schedules for this route')}.">19 Downtown Only</a>&nbsp;<a href="#alerts" class="alert"><img border="0" src="${util.url_domain()}/v3/images/tripplanner/alert.png" alt="${_(u'See footnote')}" title="${_(u'See footnote')}"/></a></strong>
+        <a class="hide" href="${util.url_domain()}/arrivals/tracker.html?locationID=${stop['id']}&route=${route}">
+        <img src="${util.url_domain()}/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="${_(u'Next arrivals')}" title="${_(u'Next arrivals')}"/></a>
+        <strong>
+            <a href="${util.url_domain()}/schedules/r019.htm" title = "${_(u'Show map and schedules for this route')}.">19 Downtown Only</a>
+            %if alert:
+            &nbsp;
+            <a href="#alerts" class="alert"><img border="0" src="${util.url_domain()}/v3/images/m/alert.gif" alt="${_(u'See footnote')}" title="${_(u'See footnote')}"/></a>
+            %endif
+        </strong>
         <br/>
         7:27am
         8:05am

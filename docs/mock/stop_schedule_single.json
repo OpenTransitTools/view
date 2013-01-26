@@ -8,9 +8,10 @@
 
     "single_route" : "1 Vermont",
 
-    "patterns" : {
+    "route_patterns" : {
         "1" : {
-            "route" : "1", 
+            "route" : "1",
+            "dir"   : "1",
             "name"  : "1 Vermont to 45th Ave",
             "url"   : "http://trimet.org/schedules/r001.htm",
             "alert" : "1",
@@ -19,7 +20,8 @@
         }
         ,
         "2" : {
-            "route" : "1", 
+            "route" : "1",
+            "dir"   : "1",
             "name"  : "1 Downtown Only",
             "url"   : "http://trimet.org/schedules/r001.htm",
             "alert" : "1",
@@ -28,7 +30,8 @@
         }
         ,
         "3" : {
-            "route" : "1", 
+            "route" : "1",
+            "dir"   : "1",
             "name"  : "1 Vermont Shattuck Loop via Maplewood",
             "url"   : "http://trimet.org/schedules/r001.htm",
             "ntimes": 4,
