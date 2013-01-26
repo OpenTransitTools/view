@@ -41,7 +41,7 @@
         <p class="heading">
         %for t in tabs:
           %if 'url' in t:
-            <a href="${t['url']}" class="unselected">${t['name']}</a>
+            <a href="${t['url']}&sort=${sort_val}" class="unselected">${t['name']}</a>
           %else:
             <span>${t['name']}</span>
           %endif
@@ -56,7 +56,7 @@
             <input type="hidden" name="date"   value="${date}" />
             <input type="hidden" name="sort" value="${sort_val}" />
             %if more_form:
-            ${util.month_select(more_form['month'])}${util.day_select(more_form['day'], more_form['numdays'])}
+            ${util.month_select(more_form['month'])}${util.day_select(more_form['day'])}
             <input name="submit" type="submit" value="${_(u'Select')}" tabindex="12" />
              %endif
         </form>
