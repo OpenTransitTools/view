@@ -81,9 +81,28 @@
             <a href="/stop.html?stopID=${stop['id']}&date=${date}" title = "${_(u'Click for more information about this stop')}">${stop['name']} (${_(u'Stop ID')}&nbsp;${stop['id']})</a>
         </strong>
     </p>
+    %if stop and 'route_patterns' in stop:
+    %for r in stop['route_patterns'].keys():
+    <% 
+        rp   = stop['route_patterns'][r]
+
+        # vehicle (tracker) url
+        vehicle_url = ''
+        if rp['vurl']:
+            vehicle_url = rp['vurl'].format(stop['id'], route)
+
+        # route landing page url
+        rurl_start = ''
+        rurl_end   = ''
+        if rp['url']:
+            rurl_start = 'x'
+    %>
     <p>
-        <a class="hide" href="${util.url_domain()}/arrivals/tracker.html?locationID=${stop['id']}&route=${route}">
-        <img src="${util.url_domain()}/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="${_(u'Next arrivals')}" title="${_(u'Next arrivals')}"/></a>
+        %if vehicle_url:
+        <a class="hide" href="${vehicle_url}">
+        <img src="${util.url_domain()}/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="${_(u'Next arrivals')}" title="${_(u'Next arrivals')}"/>
+        </a>
+        %endif
         <strong>
             <a href="${util.url_domain()}/schedules/r019.htm" title = "${_(u'Show map and schedules for this route')}.">19 Downtown Only</a>
             %if alert:
@@ -97,3 +116,7 @@
         8:32am
         9:24am
     </p>
+    %else:
+    ...
+    %endfor
+    %endif
