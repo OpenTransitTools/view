@@ -81,10 +81,10 @@
             <a href="/stop.html?stopID=${stop['id']}&date=${date}" title = "${_(u'Click for more information about this stop')}">${stop['name']} (${_(u'Stop ID')}&nbsp;${stop['id']})</a>
         </strong>
     </p>
-    %if stop and 'route_patterns' in stop:
-    %for r in stop['route_patterns'].keys():
+    %if 'route_patterns' in stop:
+    %for p in stop['route_patterns'].keys():
     <% 
-        rp   = stop['route_patterns'][r]
+        rp   = stop['route_patterns'][p]
     %>
     <p>
         %if 'arrival_url' in rp:
@@ -106,7 +106,11 @@
             %endif
         </strong>
         <br/>
-
+        %for s in stop['schedule']:
+        %if s['p'] == p:
+        ${s['t']}
+        %endif
+        %endfor
         7:27am
         8:05am
         8:32am
