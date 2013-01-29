@@ -12,8 +12,8 @@
             "route" : "1",
             "dir"   : "1",
             "name"  : "1 Vermont to 45th Ave",
-            "url"   : "http://trimet.org/schedules/r001.htm",
-            "vurl"  : "http://trimet.org/arrivals/tracker.html?locationID={0}&route={1}",
+            "route_url"    : "http://trimet.org/schedules/r001.htm",
+            "arrival_url"  : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
             "alert" : "1",
             "ntimes": 6,
             "ptimes": 0.6
@@ -23,8 +23,8 @@
             "route" : "1",
             "dir"   : "1",
             "name"  : "1 Downtown Only",
-            "url"   : "http://trimet.org/schedules/r001.htm",
-            "vurl"  : "http://trimet.org/arrivals/tracker.html?locationID={0}&route={1}",
+            "route_url"    : "http://trimet.org/schedules/r001.htm",
+            "arrival_url"  : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
             "alert" : "1",
             "ntimes": 1,
             "ptimes": 0.1
@@ -35,7 +35,7 @@
             "dir"   : "1",
             "name"  : "1 Vermont Shattuck Loop via Maplewood",
             "url"   : "http://trimet.org/schedules/r001.htm",
-            "vurl"  : "http://trimet.org/arrivals/tracker.html?locationID={0}&route={1}",
+            "arrival_url"  : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
             "ntimes": 4,
             "ptimes": 0.4
         }

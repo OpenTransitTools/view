@@ -4,7 +4,6 @@
     "city":"Portland",
     "lat":"45.514868",
     "lon":"-122.680762",
-    "tracker_url":"http://trimet.org/arrivals/tracker.html",
 
     "amenities": [
         "Shelter",

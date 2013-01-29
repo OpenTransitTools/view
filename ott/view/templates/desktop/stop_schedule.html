@@ -85,32 +85,28 @@
     %for r in stop['route_patterns'].keys():
     <% 
         rp   = stop['route_patterns'][r]
-
-        # vehicle (tracker) url
-        vehicle_url = ''
-        if rp['vurl']:
-            vehicle_url = rp['vurl'].format(stop['id'], route)
-
-        # route landing page url
-        rurl_start = ''
-        rurl_end   = ''
-        if rp['url']:
-            rurl_start = 'x'
     %>
     <p>
-        %if vehicle_url:
-        <a class="hide" href="${vehicle_url}">
+        %if 'arrival_url' in rp:
+        <a class="hide" href="${rp['arrival_url']}">
         <img src="${util.url_domain()}/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="${_(u'Next arrivals')}" title="${_(u'Next arrivals')}"/>
         </a>
         %endif
         <strong>
-            <a href="${util.url_domain()}/schedules/r019.htm" title = "${_(u'Show map and schedules for this route')}.">19 Downtown Only</a>
+            %if 'route_url' in rp:
+            <a href="${rp['route_url']}" title = "${_(u'Show map and schedules for this route')}.">
+            %endif
+              ${rp['name']}
+            %if 'route_url' in rp:
+            </a>
+            %endif
             %if alert:
             &nbsp;
             <a href="#alerts" class="alert"><img border="0" src="${util.url_domain()}/v3/images/m/alert.gif" alt="${_(u'See footnote')}" title="${_(u'See footnote')}"/></a>
             %endif
         </strong>
         <br/>
+
         7:27am
         8:05am
         8:32am
