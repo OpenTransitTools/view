@@ -1,0 +1,89 @@
+{
+    "id":"7765",
+    "name":"SW 6th & Jefferson",
+    "city":"Portland",
+    "lat":"45.514868",
+    "lon":"-122.680762",
+
+    "route_patterns" : {
+        "1" : {
+            "route" : "1",
+            "dir"   : "1",
+            "name"  : "1 Vermont to 45th Ave",
+            "route_url"    : "http://trimet.org/schedules/r001.htm",
+            "arrival_url"  : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
+            "alerts" : ["1", "2"],
+            "ntimes" : 6,
+            "ptimes" : 0.3
+        }
+        ,
+        "2" : {
+            "route" : "1",
+            "dir"   : "1",
+            "name"  : "1 Downtown Only",
+            "route_url"    : "http://trimet.org/schedules/r001.htm",
+            "arrival_url"  : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
+            "alerts" : ["1"],
+            "ntimes" : 1,
+            "ptimes" : 0.05
+        }
+        ,
+        "3" : {
+            "route" : "1",
+            "dir"   : "1",
+            "name"  : "1 Vermont Shattuck Loop via Maplewood",
+            "route_url"   : "",
+            "arrival_url" : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
+            "alerts" : ["2"],
+            "ntimes" : 4,
+            "ptimes" : 0.2
+        },
+        "4" : {
+            "route" : "19",
+            "dir"   : "1",
+            "name"  : "19 Vermont Shattuck Loop via Maplewood",
+            "route_url"   : "",
+            "arrival_url" : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=19",
+            "alerts" : [],
+            "ntimes" : 10,
+            "ptimes" : 0.5
+        }
+    },
+
+    "schedule" : [
+        {"t":"6:44am",  "p":"4"},
+        {"t":"6:45am",  "p":"3"},
+        {"t":"7:44am",  "p":"4"},
+        {"t":"7:45am",  "p":"2"},
+        {"t":"8:00am",  "p":"4"},
+        {"t":"8:15am",  "p":"1"},
+        {"t":"8:30am",  "p":"4"},
+        {"t":"8:45am",  "p":"1"},
+        {"t":"9:15am",  "p":"3"},
+        {"t":"9:30am",  "p":"4"},
+        {"t":"9:45am",  "p":"1"},
+        {"t":"10:00am", "p":"4"},
+        {"t":"10:15am", "p":"3"},
+        {"t":"12:00pm", "p":"4"},
+        {"t":"4:15pm",  "p":"1"},
+        {"t":"4:30pm",  "p":"4"},
+        {"t":"4:45pm",  "p":"3"},
+        {"t":"5:00pm",  "p":"4"},
+        {"t":"5:15pm",  "p":"1"},
+        {"t":"5:30pm",  "p":"4"},
+        {"t":"5:44pm",  "p":"1"}
+    ],
+
+    "alerts" : [
+        {
+            "id"          : "1",
+            "name"        : "1-Vermont",
+            "description" : "On January 21, Martin Luther King Jr. Day, this line will not be in service. Many bus lines will run on weekday schedules and some will run on Saturday schedules. MAX Light Rail and WES Commuter Rail will run on regular weekday schedules. TriMet customer service offices will be closed."
+        },
+        {
+            "id"          : "2",
+            "name"        : "1-Vermont Shattuck Loop via Maplewood",
+            "description" : "On XXX YYY ZZZ."
+        }
+    ]
+}

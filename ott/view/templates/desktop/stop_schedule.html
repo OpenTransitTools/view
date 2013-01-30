@@ -86,7 +86,7 @@
         <% 
             id = s['p']
             route = stop['route_patterns'][id]
-            alert = True if 'alerts' in route else False
+            alert = True if 'alerts' in route and len(route['alerts']) > 0 else False
         %> 
         <strong>${s['t']}</strong> ${route['name']}<br/> 
         %endfor
@@ -95,7 +95,7 @@
     <% 
         route = stop['route_patterns'][p]
         route_url = '' if 'route_url' not in route else route['route_url']
-        alert = True if 'alerts' in route else False
+        alert = True if 'alerts' in route and len(route['alerts']) > 0 else False
     %>
     <p>
         %if 'arrival_url' in route:
