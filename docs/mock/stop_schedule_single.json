@@ -14,9 +14,9 @@
             "name"  : "1 Vermont to 45th Ave",
             "route_url"    : "http://trimet.org/schedules/r001.htm",
             "arrival_url"  : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
-            "alert" : "1",
-            "ntimes": 6,
-            "ptimes": 0.6
+            "alerts" : ["1", "2"],
+            "ntimes" : 6,
+            "ptimes" : 0.6
         }
         ,
         "2" : {
@@ -25,34 +25,35 @@
             "name"  : "1 Downtown Only",
             "route_url"    : "http://trimet.org/schedules/r001.htm",
             "arrival_url"  : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
-            "alert" : "1",
-            "ntimes": 1,
-            "ptimes": 0.1
+            "alerts" : ["1"],
+            "ntimes" : 1,
+            "ptimes" : 0.1
         }
         ,
         "3" : {
             "route" : "1",
             "dir"   : "1",
             "name"  : "1 Vermont Shattuck Loop via Maplewood",
-            "url"   : "http://trimet.org/schedules/r001.htm",
-            "arrival_url"  : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
-            "ntimes": 4,
-            "ptimes": 0.4
+            "route_url"   : "",
+            "arrival_url" : "http://trimet.org/arrivals/tracker.html?locationID=7765&route=1",
+            "alerts" : ["2"],
+            "ntimes" : 4,
+            "ptimes" : 0.4
         }
     },
 
     "schedule" : [
-        {"t":"6:45am",  "p":"2"},
-        {"t":"7:45am",  "p":"1"},
+        {"t":"6:45am",  "p":"3"},
+        {"t":"7:45am",  "p":"2"},
         {"t":"8:15am",  "p":"1"},
         {"t":"8:45am",  "p":"1"},
-        {"t":"9:15am",  "p":"1"},
+        {"t":"9:15am",  "p":"3"},
         {"t":"9:45am",  "p":"1"},
-        {"t":"10:15am", "p":"1"},
-        {"t":"4:15pm",  "p":"3"},
+        {"t":"10:15am", "p":"3"},
+        {"t":"4:15pm",  "p":"1"},
         {"t":"4:45pm",  "p":"3"},
-        {"t":"5:15pm",  "p":"3"},
-        {"t":"5:44pm",  "p":"3"}
+        {"t":"5:15pm",  "p":"1"},
+        {"t":"5:44pm",  "p":"1"}
     ],
 
     "alerts" : {
