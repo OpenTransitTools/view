@@ -85,19 +85,21 @@
         %for s in stop['schedule']:
         <% 
             id = s['p']
-            route = stop['route_patterns'][id] 
+            route = stop['route_patterns'][id]
+            alert = True if 'alerts' in route else False
         %> 
         <strong>${s['t']}</strong> ${route['name']}<br/> 
         %endfor
     %else:
     %for p in stop['route_patterns'].keys():
     <% 
-        rp   = stop['route_patterns'][p]
-        route_url = '' if 'route_url' not in rp else rp['route_url']
+        route = stop['route_patterns'][p]
+        route_url = '' if 'route_url' not in route else route['route_url']
+        alert = True if 'alerts' in route else False
     %>
     <p>
-        %if 'arrival_url' in rp:
-        <a class="hide" href="${rp['arrival_url']}">
+        %if 'arrival_url' in route:
+        <a class="hide" href="${route['arrival_url']}">
         <img src="${util.url_domain()}/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="${_(u'Next arrivals')}" title="${_(u'Next arrivals')}"/>
         </a>
         %endif
@@ -105,7 +107,7 @@
             %if route_url:
             <a href="${route_url}" title = "${_(u'Show map and schedules for this route')}.">
             %endif
-            ${rp['name']}
+            ${route['name']}
             %if route_url:
             </a>
             %endif
@@ -121,5 +123,18 @@
         %endif
         %endfor
     </p>
+    %endfor
+    %endif
+
+    %if 'alerts' in stop:
+    %for a in stop['alerts']:
+    <div class="planner-alerts">
+        <a name="alerts"></a>
+        <h3><a href="${util.url_domain()}/alerts/"><img border="0" src="${util.url_domain()}/v3/images/m/alert.gif"/>${_(u'Service Alerts')}</a></h3>
+        <h4>${a['name']}</h4>
+        <p>
+            <span class="alert-icon">${a['description']}</span>
+        </p>
+    </div>
     %endfor
     %endif
