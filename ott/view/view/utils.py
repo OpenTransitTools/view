@@ -27,7 +27,7 @@ def pretty_date(dt=datetime.date.today(), fmt='%A, %B %d, %Y'):
     return dt.strftime(fmt)
 
 
-def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d'):
+def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
     ''' return 3 date strings representing the next WEEKDAY, SAT, SUN 
     '''
     ret_val = []
@@ -63,6 +63,10 @@ def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d'):
     # step 3: add the next to service day tabs to our return array
     ret_val.append({"name":d1.strftime(smfmt).lstrip('0').replace('/0','/'), "url": uri + "&date=" + d1.strftime(fmt)})
     ret_val.append({"name":d2.strftime(smfmt).lstrip('0').replace('/0','/'), "url": uri + "&date=" + d2.strftime(fmt)})
+
+    # TODO put the ret_val appen stuff in a separte method that builds up the dict...
+    #      and add a pretty_date to that dict, so that we can create a css TOOLTIP that shows what weekday / date the 2/1, 2/5, 2/6 dates represent...
+    #, "pretty_date": pretty_date(d1, pttyfmt)})
 
     # step 4: if we are not showing the date form, give the 'more' option which will show that form 
     if more_tab:

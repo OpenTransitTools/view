@@ -1,9 +1,15 @@
 <%inherit file="/desktop/base.html"/>
 
-<%namespace name="util"  file="/shared/util.mako"/>
+<%namespace name="util" file="/shared/util.mako"/>
 <%namespace name="rs"   file="/shared/route_select.mako"/>
 
-<%def name="title()">${_(u'TriMet: Stops near') } ${place['name']}</%def>
+<%
+    ga_select_route ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
+    ga_find_stop    ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
+%>
+
+
+<%def name="title()">${_(u'TriMet: Stops and Stations')}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
 </%def>
@@ -30,11 +36,6 @@
 
 <%def name="stations_selected()">class="selected"</%def>
 
-<% 
-ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
-ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
-%>
-
 <style type="text/css">
 <!--
 /*stop id form overrides */
@@ -51,65 +52,37 @@ form.stopid-form input {
 }
 -->
 </style>
-
 <p class="mobile"><a href="${util.url_domain()}/mobile/find_stop"><span>${_(u'Mobile')}</span></a></p>
 
 <div class="stops-form">
-<div class="stopshomelink"><a href="/stopsandstations/index.htm" class="image"></a></div>
-   <div class="stops-form-top" id="stops-form">
-     <div class="stops-icon">
-         <h1>Stops &amp; Stations</h1>
-         <div class="tagline">
-             <p>&nbsp;</p>
-         </div>
-     </div>
-<div class="stops-content">
-   <h2 class="sub">Stops near <a href="showmap.cgi?lang=en&long=-122.677271&lat=45.503650&icon=start&area=PO&desc=Stop%20ID%201923">Stop ID 1923 in Portland</a></h2>
-</div>
-<ul id="stopslist">
-  
-<li>
-    <h3><a href="stop_info.pl?lang=en&Id=1649&acode1=PO&x1=45.503650&y1=-122.677271" title = "Click for more information about this stop">SW Naito Parkway &amp; Arthur Northbound <a href="#alerts" class="alert"><img border="0" src="/v3/images/tripplanner/alert.png" alt="See footnote" title="See footnote"/></a>
-</a>
-</h3>
-    <p class="secondary"><strong>Stop ID 1923</strong> &ndash;  0.01 mile Served by: 35, 36</p>
-</li>
-  
-<li>
-    <h3><a href="stop_info.pl?lang=en&Id=2674&acode1=PO&x1=45.502008&y1=-122.675261" title = "Click for more information about this stop">SW Kelly &amp; Corbett Northbound </a>
-</h3>
-    <p class="secondary"><strong>Stop ID 3116</strong> &ndash; <a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U" title = "Show walking directions."> 0.18 mile</a> Served by: 9, 17, 19</p>
-</li>
-  
-<li>
-    <h3><a href="stop_info.pl?lang=en&Id=133&acode1=PO&x1=45.503820&y1=-122.678420" title = "Click for more information about this stop">SW Arthur &amp; 1st Westbound <a href="#alerts" class="alert"><img border="0" src="/v3/images/tripplanner/alert.png" alt="See footnote" title="See footnote"/></a>
-</a>
-</h3>
-    <p class="secondary"><strong>Stop ID 143</strong> &ndash; <a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Arthur%20%26amp%3B%201st&Txcoord=45.503820&Tycoord=-122.678420&Walk=1.0&resptype=U" title = "Show walking directions."> 0.21 mile</a> Served by: 9, 17, 19, 66</p>
-</li>
-  
-<li>
-    <h3><a href="stop_info.pl?lang=en&Id=5496&acode1=PO&x1=45.503839&y1=-122.678811" title = "Click for more information about this stop">SW 1st &amp; Arthur Southbound </a>
-</h3>
-    <p class="secondary"><strong>Stop ID 6474</strong> &ndash; <a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%201st%20%26amp%3B%20Arthur&Txcoord=45.503839&Tycoord=-122.678811&Walk=1.0&resptype=U" title = "Show walking directions."> 0.23 mile</a> Served by: 43</p>
-</li>
-  
-<li>
-    <h3><a href="stop_info.pl?lang=en&Id=5497&acode1=PO&x1=45.503559&y1=-122.678571" title = "Click for more information about this stop">SW 1st &amp; Arthur Northbound </a>
-</h3>
-    <p class="secondary"><strong>Stop ID 6475</strong> &ndash; <a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%201st%20%26amp%3B%20Arthur&Txcoord=45.503559&Tycoord=-122.678571&Walk=1.0&resptype=U" title = "Show walking directions."> 0.23 mile</a> Served by: 43</p>
-</li>
-  
-   <li>
-       <h3><a href="cstops.pl?lang=en&loc1=1923&x1=45.503650&y1=-122.677271&acode1=PO&more=t">Show more stops</a></h3>
-   </li>
-</ul>
+    <div id="stops-form-index" class="stops-form-top">
 
-        <p>&nbsp;</p>
-    </div>
-    <div class="stops-form-bottom">&nbsp;</div>
-</div>
- <div class="planner-alerts"><a name="alerts"></a><h3><a href="/alerts/"><img border="0" src="/v3/images/tripplanner/alert.png"/> Service Alerts</a></h3>
-<p>The trip planner shows scheduled service only. It may send you to stops that are closed or bypassed. Please read service alerts to see if detours affect your trip.</p>
-<h4>35-Macadam/Greeley, 36-South Shore</h4><p><span class="alert-icon">No service to the northbound stop on SW Naito at Arthur (Stop ID 1923) due to construction. Temporary stop located on SW Arthur at 1st (Stop ID 143).</span></p>
-</div>
+        <div class="stops-icon">
+            <h1>${_(u'Stops & Stations')}</h1>
+            <div class="tagline"><p>&nbsp;</p></div>
+        </div>
+
+        <div style="width:600px;"><!--for IE6-->
+            <div style="width:240px; float:left; padding-left:20px; clear: both;">
+                <form name="cstops" id="cstops_id" method="get" action="/stop_geocode.html" class="form-style">
+                    <fieldset>
+                        <label for="locationID">${_(u'Find stops and stations:')}</label>
+                        <input name="geocode_form" type="text" value="" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="15" maxlength="80" />
+                        <p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>
+                    </fieldset>
+                    <fieldset class="submit">
+                        <input tabindex="9" type="submit" value="${_(u'Find stops')}" id="submit" onclick="${ga_find_stop}" />
+                    </fieldset>
+                </form>
+            </div>
+            <div style="width:50px; float:left;">
+                <img src="${util.url_domain()}/v3/images/structure/form-or.gif" />
+            </div>
+            <div style="width:290px; float:left;">
+                ${rs.route_select_form('/route_stop_list.html', routes, ga_select_route)}
+            </div>
+            <p class="clear">&nbsp;</p>
+        </div>
+    </div> <!-- id="stops-form-index" class="stops-form-top" -->
+    <div class="stops-form-bottom"></div>
+</div> <!-- class="stops-form" -->

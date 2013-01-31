@@ -6,9 +6,11 @@
         <fieldset>
             <label for="route">${_(u"Select a line:")}</label>
             <select id="route" name="route">
+            %if route_list:
             %for r in route_list:
                 <option value="${r['id']}">${r['name']}</option>
             %endfor
+            %endif
             </select>
             <p class="instructions">
                 ${instructions}

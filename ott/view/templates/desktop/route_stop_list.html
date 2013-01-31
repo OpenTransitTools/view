@@ -1,4 +1,5 @@
 <%inherit file="/desktop/base.html"/>
+
 <%namespace name="util"  file="/shared/util.mako"/>
 
 <%def name="title()">${_(u'TriMet: Stops and Stations')} - ${route_stops['name']}</%def>
@@ -26,7 +27,6 @@
             </aside>
             <!-- end #sidebar -->
 </%def>
-
 
 <%def name="stations_selected()">class="selected"</%def>
 

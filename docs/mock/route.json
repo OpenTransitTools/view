@@ -1,9 +1,7 @@
-{
-    "routes":[
-        {"id":100, "name":"MAX Blue Line"}
-        ,
-        {"id":10,  "name":"10 Harold Blvd"}
-        ,
-        {"id":44,  "name":"44-Capitol Hwy/Mocks Crest"}
-    ]
-}
+[
+    {"id":100, "name":"MAX Blue Line"}
+    ,
+    {"id":10,  "name":"10 Harold Blvd"}
+    ,
+    {"id":44,  "name":"44-Capitol Hwy/Mocks Crest"}
+]

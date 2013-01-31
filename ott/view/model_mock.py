@@ -7,30 +7,17 @@ logging.basicConfig()
 log = logging.getLogger(__file__)
 log.setLevel(logging.INFO)
 
-PATH='docs/mock/'
-def get_json(file):
-    ret_val={}
-    try:
-        with open(file) as f:
-            ret_val = json.load(f)
-    except:
-        try:
-            path="{0}{1}".format(PATH, file)
-            with open(path) as f:
-                ret_val = json.load(f)
-        except:
-            log.info("Couldn't open file : {0} (or {1})".format(file, path))
-
-    return ret_val
-
 
 class ModelMock(Model):
     def get_stop_schedule_single(self, route):   return get_json('stop_schedule_single.json')
     def get_stop_schedule_multiple(self, route): return get_json('stop_schedule_multiple.json')
 
+    def get_alerts(self, routes):   return get_json('alerts.json')
+
     def get_route_stops_list(self): return get_json('route_stop_list.json')
     def get_routes(self):           return get_json('route.json')
     def get_stop(self):             return get_json('stop.json')
+
 
 
 def main():
@@ -48,4 +35,22 @@ def main():
 if __name__ == '__main__':
     main()
 
+
+PATH='docs/mock/'
+def get_json(file):
+    ''' utility class to load a static .json file for mock'ing a service
+    '''
+    ret_val={}
+    try:
+        with open(file) as f:
+            ret_val = json.load(f)
+    except:
+        try:
+            path="{0}{1}".format(PATH, file)
+            with open(path) as f:
+                ret_val = json.load(f)
+        except:
+            log.info("Couldn't open file : {0} (or {1})".format(file, path))
+
+    return ret_val
 

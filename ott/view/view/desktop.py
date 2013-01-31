@@ -9,8 +9,15 @@ def stop(request):
        1. ...
        2. ...
     '''
+    alerts = None
+    stop = request.model.get_stop()
+    if stop and 'routes' in stop:
+        routes = stop['routes']
+        alerts = request.model.get_alerts(routes)
+
     ret_val = {}
-    ret_val['stop'] = request.model.get_stop()
+    ret_val['stop'] = stop
+    ret_val['stop']['alerts'] = alerts
 
     return ret_val
 
@@ -30,11 +37,13 @@ def stop_schedule(request):
     ret_val = {}
     ret_val['more_form']   = utils.get_day_info(date)
     ret_val['pretty_date'] = utils.pretty_date(date)
-    ret_val['tabs'] = utils.get_svc_date_tabs(date, '/stop_schedule.html?route=19', more is None) 
+    ret_val['tabs'] = utils.get_svc_date_tabs(date, '/stop_schedule.html?route={0}'.format(route), more is None) 
     if has_route:
         ret_val['stop'] = request.model.get_stop_schedule_single(route)
     else:
         ret_val['stop'] = request.model.get_stop_schedule_multiple(route)
+
+    ret_val['stop']['alerts'] = request.model.get_alerts(route)
 
     return ret_val
 
@@ -73,6 +82,7 @@ def find_stop(request):
        2. ...
     '''
     ret_val = {}
+    ret_val['routes'] = request.model.get_routes()
     ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
 
     return ret_val

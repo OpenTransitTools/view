@@ -1,6 +1,11 @@
 <%inherit file="/desktop/base.html"/>
 
 <%namespace name="util"  file="/shared/util.mako"/>
+
+<%
+    has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
+%>
+
 <%def name="title()">${_(u'TriMet: Stops and Stations')} - ${_(u'Stop ID')} ${stop['id']} - ${stop['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
@@ -51,7 +56,7 @@ form.stopid-form input {
 
 <div class="stops-form">
     <div class="stopshomelink">
-        <a href="/find_stop.html" class="image"></a>
+        <a href="/find_stop.html?stopID=" class="image"></a>
     </div>
     <div class="stops-form-top" id="stops-form">
         <div class="stops-icon">
@@ -62,7 +67,11 @@ form.stopid-form input {
         </div>
         <div class="stops-content">
             <p style="float:right"><b></b></p>
-            <h2 class="stop">${_(u'Stop ID')} ${stop['id']}</h2>
+            <h2 class="stop">${_(u'Stop ID')} ${stop['id']}
+                %if has_alerts:
+                ${util.alerts_inline_icon_link()}
+                %endif
+            </h2>
             <p class="stop-location">${stop['name']} ${_(u'in')} ${stop['city']}</p>
             <p class="stopid"></p>
         </div>
@@ -94,6 +103,11 @@ form.stopid-form input {
                 <a class="hide" href="${stop['tracker_url']}">${_(u'Next arrivals')}</a>
                 / <a href="/stop_schedule.html">${_(u'Schedule')}</a>
             </p>
+        
+            %if has_alerts:
+                ${util.alerts(stop['alerts'])}
+            %endif
+
             <h3>${_(u'Amenities')}</h3>
             <ul class="amenities">
                 <!-- TODO: how to manage a localized set of attribute string???? -->

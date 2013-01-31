@@ -3,10 +3,13 @@
 <%namespace name="util"  file="/shared/util.mako"/>
 
 <!-- mako template ... url parameter variables -->
-<% sort_val     = 'time' if 'sort' in request.params and request.params['sort'] == 'time' else 'destination' %>
-<% sort_by_time = True   if 'sort' in request.params and request.params['sort'] == 'time' else False %>
-<% date  = '' if 'date'  not in request.params else request.params['date']  %>
-<% route = '' if 'route' not in request.params else request.params['route'] %>
+<%
+    sort_val     = 'time' if 'sort' in request.params and request.params['sort'] == 'time' else 'destination'
+    sort_by_time = True   if 'sort' in request.params and request.params['sort'] == 'time' else False
+    date  = '' if 'date'  not in request.params else request.params['date']
+    route = '' if 'route' not in request.params else request.params['route']
+    has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
+%>
 
 <%def name="title()">${_(u'TriMet: Stops and Stations')}</%def>
 <%def name="app_css()">
@@ -86,7 +89,7 @@
         <% 
             id = s['p']
             route = stop['route_patterns'][id]
-            alert = True if 'alerts' in route and len(route['alerts']) > 0 else False
+            alerts = True if 'alerts' in route and len(route['alerts']) > 0 else False
         %> 
         <strong>${s['t']}</strong> ${route['name']}<br/> 
         %endfor
@@ -95,7 +98,7 @@
     <% 
         route = stop['route_patterns'][p]
         route_url = '' if 'route_url' not in route else route['route_url']
-        alert = True if 'alerts' in route and len(route['alerts']) > 0 else False
+        alerts = True if 'alerts' in route and len(route['alerts']) > 0 else False
     %>
     <p>
         %if 'arrival_url' in route:
@@ -111,9 +114,9 @@
             %if route_url:
             </a>
             %endif
-            %if alert:
+            %if alerts:
             &nbsp;
-            <a href="#alerts" class="alert"><img border="0" src="${util.url_domain()}/v3/images/m/alert.gif" alt="${_(u'See footnote')}" title="${_(u'See footnote')}"/></a>
+            ${util.alerts_inline_icon_link()}
             %endif
         </strong>
         <br/>
@@ -126,15 +129,6 @@
     %endfor
     %endif
 
-    %if 'alerts' in stop:
-    %for a in stop['alerts']:
-    <div class="planner-alerts">
-        <a name="alerts"></a>
-        <h3><a href="${util.url_domain()}/alerts/"><img border="0" src="${util.url_domain()}/v3/images/m/alert.gif"/>${_(u'Service Alerts')}</a></h3>
-        <h4>${a['name']}</h4>
-        <p>
-            <span class="alert-icon">${a['description']}</span>
-        </p>
-    </div>
-    %endfor
+    %if has_alerts:
+        ${util.alerts(stop['alerts'])}
     %endif

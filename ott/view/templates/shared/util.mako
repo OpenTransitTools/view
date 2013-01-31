@@ -25,3 +25,20 @@
         <a href="${url}">${l_bracket}${label_prefix} ${label}${r_bracket}</a>
     %endif
 </%def>
+
+<%def name="alerts_inline_icon_link(img_url='/v3/images/m/alert.gif')">
+    <a href="#alerts" class="alert"><img border="0" src="${url_domain()}${img_url}" alt="${_(u'See footnote')}" title="${_(u'See footnote')}"/></a>
+</%def>
+
+<%def name="alerts(alert_list, img_url='/v3/images/m/alert.gif')">
+    %for a in alert_list:
+    <div class="planner-alerts">
+        <a name="alerts"></a>
+        <h3><a href="${url_domain()}/alerts/"><img border="0" src="${url_domain()}${img_url}"/>${_(u'Service Alerts')}</a></h3>
+        <h4>${a['name']}</h4>
+        <p>
+            <span class="alert-icon">${a['description']}</span>
+        </p>
+    </div>
+    %endfor
+</%def>
