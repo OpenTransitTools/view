@@ -72,18 +72,5 @@
         {"t":"5:15pm",  "p":"1"},
         {"t":"5:30pm",  "p":"4"},
         {"t":"5:44pm",  "p":"1"}
-    ],
-
-    "alerts" : [
-        {
-            "id"          : "1",
-            "name"        : "1-Vermont",
-            "description" : "On January 21, Martin Luther King Jr. Day, this line will not be in service. Many bus lines will run on weekday schedules and some will run on Saturday schedules. MAX Light Rail and WES Commuter Rail will run on regular weekday schedules. TriMet customer service offices will be closed."
-        },
-        {
-            "id"          : "2",
-            "name"        : "1-Vermont Shattuck Loop via Maplewood",
-            "description" : "On XXX YYY ZZZ."
-        }
     ]
 }

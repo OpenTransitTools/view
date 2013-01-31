@@ -5,6 +5,10 @@
     "lat":"45.514868",
     "lon":"-122.680762",
 
+    "stop_img_url" : "",
+    "planner_url"  : "",
+    "tracker_url"  : "",
+
     "amenities": [
         "Shelter",
         "TransitTracker Sign",
@@ -29,10 +33,4 @@
         ,
         {"id":94, "name":"94-Pacific Hwy/Sherwood", "direction":"To Tigard or Portland", "url":"http://trimet.org/schedules/r094.htm", "tracker_url":"http://trimet.org/arrivals/tracker.html?locationID=7765&route=094"}
     ]
-    ,
-    "carshare": {
-        "zipcar":{"datetime":"xxx", "url":""}
-        ,
-        "car2go":{"datetime":"xxx", "url":""}
-    }
 }
