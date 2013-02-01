@@ -12,11 +12,11 @@ class ModelMock(Model):
     def get_stop_schedule_single(self, route):   return get_json('stop_schedule_single.json')
     def get_stop_schedule_multiple(self, route): return get_json('stop_schedule_multiple.json')
 
-    def get_alerts(self, routes):   return get_json('alerts.json')
+    def get_alerts(self, routes, stops=None):    return get_json('alerts.json')
 
-    def get_route_stops_list(self): return get_json('route_stop_list.json')
-    def get_routes(self):           return get_json('route.json')
-    def get_stop(self):             return get_json('stop.json')
+    def get_route_stops(self, route): return get_json('route_stop.json')
+    def get_routes(self): return get_json('routes.json')
+    def get_stop(self):   return get_json('stop.json')
 
 
 

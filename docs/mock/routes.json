@@ -1,0 +1,15 @@
+[
+    {"id":100, "name":"MAX Blue Line",          "direction":"To Portland City Center", "url":"http://trimet.org/schedules/r100.htm", "tracker_url":"http://trimet.org/arrivals/tracker.html?locationID=7765&route=100"}
+    ,
+    {"id":1,   "name":"1-Vermont",               "direction":"To Portland City Center", "url":"http://trimet.org/schedules/r001.htm", "tracker_url":"http://trimet.org/arrivals/tracker.html?locationID=7765&route=001"}
+    ,
+    {"id":10,  "name":"10 Harold Blvd",         "direction":"To Portland City Center", "url":"http://trimet.org/schedules/r010.htm", "tracker_url":"http://trimet.org/arrivals/tracker.html?locationID=7765&route=010"}
+    ,
+    {"id":12,  "name":"12-Barbur/Sandy Blvd",    "direction":"To Parkrose/Sumner TC",   "url":"http://trimet.org/schedules/r012.htm", "tracker_url":"http://trimet.org/arrivals/tracker.html?locationID=7765&route=012"}
+    ,
+    {"id":19,  "name":"19-Woodstock/Glisan",     "direction":"To Gateway TC",           "url":"http://trimet.org/schedules/r019.htm", "tracker_url":"http://trimet.org/arrivals/tracker.html?locationID=7765&route=019"}
+    ,
+    {"id":44,  "name":"44-Capitol Hwy/Mocks Crest", "direction":"To Portland City Center", "url":"http://trimet.org/schedules/r010.htm", "tracker_url":"http://trimet.org/arrivals/tracker.html?locationID=7765&route=010"}
+    ,
+    {"id":94,  "name":"94-Pacific Hwy/Sherwood",    "direction":"To Tigard or Portland",   "url":"http://trimet.org/schedules/r094.htm", "tracker_url":"http://trimet.org/arrivals/tracker.html?locationID=7765&route=094"}
+]

@@ -1,0 +1,26 @@
+{
+    "id":"7765",
+    "name":"SW 6th & Jefferson",
+    "city":"Portland",
+    "lat":"45.514868",
+    "lon":"-122.680762",
+
+    "stop_img_url" : "",
+    "planner_url"  : "",
+    "tracker_url"  : "",
+
+    "amenities": [
+        "Shelter",
+        "TransitTracker Sign",
+        "Schedule Display",
+        "Lighting at Stop",
+        "CCTV",
+        "Telephone",
+        "Front-door Landing Paved",
+        "Back-door Landing Paved",
+        "Sidewalk",
+        "Traffic Signal",
+        "Crosswalk",
+        "Curbcut"
+    ]
+}

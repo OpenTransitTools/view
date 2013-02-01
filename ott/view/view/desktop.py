@@ -9,15 +9,15 @@ def stop(request):
        1. ...
        2. ...
     '''
-    alerts = None
-    stop = request.model.get_stop()
-    if stop and 'routes' in stop:
-        routes = stop['routes']
-        alerts = request.model.get_alerts(routes)
+    stop   = request.model.get_stop()
+    routes = request.model.get_routes()
+    if stop and routes:
+        stop['routes'] = routes
+        stop['alerts'] = request.model.get_alerts(routes, stop['id'])
 
     ret_val = {}
     ret_val['stop'] = stop
-    ret_val['stop']['alerts'] = alerts
+    ret_val['stop']
 
     return ret_val
 
@@ -33,17 +33,21 @@ def stop_schedule(request):
     more  = utils.get_first_param(request, 'more')
     route = utils.get_first_param(request, 'route')
     has_route = utils.is_valid_route(route)
+    stop  = None
+    if has_route:
+        stop = request.model.get_stop_schedule_single(route)
+    else:
+        stop = request.model.get_stop_schedule_multiple(route)
+
+    alerts = request.model.get_alerts(route, stop['id'])
+    stop['alerts'] = alerts
+
 
     ret_val = {}
+    ret_val['stop'] = stop
     ret_val['more_form']   = utils.get_day_info(date)
     ret_val['pretty_date'] = utils.pretty_date(date)
     ret_val['tabs'] = utils.get_svc_date_tabs(date, '/stop_schedule.html?route={0}'.format(route), more is None) 
-    if has_route:
-        ret_val['stop'] = request.model.get_stop_schedule_single(route)
-    else:
-        ret_val['stop'] = request.model.get_stop_schedule_multiple(route)
-
-    ret_val['stop']['alerts'] = request.model.get_alerts(route)
 
     return ret_val
 
@@ -68,8 +72,9 @@ def route_stops_list(request):
        1. ...
        2. ...
     '''
+    route = utils.get_first_param(request, 'route')
     ret_val = {}
-    ret_val['route_stops'] = request.model.get_route_stops_list()
+    ret_val['route_stops'] = request.model.get_route_stops(route)
 
     return ret_val
 
@@ -95,8 +100,11 @@ def feedback(request):
        1. ...
        2. ...
     '''
+    stop = request.model.get_stop()
+    stop['routes'] = request.model.get_routes()
+
     ret_val = {}
-    ret_val['stop'] = request.model.get_stop()
+    ret_val['stop'] = stop
 
     return ret_val
 
