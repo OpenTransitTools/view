@@ -30,6 +30,11 @@ def stop_schedule(request):
        2. ...
     '''
     date  = utils.get_first_param_as_date(request)
+    month = utils.get_first_param_as_int(request, 'month')
+    day   = utils.get_first_param_as_int(request, 'day')
+#    import pdb; pdb.set_trace()
+    date  = utils.set_date(date, month, day)
+
     more  = utils.get_first_param(request, 'more')
     route = utils.get_first_param(request, 'route')
     has_route = utils.is_valid_route(route)
@@ -37,7 +42,8 @@ def stop_schedule(request):
     if has_route:
         stop = request.model.get_stop_schedule_single(route)
     else:
-        stop = request.model.get_stop_schedule_multiple(route)
+        route = ''
+        stop = request.model.get_stop_schedule_multiple()
 
     alerts = request.model.get_alerts(route, stop['id'])
     stop['alerts'] = alerts

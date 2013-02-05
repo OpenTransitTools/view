@@ -1,7 +1,21 @@
 import datetime
 from calendar import monthrange
 
+def is_valid_route(route):
+    ''' will further parse the route string, and check for route in GTFSdb
+    '''
+    ret_val = False
+    if route is not None and len(route) > 0 and route != "None":
+        # TODO: add route validity checking here ... 
+        #       we might also allow for TriMet::19 v CTran::19 as a parameter
+        #       default to first agency if no ::
+        ret_val = True
+    return ret_val
+
+
 def get_day_info(dt=datetime.date.today()):
+    ''' gets a dict with a few params based on input date-time object
+    '''
     st,end=monthrange(dt.year, dt.month)
     ret_val = {
         'year'    : dt.year,
@@ -11,21 +25,23 @@ def get_day_info(dt=datetime.date.today()):
     }
     return ret_val
 
-def is_valid_route(route):
-    ''' will further parse the route string, and check for route in GTFSdb
+
+def set_date(dt=datetime.date.today(), month=None, day=None, year=None):
+    ''' return a datetime object, setting new month & day ranges
     '''
-    ret_val = False
-    if route is not None and len(route) > 0:
-        # TODO: add route validity checking here ... 
-        #       we might also allow for TriMet::19 v CTran::19 as a parameter
-        #       default to first agency if no ::
-        ret_val = True
+    ret_val = dt
+    try:
+        if not year : year  = dt.year
+        if not month: month = dt.month
+        if not day  : day   = dt.day
+        ret_val = dt.replace(year, month, day)
+    except:
+        pass
     return ret_val
 
 
 def pretty_date(dt=datetime.date.today(), fmt='%A, %B %d, %Y'):
     return dt.strftime(fmt)
-
 
 def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
     ''' return 3 date strings representing the next WEEKDAY, SAT, SUN 
@@ -72,12 +88,11 @@ def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', ptt
     if more_tab:
         ret_val.append({"name":more,   "url": uri + "&more&date=" + dt.strftime(fmt)})
 
-
     return ret_val
 
+
 def get_first_param_as_int(request, name, def_val=None):
-    '''
-        utility function
+    ''' utility function to parse a request object for a certain value (and return an integer based on the param if it's an int)
     '''
     ret_val=get_first_param(request, name, def_val)
     try:
@@ -88,6 +103,8 @@ def get_first_param_as_int(request, name, def_val=None):
 
 
 def get_first_param_as_date(request, name='date', fmt='%m/%d/%Y', def_val=datetime.date.today()):
+    ''' utility function to parse a request object for something that looks like a date object...
+    '''
     ret_val = def_val
     try:
         dstr = get_first_param(request, name)
@@ -110,5 +127,4 @@ def get_first_param(request, name, def_val=None):
         ret_val = request.params.getone(name)
     except:
         pass
-
     return ret_val
