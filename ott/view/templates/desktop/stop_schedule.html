@@ -11,7 +11,7 @@
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
 %>
 
-<%def name="title()">${_(u'TriMet: Stops and Stations')}</%def>
+<%def name="title()">TriMet: ${_(u'Stops and Schedules')}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
 </%def>

@@ -29,10 +29,10 @@ def stop_schedule(request):
        1. ...
        2. ...
     '''
+#    import pdb; pdb.set_trace()
     date  = utils.get_first_param_as_date(request)
     month = utils.get_first_param_as_int(request, 'month')
     day   = utils.get_first_param_as_int(request, 'day')
-#    import pdb; pdb.set_trace()
     date  = utils.set_date(date, month, day)
 
     more  = utils.get_first_param(request, 'more')

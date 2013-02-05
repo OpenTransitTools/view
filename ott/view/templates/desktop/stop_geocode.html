@@ -1,8 +1,9 @@
 <%inherit file="/desktop/base.html"/>
 
 <%namespace name="util"  file="/shared/util.mako"/>
-<%def name="title()">${_(u'TriMet: Stops and Stations')} - ${_(u'Stop ID')} ${stop['id']} - ${stop['name']}</%def>
+<%def name="title()">TriMet: ${_(u'Uncertain location')}</%def>
 <%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" />
     <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
 </%def>
 <%def name="meta_data()">
@@ -15,11 +16,152 @@
                 <div id="icon" class="icon-stops">
                     <h2>${_(u'Related')}</h2>  
                     <ul class="links">
+                      <li><a href="http://ride.trimet.org?mapit=I" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">${_(u'Try out the Interactive Map Trip Planner')}</a></li>
+                      <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
                     </ul>
                 </div>
-                <p class="feedback"><a href="/feedback.html?app=stop&stopID=${stop['id']}">${_(u'Having problems? Click here for technical support.')}</a></p>
+                <p class="feedback"><a href="/feedback.html">${_(u'Having problems? Click here for technical support.')}</a></p>
             </aside>
             <!-- end #sidebar -->
 </%def>
 
 <%def name="stations_selected()">class="selected"</%def>
+
+<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
+
+<div class="planner-form">
+    <div class="continue-form-top" id="continue-form">
+        <div class="stops-icon">
+            <h1>Stops &amp; Stations</h1>
+            <div class="tagline">
+                <p></p>
+            </div>
+        </div>
+        <!-- The Entry Form -->
+        <form name="ambig" method="POST" action="cstops.pl" class="form-style">
+            <!-- Hidden Form Information -->
+            <input type="hidden" name="action" value="ambig">
+            <input type="hidden" name="resptype" value="U">
+            <input type="hidden" name="access" value="N">
+    
+            <!-- Hide information entered on original input page -->
+            <input type="hidden" name="lang" value="en"  />
+            <input type="hidden" name="oldArea" value=""  />
+            <input type="hidden" name="oldLoc" value="834 SE LAMBERT"  />
+            <!-- Hide information about each location -->
+            <input type="hidden" name="x1" value="45.490943" />
+            <input type="hidden" name="y1" value="-122.406561" />
+            <input type="hidden" name="loc1" value="834+SE+LAMBERT+CIRCLE" />
+            <input type="hidden" name="acode1" value="GR" />
+    
+            <input type="hidden" name="x2" value="45.468602" />
+            <input type="hidden" name="y2" value="-122.657627" />
+            <input type="hidden" name="loc2" value="834+SE+LAMBERT+ST" />
+            <input type="hidden" name="acode2" value="PO" />
+
+            <!-- Directions/Help -->
+
+            <p class="unrecognized">Uncertain location: 834 SE LAMBERT </p>
+            <fieldset class="normal">
+                <label>Select a location:</label><!-- Scrolling List of Possible Locations -->
+                <select name="locations" tabindex="3" size="1" />
+                    <option value="1">834 SE LAMBERT CIRCLE (in GRESHAM)</option>
+                    <option value="2">834 SE LAMBERT ST (in PORTLAND)</option>
+                </select>
+            </fieldset>
+            <fieldset class="continue">
+               <!-- Action Button -->
+               <input name="select" tabindex="2" type="submit" value="Select" id="continue" />
+            </fieldset>
+
+            <div class="or-bar"><img src="${util.url_domain()}/new/images/structure/form-or-bar.gif" width="600" height="28" /></div>
+
+            <!-- Text Box for Re-Typing Location -->
+            <fieldset class="normal">
+                <label>Re-type location:</label>
+                <input tabindex="1" type="text" name=newloc value="834 SE LAMBERT" size=43 maxlength=80>
+                <p class="tips">See <a href="#tips">tips for entering a location</a></p>
+            </fieldset>
+            <fieldset class="continue">
+               <input name="submit" tabindex="4" type="submit" value="Continue" id="continue"/>
+            </fieldset>
+
+            <!-- GeoCoder TIPS (should include localized version of this some way / shape / form) -->
+            <p align="right" style="margin-right:25px;">
+                <a name="tips"></a>
+                <p class="unrecognized">There are several ways to enter a location:</p>
+                <p>
+                <b>Address</b>, for example: <kbd>4012 SE 17</kbd>
+            </p>
+            <p>
+                <b>Intersection</b> (where two streets cross each other), Example: <kbd>SE 17 & Center</kbd>.
+            </p>
+            <p>
+                <b>Landmarks</b>, Examples: <kbd>PDX</kbd>, <kbd>Rose Quarter Arena</kbd> or <kbd>Clackamas Town Center</kbd>. You can type the name or select from lists by category (click on the word "Landmark" on the input form to see the categories, then click "Continue"). Most public buildings and parks are landmarks, but only a few businesses are in our database.
+            </p>
+            <p>
+                <hr>
+                <p class="unrecognized">If the trip planner fails to find a location:</p>
+                <p>
+                    <b>Check your spelling</b>
+                    <ul>
+                        <li>If the trip planner cannot find an exact match on the spelling of a street or landmark, it will show you a list of alternatives, but if it finds a match, it will only show you the one that matches, which may not be the one you intended.</li>
+                        <ul>For example, if you type <kbd>400 Hawthourn</kbd> it will show you a list of alternatives that includes <kbd>400 SE Hawthorne Blvd.</kbd>, but if you type <kbd>400 Hawthorn</kbd> it will only find <kbd>400 SW Hawthorn Rd. (in Estacada)</kbd>.</ul>
+                        <p>
+                            <li>Don't spell out directions, such as <kbd>North</kbd> or <kbd>Northwest</kbd> unless they are part of a street or landmark name (such as <kbd>SW North Ave</kbd> or <kbd>Northwest Senior Center</kbd>). Use abbreviations instead.</li>
+                            <ul>For example: Use <kbd>SE Hawthorne</kbd> <b>not</b> <kbd>Southeast Hawthorne</kbd></ul>
+                            <li>You may need to spell out the street name. Not all abbreviations are known to the trip planner. It knows that <kbd>MLK</kbd> means <kbd>Martin Luther King Jr. Blvd.</kbd> but it will not find <kbd>Hwy 99</kbd>.</li>
+                    </ul>
+                </p>
+                <p><b>The address may not exist.</b> If you've entered an address, try using an intersection instead.</p>
+                <p><b>The address may be confused with another.</b> Addresses that start with zero confuse the trip planner. It will find both <kbd>049 SW Porter</kbd> and <kbd>49 SW Porter</kbd> if you enter either address, but both will be listed as <kbd>49 SW PORTER ST</kbd>. Use a nearby intersection instead, such as <kbd>SW 1st & Porter</kbd> or <kbd>Naito Parkway & Porter</kbd>.</p>
+                <p><b>New streets or developments.</b> If the street or address is new, the trip planner may not know it yet. Try another  address or intersection that is near to the one you're trying to find.</p>
+                <p><b>New street names.</b> Some streets have been renamed. For example, <kbd>Martin Luther King Jr. Blvd.</kbd> used to be named <kbd>Union Ave.</kbd>, and <kbd>Naito Parkway</kbd> was named <kbd>Front Ave</kbd>.</p>
+            </p>
+        </form>
+        <div class="planner-form-bottom"></div>
+    </div>
+
+    <div class="highslide-html-content" id="highslide-help" style="width:500px;">
+        <div class="highslide-header">
+            <ul>
+                <li class="highslide-move"><a href="#" onclick="return false">Move</a></li>
+                <li class="highslide-close"><a href="#" onclick="return hs.close(this)">Close</a></li>
+            </ul>
+        </div>
+        <div class="highslide-body" style="text-align:left;">
+            <a name="tips"></a>
+            <p class="unrecognized">There are several ways to enter a location:
+            </p><p>
+            <b>Address</b>, for example: <kbd>4012 SE 17</kbd>
+            </p><p>
+            <b>Intersection</b> (where two streets cross each other), Example: <kbd>SE 17 & Center</kbd>.
+            </p><p>
+            <b>Landmarks</b>, Examples: <kbd>PDX</kbd>, <kbd>Rose Quarter Arena</kbd> or <kbd>Clackamas Town Center</kbd>. You can type the name or select from lists by category (click on the word "Landmark" on the input form to see the categories, then click "Continue"). Most public buildings and parks are landmarks, but only a few businesses are in our database.
+            </p><p>
+            <hr>
+            <p class="unrecognized">If the trip planner fails to find a location:
+            </p><p>
+            <b>Check your spelling</b><ul>
+            <li>If the trip planner cannot find an exact match on the spelling of a street or landmark, it will show you a list of alternatives, but if it finds a match, it will only show you the one that matches, which may not be the one you intended.</li>
+                    <ul>For example, if you type <kbd>400 Hawthourn</kbd> it will show you a list of alternatives that includes <kbd>400 SE Hawthorne Blvd.</kbd>, but if you type <kbd>400 Hawthorn</kbd> it will only find <kbd>400 SW Hawthorn Rd. (in Estacada)</kbd>.
+                    </ul>
+            <p>       
+            <li>Don't spell out directions, such as <kbd>North</kbd> or <kbd>Northwest</kbd> unless they are part of a street or landmark name (such as <kbd>SW North Ave</kbd> or <kbd>Northwest Senior Center</kbd>). Use abbreviations instead.</li>
+            <ul>For example: Use <kbd>SE Hawthorne</kbd> <b>not</b> <kbd>Southeast Hawthorne</kbd>
+                    </ul>
+            <li>You may need to spell out the street name. Not all abbreviations are known to the trip planner. It knows that <kbd>MLK</kbd> means <kbd>Martin Luther King Jr. Blvd.</kbd> but it will not find <kbd>Hwy 99</kbd>.</li>
+            </ul>
+            </p><p>
+            <b>The address may not exist.</b> If you've entered an address, try using an intersection instead.
+            </p><p>
+            <b>The address may be confused with another.</b> Addresses that start with zero confuse the trip planner. It will find both <kbd>049 SW Porter</kbd> and <kbd>49 SW Porter</kbd> if you enter either address, but both will be listed as <kbd>49 SW PORTER ST</kbd>. Use a nearby intersection instead, such as <kbd>SW 1st & Porter</kbd> or <kbd>Naito Parkway & Porter</kbd>.
+            
+            </p><p>
+            <b>New streets or developments.</b> If the street or address is new, the trip planner may not know it yet. Try another  address or intersection that is near to the one you're trying to find.
+            </p><p>
+            <b>New street names.</b> Some streets have been renamed. For example, <kbd>Martin Luther King Jr. Blvd.</kbd> used to be named <kbd>Union Ave.</kbd>, and <kbd>Naito Parkway</kbd> was named <kbd>Front Ave</kbd>.
+            </p>
+        </div>
+    </div>
+</div>

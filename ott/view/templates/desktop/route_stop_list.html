@@ -2,7 +2,7 @@
 
 <%namespace name="util"  file="/shared/util.mako"/>
 
-<%def name="title()">${_(u'TriMet: Stops and Stations')} - ${route_stops['name']}</%def>
+<%def name="title()">TriMet: ${_(u'Stops and Stations')} - ${route_stops['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
 </%def>
