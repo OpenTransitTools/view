@@ -1,6 +1,14 @@
 from setuptools import setup, find_packages
 import sys
 
+xrequired_eggs = [
+    'pyramid',
+    'waitress',
+    'Babel',
+    'lingua',
+    'simplejson',
+]
+
 required_eggs = [
     'pyramid',
     'Babel',
