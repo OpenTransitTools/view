@@ -1,16 +1,15 @@
-from setuptools import setup, find_packages
+import os
 import sys
+from setuptools import setup, find_packages
 
-xrequired_eggs = [
+here = os.path.abspath(os.path.dirname(__file__))
+README = open(os.path.join(here, 'README.md')).read()
+CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
+
+requires = [
     'pyramid',
+    'pyramid_debugtoolbar',
     'waitress',
-    'Babel',
-    'lingua',
-    'simplejson',
-]
-
-required_eggs = [
-    'pyramid',
     'Babel',
     'lingua',
     'simplejson',
@@ -20,16 +19,16 @@ required_eggs = [
 # eggs that you need if you're running a version of python lower than 2.7
 #
 if sys.version_info[:2] < (2, 7):
-    required_eggs.extend(['argparse>=1.2.1', 'unittest2>=0.5.1'])
+    requires.extend(['argparse>=1.2.1', 'unittest2>=0.5.1'])
 
 #
 # eggs you need for development, but not production
 #
 dev_extras = (
+    'zc.buildout',
     'coverage>=3.5.2',
     'fabric>=1.4.3',
     'zest.releaser>=3.37',
-    'distribute',
 )
 
 # when you run: bin/py setup.py extract_messages
@@ -46,19 +45,32 @@ find_translation_strings_in_these_files = {'.' : [
 }
 
 setup(
-    name='ott.view',
-    version='0.1.0',
-    description='Ott View (Python / Javascript)',
-    author="Open Transit Tools",
-    author_email="info@opentransittools.org",
-    dependency_links=('http://opentransittools.com',),
-    license="Mozilla-derived (http://opentransittools.com)",
-    url='https://opentransittools.com',
-    namespace_packages=('ott',),
-    packages=find_packages(),
-    install_requires=required_eggs,
-    extras_require=dict(dev=dev_extras),
-    include_package_data=True,  # include non .py / static stuff in egg, like mako templates
-    zip_safe=False,             # be able unzip static stuff from egg
-    message_extractors = find_translation_strings_in_these_files,
-)
+      name='ott.view',
+      version='0.1.0',
+      description='Open Transit Tools - View (Python / Javascript)',
+      long_description=README + '\n\n' + CHANGES,
+      classifiers=[
+        "Programming Language :: Python",
+        "Framework :: Pyramid",
+        "Topic :: Internet :: WWW/HTTP",
+        "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
+      ],
+      author="Open Transit Tools",
+      author_email="info@opentransittools.org",
+      dependency_links=('http://opentransittools.com',),
+      license="Mozilla-derived (http://opentransittools.com)",
+      url='http://opentransittools.com',
+      keywords='ott, otp, view, transit',
+      packages=find_packages(),
+      include_package_data=True,
+      zip_safe=False,
+      install_requires=requires,
+      extras_require=dict(dev=dev_extras),
+      message_extractors = find_translation_strings_in_these_files,
+      tests_require=requires,
+      test_suite="ott.view",
+      entry_points="""\
+        [paste.app_factory]
+        main = ott.view.pyramid_app:main
+      """,
+      )
