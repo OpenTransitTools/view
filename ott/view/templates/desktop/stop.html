@@ -116,9 +116,9 @@ form.stopid-form input {
                 %endfor
             </ul>
             <h3>${_(u'Plan a trip')}</h3>
-                <p class="link"><a href="plantrip.cgi?to=2&lang=en">${_(u'to here')}</a>
+                <p class="link"><a href="planner.html?to=${stop['id']}">${_(u'to here')}</a>
                 &ndash; 
-                <a href="plantrip.cgi?from=2&lang=en">${_(u'from here')}</a></p>
+                <a href="planner.html?from=${stop['id']}">${_(u'from here')}</a></p>
         </div> <!-- stop info -->
     </div> <!-- class="stops-form-top" -->
     <div class="stops-form-bottom">&nbsp;</div>
