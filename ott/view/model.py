@@ -1,13 +1,18 @@
 import simplejson as json
 import logging
-logging.basicConfig()
 log = logging.getLogger(__file__)
-log.setLevel(logging.INFO)
 
 
 class Model():
-    def get_routes(self):
-        pass
+
+    TRAIN   = 'TRAIN'
+    WALK    = 'WALK'
+    TRANSIT = 'TRANSIT'
+    BICYCLE = 'BICYCLE'
+    BIKE    =  BICYCLE
+
+    def get_routes(self): pass
+    def get_plans(self, **kwargs): pass
 
 def main():
     m=Model()

@@ -2,6 +2,22 @@ from pyramid.view import view_config
 import utils
 
 
+@view_config(route_name='planner_desktop', renderer='desktop/planner.html')
+def planner(request):
+    '''
+       what do i do?
+       1. ...
+       2. ...
+    '''
+    plan = request.model.get_plan(**request.params)
+    stop = request.model.get_stop()
+    ret_val = {}
+    ret_val['plan'] = plan
+    ret_val['stop'] = stop
+
+    return ret_val
+
+
 @view_config(route_name='stop_desktop', renderer='desktop/stop.html')
 def stop(request):
     '''
@@ -17,7 +33,6 @@ def stop(request):
 
     ret_val = {}
     ret_val['stop'] = stop
-    ret_val['stop']
 
     return ret_val
 

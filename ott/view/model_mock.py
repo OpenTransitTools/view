@@ -1,11 +1,8 @@
 import simplejson as json
+import logging
+log = logging.getLogger(__file__)
 
 from ott.view.model import Model
-
-import logging
-logging.basicConfig()
-log = logging.getLogger(__file__)
-log.setLevel(logging.INFO)
 
 
 class ModelMock(Model):
@@ -18,6 +15,24 @@ class ModelMock(Model):
     def get_routes(self): return get_json('routes.json')
     def get_stop(self):   return get_json('stop.json')
 
+    def get_plan(self, **kwargs):
+        ''' @todo: MODE strings should come from gtfsdb code...
+        '''
+        if 'mode' in kwargs:
+            if    Model.WALK == kwargs['mode']: return get_json('plan_walk.json') 
+            elif  Model.BIKE == kwargs['mode']: return get_json('plan_bike.json') 
+            elif  kwargs['mode'].contains(Model.TRANSIT) and kwargs['mode'].contains(Model.BIKE):
+                  return get_json('plan_bike_transit.json') 
+            else: return get_json('plan_transit.json') 
+        else:
+            return get_json('plan_error.json')
+
+    def get_adverts(self, **kwargs):
+        mode = True if kwargs['mode'].contains(Model.TRAIN) else False
+        if mode:
+            return get_json('adverts_rail.json') 
+        else:
+            return get_json('adverts_bus.json') 
 
 
 def main():

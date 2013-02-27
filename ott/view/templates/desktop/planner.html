@@ -1,0 +1,141 @@
+<%
+    l = locals()
+    fromPlace = 'PDX'
+    toPlace = 'ZOO'
+    alerts = None
+# <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${fromPlace} ${_(u'to')} ${toPlace}</%def>
+%>
+
+<%inherit file="/desktop/base.html"/>
+
+<%namespace name="util"  file="/shared/util.mako"/>
+
+<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} FROM ${_(u'to')} TO</%def>
+
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
+</%def>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Stops, stations"/>
+    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
+</%def>
+<%def name="side_bar()">
+            <!-- begin #sidebar -->
+            <aside id="aside" class="aside">
+                <div id="icon" class="icon-tripplanner">
+                <p class="lead">${_(u'The Trip Planner provides step-by-step directions including where to board, how much to pay and where to transfer.')}</p>
+                    <h2>${_(u'Related')}</h2>  
+                    <ul class="links">
+                      <li><a href="http://ride.trimet.org?mapit=I" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">${_(u'Try out the Interactive Map Trip Planner')}</a></li>
+                      <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
+                    </ul>
+                </div>
+                <p class="feedback"><a href="/feedback.html?app=">${_(u'Having problems? Click here for technical support.')}</a></p>
+                %if alerts:
+                %for a in alerts:
+                    pass
+                %endfor
+                %endif
+            </aside>
+            <!-- end #sidebar -->
+</%def>
+
+<%def name="planner_selected()">class="selected"</%def>
+
+<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
+
+
+ <div class="planner-form">
+    <div class="planner-form-top">
+        <div class="planner-icon"><h1>Your Trip on TriMet</h1>
+        <div class="tagline">
+         <div class="hide">
+                <form>
+                    <input name="print" type="button" value="Print" title="Print this page" onClick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print top']);" class="noprint" />
+                </form>
+         </div>
+        </div>
+        </div>
+            <div class="planner-header">
+               <h2>From Portland International Airport (PDX) in Portland to OHSU in Portland</h2>
+            </div>
+   
+   <div class="tabs">
+     <p class="heading">
+<span>Option 1: Your best bet</span>
+<a href="reitin.pl?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217&p=2" class="unselected">Option 2</a><a href="reitin.pl?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217&p=3" class="unselected">Option 3</a>
+      </p>
+   </div>
+
+<div id="itinerary">
+<table width="100%" border="0" cellspacing="5" cellpadding="0">
+<tr>
+  <td width="15%"><strong>When</strong></td><td>  Depart after 4:58pm Tuesday, February 26, 2013</td>
+</tr>
+<tr><td><strong>Preferences</strong></td><td>Quickest trip with a maximum walk of 1 mile <a href="plantrip.cgi?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217" title = "Try different options" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">Edit</a></td>
+</tr>
+<tr><td><strong>Time</strong></td><td>69 minutes  (including  9 minutes waiting) <a class="hide blue" href="reitin.pl?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217&xs=Y">Look for a shorter waiting time.</a>
+</td>
+</tr> 
+<tr><td><strong>Transfers</strong></td><td>1</td>
+</tr> 
+<tr><td><strong>Fare</strong></td><td>Adult: $2.50, Youth: $1.65, Honored Citizen: $1
+</td>
+</tr>
+</table>
+</div>
+
+<ol id="tripsteps">
+
+<li class="first"><h3><img src="/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> Start at <a href="showmap.cgi?lang=t&long=-122.5932&lat=45.5876&icon=start&area=PO&desc=Portland%20International%20Airport%20(PDX)">Portland International Airport (PDX) in Portland</a></h3>
+<h3><a href="stop_info.pl?lang=t&Id=9748&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13" title = "Click for more information about this stop">Portland Int'l Airport MAX Station</a>
+</h3>
+<span class="stopid">Stop ID&nbsp;10579</span>
+</li>
+
+<li><h3><img src="/v3/images/tripplanner/max.gif" alt="" border="0" class="icon" /> <b><a href="sched.pl?lang=t&start=05:12+pm&line=90&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13&stopID=10579&loc1=Portland%20Int'l%20Airport%20MAX%20Station" title = "Show schedule for Portland Int\'l Airport MAX Station">5:12pm</a></b> Board <a href="/schedules/r090.htm" title = "Show map and schedules for this route.">MAX  Red Line to City Center & Beaverton TC</a>
+</h3>
+<h3><b><a href="sched.pl?lang=t&start=05:52 PM&line=90&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13&stopID=8382&loc1=Mall%2FSW%205th%20Ave%20MAX%20Station" title = "Show schedule for Mall/SW 5th Ave MAX Station">5:52pm</a></b> Get off at <a href="stop_info.pl?lang=t&Id=7115&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13" title = "Click for more information about this stop">Mall/SW 5th Ave MAX Station</a>
+</h3>
+<span class="stopid">Stop ID&nbsp;8382</span>
+</li>
+
+<li><h3><img src="/v3/images/tripplanner/walk.gif" alt="" border="0" class="icon" /> Go to <a href="stop_info.pl?lang=t&Id=15951&acode1=PO&x1=45.518930&y1=-122.677573&date=02/26/13" title = "Click for more information about this stop">SW 5th &amp; Morrison</a>
+</h3>
+<span class="stopid">Stop ID&nbsp;7625</span>
+</li>
+
+<li><h3><img src="/v3/images/tripplanner/bus.gif" alt="" border="0" class="icon" /> <b><a href="sched.pl?lang=t&start=06:01+pm&line=8&acode1=PO&x1=45.518930&y1=-122.677573&date=02/26/13&stopID=7625&loc1=SW%205th%20%26amp%3B%20Morrison" title = "Show schedule for SW 5th &amp; Morrison">6:01pm</a></b> Board <a href="/schedules/r008.htm" title = "Show map and schedules for this route.">8 Jackson Park to Marquam Hill</a>
+<p class="alert"><img src="/v3/images/tripplanner/alert.png" alt="Alert icon" title="Alert icon" class="bullet" /> Transit Tracker is experiencing intermittent outages and may not be providing real time arrival information for bus lines. We are working to fix the issue and apologize for the inconvenience.</p><p class="alert"><img src="/v3/images/tripplanner/alert.png" alt="Alert icon" title="Alert icon" class="bullet" /><b>Effective Mar 3, 2013:</b> Beginning Sunday, March 3, 2013, approximately 60 percent of Line 8 trips, the location where operators take their designated break will be different. As a result, some trip times will change. <a href="/alerts/service-change/r008.htm">More</a></p></h3>
+<h3><b><a href="sched.pl?lang=t&start=06:21 PM&line=8&acode1=PO&x1=45.499328&y1=-122.685544&date=02/26/13&stopID=5028&loc1=SW%20Sam%20Jackson%20Pk%20%26amp%3B%20OHSU" title = "Show schedule for SW Sam Jackson Pk &amp; OHSU">6:21pm</a></b> Get off at <a href="stop_info.pl?lang=t&Id=14688&acode1=PO&x1=45.499328&y1=-122.685544&date=02/26/13" title = "Click for more information about this stop">SW Sam Jackson Pk &amp; OHSU</a>
+</h3>
+<span class="stopid">Stop ID&nbsp;5028</span>
+</li>
+
+<li><h3><img src="/v3/images/tripplanner/end.gif" alt="" border="0" class="icon" /> End at <a href="showmap.cgi?lang=t&long=-122.6856&lat=45.4993&icon=end&area=PO&desc=OHSU">OHSU in Portland</a>
+</h3>
+
+</li>
+</ol>
+
+<p id="buttons" class="hide">
+<span class="button-tripplanner"><a href="plantrip.cgi?lang=t&from=OHSU,PO&to=PORTLAND+INTERNATIONAL+AIRPORT,PO&after=06:21 PM&on=02/26/13&min=T&walk=0.9999 " title = "Plan return trip" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);">Reverse</a></span>
+<span class="button-tripplanner"><a href="plantrip.cgi?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217" title = "Try different options" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);">Edit</a></span> 
+<span class="button-tripplanner"><a href="#" onclick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);" title="Print this page">Print</a></span>
+         </p>
+         <p class="help"><a href="/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads',
+'ClickTo', '/tripplanner/trip-help.htm']);">Help</a></p>
+</div>
+    <div class="planner-form-bottom"></div>
+</div>
+
+
+<div class="disclaimer">
+    <p class="disclaimer-feedback">
+        <strong>Tell us about your trip</strong>
+        <br/>
+        Visit <a href="${util.url_domain()}/contact/" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);">trimet.org/contact</a> or call 503-238-RIDE (7433), option 5.</p>
+        <p>Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check
+        <a href="${util.url_domain()}/transittracker/about.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade; 
+        for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.</p>
+</div>
