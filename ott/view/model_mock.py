@@ -51,7 +51,7 @@ if __name__ == '__main__':
     main()
 
 
-PATH='docs/mock/'
+PATH='ott/view/static/test/'
 def get_json(file):
     ''' utility class to load a static .json file for mock'ing a service
     '''

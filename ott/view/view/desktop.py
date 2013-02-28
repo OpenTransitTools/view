@@ -10,10 +10,8 @@ def planner(request):
        2. ...
     '''
     plan = request.model.get_plan(**request.params)
-    stop = request.model.get_stop()
     ret_val = {}
     ret_val['plan'] = plan
-    ret_val['stop'] = stop
 
     return ret_val
 
