@@ -3,6 +3,7 @@
     fromPlace = 'PDX'
     toPlace = 'ZOO'
     alerts = None
+
 # <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${fromPlace} ${_(u'to')} ${toPlace}</%def>
 %>
 
@@ -10,7 +11,7 @@
 
 <%namespace name="util"  file="/shared/util.mako"/>
 
-<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} FROM ${_(u'to')} TO</%def>
+<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['plan']['from']['name']} ${_(u'to')} ${plan['plan']['to']['name']}</%def>
 
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
@@ -45,45 +46,48 @@
 <p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
 
 
- <div class="planner-form">
+<div class="planner-form">
     <div class="planner-form-top">
-        <div class="planner-icon"><h1>Your Trip on TriMet</h1>
-        <div class="tagline">
-         <div class="hide">
+        <div class="planner-icon">
+            
+            <h1>${_(u'Your Trip on TriMet')}</h1>
+            <div class="tagline">
+                <div class="hide">
                 <form>
-                    <input name="print" type="button" value="Print" title="Print this page" onClick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print top']);" class="noprint" />
+                    <input name="print" type="button" value="${_(u'Print')}" title="${_(u'Print this page')}" onClick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print top']);" class="noprint" />
                 </form>
-         </div>
-        </div>
-        </div>
-            <div class="planner-header">
-               <h2>From Portland International Airport (PDX) in Portland to OHSU in Portland</h2>
+                </div>
             </div>
-   
-   <div class="tabs">
-     <p class="heading">
-<span>Option 1: Your best bet</span>
-<a href="reitin.pl?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217&p=2" class="unselected">Option 2</a><a href="reitin.pl?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217&p=3" class="unselected">Option 3</a>
-      </p>
-   </div>
-
-<div id="itinerary">
-<table width="100%" border="0" cellspacing="5" cellpadding="0">
-<tr>
-  <td width="15%"><strong>When</strong></td><td>  Depart after 4:58pm Tuesday, February 26, 2013</td>
-</tr>
-<tr><td><strong>Preferences</strong></td><td>Quickest trip with a maximum walk of 1 mile <a href="plantrip.cgi?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217" title = "Try different options" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">Edit</a></td>
-</tr>
-<tr><td><strong>Time</strong></td><td>69 minutes  (including  9 minutes waiting) <a class="hide blue" href="reitin.pl?lang=t&from=PORTLAND+INTERNATIONAL+AIRPORT,PO&to=OHSU,PO&after=4:58+pm&on=02/26/13&min=T&walk=0.9999&mode=A&xo=45.5876&yo=-122.5932&xd=45.4993&yd=-122.6856&id=19217&xs=Y">Look for a shorter waiting time.</a>
-</td>
-</tr> 
-<tr><td><strong>Transfers</strong></td><td>1</td>
-</tr> 
-<tr><td><strong>Fare</strong></td><td>Adult: $2.50, Youth: $1.65, Honored Citizen: $1
-</td>
-</tr>
-</table>
-</div>
+        </div>
+    <div class="planner-header">
+        <h2>${_(u'From')} ${plan['plan']['from']['name']} ${_(u'to')} ${plan['plan']['to']['name']}</h2>
+    </div>
+    <div class="tabs">
+        <p class="heading">
+            <span>${_(u'Option 1: Your best bet')}</span>
+            <a href="#p=2" class="unselected">${_(u'Option 2')}</a>
+            <a href="#p=3" class="unselected">${_(u'Option 3')}</a>
+        </p>
+    </div>
+    <div id="itinerary">
+        <table width="100%" border="0" cellspacing="5" cellpadding="0">
+        <tr>
+            <td width="15%"><strong>${_(u'When')}</strong></td><td>  Depart after 4:58pm Tuesday, February 26, 2013</td>
+        </tr>
+        <tr>
+            <td><strong>${_(u'Preferences')}</strong></td><td>Quickest trip ${_(u'with a maximum walk of')} 1 mile <a href="#TODO_EDIT" title = "${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">${_(u'Edit')}</a></td>
+        </tr>
+        <tr>
+            <td><strong>${_(u'Time')}</strong></td><td>69 ${_(u'minutes')} (${_(u'including')}  9 ${_(u'minutes')} ${_(u'waiting')})</td>
+        </tr> 
+        <tr>
+            <td><strong>${_(u'Transfers')}</strong></td><td>1</td>
+        </tr> 
+        <tr>
+            <td><strong>${_(u'Fare')}</strong></td><td>${_(u'Adult')}: $2.50, ${_(u'Youth')}: $1.65, ${_(u'Honored Citizen')}: $1</td>
+        </tr>
+        </table>
+    </div>
 
 <ol id="tripsteps">
 

@@ -18,18 +18,18 @@ class ModelMock(Model):
     def get_plan(self, **kwargs):
         ''' @todo: MODE strings should come from gtfsdb code...
         '''
+        #import pdb; pdb.set_trace()
         if 'mode' in kwargs:
             if    Model.WALK == kwargs['mode']: return get_json('plan_walk.json') 
             elif  Model.BIKE == kwargs['mode']: return get_json('plan_bike.json') 
-            elif  kwargs['mode'].contains(Model.TRANSIT) and kwargs['mode'].contains(Model.BIKE):
+            elif  Model.TRANSIT in kwargs['mode'] and Model.BIKE in kwargs['mode']:
                   return get_json('plan_bike_transit.json') 
             else: return get_json('plan_transit.json') 
         else:
             return get_json('plan_error.json')
 
     def get_adverts(self, **kwargs):
-        mode = True if kwargs['mode'].contains(Model.TRAIN) else False
-        if mode:
+        if Model.TRAIN in kwargs['mode']:
             return get_json('adverts_rail.json') 
         else:
             return get_json('adverts_bus.json') 
