@@ -52,15 +52,11 @@
             </div>
         </div>
         <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style" />
-            <!-- Hidden Form Information -->
             <input type="hidden" name="lang" value="t"  />
             <input type="hidden" name="action" value="entry" />
-            <!-- F: Formatted, U: Unformatted -->
             <input type="hidden" name="today" value=2013/02/28>
             <input type="hidden" name="date" value=02/28/13>
-            <!-- Form Entry Area -->
-    
-            <!-- Information Input -->
+
             <fieldset class="addresses">
                 <label for="from">${_(u'From')}:</label>
                 <input type="text" tabindex="1" name=Orig value="${fromPlace}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="45" maxlength="80" />
@@ -244,3 +240,4 @@
     </div>
 </div>
 <div class="planner-form-bottom"></div>
+
