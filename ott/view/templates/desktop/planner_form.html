@@ -1,0 +1,246 @@
+<%
+    fromPlace = 'PDX'
+    toPlace = 'ZOO'
+# <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${fromPlace} ${_(u'to')} ${toPlace}</%def>
+%>
+
+<%inherit file="/desktop/base.html"/>
+
+<%namespace name="util"  file="/shared/util.mako"/>
+
+<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['plan']['from']['name']} ${_(u'to')} ${plan['plan']['to']['name']}</%def>
+
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
+</%def>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner"/>
+    <meta name="Description" content=""/>
+</%def>
+<%def name="side_bar()">
+            <!-- begin #sidebar -->
+            <aside id="aside" class="aside">
+                <div id="icon" class="icon-tripplanner">
+                <p class="lead">${_(u'The Trip Planner provides step-by-step directions including where to board, how much to pay and where to transfer.')}</p>
+                    <h2>${_(u'Related')}</h2>  
+                    <ul class="links">
+                      <li><a href="http://ride.trimet.org?mapit=I" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">${_(u'Try out the Interactive Map Trip Planner')}</a></li>
+                      <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
+                    </ul>
+                </div>
+                <p class="feedback"><a href="/feedback.html?app=">${_(u'Having problems? Click here for technical support.')}</a></p>
+                %if alerts:
+                %for a in alerts:
+                    pass
+                %endfor
+                %endif
+            </aside>
+            <!-- end #sidebar -->
+</%def>
+
+<%def name="planner_selected()">class="selected"</%def>
+
+<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
+
+
+<div class="planner-form">
+    <div class="planner-form-top" id="planner-form">
+        <div class="planner-icon">
+            <h1>${_(u'Trip Planner')}</h1>
+            <div class="tagline">
+                <p>${_(u'Step-by-step travel directions')}</p>
+            </div>
+        </div>
+        <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style" />
+            <!-- Hidden Form Information -->
+            <input type="hidden" name="lang" value="t"  />
+            <input type="hidden" name="action" value="entry" />
+            <!-- F: Formatted, U: Unformatted -->
+            <input type="hidden" name="today" value=2013/02/28>
+            <input type="hidden" name="date" value=02/28/13>
+            <!-- Form Entry Area -->
+    
+            <!-- Information Input -->
+            <fieldset class="addresses">
+                <label for="from">${_(u'From')}:</label>
+                <input type="text" tabindex="1" name=Orig value="${fromPlace}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="45" maxlength="80" />
+                <p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>
+            </fieldset>
+            <fieldset class="addresses">
+                <label for="going">${_(u'To')}:  </label>
+                <input type="text" id="going" tabindex="2" name=Dest value="${toPlace}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="45" maxlength="80" />
+                <p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>
+            </fieldset>
+   
+            <fieldset class="addresses">
+                <label for="when">${_(u'When')}:</label>
+                <select name="Arr" tabindex="3"  onchange="showTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <option selected="selected" value="D">${_(u'Depart after')}</option>
+                    <option value="A">${_(u'Arrive by')}</option>
+                    <option value="L">${_(u'Late as possible')}</option>
+                    <option value="E">${_(u'Early as possible')}</option>
+                </select>
+                <select name="Hour" tabindex="4"  onfocus="doClassHighlight(this);" style="margin-left: 13px;" class="regular" id="Hour" onblur="doClassRegular(this);">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option selected="selected" value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select><strong>:</strong><select name="Minute" tabindex="5"  onfocus="doClassHighlight(this);" class="regular" id="Minute" onblur="doClassRegular(this);">
+                    <option value="00">00</option>
+                    <option value="01">01</option>
+                    <option value="02">02</option>
+                    <option value="03">03</option>
+                    <option value="04">04</option>
+                    <option value="05">05</option>
+                    <option value="06">06</option>
+                    <option value="07">07</option>
+                    <option value="08">08</option>
+                    <option value="09">09</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                    <option value="32">32</option>
+                    <option value="33">33</option>
+                    <option value="34">34</option>
+                    <option value="35">35</option>
+                    <option value="36">36</option>
+                    <option value="37">37</option>
+                    <option value="38">38</option>
+                    <option selected="selected" value="39">39</option>
+                    <option value="40">40</option>
+                    <option value="41">41</option>
+                    <option value="42">42</option>
+                    <option value="43">43</option>
+                    <option value="44">44</option>
+                    <option value="45">45</option>
+                    <option value="46">46</option>
+                    <option value="47">47</option>
+                    <option value="48">48</option>
+                    <option value="49">49</option>
+                    <option value="50">50</option>
+                    <option value="51">51</option>
+                    <option value="52">52</option>
+                    <option value="53">53</option>
+                    <option value="54">54</option>
+                    <option value="55">55</option>
+                    <option value="56">56</option>
+                    <option value="57">57</option>
+                    <option value="58">58</option>
+                    <option value="59">59</option>
+                </select>
+                <select name="AmPm" tabindex="6"  onfocus="doClassHighlight(this);" class="regular" id="AmPm" onblur="doClassRegular(this);">
+                    <option value="am">${_(u'am')}</option>
+                    <option selected="selected" value="pm">${_(u'pm')}</option>
+                </select>
+                <select name="month" tabindex="7"  onfocus="doClassHighlight(this);" style="margin-left: 13px;" class="regular" onblur="doClassRegular(this);">
+                    <option value="Jan">Jan</option>
+                    <option selected="selected" value="Feb">Feb</option>
+                    <option value="Mar">Mar</option>
+                    <option value="Apr">Apr</option>
+                    <option value="May">May</option>
+                    <option value="Jun">Jun</option>
+                    <option value="Jul">Jul</option>
+                    <option value="Aug">Aug</option>
+                    <option value="Sep">Sep</option>
+                    <option value="Oct">Oct</option>
+                    <option value="Nov">Nov</option>
+                    <option value="Dec">Dec</option>
+                </select>
+                <select name="day" tabindex="8"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                    <option value="26">26</option>
+                    <option value="27">27</option>
+                    <option selected="selected" value="28">28</option>
+                    <option value="29">29</option>
+                    <option value="30">30</option>
+                    <option value="31">31</option>
+                </select>
+            </fieldset>
+            <p class="options">${_(u'Trip preferences (optional)')}</p>
+            <fieldset class="preferences">
+                <label for="trip-options">${_(u'Show me the')}: </label>
+                <select name="Min" tabindex="9"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <option selected="selected" value="T">${_(u'Quickest trip')} </option>
+                    <option value="X">${_(u'Fewest transfers')} </option>
+                </select>
+            </fieldset>
+            <fieldset class="preferences">
+                <label for="trip-options">${_(u'Maximum walk')}:</label>
+                <select name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <option value="0.10">${_(u'1/10 mile')}</option>
+                    <option value="0.25">${_(u'1/4 mile')}</option>
+                    <option value="0.50">${_(u'1/2 mile')}</option>
+                    <option value="0.75">${_(u'3/4 mile')}</option>
+                    <option selected="selected" value="0.9999">${_(u'1 mile')}</option>
+                </select>
+            </fieldset>
+            <fieldset class="preferences">
+                <label for="trip-options">${_(u'Travel by')}:</label>
+                <select name="mode" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <option selected="selected" value="A">${_(u'Bus or train')}</option>
+                    <option value="B">${_(u'Bus only')}</option>
+                    <option value="T">${_(u'Train only')}</option>
+                </select>
+            </fieldset>
+            <fieldset class="submit">
+                <input name="submit" tabindex="15" type="submit" value="Plan trip" id="submit" title="${_(u'Submit your trip plan information')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
+                <span class="showonmap" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">
+                    <input type="checkbox" tabindex="10" title="${_(u'Plan trip on interactive map (fast connection recommended)')}" name="mapit"  value="A" onclick="doMap();">${_(u'Show on map')}
+                </span>
+            </fieldset>
+        </form>
+        <p class="help"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></p>
+    </div>
+</div>
+<div class="planner-form-bottom"></div>

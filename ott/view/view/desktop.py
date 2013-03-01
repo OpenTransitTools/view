@@ -2,8 +2,22 @@ from pyramid.view import view_config
 import utils
 
 
-@view_config(route_name='planner_desktop', renderer='desktop/planner.html')
-def planner(request):
+@view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
+def planner_form(request):
+    '''
+       what do i do?
+       1. ...
+       2. ...
+    '''
+    plan = request.model.get_plan(**request.params)
+    ret_val = {}
+    ret_val['plan'] = plan
+
+    return ret_val
+
+
+@view_config(route_name='planner_itin_desktop', renderer='desktop/planner.html')
+def planner_itin(request):
     '''
        what do i do?
        1. ...

@@ -127,7 +127,7 @@
             <span class="button-tripplanner"><a href="#TODO URL" title="${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);">${_(u'Edit')}</a></span> 
             <span class="button-tripplanner"><a href="#TODO URL" title="${_(u'Print this page')}"       onclick="javascript:window.print(); _gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);">${_(u'Print')}</a></span>
         </p>
-        <p class="help"><a href="/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></p>
+        <p class="help"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></p>
     </div>
     <div class="planner-form-bottom"></div>
 </div>
