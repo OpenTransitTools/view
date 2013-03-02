@@ -1,4 +1,3 @@
-import simplejson as json
 import logging
 log = logging.getLogger(__file__)
 
@@ -41,6 +40,8 @@ def do_view_config(config):
     config.add_route('index',                 '/')
     config.add_route('tracker_desktop',       '/arrivals')
 
+    config.add_route('sparkline',             '/sparkline')
+
     config.add_route('stop_desktop',          '/stop.html')
     config.add_route('find_stop_desktop',     '/find_stop.html')
     config.add_route('route_stop_desktop',    '/route_stop_list.html')
@@ -55,6 +56,24 @@ def do_view_config(config):
     config.add_route('find_stop_mobile',      '/mobile/find_stop.html')
     config.add_route('stop_mobile',           '/mobile/stop.html')
     config.add_route('feedback_mobile',       '/mobile/feedback.html')
+
+
+@view_config(route_name='sparkline')
+def sparkline(request):
+    ''' returns a sparkline image in png format...
+    '''
+    import ott.view.view.utils as utils
+    import StringIO
+    from ott.view.view.spark import sparkline_smooth
+
+    response = Response(content_type='image/png')
+    points = utils.get_param_as_int_list(request, 'points')
+    im = sparkline_smooth(results=points) #, bg_color='#FF0000', fill_color='#0000FF'
+    img_io = StringIO.StringIO()
+    im.save(img_io, "PNG")
+    img_io.seek(0)
+    response.app_iter = img_io
+    return response
 
 
 @view_config(route_name='index', renderer='index.html')

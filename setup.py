@@ -13,6 +13,7 @@ requires = [
     'Babel',
     'lingua',
     'simplejson',
+    'pil',
 ]
 
 #

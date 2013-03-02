@@ -49,49 +49,48 @@
 <div class="planner-form">
     <div class="planner-form-top">
         <div class="planner-icon">
-            
             <h1>${_(u'Your Trip on TriMet')}</h1>
             <div class="tagline">
                 <div class="hide">
-                <form>
-                    <input name="print" type="button" value="${_(u'Print')}" title="${_(u'Print this page')}" onClick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print top']);" class="noprint" />
-                </form>
+                    <form>
+                        <input name="print" type="button" value="${_(u'Print')}" title="${_(u'Print this page')}" onClick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print top']);" class="noprint" />
+                    </form>
                 </div>
             </div>
         </div>
-    <div class="planner-header">
-        <h2>${_(u'From')} ${plan['plan']['from']['name']} ${_(u'to')} ${plan['plan']['to']['name']}</h2>
-    </div>
-    <div class="tabs">
-        <p class="heading">
-            <span>${_(u'Option 1: Your best bet')}</span>
-            <a href="#p=2" class="unselected">${_(u'Option 2')}</a>
-            <a href="#p=3" class="unselected">${_(u'Option 3')}</a>
-        </p>
-    </div>
-    <div id="itinerary">
-        <table width="100%" border="0" cellspacing="5" cellpadding="0">
-        <tr>
-            <td width="15%"><strong>${_(u'When')}</strong></td><td>  Depart after 4:58pm Tuesday, February 26, 2013</td>
-        </tr>
-        <tr>
-            <td><strong>${_(u'Preferences')}</strong></td><td>Quickest trip ${_(u'with a maximum walk of')} 1 mile <a href="#TODO_EDIT" title = "${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">${_(u'Edit')}</a></td>
-        </tr>
-        <tr>
-            <td><strong>${_(u'Time')}</strong></td><td>69 ${_(u'minutes')} (${_(u'including')}  9 ${_(u'minutes')} ${_(u'waiting')})</td>
-        </tr> 
-        <tr>
-            <td><strong>${_(u'Transfers')}</strong></td><td>1</td>
-        </tr> 
-        <tr>
-            <td><strong>${_(u'Fare')}</strong></td><td>${_(u'Adult')}: $2.50, ${_(u'Youth')}: $1.65, ${_(u'Honored Citizen')}: $1</td>
-        </tr>
-        </table>
-    </div>
+        <div class="planner-header">
+            <h2>${_(u'From')} ${plan['plan']['from']['name']} ${_(u'to')} ${plan['plan']['to']['name']}</h2>
+        </div>
+        <div class="tabs">
+            <p class="heading">
+                <span>${_(u'Option 1: Your best bet')}</span>
+                <a href="#p=2" class="unselected">${_(u'Option 2')}</a>
+                <a href="#p=3" class="unselected">${_(u'Option 3')}</a>
+            </p>
+        </div>
+        <div id="itinerary">
+            <table width="100%" border="0" cellspacing="5" cellpadding="0">
+            <tr>
+                <td width="15%"><strong>${_(u'When')}</strong></td><td>  Depart after 4:58pm Tuesday, February 26, 2013</td>
+            </tr>
+            <tr>
+                <td><strong>${_(u'Preferences')}</strong></td><td>Quickest trip ${_(u'with a maximum walk of')} 1 mile <a href="#TODO_EDIT" title = "${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">${_(u'Edit')}</a></td>
+            </tr>
+            <tr>
+                <td><strong>${_(u'Time')}</strong></td><td>69 ${_(u'minutes')} (${_(u'including')}  9 ${_(u'minutes')} ${_(u'waiting')})</td>
+            </tr> 
+            <tr>
+                <td><strong>${_(u'Transfers')}</strong></td><td>1</td>
+            </tr> 
+            <tr>
+                <td><strong>${_(u'Fare')}</strong></td><td>${_(u'Adult')}: $2.50, ${_(u'Youth')}: $1.65, ${_(u'Honored Citizen')}: $1</td>
+            </tr>
+            </table>
+        </div>
 
-<ol id="tripsteps">
-
-<li class="first"><h3><img src="${util.url_domain()}/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> Start at <a href="showmap.cgi?lang=t&long=-122.5932&lat=45.5876&icon=start&area=PO&desc=Portland%20International%20Airport%20(PDX)">Portland International Airport (PDX) in Portland</a></h3>
+        <ol id="tripsteps">
+            <li class="first">
+                <h3><img src="${util.url_domain()}/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> Start at <a href="showmap.cgi?lang=t&long=-122.5932&lat=45.5876&icon=start&area=PO&desc=Portland%20International%20Airport%20(PDX)">Portland International Airport (PDX) in Portland</a></h3>
 <h3><a href="stop_info.pl?lang=t&Id=9748&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13" title = "Click for more information about this stop">Portland Int'l Airport MAX Station</a>
 </h3>
 <span class="stopid">Stop ID&nbsp;10579</span>
@@ -123,9 +122,9 @@
 </ol>
 
         <p id="buttons" class="hide">
-            <span class="button-tripplanner"><a href="#TODO URL" title="${_(u'Plan return trip')}"      onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);">${_(u'Reverse')}</a></span>
-            <span class="button-tripplanner"><a href="#TODO URL" title="${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);">${_(u'Edit')}</a></span> 
-            <span class="button-tripplanner"><a href="#TODO URL" title="${_(u'Print this page')}"       onclick="javascript:window.print(); _gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);">${_(u'Print')}</a></span>
+            <span class="button-tripplanner"><a href="planner_form.html#TODO URL PARAMS" title="${_(u'Plan return trip')}"      onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);">${_(u'Reverse')}</a></span>
+            <span class="button-tripplanner"><a href="planner_form.html#TODO URL PARAMS" title="${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);">${_(u'Edit')}</a></span> 
+            <span class="button-tripplanner"><a href="#" title="${_(u'Print this page')}"       onclick="javascript:window.print(); _gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);">${_(u'Print')}</a></span>
         </p>
         <p class="help"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></p>
     </div>

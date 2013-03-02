@@ -1,3 +1,6 @@
+import logging
+log = logging.getLogger(__file__)
+
 import datetime
 from calendar import monthrange
 
@@ -90,6 +93,18 @@ def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', ptt
 
     return ret_val
 
+def get_param_as_int_list(request, name):
+    ''' utility function to parse a request object for a certain value (and return an integer based on the param if it's an int)
+    '''
+    ret_val = []
+    try:
+        p = get_first_param(request, name)  # get param
+        l = p.split(',') # split the list on commas
+        ret_val = map(int, l)
+    except:
+        log.warn('uh oh...')
+
+    return ret_val
 
 def get_first_param_as_int(request, name, def_val=None):
     ''' utility function to parse a request object for a certain value (and return an integer based on the param if it's an int)
