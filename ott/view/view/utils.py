@@ -46,6 +46,7 @@ def set_date(dt=datetime.date.today(), month=None, day=None, year=None):
 def pretty_date(dt=datetime.date.today(), fmt='%A, %B %d, %Y'):
     return dt.strftime(fmt)
 
+
 def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
     ''' return 3 date strings representing the next WEEKDAY, SAT, SUN 
     '''
@@ -93,14 +94,15 @@ def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', ptt
 
     return ret_val
 
-def get_param_as_int_list(request, name):
+
+def get_param_as_list(request, name, prim=str):
     ''' utility function to parse a request object for a certain value (and return an integer based on the param if it's an int)
     '''
     ret_val = []
     try:
         p = get_first_param(request, name)  # get param
-        l = p.split(',') # split the list on commas
-        ret_val = map(int, l)
+        l = p.split(',')                    # split the list on commas
+        ret_val = map(prim, l)              # cast the values to a certain built-in (or 'primitive' in java) type
     except:
         log.warn('uh oh...')
 

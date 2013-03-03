@@ -67,7 +67,7 @@ def sparkline(request):
     from ott.view.view.spark import sparkline_smooth
 
     response = Response(content_type='image/png')
-    points = utils.get_param_as_int_list(request, 'points')
+    points = utils.get_param_as_list(request, 'points', float)
     im = sparkline_smooth(results=points) #, bg_color='#FF0000', fill_color='#0000FF'
     img_io = StringIO.StringIO()
     im.save(img_io, "PNG")

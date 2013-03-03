@@ -14,7 +14,13 @@ __history__ = """
 
 """
 
-from PIL import Image, ImageDraw
+try:
+    # on PC, you need to do from PIL (else you get an error when running under Pyramid)
+    from PIL import Image, ImageDraw
+except ImportError:
+    # but on Mac, etc... there isn't a PIL module...
+    import Image, ImageDraw
+
 
 def sparkline_discrete(results, output=None, dmin=None, dmax=None, upper=None, width=2, height=14, \
                             below_color='gray', above_color='red', longlines=False):
