@@ -1,0 +1,42 @@
+{
+    "url":"http://maps.trimet.org/prod?maxTransfers=3&from=pdx&to=zoo&arriveBy=false&time=3%3A40%20pm&ui_date=3%2F4%2F2013&mode=TRANSIT%2CWALK&optimize=QUICK&maxWalkDistance=840&date=2013-03-04&toPlace=ZOO%3A%3A45.509700%2C-122.716290&fromPlace=PDX%3A%3A45.587647%2C-122.593173",
+    "arrive_by":false,
+    "optimize":"QUICK",
+    "maxWalkDistance":"840",
+    "num_itineraries":1,
+    "itineraries": [
+         {
+            "transfers": 1,
+            "date_info": {
+                "date":"3/4/2013",
+                "pretty_date":"Monday, March 4, 2013"
+                "time":"3:40pm",
+                "example txt":"71 minutes (including 4 minutes walking and 15 minutes waiting)",
+                "trip_time_hours":1,
+                "trip_time_mins":11,
+                "walk_time_hours":"",
+                "walk_time_mins":4,
+                "bike_time_hours":"",
+                "bike_time_mins":"",
+                "drive_time_hours":"",
+                "drive_time_mins":"",
+                "wait_time_hours":"",
+                "wait_time_mins":15
+            },
+            "elevation": {
+                "points":"190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2",
+                "high":"190.4",
+                "low" :"187.2",
+            },
+            "fare": {
+                "adult":"$2.50",
+                "adult_day":"$5.00",
+                "honored":"$1.00",
+                "honored_day":"$2.00",
+                "youth":"$1.65",
+                "youth_day":"$3.30",
+                "tram":"$4.00"
+            }
+        }
+    ]
+}
