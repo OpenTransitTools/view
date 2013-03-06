@@ -29,7 +29,7 @@
             "elevation": {
                 "points":"190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2",
                 "high":"190.4",
-                "low" :"187.2",
+                "low" :"187.2"
             },
             "fare": {
                 "adult":"$2.50",
@@ -54,7 +54,7 @@
                 "lat":45.503817,
                 "map_url":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:end"
             },
-            "legs" [
+            "legs":[
                 {
                     "mode":"WALK",
                     "date_info": {
@@ -143,7 +143,7 @@
                         "name":"19-Woodstock/Glisan",
                         "direction":"",
                         "routeShortName":"19",
-                        "routeLongName":"Woodstock/Glisan",
+                        "routeLongName":"Woodstock/Glisan"
                     }
                 }
             ]
