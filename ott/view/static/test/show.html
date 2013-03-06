@@ -1,37 +1,42 @@
-<!-- InstanceBeginEditable name="head" -->
+<!DOCTYPE html>
+<html>
 <head>
 <style>
     div.desc {
         display: none;
     }
 </style>
-<script language="JavaScript">
+<script>
+    var DEF_IMG_WIDTH=400;
+    var DEF_IMG_HEIGHT=400;
+
+    function dynamiclyLoadImages(el)
+    {
+        try
+        {
+            var img_list = el.getElementsByTagName('img');
+            for(var i in img_list)
+            {
+                var img = img_list[i];
+                if(img && img.attributes.dsrc && img.src != img.attributes.dsrc.value)
+                {
+                    img.src    = img.attributes.dsrc.value;
+                    img.width  = img.attributes.dwidth  ? img.attributes.dwidth.value  : DEF_IMG_WIDTH;
+                    img.height = img.attributes.dheight ? img.attributes.dheight.value : DEF_IMG_HEIGHT;
+                    console.log(img.src)
+                }
+            }
+        }
+        catch(e)
+        {}
+    }
+
     var desc_el = null;
 
     function show_hide_el(el, cmd)
     {
         if(el && el.style)
             el.style.display = cmd;
-    }
-
-    function showImg(el)
-    {
-        try
-        {
-            var img = el.getElementsByTagName('img')[0];
-            if(img && img.height != 400)
-            {
-                //img.src = 'share-email.gif';
-                //img.src = 'http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230017-00011.png';
-                var i = img.attributes.dsrc.value
-                img.src = i
-                img.width = 400
-                img.height = 400
-                console.log(img.src)
-            }
-        }
-        catch(e)
-        {}
     }
 
     function show(id)
@@ -66,7 +71,7 @@
         }
 
         if(doShow) {
-            showImg(el)
+            dynamiclyLoadImages(el)
         }
 
         desc_el = el;
@@ -89,3 +94,4 @@
         <img src="http://maps.trimet.org/images/ui/s.gif" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230018-00016.png">
     </div>
 </body>
+</html>
