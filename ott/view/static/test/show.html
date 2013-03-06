@@ -1,0 +1,91 @@
+<!-- InstanceBeginEditable name="head" -->
+<head>
+<style>
+    div.desc {
+        display: none;
+    }
+</style>
+<script language="JavaScript">
+    var desc_el = null;
+
+    function show_hide_el(el, cmd)
+    {
+        if(el && el.style)
+            el.style.display = cmd;
+    }
+
+    function showImg(el)
+    {
+        try
+        {
+            var img = el.getElementsByTagName('img')[0];
+            if(img && img.height != 400)
+            {
+                //img.src = 'share-email.gif';
+                //img.src = 'http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230017-00011.png';
+                var i = img.attributes.dsrc.value
+                img.src = i
+                img.width = 400
+                img.height = 400
+                console.log(img.src)
+            }
+        }
+        catch(e)
+        {}
+    }
+
+    function show(id)
+    {
+        var el = document.getElementById('desc_' + id);
+        var same_selection = (el == desc_el) ? 'True' : 'False';
+        var init_selection = (el.style.display == '') ? 'True' : 'False';
+        var el_none = (el.style.display == 'none') ? 'True' : 'False';
+        var el_block = (el.style.display == 'block') ? 'True' : 'False';
+
+        // the line below will collapse the open description column from the page.
+        // the value of the global desc_el is from the previous row selection.
+        show_hide_el(desc_el, 'none');
+
+        var doShow = false;
+
+        if (el_none == 'True' || init_selection == 'True') {
+            // the selection is collapsed, so expand it.
+            show_hide_el(el, 'block');
+            doShow = true;
+        }
+        if (el_block == 'True' && same_selection == 'True') {
+            // the selection is collapsed, so expand it.
+            show_hide_el(el, 'none');
+        }
+        // Since the current row could have been changed from block to none,
+        // This if then statement will insure that it remains block.  It will
+        // appear to not toggle.
+        if (el_none == 'True' && same_selection == 'True') {
+            show_hide_el(el, 'block');
+            doShow = true;
+        }
+
+        if(doShow) {
+            showImg(el)
+        }
+
+        desc_el = el;
+    }
+</script>
+</head>
+<body>
+    <a onclick="show(1)">show 1</a><br/>
+    <a onclick="show(2)">show 2</a><br/>
+    <a onclick="show(3)">show 3</a><br/>
+    <br/>
+    <br/>
+    <div class="desc" id="desc_1">
+        <img src="http://maps.trimet.org/images/ui/s.gif" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230017-00011.png">
+    </div>
+    <div class="desc" id="desc_2">
+        <img src="http://maps.trimet.org/images/ui/s.gif" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230018-00018.png">
+    </div>
+    <div class="desc" id="desc_3">
+        <img src="http://maps.trimet.org/images/ui/s.gif" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230018-00016.png">
+    </div>
+</body>

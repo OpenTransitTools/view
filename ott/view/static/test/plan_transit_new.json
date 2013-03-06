@@ -9,18 +9,19 @@
             "transfers": 1,
             "date_info": {
                 "date":"3/4/2013",
-                "pretty_date":"Monday, March 4, 2013"
+                "pretty_date":"Monday, March 4, 2013",
                 "time":"3:40pm",
+                "duration":"",
                 "example txt":"71 minutes (including 4 minutes walking and 15 minutes waiting)",
                 "trip_time_hours":1,
                 "trip_time_mins":11,
-                "walk_time_hours":"",
+                "walk_time_hours":null,
                 "walk_time_mins":4,
-                "bike_time_hours":"",
-                "bike_time_mins":"",
-                "drive_time_hours":"",
-                "drive_time_mins":"",
-                "wait_time_hours":"",
+                "bike_time_hours":null,
+                "bike_time_mins":null,
+                "drive_time_hours":null,
+                "drive_time_mins":null,
+                "wait_time_hours":null,
                 "wait_time_mins":15
             },
             "elevation": {
@@ -36,7 +37,24 @@
                 "youth":"$1.65",
                 "youth_day":"$3.30",
                 "tram":"$4.00"
-            }
+            },
+            "from": {
+                "name":"Southeast Bidwell Street",
+                "stop_id":null,
+                "lon":-122.655552,
+                "lat":45.4678958
+            },
+            "to": {
+                "name":"SW Arthur & 1st",
+                "stop_id":{"agencyId":"TriMet","id":"143"},
+                "lon":-122.678421,
+                "lat":45.503817
+            },
+            "legs" [
+                {
+                    
+                }
+            ]
         }
     ]
 }
