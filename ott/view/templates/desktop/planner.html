@@ -1,15 +1,9 @@
-<%!
-    l = locals()
-    fromPlace = 'PDX'
-    toPlace = 'ZOO'
-    alerts = None
-
-# <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${fromPlace} ${_(u'to')} ${toPlace}</%def>
-%>
-
 <%inherit file="/desktop/base.html"/>
-
 <%namespace name="util"  file="/shared/util.mako"/>
+
+<%
+    alerts = None
+%>
 
 <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 
@@ -49,10 +43,21 @@
         %endif
     %endif
 </%def>
-<%def name="get_mode_img(itin)">
-${util.url_domain()}/v3/images/tripplanner/bus.gif
-</%def>
-
+<%
+    def get_mode_img(mode):
+        ''' return 20x20px mode gif for leg list 
+        '''
+        #import pdb; pdb.set_trace()
+        ret_val = ''
+        path = util.planner_img_url()
+        if mode == util.attr.BUS:
+            ret_val = path + "/bus.gif"
+        if mode == util.attr.WALK:
+            ret_val =  path + "/walk.gif"
+        if mode == util.attr.TRAIN:
+            ret_val = path + "/rail.gif"
+        return ret_val
+%>
 
 <%def name="planner_selected()">class="selected"</%def>
 

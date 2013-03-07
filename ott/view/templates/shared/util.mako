@@ -1,10 +1,34 @@
 ## -*- coding: utf-8 -*-
 <%def name="url_domain()">http://trimet.org</%def>
+<%def name="img_url()">${url_domain()}/v3/images</%def>
+<%def name="planner_img_url()">${img_url()}/tripplanner</%def>
+
+<%!
+    ''' access these variables in other space via <namespace>.attr, ala util.attr, ala util.attr.WALK
+    '''
+    WALK       = 'WALK'
+    BICYCLE    = 'BICYCLE'
+    TRAM       = 'TRAM'
+    SUBWAY     = 'SUBWAY'
+    RAIL       = 'RAIL'
+    BUS        = 'BUS' 
+    CABLE_CAR  = 'CABLE_CAR' 
+    GONDOLA    = 'GONDOLA'
+    FERRY      = 'FERRY'
+    FUNICULAR  = 'FUNICULAR'
+    TRANSIT    = 'TRANSIT'
+    TRAINISH   = 'TRAINISH' 
+    BUSISH     = 'BUSISH'
+    TRAIN      = 'TRAIN' 
+%>
+
+## misc methods (defined someplace in the shared space...needed for things to work.
 <%def name="form(url='', method='get', class_='form-style')"></%def>
 <%def name="end_form()"></%def>
 <%def name="select(name='route', stuff=[], options='')"></%def>
 <%def name="route_select_options()"></%def>
 <%def name="url_for(controller='main', action='route_stops_list')"></%def>
+
 
 <%def name="month_select(selected)"><select name="month" tabindex="8" >
     %for m in (_(u'January'), _(u'February'), _(u'March'), _(u'April'), _(u'May'), _(u'June'), _(u'July'), _(u'August'), _(u'September'), _(u'October'), _(u'November'), _(u'December')):
