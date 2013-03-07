@@ -8,7 +8,7 @@
 
 <%namespace name="util"  file="/shared/util.mako"/>
 
-<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['plan']['from']['name']} ${_(u'to')} ${plan['plan']['to']['name']}</%def>
+<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->

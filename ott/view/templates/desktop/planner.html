@@ -79,22 +79,54 @@
             </p>
         </div>
         %endif
+        <%
+        ''' this is the variable assignment section of the page
+        '''
+
+        # find target itinerary 
+        itinerary = plan['itineraries'][0]
+        for itin in plan['itineraries']:
+            if itin['selected']:
+                itinerary = itin
+                break
+
+        # misc strings
+        # TODO: we should put all of these strings in the .json file
+        #       that way, we can share across ALL APPs, ala desktop, mobile, map, etc...
+        #       note that we also need a legacy planner web service, so...
+        # 
+        depart_arrive = _(u'Depart after') 
+        time = itinerary['date_info']['start_time']
+        if plan['arrive_by']:
+            depart_arrive = _(u'Arrive by')
+            time = itinerary['date_info']['end_time']
+
+        optimize = _(u'Quickest trip')
+        if plan['optimize'] == 'SAFE':
+            optimize = _(u'Safest trip')
+        elif plan['optimize'] == 'TRANSFERS':
+            optimize = _(u'Fewest transfers')
+
+        %>
         <div id="itinerary">
             <table width="100%" border="0" cellspacing="5" cellpadding="0">
             <tr>
-                <td width="15%"><strong>${_(u'When')}</strong></td><td>  Depart after 4:58pm Tuesday, February 26, 2013</td>
+                <td width="15%"><strong>${_(u'When')}</strong></td> <td>${depart_arrive} ${time} ${itinerary['date_info']['pretty_date']}</td>
             </tr>
             <tr>
-                <td><strong>${_(u'Preferences')}</strong></td><td>Quickest trip ${_(u'with a maximum walk of')} 1 mile <a href="#TODO_EDIT" title = "${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">${_(u'Edit')}</a></td>
+                <td><strong>${_(u'Preferences')}</strong></td><td>${optimize} ${_(u'with a maximum walk of')} 1 mile <a href="planner_form.html?${plan['params']}" title = "${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">${_(u'Edit')}</a></td>
             </tr>
             <tr>
-                <td><strong>${_(u'Time')}</strong></td><td>69 ${_(u'minutes')} (${_(u'including')}  9 ${_(u'minutes')} ${_(u'waiting')})</td>
+                <td><strong>${_(u'Time')}</strong></td><td>${itinerary['date_info']['trip_time_text']}</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td><td>${_(u'riding on transit')} ${_(u'from')} ${itinerary['date_info']['start_transit']} ${_(u'to')} ${itinerary['date_info']['end_transit']}</td>
+            </tr>
+            <tr>
+                <td><strong>${_(u'Transfers')}</strong></td><td>${itinerary['transfers']} -- TODO -- singluar / plural / None</td>
             </tr> 
             <tr>
-                <td><strong>${_(u'Transfers')}</strong></td><td>1</td>
-            </tr> 
-            <tr>
-                <td><strong>${_(u'Fare')}</strong></td><td>${_(u'Adult')}: $2.50, ${_(u'Youth')}: $1.65, ${_(u'Honored Citizen')}: $1</td>
+                <td><strong>${_(u'Fare')}</strong></td><td>${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</td>
             </tr>
             </table>
         </div>
