@@ -133,11 +133,18 @@
 
         <ol id="tripsteps">
             <li class="first">
-                <h3><img src="${util.url_domain()}/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> Start at <a href="showmap.cgi?lang=t&long=-122.5932&lat=45.5876&icon=start&area=PO&desc=Portland%20International%20Airport%20(PDX)">Portland International Airport (PDX) in Portland</a></h3>
-<h3><a href="stop_info.pl?lang=t&Id=9748&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13" title = "Click for more information about this stop">Portland Int'l Airport MAX Station</a>
-</h3>
-<span class="stopid">Stop ID&nbsp;10579</span>
-</li>
+                <h3>
+                    <img src="${util.url_domain()}/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> 
+                    ${_(u'Start at')} 
+                    <a href="${plan['from']['map_img']}">${plan['from']['name']}</a>
+                </h3>
+                %if plan['from']['stop']:
+                <h3>
+                    <a href="${plan['from']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${plan['from']['stop']['name']}</a>
+                </h3>
+                <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['from']['stop']['id']}</span>
+                %endif
+           </li>
 
 <li><h3><img src="${util.url_domain()}/v3/images/tripplanner/max.gif" alt="" border="0" class="icon" /> <b><a href="sched.pl?lang=t&start=05:12+pm&line=90&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13&stopID=10579&loc1=Portland%20Int'l%20Airport%20MAX%20Station" title = "Show schedule for Portland Int\'l Airport MAX Station">5:12pm</a></b> Board <a href="/schedules/r090.htm" title = "Show map and schedules for this route.">MAX  Red Line to City Center & Beaverton TC</a>
 </h3>
@@ -158,10 +165,21 @@
 <span class="stopid">Stop ID&nbsp;5028</span>
 </li>
 
-<li><h3><img src="${util.url_domain()}/v3/images/tripplanner/end.gif" alt="" border="0" class="icon" /> End at <a href="showmap.cgi?lang=t&long=-122.6856&lat=45.4993&icon=end&area=PO&desc=OHSU">OHSU in Portland</a>
-</h3>
 
-</li>
+            <li class="last">
+                <h3>
+                    <img src="${util.url_domain()}/v3/images/tripplanner/end.gif" alt="" border="0" class="icon" /> 
+                    ${_(u'End at')} 
+                    <a href="${plan['to']['map_img']}">${plan['to']['name']}</a>
+                </h3>
+                %if plan['to']['stop']:
+                <h3>
+                    <a href="${plan['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${plan['to']['stop']['name']}</a>
+                </h3>
+                <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['to']['stop']['id']}</span>
+                %endif
+           </li>
+
 </ol>
 
         <p id="buttons" class="hide">
