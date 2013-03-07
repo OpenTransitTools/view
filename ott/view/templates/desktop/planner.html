@@ -1,4 +1,4 @@
-<%
+<%!
     l = locals()
     fromPlace = 'PDX'
     toPlace = 'ZOO'
@@ -11,7 +11,7 @@
 
 <%namespace name="util"  file="/shared/util.mako"/>
 
-<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['plan']['from']['name']} ${_(u'to')} ${plan['plan']['to']['name']}</%def>
+<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
@@ -40,6 +40,15 @@
             </aside>
             <!-- end #sidebar -->
 </%def>
+<%def name="itin_tab(itin_list, i, text)">
+    %if len(itin_list) >= i: 
+        %if itin_list[i-1]['selected']:
+        <span>${text}</span>
+        %else:
+        <a href="${itin_list[i-1]['url']}" class="unselected">${text}</a>
+        %endif
+    %endif
+</%def>
 
 <%def name="planner_selected()">class="selected"</%def>
 
@@ -59,15 +68,17 @@
             </div>
         </div>
         <div class="planner-header">
-            <h2>${_(u'From')} ${plan['plan']['from']['name']} ${_(u'to')} ${plan['plan']['to']['name']}</h2>
+            <h2>${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</h2>
         </div>
+        %if len(plan['itineraries']) > 1:
         <div class="tabs">
             <p class="heading">
-                <span>${_(u'Option 1: Your best bet')}</span>
-                <a href="#p=2" class="unselected">${_(u'Option 2')}</a>
-                <a href="#p=3" class="unselected">${_(u'Option 3')}</a>
+                ${itin_tab(plan['itineraries'], 1, _(u'Option 1: Your best bet'))}
+                ${itin_tab(plan['itineraries'], 2, _(u'Option 2'))}
+                ${itin_tab(plan['itineraries'], 3, _(u'Option 3'))}
             </p>
         </div>
+        %endif
         <div id="itinerary">
             <table width="100%" border="0" cellspacing="5" cellpadding="0">
             <tr>

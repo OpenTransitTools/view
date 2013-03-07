@@ -3,9 +3,34 @@
     "arrive_by":false,
     "optimize":"QUICK",
     "maxWalkDistance":"840",
-    "num_itineraries":1,
+
+    "from": {
+        "name":"Southeast Bidwell Street",
+        "stop":null,
+        "lon":-122.655552,
+        "lat":45.4678958,
+        "map_url":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.655552,45.4678958/extraparams/format_options=layout:start"
+    },
+    "to": {
+        "name":"SW Arthur & 1st",
+        "stop":{"agencyId":"TriMet","id":"143","schedule":"stop.html?stop_id=143"},
+        "lon":-122.678421,
+        "lat":45.503817,
+        "map_url":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:end"
+    },
+
     "itineraries": [
          {
+            "selected":false,
+            "url":"planner.html?itin_id=2"
+         },
+         {
+            "selected":false,
+            "url":"planner.html?itin_id=3" 
+         },
+         {
+            "url":"planer.html?itin_id=1", 
+            "selected":true,
             "transfers": 1,
             "date_info": {
                 "date":"3/4/2013",
@@ -39,20 +64,6 @@
                 "youth":"$1.65",
                 "youth_day":"$3.30",
                 "tram":"$4.00"
-            },
-            "from": {
-                "name":"Southeast Bidwell Street",
-                "stop":null,
-                "lon":-122.655552,
-                "lat":45.4678958,
-                "map_url":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.655552,45.4678958/extraparams/format_options=layout:start"
-            },
-            "to": {
-                "name":"SW Arthur & 1st",
-                "stop":{"agencyId":"TriMet","id":"143","schedule":"stop.html?stop_id=143"},
-                "lon":-122.678421,
-                "lat":45.503817,
-                "map_url":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:end"
             },
             "legs":[
                 {
