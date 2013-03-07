@@ -49,6 +49,10 @@
         %endif
     %endif
 </%def>
+<%def name="get_mode_img(itin)">
+${util.url_domain()}/v3/images/tripplanner/bus.gif
+</%def>
+
 
 <%def name="planner_selected()">class="selected"</%def>
 
@@ -145,14 +149,20 @@
                 <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['from']['stop']['id']}</span>
                 %endif
             </li>
-
-<li><h3><img src="${util.url_domain()}/v3/images/tripplanner/max.gif" alt="" border="0" class="icon" /> <b><a href="sched.pl?lang=t&start=05:12+pm&line=90&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13&stopID=10579&loc1=Portland%20Int'l%20Airport%20MAX%20Station" title = "Show schedule for Portland Int\'l Airport MAX Station">5:12pm</a></b> Board <a href="/schedules/r090.htm" title = "Show map and schedules for this route.">MAX  Red Line to City Center & Beaverton TC</a>
-</h3>
-<h3><b><a href="sched.pl?lang=t&start=05:52 PM&line=90&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13&stopID=8382&loc1=Mall%2FSW%205th%20Ave%20MAX%20Station" title = "Show schedule for Mall/SW 5th Ave MAX Station">5:52pm</a></b> Get off at <a href="stop_info.pl?lang=t&Id=7115&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13" title = "Click for more information about this stop">Mall/SW 5th Ave MAX Station</a>
-</h3>
-<span class="stopid">Stop ID&nbsp;8382</span>
-</li>
-
+        %for it in itinerary['legs']:
+        <li>
+            <h3>
+                <img src="${get_mode_img(it['mode'])}" alt="" border="0" class="icon" />
+                <b>
+                    <a href="sched.pl?lang=t&start=05:12+pm&line=90&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13&stopID=10579&loc1=Portland%20Int'l%20Airport%20MAX%20Station" title = "Show schedule for Portland Int\'l Airport MAX Station">5:12pm</a>
+               </b>
+               Board <a href="/schedules/r090.htm" title = "Show map and schedules for this route.">MAX  Red Line to City Center & Beaverton TC</a>
+            </h3>
+            <h3><b><a href="sched.pl?lang=t&start=05:52 PM&line=90&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13&stopID=8382&loc1=Mall%2FSW%205th%20Ave%20MAX%20Station" title = "Show schedule for Mall/SW 5th Ave MAX Station">5:52pm</a></b> Get off at <a href="stop_info.pl?lang=t&Id=7115&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13" title = "Click for more information about this stop">Mall/SW 5th Ave MAX Station</a>
+            </h3>
+            <span class="stopid">Stop ID&nbsp;8382</span>
+        </li>
+        %endfor
 <li><h3><img src="${util.url_domain()}/v3/images/tripplanner/walk.gif" alt="" border="0" class="icon" /> Go to <a href="stop_info.pl?lang=t&Id=15951&acode1=PO&x1=45.518930&y1=-122.677573&date=02/26/13" title = "Click for more information about this stop">SW 5th &amp; Morrison</a>
 </h3>
 <span class="stopid">Stop ID&nbsp;7625</span>
