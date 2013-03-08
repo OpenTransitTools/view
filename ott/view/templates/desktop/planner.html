@@ -43,6 +43,7 @@
         %endif
     %endif
 </%def>
+
 <%
     def get_mode_img(mode):
         ''' return 20x20px mode gif for leg list 
@@ -57,7 +58,42 @@
         if mode == util.attr.TRAIN:
             ret_val = path + "/rail.gif"
         return ret_val
+
+
+    def render_leg(leg):
+        ''' call render stuff above...
+        '''
+        if leg['mode'] == util.attr.BUS:
+            return render_transit_leg(leg)
+        elif leg['mode'] == util.attr.WALK:
+            return render_walk_leg(leg)
+        return ''
 %>
+
+<%def name="render_transit_leg(leg)">
+                <h3>
+                    <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
+                    <b>
+                        <a href="sched.pl?lang=t&start=05:12+pm&line=90&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13&stopID=10579&loc1=Portland%20Int'l%20Airport%20MAX%20Station" title = "Show schedule for Portland Int\'l Airport MAX Station">5:12pm</a>
+                    </b>
+                    Board <a href="/schedules/r090.htm" title = "Show map and schedules for this route.">MAX  Red Line to City Center & Beaverton TC</a>
+                </h3>
+                <h3>
+                    <b>
+                        <a href="sched.pl?lang=t&start=05:52 PM&line=90&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13&stopID=8382&loc1=Mall%2FSW%205th%20Ave%20MAX%20Station" title = "Show schedule for Mall/SW 5th Ave MAX Station">5:52pm</a>
+                    </b>
+                    Get off at <a href="stop_info.pl?lang=t&Id=7115&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13" title = "Click for more information about this stop">Mall/SW 5th Ave MAX Station</a>
+                </h3>
+                <span class="stopid">Stop ID&nbsp;8382</span>
+</%def>
+<%def name="render_walk_leg(leg)">
+                <h3>
+                    <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
+                    Go to <a href="stop_info.pl?lang=t&Id=15951&acode1=PO&x1=45.518930&y1=-122.677573&date=02/26/13" title = "Click for more information about this stop">SW 5th &amp; Morrison</a>
+                </h3>
+                <span class="stopid">Stop ID&nbsp;7625</span>
+</%def>
+
 
 <%def name="planner_selected()">class="selected"</%def>
 
@@ -88,6 +124,8 @@
             </p>
         </div>
         %endif
+
+
         <%
         ''' this is the variable assignment section of the page
         '''
@@ -154,32 +192,11 @@
                 <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['from']['stop']['id']}</span>
                 %endif
             </li>
-        %for it in itinerary['legs']:
-        <li>
-            <h3>
-                <img src="${get_mode_img(it['mode'])}" alt="" border="0" class="icon" />
-                <b>
-                    <a href="sched.pl?lang=t&start=05:12+pm&line=90&acode1=PO&x1=45.587579&y1=-122.593100&date=02/26/13&stopID=10579&loc1=Portland%20Int'l%20Airport%20MAX%20Station" title = "Show schedule for Portland Int\'l Airport MAX Station">5:12pm</a>
-               </b>
-               Board <a href="/schedules/r090.htm" title = "Show map and schedules for this route.">MAX  Red Line to City Center & Beaverton TC</a>
-            </h3>
-            <h3><b><a href="sched.pl?lang=t&start=05:52 PM&line=90&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13&stopID=8382&loc1=Mall%2FSW%205th%20Ave%20MAX%20Station" title = "Show schedule for Mall/SW 5th Ave MAX Station">5:52pm</a></b> Get off at <a href="stop_info.pl?lang=t&Id=7115&acode1=PO&x1=45.518699&y1=-122.677402&date=02/26/13" title = "Click for more information about this stop">Mall/SW 5th Ave MAX Station</a>
-            </h3>
-            <span class="stopid">Stop ID&nbsp;8382</span>
-        </li>
-        %endfor
-<li><h3><img src="${util.url_domain()}/v3/images/tripplanner/walk.gif" alt="" border="0" class="icon" /> Go to <a href="stop_info.pl?lang=t&Id=15951&acode1=PO&x1=45.518930&y1=-122.677573&date=02/26/13" title = "Click for more information about this stop">SW 5th &amp; Morrison</a>
-</h3>
-<span class="stopid">Stop ID&nbsp;7625</span>
-</li>
-
-<li><h3><img src="${util.url_domain()}/v3/images/tripplanner/bus.gif" alt="" border="0" class="icon" /> <b><a href="sched.pl?lang=t&start=06:01+pm&line=8&acode1=PO&x1=45.518930&y1=-122.677573&date=02/26/13&stopID=7625&loc1=SW%205th%20%26amp%3B%20Morrison" title = "Show schedule for SW 5th &amp; Morrison">6:01pm</a></b> Board <a href="/schedules/r008.htm" title = "Show map and schedules for this route.">8 Jackson Park to Marquam Hill</a>
-<p class="alert"><img src="${util.url_domain()}/v3/images/tripplanner/alert.png" alt="Alert icon" title="Alert icon" class="bullet" /> Transit Tracker is experiencing intermittent outages and may not be providing real time arrival information for bus lines. We are working to fix the issue and apologize for the inconvenience.</p><p class="alert"><img src="${util.url_domain()}/v3/images/tripplanner/alert.png" alt="Alert icon" title="Alert icon" class="bullet" /><b>Effective Mar 3, 2013:</b> Beginning Sunday, March 3, 2013, approximately 60 percent of Line 8 trips, the location where operators take their designated break will be different. As a result, some trip times will change. <a href="/alerts/service-change/r008.htm">More</a></p></h3>
-<h3><b><a href="sched.pl?lang=t&start=06:21 PM&line=8&acode1=PO&x1=45.499328&y1=-122.685544&date=02/26/13&stopID=5028&loc1=SW%20Sam%20Jackson%20Pk%20%26amp%3B%20OHSU" title = "Show schedule for SW Sam Jackson Pk &amp; OHSU">6:21pm</a></b> Get off at <a href="stop_info.pl?lang=t&Id=14688&acode1=PO&x1=45.499328&y1=-122.685544&date=02/26/13" title = "Click for more information about this stop">SW Sam Jackson Pk &amp; OHSU</a>
-</h3>
-<span class="stopid">Stop ID&nbsp;5028</span>
-</li>
-
+            %for leg in itinerary['legs']:
+            <li>
+                ${render_leg(leg)}
+            </li>
+            %endfor
 
             <li class="last">
                 <h3>
@@ -194,8 +211,7 @@
                 <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['to']['stop']['id']}</span>
                 %endif
             </li>
-
-</ol>
+        </ol>
 
         <p id="buttons" class="hide">
             <span class="button-tripplanner"><a href="planner_form.html#TODO URL PARAMS" title="${_(u'Plan return trip')}"      onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);">${_(u'Reverse')}</a></span>
