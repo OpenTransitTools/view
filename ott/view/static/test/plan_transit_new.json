@@ -70,6 +70,7 @@
             "legs":[
                 {
                     "mode":"WALK",
+                    "transfer":null,
                     "date_info": {
                         "date":"3/4/2013",
                         "pretty_date":"Monday, March 4, 2013",
@@ -140,9 +141,10 @@
                     "distance_feet":1083.2521540374519,
                     "route": {
                         "name":"19-Woodstock/Glisan",
-                        "direction":"",
+                        "direction":"Someplace Very Far...",
                         "routeShortName":"19",
-                        "routeLongName":"Woodstock/Glisan"
+                        "routeLongName":"Woodstock/Glisan",
+                        "url":"http://trimet.org/schedules/r019.htm"
                     },
                     "from": {
                         "name":"SE Bybee & Milwaukie",
