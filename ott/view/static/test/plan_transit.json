@@ -3,7 +3,7 @@
   "plan":{
       "date":1361908325000,
       "from":{
-            "name":"Southeast Bidwell Street","stopId":null,"stopCode":null,"lon":-122.65555168237182,"lat":45.467895778953704,"arrival":null,"departure":null,"orig":null,"zoneId":null,"geometry":"{\"type\": \"Point\", \"coordinates\": [-122.65555168237182,45.467895778953704]}"},
+            "name":"Southeast Bidwell Street","stopId":{"agencyId":"TriMet","id":"838"},"stopCode":null,"lon":-122.65555168237182,"lat":45.467895778953704,"arrival":null,"departure":null,"orig":null,"zoneId":null,"geometry":"{\"type\": \"Point\", \"coordinates\": [-122.65555168237182,45.467895778953704]}"},
       "to":{
             "name":"corner of path and Southwest Campus Drive","stopId":null,"stopCode":null,"lon":-122.683852,"lat":45.499757,"arrival":null,"departure":null,"orig":null,"zoneId":null,"geometry":"{\"type\": \"Point\", \"coordinates\": [-122.683852,45.499757]}"},
       "itineraries":[
