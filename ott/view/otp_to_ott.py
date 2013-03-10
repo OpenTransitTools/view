@@ -3,6 +3,15 @@ import logging
 log = logging.getLogger(__file__)
 
 
+class Itinerary(object):
+    def __init__(self, jsn, name=None):
+        self.legs  = ''
+
+    @classmethod
+    def factory(cls, jsn):
+        pass
+
+
 class Stop(object):
     def __init__(self, jsn, name=None):
         # "stop": {"agencyId":"TriMet", "name":"SW Arthur & 1st", "id":"143","info":"stop.html?stop_id=143", "schedule":"stop_schedule.html?stop_id=143"},
