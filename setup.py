@@ -14,6 +14,7 @@ requires = [
     'lingua',
     'simplejson',
     'pil',
+    'colander',
 ]
 
 #

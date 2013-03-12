@@ -62,7 +62,6 @@
     elif plan['optimize'] == 'TRANSFERS':
         optimize = _(u'Fewest transfers')
 
-
     def get_mode_img(mode):
         ''' return 20x20px mode gif for leg list 
         '''
@@ -148,7 +147,7 @@
                 <h3>
                     <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
                     %if leg['steps']:
-                    <a href="walking_directions_url(leg)" title = "${_(u'Show walking directions.')}">${_(u'Walk')} 0.4 ${_(u'mile')} get_compass_direction(SW)</a> 
+                    <a href="TODO-render_walking_directions(leg)" title = "${_(u'Show walking directions.')}">${_(u'Walk')} 0.4 ${_(u'mile')} TODO=get_compass_direction(SW)</a> 
                     %elif leg['to']['stop'] and leg['transfer']:
                     ${_(u'Go to')}
                     %endif

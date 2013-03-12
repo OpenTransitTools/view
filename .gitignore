@@ -36,7 +36,7 @@ nosetests.xml
 .project
 .pydevproject
 
-/.pydevproject~
+.*~
 *.bak
 *.db
-/gtfs.zipdocs/Stops Web Flow.zargo~
+nohup.out

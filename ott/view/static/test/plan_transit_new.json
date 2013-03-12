@@ -2,7 +2,6 @@
     "params":"maxTransfers=3&from=pdx&to=zoo&arriveBy=true&time=3%3A40%20pm&mode=TRANSIT%2CWALK&optimize=QUICK&maxWalkDistance=840&date=2013-03-04&toPlace=ZOO%3A%3A45.509700%2C-122.716290&fromPlace=PDX%3A%3A45.587647%2C-122.593173",
     "arrive_by":true,
     "optimize":"QUICK",
-    "maxWalkDistance":"840",
 
     "from": {
         "name":"Southeast Bidwell Street",

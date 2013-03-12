@@ -2,15 +2,31 @@ import simplejson as json
 import logging
 log = logging.getLogger(__file__)
 
-
-class Itinerary(object):
-    def __init__(self, jsn, name=None):
-        self.legs  = ''
-
-    @classmethod
-    def factory(cls, jsn):
+class DateInfo(object):
+    def __init__(self, jsn):
         pass
 
+class Elevation(object):
+    def __init__(self, jsn):
+        pass
+
+
+class Step(object):
+    def __init__(self, jsn, name=None):
+        self.alerts = None
+
+class Route(object):
+    def __init__(self, jsn):
+        pass
+
+class Fare(object):
+    def __init__(self, jsn, name=None):
+        pass
+
+class Leg(object):
+    def __init__(self, jsn, name=None):
+        self.steps  = None
+        self.alerts = None
 
 class Stop(object):
     def __init__(self, jsn, name=None):
@@ -76,15 +92,46 @@ class Place(object):
         return p
 
 
+class Itinerary(object):
+    def __init__(self, jsn):
+        self.url = None
+        self.selected = False
+        self.transfers = -1
+        self.legs = self.parse_legs(jsn['legs'])
+
+    def parse_legs(self, legs):
+        ret_val = []
+        for l in legs:
+            pass
+        return ret_val
+
 class Plan(object):
-    def __init__(self, j):
-        Place.factory(j['from'], self, 'from')
-        Place.factory(j['to'],   self, 'to')
+    ''' top level class of the ott 'plan' object tree
+
+        contains these elements:
+          self.from, self.to, self.params, self.arrive_by, self.optimize (plus other helpers 
+    '''
+    def __init__(self, jsn, params=None):
+        # creates a self.from and self.to element in the Plan object
+        Place.factory(jsn['from'], self, 'from')
+        Place.factory(jsn['to'],   self, 'to')
+        self.itineraries = []
+        for i in jsn['itineraries']:
+            itin = Itinerary(i)
+            self.itineraries.append(itin)
+        self.set_plan_params(params)
+
+    def set_plan_params(self, params):
+        ''' passed in by a separate routine, rather than parsed from returned itinerary
+        '''
+        # self.params = self.process_params(params)
+        self.arrive_by = True   if params and 'arriveBy' in params and params['arriveBy'] else False
+        self.optimize = "QUICK" if params is None or 'optimize' not in params else params['optimize']
 
 
 def json_repr(obj):
     """ Represent instance of a class as JSON.
-        returns a string that reprent JSON-encoded object.
+        returns a string that represents a JSON-encoded object.
         @from: http://stackoverflow.com/a/4682553/2125598
     """
     def serialize(obj):
