@@ -4,11 +4,37 @@ log = logging.getLogger(__file__)
 
 class DateInfo(object):
     def __init__(self, jsn):
-        pass
+        self.date = '3/4/2013'
+        self.pretty_date = "Monday, March 4, 2013"
+        self.start_time  = "3:40pm"
+        self.start_time_ms = 1361909033000
+        self.end_time  = "3:44pm"
+        self.end_time_ms = 1361909879000
+        self.duration = "4 minutes"
+        self.duration_ms = 8000
+
+class DateInfoExtended(DateInfo):
+    def __init__(self, jsn):
+        super(DateInfoExtended, self).__init__(jsn)
+        self.extended = True
+        self.trip_time_text = "85 minutes (including 4 minutes walking and 15 minutes waiting)"
+        self.trip_time_hours = 1
+        self.trip_time_mins = 11
+        self.walk_time_hours = None
+        self.walk_time_mins = 4
+        self.bike_time_hours = None
+        self.bike_time_mins = None
+        self.drive_time_hours = None
+        self.drive_time_mins = None
+        self.wait_time_hours = None
+        self.wait_time_mins = 15
 
 class Elevation(object):
     def __init__(self, jsn):
-        pass
+        self.points = "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+        self.high = "190.4"
+        self.low  = "187.2"
+        self.distance = "1111111" # could be walk / bike
 
 
 class Step(object):
@@ -17,16 +43,22 @@ class Step(object):
 
 class Route(object):
     def __init__(self, jsn):
-        pass
+        self.name = "19-Woodstock/Glisan"
+        self.direction = "Someplace Very Far..."
+        self.routeShortName = "19"
+        self.routeLongName = "Woodstock/Glisan"
+        self.url = "http://trimet.org/schedules/r019.htm"
+
 
 class Fare(object):
     def __init__(self, jsn, name=None):
-        pass
-
-class Leg(object):
-    def __init__(self, jsn, name=None):
-        self.steps  = None
-        self.alerts = None
+        self.adult = "$2.50"
+        self.adult_day = "$5.00"
+        self.honored = "$1.00"
+        self.honored_day = "$2.00"
+        self.youth = "$1.65"
+        self.youth_day = "$3.30"
+        self.tram = "$4.00"
 
 class Stop(object):
     def __init__(self, jsn, name=None):
@@ -61,7 +93,6 @@ class Place(object):
         self.stop = Stop.factory(jsn['stopId'])
         self.map_img = self.make_img_url(lon=self.lon, lat=self.lat, icon=self.map_icon(name))
 
-
     def map_icon(self, name):
         ''' '''
         ret_val = ''
@@ -74,10 +105,8 @@ class Place(object):
 
         return ret_val
 
-
     def make_img_url(self, url="http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/%(lon)s,%(lat)s%(icon)s", **kwargs):
         return url % kwargs
-
 
     @classmethod
     def factory(cls, jsn, obj=None, name=None):
@@ -92,18 +121,38 @@ class Place(object):
         return p
 
 
+class Leg(object):
+    '''
+    '''
+    def __init__(self, jsn):
+        self.steps  = None
+        self.alerts = None
+        self.transfer = None
+        self.interline = None
+        self.distance = "1/4 mile"
+        self.distance_feet = 1083.2521540374519
+        self.mode   = jsn['mode']
+
+
 class Itinerary(object):
+    '''
+    '''
     def __init__(self, jsn):
         self.url = None
         self.selected = False
         self.transfers = -1
+        self.date_info = DateInfoExtended(jsn)
+        self.elevation = Elevation(jsn)
         self.legs = self.parse_legs(jsn['legs'])
 
     def parse_legs(self, legs):
+        ''' '''
         ret_val = []
         for l in legs:
-            pass
+            leg = Leg(l)
+            ret_val.append(leg)
         return ret_val
+
 
 class Plan(object):
     ''' top level class of the ott 'plan' object tree
@@ -112,14 +161,43 @@ class Plan(object):
           self.from, self.to, self.params, self.arrive_by, self.optimize (plus other helpers 
     '''
     def __init__(self, jsn, params=None):
-        # creates a self.from and self.to element in the Plan object
+        ''' creates a self.from and self.to element in the Plan object '''
         Place.factory(jsn['from'], self, 'from')
         Place.factory(jsn['to'],   self, 'to')
-        self.itineraries = []
-        for i in jsn['itineraries']:
-            itin = Itinerary(i)
-            self.itineraries.append(itin)
+        self.itineraries = self.parse_itineraries(jsn['itineraries'], params)
         self.set_plan_params(params)
+
+
+    def parse_itineraries(self, itineraries, params):
+        '''  
+        '''
+        ret_val = []
+        for i in itineraries:
+            itin = Itinerary(i)
+            ret_val.append(itin)
+
+        # set the selected 
+        selected = self.get_selected_itinerary(params, len(ret_val))
+        if selected < len(ret_val):
+            ret_val[selected].selected = True
+
+        return ret_val
+
+
+    def get_selected_itinerary(self, params, max=3):
+        ''' return list position (index starts at zero) of the 'selected' itinerary'''
+        ret_val = 0
+        if params and 'selected' in params:
+            try:
+                ret_val = int(params['selected'])
+            except: 
+                log.info("params['selected'] has a value of {0}".format(params['selected']))
+
+        # final check to make sure we don't over-index the list of itineraries
+        if ret_val < 0 or ret_val >= max:
+            ret_val = 0
+
+        return ret_val
 
     def set_plan_params(self, params):
         ''' passed in by a separate routine, rather than parsed from returned itinerary

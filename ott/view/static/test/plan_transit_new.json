@@ -70,18 +70,18 @@
                 {
                     "mode":"WALK",
                     "transfer":null,
+                    "distance":"1/4 mile",
+                    "distance_feet":1083.2521540374519,
                     "date_info": {
                         "date":"3/4/2013",
                         "pretty_date":"Monday, March 4, 2013",
                         "start_time":"3:40pm",
                         "start_time_ms":1361909033000,
                         "end_time":"3:44pm",
-                        "start_time_ms":1361909879000,
+                        "end_time_ms":1361909879000,
                         "duration":"4 minutes",
                         "duration_ms":8000
                     },
-                    "distance":"1/4 mile",
-                    "distance_feet":1083.2521540374519,
                     "from":{
                         "name":"Southeast Bidwell Street",
                         "stop":null,
