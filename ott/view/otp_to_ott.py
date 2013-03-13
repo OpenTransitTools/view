@@ -1,4 +1,5 @@
 import math
+from decimal import *
 import datetime
 import simplejson as json
 import logging
@@ -19,41 +20,23 @@ class DateInfo(object):
         self.duration = ms_to_minutes(self.duration_ms, is_pretty=True, show_hours=True)
 
 
-def get_element_as_int(jsn, name, def_val=0):
-    ret_val = def_val
-    try:
-        ret_val = int(jsn[name])
-    except:
-        log.debug(name + " not an int value in jsn")
-    return ret_val
-
-def seconds_to_hours_minutes(secs, def_val=None, min_secs=60):
-    min = def_val
-    hour = def_val
-    if(secs > min_secs):
-        m = math.floor(secs / 60)
-        min  = m % 60
-        if m >= 60:
-            m = m - min
-            hour = int(math.floor(m / 60))
-    return hour,min
-
-
 class DateInfoExtended(DateInfo):
+    '''
+    '''
     def __init__(self, jsn):
         super(DateInfoExtended, self).__init__(jsn)
         self.extended = True
 
         # step 1: get data
-        walk = get_element_as_int(jsn, 'walkTime')
-        tran = get_element_as_int(jsn, 'transitTime')
-        wait = get_element_as_int(jsn, 'waitingTime')
+        walk = get_element(jsn, 'walkTime', 0)
+        tran = get_element(jsn, 'transitTime', 0)
+        wait = get_element(jsn, 'waitingTime', 0)
         tot  = walk + tran + wait
 
         # step 2: trip length
         h,m = seconds_to_hours_minutes(tot)
-        self.trip_time_hours = h
-        self.trip_time_mins = m
+        self.total_time_hours = h
+        self.total_time_mins = m
 
         # step 3: trip length
         h,m = seconds_to_hours_minutes(tran)
@@ -83,7 +66,29 @@ class DateInfoExtended(DateInfo):
         self.drive_time_hours = None
         self.drive_time_mins = None
 
-        self.trip_time_text = "85 minutes (including 4 minutes walking and 15 minutes waiting)"
+        self.text = self.get_text()
+
+    def get_text(self):
+        '''
+        '''
+        ret_val = ''
+        tot =  hour_min_string(self.total_time_hours, self.total_time_mins)
+        walk = hour_min_string(self.walk_time_hours, self.walk_time_mins)
+        bike = hour_min_string(self.bike_time_hours, self.bike_time_mins)
+        wait = hour_min_string(self.wait_time_hours, self.wait_time_mins)
+        return ret_val
+
+def hour_min_string(h, m, fmt='{} {}', sp=', '):
+    ret_val = None
+    if h and h > 0:
+        hr = 'hours' if h > 1 else 'hour'
+        ret_val = "{} {}".format(h, hr)
+    if m:
+        min = 'minutes' if m > 1 else 'minute'
+        pre = '' if ret_val == None else ret_val + sp 
+        ret_val = "{}{} {}".format(pre, m, min)
+    return ret_val
+
 
 class Elevation(object):
     def __init__(self, jsn):
@@ -99,22 +104,50 @@ class Step(object):
 
 class Route(object):
     def __init__(self, jsn):
-        self.name = "19-Woodstock/Glisan"
-        self.direction = "Someplace Very Far..."
-        self.routeShortName = "19"
-        self.routeLongName = "Woodstock/Glisan"
-        self.url = "http://trimet.org/schedules/r019.htm"
+        self.agency_id = jsn['agencyId']
+        self.agency_name = get_element(jsn, 'agencyName')
+        self.name = self.make_name(jsn)
+        self.headsign = get_element(jsn, 'headsign')
+        self.trip = get_element(jsn, 'tripId')
+        self.url = "http://trimet.org/schedules/r{}.htm".format()
+
+    def make_name(self, jsn, name_sep='-'):
+        ret_val = None
+        sn = jsn['routeShortName']
+        ln = jsn['routeLongName']
+        if sn and len(sn) > 0:
+            ret_val = sn
+        if ln and len(sn) > 0:
+            if ret_val and name_sep:
+                ret_val = ret_val + name_sep
+            else: 
+                ret_val = ''
+            ret_val = ret_val + ln
+        return ret_val
 
 
 class Fare(object):
-    def __init__(self, jsn, name=None):
-        self.adult       = "$2.50"
+    '''
+    '''
+    def __init__(self, jsn):
+        self.adult       = self.get_fare(jsn, '$2.50')
         self.adult_day   = "$5.00"
         self.honored     = "$1.00"
         self.honored_day = "$2.00"
         self.youth       = "$1.65"
         self.youth_day   = "$3.30"
         self.tram        = "$4.00"
+
+    def get_fare(self, jsn, def_val):
+        ret_val = def_val
+        try:
+            c = int(jsn['fare']['fare']['regular']['cents']) * 0.01
+            s = jsn['fare']['fare']['regular']['currency']['symbol']
+            ret_val = "%s%.2f" % (s, c)
+        except Exception, e:
+            pass
+        return ret_val
+
 
 class Stop(object):
     def __init__(self, jsn, name=None):
@@ -182,6 +215,7 @@ class Leg(object):
     '''
     def __init__(self, jsn):
         self.mode = jsn['mode']
+        self.elevation = Elevation(jsn)
         self.steps = None
         self.alerts = None
         self.transfer = None
@@ -195,9 +229,11 @@ class Itinerary(object):
     '''
     '''
     def __init__(self, jsn):
+        self.elevation = Elevation(jsn)
+        self.fare = Fare(jsn)
         self.url = None
         self.selected = False
-        self.transfers = -1
+        self.transfers = jsn['transfers']
         self.date_info = DateInfoExtended(jsn)
         self.elevation = Elevation(jsn)
         self.legs = self.parse_legs(jsn['legs'])
@@ -242,7 +278,7 @@ class Plan(object):
 
 
     def get_selected_itinerary(self, params, max=3):
-        ''' return list position (index starts at zero) of the 'selected' itinerary'''
+        ''' return list position (index starts at zero) of the 'selected' itinerary '''
         ret_val = 0
         if params and 'selected' in params:
             try:
@@ -267,6 +303,35 @@ class Plan(object):
 '''
 UTILITY METHODS
 '''
+def get_element(jsn, name, def_val=None):
+    '''
+    '''
+    ret_val = def_val
+    try:
+        v = jsn[name]
+        if type(def_val) == int:
+            ret_val = int(v)
+        else:
+            ret_val = v
+    except:
+        log.debug(name + " not an int value in jsn")
+    return ret_val
+
+def seconds_to_hours_minutes(secs, def_val=None, min_secs=60):
+    '''
+    '''
+    min = def_val
+    hour = def_val
+    if(secs > min_secs):
+        m = math.floor(secs / 60)
+        min  = m % 60
+        if m >= 60:
+            m = m - min
+            hour = int(math.floor(m / 60))
+    return hour,min
+
+
+
 def pretty_distance(feet):
     return '1/3 mile'
 
