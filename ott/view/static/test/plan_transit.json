@@ -8,8 +8,10 @@
             "name":"corner of path and Southwest Campus Drive","stopId":null,"stopCode":null,"lon":-122.683852,"lat":45.499757,"arrival":null,"departure":null,"orig":null,"zoneId":null,"geometry":"{\"type\": \"Point\", \"coordinates\": [-122.683852,45.499757]}"},
       "itineraries":[
         {
-            "duration":2862000,"startTime":1361909033000,"endTime":1361911895000,"walkTime":2044,"transitTime":816,"waitingTime":2,
-            "walkDistance":2570.423609362247,"elevationLost":121.25867926543498,"elevationGained":28.285152577262288,"transfers":0,
+            "duration":2862000,"startTime":1361909033000,"endTime":1361911895000,
+            "walkTime":2044,"transitTime":816,"waitingTime":2,
+            "walkDistance":2570.423609362247,"elevationLost":121.25867926543498,"elevationGained":28.285152577262288,
+            "transfers":0,
             "fare":{"fare":{"regular":{"currency":{"symbol":"$","currency":"USD","currencyCode":"USD","defaultFractionDigits":2},"cents":250}}},
             "legs":[
                 {

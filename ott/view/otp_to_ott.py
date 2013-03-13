@@ -1,33 +1,89 @@
+import math
+import datetime
 import simplejson as json
 import logging
 log = logging.getLogger(__file__)
 
 class DateInfo(object):
     def __init__(self, jsn):
-        self.date = '3/4/2013'
-        self.pretty_date = "Monday, March 4, 2013"
-        self.start_time  = "3:40pm"
-        self.start_time_ms = 1361909033000
-        self.end_time  = "3:44pm"
-        self.end_time_ms = 1361909879000
-        self.duration = "4 minutes"
-        self.duration_ms = 8000
+        self.duration_ms = jsn['duration']
+        self.start_time_ms = jsn['startTime']
+        self.end_time_ms = jsn['endTime']
+        sdt = datetime.datetime.fromtimestamp(self.start_time_ms / 1000)
+        edt = datetime.datetime.fromtimestamp(self.end_time_ms / 1000)
+
+        self.date = "%d/%d/%d" % (sdt.month, sdt.day, sdt.year) # 29/2/2012
+        self.pretty_date = sdt.strftime("%A, %B %-d, %Y") # "Monday, March 4, 2013"
+        self.start_time  = sdt.strftime("%-I:%M%p").lower() # "3:40pm"
+        self.end_time = sdt.strftime("%-I:%M%p").lower()  # "3:44pm"
+        self.duration = ms_to_minutes(self.duration_ms, is_pretty=True, show_hours=True)
+
+
+def get_element_as_int(jsn, name, def_val=0):
+    ret_val = def_val
+    try:
+        ret_val = int(jsn[name])
+    except:
+        log.debug(name + " not an int value in jsn")
+    return ret_val
+
+def seconds_to_hours_minutes(secs, def_val=None, min_secs=60):
+    min = def_val
+    hour = def_val
+    if(secs > min_secs):
+        m = math.floor(secs / 60)
+        min  = m % 60
+        if m >= 60:
+            m = m - min
+            hour = int(math.floor(m / 60))
+    return hour,min
+
 
 class DateInfoExtended(DateInfo):
     def __init__(self, jsn):
         super(DateInfoExtended, self).__init__(jsn)
         self.extended = True
-        self.trip_time_text = "85 minutes (including 4 minutes walking and 15 minutes waiting)"
-        self.trip_time_hours = 1
-        self.trip_time_mins = 11
-        self.walk_time_hours = None
-        self.walk_time_mins = 4
+
+        # step 1: get data
+        walk = get_element_as_int(jsn, 'walkTime')
+        tran = get_element_as_int(jsn, 'transitTime')
+        wait = get_element_as_int(jsn, 'waitingTime')
+        tot  = walk + tran + wait
+
+        # step 2: trip length
+        h,m = seconds_to_hours_minutes(tot)
+        self.trip_time_hours = h
+        self.trip_time_mins = m
+
+        # step 3: trip length
+        h,m = seconds_to_hours_minutes(tran)
+        self.transit_time_hours = h
+        self.transit_time_mins = m
+
+        # step 4: bike / walk length
         self.bike_time_hours = None
         self.bike_time_mins = None
+        self.walk_time_hours = None
+        self.walk_time_mins = None
+        if 'mode' in jsn and jsn['mode'] == 'BICYCLE':
+            h,m = seconds_to_hours_minutes(walk)
+            self.bike_time_hours = h
+            self.bike_time_mins = m
+        else:
+            h,m = seconds_to_hours_minutes(walk)
+            self.walk_time_hours = h
+            self.walk_time_mins = m
+
+        # step 5: wait time
+        h,m = seconds_to_hours_minutes(wait)
+        self.wait_time_hours = h
+        self.wait_time_mins = m
+
+        # step 5: drive time...unused as of now...
         self.drive_time_hours = None
         self.drive_time_mins = None
-        self.wait_time_hours = None
-        self.wait_time_mins = 15
+
+        self.trip_time_text = "85 minutes (including 4 minutes walking and 15 minutes waiting)"
 
 class Elevation(object):
     def __init__(self, jsn):
@@ -52,13 +108,13 @@ class Route(object):
 
 class Fare(object):
     def __init__(self, jsn, name=None):
-        self.adult = "$2.50"
-        self.adult_day = "$5.00"
-        self.honored = "$1.00"
+        self.adult       = "$2.50"
+        self.adult_day   = "$5.00"
+        self.honored     = "$1.00"
         self.honored_day = "$2.00"
-        self.youth = "$1.65"
-        self.youth_day = "$3.30"
-        self.tram = "$4.00"
+        self.youth       = "$1.65"
+        self.youth_day   = "$3.30"
+        self.tram        = "$4.00"
 
 class Stop(object):
     def __init__(self, jsn, name=None):
@@ -125,13 +181,14 @@ class Leg(object):
     '''
     '''
     def __init__(self, jsn):
-        self.steps  = None
+        self.mode = jsn['mode']
+        self.steps = None
         self.alerts = None
         self.transfer = None
         self.interline = None
         self.distance = "1/4 mile"
         self.distance_feet = 1083.2521540374519
-        self.mode   = jsn['mode']
+
 
 
 class Itinerary(object):
@@ -207,6 +264,16 @@ class Plan(object):
         self.optimize = "QUICK" if params is None or 'optimize' not in params else params['optimize']
 
 
+'''
+UTILITY METHODS
+'''
+def pretty_distance(feet):
+    return '1/3 mile'
+
+def ms_to_minutes(ms, is_pretty=False, show_hours=False):
+    return ms
+
+
 def json_repr(obj):
     """ Represent instance of a class as JSON.
         returns a string that represents a JSON-encoded object.
@@ -236,7 +303,7 @@ def json_repr(obj):
 
 def main():
     #file='plan_walk.json'
-    file='plan_transit.json'
+    file='plan_raw_pdx-zoo.json'
     try:
         PATH='ott/view/static/test/'
         path="{0}{1}".format(PATH, file)
