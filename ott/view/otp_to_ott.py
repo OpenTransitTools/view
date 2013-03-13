@@ -14,9 +14,9 @@ class DateInfo(object):
         edt = datetime.datetime.fromtimestamp(self.end_time_ms / 1000)
 
         self.date = "%d/%d/%d" % (sdt.month, sdt.day, sdt.year) # 29/2/2012
-        self.pretty_date = sdt.strftime("%A, %B %-d, %Y") # "Monday, March 4, 2013"
-        self.start_time  = sdt.strftime("%-I:%M%p").lower() # "3:40pm"
-        self.end_time = sdt.strftime("%-I:%M%p").lower()  # "3:44pm"
+        self.pretty_date = sdt.strftime("%A, %B %d, %Y").replace(' 0',' ')    # "Monday, March 4, 2013"
+        self.start_time  = sdt.strftime(" %I:%M%p").lower().replace(' 0','') # "3:40pm"
+        self.end_time = sdt.strftime(" %I:%M%p").lower().replace(' 0','')    # "3:44pm"
         self.duration = ms_to_minutes(self.duration_ms, is_pretty=True, show_hours=True)
 
 
@@ -102,14 +102,20 @@ class Step(object):
     def __init__(self, jsn, name=None):
         self.alerts = None
 
+
 class Route(object):
     def __init__(self, jsn):
         self.agency_id = jsn['agencyId']
         self.agency_name = get_element(jsn, 'agencyName')
+        self.id = jsn['routeId']
         self.name = self.make_name(jsn)
         self.headsign = get_element(jsn, 'headsign')
         self.trip = get_element(jsn, 'tripId')
-        self.url = "http://trimet.org/schedules/r{}.htm".format()
+        self.url = None
+        if self.agency_id == 'TriMet':
+            self.url = "http://trimet.org/schedules/r{}.htm".format(self.id.zfill(3))
+        elif self.agency_id == 'C-TRAN':
+            self.url = "http://c-tran.com/routes/{}route/index.html".format(self.id)
 
     def make_name(self, jsn, name_sep='-'):
         ret_val = None
@@ -117,7 +123,7 @@ class Route(object):
         ln = jsn['routeLongName']
         if sn and len(sn) > 0:
             ret_val = sn
-        if ln and len(sn) > 0:
+        if ln and len(ln) > 0:
             if ret_val and name_sep:
                 ret_val = ret_val + name_sep
             else: 
@@ -216,13 +222,24 @@ class Leg(object):
     def __init__(self, jsn):
         self.mode = jsn['mode']
         self.elevation = Elevation(jsn)
+        self.route = None
         self.steps = None
         self.alerts = None
         self.transfer = None
         self.interline = None
-        self.distance = "1/4 mile"
+        self.distance = None
         self.distance_feet = 1083.2521540374519
 
+        # mode specific config
+        if self.is_transit_mode():
+            self.route = Route(jsn)
+            self.interline = jsn['interlineWithPreviousLeg']
+
+    def is_transit_mode(self):
+        return self.mode in ['BUS', 'TRAM', '... TODO is_transit_mode() ... ']
+
+    def is_walk_or_bike_mode(self):
+        return self.mode in ['BIKE', 'WALK', '... TODO is_transit_mode() ... ']
 
 
 class Itinerary(object):
@@ -241,9 +258,18 @@ class Itinerary(object):
     def parse_legs(self, legs):
         ''' '''
         ret_val = []
+
+        # step 1: build the legs
         for l in legs:
             leg = Leg(l)
             ret_val.append(leg)
+
+        # step 2: find transfer legs e.g., this pattern TRANSIT LEG, WALK/BIKE LEG, TRANSIT LEG
+        for i, leg in enumerate(ret_val):
+            if leg.is_transit_mode() and i+2 > len(ret_val): 
+                if ret_val[i+2].is_transit_mode() and ret_val[i+1].is_walk_or_bike_mode():
+                    self.transfer = True
+
         return ret_val
 
 
