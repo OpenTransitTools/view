@@ -8,7 +8,6 @@ log = logging.getLogger(__file__)
 
 class DateInfo(object):
     def __init__(self, jsn):
-        self.duration_ms = jsn['duration']
         self.start_time_ms = jsn['startTime']
         self.end_time_ms = jsn['endTime']
         sdt = datetime.datetime.fromtimestamp(self.start_time_ms / 1000)
@@ -18,6 +17,7 @@ class DateInfo(object):
         self.pretty_date = sdt.strftime("%A, %B %d, %Y").replace(' 0',' ')    # "Monday, March 4, 2013"
         self.start_time  = sdt.strftime(" %I:%M%p").lower().replace(' 0','') # "3:40pm"
         self.end_time = sdt.strftime(" %I:%M%p").lower().replace(' 0','')    # "3:44pm"
+        self.duration_ms = jsn['duration']
         self.duration = ms_to_minutes(self.duration_ms, is_pretty=True, show_hours=True)
 
 
@@ -335,7 +335,32 @@ def get_element(jsn, name, def_val=None):
 
 
 def ms_to_minutes(ms, is_pretty=False, show_hours=False):
-    return ms
+    ret_val = ms / 1000 / 60
+
+    # pretty '3 hours & 1 minute' string
+    if is_pretty:
+        h_str = ''
+        m_str = ''
+
+        # calculate hours string
+        m = ret_val
+        if show_hours and m > 60:
+            h = int(floor(m / 60))
+            m = int(m % 60)
+            if h > 0:
+                hrs =  'hour' if h == 1 else 'hours'
+                h_str = '%d %s' % (h, hrs)
+                if m > 0:
+                    h_str = h_str + ' ' + '&' + ' '
+
+        # calculate minutes string
+        if m > 0:
+            mins = 'minute' if m == 1 else 'minutes'
+            m_str = '%d %s' % (m, mins)
+
+        ret_val = '%s%s' % (h_str, m_str) 
+
+    return ret_val
 
 
 def hour_min_string(h, m, fmt='{} {}', sp=', '):
