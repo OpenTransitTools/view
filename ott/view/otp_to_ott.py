@@ -1,5 +1,6 @@
 import math
 from decimal import *
+from fractions import Fraction
 import datetime
 import simplejson as json
 import logging
@@ -77,17 +78,6 @@ class DateInfoExtended(DateInfo):
         bike = hour_min_string(self.bike_time_hours, self.bike_time_mins)
         wait = hour_min_string(self.wait_time_hours, self.wait_time_mins)
         return ret_val
-
-def hour_min_string(h, m, fmt='{} {}', sp=', '):
-    ret_val = None
-    if h and h > 0:
-        hr = 'hours' if h > 1 else 'hour'
-        ret_val = "{} {}".format(h, hr)
-    if m:
-        min = 'minutes' if m > 1 else 'minute'
-        pre = '' if ret_val == None else ret_val + sp 
-        ret_val = "{}{} {}".format(pre, m, min)
-    return ret_val
 
 
 class Elevation(object):
@@ -227,8 +217,8 @@ class Leg(object):
         self.alerts = None
         self.transfer = None
         self.interline = None
-        self.distance = None
-        self.distance_feet = 1083.2521540374519
+        self.distance_feet = jsn['distance']
+        self.distance = pretty_distance(self.distance_feet)
 
         # mode specific config
         if self.is_transit_mode():
@@ -239,7 +229,7 @@ class Leg(object):
         return self.mode in ['BUS', 'TRAM', '... TODO is_transit_mode() ... ']
 
     def is_walk_or_bike_mode(self):
-        return self.mode in ['BIKE', 'WALK', '... TODO is_transit_mode() ... ']
+        return self.mode in ['BIKE', 'WALK', '... TODO is_X_mode() ... ']
 
 
 class Itinerary(object):
@@ -343,6 +333,23 @@ def get_element(jsn, name, def_val=None):
         log.debug(name + " not an int value in jsn")
     return ret_val
 
+
+def ms_to_minutes(ms, is_pretty=False, show_hours=False):
+    return ms
+
+
+def hour_min_string(h, m, fmt='{} {}', sp=', '):
+    ret_val = None
+    if h and h > 0:
+        hr = 'hours' if h > 1 else 'hour'
+        ret_val = "{} {}".format(h, hr)
+    if m:
+        min = 'minutes' if m > 1 else 'minute'
+        pre = '' if ret_val == None else ret_val + sp 
+        ret_val = "{}{} {}".format(pre, m, min)
+    return ret_val
+
+
 def seconds_to_hours_minutes(secs, def_val=None, min_secs=60):
     '''
     '''
@@ -357,12 +364,23 @@ def seconds_to_hours_minutes(secs, def_val=None, min_secs=60):
     return hour,min
 
 
+def pretty_distance(feet, def_val=None):
+    '''
+    '''
+    ret_val = def_val
 
-def pretty_distance(feet):
-    return '1/3 mile'
+    m = int(math.floor(feet / 5280))
+    f = Fraction((feet % 5280)/5280).limit_denominator(8)
 
-def ms_to_minutes(ms, is_pretty=False, show_hours=False):
-    return ms
+    r = ''
+    if m > 0 and f > 0:
+        ret_val = '{0} {1} {2}'.format(m, f, 'miles')
+    elif m > 1: 
+        ret_val = '{0} {1}'.format(m, 'miles')
+    elif m == 1 or f > 0:
+        ret_val = '{0} {1}'.format(f if f > 0 else m, 'mile')
+
+    return ret_val
 
 
 def json_repr(obj):
