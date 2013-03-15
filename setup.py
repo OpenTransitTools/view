@@ -48,7 +48,9 @@ find_translation_strings_in_these_files = {'.' : [
 
 setup(
       name='ott.view',
-      version='0.1.0',
+      version='0.1.0
+C:\Python27\lib\distutils\dist.py:267:UserWarning:Unknowndistributionoption:'message_extractors'
+warnings.warn',
       description='Open Transit Tools - View (Python / Javascript)',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
