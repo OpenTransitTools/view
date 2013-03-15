@@ -35,8 +35,8 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
-
 .*~
 *.bak
 *.db
 nohup.out
+x.json
