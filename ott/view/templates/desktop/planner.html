@@ -206,7 +206,7 @@
                 <td><strong>${_(u'Preferences')}</strong></td><td>${optimize} ${_(u'with a maximum walk of')} 1 mile <a href="planner_form.html?${plan['params']}" title = "${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">${_(u'Edit')}</a></td>
             </tr>
             <tr>
-                <td><strong>${_(u'Time')}</strong></td><td>${itinerary['date_info']['trip_time_text']}</td>
+                <td><strong>${_(u'Time')}</strong></td><td>${itinerary['date_info']['pretty_date']}</td>
             </tr>
             <tr>
                 <td>&nbsp;</td><td>${_(u'riding on transit')} ${_(u'from')} ${itinerary['date_info']['start_transit']} ${_(u'to')} ${itinerary['date_info']['end_transit']}</td>

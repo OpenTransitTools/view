@@ -18,8 +18,12 @@ class ModelMock(Model):
     def get_plan(self, **kwargs):
         ''' @todo: MODE strings should come from gtfsdb code...
         '''
-        return get_json('plan_transit_new.json') 
 
+        if 'mode' in kwargs and kwargs['mode'] in ('T','TEST'):
+            return get_json('x.json')
+        return get_json('plan_transit_new.json')  
+
+        # TODO -- better stuff below for mock testing...
         #import pdb; pdb.set_trace()
         if 'mode' in kwargs:
             if    Model.WALK == kwargs['mode']: return get_json('plan_walk.json') 

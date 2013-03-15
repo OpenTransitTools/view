@@ -39,10 +39,12 @@ class DateInfoExtended(DateInfo):
         self.total_time_hours = h
         self.total_time_mins = m
 
-        # step 3: trip length
+        # step 3: transit info
         h,m = seconds_to_hours_minutes(tran)
         self.transit_time_hours = h
         self.transit_time_mins = m
+        self.start_transit = "TODO"
+        self.end_transit = "TODO"
 
         # step 4: bike / walk length
         self.bike_time_hours = None
@@ -162,10 +164,9 @@ class Stop(object):
 
     @classmethod
     def factory(cls, jsn):
-        if(jsn):
-            if jsn:
-                s = Stop(jsn)
-                return s
+        if jsn:
+            s = Stop(jsn)
+            return s
         return None
 
 
@@ -211,7 +212,13 @@ class Leg(object):
     '''
     def __init__(self, jsn):
         self.mode = jsn['mode']
+
+        Place.factory(jsn['from'], self, 'from')
+        Place.factory(jsn['to'],   self, 'to')
+
         self.elevation = Elevation(jsn)
+        self.date_info = DateInfo(jsn)
+
         self.route = None
         self.steps = None
         self.alerts = None
@@ -314,6 +321,7 @@ class Plan(object):
         # self.params = self.process_params(params)
         self.arrive_by = True   if params and 'arriveBy' in params and params['arriveBy'] else False
         self.optimize = "QUICK" if params is None or 'optimize' not in params else params['optimize']
+        self.params  = 'TODO TODO TODO'
 
 
 '''
@@ -416,7 +424,7 @@ def json_repr(obj):
     def serialize(obj):
         '''Recursively walk object's hierarchy.'''
         if(obj is None):
-            return 'null'
+            return None
         if isinstance(obj, (bool, int, long, float, basestring)):
             return obj
         elif isinstance(obj, dict):
@@ -449,7 +457,10 @@ def main():
 
     j=json.load(f)
     p=Plan(j['plan'])
-    print json_repr(p)
+    y = json_repr(p)
+    z = json.loads(y)
+    print y
+    #print z
 
 if __name__ == '__main__':
     main()
