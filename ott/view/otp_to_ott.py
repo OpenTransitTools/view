@@ -105,9 +105,9 @@ class Route(object):
         self.trip = get_element(jsn, 'tripId')
         self.url = None
         if self.agency_id == 'TriMet':
-            self.url = "http://trimet.org/schedules/r{}.htm".format(self.id.zfill(3))
+            self.url = "http://trimet.org/schedules/r{0}.htm".format(self.id.zfill(3))
         elif self.agency_id == 'C-TRAN':
-            self.url = "http://c-tran.com/routes/{}route/index.html".format(self.id)
+            self.url = "http://c-tran.com/routes/{0}route/index.html".format(self.id)
 
     def make_name(self, jsn, name_sep='-'):
         ret_val = None
@@ -371,15 +371,15 @@ def ms_to_minutes(ms, is_pretty=False, show_hours=False):
     return ret_val
 
 
-def hour_min_string(h, m, fmt='{} {}', sp=', '):
+def hour_min_string(h, m, fmt='{0} {1}', sp=', '):
     ret_val = None
     if h and h > 0:
         hr = 'hours' if h > 1 else 'hour'
-        ret_val = "{} {}".format(h, hr)
+        ret_val = "{0} {1}".format(h, hr)
     if m:
         min = 'minutes' if m > 1 else 'minute'
         pre = '' if ret_val == None else ret_val + sp 
-        ret_val = "{}{} {}".format(pre, m, min)
+        ret_val = "{0}{1} {2}".format(pre, m, min)
     return ret_val
 
 
