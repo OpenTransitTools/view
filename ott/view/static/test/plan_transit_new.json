@@ -140,7 +140,7 @@
                     "distance_feet":1083.2521540374519,
                     "route": {
                         "name":"19-Woodstock/Glisan",
-                        "direction":"Someplace Very Far...",
+                        "headsign":"Someplace Very Far...",
                         "routeShortName":"19",
                         "routeLongName":"Woodstock/Glisan",
                         "url":"http://trimet.org/schedules/r019.htm"
