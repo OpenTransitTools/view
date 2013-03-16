@@ -403,7 +403,8 @@ def pretty_distance(feet, def_val=None):
     ret_val = def_val
 
     m = int(math.floor(feet / 5280))
-    f = Fraction((feet % 5280)/5280).limit_denominator(8)
+    n = (feet % 5280)/5280
+    f = Fraction(str(n)).limit_denominator(8)
 
     r = ''
     if m > 0 and f > 0:
