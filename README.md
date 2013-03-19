@@ -1,4 +1,3 @@
-tapeworm
-========
-
-API of the gods
+view
+====
+Text interface atop gtfsdb and otp

@@ -15,6 +15,7 @@ requires = [
     'simplejson',
     'pil',
     'colander',
+
 ]
 
 #
@@ -47,32 +48,32 @@ find_translation_strings_in_these_files = {'.' : [
 }
 
 setup(
-      name='ott.view',
-      version='0.1.0',
-      description='Open Transit Tools - View (Python / Javascript)',
-      long_description=README + '\n\n' + CHANGES,
-      classifiers=[
+    name='ott.view',
+    version='0.1.0',
+    description='Open Transit Tools - View (Python / Javascript)',
+    long_description=README + '\n\n' + CHANGES,
+    classifiers=[
         "Programming Language :: Python",
         "Framework :: Pyramid",
         "Topic :: Internet :: WWW/HTTP",
         "Topic :: Internet :: WWW/HTTP :: WSGI :: Application",
-      ],
-      author="Open Transit Tools",
-      author_email="info@opentransittools.org",
-      dependency_links=('http://opentransittools.com',),
-      license="Mozilla-derived (http://opentransittools.com)",
-      url='http://opentransittools.com',
-      keywords='ott, otp, view, transit',
-      packages=find_packages(),
-      include_package_data=True,
-      zip_safe=False,
-      install_requires=requires,
-      extras_require=dict(dev=dev_extras),
-      message_extractors = find_translation_strings_in_these_files,
-      tests_require=requires,
-      test_suite="ott.view",
-      entry_points="""\
+    ],
+    author="Open Transit Tools",
+    author_email="info@opentransittools.org",
+    dependency_links=('http://opentransittools.com',),
+    license="Mozilla-derived (http://opentransittools.com)",
+    url='http://opentransittools.com',
+    keywords='ott, otp, view, transit',
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=requires,
+    extras_require=dict(dev=dev_extras),
+    message_extractors = find_translation_strings_in_these_files,
+    tests_require=requires,
+    test_suite="ott.view",
+    entry_points="""\
         [paste.app_factory]
         main = ott.view.pyramid_app:main
-      """,
-      )
+    """,
+)
