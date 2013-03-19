@@ -69,6 +69,7 @@
             "legs":[
                 {
                     "mode":"WALK",
+                    "compass_direction": "northeast",
                     "transfer":null,
                     "distance":"1/4 mile",
                     "distance_feet":1083.2521540374519,
