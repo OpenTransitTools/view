@@ -13,6 +13,7 @@ import pyramid_views as views
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
+        run with: bin/pserve pyramid.ini --reload
     """
     config = Configurator(settings=settings)
 
@@ -64,6 +65,9 @@ def new_request_subscriber(event):
 
 
 def cmdline():
+    ''' as an alternate to pserve, you can run this via bin/python ott/view/pyramid_app 
+        it should start the server on http://localhost:8080
+    '''
     from wsgiref.simple_server import make_server
 
     # configuration settings
@@ -75,8 +79,7 @@ def cmdline():
     settings={}
     settings['mako.directories'] = mako_dir
     config=make_config(settings)
-    make_views(config, model)
-
+    views.do_view_config(config)
 
     # serve app
     app = config.make_wsgi_app()
