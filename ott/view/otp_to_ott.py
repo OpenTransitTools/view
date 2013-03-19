@@ -1,3 +1,4 @@
+import sys
 import math
 from decimal import *
 from fractions import Fraction
@@ -10,13 +11,13 @@ class DateInfo(object):
     def __init__(self, jsn):
         self.start_time_ms = jsn['startTime']
         self.end_time_ms = jsn['endTime']
-        sdt = datetime.datetime.fromtimestamp(self.start_time_ms / 1000)
-        edt = datetime.datetime.fromtimestamp(self.end_time_ms / 1000)
+        start = datetime.datetime.fromtimestamp(self.start_time_ms / 1000)
+        end   = datetime.datetime.fromtimestamp(self.end_time_ms / 1000)
 
-        self.date = "%d/%d/%d" % (sdt.month, sdt.day, sdt.year) # 29/2/2012
-        self.pretty_date = sdt.strftime("%A, %B %d, %Y").replace(' 0',' ')    # "Monday, March 4, 2013"
-        self.start_time  = sdt.strftime(" %I:%M%p").lower().replace(' 0','') # "3:40pm"
-        self.end_time = sdt.strftime(" %I:%M%p").lower().replace(' 0','')    # "3:44pm"
+        self.date = "%d/%d/%d" % (start.month, start.day, start.year) # 29/2/2012
+        self.pretty_date = start.strftime("%A, %B %d, %Y").replace(' 0',' ')    # "Monday, March 4, 2013"
+        self.start_time  = start.strftime(" %I:%M%p").lower().replace(' 0','') # "3:40pm"
+        self.end_time = end.strftime(" %I:%M%p").lower().replace(' 0','')    # "3:44pm"
         self.duration_ms = jsn['duration']
         self.duration = ms_to_minutes(self.duration_ms, is_pretty=True, show_hours=True)
 
@@ -177,16 +178,16 @@ class Place(object):
         self.lat  = jsn['lat']
         self.lon  = jsn['lon']
         self.stop = Stop.factory(jsn['stopId'])
-        self.map_img = self.make_img_url(lon=self.lon, lat=self.lat, icon=self.map_icon(name))
+        self.map_img = self.make_img_url(lon=self.lon, lat=self.lat, icon=self.endpoint_icon(name))
 
-    def map_icon(self, name):
+    def endpoint_icon(self, name):
         ''' '''
         ret_val = ''
         if name:
             x='/extraparams/format_options=layout:{0}'
-            if name in ['from', 'end', 'last']:
+            if name in ['to', 'end', 'last']:
                 ret_val = x.format('end')
-            elif name in ['to', 'start', 'begin']:
+            elif name in ['from', 'start', 'begin']:
                 ret_val = x.format('start')
 
         return ret_val
@@ -397,14 +398,18 @@ def seconds_to_hours_minutes(secs, def_val=None, min_secs=60):
     return hour,min
 
 
-def pretty_distance(feet, def_val=None):
+def pretty_distance(feet, def_val=None, min_distance=550, denominator=10):
     '''
     '''
     ret_val = def_val
 
-    m = int(math.floor(feet / 5280))
-    n = (feet % 5280)/5280
-    f = Fraction(str(n)).limit_denominator(8)
+    if min_distance > 0 and def_val is None and feet < min_distance:
+        #import pdb; pdb.set_trace()
+        feet = min_distance
+
+    m = int(math.floor(feet / 5280.0))
+    n = (feet % 5280) / 5280.0
+    f = Fraction(str(n)).limit_denominator(denominator)
 
     r = ''
     if m > 0 and f > 0:
@@ -417,7 +422,7 @@ def pretty_distance(feet, def_val=None):
     return ret_val
 
 
-def json_repr(obj):
+def json_repr(obj, pretty_print=False):
     """ Represent instance of a class as JSON.
         returns a string that represents a JSON-encoded object.
         @from: http://stackoverflow.com/a/4682553/2125598
@@ -441,10 +446,23 @@ def json_repr(obj):
             return serialize(obj.__dict__)
         else:
             return repr(obj) # Don't know how to handle, convert to string
-    return json.dumps(serialize(obj))
 
 
-def main():
+    ## step 1: call serializer, which walks object tree and returns a cleaned up dict representation of the object
+    output = serialize(obj)
+
+    ## step 2: dump serialized object into json string
+    ret_val = None
+    if pretty_print:
+        ret_val = json.dumps(output, sort_keys=True, indent=4)
+    else:
+        ret_val = json.dumps(output)
+
+    ## step 3: return result
+    return ret_val
+
+
+def main(argv):
     #file='plan_walk.json'
     file='plan_raw_pdx-zoo.json'
     try:
@@ -458,10 +476,11 @@ def main():
 
     j=json.load(f)
     p=Plan(j['plan'])
-    y = json_repr(p)
+    pretty = 'pretty' in argv
+    y = json_repr(p, pretty)
     z = json.loads(y)
     print y
     #print z
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)

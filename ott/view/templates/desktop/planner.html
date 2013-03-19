@@ -62,6 +62,11 @@
     elif plan['optimize'] == 'TRANSFERS':
         optimize = _(u'Fewest transfers')
 
+    def get_walk_title(leg):
+        '''
+        '''
+        return "{0} {1} {2}".format(_(u'Walk'), leg['distance'], "TODO=get_compass_direction(SW)")
+
     def get_mode_img(mode):
         ''' return 20x20px mode gif for leg list 
         '''
@@ -74,6 +79,8 @@
             ret_val =  path + "/walk.gif"
         if mode == util.attr.TRAIN:
             ret_val = path + "/rail.gif"
+        if mode == util.attr.TRAM:
+            ret_val = path + "/max.gif"
         return ret_val
 
 
@@ -145,15 +152,24 @@
                           <img src="/v3/images/tripplanner/end.gif" alt="" border="0" class="icon" /> End at <a href="showmap.cgi?lang=t&long=-122.7163&lat=45.5097&icon=end&area=PO&desc=Zoo">Zoo in Portland</a>
                      </h3>
                 -->
+                <!--
+                    <li><h3><img src="walk.gif"  /> <a href="walk_directions" title = "Show walking directions.">Walk 0.1 mile southeast</a> to Zoo</h3>
+
+                -->
                 <h3>
                     <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
+                    <% walk_title = get_walk_title(leg)%>
                     %if leg['steps']:
-                    <a href="TODO-render_walking_directions(leg)" title = "${_(u'Show walking directions.')}">${_(u'Walk')} 0.4 ${_(u'mile')} TODO=get_compass_direction(SW)</a> 
+                    <a href="TODO-render_walking_directions(leg)" title="${_(u'Show walking directions.')}">${walk_title}</a>
                     %elif leg['to']['stop'] and leg['transfer']:
-                    ${_(u'Go to')}
+                    ${_(u'Go')}
+                    %else:
+                    ${walk_title}
                     %endif
                     %if leg['to']['stop']:
-                    <a href="${leg['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
+                    <a href="${leg['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${_(u'to')} ${leg['to']['name']}</a>
+                    %else:
+                    ${_(u'to')} ${leg['to']['name']}
                     %endif
                 </h3>
                 %if leg['to']['stop']:
