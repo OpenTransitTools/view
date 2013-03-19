@@ -91,11 +91,6 @@ class Elevation(object):
         self.distance = "1111111" # could be walk / bike
 
 
-class Step(object):
-    def __init__(self, jsn, name=None):
-        self.alerts = None
-
-
 class Route(object):
     def __init__(self, jsn):
         self.agency_id = jsn['agencyId']
@@ -208,6 +203,50 @@ class Place(object):
         return p
 
 
+class Step(object):
+    def __init__(self, jsn):
+        self.name = jsn['streetName']
+        self.lat  = jsn['lat']
+        self.lon  = jsn['lon']
+        self.distance_feet  = jsn['distance']
+        self.distance = pretty_distance(self.distance_feet)
+        self.elevation = jsn['elevation']
+        self.compass_direction = self.get_direction(jsn['absoluteDirection'])
+        self.relative_direction = self.get_direction(jsn['relativeDirection'])
+        self.alerts = None
+
+    @classmethod
+    def get_direction(cls, dir):
+        ''' TODO localize me 
+        '''
+        ret_val = dir
+        try:
+            ret_val = {
+                'LEFT' : dir.lower(),
+                'RIGHT': dir.lower(),
+                'CONTINUE': dir.lower(),
+
+                'NORTH': dir.lower(),
+                'SOUTH': dir.lower(),
+                'EAST': dir.lower(),
+                'WEST': dir.lower(),
+                'NORTHEAST': dir.lower(),
+                'NORTHWEST': dir.lower(),
+                'SOUTHEAST': dir.lower(),
+                'SOUTHWEST': dir.lower(),
+            }[dir]
+        except:
+            pass
+
+        return ret_val
+
+    @classmethod
+    def get_relative_direction(cls, dir):
+        ''' '''
+        ret_val = dir
+        return ret_val
+
+
 class Leg(object):
     '''
     '''
@@ -221,10 +260,11 @@ class Leg(object):
         self.date_info = DateInfo(jsn)
 
         self.route = None
-        self.steps = None
+        self.steps = self.get_steps(jsn)
         self.alerts = None
         self.transfer = None
         self.interline = None
+        self.compass_direction = self.get_compass_direction()
         self.distance_feet = jsn['distance']
         self.distance = pretty_distance(self.distance_feet)
 
@@ -238,6 +278,25 @@ class Leg(object):
 
     def is_walk_or_bike_mode(self):
         return self.mode in ['BIKE', 'WALK', '... TODO is_X_mode() ... ']
+
+    def get_steps(self, jsn):
+        ret_val = None
+        if 'steps' in jsn and len(jsn['steps']) > 0:
+            ret_val = []
+            for s in jsn['steps']:
+                step = Step(s)
+                ret_val.append(step)
+
+        return ret_val
+
+    def get_compass_direction(self):
+        ret_val = None
+        if self.steps and len(self.steps) > 0:
+            v = self.steps[0].compass_direction
+            if v:
+                ret_val = v
+
+        return ret_val
 
 
 class Itinerary(object):
