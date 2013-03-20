@@ -99,8 +99,8 @@
     def render_leg(leg):
         ''' call render stuff above...
         '''
-        #if leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN):
-        if leg['mode'] in (util.attr.BUS, util.attr.TRAM):
+        if leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN):
+        #if leg['mode'] in (util.attr.BUS, util.attr.TRAM):
             return render_transit_leg(leg)
         elif leg['mode'] == util.attr.WALK:
             return render_walk_leg(leg)
@@ -109,13 +109,21 @@
         return ''
 %> 
 <%def name="get_route_name(route)">${route['name']}${' ' + _(u'to') + ' ' + route['headsign'] if route['headsign'] else ''}</%def>
+<%def name="get_route_link(route)">
+%if route is not None:
+<a href="${route['url']}" target="#" title="${_(u'Show map and schedules for this route.')}">${get_route_name(route)}</a>
+%else:
+${_(u'transit vehicle')}
+%endif
+</%def>
+<%def name="get_route_linkX(route)">%if route and route['url']:</%def>
 <%def name="render_transit_leg(leg)">
                 <h3>
                     <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
                     <b>
                         <a href="${leg['from']['stop']['schedule']} title="${_(u'Show schedule for')} ${leg['from']['name']}">${leg['date_info']['start_time']}</a>
                     </b>
-                    ${_(u'Board')} <a href="${leg['route']['url']}" target="#" title="${_(u'Show map and schedules for this route.')}">${get_route_name(leg['route'])}</a>
+                    ${_(u'Board')} ${get_route_link(leg['route'])}
                 </h3>
                 <h3>
                     <b>
