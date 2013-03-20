@@ -99,8 +99,7 @@
     def render_leg(leg):
         ''' call render stuff above...
         '''
-        if leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN):
-        #if leg['mode'] in (util.attr.BUS, util.attr.TRAM):
+        if leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN, util.attr.GONDOLA):
             return render_transit_leg(leg)
         elif leg['mode'] == util.attr.WALK:
             return render_walk_leg(leg)

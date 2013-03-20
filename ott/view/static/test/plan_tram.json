@@ -452,7 +452,15 @@
                     },
                     "interline": null,
                     "mode": "GONDOLA",
-                    "route": null,
+                    "route": {
+                        "agency_id": "TriMet",
+                        "agency_name": "TriMet",
+                        "headsign": "Marquam Hill",
+                        "id": "208",
+                        "name": "Portland Aerial Tram",
+                        "trip": "3636222",
+                        "url": "http://trimet.org/schedules/r208.htm"
+                    },
                     "steps": null,
                     "to": {
                         "lat": 45.499585,
@@ -1325,7 +1333,15 @@
                     },
                     "interline": null,
                     "mode": "GONDOLA",
-                    "route": null,
+                    "route": {
+                        "agency_id": "TriMet",
+                        "agency_name": "TriMet",
+                        "headsign": "Marquam Hill",
+                        "id": "208",
+                        "name": "Portland Aerial Tram",
+                        "trip": "3636223",
+                        "url": "http://trimet.org/schedules/r208.htm"
+                    },
                     "steps": null,
                     "to": {
                         "lat": 45.499585,
