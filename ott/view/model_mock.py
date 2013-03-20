@@ -33,7 +33,8 @@ class ModelMock(Model):
             elif  Model.TRANSIT in kwargs['mode'] and Model.BIKE in kwargs['mode']: return get_json('plan_bike_transit.json') 
             else: return get_json('plan_transit.json') 
         else:
-            return get_json('plan_error.json')
+            return get_json('plan_bike_transit.json')
+            #TODO - work on error return get_json('plan_error.json')
 
     def get_adverts(self, **kwargs):
         if Model.TRAIN in kwargs['mode']:
