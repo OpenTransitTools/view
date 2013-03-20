@@ -1,13 +1,1122 @@
-{"requestParameters":{"optimize":"SAFE","maxWalkDistance":"160","fromPlace":"45.466263,-122.658157","toPlace":"45.499757,-122.683852","mode":"WALK"},"plan":{"date":1361908525000,"from":{"name":"Southeast 8th Avenue","stopId":null,"stopCode":null,"lon":-122.6579904,"lat":45.466165,"arrival":null,"departure":null,"orig":null,"zoneId":null,"geometry":"{\"type\": \"Point\", \"coordinates\": [-122.6579904,45.466165]}"},"to":{"name":"corner of path and Southwest Campus Drive","stopId":null,"stopCode":null,"lon":-122.683852,"lat":45.499757,"arrival":null,"departure":null,"orig":null,"zoneId":null,"geometry":"{\"type\": \"Point\", \"coordinates\": [-122.683852,45.499757]}"},
-"itineraries":[
 {
-  "duration":4816000,"startTime":1361908525000,"endTime":1361913341000,"walkTime":4816,"transitTime":0,"waitingTime":0,
-  "walkDistance":6141.639161950916,"elevationLost":166.2360155068026,"elevationGained":71.82156550591162,"transfers":-1,"fare":null,
-    "legs":[
-    {
-     "startTime":1361908525000,"endTime":1361913341000,"distance":6141.639161950916,"mode":"WALK",
-     "route":"","agencyName":null,"agencyUrl":null,"agencyTimeZoneOffset":0,"routeColor":null,"routeId":null,"routeTextColor":null,
-     "interlineWithPreviousLeg":null,"tripShortName":null,"headsign":null,"agencyId":null,"tripId":null,
-     "from":{"name":"Southeast 8th Avenue","stopId":null,"stopCode":null,"lon":-122.6579904,"lat":45.466165,"arrival":null,"departure":null,"orig":null,"zoneId":null,"geometry":"{\"type\": \"Point\", \"coordinates\": [-122.6579904,45.466165]}"},"to":{"name":"corner of path and Southwest Campus Drive","stopId":null,"stopCode":null,"lon":-122.683852,"lat":45.499757,"arrival":1361913341000,"departure":1361913341000,"orig":null,"zoneId":null,"geometry":"{\"type\": \"Point\", \"coordinates\": [-122.683852,45.499757]}"},
-     "legGeometry":{
-         "points":"obotGnsskVpA?lC??hA?dB?X@|C?l@AnENBT?~@?LABDJ@@B?B?DH??J?xD?v@AH?HK`AAH?HChCMrRC|F?f@?f@@Z@b@@X@T?F@PG@G@M?gBEQ?SBOBq@Nu@R{@XcBl@cBr@]N[PQJUTYTUTc@h@e@f@KHSHYPYLSHQFGBKBo@HoAJOLI@mBLw@D_@Bc@@_ACKNu@I_@E_@Ek@Im@C]C[?c@@G@O?I@eBJ[@mCNK?cCLG@cCJiAHgALqATSFYFMBMBE@{Bd@iBb@a@JmDt@}@RiCp@gBb@IBMDaAPmAX{@Ts@Ru@TcA^UJ{B`AeFvBOFMBGBq@Re@La@H{@Nk@Fc@DA~E_CAG?K?wBAK?KAKAOAOEMCKCKGMI]QKGOGQEMCMCOCQAOAy@AG?S?gFCS?kDAgBAW??LAhBAN[IYC[Cc@C[P]BUB}ATeBVWDKBODWHWJULWNm@b@c@\\QN]V]XENGBEDIDM?IB_@ToClAe@RQH]PKDa@RyB`AMFDV@P?R?XDTm@XMBE?O@@JGFEHA@A??r@D?A\\ABEBEBSJMHIHEDEFCFCHAHAH?J@JBTBRBH@B@BA^OjAETELGFIHHRFIHIbAhBh@|@FLLTT`@Pd@J\\Jb@BTDh@NbBHdAH|@B^?@@j@A\\AFAFADEDCDCBEBGBGBI@IAEAGCEEECCGEKEUCYCo@Ea@C[AGCICGEEGIIMIQq@iAKSKQUa@U_@GIOQQUQSOQ","levels":null,"length":300},"notes":[{"text":"Caution!"}],"alerts":[{"alertHeaderText":{"translations":{"entry":[{"key":"en","value":"Caution!"}]},"someTranslation":"Caution!"}}],"routeShortName":null,"routeLongName":null,"boardRule":null,"alightRule":null,"rentedBike":null,"duration":4816000,"bogusNonTransitLeg":false,"steps":[{"distance":124.84008050112189,"relativeDirection":null,"streetName":"Southeast 8th Avenue","absoluteDirection":"SOUTH","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6579904,"lat":45.466165,"elevation":"0,12.2,10,12.1,20,11.9,30,11.8,40,11.7,46,11.7,46,11.7,56,11.8,66,11.8,76,12.0,86,12.2,96,12.3,106,12.5,116,12.6,125,12.5"},{"distance":239.5504272636254,"relativeDirection":"RIGHT","streetName":"Southeast Spokane Street","absoluteDirection":"WEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6579974,"lat":45.4650423,"elevation":"0,12.5,10,12.4,20,12.2,30,12.0,40,11.9,50,11.6,60,11.1,70,10.6,79,10.2,79,10.2,89,9.8,99,9.4,109,9.0,119,8.5,129,7.8,139,7.0,149,6.0,158,5.5,158,5.5,168,5.3,178,5.2,188,5.1,198,4.6,208,3.9,218,3.1,228,2.5,240,2.4"},{"distance":63.94929938836597,"relativeDirection":"LEFT","streetName":"Southeast Grand Avenue","absoluteDirection":"SOUTH","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6610691,"lat":45.4650405,"elevation":"0,2.4,10,2.5,20,4.0,30,5.7,40,6.6,50,6.8,64,6.4"},{"distance":15.75222330384751,"relativeDirection":"SLIGHTLY_RIGHT","streetName":"path","absoluteDirection":"SOUTH","exit":null,"stayOn":false,"bogusName":true,"lon":-122.6610736,"lat":45.4644672,"elevation":"0,6.4,10,6.2,16,6.3"},{"distance":4.881689204281931,"relativeDirection":"SLIGHTLY_LEFT","streetName":"path","absoluteDirection":"SOUTH","exit":null,"stayOn":true,"bogusName":true,"lon":-122.661181,"lat":45.4643705,"elevation":"0,6.3,5,6.2"},{"distance":4.9523768403906665,"relativeDirection":"RIGHT","streetName":"Southeast Tacoma Street","absoluteDirection":"WEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6611816,"lat":45.4643266,"elevation":"0,6.2,5,5.9","alerts":[{"alertHeaderText":{"translations":{"entry":[{"key":"en","value":"Caution!"}]},"someTranslation":"Caution!"}}]},{"distance":619.9809373265792,"relativeDirection":"CONTINUE","streetName":"Sellwood Bridge","absoluteDirection":"WEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6612451,"lat":45.464327,"elevation":"0,5.9,95,4.7,95,4.7,190,3.6,190,3.6,609,-1.4,609,-1.4,613,-0.5,613,-0.5,620,0.4","alerts":[{"alertHeaderText":{"translations":{"entry":[{"key":"en","value":"Caution!"}]},"someTranslation":"Caution!"}}]},{"distance":2529.4737667357585,"relativeDirection":"RIGHT","streetName":"Southwest Macadam Avenue","absoluteDirection":"NORTH","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6691763,"lat":45.4644674,"elevation":"0,0.4,10,-0.1,17,-0.9,17,-0.9,27,-1.7,37,-2.4,47,-2.8,57,-2.8,67,-2.8,77,-3.0,87,-3.3,97,-3.6,107,-3.6,117,-3.5,127,-3.5,133,-3.5,133,-3.5,143,-3.7,153,-3.8,164,-4.0,164,-4.0,174,-4.0,184,-4.9,194,-5.2,204,-5.3,214,-5.3,224,-5.4,234,-5.4,244,-5.5,254,-5.6,264,-5.5,274,-5.6,284,-5.6,294,-5.5,304,-5.5,314,-5.4,324,-5.3,334,-5.2,344,-5.1,354,-4.8,364,-4.3,374,-4.0,384,-4.2,394,-4.4,404,-4.6,414,-5.0,424,-5.5,435,-5.7,435,-5.7,445,-5.8,455,-5.7,469,-5.6,469,-5.6,479,-5.9,489,-6.1,499,-6.1,509,-6.3,519,-6.4,529,-6.4,539,-6.3,539,-6.3,549,-6.2,559,-6.3,569,-6.3,579,-6.4,589,-6.5,599,-6.5,609,-6.6,619,-6.6,629,-6.3,629,-6.3,634,-6.3,634,-6.3,644,-6.4,654,-6.4,664,-6.4,674,-6.4,684,-6.4,694,-6.4,704,-6.4,714,-6.6,724,-6.9,734,-7.3,744,-7.5,754,-7.6,765,-7.7,765,-7.7,775,-7.8,785,-7.9,795,-8.0,800,-8.1,800,-8.1,810,-7.9,820,-8.0,830,-8.2,840,-8.3,850,-8.5,860,-8.6,870,-8.7,880,-8.8,890,-8.8,900,-8.8,910,-8.8,920,-8.9,930,-9.0,940,-9.0,950,-9.1,959,-9.1,959,-9.1,969,-9.2,978,-9.2,978,-9.2,991,-9.2,991,-9.2,1001,-9.2,1011,-9.2,1021,-9.2,1031,-9.2,1041,-9.2,1054,-9.2,1054,-9.2,1064,-9.2,1070,-9.2,1070,-9.2,1080,-9.2,1090,-9.3,1100,-9.3,1110,-9.3,1120,-9.2,1130,-9.2,1140,-9.2,1149,-9.3,1149,-9.3,1156,-9.3,1156,-9.3,1166,-9.3,1176,-9.2,1186,-9.2,1196,-9.3,1206,-9.3,1216,-9.3,1229,-9.3,1229,-9.3,1234,-9.3,1234,-9.3,1244,-9.3,1254,-9.3,1264,-9.2,1274,-9.3,1284,-9.3,1294,-9.3,1308,-9.2,1308,-9.2,1318,-9.3,1328,-9.3,1338,-9.3,1348,-9.2,1358,-9.2,1368,-9.2,1378,-9.2,1389,-9.2,1389,-9.2,1399,-9.2,1409,-9.2,1419,-9.2,1429,-9.1,1439,-9.1,1447,-9.1,1447,-9.1,1457,-9.1,1469,-9.1,1469,-9.1,1481,-9.1,1481,-9.1,1491,-9.0,1501,-9.0,1511,-9.0,1521,-9.0,1531,-9.0,1541,-9.1,1551,-9.1,1551,-9.1,1561,-9.0,1571,-9.0,1581,-9.1,1591,-9.1,1601,-9.1,1612,-9.1,1612,-9.1,1622,-9.1,1632,-9.1,1632,-9.1,1642,-9.0,1652,-9.0,1662,-9.0,1672,-9.0,1682,-9.0,1692,-9.0,1702,-9.0,1712,-8.9,1722,-8.9,1732,-8.9,1742,-8.8,1752,-8.9,1765,-8.8,1765,-8.8,1775,-8.7,1785,-8.7,1795,-8.7,1805,-8.6,1815,-8.6,1825,-8.5,1835,-8.5,1845,-8.4,1855,-8.4,1865,-8.3,1875,-8.3,1885,-8.3,1895,-8.3,1905,-8.2,1911,-8.2,1911,-8.2,1921,-8.2,1931,-8.3,1941,-8.3,1951,-8.2,1961,-8.2,1971,-8.2,1981,-8.2,1991,-8.2,2001,-8.2,2011,-8.2,2021,-8.2,2031,-8.2,2041,-8.2,2051,-8.2,2064,-8.2,2064,-8.2,2074,-8.2,2084,-8.1,2094,-8.1,2104,-8.1,2114,-8.1,2124,-7.9,2134,-6.9,2144,-7.0,2154,-6.9,2164,-6.8,2174,-6.8,2184,-6.8,2194,-6.7,2204,-6.6,2214,-6.5,2222,-6.5,2222,-6.5,2232,-6.4,2242,-6.2,2252,-6.2,2262,-6.0,2272,-6.1,2282,-5.9,2292,-5.9,2302,-5.8,2312,-5.8,2322,-5.7,2332,-5.7,2342,-5.5,2352,-5.5,2362,-5.4,2368,-5.4,2368,-5.4,2381,-5.3,2381,-5.3,2391,-5.2,2401,-5.1,2411,-5.0,2421,-4.9,2431,-4.9,2441,-4.7,2451,-4.5,2450,-4.5,2460,-4.4,2470,-4.4,2480,-4.2,2490,-4.2,2500,-4.1,2510,-4.0,2520,-3.8,2529,-3.7","alerts":[{"alertHeaderText":{"translations":{"entry":[{"key":"en","value":"Caution!"}]},"someTranslation":"Caution!"}}]},{"distance":87.29019787886178,"relativeDirection":"LEFT","streetName":"Southwest Richardson Court","absoluteDirection":"WEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6756453,"lat":45.4864575,"elevation":"0,-3.7,10,-3.4,20,-2.3,30,-1.0,40,0.3,50,1.8,60,3.2,70,4.5,80,6.1,87,6.8"},{"distance":661.544123712162,"relativeDirection":"RIGHT","streetName":"Southwest Corbett Avenue","absoluteDirection":"NORTH","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6767649,"lat":45.4864695,"elevation":"0,6.8,10,7.1,20,7.5,30,8.5,40,9.6,50,10.6,60,11.7,71,12.7,71,12.7,76,13.1,76,13.1,82,13.4,82,13.4,92,13.8,102,14.5,112,15.4,122,16.1,132,16.9,142,17.7,156,18.9,156,18.9,166,19.6,178,20.6,178,20.6,188,21.5,198,21.8,208,22.2,218,22.6,228,23.4,238,23.8,253,25.1,253,25.1,339,28.7,339,21.5,344,23.7,344,23.7,355,29.3,355,29.3,365,32.2,375,33.7,385,34.5,395,35.2,405,35.8,415,36.6,425,37.3,435,38.0,445,38.7,455,39.2,465,39.7,475,40.2,483,40.6,483,40.6,495,41.1,495,41.1,505,41.5,515,42.0,525,42.4,535,42.8,545,43.2,555,43.6,565,44.1,575,44.5,585,44.8,595,45.0,605,45.1,615,45.1,625,45.1,635,45.2,648,45.2,648,45.2,662,45.2"},{"distance":53.20078617125971,"relativeDirection":"LEFT","streetName":"Southwest Bancroft Street","absoluteDirection":"WEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6762221,"lat":45.4923674,"elevation":"0,45.2,5,45.4,5,45.4,15,46.0,25,47.4,35,48.7,45,49.8,53,50.8"},{"distance":711.040440183642,"relativeDirection":"RIGHT","streetName":"Southwest Barbur Boulevard","absoluteDirection":"NORTH","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6769022,"lat":45.4923863,"elevation":"0,50.8,10,50.8,20,50.8,30,50.3,40,50.3,50,50.3,60,50.1,70,50.1,83,49.9,83,49.9,93,49.6,103,49.4,113,49.2,123,49.0,133,48.9,143,48.8,153,48.6,165,48.4,165,48.4,175,48.3,185,48.2,195,48.0,205,47.9,215,47.7,222,47.6,222,47.6,232,47.5,242,47.4,252,47.1,337,46.1,347,46.0,361,46.0,361,46.0,373,45.9,373,45.9,383,45.8,392,45.7,392,45.7,402,45.6,411,45.4,411,45.4,422,45.3,422,45.3,427,45.3,427,45.3,441,45.1,441,45.1,446,45.0,446,45.0,456,44.8,466,44.7,476,44.5,486,44.4,496,44.2,506,44.1,516,43.9,526,43.7,536,43.5,546,43.4,552,43.3,552,43.3,562,43.1,575,42.9,575,42.9,584,42.8,584,42.8,594,42.6,603,42.5,603,42.5,610,42.4,610,42.4,620,42.2,631,42.0,631,42.0,641,41.9,651,41.8,661,41.6,671,41.5,681,41.3,691,41.2,703,41.1,703,41.1,711,40.9"},{"distance":91.66066123143835,"relativeDirection":"LEFT","streetName":"service road","absoluteDirection":"WEST","exit":null,"stayOn":false,"bogusName":true,"lon":-122.6795777,"lat":45.4983711,"elevation":"0,40.9,10,41.0,20,44.4,30,46.7,44,52.2,44,52.2,54,52.6,64,52.0,74,51.1,84,49.8,92,48.4"},{"distance":5.18012024809227,"relativeDirection":"LEFT","streetName":"Southwest Whitaker Street","absoluteDirection":"WEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6802836,"lat":45.4987124,"elevation":"0,48.4,5,49.2"},{"distance":12.782274432285261,"relativeDirection":"RIGHT","streetName":"Whitaker Connector (path)","absoluteDirection":"NORTHWEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.680349,"lat":45.4987041,"elevation":"0,49.2,13,49.0"},{"distance":71.05228912868206,"relativeDirection":"LEFT","streetName":"Whitaker Connector","absoluteDirection":"WEST","exit":null,"stayOn":true,"bogusName":false,"lon":-122.6804468,"lat":45.4987943,"elevation":"0,49.0,10,53.2,20,56.7,30,60.3,36,62.9"},{"distance":96.94912749124448,"relativeDirection":"RIGHT","streetName":"Whitaker Connector (path)","absoluteDirection":"NORTHWEST","exit":null,"stayOn":true,"bogusName":false,"lon":-122.6808541,"lat":45.4987713,"elevation":"0,62.9,10,62.5,20,62.6,30,63.7,40,64.7,50,66.8,60,70.2,70,73.6,80,76.0,90,76.0,97,75.9"},{"distance":71.5248678088918,"relativeDirection":"SLIGHTLY_RIGHT","streetName":"Terwilliger Trail","absoluteDirection":"WEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6817528,"lat":45.4990937,"elevation":"0,75.9,10,75.8,20,75.5,30,75.3,40,75.0,50,74.7,60,74.4,72,73.7"},{"distance":9.213025506180694,"relativeDirection":"LEFT","streetName":"path","absoluteDirection":"SOUTHWEST","exit":null,"stayOn":false,"bogusName":true,"lon":-122.6825653,"lat":45.4993386,"elevation":"0,73.7,9,74.2"},{"distance":12.64959685600925,"relativeDirection":"LEFT","streetName":"Southwest Terwilliger Boulevard","absoluteDirection":"SOUTHEAST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6826602,"lat":45.4992892,"elevation":"0,74.2,13,74.7"},{"distance":654.1708507381965,"relativeDirection":"RIGHT","streetName":"Southwest Campus Drive","absoluteDirection":"SOUTHWEST","exit":null,"stayOn":false,"bogusName":false,"lon":-122.6825613,"lat":45.4991993,"elevation":"0,74.7,10,75.2,20,76.2,30,77.3,40,78.3,50,79.4,57,80.3,57,80.3,67,81.4,77,82.3,90,83.5,90,83.5,97,84.0,97,84.0,109,85.6,109,85.6,119,86.6,129,87.7,139,90.0,149,91.2,159,92.8,173,91.6,173,91.6,183,91.3,193,92.9,203,94.3,213,95.5,223,96.5,233,97.4,243,98.2,253,98.0,263,99.4,273,99.7,283,100.4,292,101.0,292,101.0,304,101.8,304,101.8,314,102.5,324,103.5,334,104.3,334,104.3,344,105.2,351,105.4,351,105.4,362,106.0,362,106.0,372,106.9,382,107.7,392,108.0,402,107.7,412,108.6,422,108.7,432,108.9,442,108.4,452,106.3,462,108.5,474,108.8,474,108.8,482,108.9,482,108.9,492,109.3,504,109.7,504,109.7,514,108.2,524,107.6,534,108.2,544,107.8,554,107.5,564,107.4,574,106.6,584,104.8,594,102.1,600,101.7,600,101.7,605,101.2,605,101.2,615,99.5,630,100.9,630,100.9,640,103.7,654,106.6"}]}],"tooSloped":false}]}}
+    "arrive_by": false,
+    "from": {
+        "lat": 45.50481328630658,
+        "lon": -122.64243838083587,
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.642438381,45.5048132863/extraparams/format_options=layout:start",
+        "name": "",
+        "stop": null
+    },
+    "itineraries": [
+        {
+            "date_info": {
+                "bike_time_hours": null,
+                "bike_time_mins": null,
+                "date": "3/19/2013",
+                "drive_time_hours": null,
+                "drive_time_mins": null,
+                "duration": "32 minutes",
+                "duration_ms": 1947000,
+                "end_time": " 10:12pm",
+                "end_time_ms": 1363727560000,
+                "end_transit": "TODO",
+                "extended": true,
+                "pretty_date": "Tuesday, March 19, 2013",
+                "start_time": "9:40pm",
+                "start_time_ms": 1363725613000,
+                "start_transit": "TODO",
+                "text": "",
+                "total_time_hours": null,
+                "total_time_mins": 32.0,
+                "transit_time_hours": null,
+                "transit_time_mins": null,
+                "wait_time_hours": null,
+                "wait_time_mins": null,
+                "walk_time_hours": null,
+                "walk_time_mins": 32.0
+            },
+            "elevation": {
+                "distance": "1111111",
+                "high": "190.4",
+                "low": "187.2",
+                "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+            },
+            "fare": {
+                "adult": "$2.50",
+                "adult_day": "$5.00",
+                "honored": "$1.00",
+                "honored_day": "$2.00",
+                "tram": "$4.00",
+                "youth": "$1.65",
+                "youth_day": "$3.30"
+            },
+            "legs": [
+                {
+                    "alerts": null,
+                    "compass_direction": "west",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "32 minutes",
+                        "duration_ms": 1921000,
+                        "end_time": " 10:12pm",
+                        "end_time_ms": 1363727534000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": "9:40pm",
+                        "start_time_ms": 1363725613000
+                    },
+                    "distance": "1/2 mile",
+                    "distance_feet": 2529.5250729040076,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.50481328630658,
+                        "lon": -122.64243838083587,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.642438381,45.5048132863/extraparams/format_options=layout:start",
+                        "name": "",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 10.639230552291965,
+                            "elevation": [],
+                            "lat": 45.50481328630658,
+                            "lon": -122.64243838083587,
+                            "name": "",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 194.80673969937703,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 3.3987841606140137
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 3.103847026824951
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 2.7489092350006104
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": 2.3374226093292236
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": 1.928382396697998
+                                },
+                                {
+                                    "first": 50.0,
+                                    "second": 1.51486074924469
+                                },
+                                {
+                                    "first": 56.91679763793945,
+                                    "second": 1.2450209856033325
+                                },
+                                {
+                                    "first": 77.97937384671299,
+                                    "second": 0.5781523459118354
+                                },
+                                {
+                                    "first": 87.97937384671299,
+                                    "second": 0.3983396756669144
+                                },
+                                {
+                                    "first": 97.97937384671299,
+                                    "second": 0.0016155160516255762
+                                },
+                                {
+                                    "first": 107.97937384671299,
+                                    "second": -0.3789221506762246
+                                },
+                                {
+                                    "first": 117.97937384671299,
+                                    "second": -0.8053116613308617
+                                },
+                                {
+                                    "first": 127.97937384671299,
+                                    "second": -1.2599981815081236
+                                },
+                                {
+                                    "first": 137.97937384671297,
+                                    "second": -1.595990100805924
+                                },
+                                {
+                                    "first": 147.97937384671297,
+                                    "second": -1.926546026519052
+                                },
+                                {
+                                    "first": 158.06939190704918,
+                                    "second": -2.061657875342423
+                                },
+                                {
+                                    "first": 158.06939190704736,
+                                    "second": -2.061657875342423
+                                },
+                                {
+                                    "first": 168.06939190704736,
+                                    "second": -2.260128619225508
+                                },
+                                {
+                                    "first": 178.06939190704736,
+                                    "second": -2.299371577064335
+                                },
+                                {
+                                    "first": 188.06939190704736,
+                                    "second": -2.4006290507246035
+                                },
+                                {
+                                    "first": 194.80673969937743,
+                                    "second": -2.518771249248477
+                                }
+                            ],
+                            "lat": 45.5048138,
+                            "lon": -122.6425749,
+                            "name": "Southeast Division Street",
+                            "relative_direction": "continue"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "northwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 504.82957617180654,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -2.518771249248477
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -2.469630095275061
+                                },
+                                {
+                                    "first": 15.86947843761789,
+                                    "second": -2.456531510022547
+                                },
+                                {
+                                    "first": 15.86947843761789,
+                                    "second": -2.456531524658203
+                                },
+                                {
+                                    "first": 25.86947843761789,
+                                    "second": -2.5764060020446777
+                                },
+                                {
+                                    "first": 25.972674581721893,
+                                    "second": -2.576711416244507
+                                },
+                                {
+                                    "first": 300.84154476704805,
+                                    "second": -4.157535971088553
+                                },
+                                {
+                                    "first": 308.96423358793186,
+                                    "second": -4.209478902453441
+                                },
+                                {
+                                    "first": 308.96423358793186,
+                                    "second": -4.209478902453441
+                                },
+                                {
+                                    "first": 316.72155729417364,
+                                    "second": -4.226712802588093
+                                },
+                                {
+                                    "first": 490.4587887037819,
+                                    "second": -5.363466298706172
+                                },
+                                {
+                                    "first": 504.82957617180654,
+                                    "second": -5.349374918390797
+                                }
+                            ],
+                            "lat": 45.5048222,
+                            "lon": -122.6450746,
+                            "name": "Southeast Ladd Avenue",
+                            "relative_direction": "right"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "north",
+                            "distance": "1/10 mile",
+                            "distance_feet": 101.45049320625566,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -5.349374918390797
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -5.379210968971744
+                                },
+                                {
+                                    "first": 22.16502080442502,
+                                    "second": -5.465364695646468
+                                },
+                                {
+                                    "first": 22.16502080442502,
+                                    "second": -5.465364695646468
+                                },
+                                {
+                                    "first": 32.16502080442502,
+                                    "second": -5.512732566851334
+                                },
+                                {
+                                    "first": 42.16502080442502,
+                                    "second": -5.444161370267867
+                                },
+                                {
+                                    "first": 52.16502080442502,
+                                    "second": -5.5448101389557785
+                                },
+                                {
+                                    "first": 59.911388311095074,
+                                    "second": -5.466102387605261
+                                },
+                                {
+                                    "first": 89.40365577861756,
+                                    "second": -5.466102600097656
+                                },
+                                {
+                                    "first": 99.40365577861756,
+                                    "second": -5.66888427734375
+                                },
+                                {
+                                    "first": 106.95842338726014,
+                                    "second": -5.569591045379639
+                                }
+                            ],
+                            "lat": 45.5083514,
+                            "lon": -122.6489474,
+                            "name": "Southeast Ladd Circle",
+                            "relative_direction": "CIRCLE_COUNTERCLOCKWISE"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 498.11892979321476,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -5.743490808390266
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -5.895324880745179
+                                },
+                                {
+                                    "first": 15.44388436267111,
+                                    "second": -5.90928114549563
+                                },
+                                {
+                                    "first": 15.44388436267111,
+                                    "second": -5.909281145495631
+                                },
+                                {
+                                    "first": 28.946963794233312,
+                                    "second": -6.056694612767714
+                                },
+                                {
+                                    "first": 28.946963794233312,
+                                    "second": -6.056694507598877
+                                },
+                                {
+                                    "first": 38.94696379423331,
+                                    "second": -6.110057353973389
+                                },
+                                {
+                                    "first": 48.94696379423331,
+                                    "second": -6.170225143432617
+                                },
+                                {
+                                    "first": 58.94696379423331,
+                                    "second": -6.235152721405029
+                                },
+                                {
+                                    "first": 68.94696379423331,
+                                    "second": -6.3103928565979
+                                },
+                                {
+                                    "first": 78.94696379423331,
+                                    "second": -6.358452320098877
+                                },
+                                {
+                                    "first": 88.94696379423331,
+                                    "second": -6.394436836242676
+                                },
+                                {
+                                    "first": 98.94696379423331,
+                                    "second": -6.48567533493042
+                                },
+                                {
+                                    "first": 108.94696379423331,
+                                    "second": -6.539814472198486
+                                },
+                                {
+                                    "first": 118.94696379423331,
+                                    "second": -6.583733558654785
+                                },
+                                {
+                                    "first": 128.9469637942333,
+                                    "second": -6.609591960906982
+                                },
+                                {
+                                    "first": 138.9469637942333,
+                                    "second": -6.650923728942871
+                                },
+                                {
+                                    "first": 148.9469637942333,
+                                    "second": -6.78269100189209
+                                },
+                                {
+                                    "first": 158.9469637942333,
+                                    "second": -6.791097640991211
+                                },
+                                {
+                                    "first": 168.9469637942333,
+                                    "second": -6.851560115814209
+                                },
+                                {
+                                    "first": 178.9469637942333,
+                                    "second": -6.940825462341309
+                                },
+                                {
+                                    "first": 188.9469637942333,
+                                    "second": -7.003574371337891
+                                },
+                                {
+                                    "first": 190.24524260282706,
+                                    "second": -7.008556365966797
+                                },
+                                {
+                                    "first": 220.9807330653561,
+                                    "second": -7.05258215355784
+                                },
+                                {
+                                    "first": 230.7113344108359,
+                                    "second": -7.079466195759688
+                                },
+                                {
+                                    "first": 230.7113344108359,
+                                    "second": -7.079466195759688
+                                },
+                                {
+                                    "first": 235.63530911675264,
+                                    "second": -7.086935465137497
+                                },
+                                {
+                                    "first": 235.63530911675264,
+                                    "second": -7.086935465137497
+                                },
+                                {
+                                    "first": 240.2434431939878,
+                                    "second": -6.96551037769564
+                                },
+                                {
+                                    "first": 373.1503930068806,
+                                    "second": -7.991997145748613
+                                },
+                                {
+                                    "first": 383.1503930068806,
+                                    "second": -8.057746223054828
+                                },
+                                {
+                                    "first": 397.2973478504877,
+                                    "second": -8.146987627992367
+                                },
+                                {
+                                    "first": 397.2973478504877,
+                                    "second": -8.146987627992367
+                                },
+                                {
+                                    "first": 407.2973478504877,
+                                    "second": -8.17652691231291
+                                },
+                                {
+                                    "first": 417.2973478504877,
+                                    "second": -8.258054277328366
+                                },
+                                {
+                                    "first": 427.2973478504877,
+                                    "second": -8.348303999941391
+                                },
+                                {
+                                    "first": 440.91172705685784,
+                                    "second": -8.397860602592672
+                                },
+                                {
+                                    "first": 440.91172705685784,
+                                    "second": -8.397860527038574
+                                },
+                                {
+                                    "first": 450.91172705685784,
+                                    "second": -8.464107513427734
+                                },
+                                {
+                                    "first": 459.3520251373022,
+                                    "second": -8.501811981201172
+                                },
+                                {
+                                    "first": 483.3452402664251,
+                                    "second": -8.529848185216515
+                                },
+                                {
+                                    "first": 498.11892979321476,
+                                    "second": -8.770101116150459
+                                }
+                            ],
+                            "lat": 45.5089108,
+                            "lon": -122.6495772,
+                            "name": "Southeast Ladd Avenue",
+                            "relative_direction": "SLIGHTLY_RIGHT"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 315.6510743655897,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -8.770101116150459
+                                },
+                                {
+                                    "first": 6.732586635999991,
+                                    "second": -8.78050287929878
+                                },
+                                {
+                                    "first": 6.732586635999991,
+                                    "second": -8.780503273010254
+                                },
+                                {
+                                    "first": 14.09193254893334,
+                                    "second": -8.710016250610352
+                                },
+                                {
+                                    "first": 28.72127258515809,
+                                    "second": -8.87083385984199
+                                },
+                                {
+                                    "first": 38.72127258515809,
+                                    "second": -8.918796015899582
+                                },
+                                {
+                                    "first": 48.72127258515809,
+                                    "second": -8.985433392862914
+                                },
+                                {
+                                    "first": 58.72127258515809,
+                                    "second": -8.964168299167813
+                                },
+                                {
+                                    "first": 68.72127258515809,
+                                    "second": -8.87238881629604
+                                },
+                                {
+                                    "first": 78.87512333786802,
+                                    "second": -8.824798336083125
+                                },
+                                {
+                                    "first": 78.87512333788086,
+                                    "second": -8.824798336083125
+                                },
+                                {
+                                    "first": 88.87512333788086,
+                                    "second": -8.822759671377636
+                                },
+                                {
+                                    "first": 98.87512333788086,
+                                    "second": -8.896896831573569
+                                },
+                                {
+                                    "first": 108.87512333788086,
+                                    "second": -8.923378912677622
+                                },
+                                {
+                                    "first": 118.87512333788086,
+                                    "second": -8.949680517817699
+                                },
+                                {
+                                    "first": 128.87512333788086,
+                                    "second": -9.002900387539725
+                                },
+                                {
+                                    "first": 138.87512333788086,
+                                    "second": -9.029289895404448
+                                },
+                                {
+                                    "first": 148.87512333788086,
+                                    "second": -9.010932631264216
+                                },
+                                {
+                                    "first": 157.7584899083555,
+                                    "second": -9.000990088304448
+                                },
+                                {
+                                    "first": 157.75848990835493,
+                                    "second": -9.000990088304448
+                                },
+                                {
+                                    "first": 167.75848990835493,
+                                    "second": -9.02259781794816
+                                },
+                                {
+                                    "first": 177.75848990835493,
+                                    "second": -9.050673409386233
+                                },
+                                {
+                                    "first": 187.75848990835493,
+                                    "second": -9.110937745288869
+                                },
+                                {
+                                    "first": 197.75848990835493,
+                                    "second": -9.145268921219499
+                                },
+                                {
+                                    "first": 207.75848990835493,
+                                    "second": -9.175241281317213
+                                },
+                                {
+                                    "first": 217.75848990835493,
+                                    "second": -9.208714576362354
+                                },
+                                {
+                                    "first": 227.75848990835493,
+                                    "second": -9.26455244234427
+                                },
+                                {
+                                    "first": 236.7468001316247,
+                                    "second": -9.229758657609237
+                                },
+                                {
+                                    "first": 236.74680013162424,
+                                    "second": -9.229758262634277
+                                },
+                                {
+                                    "first": 246.74680013162424,
+                                    "second": -9.235994338989258
+                                },
+                                {
+                                    "first": 248.64959783059885,
+                                    "second": -9.202142715454102
+                                }
+                            ],
+                            "lat": 45.512191,
+                            "lon": -122.6536904,
+                            "name": "Southeast Hawthorne Boulevard",
+                            "relative_direction": "SLIGHTLY_LEFT"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "north",
+                            "distance": "1/10 mile",
+                            "distance_feet": 76.90277869755009,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -7.768556075130711
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -7.773150477610757
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": -7.870392986533046
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": -8.030392444163228
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": -8.208593575252916
+                                },
+                                {
+                                    "first": 50.0,
+                                    "second": -8.371701497130333
+                                },
+                                {
+                                    "first": 60.0,
+                                    "second": -8.51474700986198
+                                },
+                                {
+                                    "first": 70.0,
+                                    "second": -8.665914283587291
+                                },
+                                {
+                                    "first": 76.90277869785221,
+                                    "second": -8.698122098676999
+                                }
+                            ],
+                            "lat": 45.512235,
+                            "lon": -122.6577375,
+                            "name": "Southeast 8th Avenue",
+                            "relative_direction": "right"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 76.32007497503731,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -8.698122024536133
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -8.652837753295898
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": -8.354129791259766
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": -8.05009651184082
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": -7.737405776977539
+                                },
+                                {
+                                    "first": 50.0,
+                                    "second": -7.333488464355469
+                                },
+                                {
+                                    "first": 57.01455307006836,
+                                    "second": -7.037775993347168
+                                }
+                            ],
+                            "lat": 45.5129266,
+                            "lon": -122.657735,
+                            "name": "Southeast Madison Street",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "north",
+                            "distance": "1/10 mile",
+                            "distance_feet": 159.37767191351276,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -6.616163755545806
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -6.672633601163202
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": -6.811046164291245
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": -6.936906028237017
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": -7.03550404439401
+                                },
+                                {
+                                    "first": 50.0,
+                                    "second": -7.12436248878625
+                                },
+                                {
+                                    "first": 60.0,
+                                    "second": -7.209846827456774
+                                },
+                                {
+                                    "first": 70.0,
+                                    "second": -7.2695519931908965
+                                },
+                                {
+                                    "first": 79.70550405697684,
+                                    "second": -7.255886765751624
+                                },
+                                {
+                                    "first": 79.70550405673107,
+                                    "second": -7.255886765751624
+                                },
+                                {
+                                    "first": 89.70550405673107,
+                                    "second": -7.294797847232372
+                                },
+                                {
+                                    "first": 99.70550405673107,
+                                    "second": -7.445750377791523
+                                },
+                                {
+                                    "first": 109.70550405673107,
+                                    "second": -7.546216071313442
+                                },
+                                {
+                                    "first": 119.70550405673107,
+                                    "second": -7.622328840267521
+                                },
+                                {
+                                    "first": 129.70550405673106,
+                                    "second": -7.702624635865
+                                },
+                                {
+                                    "first": 139.70550405673106,
+                                    "second": -7.793017239319564
+                                },
+                                {
+                                    "first": 149.70550405673106,
+                                    "second": -7.854747655613078
+                                },
+                                {
+                                    "first": 159.37767191379362,
+                                    "second": -7.837528555458247
+                                }
+                            ],
+                            "lat": 45.5129367,
+                            "lon": -122.6587141,
+                            "name": "Southeast 7th Avenue",
+                            "relative_direction": "right"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 242.5530024076413,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -7.837528555458247
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -7.713583430756003
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": -7.581300382900826
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": -7.393513096170002
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": -7.1908818823307925
+                                },
+                                {
+                                    "first": 50.0,
+                                    "second": -6.971864366473056
+                                },
+                                {
+                                    "first": 60.0,
+                                    "second": -6.750512821339143
+                                },
+                                {
+                                    "first": 70.0,
+                                    "second": -6.550694951809366
+                                },
+                                {
+                                    "first": 81.62793949302093,
+                                    "second": -6.411005145366694
+                                },
+                                {
+                                    "first": 81.6279394930211,
+                                    "second": -6.411005145366694
+                                },
+                                {
+                                    "first": 91.6279394930211,
+                                    "second": -6.226172949628683
+                                },
+                                {
+                                    "first": 101.6279394930211,
+                                    "second": -6.026879862308206
+                                },
+                                {
+                                    "first": 111.6279394930211,
+                                    "second": -5.836997303277595
+                                },
+                                {
+                                    "first": 121.6279394930211,
+                                    "second": -5.609877676977931
+                                },
+                                {
+                                    "first": 131.6279394930211,
+                                    "second": -5.364599042969207
+                                },
+                                {
+                                    "first": 141.6279394930211,
+                                    "second": -5.142142555853042
+                                },
+                                {
+                                    "first": 151.6279394930211,
+                                    "second": -4.903210392187578
+                                },
+                                {
+                                    "first": 160.809360419891,
+                                    "second": -4.830599649458556
+                                },
+                                {
+                                    "first": 160.80936041989284,
+                                    "second": -4.830599649458556
+                                },
+                                {
+                                    "first": 170.80936041989284,
+                                    "second": -4.840627960411492
+                                },
+                                {
+                                    "first": 180.80936041989284,
+                                    "second": -5.039848017010431
+                                },
+                                {
+                                    "first": 190.80936041989284,
+                                    "second": -5.433722292853087
+                                },
+                                {
+                                    "first": 200.80936041989284,
+                                    "second": -5.839902962061306
+                                },
+                                {
+                                    "first": 210.80936041989284,
+                                    "second": -6.248183927422126
+                                },
+                                {
+                                    "first": 220.80936041989284,
+                                    "second": -6.628081944195429
+                                },
+                                {
+                                    "first": 230.80936041989284,
+                                    "second": -7.028452777317474
+                                },
+                                {
+                                    "first": 242.55300240764132,
+                                    "second": -7.286469466678449
+                                }
+                            ],
+                            "lat": 45.51437,
+                            "lon": -122.6587062,
+                            "name": "Southeast Salmon Street",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "north",
+                            "distance": "1/10 mile",
+                            "distance_feet": 315.73487559569793,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -7.286469459533691
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -7.349106788635254
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": -7.430120944976807
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": -7.551041126251221
+                                },
+                                {
+                                    "first": 32.25584030151367,
+                                    "second": -7.583572864532471
+                                },
+                                {
+                                    "first": 78.71625687094573,
+                                    "second": -8.194525383381572
+                                },
+                                {
+                                    "first": 88.71625687094573,
+                                    "second": -8.145164397613707
+                                },
+                                {
+                                    "first": 101.29182370843019,
+                                    "second": -8.301261270066481
+                                },
+                                {
+                                    "first": 101.29182370831101,
+                                    "second": -8.301261270066481
+                                },
+                                {
+                                    "first": 111.29182370831101,
+                                    "second": -8.379839340936652
+                                },
+                                {
+                                    "first": 121.29182370831101,
+                                    "second": -8.528656469854257
+                                },
+                                {
+                                    "first": 131.29182370831103,
+                                    "second": -8.6294362575056
+                                },
+                                {
+                                    "first": 141.29182370831103,
+                                    "second": -8.722741748883928
+                                },
+                                {
+                                    "first": 151.29182370831103,
+                                    "second": -8.839721777786377
+                                },
+                                {
+                                    "first": 158.5800656089198,
+                                    "second": -8.915156744162038
+                                },
+                                {
+                                    "first": 158.580065608731,
+                                    "second": -8.915156744162038
+                                },
+                                {
+                                    "first": 168.580065608731,
+                                    "second": -9.020098399630266
+                                },
+                                {
+                                    "first": 178.580065608731,
+                                    "second": -9.123462957050636
+                                },
+                                {
+                                    "first": 188.580065608731,
+                                    "second": -9.221630272146607
+                                },
+                                {
+                                    "first": 198.580065608731,
+                                    "second": -9.31849270984506
+                                },
+                                {
+                                    "first": 208.580065608731,
+                                    "second": -9.432232853088294
+                                },
+                                {
+                                    "first": 218.580065608731,
+                                    "second": -9.549187209253068
+                                },
+                                {
+                                    "first": 232.07922999659252,
+                                    "second": -9.694932511084302
+                                },
+                                {
+                                    "first": 232.07922999630952,
+                                    "second": -9.694932511084302
+                                },
+                                {
+                                    "first": 242.07922999630952,
+                                    "second": -9.677594885275445
+                                },
+                                {
+                                    "first": 247.5803283967361,
+                                    "second": -9.731064406115628
+                                },
+                                {
+                                    "first": 247.58032839639054,
+                                    "second": -9.731064796447754
+                                },
+                                {
+                                    "first": 257.58032839639054,
+                                    "second": -9.947442054748535
+                                },
+                                {
+                                    "first": 267.58032839639054,
+                                    "second": -10.201587677001953
+                                },
+                                {
+                                    "first": 277.58032839639054,
+                                    "second": -10.426234245300293
+                                },
+                                {
+                                    "first": 286.0456108365761,
+                                    "second": -10.586935043334961
+                                },
+                                {
+                                    "first": 299.83214179864945,
+                                    "second": -10.820878138540616
+                                },
+                                {
+                                    "first": 309.83214179864945,
+                                    "second": -10.943955722922945
+                                },
+                                {
+                                    "first": 315.7348755955695,
+                                    "second": -10.948071325316548
+                                }
+                            ],
+                            "lat": 45.5143795,
+                            "lon": -122.6618191,
+                            "name": "Southeast Martin Luther King, Junior Boulevard",
+                            "relative_direction": "right"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 33.14062552603269,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": -10.948071479797363
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": -11.218749046325684
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": -11.302267074584961
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": -11.452017784118652
+                                },
+                                {
+                                    "first": 33.140625,
+                                    "second": -11.490078926086426
+                                }
+                            ],
+                            "lat": 45.517217,
+                            "lon": -122.6618163,
+                            "name": "",
+                            "relative_direction": "left"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.51721790237232,
+                        "lon": -122.662241647749,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.662241648,45.5172179024/extraparams/format_options=layout:end",
+                        "name": "",
+                        "stop": null
+                    },
+                    "transfer": null
+                }
+            ],
+            "selected": true,
+            "transfers": -1,
+            "url": null
+        }
+    ],
+    "optimize": "QUICK",
+    "params": "TODO TODO TODO",
+    "to": {
+        "lat": 45.51721790237232,
+        "lon": -122.662241647749,
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.662241648,45.5172179024/extraparams/format_options=layout:end",
+        "name": "",
+        "stop": null
+    }
+}

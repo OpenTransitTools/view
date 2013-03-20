@@ -1,0 +1,1938 @@
+{
+    "arrive_by": false,
+    "from": {
+        "lat": 45.51853564579469,
+        "lon": -122.6918745340708,
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
+        "name": "",
+        "stop": null
+    },
+    "itineraries": [
+        {
+            "date_info": {
+                "bike_time_hours": null,
+                "bike_time_mins": null,
+                "date": "3/19/2013",
+                "drive_time_hours": null,
+                "drive_time_mins": null,
+                "duration": "34 minutes",
+                "duration_ms": 2043000,
+                "end_time": " 10:17pm",
+                "end_time_ms": 1363727873000,
+                "end_transit": "TODO",
+                "extended": true,
+                "pretty_date": "Tuesday, March 19, 2013",
+                "start_time": "9:43pm",
+                "start_time_ms": 1363725830000,
+                "start_transit": "TODO",
+                "text": "",
+                "total_time_hours": null,
+                "total_time_mins": 34.0,
+                "transit_time_hours": null,
+                "transit_time_mins": 23.0,
+                "wait_time_hours": null,
+                "wait_time_mins": 5.0,
+                "walk_time_hours": null,
+                "walk_time_mins": 4.0
+            },
+            "elevation": {
+                "distance": "1111111",
+                "high": "190.4",
+                "low": "187.2",
+                "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+            },
+            "fare": {
+                "adult": "$2.50",
+                "adult_day": "$5.00",
+                "honored": "$1.00",
+                "honored_day": "$2.00",
+                "tram": "$4.00",
+                "youth": "$1.65",
+                "youth_day": "$3.30"
+            },
+            "legs": [
+                {
+                    "alerts": null,
+                    "compass_direction": "west",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "2 minutes",
+                        "duration_ms": 159000,
+                        "end_time": "9:46pm",
+                        "end_time_ms": 1363725989000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": "9:43pm",
+                        "start_time_ms": 1363725830000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 187.16915671542841,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.51853564579469,
+                        "lon": -122.6918745340708,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
+                        "name": "",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 35.722516917726615,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.852291107177734
+                                },
+                                {
+                                    "first": 3.7889020442962646,
+                                    "second": 13.34641170501709
+                                },
+                                {
+                                    "first": 13.788902282714844,
+                                    "second": 13.966172218322754
+                                },
+                                {
+                                    "first": 23.788902282714844,
+                                    "second": 14.535426139831543
+                                },
+                                {
+                                    "first": 35.72251510620117,
+                                    "second": 15.042624473571777
+                                }
+                            ],
+                            "lat": 45.51853564579469,
+                            "lon": -122.6918745340708,
+                            "name": "",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 11.734592397304947,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 15.042624174437087
+                                },
+                                {
+                                    "first": 11.734592397304947,
+                                    "second": 15.123717979304867
+                                }
+                            ],
+                            "lat": 45.5186516,
+                            "lon": -122.6923028,
+                            "name": "Southwest Madison Street",
+                            "relative_direction": "continue"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 63.926181205107426,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 15.123717979304867
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 14.794008178465141
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 14.327177318804036
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": 13.810349633611743
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": 13.245442421717161
+                                },
+                                {
+                                    "first": 50.0,
+                                    "second": 12.805067204383533
+                                },
+                                {
+                                    "first": 63.926181205107426,
+                                    "second": 12.35152883784593
+                                }
+                            ],
+                            "lat": 45.5186898,
+                            "lon": -122.6924432,
+                            "name": "Southwest 18th Avenue",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 32.688935665841086,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.35152883784593
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 12.24034159185182
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 12.357373298289112
+                                },
+                                {
+                                    "first": 28.85068589696176,
+                                    "second": 12.597309889874655
+                                },
+                                {
+                                    "first": 28.85068589696176,
+                                    "second": 12.597309889874655
+                                },
+                                {
+                                    "first": 32.688935665841086,
+                                    "second": 12.691946829591188
+                                }
+                            ],
+                            "lat": 45.5181568,
+                            "lon": -122.6927504,
+                            "name": "Southwest Jefferson Street",
+                            "relative_direction": "SLIGHTLY_RIGHT"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 24.91355253185403,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.691946829591188
+                                },
+                                {
+                                    "first": 6.93759408805253,
+                                    "second": 12.826216493894009
+                                },
+                                {
+                                    "first": 6.93759408805253,
+                                    "second": 12.826216493894009
+                                },
+                                {
+                                    "first": 13.597734491826769,
+                                    "second": 13.035996741078861
+                                },
+                                {
+                                    "first": 13.597734491826769,
+                                    "second": 13.035996741078861
+                                },
+                                {
+                                    "first": 24.91355253185403,
+                                    "second": 13.416063018690942
+                                }
+                            ],
+                            "lat": 45.5181019,
+                            "lon": -122.6931451,
+                            "name": "path",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 18.183377997594302,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 13.41606330871582
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 14.031145095825195
+                                },
+                                {
+                                    "first": 18.183378219604492,
+                                    "second": 14.368366241455078
+                                }
+                            ],
+                            "lat": 45.5179217,
+                            "lon": -122.6933287,
+                            "name": "Goose Hollow Eastbound MAX Platform (path)",
+                            "relative_direction": "right"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.517989,
+                        "lon": -122.693544,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
+                        "name": "Goose Hollow/SW Jefferson St MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10118",
+                            "info": "stop.html?stop_id=10118",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10118"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": null,
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "6 minutes",
+                        "duration_ms": 410000,
+                        "end_time": "9:53pm",
+                        "end_time_ms": 1363726400000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": "9:46pm",
+                        "start_time_ms": 1363725990000
+                    },
+                    "distance": "2/9 mile",
+                    "distance_feet": 1156.9945992596413,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.517989,
+                        "lon": -122.693544,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
+                        "name": "Goose Hollow/SW Jefferson St MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10118",
+                            "info": "stop.html?stop_id=10118",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10118"
+                        }
+                    },
+                    "interline": null,
+                    "mode": "TRAM",
+                    "route": {
+                        "agency_id": "TriMet",
+                        "agency_name": "TriMet",
+                        "headsign": "Gresham",
+                        "id": "100",
+                        "name": "MAX Blue Line",
+                        "trip": "3578248",
+                        "url": "http://trimet.org/schedules/r100.htm"
+                    },
+                    "steps": null,
+                    "to": {
+                        "lat": 45.51916,
+                        "lon": -122.68162,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
+                        "name": "Library/SW 9th Ave MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "8333",
+                            "info": "stop.html?stop_id=8333",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=8333"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": "west",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "1 minute",
+                        "duration_ms": 64000,
+                        "end_time": "9:59pm",
+                        "end_time_ms": 1363726799000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": "9:58pm",
+                        "start_time_ms": 1363726735000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 79.83062275299528,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.51917274418673,
+                        "lon": -122.68161652398626,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
+                        "name": "Southwest Yamhill Street (sidewalk)",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 59.77078514413169,
+                            "elevation": [
+                                {
+                                    "first": 50.978961172797945,
+                                    "second": 1.790135807017137
+                                },
+                                {
+                                    "first": 60.978961172797945,
+                                    "second": 2.013425473133026
+                                },
+                                {
+                                    "first": 70.97896117279794,
+                                    "second": 2.424982050798558
+                                },
+                                {
+                                    "first": 85.26026573053068,
+                                    "second": 2.816370832955087
+                                }
+                            ],
+                            "lat": 45.51917274418673,
+                            "lon": -122.68161652398626,
+                            "name": "Southwest Yamhill Street (sidewalk)",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 12.744556331131932,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 2.816370832955087
+                                },
+                                {
+                                    "first": 7.709081426616098,
+                                    "second": 2.9384201095226956
+                                },
+                                {
+                                    "first": 7.709081426616098,
+                                    "second": 2.9384201095226956
+                                },
+                                {
+                                    "first": 12.744556331131932,
+                                    "second": 3.0501232803715865
+                                }
+                            ],
+                            "lat": 45.5193678,
+                            "lon": -122.6823314,
+                            "name": "path",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 7.315281277731655,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 3.0501232803715865
+                                },
+                                {
+                                    "first": 5.503939715500653,
+                                    "second": 3.3744246071771045
+                                }
+                            ],
+                            "lat": 45.5192605,
+                            "lon": -122.6823889,
+                            "name": "Southwest 10th Avenue (sidewalk)",
+                            "relative_direction": "continue"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.519225,
+                        "lon": -122.682471,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
+                        "name": "Central Library",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10767",
+                            "info": "stop.html?stop_id=10767",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10767"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": null,
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "17 minutes",
+                        "duration_ms": 1020000,
+                        "end_time": " 10:17pm",
+                        "end_time_ms": 1363727820000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:00pm",
+                        "start_time_ms": 1363726800000
+                    },
+                    "distance": "1/2 mile",
+                    "distance_feet": 2744.61235055943,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.519225,
+                        "lon": -122.682471,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
+                        "name": "Central Library",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10767",
+                            "info": "stop.html?stop_id=10767",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10767"
+                        }
+                    },
+                    "interline": null,
+                    "mode": "TRAM",
+                    "route": {
+                        "agency_id": "TriMet",
+                        "agency_name": "TriMet",
+                        "headsign": "NW 23rd Ave",
+                        "id": "193",
+                        "name": "Portland Streetcar-NS Line",
+                        "trip": "3579854",
+                        "url": "http://trimet.org/schedules/r193.htm"
+                    },
+                    "steps": null,
+                    "to": {
+                        "lat": 45.530612,
+                        "lon": -122.698688,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
+                        "name": "NW 23rd & Marshall",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "8989",
+                            "info": "stop.html?stop_id=8989",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=8989"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": "south",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "",
+                        "duration_ms": 19000,
+                        "end_time": " 10:17pm",
+                        "end_time_ms": 1363727840000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:17pm",
+                        "start_time_ms": 1363727821000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 65.25041544569989,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.530611552087294,
+                        "lon": -122.69871016101428,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
+                        "name": "Northwest 23rd Avenue (sidewalk)",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 4.187147300463696,
+                            "elevation": [],
+                            "lat": 45.530611552087294,
+                            "lon": -122.69871016101428,
+                            "name": "Northwest 23rd Avenue (sidewalk)",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "north",
+                            "distance": "1/10 mile",
+                            "distance_feet": 18.85450421479485,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 11.13327551544127
+                                },
+                                {
+                                    "first": 13.95735249994054,
+                                    "second": 10.993813296311782
+                                }
+                            ],
+                            "lat": 45.5305662,
+                            "lon": -122.6986475,
+                            "name": "Northwest 23rd Avenue",
+                            "relative_direction": "UTURN_LEFT"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "east",
+                            "distance": "1/10 mile",
+                            "distance_feet": 42.20876393044134,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 10.993813514709473
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 10.676969528198242
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 10.356974601745605
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": 10.043163299560547
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": 9.676732063293457
+                                },
+                                {
+                                    "first": 42.208763122558594,
+                                    "second": 9.598508834838867
+                                }
+                            ],
+                            "lat": 45.5306917,
+                            "lon": -122.6986508,
+                            "name": "",
+                            "relative_direction": "right"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.5307104,
+                        "lon": -122.6981599,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
+                        "name": "",
+                        "stop": null
+                    },
+                    "transfer": null
+                }
+            ],
+            "selected": true,
+            "transfers": 1,
+            "url": null
+        },
+        {
+            "date_info": {
+                "bike_time_hours": null,
+                "bike_time_mins": null,
+                "date": "3/19/2013",
+                "drive_time_hours": null,
+                "drive_time_mins": null,
+                "duration": "41 minutes",
+                "duration_ms": 2463000,
+                "end_time": " 10:31pm",
+                "end_time_ms": 1363728713000,
+                "end_transit": "TODO",
+                "extended": true,
+                "pretty_date": "Tuesday, March 19, 2013",
+                "start_time": "9:50pm",
+                "start_time_ms": 1363726250000,
+                "start_transit": "TODO",
+                "text": "",
+                "total_time_hours": null,
+                "total_time_mins": 41.0,
+                "transit_time_hours": null,
+                "transit_time_mins": 23.0,
+                "wait_time_hours": null,
+                "wait_time_mins": 12.0,
+                "walk_time_hours": null,
+                "walk_time_mins": 4.0
+            },
+            "elevation": {
+                "distance": "1111111",
+                "high": "190.4",
+                "low": "187.2",
+                "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+            },
+            "fare": {
+                "adult": "$2.50",
+                "adult_day": "$5.00",
+                "honored": "$1.00",
+                "honored_day": "$2.00",
+                "tram": "$4.00",
+                "youth": "$1.65",
+                "youth_day": "$3.30"
+            },
+            "legs": [
+                {
+                    "alerts": null,
+                    "compass_direction": "west",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "2 minutes",
+                        "duration_ms": 159000,
+                        "end_time": "9:53pm",
+                        "end_time_ms": 1363726409000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": "9:50pm",
+                        "start_time_ms": 1363726250000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 187.16915671542841,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.51853564579469,
+                        "lon": -122.6918745340708,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
+                        "name": "",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 35.722516917726615,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.852291107177734
+                                },
+                                {
+                                    "first": 3.7889020442962646,
+                                    "second": 13.34641170501709
+                                },
+                                {
+                                    "first": 13.788902282714844,
+                                    "second": 13.966172218322754
+                                },
+                                {
+                                    "first": 23.788902282714844,
+                                    "second": 14.535426139831543
+                                },
+                                {
+                                    "first": 35.72251510620117,
+                                    "second": 15.042624473571777
+                                }
+                            ],
+                            "lat": 45.51853564579469,
+                            "lon": -122.6918745340708,
+                            "name": "",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 11.734592397304947,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 15.042624174437087
+                                },
+                                {
+                                    "first": 11.734592397304947,
+                                    "second": 15.123717979304867
+                                }
+                            ],
+                            "lat": 45.5186516,
+                            "lon": -122.6923028,
+                            "name": "Southwest Madison Street",
+                            "relative_direction": "continue"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 63.926181205107426,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 15.123717979304867
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 14.794008178465141
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 14.327177318804036
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": 13.810349633611743
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": 13.245442421717161
+                                },
+                                {
+                                    "first": 50.0,
+                                    "second": 12.805067204383533
+                                },
+                                {
+                                    "first": 63.926181205107426,
+                                    "second": 12.35152883784593
+                                }
+                            ],
+                            "lat": 45.5186898,
+                            "lon": -122.6924432,
+                            "name": "Southwest 18th Avenue",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 32.688935665841086,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.35152883784593
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 12.24034159185182
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 12.357373298289112
+                                },
+                                {
+                                    "first": 28.85068589696176,
+                                    "second": 12.597309889874655
+                                },
+                                {
+                                    "first": 28.85068589696176,
+                                    "second": 12.597309889874655
+                                },
+                                {
+                                    "first": 32.688935665841086,
+                                    "second": 12.691946829591188
+                                }
+                            ],
+                            "lat": 45.5181568,
+                            "lon": -122.6927504,
+                            "name": "Southwest Jefferson Street",
+                            "relative_direction": "SLIGHTLY_RIGHT"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 24.91355253185403,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.691946829591188
+                                },
+                                {
+                                    "first": 6.93759408805253,
+                                    "second": 12.826216493894009
+                                },
+                                {
+                                    "first": 6.93759408805253,
+                                    "second": 12.826216493894009
+                                },
+                                {
+                                    "first": 13.597734491826769,
+                                    "second": 13.035996741078861
+                                },
+                                {
+                                    "first": 13.597734491826769,
+                                    "second": 13.035996741078861
+                                },
+                                {
+                                    "first": 24.91355253185403,
+                                    "second": 13.416063018690942
+                                }
+                            ],
+                            "lat": 45.5181019,
+                            "lon": -122.6931451,
+                            "name": "path",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 18.183377997594302,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 13.41606330871582
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 14.031145095825195
+                                },
+                                {
+                                    "first": 18.183378219604492,
+                                    "second": 14.368366241455078
+                                }
+                            ],
+                            "lat": 45.5179217,
+                            "lon": -122.6933287,
+                            "name": "Goose Hollow Eastbound MAX Platform (path)",
+                            "relative_direction": "right"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.517989,
+                        "lon": -122.693544,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
+                        "name": "Goose Hollow/SW Jefferson St MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10118",
+                            "info": "stop.html?stop_id=10118",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10118"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": null,
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "6 minutes",
+                        "duration_ms": 410000,
+                        "end_time": " 10:00pm",
+                        "end_time_ms": 1363726820000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": "9:53pm",
+                        "start_time_ms": 1363726410000
+                    },
+                    "distance": "2/9 mile",
+                    "distance_feet": 1156.9945992596413,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.517989,
+                        "lon": -122.693544,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
+                        "name": "Goose Hollow/SW Jefferson St MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10118",
+                            "info": "stop.html?stop_id=10118",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10118"
+                        }
+                    },
+                    "interline": null,
+                    "mode": "TRAM",
+                    "route": {
+                        "agency_id": "TriMet",
+                        "agency_name": "TriMet",
+                        "headsign": "Airport",
+                        "id": "90",
+                        "name": "MAX Red Line",
+                        "trip": "3577356",
+                        "url": "http://trimet.org/schedules/r090.htm"
+                    },
+                    "steps": null,
+                    "to": {
+                        "lat": 45.51916,
+                        "lon": -122.68162,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
+                        "name": "Library/SW 9th Ave MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "8333",
+                            "info": "stop.html?stop_id=8333",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=8333"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": "west",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "1 minute",
+                        "duration_ms": 64000,
+                        "end_time": " 10:13pm",
+                        "end_time_ms": 1363727639000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:12pm",
+                        "start_time_ms": 1363727575000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 79.83062275299528,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.51917274418673,
+                        "lon": -122.68161652398626,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
+                        "name": "Southwest Yamhill Street (sidewalk)",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 59.77078514413169,
+                            "elevation": [
+                                {
+                                    "first": 50.978961172797945,
+                                    "second": 1.790135807017137
+                                },
+                                {
+                                    "first": 60.978961172797945,
+                                    "second": 2.013425473133026
+                                },
+                                {
+                                    "first": 70.97896117279794,
+                                    "second": 2.424982050798558
+                                },
+                                {
+                                    "first": 85.26026573053068,
+                                    "second": 2.816370832955087
+                                }
+                            ],
+                            "lat": 45.51917274418673,
+                            "lon": -122.68161652398626,
+                            "name": "Southwest Yamhill Street (sidewalk)",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 12.744556331131932,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 2.816370832955087
+                                },
+                                {
+                                    "first": 7.709081426616098,
+                                    "second": 2.9384201095226956
+                                },
+                                {
+                                    "first": 7.709081426616098,
+                                    "second": 2.9384201095226956
+                                },
+                                {
+                                    "first": 12.744556331131932,
+                                    "second": 3.0501232803715865
+                                }
+                            ],
+                            "lat": 45.5193678,
+                            "lon": -122.6823314,
+                            "name": "path",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 7.315281277731655,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 3.0501232803715865
+                                },
+                                {
+                                    "first": 5.503939715500653,
+                                    "second": 3.3744246071771045
+                                }
+                            ],
+                            "lat": 45.5192605,
+                            "lon": -122.6823889,
+                            "name": "Southwest 10th Avenue (sidewalk)",
+                            "relative_direction": "continue"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.519225,
+                        "lon": -122.682471,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
+                        "name": "Central Library",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10767",
+                            "info": "stop.html?stop_id=10767",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10767"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": null,
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "17 minutes",
+                        "duration_ms": 1020000,
+                        "end_time": " 10:31pm",
+                        "end_time_ms": 1363728660000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:14pm",
+                        "start_time_ms": 1363727640000
+                    },
+                    "distance": "1/2 mile",
+                    "distance_feet": 2744.61235055943,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.519225,
+                        "lon": -122.682471,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
+                        "name": "Central Library",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10767",
+                            "info": "stop.html?stop_id=10767",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10767"
+                        }
+                    },
+                    "interline": null,
+                    "mode": "TRAM",
+                    "route": {
+                        "agency_id": "TriMet",
+                        "agency_name": "TriMet",
+                        "headsign": "NW 23rd Ave",
+                        "id": "193",
+                        "name": "Portland Streetcar-NS Line",
+                        "trip": "3579855",
+                        "url": "http://trimet.org/schedules/r193.htm"
+                    },
+                    "steps": null,
+                    "to": {
+                        "lat": 45.530612,
+                        "lon": -122.698688,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
+                        "name": "NW 23rd & Marshall",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "8989",
+                            "info": "stop.html?stop_id=8989",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=8989"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": "south",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "",
+                        "duration_ms": 19000,
+                        "end_time": " 10:31pm",
+                        "end_time_ms": 1363728680000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:31pm",
+                        "start_time_ms": 1363728661000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 65.25041544569989,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.530611552087294,
+                        "lon": -122.69871016101428,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
+                        "name": "Northwest 23rd Avenue (sidewalk)",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 4.187147300463696,
+                            "elevation": [],
+                            "lat": 45.530611552087294,
+                            "lon": -122.69871016101428,
+                            "name": "Northwest 23rd Avenue (sidewalk)",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "north",
+                            "distance": "1/10 mile",
+                            "distance_feet": 18.85450421479485,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 11.13327551544127
+                                },
+                                {
+                                    "first": 13.95735249994054,
+                                    "second": 10.993813296311782
+                                }
+                            ],
+                            "lat": 45.5305662,
+                            "lon": -122.6986475,
+                            "name": "Northwest 23rd Avenue",
+                            "relative_direction": "UTURN_LEFT"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "east",
+                            "distance": "1/10 mile",
+                            "distance_feet": 42.20876393044134,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 10.993813514709473
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 10.676969528198242
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 10.356974601745605
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": 10.043163299560547
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": 9.676732063293457
+                                },
+                                {
+                                    "first": 42.208763122558594,
+                                    "second": 9.598508834838867
+                                }
+                            ],
+                            "lat": 45.5306917,
+                            "lon": -122.6986508,
+                            "name": "",
+                            "relative_direction": "right"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.5307104,
+                        "lon": -122.6981599,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
+                        "name": "",
+                        "stop": null
+                    },
+                    "transfer": null
+                }
+            ],
+            "selected": false,
+            "transfers": 1,
+            "url": null
+        },
+        {
+            "date_info": {
+                "bike_time_hours": null,
+                "bike_time_mins": null,
+                "date": "3/19/2013",
+                "drive_time_hours": null,
+                "drive_time_mins": null,
+                "duration": "47 minutes",
+                "duration_ms": 2853000,
+                "end_time": " 10:45pm",
+                "end_time_ms": 1363729553000,
+                "end_transit": "TODO",
+                "extended": true,
+                "pretty_date": "Tuesday, March 19, 2013",
+                "start_time": "9:58pm",
+                "start_time_ms": 1363726700000,
+                "start_transit": "TODO",
+                "text": "",
+                "total_time_hours": null,
+                "total_time_mins": 47.0,
+                "transit_time_hours": null,
+                "transit_time_mins": 24.0,
+                "wait_time_hours": null,
+                "wait_time_mins": 18.0,
+                "walk_time_hours": null,
+                "walk_time_mins": 4.0
+            },
+            "elevation": {
+                "distance": "1111111",
+                "high": "190.4",
+                "low": "187.2",
+                "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+            },
+            "fare": {
+                "adult": "$2.50",
+                "adult_day": "$5.00",
+                "honored": "$1.00",
+                "honored_day": "$2.00",
+                "tram": "$4.00",
+                "youth": "$1.65",
+                "youth_day": "$3.30"
+            },
+            "legs": [
+                {
+                    "alerts": null,
+                    "compass_direction": "west",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "2 minutes",
+                        "duration_ms": 159000,
+                        "end_time": " 10:00pm",
+                        "end_time_ms": 1363726859000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": "9:58pm",
+                        "start_time_ms": 1363726700000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 187.16915671542841,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.51853564579469,
+                        "lon": -122.6918745340708,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
+                        "name": "",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 35.722516917726615,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.852291107177734
+                                },
+                                {
+                                    "first": 3.7889020442962646,
+                                    "second": 13.34641170501709
+                                },
+                                {
+                                    "first": 13.788902282714844,
+                                    "second": 13.966172218322754
+                                },
+                                {
+                                    "first": 23.788902282714844,
+                                    "second": 14.535426139831543
+                                },
+                                {
+                                    "first": 35.72251510620117,
+                                    "second": 15.042624473571777
+                                }
+                            ],
+                            "lat": 45.51853564579469,
+                            "lon": -122.6918745340708,
+                            "name": "",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 11.734592397304947,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 15.042624174437087
+                                },
+                                {
+                                    "first": 11.734592397304947,
+                                    "second": 15.123717979304867
+                                }
+                            ],
+                            "lat": 45.5186516,
+                            "lon": -122.6923028,
+                            "name": "Southwest Madison Street",
+                            "relative_direction": "continue"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 63.926181205107426,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 15.123717979304867
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 14.794008178465141
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 14.327177318804036
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": 13.810349633611743
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": 13.245442421717161
+                                },
+                                {
+                                    "first": 50.0,
+                                    "second": 12.805067204383533
+                                },
+                                {
+                                    "first": 63.926181205107426,
+                                    "second": 12.35152883784593
+                                }
+                            ],
+                            "lat": 45.5186898,
+                            "lon": -122.6924432,
+                            "name": "Southwest 18th Avenue",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 32.688935665841086,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.35152883784593
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 12.24034159185182
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 12.357373298289112
+                                },
+                                {
+                                    "first": 28.85068589696176,
+                                    "second": 12.597309889874655
+                                },
+                                {
+                                    "first": 28.85068589696176,
+                                    "second": 12.597309889874655
+                                },
+                                {
+                                    "first": 32.688935665841086,
+                                    "second": 12.691946829591188
+                                }
+                            ],
+                            "lat": 45.5181568,
+                            "lon": -122.6927504,
+                            "name": "Southwest Jefferson Street",
+                            "relative_direction": "SLIGHTLY_RIGHT"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "southwest",
+                            "distance": "1/10 mile",
+                            "distance_feet": 24.91355253185403,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 12.691946829591188
+                                },
+                                {
+                                    "first": 6.93759408805253,
+                                    "second": 12.826216493894009
+                                },
+                                {
+                                    "first": 6.93759408805253,
+                                    "second": 12.826216493894009
+                                },
+                                {
+                                    "first": 13.597734491826769,
+                                    "second": 13.035996741078861
+                                },
+                                {
+                                    "first": 13.597734491826769,
+                                    "second": 13.035996741078861
+                                },
+                                {
+                                    "first": 24.91355253185403,
+                                    "second": 13.416063018690942
+                                }
+                            ],
+                            "lat": 45.5181019,
+                            "lon": -122.6931451,
+                            "name": "path",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 18.183377997594302,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 13.41606330871582
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 14.031145095825195
+                                },
+                                {
+                                    "first": 18.183378219604492,
+                                    "second": 14.368366241455078
+                                }
+                            ],
+                            "lat": 45.5179217,
+                            "lon": -122.6933287,
+                            "name": "Goose Hollow Eastbound MAX Platform (path)",
+                            "relative_direction": "right"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.517989,
+                        "lon": -122.693544,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
+                        "name": "Goose Hollow/SW Jefferson St MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10118",
+                            "info": "stop.html?stop_id=10118",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10118"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": null,
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "7 minutes",
+                        "duration_ms": 436000,
+                        "end_time": " 10:08pm",
+                        "end_time_ms": 1363727296000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:01pm",
+                        "start_time_ms": 1363726860000
+                    },
+                    "distance": "2/9 mile",
+                    "distance_feet": 1156.9945992596413,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.517989,
+                        "lon": -122.693544,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
+                        "name": "Goose Hollow/SW Jefferson St MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10118",
+                            "info": "stop.html?stop_id=10118",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10118"
+                        }
+                    },
+                    "interline": null,
+                    "mode": "TRAM",
+                    "route": {
+                        "agency_id": "TriMet",
+                        "agency_name": "TriMet",
+                        "headsign": "Gresham",
+                        "id": "100",
+                        "name": "MAX Blue Line",
+                        "trip": "3578249",
+                        "url": "http://trimet.org/schedules/r100.htm"
+                    },
+                    "steps": null,
+                    "to": {
+                        "lat": 45.51916,
+                        "lon": -122.68162,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
+                        "name": "Library/SW 9th Ave MAX Station",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "8333",
+                            "info": "stop.html?stop_id=8333",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=8333"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": "west",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "1 minute",
+                        "duration_ms": 64000,
+                        "end_time": " 10:27pm",
+                        "end_time_ms": 1363728479000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:26pm",
+                        "start_time_ms": 1363728415000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 79.83062275299528,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.51917274418673,
+                        "lon": -122.68161652398626,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
+                        "name": "Southwest Yamhill Street (sidewalk)",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "west",
+                            "distance": "1/10 mile",
+                            "distance_feet": 59.77078514413169,
+                            "elevation": [
+                                {
+                                    "first": 50.978961172797945,
+                                    "second": 1.790135807017137
+                                },
+                                {
+                                    "first": 60.978961172797945,
+                                    "second": 2.013425473133026
+                                },
+                                {
+                                    "first": 70.97896117279794,
+                                    "second": 2.424982050798558
+                                },
+                                {
+                                    "first": 85.26026573053068,
+                                    "second": 2.816370832955087
+                                }
+                            ],
+                            "lat": 45.51917274418673,
+                            "lon": -122.68161652398626,
+                            "name": "Southwest Yamhill Street (sidewalk)",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 12.744556331131932,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 2.816370832955087
+                                },
+                                {
+                                    "first": 7.709081426616098,
+                                    "second": 2.9384201095226956
+                                },
+                                {
+                                    "first": 7.709081426616098,
+                                    "second": 2.9384201095226956
+                                },
+                                {
+                                    "first": 12.744556331131932,
+                                    "second": 3.0501232803715865
+                                }
+                            ],
+                            "lat": 45.5193678,
+                            "lon": -122.6823314,
+                            "name": "path",
+                            "relative_direction": "left"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 7.315281277731655,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 3.0501232803715865
+                                },
+                                {
+                                    "first": 5.503939715500653,
+                                    "second": 3.3744246071771045
+                                }
+                            ],
+                            "lat": 45.5192605,
+                            "lon": -122.6823889,
+                            "name": "Southwest 10th Avenue (sidewalk)",
+                            "relative_direction": "continue"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.519225,
+                        "lon": -122.682471,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
+                        "name": "Central Library",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10767",
+                            "info": "stop.html?stop_id=10767",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10767"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": null,
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "17 minutes",
+                        "duration_ms": 1020000,
+                        "end_time": " 10:45pm",
+                        "end_time_ms": 1363729500000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:28pm",
+                        "start_time_ms": 1363728480000
+                    },
+                    "distance": "1/2 mile",
+                    "distance_feet": 2744.61235055943,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.519225,
+                        "lon": -122.682471,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
+                        "name": "Central Library",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "10767",
+                            "info": "stop.html?stop_id=10767",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=10767"
+                        }
+                    },
+                    "interline": null,
+                    "mode": "TRAM",
+                    "route": {
+                        "agency_id": "TriMet",
+                        "agency_name": "TriMet",
+                        "headsign": "NW 23rd Ave",
+                        "id": "193",
+                        "name": "Portland Streetcar-NS Line",
+                        "trip": "3579856",
+                        "url": "http://trimet.org/schedules/r193.htm"
+                    },
+                    "steps": null,
+                    "to": {
+                        "lat": 45.530612,
+                        "lon": -122.698688,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
+                        "name": "NW 23rd & Marshall",
+                        "stop": {
+                            "agency": "TriMet",
+                            "id": "8989",
+                            "info": "stop.html?stop_id=8989",
+                            "name": null,
+                            "schedule": "stop_schedule.html?stop_id=8989"
+                        }
+                    },
+                    "transfer": null
+                },
+                {
+                    "alerts": null,
+                    "compass_direction": "south",
+                    "date_info": {
+                        "date": "3/19/2013",
+                        "duration": "",
+                        "duration_ms": 19000,
+                        "end_time": " 10:45pm",
+                        "end_time_ms": 1363729520000,
+                        "pretty_date": "Tuesday, March 19, 2013",
+                        "start_time": " 10:45pm",
+                        "start_time_ms": 1363729501000
+                    },
+                    "distance": "1/10 mile",
+                    "distance_feet": 65.25041544569989,
+                    "elevation": {
+                        "distance": "1111111",
+                        "high": "190.4",
+                        "low": "187.2",
+                        "points": "190.4,189.5,189.1,188.5,188.1,187.5,187.2,187.2"
+                    },
+                    "from": {
+                        "lat": 45.530611552087294,
+                        "lon": -122.69871016101428,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
+                        "name": "Northwest 23rd Avenue (sidewalk)",
+                        "stop": null
+                    },
+                    "interline": null,
+                    "mode": "WALK",
+                    "route": null,
+                    "steps": [
+                        {
+                            "alerts": null,
+                            "compass_direction": "south",
+                            "distance": "1/10 mile",
+                            "distance_feet": 4.187147300463696,
+                            "elevation": [],
+                            "lat": 45.530611552087294,
+                            "lon": -122.69871016101428,
+                            "name": "Northwest 23rd Avenue (sidewalk)",
+                            "relative_direction": null
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "north",
+                            "distance": "1/10 mile",
+                            "distance_feet": 18.85450421479485,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 11.13327551544127
+                                },
+                                {
+                                    "first": 13.95735249994054,
+                                    "second": 10.993813296311782
+                                }
+                            ],
+                            "lat": 45.5305662,
+                            "lon": -122.6986475,
+                            "name": "Northwest 23rd Avenue",
+                            "relative_direction": "UTURN_LEFT"
+                        },
+                        {
+                            "alerts": null,
+                            "compass_direction": "east",
+                            "distance": "1/10 mile",
+                            "distance_feet": 42.20876393044134,
+                            "elevation": [
+                                {
+                                    "first": 0.0,
+                                    "second": 10.993813514709473
+                                },
+                                {
+                                    "first": 10.0,
+                                    "second": 10.676969528198242
+                                },
+                                {
+                                    "first": 20.0,
+                                    "second": 10.356974601745605
+                                },
+                                {
+                                    "first": 30.0,
+                                    "second": 10.043163299560547
+                                },
+                                {
+                                    "first": 40.0,
+                                    "second": 9.676732063293457
+                                },
+                                {
+                                    "first": 42.208763122558594,
+                                    "second": 9.598508834838867
+                                }
+                            ],
+                            "lat": 45.5306917,
+                            "lon": -122.6986508,
+                            "name": "",
+                            "relative_direction": "right"
+                        }
+                    ],
+                    "to": {
+                        "lat": 45.5307104,
+                        "lon": -122.6981599,
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
+                        "name": "",
+                        "stop": null
+                    },
+                    "transfer": null
+                }
+            ],
+            "selected": false,
+            "transfers": 1,
+            "url": null
+        }
+    ],
+    "optimize": "QUICK",
+    "params": "TODO TODO TODO",
+    "to": {
+        "lat": 45.5307104,
+        "lon": -122.6981599,
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
+        "name": "",
+        "stop": null
+    }
+}
