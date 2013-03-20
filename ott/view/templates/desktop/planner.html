@@ -68,6 +68,12 @@
         dir = leg['compass_direction'] if leg['compass_direction'] else ''
         return "{0} {1} {2}".format(_(u'Walk'), dir, leg['distance'])
 
+    def get_bicycle_title(leg):
+        '''
+        '''
+        dir = leg['compass_direction'] if leg['compass_direction'] else ''
+        return "{0} {1} {2}".format(_(u'Bike'), dir, leg['distance'])
+
     def get_mode_img(mode):
         ''' return 20x20px mode gif for leg list 
         '''
@@ -75,23 +81,31 @@
         ret_val = ''
         path = util.planner_img_url()
         if mode == util.attr.BUS:
-            ret_val = path + "/bus.gif"
+            ret_val = path + "/bus.png"
+        if mode == util.attr.BICYCLE:
+            ret_val = path + "/bicycle.png"
         if mode == util.attr.WALK:
-            ret_val =  path + "/walk.gif"
-        if mode == util.attr.TRAIN:
-            ret_val = path + "/rail.gif"
+            ret_val =  path + "/walk.png"
+        if mode == util.attr.RAIL:
+            ret_val = path + "/rail.png"
         if mode == util.attr.TRAM:
-            ret_val = path + "/max.gif"
+            ret_val = path + "/tram.png"
+        if mode == util.attr.GONDOLA:
+            ret_val = path + "/gondola.png"
+
         return ret_val
 
 
     def render_leg(leg):
         ''' call render stuff above...
         '''
+        #if leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN):
         if leg['mode'] in (util.attr.BUS, util.attr.TRAM):
             return render_transit_leg(leg)
         elif leg['mode'] == util.attr.WALK:
             return render_walk_leg(leg)
+        elif leg['mode'] == util.attr.BICYCLE:
+            return render_bicycle_leg(leg)
         return ''
 %> 
 <%def name="get_route_name(route)">${route['name']}${' ' + _(u'to') + ' ' + route['headsign'] if route['headsign'] else ''}</%def>
@@ -110,6 +124,25 @@
                     ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
                 </h3>
                 <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+</%def>
+<%def name="render_bicycle_leg(leg)">
+                <h3>
+                    <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
+                    <% bike_title = get_bicycle_title(leg)%>
+                    %if leg['steps']:
+                    <a href="TODO-render_biking_directions(leg)" title="${_(u'Show biking directions.')}">${bike_title}</a> ${_(u'to')}
+                    %else:
+                    ${bike_title} ${_(u'to')}
+                    %endif
+                    %if leg['to']['stop']:
+                    <a href="${leg['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
+                    %else:
+                    ${leg['to']['name']}
+                    %endif
+                </h3>
+                %if leg['to']['stop']:
+                <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+                %endif
 </%def>
 <%def name="render_walk_leg(leg)">
                 <h3>

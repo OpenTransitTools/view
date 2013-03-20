@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 <%def name="url_domain()">http://trimet.org</%def>
 <%def name="img_url()">${url_domain()}/v3/images</%def>
-<%def name="planner_img_url()">${img_url()}/tripplanner</%def>
+<%def name="planner_img_url()">${img_url()}/tripplanner/mode</%def>
 
 <%!
     ''' access these variables in other space via <namespace>.attr, ala util.attr, ala util.attr.WALK
@@ -10,6 +10,7 @@
     BICYCLE    = 'BICYCLE'
     TRAM       = 'TRAM'
     SUBWAY     = 'SUBWAY'
+    STREETCAR  = 'STREETCAR'
     RAIL       = 'RAIL'
     BUS        = 'BUS' 
     CABLE_CAR  = 'CABLE_CAR' 
