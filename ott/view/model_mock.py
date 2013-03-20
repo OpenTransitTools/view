@@ -21,15 +21,16 @@ class ModelMock(Model):
 
         if 'mode' in kwargs and kwargs['mode'] in ('T','TEST'):
             return get_json('x.json')
-        return get_json('plan_transit_new.json')  
 
         # TODO -- better stuff below for mock testing...
         #import pdb; pdb.set_trace()
         if 'mode' in kwargs:
             if    Model.WALK == kwargs['mode']: return get_json('plan_walk.json') 
             elif  Model.BIKE == kwargs['mode']: return get_json('plan_bike.json') 
-            elif  Model.TRANSIT in kwargs['mode'] and Model.BIKE in kwargs['mode']:
-                  return get_json('plan_bike_transit.json') 
+            elif  Model.RAIL == kwargs['mode']: return get_json('plan_rail.json') 
+            elif  Model.STREETCAR == kwargs['mode']: return get_json('plan_streetcar.json') 
+            elif  Model.GONDOLA == kwargs['mode'] or  Model.TRAM in kwargs['mode']: return get_json('plan_tram.json') 
+            elif  Model.TRANSIT in kwargs['mode'] and Model.BIKE in kwargs['mode']: return get_json('plan_bike_transit.json') 
             else: return get_json('plan_transit.json') 
         else:
             return get_json('plan_error.json')

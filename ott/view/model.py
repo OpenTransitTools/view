@@ -5,11 +5,16 @@ log = logging.getLogger(__file__)
 
 class Model():
 
-    TRAIN   = 'TRAIN'
-    WALK    = 'WALK'
-    TRANSIT = 'TRANSIT'
-    BICYCLE = 'BICYCLE'
-    BIKE    =  BICYCLE
+    TRAIN     = 'TRAIN'
+    RAIL      = 'RAIL'
+    STREETCAR = 'STREETCAR'
+    TRAM      = 'TRAM'
+    WALK      = 'WALK'
+    GONDOLA   = 'GONDOLA'
+    TRANSIT   = 'TRANSIT'
+    BICYCLE   = 'BICYCLE'
+    BIKE      =  BICYCLE
+
 
     def get_routes(self): pass
     def get_plans(self, **kwargs): pass
