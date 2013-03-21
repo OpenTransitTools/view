@@ -1,6 +1,7 @@
 *~
 *.py[cod]
 .settings
+.DS_store
 
 # C extensions
 *.so
