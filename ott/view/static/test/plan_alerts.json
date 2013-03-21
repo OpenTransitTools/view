@@ -9,6 +9,7 @@
     },
     "itineraries": [
         {
+            "has_alerts":true,
             "date_info": {
                 "bike_time_hours": null,
                 "bike_time_mins": null,

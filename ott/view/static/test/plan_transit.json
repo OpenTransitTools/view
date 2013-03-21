@@ -28,6 +28,7 @@
             "url":"planner.html?itin_id=3" 
          },
          {
+            "has_alerts":false,
             "url":"planer.html?itin_id=1", 
             "selected":true,
             "transfers": 14,
@@ -68,6 +69,7 @@
             },
             "legs":[
                 {
+                    "alerts":null,
                     "mode":"WALK",
                     "compass_direction": "northeast",
                     "transfer":null,
@@ -126,6 +128,7 @@
                      ]
                 },
                 {
+                    "alerts":null,
                     "mode":"BUS",
                     "date_info": {
                         "date":"3/4/2013",

@@ -1,8 +1,5 @@
 <%inherit file="/desktop/base.html"/>
 <%namespace name="util"  file="/shared/util.mako"/>
-<%
-    alerts = None
-%>
 <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
@@ -23,11 +20,6 @@
                     </ul>
                 </div>
                 <p class="feedback"><a href="/feedback.html?app=">${_(u'Having problems? Click here for technical support.')}</a></p>
-                %if alerts:
-                %for a in alerts:
-                    pass
-                %endfor
-                %endif
             </aside>
             <!-- end #sidebar -->
 </%def>
@@ -124,6 +116,14 @@ ${_(u'transit vehicle')}
                     </b>
                     ${_(u'Board')} ${get_route_link(leg['route'])}
                 </h3>
+                %if leg['alerts']:
+                %for a in leg['alerts']:
+                <p class="alert">
+                <img class="bullet" title="$_(u'Alert icon')}" alt="$_(u'Alert icon')}" src="${util.url_domain()}/v3/images/tripplanner/alert.png">
+                ${a['text']}
+                </p>
+                %endfor
+                %endif
                 <h3>
                     <b>
                         <a href="${leg['to']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['to']['name']}">${leg['date_info']['end_time']}</a>
@@ -277,11 +277,19 @@ ${_(u'transit vehicle')}
             <span class="button-tripplanner"><a href="planner_form.html#TODO URL PARAMS" title="${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);">${_(u'Edit')}</a></span> 
             <span class="button-tripplanner"><a href="#" title="${_(u'Print this page')}"       onclick="javascript:window.print(); _gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);">${_(u'Print')}</a></span>
         </p>
-        <p class="help"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></p>
+        <p class="help"><a target="#" href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></p>
     </div>
     <div class="planner-form-bottom"></div>
 </div>
-
+%if itinerary['has_alerts']:
+<div class="planner-alerts">
+    <a name="alerts"></a>
+        <h3>
+            <a target="#" href="${util.url_domain()}/alerts/"><img border="0" src="${util.url_domain()}/v3/images/tripplanner/alert.png">${_(u'Service Alerts')}</a>
+       </h3>
+    <p>${_(u'The trip planner shows scheduled service only. It may send you to stops that are closed or bypassed. Please read service alerts to see if detours affect your trip.')}</p>
+</div>
+%endif
 <div class="disclaimer">
     <p class="disclaimer-feedback">
         <strong>${_(u'Tell us about your trip')}</strong>
