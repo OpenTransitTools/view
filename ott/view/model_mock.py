@@ -19,12 +19,13 @@ class ModelMock(Model):
         ''' @todo: MODE strings should come from gtfsdb code...
         '''
 
-        if 'mode' in kwargs and kwargs['mode'] in ('T','TEST'):
-            return get_json('x.json')
 
         # TODO -- better stuff below for mock testing...
         #import pdb; pdb.set_trace()
         if 'mode' in kwargs:
+            if kwargs['mode'] in ('T','TEST'):    return get_json('x.json')
+            if kwargs['mode'] in ('A','ALERTS'):  return get_json('plan_alerts.json')
+
             if    Model.WALK == kwargs['mode']: return get_json('plan_walk.json') 
             elif  Model.BIKE == kwargs['mode']: return get_json('plan_bike.json') 
             elif  Model.RAIL == kwargs['mode']: return get_json('plan_rail.json') 
