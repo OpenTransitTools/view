@@ -85,7 +85,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "west",
                             "distance": "1/10 mile",
                             "distance_feet": 131.3367908938832,
@@ -112,7 +111,24 @@
                     "transfer": null
                 },
                 {
-                    "alerts": null,
+                    "alerts": [
+                        {
+                            "future": false,
+                            "start_date": 1362172920000,
+                            "start_date_pretty": "Friday, March 1, 2013",
+                            "text": "Until further notice, no service to the eastbound stop on SE Foster at 89th (Stop ID 1827) due to construction. Board at 86th (Stop ID 1823).",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        },
+                        {
+                            "future": false,
+                            "start_date": 1362172380000,
+                            "start_date_pretty": "Friday, March 1, 2013",
+                            "text": "Until further notice, no service to the eastbound stop on SE Woodstock at 92nd (Stop ID 6427) due to construction.",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        }
+                    ],
                     "compass_direction": null,
                     "date_info": {
                         "date": "3/21/2013",
@@ -205,7 +221,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "east",
                             "distance": "1/10 mile",
                             "distance_feet": 71.53194918755733,
@@ -216,7 +231,6 @@
                             "relative_direction": null
                         },
                         {
-                            "alerts": null,
                             "compass_direction": "north",
                             "distance": "1/10 mile",
                             "distance_feet": 2.9279134346947546,
@@ -243,7 +257,24 @@
                     "transfer": null
                 },
                 {
-                    "alerts": null,
+                    "alerts": [
+                        {
+                            "future": false,
+                            "start_date": 1358212740000,
+                            "start_date_pretty": "Tuesday, January 15, 2013",
+                            "text": "Expect delays due to a detour for construction along SW Naito near SW Harrison.",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        },
+                        {
+                            "future": false,
+                            "start_date": 1351159200000,
+                            "start_date_pretty": "Thursday, October 25, 2012",
+                            "text": "No service to northbound SW Scholls Ferry & 6700 Block (Stop ID 5158) and southbound SW Scholls Ferry & Allen (stop ID 5157). Use stops at Merry northbound (Stop ID 5182) or Merry southbound (Stop ID 5171).",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        }
+                    ],
                     "compass_direction": null,
                     "date_info": {
                         "date": "3/21/2013",
@@ -336,7 +367,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "southwest",
                             "distance": "1/10 mile",
                             "distance_feet": 59.35103843083091,
@@ -347,7 +377,6 @@
                             "relative_direction": null
                         },
                         {
-                            "alerts": null,
                             "compass_direction": "northwest",
                             "distance": "1/10 mile",
                             "distance_feet": 29.818032003519093,
@@ -449,7 +478,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "west",
                             "distance": "1/10 mile",
                             "distance_feet": 131.3367908938832,
@@ -476,7 +504,24 @@
                     "transfer": null
                 },
                 {
-                    "alerts": null,
+                    "alerts": [
+                        {
+                            "future": false,
+                            "start_date": 1362172920000,
+                            "start_date_pretty": "Friday, March 1, 2013",
+                            "text": "Until further notice, no service to the eastbound stop on SE Foster at 89th (Stop ID 1827) due to construction. Board at 86th (Stop ID 1823).",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        },
+                        {
+                            "future": false,
+                            "start_date": 1362172380000,
+                            "start_date_pretty": "Friday, March 1, 2013",
+                            "text": "Until further notice, no service to the eastbound stop on SE Woodstock at 92nd (Stop ID 6427) due to construction.",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        }
+                    ],
                     "compass_direction": null,
                     "date_info": {
                         "date": "3/21/2013",
@@ -569,7 +614,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "east",
                             "distance": "1/10 mile",
                             "distance_feet": 71.53194918755733,
@@ -580,7 +624,6 @@
                             "relative_direction": null
                         },
                         {
-                            "alerts": null,
                             "compass_direction": "north",
                             "distance": "1/10 mile",
                             "distance_feet": 2.9279134346947546,
@@ -607,7 +650,24 @@
                     "transfer": null
                 },
                 {
-                    "alerts": null,
+                    "alerts": [
+                        {
+                            "future": false,
+                            "start_date": 1358212740000,
+                            "start_date_pretty": "Tuesday, January 15, 2013",
+                            "text": "Expect delays due to a detour for construction along SW Naito near SW Harrison.",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        },
+                        {
+                            "future": false,
+                            "start_date": 1351159200000,
+                            "start_date_pretty": "Thursday, October 25, 2012",
+                            "text": "No service to northbound SW Scholls Ferry & 6700 Block (Stop ID 5158) and southbound SW Scholls Ferry & Allen (stop ID 5157). Use stops at Merry northbound (Stop ID 5182) or Merry southbound (Stop ID 5171).",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        }
+                    ],
                     "compass_direction": null,
                     "date_info": {
                         "date": "3/21/2013",
@@ -700,7 +760,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "southwest",
                             "distance": "1/10 mile",
                             "distance_feet": 59.35103843083091,
@@ -711,7 +770,6 @@
                             "relative_direction": null
                         },
                         {
-                            "alerts": null,
                             "compass_direction": "northwest",
                             "distance": "1/10 mile",
                             "distance_feet": 29.818032003519093,
@@ -813,7 +871,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "west",
                             "distance": "1/10 mile",
                             "distance_feet": 131.3367908938832,
@@ -840,7 +897,24 @@
                     "transfer": null
                 },
                 {
-                    "alerts": null,
+                    "alerts": [
+                        {
+                            "future": false,
+                            "start_date": 1362172920000,
+                            "start_date_pretty": "Friday, March 1, 2013",
+                            "text": "Until further notice, no service to the eastbound stop on SE Foster at 89th (Stop ID 1827) due to construction. Board at 86th (Stop ID 1823).",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        },
+                        {
+                            "future": false,
+                            "start_date": 1362172380000,
+                            "start_date_pretty": "Friday, March 1, 2013",
+                            "text": "Until further notice, no service to the eastbound stop on SE Woodstock at 92nd (Stop ID 6427) due to construction.",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        }
+                    ],
                     "compass_direction": null,
                     "date_info": {
                         "date": "3/21/2013",
@@ -933,7 +1007,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "east",
                             "distance": "1/10 mile",
                             "distance_feet": 71.53194918755733,
@@ -944,7 +1017,6 @@
                             "relative_direction": null
                         },
                         {
-                            "alerts": null,
                             "compass_direction": "north",
                             "distance": "1/10 mile",
                             "distance_feet": 2.9279134346947546,
@@ -971,7 +1043,16 @@
                     "transfer": null
                 },
                 {
-                    "alerts": null,
+                    "alerts": [
+                        {
+                            "future": false,
+                            "start_date": 1358212740000,
+                            "start_date_pretty": "Tuesday, January 15, 2013",
+                            "text": "Expect delays due to a detour for construction along SW Naito near SW Harrison.",
+                            "type": "ROUTE",
+                            "url": "http://trimet.org/alerts/"
+                        }
+                    ],
                     "compass_direction": null,
                     "date_info": {
                         "date": "3/21/2013",
@@ -1064,7 +1145,6 @@
                     "route": null,
                     "steps": [
                         {
-                            "alerts": null,
                             "compass_direction": "south",
                             "distance": "1/8 mile",
                             "distance_feet": 647.8348078960191,
@@ -1075,7 +1155,6 @@
                             "relative_direction": null
                         },
                         {
-                            "alerts": null,
                             "compass_direction": "southwest",
                             "distance": "1/10 mile",
                             "distance_feet": 96.53843183346183,
@@ -1086,7 +1165,6 @@
                             "relative_direction": "right"
                         },
                         {
-                            "alerts": null,
                             "compass_direction": "northwest",
                             "distance": "1/10 mile",
                             "distance_feet": 29.818032003519093,
