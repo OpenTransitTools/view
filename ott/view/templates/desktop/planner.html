@@ -3,6 +3,8 @@
 <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
+    <link rel="stylesheet" href="/css/planner.css" type="text/css" />
+    <script src="/js/planner.js"/>
 </%def>
 <%def name="meta_data()">
     <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner"/>
@@ -107,7 +109,6 @@
 ${_(u'transit vehicle')}
 %endif
 </%def>
-<%def name="get_route_linkX(route)">%if route and route['url']:</%def>
 <%def name="render_transit_leg(leg)">
                 <h3>
                     <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
@@ -152,6 +153,7 @@ ${_(u'transit vehicle')}
                 %endif
 </%def>
 <%def name="render_walk_leg(leg)">
+            <div class="normal">
                 <h3>
                     <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
                     <% walk_title = get_walk_title(leg)%>
@@ -171,6 +173,24 @@ ${_(u'transit vehicle')}
                 %if leg['to']['stop']:
                 <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
                 %endif
+                <a onClick='expandMe(this);' href='#leg_1' class='magnify' title='Trip leg details'>Expand Me</a>
+                %if leg['steps']:
+                <div class="description">
+                    <img src="${leg['from']['map_img']}"></img>
+                    %for l in leg['steps']:
+                    - ${l['name']} <br/>
+                    %endfor
+                    <img src="${leg['to']['map_img']}"></img>
+                    TODO TODO TODO
+                    1. generic 'direction' element in json
+                    2. enum for different walk insturctions Straight/Left/Slight Left/etc...
+                    3. Reformat entire Leg, ala what happens on old trip planner...
+                       http://maps5.trimet.org/maps/print/V1/tripplanner?fromPlace=pdx&toPlace=zoo&time=6:45%20pm
+                    4. Dynamic Load Images... 
+                    TODO TODO TODO
+                </div>
+                %endif
+            </div>
 </%def>
 <%def name="itin_tab(itin_list, i, text)">
     %if len(itin_list) >= i: 

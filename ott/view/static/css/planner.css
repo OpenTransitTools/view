@@ -1,0 +1,7 @@
+div.description {
+    display: none;
+}
+
+div.expanded div.description {
+    display: block;
+}
