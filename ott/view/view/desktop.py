@@ -9,9 +9,9 @@ def planner_form(request):
        1. ...
        2. ...
     '''
-    plan = request.model.get_plan(**request.params)
     ret_val = {}
-    ret_val['plan'] = plan
+    ret_val['date_info'] = utils.get_day_info()
+    ret_val['time_info'] = utils.get_time_info()
 
     return ret_val
 

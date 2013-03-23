@@ -2,6 +2,7 @@ import logging
 log = logging.getLogger(__file__)
 
 import datetime
+import time
 from calendar import monthrange
 
 def is_valid_route(route):
@@ -16,6 +17,17 @@ def is_valid_route(route):
     return ret_val
 
 
+def get_time_info(t=time.localtime()):
+    ''' gets a dict with a few params based on input date-time object
+    '''
+    # import pdb; pdb.set_trace()
+    ret_val = {
+        'hour'    : int(time.strftime('%I', t).strip('0')),
+        'minute'  : int(time.strftime('%M', t)),
+        'is_am'   : time.strftime('%p', t) == 'AM'
+    }
+    return ret_val
+
 def get_day_info(dt=datetime.date.today()):
     ''' gets a dict with a few params based on input date-time object
     '''
@@ -27,17 +39,6 @@ def get_day_info(dt=datetime.date.today()):
         'day'     : dt.day
     }
     return ret_val
-
-
-def unescape_html(dict_list):
-    ''' replace html escaped &lt; and &gt; characters with < or >
-        @see: http://stackoverflow.com/questions/1076536/replacing-values-in-a-python-list-dictionary
-    '''
-    for datadict in dict_list:
-        for key, value in datadict.items():
-            m = value.replace("&lt;", "<").replace("&gt;", ">")
-            datadict[key] = m
-
 
 
 def set_date(dt=datetime.date.today(), month=None, day=None, year=None):
@@ -156,3 +157,14 @@ def get_first_param(request, name, def_val=None):
     except:
         pass
     return ret_val
+
+
+def unescape_html(dict_list):
+    ''' replace html escaped &lt; and &gt; characters with < or >
+        @see: http://stackoverflow.com/questions/1076536/replacing-values-in-a-python-list-dictionary
+    '''
+    for datadict in dict_list:
+        for key, value in datadict.items():
+            m = value.replace("&lt;", "<").replace("&gt;", ">")
+            datadict[key] = m
+
