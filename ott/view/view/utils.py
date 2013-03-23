@@ -29,6 +29,17 @@ def get_day_info(dt=datetime.date.today()):
     return ret_val
 
 
+def unescape_html(dict_list):
+    ''' replace html escaped &lt; and &gt; characters with < or >
+        @see: http://stackoverflow.com/questions/1076536/replacing-values-in-a-python-list-dictionary
+    '''
+    for datadict in dict_list:
+        for key, value in datadict.items():
+            m = value.replace("&lt;", "<").replace("&gt;", ">")
+            datadict[key] = m
+
+
+
 def set_date(dt=datetime.date.today(), month=None, day=None, year=None):
     ''' return a datetime object, setting new month & day ranges
     '''

@@ -21,6 +21,12 @@
                       <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
                     </ul>
                 </div>
+                %if adverts:
+                %for a in adverts:
+                    ${a['content'] | n}
+                %endfor
+                <br/><br/>
+                %endif
                 <p class="feedback"><a href="/feedback.html?app=">${_(u'Having problems? Click here for technical support.')}</a></p>
             </aside>
             <!-- end #sidebar -->
@@ -71,7 +77,6 @@
     def get_mode_img(mode):
         ''' return 20x20px mode gif for leg list 
         '''
-        #import pdb; pdb.set_trace()
         ret_val = ''
         path = util.planner_img_url()
         if mode == util.attr.BUS:

@@ -2,6 +2,7 @@
 *.py[cod]
 .settings
 .DS_store
+nohup.out
 
 # C extensions
 *.so

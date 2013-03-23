@@ -24,8 +24,10 @@ def planner_itin(request):
        2. ...
     '''
     plan = request.model.get_plan(**request.params)
+    adverts = request.model.get_adverts(**request.params)
     ret_val = {}
     ret_val['plan'] = plan
+    ret_val['adverts'] = adverts
 
     return ret_val
 

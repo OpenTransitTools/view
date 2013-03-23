@@ -18,8 +18,6 @@ class ModelMock(Model):
     def get_plan(self, **kwargs):
         ''' @todo: MODE strings should come from gtfsdb code...
         '''
-
-
         # TODO -- better stuff below for mock testing...
         #import pdb; pdb.set_trace()
         if 'mode' in kwargs:
@@ -38,10 +36,14 @@ class ModelMock(Model):
             #TODO - work on error return get_json('plan_error.json')
 
     def get_adverts(self, **kwargs):
-        if Model.TRAIN in kwargs['mode']:
-            return get_json('adverts_rail.json') 
-        else:
-            return get_json('adverts_bus.json') 
+        ret_val = None
+        if 'mode' in kwargs:
+            if Model.RAIL in kwargs['mode'] or Model.TRAM in kwargs['mode'] or Model.GONDOLA in kwargs['mode']:
+                ret_val = get_json('adverts_rail.json')
+            else:
+                ret_val = get_json('adverts_bus.json')
+
+        return ret_val 
 
 
 def main():
