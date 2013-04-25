@@ -2,34 +2,58 @@
 <%namespace name="util"  file="/shared/util.mako"/>
 <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 <%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
-    <link rel="stylesheet" href="/css/planner.css" type="text/css" />
-    <script src="/js/planner.js"/>
+    <link rel="stylesheet" href="http://dev.trimet.org/css/tp.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tp-ie.css" type="text/css" media="all" /><![endif]-->
+    <script src="http://dev.trimet.org/scripts/tp.js"></script>
+    <!--script src="/js/planner.js"/-->
 </%def>
+
 <%def name="meta_data()">
     <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner"/>
     <meta name="Description" content=""/>
 </%def>
 <%def name="side_bar()">
-            <!-- begin #sidebar -->
-            <aside id="aside" class="aside">
-                <div id="icon" class="icon-tripplanner">
-                <p class="lead">${_(u'The Trip Planner provides step-by-step directions including where to board, how much to pay and where to transfer.')}</p>
-                    <h2>${_(u'Related')}</h2>  
-                    <ul class="links">
-                      <li><a href="http://ride.trimet.org?mapit=I" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">${_(u'Try out the Interactive Map Trip Planner')}</a></li>
-                      <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
-                    </ul>
-                </div>
-                %if adverts:
-                %for a in adverts:
-                    ${a['content'] | n}
-                %endfor
-                <br/><br/>
-                %endif
-                <p class="feedback"><a href="/feedback.html?app=">${_(u'Having problems? Click here for technical support.')}</a></p>
-            </aside>
-            <!-- end #sidebar -->
+    <aside id="aside" class="aside">
+        
+            <!--
+        <div id="icon" class="icon-rosette"> 
+        </div>
+            <h2>${_(u'Related')}</h2>  
+            <p class="lead">${_(u'The Trip Planner provides step-by-step directions including where to board, how much to pay and where to transfer.')}</p>
+            
+            <div class="disclaimer">
+                <p class="disclaimer-feedback">
+                    <strong>${_(u'Tell us about your trip')}</strong>
+                    <br/>
+                    ${_(u'Visit')} <a href="${util.url_domain()}/contact/" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);">trimet.org/contact</a> ${_(u'or call')} 503-238-RIDE (7433), ${_(u'option 5')}.
+                </p>
+                <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
+                    <a href="${util.url_domain()}/transittracker/about.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade; 
+                    ${_(u'for real-time arrival information and any Service Alerts that may affect your trip')}: ${_(u'Call')} 503-238-RIDE (7433), ${_(u'visit')} m.trimet.org, ${_(u'or text your Stop ID to')} 27299.
+                </p>
+            </div>
+            -->
+            
+    %if adverts:
+        <div id="trimet-ads">
+        TODO format itinerary ads
+        %for a in adverts:
+            ${a['content'] | n}
+        %endfor
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="http://dev.trimet.org/images/tp/ads/fare.png"><span>No fare increases right now. Just lettin' you know!</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="http://dev.trimet.org/images/tp/ads/mobile.png"><span>Mobile ticketing for smartphones coming summer 2013.</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="http://dev.trimet.org/images/tp/ads/gear.png"><span>Order mugs, bags, t-shirts and more in the TriMet Gear Store.</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="http://dev.trimet.org/images/tp/ads/co2.png"><span>Taking this trip instead of driving will help the environment.</span></a></p>
+        </div><!-- end #trimet-ads -->
+    %endif
+        
+        <div id="sidebar-icons">
+            <p class="helptips"><a href="${util.url_domain()}/tripplanner/trip-help.htm"><span>${_(u'Help/tips')}</span></a></p>
+            <p class="showonmap"><a href="http://ride.trimet.org?mapit=I"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
+            <p class="feedbackreport"><a href="/feedback.html?app=" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);"><span>${_(u'Feedback/report a problem')}</span></a></p>
+        </div><!-- end #sidebar-icons -->
+        
+    </aside><!-- end #sidebar -->
 </%def>
 ##
 ## functions and modular stuff for itinerary
@@ -109,35 +133,37 @@
 <%def name="get_route_name(route)">${route['name']}${' ' + _(u'to') + ' ' + route['headsign'] if route['headsign'] else ''}</%def>
 <%def name="get_route_link(route)">
 %if route is not None:
-<a href="${route['url']}" target="#" title="${_(u'Show map and schedules for this route.')}">${get_route_name(route)}</a>
+<a href="${route['url']}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="http://dev.trimet.org/images/tp/modes.png" width="0" height="1" class="step-bus-icon" />TODO-ICON ${get_route_name(route)}</a>
 %else:
 ${_(u'transit vehicle')}
 %endif
 </%def>
 <%def name="render_transit_leg(leg)">
-                <h3>
-                    <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
-                    <b>
-                        <a href="${leg['from']['stop']['schedule']} title="${_(u'Show schedule for')} ${leg['from']['name']}">${leg['date_info']['start_time']}</a>
-                    </b>
-                    ${_(u'Board')} ${get_route_link(leg['route'])}
-                </h3>
-                %if leg['alerts']:
-                %for a in leg['alerts']:
-                <p class="alert">
-                <img class="bullet" title="$_(u'Alert icon')}" alt="$_(u'Alert icon')}" src="${util.url_domain()}/v3/images/tripplanner/alert.png">
-                ${a['text']}
-                </p>
-                %endfor
-                %endif
-                <h3>
-                    <b>
-                        <a href="${leg['to']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['to']['name']}">${leg['date_info']['end_time']}</a>
-                    </b>
-                    ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
-                </h3>
-                <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+
+    <!--<img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />-->
+    
+    <li class="num01">
+        <div class="step-number"><img src="http://dev.trimet.org/images/tp/numbers.png" width="0" height="1" /></div>
+        <p>
+        	<a href="${leg['from']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['from']['name']}" class="step-time">${leg['date_info']['start_time']}</a> ${_(u'Board')} ${get_route_link(leg['route'])} 
+            %if leg['alerts']:
+            %for a in leg['alerts']:
+            <a href="#alerts" title="${a['text']}" class="step-alert"><img src="http://dev.trimet.org/images/tp/alert.png" /></a>
+            %endfor
+            %endif
+        </p>
+    </li>
+                
+    <li class="num01">
+        <div class="step-number"><img src="http://dev.trimet.org/images/tp/numbers.png" width="0" height="1" /></div>
+        <p><a href="${leg['to']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['to']['name']}" class="step-time">${leg['date_info']['end_time']}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title="${_(u'More information about this stop')}">${leg['to']['name']}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span></p>
+        
+    </li>
+
 </%def>
+
+
+
 <%def name="render_bicycle_leg(leg)">
                 <h3>
                     <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
@@ -158,171 +184,191 @@ ${_(u'transit vehicle')}
                 %endif
 </%def>
 <%def name="render_walk_leg(leg)">
-            <div class="normal">
-                <h3>
-                    <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
-                    <% walk_title = get_walk_title(leg)%>
-                    %if leg['steps']:
-                    <a href="TODO-render_walking_directions(leg)" title="${_(u'Show walking directions.')}">${walk_title}</a> ${_(u'to')}
-                    %elif leg['to']['stop'] and leg['transfer']:
-                    ${_(u'Go to')}
-                    %else:
-                    ${walk_title} ${_(u'to')}
-                    %endif
-                    %if leg['to']['stop']:
-                    <a href="${leg['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
-                    %else:
-                    ${leg['to']['name']}
-                    %endif
-                </h3>
-                %if leg['to']['stop']:
-                <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
-                %endif
-                <a onClick='expandMe(this);' href='#leg_1' class='magnify' title='Trip leg details'>Expand Me</a>
+
+	<!--<img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />-->
+
+    <li class="num01">
+        <div class="step-number"><img src="http://dev.trimet.org/images/tp/numbers.png" width="0" height="1" /></div>
+        <p>
+            <% walk_title = get_walk_title(leg)%>
+            %if leg['steps']:
+            ${walk_title} ${_(u'to')}
+            %elif leg['to']['stop'] and leg['transfer']:
+            ${_(u'Go to')}
+            %else:
+            ${walk_title} ${_(u'to')}
+            %endif
+            %if leg['to']['stop']:
+            <a href="${leg['to']['stop']['info']}" title="${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
+            %else:
+            ${leg['to']['name']}
+            %endif
+
+            %if leg['to']['stop']:
+            <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+            %endif
+        </p>
+
+        <div class="normal"><!-- hidden walking directions and map -->
+            <a href="#leg_1" onClick="expandMe(this);" title="Walking directions" class="open"><span>Walking directions</span></a>
+            <div class="description">
+                <p class="elevation"><span>
+                    Total elevation uphill: 3 feet<br />
+                    Total elevation downhill: 3 feet<br />
+                    Steepest grade: 2%<br />
+                    <a href="#">Elevation chart</a></span>
+                </p>
+                <ol>
+                    <li>Walk 0.36 mile west on SE Water Ave.</li>
+                    <li>Turn left on SE Madison St.</li>
+                    <li>Walk a short distance west on SE Madison St.</li>
+                </ol>
+                
                 %if leg['steps']:
-                <div class="description">
-                    <img src="${leg['from']['map_img']}"></img>
-                    %for l in leg['steps']:
-                    - ${l['name']} <br/>
-                    %endfor
-                    <img src="${leg['to']['map_img']}"></img>
-                    TODO TODO TODO
-                    1. generic 'direction' element in json
-                    2. enum for different walk insturctions Straight/Left/Slight Left/etc...
-                    3. Reformat entire Leg, ala what happens on old trip planner...
-                       http://maps5.trimet.org/maps/print/V1/tripplanner?fromPlace=pdx&toPlace=zoo&time=6:45%20pm
-                    4. Dynamic Load Images... 
-                    TODO TODO TODO
-                </div>
+                	<div class="maps">
+                        <p class="walk-start">Start<br /><img src="${leg['from']['map_img']}" alt="Map of starting point)" width="300" height="288" /></p>
+                        <p class="walk-end">
+                            End 
+                            %for l in leg['steps']:
+                            (${l['name']})
+                            %endfor
+                            <br />
+                            <img src="${leg['to']['map_img']}" alt="Map of ending point (300x288)" width="300" height="288" />
+                        </p>
+                        <!--
+                        TODO TODO TODO
+                        1. generic 'direction' element in json
+                        2. enum for different walk insturctions Straight/Left/Slight Left/etc...
+                        3. Reformat entire Leg, ala what happens on old trip planner...
+                           http://maps5.trimet.org/maps/print/V1/tripplanner?fromPlace=pdx&toPlace=zoo&time=6:45%20pm
+                        4. Dynamic Load Images... 
+                        TODO TODO TODO
+                        -->
+                	</div><!-- end .maps -->
                 %endif
-            </div>
+            </div><!-- end .description -->
+        </div><!-- end .normal/hidden walking directions -->
+    </li>
+
+                
+
+
 </%def>
 <%def name="itin_tab(itin_list, i, text)">
     %if len(itin_list) >= i: 
         %if itin_list[i-1]['selected']:
-        <span>${text}</span>
+        <li class="selected"><span><b>${text}</b><br />TODO mins, ${itinerary['transfers']} transfer, ${itinerary['fare']['adult']}</span></li>
         %else:
-        <a href="${itin_list[i-1]['url']}" class="unselected">${text}</a>
+        <li class="normal"><a href="${itin_list[i-1]['url']}"><span><b>${text}</b><br />TODO mins, ${itinerary['transfers']} transfer(TODO), ${itinerary['fare']['adult']}</span></a></li>
         %endif
     %endif
 </%def>
 ##
 ## main content
 ##
-<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
 
-<div class="planner-form">
-    <div class="planner-form-top">
-        <div class="planner-icon">
-            <h1>${_(u'Your Trip on TriMet')}</h1>
-            <div class="tagline">
-                <div class="hide">
-                    <form>
-                        <input name="print" type="button" value="${_(u'Print')}" title="${_(u'Print this page')}" onClick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print top']);" class="noprint" />
-                    </form>
-                </div>
-            </div>
+    <h1>${_(u'Your Trip on TriMet')}</h1>
+    <!--
+    <p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
+        <div class="hide">
+            <form>
+                <input name="print" type="button" value="${_(u'Print')}" title="${_(u'Print this page')}" onClick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print top']);" class="noprint" />
+            </form>
         </div>
-        <div class="planner-header">
-            <h2>${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</h2>
-        </div>
-        %if len(plan['itineraries']) > 1:
-        <div class="tabs">
-            <p class="heading">
-                ${itin_tab(plan['itineraries'], 1, _(u'Option 1: Your best bet'))}
-                ${itin_tab(plan['itineraries'], 2, _(u'Option 2'))}
-                ${itin_tab(plan['itineraries'], 3, _(u'Option 3'))}
-            </p>
-        </div>
-        %endif
-        <div id="itinerary">
-            <table width="100%" border="0" cellspacing="5" cellpadding="0">
-            <tr>
-                <td width="15%"><strong>${_(u'When')}</strong></td> <td>${depart_arrive} ${time} ${itinerary['date_info']['pretty_date']}</td>
-            </tr>
-            <tr>
-                <td><strong>${_(u'Preferences')}</strong></td><td>${optimize} ${_(u'with a maximum walk of')} 1 mile <a href="planner_form.html?${plan['params']}" title = "${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);">${_(u'Edit')}</a></td>
-            </tr>
-            <tr>
-                <td><strong>${_(u'Time')}</strong></td><td>${itinerary['date_info']['pretty_date']}</td>
-            </tr>
-            <tr>
-                <td>&nbsp;</td><td>${_(u'riding on transit')} ${_(u'from')} ${itinerary['date_info']['start_transit']} ${_(u'to')} ${itinerary['date_info']['end_transit']}</td>
-            </tr>
-            <tr>
-                <td><strong>${_(u'Transfers')}</strong></td><td>${itinerary['transfers']}</td>
-            </tr> 
-            <tr>
-                <td><strong>${_(u'Fare')}</strong></td><td>${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</td>
-            </tr>
-            </table>
-        </div>
+    -->
+    <div id="details" class="group">
+        <p class="origin"><img src="http://dev.trimet.org/images/tp/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
+        <p class="destination"><img src="http://dev.trimet.org/images/tp/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
+        <p class="tripinfo">${depart_arrive} ${time} ${itinerary['date_info']['pretty_date']}, ${_(u'riding on transit')} <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        <p class="tripinfo">${optimize} ${_(u'with a maximum walk of')} 1 mile <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+    </div><!-- end #details -->
+    
+    
+    %if len(plan['itineraries']) > 1:
+    <ol id="tabs" class="group">
+        ${itin_tab(plan['itineraries'], 1, _(u'Your best bet'))}
+        ${itin_tab(plan['itineraries'], 2, _(u'Option 2'))}
+        ${itin_tab(plan['itineraries'], 3, _(u'Option 3'))}
+    </ol><!-- end #tabs -->
+    %endif
 
-        <ol id="tripsteps">
-            <li class="first">
-                <h3>
-                    <img src="${util.url_domain()}/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> 
-                    ${_(u'Start at')} 
-                    <a href="${plan['from']['map_img']}">${plan['from']['name']}</a>
-                </h3>
-                %if plan['from']['stop']:
-                <h3>
-                    <a href="${plan['from']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${plan['from']['stop']['name']}</a>
-                </h3>
-                <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['from']['stop']['id']}</span>
-                %endif
-            </li>
+<!--
+<strong>${_(u'Time')}</strong></td><td>${itinerary['date_info']['pretty_date']}
+ ${_(u'from')} ${itinerary['date_info']['start_transit']} ${_(u'to')} ${itinerary['date_info']['end_transit']}
+-->
 
-            ##
-            ## loop through the legs between start and end elements
-            ##
-            %for leg in itinerary['legs']:
-            <li>
-                ${render_leg(leg)}
-            </li>
-            %endfor
 
-            <li class="last">
-                <h3>
-                    <img src="${util.url_domain()}/v3/images/tripplanner/end.gif" alt="" border="0" class="icon" /> 
-                    ${_(u'End at')} 
-                    <a href="${plan['to']['map_img']}">${plan['to']['name']}</a>
-                </h3>
-                %if plan['to']['stop']:
-                <h3>
-                    <a href="${plan['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${plan['to']['stop']['name']}</a>
-                </h3>
-                <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['to']['stop']['id']}</span>
-                %endif
-            </li>
-        </ol>
+    <ol id="itinerary" class="transit">
+    <!--
+        <li class="first">
+            <h3>
+                <img src="${util.url_domain()}/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> 
+                ${_(u'Start at')} 
+                <a href="${plan['from']['map_img']}">${plan['from']['name']}</a>
+            </h3>
+            %if plan['from']['stop']:
+            <h3>
+                <a href="${plan['from']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${plan['from']['stop']['name']}</a>
+            </h3>
+            <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['from']['stop']['id']}</span>
+            %endif
+        </li>
+    -->
+        ##
+        ## loop through the legs between start and end elements
+        ##
+        %for leg in itinerary['legs']:
+            ${render_leg(leg)}
+        %endfor
+        
+        <!--
+        <li class="last">
+            <h3>
+                <img src="${util.url_domain()}/v3/images/tripplanner/end.gif" alt="" border="0" class="icon" /> 
+                ${_(u'End at')} 
+                <a href="${plan['to']['map_img']}">${plan['to']['name']}</a>
+            </h3>
+            %if plan['to']['stop']:
+            <h3>
+                <a href="${plan['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${plan['to']['stop']['name']}</a>
+            </h3>
+            <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['to']['stop']['id']}</span>
+            %endif
+        </li>
+        -->
+    </ol><!-- end #itinerary -->
 
-        <p id="buttons" class="hide">
-            <span class="button-tripplanner"><a href="planner_form.html#TODO URL PARAMS" title="${_(u'Plan return trip')}"      onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);">${_(u'Reverse')}</a></span>
-            <span class="button-tripplanner"><a href="planner_form.html#TODO URL PARAMS" title="${_(u'Try different options')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);">${_(u'Edit')}</a></span> 
-            <span class="button-tripplanner"><a href="#" title="${_(u'Print this page')}"       onclick="javascript:window.print(); _gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);">${_(u'Print')}</a></span>
-        </p>
-        <p class="help"><a target="#" href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></p>
-    </div>
-    <div class="planner-form-bottom"></div>
-</div>
+    <p class="fare">Fare for this trip: <a href="/fares/index.htm">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
+
 %if itinerary['has_alerts']:
-<div class="planner-alerts">
-    <a name="alerts"></a>
-        <h3>
-            <a target="#" href="${util.url_domain()}/alerts/"><img border="0" src="${util.url_domain()}/v3/images/tripplanner/alert.png">${_(u'Service Alerts')}</a>
-       </h3>
-    <p>${_(u'The trip planner shows scheduled service only. It may send you to stops that are closed or bypassed. Please read service alerts to see if detours affect your trip.')}</p>
-</div>
+    <div id="alerts" class="group">
+        <!--<a target="#" href="${util.url_domain()}/alerts/"><img border="0" src="${util.url_domain()}/v3/images/tripplanner/alert.png">${_(u'Service Alerts')}</a>-->
+        TODO display full alert text and time alert is active
+        <p><img src="http://dev.trimet.org/images/tp/alert.png" />
+            <span class="alert-text">Until further notice, the westbound stop on SE Division at 37th (Stop ID 1457) is closed.</span>
+            <span class="alert-time">As of March 19 @ 10:15am</span>
+        </p>
+        <p><img src="http://dev.trimet.org/images/tp/alert.png" />
+            <span class="alert-text">Until further notice, the westbound stop on SE Division at 37th (Stop ID 1457) is closed.</span>
+            <span class="alert-time">As of March 19 @ 10:15am</span>
+        </p>
+    </div><!-- end #alerts -->
 %endif
-<div class="disclaimer">
-    <p class="disclaimer-feedback">
-        <strong>${_(u'Tell us about your trip')}</strong>
-        <br/>
-        ${_(u'Visit')} <a href="${util.url_domain()}/contact/" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);">trimet.org/contact</a> ${_(u'or call')} 503-238-RIDE (7433), ${_(u'option 5')}.
-    </p>
-    <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
-        <a href="${util.url_domain()}/transittracker/about.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade; 
-        ${_(u'for real-time arrival information and any Service Alerts that may affect your trip')}: ${_(u'Call')} 503-238-RIDE (7433), ${_(u'visit')} m.trimet.org, ${_(u'or text your Stop ID to')} 27299.
-    </p>
-</div>
+
+
+    <div id="console" class="group hide">
+        <p class="console-left">
+            <a href="#" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
+            <a href="javascript:window.print();" class="console-print" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);"><span>${_(u'Print')}</span></a>
+            <a href="#" class="console-mobile" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary view on mobile']);"><span>${_(u'View on mobile')}</span></a>
+        </p>
+        <p class="console-right">
+            <a href="planner_form.html#TODO URL PARAMS" class="console-returntrip" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);"><span>${_(u'Return trip')}</span></a>
+            <a href="planner_form.html#TODO URL PARAMS" class="console-edit" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
+        </p>
+    </div><!-- end #console -->
+
+
+
+
+

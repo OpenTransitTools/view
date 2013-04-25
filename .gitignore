@@ -3,6 +3,7 @@
 .settings
 .DS_store
 nohup.out
+backup
 
 # C extensions
 *.so

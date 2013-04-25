@@ -1,19 +1,20 @@
 <%inherit file="/desktop/base.html"/>
 <%namespace name="util"  file="/shared/util.mako"/>
 
-<% fromPlace = ''; toPlace='' %>
+<% fromPlace='From'; toPlace='To' %>
 
 <%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
 
 <%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
+    <link rel="stylesheet" href="http://dev.trimet.org/css/tp.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tp-ie.css" type="text/css" media="all" /><![endif]-->
 </%def>
 <%def name="meta_data()">
-    <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner"/>
-    <meta name="Description" content=""/>
+    <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner" />
+    <meta name="Description" content="" />
 </%def>
 <%def name="side_bar()">
-            <!-- begin #sidebar -->
+            <!-- begin #sidebar 
             <aside id="aside" class="aside">
                 <div id="icon" class="icon-tripplanner">
                 <p class="lead">${_(u'The Trip Planner provides step-by-step directions including where to board, how much to pay and where to transfer.')}</p>
@@ -25,61 +26,74 @@
                 </div>
                 <p class="feedback"><a href="/feedback.html?app=">${_(u'Having problems? Click here for technical support.')}</a></p>
             </aside>
-            <!-- end #sidebar -->
+             end #sidebar -->
 </%def>
 
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def> 
 
-<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
 
-
-<div class="planner-form">
-    <div class="planner-form-top" id="planner-form">
-        <div class="planner-icon">
-            <h1>${_(u'Trip Planner')}</h1>
-            <div class="tagline">
-                <p>${_(u'Step-by-step travel directions')}</p>
-            </div>
-        </div>
+<div id="main-fullwidth">
+    
+    <h1>${_(u'Plan your trip on TriMet')}</h1>
+    <!--
+    <p>${_(u'Step-by-step travel directions')}</p>
+    <p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
+    -->
+   
+    <div id="plantrip" class="group">
         <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style" />
             <input type="hidden" name="lang" value="t"  />
             <input type="hidden" name="action" value="entry" />
             <input type="hidden" name="today" value=2013/02/28>
             <input type="hidden" name="date" value=02/28/13>
 
-            <fieldset class="addresses">
-                <label for="from">${_(u'From')}:</label>
-                <input type="text" tabindex="1" name=Orig value="${fromPlace}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="45" maxlength="80" />
-                <p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>
+        <div id="plantrip-left">
+            <fieldset>
+                <label for="from" class="hide">${_(u'From')}:</label>
+                <input type="text" id="from" tabindex="1" name=Orig value="${fromPlace}" onFocus="doClear(this,'From');" onBlur="doText(this,'From');" class="regular" size="45" maxlength="80" />
+                <!--<p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>-->
+                <div class="form-help">
+                    <div class="form-help-popup-onright">
+                        <p>You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.</p>
+                    </div>
+                </div>
             </fieldset>
-            <fieldset class="addresses">
-                <label for="going">${_(u'To')}:  </label>
-                <input type="text" id="going" tabindex="2" name=Dest value="${toPlace}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="45" maxlength="80" />
-                <p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>
+            <fieldset>
+                <label for="going" class="hide">${_(u'To')}:</label>
+                <input type="text" id="going" tabindex="2" name=Dest value="${toPlace}" onFocus="doClear(this,'To');" onBlur="doText(this,'To');" class="regular" size="45" maxlength="80" />
+                <!--<p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>-->
+                <div class="form-help">
+                    <div class="form-help-popup-onright">
+                        <p>You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.</p>
+                    </div>
+                </div>
             </fieldset>
 
-            <fieldset class="addresses">
-                <label for="when">${_(u'When')}:</label>
-                <select name="Arr" tabindex="3"  onchange="showTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+
+            <fieldset>
+                <label for="when" class="hide">${_(u'When')}:</label>
+                <select name="Arr" id="depart" tabindex="3"  onchange="showTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     <option selected="selected" value="D">${_(u'Depart after')}</option>
                     <option value="A">${_(u'Arrive by')}</option>
                     <option value="L">${_(u'Late as possible')}</option>
                     <option value="E">${_(u'Early as possible')}</option>
                 </select>
-                <select name="Hour" tabindex="4"  onfocus="doClassHighlight(this);" style="margin-left: 13px;" class="regular" id="Hour" onblur="doClassRegular(this);">
+                <select name="Hour" id="Hour" tabindex="4"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                 %for i in range(1, 13):
                     ${option(i, i, time_info['hour'] == i)}
                 % endfor
-                </select><strong>:</strong><select name="Minute" tabindex="5"  onfocus="doClassHighlight(this);" class="regular" id="Minute" onblur="doClassRegular(this);">
+                </select>
+                <strong>:</strong>
+                <select name="Minute" id="Minute" tabindex="5" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                 %for i in range(60):
                     ${option(i, str(i).rjust(2,'0'), time_info['minute'] == i)}
                 % endfor
                 </select>
-                <select name="AmPm" tabindex="6"  onfocus="doClassHighlight(this);" class="regular" id="AmPm" onblur="doClassRegular(this);">
+                <select name="AmPm" id="AmPm" tabindex="6"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     ${option('am', _(u'am'), time_info['is_am'])}
                     ${option('pm', _(u'pm'), not time_info['is_am'])}
                 </select>
-                <select name="month" tabindex="7"  onfocus="doClassHighlight(this);" style="margin-left: 13px;" class="regular" onblur="doClassRegular(this);">
+                <select name="month" id="Month" tabindex="7"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     <option value="Jan">Jan</option>
                     <option selected="selected" value="Feb">Feb</option>
                     <option value="Mar">Mar</option>
@@ -93,7 +107,7 @@
                     <option value="Nov">Nov</option>
                     <option value="Dec">Dec</option>
                 </select>
-                <select name="day" tabindex="8"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <select name="day" id="Day" tabindex="8"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -127,7 +141,17 @@
                     <option value="31">31</option>
                 </select>
             </fieldset>
-            <p class="options">${_(u'Trip preferences (optional)')}</p>
+            
+
+            <fieldset class="submit">
+                <input name="submit" tabindex="13" type="submit" value="Get directions &raquo;" id="submit" title="${_(u'Submit your trip plan information')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
+                <input type="checkbox" id="mapcheckbox" tabindex="12" title="${_(u'Show trip on an interactive map (broadband/desktop only)')}" name="mapit"  value="A" onclick="doMap();">
+                <label for="mapcheckbox" class="mapcheckbox-label" title="Show trip on an interactive map (broadband/desktop only)">${_(u'Use Interactive Map')}</label>
+            </fieldset>
+        </div><!-- end #plantrip-left -->
+        
+        <div id="plantrip-right">
+            <!--<p class="options">${_(u'Trip preferences (optional)')}</p>-->
             <fieldset class="preferences">
                 <label for="trip-options">${_(u'Show me the')}: </label>
                 <select name="Min" tabindex="9"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
@@ -147,21 +171,28 @@
             </fieldset>
             <fieldset class="preferences">
                 <label for="trip-options">${_(u'Travel by')}:</label>
-                <select name="mode" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <select name="mode" tabindex="11"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     <option selected="selected" value="A">${_(u'Bus or train')}</option>
                     <option value="B">${_(u'Bus only')}</option>
                     <option value="T">${_(u'Train only')}</option>
                 </select>
             </fieldset>
-            <fieldset class="submit">
-                <input name="submit" tabindex="15" type="submit" value="Plan trip" id="submit" title="${_(u'Submit your trip plan information')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
-                <span class="showonmap" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">
-                    <input type="checkbox" tabindex="10" title="${_(u'Plan trip on interactive map (fast connection recommended)')}" name="mapit"  value="A" onclick="doMap();">${_(u'Show on map')}
-                </span>
-            </fieldset>
+            <div class="spacer"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></div>
+        </div><!-- end #plantrip-right -->
         </form>
-        <p class="help"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></p>
-    </div>
-</div>
-<div class="planner-form-bottom"></div>
+        
+    </div><!-- end #plantrip -->
+</div><!-- end #main-fullwidth -->
+
+
+
+<p>&nbsp;</p>
+
+<div id="imap-wrap">
+    <section id="imap" class="group">
+        <h3><a href="/maptripplanner/index.htm"><strong>Interactive Map Trip Planner</strong>: Get transit + biking directions in one itinerary &raquo;</a></h3>
+    </section><!-- end #imap -->
+</div><!-- end #promobar-wrap -->
+
+<p>&nbsp;</p>
 
