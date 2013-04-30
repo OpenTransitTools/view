@@ -11,79 +11,74 @@
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
 %>
 
-<%def name="title()">TriMet: ${_(u'Stops and Schedules')}</%def>
+<%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['id']}</%def>
 <%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/tripplanform.css" type="text/css" /><!-- for trip planner pages -->
+    <link rel="stylesheet" href="${util.url_domain()}/css/ss.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tt-ie.css" type="text/css" media="all" /><![endif]-->
 </%def>
 <%def name="meta_data()">
     <meta name="Keywords"    content="Stops, stations"/>
     <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
 </%def>
 <%def name="side_bar()">
-            <!-- begin #sidebar -->
-            <aside id="aside" class="aside">
-                <div id="icon" class="icon-schedules">
-                    <h2>${_(u'Related')}</h2>  
-                    <ul class="links">
-                      <!-- TODO why doesn't &date={date} work in this scope ... no date from above available here -->
-                      <li><a href="http://ride.trimet.org?from=${stop['id']}&mapit=I" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">${_(u'Try out the Interactive Map Trip Planner')}</a></li>
-                      <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
-                    </ul>
-                </div>
-                <p class="feedback"><a href="/feedback.html">${_(u'Having problems? Click here for technical support.')}</a></p>
-                <h2>${_(u'Before you leave')}, <strong>${_(u'check')} TransitTracker&#8482;</strong> </h2>
-                <p>${_(u'Call')} 503-238-RIDE (7433) ${_(u'or visit')} <em><a href='http://trimet.org'>trimet.org</a></em> ${_(u"for up-to-the-minute TransitTracker arrival times for your stop or station")}. ${_(u"Plus, we'll tell you if any detours or delays are in effect")}.</p>
-            </aside>
-            <!-- end #sidebar -->
+    <!-- begin #sidebar -->
+    <aside id="aside" class="aside">
+
+    </aside>
+    <!-- end #sidebar -->
 </%def>
 
 <%def name="schedule_selected()">class="selected"</%def>
-
+<!--
     <p class="mobile"><a href="${util.url_domain()}/mobile/stop/stopID=${stop['id']}"><span>${_(u'Mobile')}</span></a><br/></p>
-    <div class="tabs">
-        <p class="heading">
+-->
+    <h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">Stops &amp; Stations</a></h1>
+    
+    <h2><a href="/stop.html?stopID=${stop['id']}&date=${date}">${_(u'Stop ID')} ${stop['id']}</a></h2>
+    <p>${stop['name']} ${_(u'in')} ${stop['city']}</p>
+    
+    <ul id="contenttabs">
         %for t in tabs:
           %if 'url' in t:
-            <a href="${t['url']}&sort=${sort_val}" class="unselected">${t['name']}</a>
+            <li class="normal"><a href="${t['url']}&sort=${sort_val}"><span>${t['name']}</span></a></li>
           %else:
-            <span>${t['name']}</span>
+            <li class="selected"><span>${t['name']}</span></li>
           %endif
         %endfor
-        </p>
-    </div>
+    </ul>
+
 
     %if 'more' in request.params:
-    <p>
-        <form name="select_date" id="select_date_id" method="GET" action="/stop_schedule.html" class="form-style">
+    <div id="moreform" class="group">
+        <form name="select_date" id="select_date_id" method="GET" action="/stop_schedule.html" class="triptools-form">
             <input type="hidden" name="stopID" value="${stop['id']}" />
             <input type="hidden" name="date"   value="${date}" />
             <input type="hidden" name="sort" value="${sort_val}" />
             %if more_form:
             ${util.month_select(more_form['month'])}${util.day_select(more_form['day'])}
-            <input name="submit" type="submit" value="${_(u'Select')}" tabindex="12" />
+            <input name="submit" type="submit" value="${_(u'Select')}" class="submit" />
              %endif
         </form>
-    </p>
+    </div>
     %endif
 
-    <h2 class="stop">
-        ${_(u'Stop ID')} <a href="/stop.html?stopID=${stop['id']}&date=${date}">${stop['id']}</a>
-        %if 'single_route' in stop:
-        ${stop['single_route']}
-        [<a href="/stop_schedule.html?stopID=${stop['id']}&date=${date}&sort=${sort_val}">${_(u'all routes')}</a>]
-        %endif
-    </h2>
-    <p class="stopid">${_(u'Schedule for')} ${pretty_date}</p>
-    <p class="stopid">
+
+    %if 'single_route' in stop:
+    ${stop['single_route']}
+    [<a href="/stop_schedule.html?stopID=${stop['id']}&date=${date}&sort=${sort_val}">${_(u'all routes')}</a>]
+    %endif
+    
+
+    <p style="float:right;">
         <% u = "/stop_schedule.html?stopID={0}&route={1}&date={2}".format(stop['id'], route, date) %>
-        ${util.link_or_strong(_(u'by destination'), not sort_by_time, u + '&sort=destination', _('sort'))}
-        ${util.link_or_strong(_(u'by time'), sort_by_time, u + '&sort=time', _('sort'))}
+        Sort:
+        ${util.link_or_strong(_(u'By destination'), not sort_by_time, u + '&sort=destination', _('sort'))}
+         &nbsp;|&nbsp; 
+        ${util.link_or_strong(_(u'By time'), sort_by_time, u + '&sort=time', _('sort'))}
     </p>
-    <p>
-        <strong>${_(u'Departures from')}
-            <a href="/stop.html?stopID=${stop['id']}&date=${date}" title = "${_(u'Click for more information about this stop')}">${stop['name']} (${_(u'Stop ID')}&nbsp;${stop['id']})</a>
-        </strong>
-    </p>
+    <p>${_(u'Schedule for')} ${pretty_date}</p>
+
+
     %if sort_by_time:
         %for s in stop['schedule']:
         <% 
@@ -91,7 +86,7 @@
             route = stop['route_patterns'][id]
             alerts = True if 'alerts' in route and len(route['alerts']) > 0 else False
         %> 
-        <strong>${s['t']}</strong> ${route['name']}<br/> 
+        <p><b>${s['t']}</b> ${route['name']}</p> 
         %endfor
     %else:
     %for p in stop['route_patterns'].keys():
@@ -100,35 +95,39 @@
         route_url = '' if 'route_url' not in route else route['route_url']
         alerts = True if 'alerts' in route and len(route['alerts']) > 0 else False
     %>
-    <p>
-        %if 'arrival_url' in route:
-        <a class="hide" href="${route['arrival_url']}">
-        <img src="${util.url_domain()}/images/nextarrivalsicon-16.gif" class="noprint" border="0" height="16" width="16" align="absmiddle" alt="${_(u'Next arrivals')}" title="${_(u'Next arrivals')}"/>
-        </a>
+    
+    <h3 class="tight">
+        %if route_url:
+            <a href="${route_url}" title="${_(u'Show map and schedules for this route')}.">
         %endif
-        <strong>
-            %if route_url:
-            <a href="${route_url}" title = "${_(u'Show map and schedules for this route')}.">
-            %endif
             ${route['name']}
-            %if route_url:
+        %if route_url:
             </a>
-            %endif
-            %if alerts:
-            &nbsp;
+        %endif
+        
+        %if 'arrival_url' in route:
+            <a href="${route['arrival_url']}" class="stop-arrivals"><img src="${util.img_url()}/transittracker-icon.png" alt="${_(u'Next arrivals')}" /></a>
+        %endif
+        
+        %if alerts:
             ${util.alerts_inline_icon_link()}
-            %endif
-        </strong>
-        <br/>
+        %endif
+    </h3>
+    <p>
         %for s in stop['schedule']:
         %if s['p'] == p:
         ${s['t']}
         %endif
         %endfor
     </p>
+
     %endfor
     %endif
+
 
     %if has_alerts:
         ${util.alerts(stop['alerts'])}
     %endif
+    
+
+

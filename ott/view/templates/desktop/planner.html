@@ -2,9 +2,9 @@
 <%namespace name="util"  file="/shared/util.mako"/>
 <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 <%def name="app_css()">
-    <link rel="stylesheet" href="http://dev.trimet.org/css/tp.css" type="text/css" media="all" />
-    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tp-ie.css" type="text/css" media="all" /><![endif]-->
-    <script src="http://dev.trimet.org/scripts/tp.js"></script>
+    <link rel="stylesheet" href="${util.url_domain()}/css/tp.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tt-ie.css" type="text/css" media="all" /><![endif]-->
+    <script src="${util.url_domain()}/scripts/tp.js"></script>
     <!--script src="/js/planner.js"/-->
 </%def>
 
@@ -12,6 +12,7 @@
     <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner"/>
     <meta name="Description" content=""/>
 </%def>
+<%def name="planner_selected()">class="selected"</%def>
 <%def name="side_bar()">
     <aside id="aside" class="aside">
         
@@ -40,10 +41,10 @@
         %for a in adverts:
             ${a['content'] | n}
         %endfor
-            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="http://dev.trimet.org/images/tp/ads/fare.png"><span>No fare increases right now. Just lettin' you know!</span></a></p>
-            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="http://dev.trimet.org/images/tp/ads/mobile.png"><span>Mobile ticketing for smartphones coming summer 2013.</span></a></p>
-            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="http://dev.trimet.org/images/tp/ads/gear.png"><span>Order mugs, bags, t-shirts and more in the TriMet Gear Store.</span></a></p>
-            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="http://dev.trimet.org/images/tp/ads/co2.png"><span>Taking this trip instead of driving will help the environment.</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="${util.img_url()}/ads/fare.png"><span>No fare increases right now. Just lettin' you know!</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="${util.img_url()}/ads/mobile.png"><span>Mobile ticketing for smartphones coming summer 2013.</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="${util.img_url()}/ads/gear.png"><span>Order mugs, bags, t-shirts and more in the TriMet Gear Store.</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="${util.img_url()}/ads/co2.png"><span>Taking this trip instead of driving will help the environment.</span></a></p>
         </div><!-- end #trimet-ads -->
     %endif
         
@@ -133,7 +134,7 @@
 <%def name="get_route_name(route)">${route['name']}${' ' + _(u'to') + ' ' + route['headsign'] if route['headsign'] else ''}</%def>
 <%def name="get_route_link(route)">
 %if route is not None:
-<a href="${route['url']}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="http://dev.trimet.org/images/tp/modes.png" width="0" height="1" class="step-bus-icon" />TODO-ICON ${get_route_name(route)}</a>
+<a href="${route['url']}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="step-bus-icon" />TODO-ICON ${get_route_name(route)}</a>
 %else:
 ${_(u'transit vehicle')}
 %endif
@@ -143,19 +144,19 @@ ${_(u'transit vehicle')}
     <!--<img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />-->
     
     <li class="num01">
-        <div class="step-number"><img src="http://dev.trimet.org/images/tp/numbers.png" width="0" height="1" /></div>
+        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
         	<a href="${leg['from']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['from']['name']}" class="step-time">${leg['date_info']['start_time']}</a> ${_(u'Board')} ${get_route_link(leg['route'])} 
             %if leg['alerts']:
             %for a in leg['alerts']:
-            <a href="#alerts" title="${a['text']}" class="step-alert"><img src="http://dev.trimet.org/images/tp/alert.png" /></a>
+            <a href="#alerts" title="${a['text']}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>TODO<!--only show 1 icon-->
             %endfor
             %endif
         </p>
     </li>
                 
     <li class="num01">
-        <div class="step-number"><img src="http://dev.trimet.org/images/tp/numbers.png" width="0" height="1" /></div>
+        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p><a href="${leg['to']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['to']['name']}" class="step-time">${leg['date_info']['end_time']}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title="${_(u'More information about this stop')}">${leg['to']['name']}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span></p>
         
     </li>
@@ -165,6 +166,7 @@ ${_(u'transit vehicle')}
 
 
 <%def name="render_bicycle_leg(leg)">
+				TODO formatting
                 <h3>
                     <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
                     <% bike_title = get_bicycle_title(leg)%>
@@ -188,7 +190,7 @@ ${_(u'transit vehicle')}
 	<!--<img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />-->
 
     <li class="num01">
-        <div class="step-number"><img src="http://dev.trimet.org/images/tp/numbers.png" width="0" height="1" /></div>
+        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
             <% walk_title = get_walk_title(leg)%>
             %if leg['steps']:
@@ -267,7 +269,7 @@ ${_(u'transit vehicle')}
 ## main content
 ##
 
-    <h1>${_(u'Your Trip on TriMet')}</h1>
+	<h1 class="tripplanner-icon"><a href="${util.url_domain()}/desktop/planner_form.html">${_(u'Your Trip on TriMet')}</a></h1>
     <!--
     <p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
         <div class="hide">
@@ -277,15 +279,15 @@ ${_(u'transit vehicle')}
         </div>
     -->
     <div id="details" class="group">
-        <p class="origin"><img src="http://dev.trimet.org/images/tp/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
-        <p class="destination"><img src="http://dev.trimet.org/images/tp/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
+        <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
+        <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
         <p class="tripinfo">${depart_arrive} ${time} ${itinerary['date_info']['pretty_date']}, ${_(u'riding on transit')} <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
         <p class="tripinfo">${optimize} ${_(u'with a maximum walk of')} 1 mile <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
     </div><!-- end #details -->
     
     
     %if len(plan['itineraries']) > 1:
-    <ol id="tabs" class="group">
+    <ol id="plannertabs" class="group">
         ${itin_tab(plan['itineraries'], 1, _(u'Your best bet'))}
         ${itin_tab(plan['itineraries'], 2, _(u'Option 2'))}
         ${itin_tab(plan['itineraries'], 3, _(u'Option 3'))}
@@ -300,6 +302,7 @@ ${_(u'transit vehicle')}
 
     <ol id="itinerary" class="transit">
     <!--
+    ---trying the itin without duplicating first/last step 
         <li class="first">
             <h3>
                 <img src="${util.url_domain()}/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> 
@@ -344,11 +347,11 @@ ${_(u'transit vehicle')}
     <div id="alerts" class="group">
         <!--<a target="#" href="${util.url_domain()}/alerts/"><img border="0" src="${util.url_domain()}/v3/images/tripplanner/alert.png">${_(u'Service Alerts')}</a>-->
         TODO display full alert text and time alert is active
-        <p><img src="http://dev.trimet.org/images/tp/alert.png" />
+        <p><img src="${util.img_url()}/alert.png" />
             <span class="alert-text">Until further notice, the westbound stop on SE Division at 37th (Stop ID 1457) is closed.</span>
             <span class="alert-time">As of March 19 @ 10:15am</span>
         </p>
-        <p><img src="http://dev.trimet.org/images/tp/alert.png" />
+        <p><img src="${util.img_url()}/alert.png" />
             <span class="alert-text">Until further notice, the westbound stop on SE Division at 37th (Stop ID 1457) is closed.</span>
             <span class="alert-time">As of March 19 @ 10:15am</span>
         </p>

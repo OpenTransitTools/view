@@ -1,8 +1,8 @@
 ## -*- coding: utf-8 -*-
 
-<%def name="route_select_form(url, route_list, analytics='', tabindex='9', instructions='')">
+<%def name="route_select_form(url, route_list, analytics='')">
     <!-- BEGIN route_select_form() --> 
-    <form action="${url}" class="form-style" method="get">
+    <form action="${url}" method="get" class="triptools-form">
         <fieldset>
             <label for="route">${_(u"Select a line:")}</label>
             <select id="route" name="route">
@@ -12,13 +12,9 @@
             %endfor
             %endif
             </select>
-            <p class="instructions">
-                ${instructions}
-                &nbsp;
-            </p>
         </fieldset>
-        <fieldset class="submit2">
-            <input tabindex="${tabindex}" type="submit" id="submit" value='${_(u"Select")}' onclick="${analytics}" />
+        <fieldset>
+            <input type="submit" class="submit" value='${_(u"Select")}' onclick="${analytics}" />
         </fieldset>
     </form>
     <!-- END route_select_form() --> 

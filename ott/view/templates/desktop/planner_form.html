@@ -6,8 +6,8 @@
 <%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
 
 <%def name="app_css()">
-    <link rel="stylesheet" href="http://dev.trimet.org/css/tp.css" type="text/css" media="all" />
-    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tp-ie.css" type="text/css" media="all" /><![endif]-->
+    <link rel="stylesheet" href="${util.url_domain()}/css/tp.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tt-ie.css" type="text/css" media="all" /><![endif]-->
 </%def>
 <%def name="meta_data()">
     <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner" />
@@ -83,7 +83,7 @@
                     ${option(i, i, time_info['hour'] == i)}
                 % endfor
                 </select>
-                <strong>:</strong>
+                <b>:</b>
                 <select name="Minute" id="Minute" tabindex="5" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                 %for i in range(60):
                     ${option(i, str(i).rjust(2,'0'), time_info['minute'] == i)}

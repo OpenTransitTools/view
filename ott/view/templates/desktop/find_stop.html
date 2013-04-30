@@ -11,78 +11,69 @@
 
 <%def name="title()">TriMet: ${_(u'Stops and Stations')}</%def>
 <%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
+    <link rel="stylesheet" href="${util.url_domain()}/css/ss.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tt-ie.css" type="text/css" media="all" /><![endif]-->
 </%def>
 <%def name="meta_data()">
     <meta name="Keywords"    content="Stops, stations"/>
     <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
 </%def>
 <%def name="side_bar()">
-            <!-- begin #sidebar -->
-            <aside id="aside" class="aside">
-                <div id="icon" class="icon-stops">
-                    <h2>${_(u'Related')}</h2>  
-                    <ul class="links">
-                        <li><a href="/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
-                        <li><a href="/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
-                        <li><a href="/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
-                        <li><a href="/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
-                        <li><a href="/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
-                    </ul>
-                </div>
-            </aside>
-            <!-- end #sidebar -->
+    <!-- begin #sidebar -->
+    <aside id="aside" class="aside">
+        <h2>${_(u'Related')}</h2>  
+        <ul class="links">
+            <li><a href="/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
+            <li><a href="/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
+            <li><a href="/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
+            <li><a href="/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
+            <li><a href="/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
+        </ul>
+    </aside>
+    <!-- end #sidebar -->
 </%def>
 
 <%def name="stations_selected()">class="selected"</%def>
-
-<style type="text/css">
 <!--
-/*stop id form overrides */
-form.stopid-form {
-    min-width: 400px;
-    max-width: 400px;
-    width: 400px;
-}
-form.stopid-form fieldset {
-    display:inline;
-}
-form.stopid-form input {
-    width: 255px;
-}
--->
-</style>
 <p class="mobile"><a href="${util.url_domain()}/mobile/find_stop"><span>${_(u'Mobile')}</span></a></p>
+-->
 
-<div class="stops-form">
-    <div id="stops-form-index" class="stops-form-top">
 
-        <div class="stops-icon">
-            <h1>${_(u'Stops & Stations')}</h1>
-            <div class="tagline"><p>&nbsp;</p></div>
-        </div>
+<h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">${_(u'Stops & Stations')}</a></h1>
 
-        <div style="width:600px;"><!--for IE6-->
-            <div style="width:240px; float:left; padding-left:20px; clear: both;">
-                <form name="cstops" id="cstops_id" method="get" action="/stop_geocode.html" class="form-style">
-                    <fieldset>
-                        <label for="locationID">${_(u'Find stops and stations:')}</label>
-                        <input name="geocode_form" type="text" value="" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="15" maxlength="80" />
-                        <p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>
-                    </fieldset>
-                    <fieldset class="submit">
-                        <input tabindex="9" type="submit" value="${_(u'Find stops')}" id="submit" onclick="${ga_find_stop}" />
-                    </fieldset>
-                </form>
-            </div>
-            <div style="width:50px; float:left;">
-                <img src="${util.url_domain()}/v3/images/structure/form-or.gif" />
-            </div>
-            <div style="width:290px; float:left;">
-                ${rs.route_select_form('/route_stop_list.html', routes, ga_select_route)}
-            </div>
-            <p class="clear">&nbsp;</p>
-        </div>
-    </div> <!-- id="stops-form-index" class="stops-form-top" -->
-    <div class="stops-form-bottom"></div>
-</div> <!-- class="stops-form" -->
+<div id="findstop">
+    <form name="cstops" id="cstops_id" method="get" action="/stop_geocode.html" class="triptools-form">
+        <fieldset>
+            <label for="geocode_form">${_(u'Find stops and stations:')}</label>
+            <input name="geocode_form" id="geocode_form" type="text" value="Address, intersection, landmark or Stop ID" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID');" class="regular" size="15" maxlength="80" />
+                <div class="form-help">
+                    <div class="form-help-popup-onright">
+                        <p>
+                            There are several ways to enter a location:<br />
+                            <b>Address</b><br /><kbd>4012 SE 17</kbd><br />
+                            <b>Intersection</b> (where two streets cross each other)<br /><kbd>SE 17 &amp; Center</kbd>.<br />
+                            <b>Landmarks</b><br /><kbd>PDX</kbd><br /><kbd>Rose Quarter Arena</kbd><br /><kbd>Clackamas Town Center</kbd>.
+                        </p>
+                    </div>
+                </div>
+        </fieldset>
+        <fieldset>
+            <input type="submit" value="${_(u'Find stops')}" class="submit" onClick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);" /><!--onclick="${ga_find_stop}"-->
+        </fieldset>
+    </form>
+    
+    <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /></div>
+    
+    ${rs.route_select_form('/route_stop_list.html', routes, ga_select_route)}
+    
+</div>
+                        
+
+
+
+
+
+
+
+
+

@@ -6,120 +6,101 @@
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
 %>
 
-<%def name="title()">TriMet: ${_(u'Stops and Stations')} - ${_(u'Stop ID')} ${stop['id']} - ${stop['name']}</%def>
+<%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['id']} - ${stop['name']}</%def>
 <%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/stopsstations.css" type="text/css" />
+    <link rel="stylesheet" href="${util.url_domain()}/css/ss.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tt-ie.css" type="text/css" media="all" /><![endif]-->
 </%def>
 <%def name="meta_data()">
     <meta name="Keywords"    content="Stops, stations"/>
     <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
 </%def>
+
 <%def name="side_bar()">
-            <!-- begin #sidebar -->
-            <aside id="aside" class="aside">
-                <div id="icon" class="icon-stops">
-                    <h2>${_(u'Related')}</h2>  
-                    <ul class="links">
-                      <li><a href="nearest_stops?lang=en&X=-122.675681&Y=45.420598">${_(u'Find closest stops to')} ${stop['name']}</a></li>
-                      <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
-                    </ul>
-                </div>
-                <p class="feedback"><a href="/feedback.html?app=stop&stopID=${stop['id']}">${_(u'Having problems? Click here for technical support.')}</a></p>
-            </aside>
-            <!-- end #sidebar -->
+    <!-- begin #sidebar -->
+    <aside id="aside" class="aside">
+    
+        <h2>${_(u'See also')}</h2>  
+        <ul class="links">
+            <li><a href="nearest_stops?lang=en&X=-122.675681&Y=45.420598">${_(u'Find closest stops to')} ${stop['name']}</a></li>
+        </ul>
+        <p class="feedback"><a href="/feedback.html?app=stop&stopID=${stop['id']}">${_(u'Having problems? Click here for technical support.')}</a></p>
+        <p><a href="/find_stop.html?stopID=" class="image">find stop</a></p>
+        
+    </aside>
+    <!-- end #sidebar -->
 </%def>
 
 <%def name="stations_selected()">class="selected"</%def>
 
-<% 
-ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
-ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
-%>
+<!--<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>-->
 
-<style type="text/css">
-<!--
-/*stop id form overrides */
-form.stopid-form {
-    min-width: 400px;
-    max-width: 400px;
-    width: 400px;
-}
-form.stopid-form fieldset {
-    display:inline;
-}
-form.stopid-form input {
-    width: 255px;
-}
--->
-</style>
-<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
+ 
+    <h1 class="stopsstations-icon"><a href="/find_stop.html?stopID=">${_(u'Stops & Stations')}</a></h1>
 
-<div class="stops-form">
-    <div class="stopshomelink">
-        <a href="/find_stop.html?stopID=" class="image"></a>
-    </div>
-    <div class="stops-form-top" id="stops-form">
-        <div class="stops-icon">
-            <h1>${_(u'Stops & Stations')}</h1>
-            <div class="tagline">
-                <p>&nbsp;</p>
-            </div>
-        </div>
-        <div class="stops-content">
-            <p style="float:right"><b></b></p>
-            <h2 class="stop">${_(u'Stop ID')} ${stop['id']}
+
+
+    <div class="group">
+        <div class="left-column">
+            <h2>${_(u'Stop ID')} ${stop['id']}
                 %if has_alerts:
                 ${util.alerts_inline_icon_link()}
                 %endif
+            	<!-- TODO formatting for alert icon
+                <a href="#alerts" class="stop-alert"><img src="${util.img_url()}/alert-icon.png" alt="Service alert at this stop" /></a>
+            	-->
             </h2>
-            <p class="stop-location">${stop['name']} ${_(u'in')} ${stop['city']}</p>
-            <p class="stopid"></p>
-        </div>
-        <div id="stopinfo">
-            <h3 class="imageRight">
-                <!-- TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc... -->
-                <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">
-                <img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/275/height/275/zoom/6/extraparams/format_options=layout:scale/id/${stop['id']}" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"/>
-                </a>
-                <p class="map" style="width:220px;">
-                    <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">${_(u'View on Interactive Map')}</a>
-                    <br/>
-                    <span class="secondary">${_(u'High-speed connection recommended')}</span>
-                </p>
-                <p class="clear">&nbsp;</p>
-            </h3>
+            <p>${stop['name']} ${_(u'in')} ${stop['city']}</p>
+            
+            
+            
             <h3>${_(u'Served by')}</h3>
+            
             %for r in stop['routes']:
-            <p>
-                <span class="bold">${r['name']}</span>
-                <br/>${r['direction']}<br/>
-                <a class="hide" href="${r['tracker_url']}">${_(u'Next arrivals')}</a>
-                / <a href="/stop_schedule.html?route=${r['id']}">${_(u'Schedule')}</a> 
-                / <a href="${r['url']}" title = "${_(u'Show map and schedules for this route')}.">${_(u'Route info')}</a>
+            <h4>${r['name']}</h4>
+            <p>${r['direction']}<br/>
+                <a href="${r['tracker_url']}">${_(u'Next arrivals')}</a>
+                &nbsp;&bull;&nbsp; <a href="/stop_schedule.html?route=${r['id']}">${_(u'Schedule')}</a> 
+                &nbsp;&bull;&nbsp; <a href="${r['url']}" title="${_(u'Show map and schedules for this route')}.">${_(u'Route info')}</a>
             </p>
+            
             %endfor
+           
+            <h4>${_(u'All routes')}</h4>
             <p>
-                <span class="bold">${_(u'All routes')}</span><br/>
-                <a class="hide" href="${stop['tracker_url']}">${_(u'Next arrivals')}</a>
-                / <a href="/stop_schedule.html">${_(u'Schedule')}</a>
+            	<a class="hide" href="${stop['tracker_url']}">${_(u'Next arrivals')}</a>
+                &nbsp;&bull;&nbsp; <a href="/stop_schedule.html">${_(u'Schedule')}</a>
             </p>
         
-            %if has_alerts:
-                ${util.alerts(stop['alerts'])}
-            %endif
 
-            <h3>${_(u'Amenities')}</h3>
-            <ul class="amenities">
+            <h3 class="tight">${_(u'Amenities')}</h3>
+            <ul class="small">
                 <!-- TODO: how to manage a localized set of attribute string???? -->
                 %for a in stop['amenities']:
                 <li>${a}</li>
                 %endfor
             </ul>
-            <h3>${_(u'Plan a trip')}</h3>
-                <p class="link"><a href="planner.html?to=${stop['id']}">${_(u'to here')}</a>
-                &ndash; 
-                <a href="planner.html?from=${stop['id']}">${_(u'from here')}</a></p>
-        </div> <!-- stop info -->
-    </div> <!-- class="stops-form-top" -->
-    <div class="stops-form-bottom">&nbsp;</div>
-</div> <!-- class="stops-form" -->
+           
+           
+            %if has_alerts:
+                ${util.alerts(stop['alerts'])}
+            %endif
+                                    
+        </div><!-- end .left-column -->
+    
+        <div class="right-column">
+            <!-- TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc... -->
+            <p><a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}"><img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/340/height/336/zoom/6/extraparams/format_options=layout:scale/id/${stop['id']}" /></a></p>
+            
+            <p class="imap">
+                <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">${_(u'View on Interactive Map')}</a><br />
+                <span class="secondary">${_(u'High-speed connection recommended')}</span>
+            </p>
+            
+            <h3 class="tight">${_(u'Plan a trip')}</h3>
+            <p><a href="planner.html?to=${stop['id']}">${_(u'to here')}</a> &ndash;  <a href="planner.html?from=${stop['id']}">${_(u'from here')}</a></p>
+        </div><!-- end .right-column -->
+        
+    </div><!-- end .group -->
+
+
