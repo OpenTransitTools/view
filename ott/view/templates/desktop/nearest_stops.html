@@ -5,8 +5,7 @@
 
 <%def name="title()">TriMet: ${_(u'Stops near') } ${place['name']}</%def>
 <%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/ss.css" type="text/css" media="all" />
-    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tt-ie.css" type="text/css" media="all" /><![endif]-->
+    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
 <%def name="meta_data()">
     <meta name="Keywords"    content="Stops, stations"/>
@@ -41,7 +40,7 @@ ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Sea
 <h2>Stops near <a href="showmap.cgi?lang=en&long=-122.677271&lat=45.503650&icon=start&area=PO&desc=Stop%20ID%201923">Stop ID 1923 in Portland</a></h2>
 
 
-<ul id="stopslist">
+<ul id="stopslist" class="group">
     <li>
         <h3 class="tight"><a href="stop_info.pl?lang=en&Id=1649&acode1=PO&x1=45.503650&y1=-122.677271" title="Click for more information about this stop">SW Naito Parkway &amp; Arthur Northbound</a> <span class="stopid">Stop ID 1923</span> <a href="#alerts" class="stop-arrivals"><img src="${util.img_url()}/alert-icon.png" alt="Alert at this stop" /></a></h3>
         <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.01 mile</a> &nbsp;&bull;&nbsp; Served by: 35, 36</p>

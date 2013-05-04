@@ -3,8 +3,7 @@
 <%namespace name="util"  file="/shared/util.mako"/>
 <%def name="title()">${_(u'TriMet: Stops and Stations')} - ${_(u'Stop ID')} ${stop['id']} - ${stop['name']}</%def>
 <%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/ss.css" type="text/css" media="all" />
-    <!--[if IE]><link rel="stylesheet" href="${util.url_domain()}/css/tt-ie.css" type="text/css" media="all" /><![endif]-->
+    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
 <%def name="meta_data()">
     <meta name="Keywords"    content="Stops, stations"/>
