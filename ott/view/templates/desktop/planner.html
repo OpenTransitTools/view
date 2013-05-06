@@ -40,10 +40,10 @@
         %for a in adverts:
             ${a['content'] | n}
         %endfor
-            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="${util.img_url()}/ads/fare.png"><span>No fare increases right now. Just lettin' you know!</span></a></p>
-            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="${util.img_url()}/ads/mobile.png"><span>Mobile ticketing for smartphones coming summer 2013.</span></a></p>
-            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="${util.img_url()}/ads/gear.png"><span>Order mugs, bags, t-shirts and more in the TriMet Gear Store.</span></a></p>
-            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', 'TRIPPLANNER-AD-LINK']);"><img src="${util.img_url()}/ads/co2.png"><span>Taking this trip instead of driving will help the environment.</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'Fares']);"><img src="${util.img_url()}/ads/fare.png"><span>No fare increases right now. Just lettin' you know!</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'Mobile ticketing']);"><img src="${util.img_url()}/ads/mobile.png"><span>Mobile ticketing for smartphones coming summer 2013.</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'Gear store']);"><img src="${util.img_url()}/ads/gear.png"><span>Order mugs, bags, t-shirts and more in the TriMet Gear Store.</span></a></p>
+            <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'CO2']);"><img src="${util.img_url()}/ads/co2.png"><span>Taking this trip instead of driving will help the environment.</span></a></p>
         </div><!-- end #trimet-ads -->
     %endif
         
