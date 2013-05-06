@@ -118,6 +118,28 @@
 
         return ret_val
 
+
+    def get_mode_css_class(mode):
+        ''' return css class names
+        '''
+        ret_val = ''
+        if mode == util.attr.BUS:
+            ret_val = 'step-bus-icon'
+        if mode == util.attr.CAR:
+            ret_val = 'step-car-icon'
+        if mode == util.attr.BICYCLE:
+            ret_val = 'step-bike-icon'
+        if mode == util.attr.WALK:
+            ret_val = 'step-walk-icon'
+        if mode == util.attr.RAIL:
+            ret_val = 'step-wes-icon'
+        if mode == util.attr.TRAM:
+            ret_val = 'step-max-icon'
+        if mode == util.attr.GONDOLA:
+            ret_val = 'step-aerialtram-icon'
+
+        return ret_val
+
     leg_id = 1
     def render_leg(leg, n):
         ''' call render stuff above...
@@ -140,24 +162,21 @@
         return ret_val
 %>
 <%def name="get_route_name(route)">${route['name']}${' ' + _(u'to') + ' ' + route['headsign'] if route['headsign'] else ''}</%def>
-<%def name="get_route_link(route)">
+<%def name="get_route_link(route, mode)">
 %if route is not None:
-<a href="${route['url']}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="step-bus-icon" />TODO-ICON ${get_route_name(route)}</a>
+<a href="${route['url']}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${get_route_name(route)}</a>
 %else:
 ${_(u'transit vehicle')}
 %endif
 </%def>
 
 <%def name="render_transit_leg(leg, i, j)">
-    <!--<img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />-->
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
-            <a href="${leg['from']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['from']['name']}" class="step-time">${leg['date_info']['start_time']}</a> ${_(u'Board')} ${get_route_link(leg['route'])} 
+            <a href="${leg['from']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['from']['name']}" class="step-time">${leg['date_info']['start_time']}</a> ${_(u'Board')} ${get_route_link(leg['route'], leg['mode'])} 
             %if leg['alerts']:
-            %for a in leg['alerts']:
-            <a href="#alerts" title="${a['text']}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>TODO<!--only show 1 icon-->
-            %endfor
+            <a href="#alerts" title="${_(u'There is an alert that applies to this transit leg.  See the "alerts" section below for details')}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>
             %endif
         </p>
     </li>
@@ -165,11 +184,8 @@ ${_(u'transit vehicle')}
     <li class="num${j}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p><a href="${leg['to']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['to']['name']}" class="step-time">${leg['date_info']['end_time']}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title="${_(u'More information about this stop')}">${leg['to']['name']}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span></p>
-        
     </li>
-
 </%def>
-
 
 
 <%def name="render_bicycle_leg(leg, i)">

@@ -13,6 +13,7 @@
     STREETCAR  = 'STREETCAR'
     RAIL       = 'RAIL'
     BUS        = 'BUS' 
+    CAR        = 'CAR' 
     CABLE_CAR  = 'CABLE_CAR' 
     GONDOLA    = 'GONDOLA'
     FERRY      = 'FERRY'
