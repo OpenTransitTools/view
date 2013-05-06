@@ -3,7 +3,7 @@
     "from": {
         "lat": 45.528135967710014,
         "lon": -122.67585408145581,
-        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.675854081,45.5281359677/extraparams/format_options=layout:start",
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.675854081,45.5281359677/extraparams/format_options=layout:start",
         "name": "path",
         "stop": null
     },
@@ -76,7 +76,7 @@
                     "from": {
                         "lat": 45.528135967710014,
                         "lon": -122.67585408145581,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.675854081,45.5281359677/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.675854081,45.5281359677/extraparams/format_options=layout:start",
                         "name": "path",
                         "stop": null
                     },
@@ -132,7 +132,7 @@
                     "to": {
                         "lat": 45.526732,
                         "lon": -122.675604,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.675604,45.526732/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.675604,45.526732/extraparams/format_options=layout:end",
                         "name": "Union Station/NW 5th & Glisan St MAX Stn",
                         "stop": {
                             "agency": "TriMet",
@@ -168,7 +168,7 @@
                     "from": {
                         "lat": 45.526732,
                         "lon": -122.675604,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.675604,45.526732/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.675604,45.526732/extraparams/format_options=layout:start",
                         "name": "Union Station/NW 5th & Glisan St MAX Stn",
                         "stop": {
                             "agency": "TriMet",
@@ -193,7 +193,7 @@
                     "to": {
                         "lat": 45.511645,
                         "lon": -122.681551,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681551,45.511645/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.681551,45.511645/extraparams/format_options=layout:end",
                         "name": "PSU/SW 5th & Mill St MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -229,7 +229,7 @@
                     "from": {
                         "lat": 45.511578041523656,
                         "lon": -122.68156818496107,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681568185,45.5115780415/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.681568185,45.5115780415/extraparams/format_options=layout:start",
                         "name": "path",
                         "stop": null
                     },
@@ -263,7 +263,7 @@
                     "to": {
                         "lat": 45.511708,
                         "lon": -122.681315,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681315,45.511708/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.681315,45.511708/extraparams/format_options=layout:end",
                         "name": "SW 5th & Montgomery",
                         "stop": {
                             "agency": "TriMet",
@@ -299,7 +299,7 @@
                     "from": {
                         "lat": 45.511708,
                         "lon": -122.681315,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681315,45.511708/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.681315,45.511708/extraparams/format_options=layout:start",
                         "name": "SW 5th & Montgomery",
                         "stop": {
                             "agency": "TriMet",
@@ -324,7 +324,7 @@
                     "to": {
                         "lat": 45.499337,
                         "lon": -122.671815,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.671815,45.499337/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.671815,45.499337/extraparams/format_options=layout:end",
                         "name": "SW Moody & Gibbs",
                         "stop": {
                             "agency": "TriMet",
@@ -360,7 +360,7 @@
                     "from": {
                         "lat": 45.499337621044255,
                         "lon": -122.67183147117373,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.671831471,45.499337621/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.671831471,45.499337621/extraparams/format_options=layout:start",
                         "name": "Southwest Moody Avenue (path)",
                         "stop": null
                     },
@@ -405,7 +405,7 @@
                     "to": {
                         "lat": 45.499336,
                         "lon": -122.671165,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.671165,45.499336/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.671165,45.499336/extraparams/format_options=layout:end",
                         "name": "South Waterfront Lower Tram Terminal",
                         "stop": {
                             "agency": "TriMet",
@@ -441,7 +441,7 @@
                     "from": {
                         "lat": 45.499336,
                         "lon": -122.671165,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.671165,45.499336/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.671165,45.499336/extraparams/format_options=layout:start",
                         "name": "South Waterfront Lower Tram Terminal",
                         "stop": {
                             "agency": "TriMet",
@@ -466,7 +466,7 @@
                     "to": {
                         "lat": 45.499585,
                         "lon": -122.683926,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.683926,45.499585/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.683926,45.499585/extraparams/format_options=layout:end",
                         "name": "Marquam Hill Upper Tram Terminal",
                         "stop": {
                             "agency": "TriMet",
@@ -502,7 +502,7 @@
                     "from": {
                         "lat": 45.499560981300384,
                         "lon": -122.6839262457575,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.683926246,45.4995609813/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.683926246,45.4995609813/extraparams/format_options=layout:start",
                         "name": "path",
                         "stop": null
                     },
@@ -547,7 +547,7 @@
                     "to": {
                         "lat": 45.49926857192078,
                         "lon": -122.68573351201607,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.685733512,45.4992685719/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.685733512,45.4992685719/extraparams/format_options=layout:end",
                         "name": "sidewalk",
                         "stop": null
                     },
@@ -625,7 +625,7 @@
                     "from": {
                         "lat": 45.528135967710014,
                         "lon": -122.67585408145581,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.675854081,45.5281359677/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.675854081,45.5281359677/extraparams/format_options=layout:start",
                         "name": "path",
                         "stop": null
                     },
@@ -681,7 +681,7 @@
                     "to": {
                         "lat": 45.526732,
                         "lon": -122.675604,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.675604,45.526732/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.675604,45.526732/extraparams/format_options=layout:end",
                         "name": "Union Station/NW 5th & Glisan St MAX Stn",
                         "stop": {
                             "agency": "TriMet",
@@ -717,7 +717,7 @@
                     "from": {
                         "lat": 45.526732,
                         "lon": -122.675604,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.675604,45.526732/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.675604,45.526732/extraparams/format_options=layout:start",
                         "name": "Union Station/NW 5th & Glisan St MAX Stn",
                         "stop": {
                             "agency": "TriMet",
@@ -742,7 +742,7 @@
                     "to": {
                         "lat": 45.508979,
                         "lon": -122.682999,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682999,45.508979/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682999,45.508979/extraparams/format_options=layout:end",
                         "name": "PSU South/SW 5th & Jackson St MAX Stn",
                         "stop": {
                             "agency": "TriMet",
@@ -778,7 +778,7 @@
                     "from": {
                         "lat": 45.50888067651348,
                         "lon": -122.68302595107485,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.683025951,45.5088806765/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.683025951,45.5088806765/extraparams/format_options=layout:start",
                         "name": "Southwest Jackson Street (path)",
                         "stop": null
                     },
@@ -977,7 +977,7 @@
                     "to": {
                         "lat": 45.49926857192078,
                         "lon": -122.68573351201607,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.685733512,45.4992685719/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.685733512,45.4992685719/extraparams/format_options=layout:end",
                         "name": "sidewalk",
                         "stop": null
                     },
@@ -1055,7 +1055,7 @@
                     "from": {
                         "lat": 45.528135967710014,
                         "lon": -122.67585408145581,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.675854081,45.5281359677/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.675854081,45.5281359677/extraparams/format_options=layout:start",
                         "name": "path",
                         "stop": null
                     },
@@ -1144,7 +1144,7 @@
                     "to": {
                         "lat": 45.526605,
                         "lon": -122.682297,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682297,45.526605/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682297,45.526605/extraparams/format_options=layout:end",
                         "name": "NW 11th & Glisan",
                         "stop": {
                             "agency": "TriMet",
@@ -1180,7 +1180,7 @@
                     "from": {
                         "lat": 45.526605,
                         "lon": -122.682297,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682297,45.526605/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682297,45.526605/extraparams/format_options=layout:start",
                         "name": "NW 11th & Glisan",
                         "stop": {
                             "agency": "TriMet",
@@ -1205,7 +1205,7 @@
                     "to": {
                         "lat": 45.499337,
                         "lon": -122.671815,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.671815,45.499337/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.671815,45.499337/extraparams/format_options=layout:end",
                         "name": "SW Moody & Gibbs",
                         "stop": {
                             "agency": "TriMet",
@@ -1241,7 +1241,7 @@
                     "from": {
                         "lat": 45.499337621044255,
                         "lon": -122.67183147117373,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.671831471,45.499337621/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.671831471,45.499337621/extraparams/format_options=layout:start",
                         "name": "Southwest Moody Avenue (path)",
                         "stop": null
                     },
@@ -1286,7 +1286,7 @@
                     "to": {
                         "lat": 45.499336,
                         "lon": -122.671165,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.671165,45.499336/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.671165,45.499336/extraparams/format_options=layout:end",
                         "name": "South Waterfront Lower Tram Terminal",
                         "stop": {
                             "agency": "TriMet",
@@ -1322,7 +1322,7 @@
                     "from": {
                         "lat": 45.499336,
                         "lon": -122.671165,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.671165,45.499336/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.671165,45.499336/extraparams/format_options=layout:start",
                         "name": "South Waterfront Lower Tram Terminal",
                         "stop": {
                             "agency": "TriMet",
@@ -1347,7 +1347,7 @@
                     "to": {
                         "lat": 45.499585,
                         "lon": -122.683926,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.683926,45.499585/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.683926,45.499585/extraparams/format_options=layout:end",
                         "name": "Marquam Hill Upper Tram Terminal",
                         "stop": {
                             "agency": "TriMet",
@@ -1383,7 +1383,7 @@
                     "from": {
                         "lat": 45.499560981300384,
                         "lon": -122.6839262457575,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.683926246,45.4995609813/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.683926246,45.4995609813/extraparams/format_options=layout:start",
                         "name": "path",
                         "stop": null
                     },
@@ -1428,7 +1428,7 @@
                     "to": {
                         "lat": 45.49926857192078,
                         "lon": -122.68573351201607,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.685733512,45.4992685719/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.685733512,45.4992685719/extraparams/format_options=layout:end",
                         "name": "sidewalk",
                         "stop": null
                     },
@@ -1445,7 +1445,7 @@
     "to": {
         "lat": 45.49926857192078,
         "lon": -122.68573351201607,
-        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.685733512,45.4992685719/extraparams/format_options=layout:end",
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.685733512,45.4992685719/extraparams/format_options=layout:end",
         "name": "sidewalk",
         "stop": null
     }

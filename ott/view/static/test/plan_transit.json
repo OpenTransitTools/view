@@ -8,14 +8,14 @@
         "stop":null,
         "lon":-122.655552,
         "lat":45.4678958,
-        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.655552,45.4678958/extraparams/format_options=layout:start"
+        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.655552,45.4678958/extraparams/format_options=layout:start"
     },
     "to": {
         "name":"SW Arthur & 1st",
         "stop":{"agencyId":"TriMet", "name":"SW Arthur & 1st", "id":"143","info":"stop.html?stop_id=143", "schedule":"stop_schedule.html?stop_id=143"},
         "lon":-122.678421,
         "lat":45.503817,
-        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:end"
+        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:end"
     },
 
     "itineraries": [
@@ -90,14 +90,14 @@
                         "stop":null,
                         "lon":-122.655552,
                         "lat":45.4678958,
-                        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.655552,45.4678958/extraparams/format_options=layout:start"
+                        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.655552,45.4678958/extraparams/format_options=layout:start"
                     },
                     "to": {
                         "name":"SE Bybee & Milwaukie",
                         "stop":{"agencyId":"TriMet","id":"838","info":"stop.html?stop_id=838","schedule":"stop_schedule.html?stop_id=838"},
                         "lon":-122.678421,
                         "lat":45.503817,
-                        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:start"
+                        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:start"
                     },
                     "leg_geometry":{"points":"imotGfdskV?mBkCCoC?oC@mCA{@gCEKOWy@yAAC?C?C?cBCKIAM?[AQKQA[GWI}Cy@cA[SKMKKOIQIYESAQAU?Q?i@AkE?}@AQAyE?KAU?SAs@","levels":null,"length":42},
                     "steps":[
@@ -154,14 +154,14 @@
                         "stop":{"agencyId":"TriMet","id":"838","info":"stop.html?stop_id=838","schedule":"stop_schedule.html?stop_id=838&route_id=19"},
                         "lon":-122.655552,
                         "lat":45.4678958,
-                        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.655552,45.4678958/extraparams/format_options=layout:start"
+                        "map_img":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.655552,45.4678958/extraparams/format_options=layout:start"
                     },
                     "to":{
                         "name":"SW Arthur & 1st",
                         "stop":{"agencyId":"TriMet","id":"143","info":"stop.html?stop_id=143","schedule":"stop_schedule.html?stop_id=143&route_id=19"},
                         "lon":-122.678421,
                         "lat":45.503817,
-                        "map_url":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:end"
+                        "map_url":"http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.678421,45.503817/extraparams/format_options=layout:end"
                     }
                 }
             ]

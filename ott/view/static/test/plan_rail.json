@@ -3,7 +3,7 @@
     "from": {
         "lat": 45.28366622559594,
         "lon": -122.76134254451117,
-        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.761342545,45.2836662256/extraparams/format_options=layout:start",
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.761342545,45.2836662256/extraparams/format_options=layout:start",
         "name": "",
         "stop": null
     },
@@ -76,7 +76,7 @@
                     "from": {
                         "lat": 45.28366622559594,
                         "lon": -122.76134254451117,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.761342545,45.2836662256/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.761342545,45.2836662256/extraparams/format_options=layout:start",
                         "name": "",
                         "stop": null
                     },
@@ -2276,7 +2276,7 @@
                     "to": {
                         "lat": 45.3117949,
                         "lon": -122.7753852,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.7753852,45.3117949/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.7753852,45.3117949/extraparams/format_options=layout:end",
                         "name": "footpath",
                         "stop": null
                     },
@@ -2306,7 +2306,7 @@
                     "from": {
                         "lat": 45.3117953,
                         "lon": -122.7755107,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.7755107,45.3117953/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.7755107,45.3117953/extraparams/format_options=layout:start",
                         "name": "footpath",
                         "stop": null
                     },
@@ -2394,7 +2394,7 @@
                     "to": {
                         "lat": 45.311358,
                         "lon": -122.775303,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:end",
                         "name": "Wilsonville WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -2430,7 +2430,7 @@
                     "from": {
                         "lat": 45.311358,
                         "lon": -122.775303,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:start",
                         "name": "Wilsonville WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -2455,7 +2455,7 @@
                     "to": {
                         "lat": 45.49064,
                         "lon": -122.801157,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.801157,45.49064/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.801157,45.49064/extraparams/format_options=layout:end",
                         "name": "Beaverton TC WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -2491,7 +2491,7 @@
                     "from": {
                         "lat": 45.49064627945588,
                         "lon": -122.80116408266674,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.801164083,45.4906462795/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.801164083,45.4906462795/extraparams/format_options=layout:start",
                         "name": "Beaverton Transit Center WES Platform (path)",
                         "stop": null
                     },
@@ -2550,7 +2550,7 @@
                     "to": {
                         "lat": 45.491159,
                         "lon": -122.800982,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:end",
                         "name": "Beaverton Transit Center",
                         "stop": {
                             "agency": "TriMet",
@@ -2586,7 +2586,7 @@
                     "from": {
                         "lat": 45.491159,
                         "lon": -122.800982,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:start",
                         "name": "Beaverton Transit Center",
                         "stop": {
                             "agency": "TriMet",
@@ -2611,7 +2611,7 @@
                     "to": {
                         "lat": 45.515763,
                         "lon": -122.752319,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.752319,45.515763/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.752319,45.515763/extraparams/format_options=layout:end",
                         "name": "SW Barnes & Miller",
                         "stop": {
                             "agency": "TriMet",
@@ -2647,7 +2647,7 @@
                     "from": {
                         "lat": 45.51587406630506,
                         "lon": -122.75237806930441,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.752378069,45.5158740663/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.752378069,45.5158740663/extraparams/format_options=layout:start",
                         "name": "Southwest Barnes Road",
                         "stop": null
                     },
@@ -4150,7 +4150,7 @@
                     "to": {
                         "lat": 45.53586822713938,
                         "lon": -122.77504163533023,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775041635,45.5358682271/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775041635,45.5358682271/extraparams/format_options=layout:end",
                         "name": "",
                         "stop": null
                     },
@@ -4228,7 +4228,7 @@
                     "from": {
                         "lat": 45.28366622559594,
                         "lon": -122.76134254451117,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.761342545,45.2836662256/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.761342545,45.2836662256/extraparams/format_options=layout:start",
                         "name": "",
                         "stop": null
                     },
@@ -6428,7 +6428,7 @@
                     "to": {
                         "lat": 45.3117949,
                         "lon": -122.7753852,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.7753852,45.3117949/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.7753852,45.3117949/extraparams/format_options=layout:end",
                         "name": "footpath",
                         "stop": null
                     },
@@ -6458,7 +6458,7 @@
                     "from": {
                         "lat": 45.3117953,
                         "lon": -122.7755107,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.7755107,45.3117953/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.7755107,45.3117953/extraparams/format_options=layout:start",
                         "name": "footpath",
                         "stop": null
                     },
@@ -6546,7 +6546,7 @@
                     "to": {
                         "lat": 45.311358,
                         "lon": -122.775303,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:end",
                         "name": "Wilsonville WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -6582,7 +6582,7 @@
                     "from": {
                         "lat": 45.311358,
                         "lon": -122.775303,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:start",
                         "name": "Wilsonville WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -6607,7 +6607,7 @@
                     "to": {
                         "lat": 45.49064,
                         "lon": -122.801157,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.801157,45.49064/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.801157,45.49064/extraparams/format_options=layout:end",
                         "name": "Beaverton TC WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -6643,7 +6643,7 @@
                     "from": {
                         "lat": 45.49064627945588,
                         "lon": -122.80116408266674,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.801164083,45.4906462795/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.801164083,45.4906462795/extraparams/format_options=layout:start",
                         "name": "Beaverton Transit Center WES Platform (path)",
                         "stop": null
                     },
@@ -6702,7 +6702,7 @@
                     "to": {
                         "lat": 45.491159,
                         "lon": -122.800982,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:end",
                         "name": "Beaverton Transit Center",
                         "stop": {
                             "agency": "TriMet",
@@ -6738,7 +6738,7 @@
                     "from": {
                         "lat": 45.491159,
                         "lon": -122.800982,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:start",
                         "name": "Beaverton Transit Center",
                         "stop": {
                             "agency": "TriMet",
@@ -6763,7 +6763,7 @@
                     "to": {
                         "lat": 45.515763,
                         "lon": -122.752319,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.752319,45.515763/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.752319,45.515763/extraparams/format_options=layout:end",
                         "name": "SW Barnes & Miller",
                         "stop": {
                             "agency": "TriMet",
@@ -6799,7 +6799,7 @@
                     "from": {
                         "lat": 45.51587406630506,
                         "lon": -122.75237806930441,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.752378069,45.5158740663/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.752378069,45.5158740663/extraparams/format_options=layout:start",
                         "name": "Southwest Barnes Road",
                         "stop": null
                     },
@@ -8302,7 +8302,7 @@
                     "to": {
                         "lat": 45.53586822713938,
                         "lon": -122.77504163533023,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775041635,45.5358682271/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775041635,45.5358682271/extraparams/format_options=layout:end",
                         "name": "",
                         "stop": null
                     },
@@ -8380,7 +8380,7 @@
                     "from": {
                         "lat": 45.28366622559594,
                         "lon": -122.76134254451117,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.761342545,45.2836662256/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.761342545,45.2836662256/extraparams/format_options=layout:start",
                         "name": "",
                         "stop": null
                     },
@@ -10580,7 +10580,7 @@
                     "to": {
                         "lat": 45.3117949,
                         "lon": -122.7753852,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.7753852,45.3117949/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.7753852,45.3117949/extraparams/format_options=layout:end",
                         "name": "footpath",
                         "stop": null
                     },
@@ -10610,7 +10610,7 @@
                     "from": {
                         "lat": 45.3117953,
                         "lon": -122.7755107,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.7755107,45.3117953/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.7755107,45.3117953/extraparams/format_options=layout:start",
                         "name": "footpath",
                         "stop": null
                     },
@@ -10698,7 +10698,7 @@
                     "to": {
                         "lat": 45.311358,
                         "lon": -122.775303,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:end",
                         "name": "Wilsonville WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -10734,7 +10734,7 @@
                     "from": {
                         "lat": 45.311358,
                         "lon": -122.775303,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775303,45.311358/extraparams/format_options=layout:start",
                         "name": "Wilsonville WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -10759,7 +10759,7 @@
                     "to": {
                         "lat": 45.49064,
                         "lon": -122.801157,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.801157,45.49064/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.801157,45.49064/extraparams/format_options=layout:end",
                         "name": "Beaverton TC WES Station",
                         "stop": {
                             "agency": "TriMet",
@@ -10795,7 +10795,7 @@
                     "from": {
                         "lat": 45.49064627945588,
                         "lon": -122.80116408266674,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.801164083,45.4906462795/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.801164083,45.4906462795/extraparams/format_options=layout:start",
                         "name": "Beaverton Transit Center WES Platform (path)",
                         "stop": null
                     },
@@ -10854,7 +10854,7 @@
                     "to": {
                         "lat": 45.491159,
                         "lon": -122.800982,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:end",
                         "name": "Beaverton Transit Center",
                         "stop": {
                             "agency": "TriMet",
@@ -10890,7 +10890,7 @@
                     "from": {
                         "lat": 45.491159,
                         "lon": -122.800982,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.800982,45.491159/extraparams/format_options=layout:start",
                         "name": "Beaverton Transit Center",
                         "stop": {
                             "agency": "TriMet",
@@ -10915,7 +10915,7 @@
                     "to": {
                         "lat": 45.515763,
                         "lon": -122.752319,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.752319,45.515763/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.752319,45.515763/extraparams/format_options=layout:end",
                         "name": "SW Barnes & Miller",
                         "stop": {
                             "agency": "TriMet",
@@ -10951,7 +10951,7 @@
                     "from": {
                         "lat": 45.51587406630506,
                         "lon": -122.75237806930441,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.752378069,45.5158740663/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.752378069,45.5158740663/extraparams/format_options=layout:start",
                         "name": "Southwest Barnes Road",
                         "stop": null
                     },
@@ -12454,7 +12454,7 @@
                     "to": {
                         "lat": 45.53586822713938,
                         "lon": -122.77504163533023,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775041635,45.5358682271/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775041635,45.5358682271/extraparams/format_options=layout:end",
                         "name": "",
                         "stop": null
                     },
@@ -12471,7 +12471,7 @@
     "to": {
         "lat": 45.53586822713938,
         "lon": -122.77504163533023,
-        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.775041635,45.5358682271/extraparams/format_options=layout:end",
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.775041635,45.5358682271/extraparams/format_options=layout:end",
         "name": "",
         "stop": null
     }

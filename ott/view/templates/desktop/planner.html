@@ -118,18 +118,27 @@
 
         return ret_val
 
-
-    def render_leg(leg):
+    leg_id = 1
+    def render_leg(leg, n):
         ''' call render stuff above...
         '''
+        ret_val = ''
+
+        global leg_id
+        if n == 0:
+            leg_id = 1
         if leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN, util.attr.GONDOLA):
-            return render_transit_leg(leg)
+            ret_val = render_transit_leg(leg, leg_id, leg_id+1)
+            leg_id = leg_id + 2 
         elif leg['mode'] == util.attr.WALK:
-            return render_walk_leg(leg)
+            ret_val = render_walk_leg(leg, leg_id)
+            leg_id = leg_id + 1 
         elif leg['mode'] == util.attr.BICYCLE:
-            return render_bicycle_leg(leg)
-        return ''
-%> 
+            ret_val = render_bicycle_leg(leg, leg_id)
+            leg_id = leg_id + 1
+
+        return ret_val
+%>
 <%def name="get_route_name(route)">${route['name']}${' ' + _(u'to') + ' ' + route['headsign'] if route['headsign'] else ''}</%def>
 <%def name="get_route_link(route)">
 %if route is not None:
@@ -138,14 +147,13 @@
 ${_(u'transit vehicle')}
 %endif
 </%def>
-<%def name="render_transit_leg(leg)">
 
+<%def name="render_transit_leg(leg, i, j)">
     <!--<img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />-->
-    
-    <li class="num01">
+    <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
-        	<a href="${leg['from']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['from']['name']}" class="step-time">${leg['date_info']['start_time']}</a> ${_(u'Board')} ${get_route_link(leg['route'])} 
+            <a href="${leg['from']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['from']['name']}" class="step-time">${leg['date_info']['start_time']}</a> ${_(u'Board')} ${get_route_link(leg['route'])} 
             %if leg['alerts']:
             %for a in leg['alerts']:
             <a href="#alerts" title="${a['text']}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>TODO<!--only show 1 icon-->
@@ -153,8 +161,8 @@ ${_(u'transit vehicle')}
             %endif
         </p>
     </li>
-                
-    <li class="num01">
+
+    <li class="num${j}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p><a href="${leg['to']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['to']['name']}" class="step-time">${leg['date_info']['end_time']}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title="${_(u'More information about this stop')}">${leg['to']['name']}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span></p>
         
@@ -164,31 +172,66 @@ ${_(u'transit vehicle')}
 
 
 
-<%def name="render_bicycle_leg(leg)">
-				TODO formatting
-                <h3>
-                    <img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />
-                    <% bike_title = get_bicycle_title(leg)%>
-                    %if leg['steps']:
-                    <a href="TODO-render_biking_directions(leg)" title="${_(u'Show biking directions.')}">${bike_title}</a> ${_(u'to')}
-                    %else:
-                    ${bike_title} ${_(u'to')}
-                    %endif
-                    %if leg['to']['stop']:
-                    <a href="${leg['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
-                    %else:
-                    ${leg['to']['name']}
-                    %endif
-                </h3>
-                %if leg['to']['stop']:
-                <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+<%def name="render_bicycle_leg(leg, i)">
+    <li class="num${i}">
+        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
+        <p>
+            <% bike_title = get_bicycle_title(leg)%>
+            ${bike_title} ${_(u'to')}
+            %if leg['to']['stop']:
+            <a href="${leg['to']['stop']['info']}" title="${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
+            %else:
+            ${leg['to']['name']}
+            %endif
+
+            %if leg['to']['stop']:
+            <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+            %endif
+        </p>
+
+        <div class="normal"><!-- hidden walking directions and map -->
+            <a href="#leg_${i}" onClick="expandMe(this);" title="Biking directions" class="open"><span>Walking directions</span></a>
+            <div class="description">
+                <p class="elevation"><span>
+                    Total elevation uphill: 3 feet<br />
+                    Total elevation downhill: 3 feet<br />
+                    Steepest grade: 2%<br />
+                    <a href="#">Elevation chart</a></span>
+                </p>
+                <ol>
+                    <li>Walk 0.36 mile west on SE Water Ave.</li>
+                    <li>Turn left on SE Madison St.</li>
+                    <li>Walk a short distance west on SE Madison St.</li>
+                </ol>
+
+                %if leg['steps']:
+                    <div class="maps">
+                        <p class="walk-start">Start<br /><img src="${leg['from']['map_img']}" alt="Map of starting point (300x288)" width="300" height="288" /></p>
+                        <p class="walk-end">
+                            End 
+                            %for l in leg['steps']:
+                            (${l['name']})
+                            %endfor
+                            <br />
+                            <img src="${leg['to']['map_img']}" alt="Map of ending point (300x288)" width="300" height="288" />
+                        </p>
+                        <!--
+                        TODO TODO TODO
+                        1. generic 'direction' element in json
+                        2. enum for different walk insturctions Straight/Left/Slight Left/etc...
+                        3. Reformat entire Leg, ala what happens on old trip planner...
+                           http://maps5.trimet.org/maps/print/V1/tripplanner?fromPlace=pdx&toPlace=zoo&time=6:45%20pm
+                        4. Dynamic Load Images... 
+                        TODO TODO TODO
+                        -->
+                    </div><!-- end .maps -->
                 %endif
+            </div><!-- end .description -->
+        </div><!-- end .normal/hidden walking directions -->
+    </li>
 </%def>
-<%def name="render_walk_leg(leg)">
-
-	<!--<img src="${get_mode_img(leg['mode'])}" alt="" border="0" class="icon" />-->
-
-    <li class="num01">
+<%def name="render_walk_leg(leg, i)">
+    <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
             <% walk_title = get_walk_title(leg)%>
@@ -211,7 +254,7 @@ ${_(u'transit vehicle')}
         </p>
 
         <div class="normal"><!-- hidden walking directions and map -->
-            <a href="#leg_1" onClick="expandMe(this);" title="Walking directions" class="open"><span>Walking directions</span></a>
+            <a href="#leg_${i}" onClick="expandMe(this);" title="Walking directions" class="open"><span>Walking directions</span></a>
             <div class="description">
                 <p class="elevation"><span>
                     Total elevation uphill: 3 feet<br />
@@ -224,9 +267,9 @@ ${_(u'transit vehicle')}
                     <li>Turn left on SE Madison St.</li>
                     <li>Walk a short distance west on SE Madison St.</li>
                 </ol>
-                
+
                 %if leg['steps']:
-                	<div class="maps">
+                    <div class="maps">
                         <p class="walk-start">Start<br /><img src="${leg['from']['map_img']}" alt="Map of starting point)" width="300" height="288" /></p>
                         <p class="walk-end">
                             End 
@@ -245,15 +288,11 @@ ${_(u'transit vehicle')}
                         4. Dynamic Load Images... 
                         TODO TODO TODO
                         -->
-                	</div><!-- end .maps -->
+                    </div><!-- end .maps -->
                 %endif
             </div><!-- end .description -->
         </div><!-- end .normal/hidden walking directions -->
     </li>
-
-                
-
-
 </%def>
 <%def name="itin_tab(itin_list, i, text)">
     %if len(itin_list) >= i: 
@@ -268,23 +307,14 @@ ${_(u'transit vehicle')}
 ## main content
 ##
 
-	<h1 class="tripplanner-icon"><a href="${util.url_domain()}/desktop/planner_form.html">${_(u'Your Trip on TriMet')}</a></h1>
-    <!--
-    <p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
-        <div class="hide">
-            <form>
-                <input name="print" type="button" value="${_(u'Print')}" title="${_(u'Print this page')}" onClick="javascript:window.print();_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print top']);" class="noprint" />
-            </form>
-        </div>
-    -->
+    <h1 class="tripplanner-icon"><a href="${util.url_domain()}/desktop/planner_form.html">${_(u'Your Trip on TriMet')}</a></h1>
     <div id="details" class="group">
         <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
         <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
         <p class="tripinfo">${depart_arrive} ${time} ${itinerary['date_info']['pretty_date']}, ${_(u'riding on transit')} <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
         <p class="tripinfo">${optimize} ${_(u'with a maximum walk of')} 1 mile <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
     </div><!-- end #details -->
-    
-    
+
     %if len(plan['itineraries']) > 1:
     <ol id="plannertabs" class="group">
         ${itin_tab(plan['itineraries'], 1, _(u'Your best bet'))}
@@ -293,51 +323,13 @@ ${_(u'transit vehicle')}
     </ol><!-- end #tabs -->
     %endif
 
-<!--
-<strong>${_(u'Time')}</strong></td><td>${itinerary['date_info']['pretty_date']}
- ${_(u'from')} ${itinerary['date_info']['start_transit']} ${_(u'to')} ${itinerary['date_info']['end_transit']}
--->
-
-
     <ol id="itinerary" class="transit">
-    <!--
-    ---trying the itin without duplicating first/last step 
-        <li class="first">
-            <h3>
-                <img src="${util.url_domain()}/v3/images/tripplanner/start.gif" alt="" border="0" class="icon" /> 
-                ${_(u'Start at')} 
-                <a href="${plan['from']['map_img']}">${plan['from']['name']}</a>
-            </h3>
-            %if plan['from']['stop']:
-            <h3>
-                <a href="${plan['from']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${plan['from']['stop']['name']}</a>
-            </h3>
-            <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['from']['stop']['id']}</span>
-            %endif
-        </li>
-    -->
         ##
         ## loop through the legs between start and end elements
         ##
-        %for leg in itinerary['legs']:
-            ${render_leg(leg)}
+        %for n, leg in enumerate(itinerary['legs']):
+            ${render_leg(leg, n)}
         %endfor
-        
-        <!--
-        <li class="last">
-            <h3>
-                <img src="${util.url_domain()}/v3/images/tripplanner/end.gif" alt="" border="0" class="icon" /> 
-                ${_(u'End at')} 
-                <a href="${plan['to']['map_img']}">${plan['to']['name']}</a>
-            </h3>
-            %if plan['to']['stop']:
-            <h3>
-                <a href="${plan['to']['stop']['info']}" title = "${_(u'Click for more information about this stop')}">${plan['to']['stop']['name']}</a>
-            </h3>
-            <span class="stopid">${_(u'Stop ID')}&nbsp;${plan['to']['stop']['id']}</span>
-            %endif
-        </li>
-        -->
     </ol><!-- end #itinerary -->
 
     <p class="fare">Fare for this trip: <a href="/fares/index.htm">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>

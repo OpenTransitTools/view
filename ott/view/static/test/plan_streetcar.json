@@ -3,7 +3,7 @@
     "from": {
         "lat": 45.51853564579469,
         "lon": -122.6918745340708,
-        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
         "name": "",
         "stop": null
     },
@@ -76,7 +76,7 @@
                     "from": {
                         "lat": 45.51853564579469,
                         "lon": -122.6918745340708,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
                         "name": "",
                         "stop": null
                     },
@@ -276,7 +276,7 @@
                     "to": {
                         "lat": 45.517989,
                         "lon": -122.693544,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
                         "name": "Goose Hollow/SW Jefferson St MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -312,7 +312,7 @@
                     "from": {
                         "lat": 45.517989,
                         "lon": -122.693544,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
                         "name": "Goose Hollow/SW Jefferson St MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -337,7 +337,7 @@
                     "to": {
                         "lat": 45.51916,
                         "lon": -122.68162,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
                         "name": "Library/SW 9th Ave MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -373,7 +373,7 @@
                     "from": {
                         "lat": 45.51917274418673,
                         "lon": -122.68161652398626,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
                         "name": "Southwest Yamhill Street (sidewalk)",
                         "stop": null
                     },
@@ -461,7 +461,7 @@
                     "to": {
                         "lat": 45.519225,
                         "lon": -122.682471,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
                         "name": "Central Library",
                         "stop": {
                             "agency": "TriMet",
@@ -497,7 +497,7 @@
                     "from": {
                         "lat": 45.519225,
                         "lon": -122.682471,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
                         "name": "Central Library",
                         "stop": {
                             "agency": "TriMet",
@@ -522,7 +522,7 @@
                     "to": {
                         "lat": 45.530612,
                         "lon": -122.698688,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
                         "name": "NW 23rd & Marshall",
                         "stop": {
                             "agency": "TriMet",
@@ -558,7 +558,7 @@
                     "from": {
                         "lat": 45.530611552087294,
                         "lon": -122.69871016101428,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
                         "name": "Northwest 23rd Avenue (sidewalk)",
                         "stop": null
                     },
@@ -637,7 +637,7 @@
                     "to": {
                         "lat": 45.5307104,
                         "lon": -122.6981599,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
                         "name": "",
                         "stop": null
                     },
@@ -715,7 +715,7 @@
                     "from": {
                         "lat": 45.51853564579469,
                         "lon": -122.6918745340708,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
                         "name": "",
                         "stop": null
                     },
@@ -915,7 +915,7 @@
                     "to": {
                         "lat": 45.517989,
                         "lon": -122.693544,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
                         "name": "Goose Hollow/SW Jefferson St MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -951,7 +951,7 @@
                     "from": {
                         "lat": 45.517989,
                         "lon": -122.693544,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
                         "name": "Goose Hollow/SW Jefferson St MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -976,7 +976,7 @@
                     "to": {
                         "lat": 45.51916,
                         "lon": -122.68162,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
                         "name": "Library/SW 9th Ave MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -1012,7 +1012,7 @@
                     "from": {
                         "lat": 45.51917274418673,
                         "lon": -122.68161652398626,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
                         "name": "Southwest Yamhill Street (sidewalk)",
                         "stop": null
                     },
@@ -1100,7 +1100,7 @@
                     "to": {
                         "lat": 45.519225,
                         "lon": -122.682471,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
                         "name": "Central Library",
                         "stop": {
                             "agency": "TriMet",
@@ -1136,7 +1136,7 @@
                     "from": {
                         "lat": 45.519225,
                         "lon": -122.682471,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
                         "name": "Central Library",
                         "stop": {
                             "agency": "TriMet",
@@ -1161,7 +1161,7 @@
                     "to": {
                         "lat": 45.530612,
                         "lon": -122.698688,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
                         "name": "NW 23rd & Marshall",
                         "stop": {
                             "agency": "TriMet",
@@ -1197,7 +1197,7 @@
                     "from": {
                         "lat": 45.530611552087294,
                         "lon": -122.69871016101428,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
                         "name": "Northwest 23rd Avenue (sidewalk)",
                         "stop": null
                     },
@@ -1276,7 +1276,7 @@
                     "to": {
                         "lat": 45.5307104,
                         "lon": -122.6981599,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
                         "name": "",
                         "stop": null
                     },
@@ -1354,7 +1354,7 @@
                     "from": {
                         "lat": 45.51853564579469,
                         "lon": -122.6918745340708,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.691874534,45.5185356458/extraparams/format_options=layout:start",
                         "name": "",
                         "stop": null
                     },
@@ -1554,7 +1554,7 @@
                     "to": {
                         "lat": 45.517989,
                         "lon": -122.693544,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:end",
                         "name": "Goose Hollow/SW Jefferson St MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -1590,7 +1590,7 @@
                     "from": {
                         "lat": 45.517989,
                         "lon": -122.693544,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.693544,45.517989/extraparams/format_options=layout:start",
                         "name": "Goose Hollow/SW Jefferson St MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -1615,7 +1615,7 @@
                     "to": {
                         "lat": 45.51916,
                         "lon": -122.68162,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.68162,45.51916/extraparams/format_options=layout:end",
                         "name": "Library/SW 9th Ave MAX Station",
                         "stop": {
                             "agency": "TriMet",
@@ -1651,7 +1651,7 @@
                     "from": {
                         "lat": 45.51917274418673,
                         "lon": -122.68161652398626,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.681616524,45.5191727442/extraparams/format_options=layout:start",
                         "name": "Southwest Yamhill Street (sidewalk)",
                         "stop": null
                     },
@@ -1739,7 +1739,7 @@
                     "to": {
                         "lat": 45.519225,
                         "lon": -122.682471,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:end",
                         "name": "Central Library",
                         "stop": {
                             "agency": "TriMet",
@@ -1775,7 +1775,7 @@
                     "from": {
                         "lat": 45.519225,
                         "lon": -122.682471,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.682471,45.519225/extraparams/format_options=layout:start",
                         "name": "Central Library",
                         "stop": {
                             "agency": "TriMet",
@@ -1800,7 +1800,7 @@
                     "to": {
                         "lat": 45.530612,
                         "lon": -122.698688,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.698688,45.530612/extraparams/format_options=layout:end",
                         "name": "NW 23rd & Marshall",
                         "stop": {
                             "agency": "TriMet",
@@ -1836,7 +1836,7 @@
                     "from": {
                         "lat": 45.530611552087294,
                         "lon": -122.69871016101428,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.698710161,45.5306115521/extraparams/format_options=layout:start",
                         "name": "Northwest 23rd Avenue (sidewalk)",
                         "stop": null
                     },
@@ -1915,7 +1915,7 @@
                     "to": {
                         "lat": 45.5307104,
                         "lon": -122.6981599,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
                         "name": "",
                         "stop": null
                     },
@@ -1932,7 +1932,7 @@
     "to": {
         "lat": 45.5307104,
         "lon": -122.6981599,
-        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.6981599,45.5307104/extraparams/format_options=layout:end",
         "name": "",
         "stop": null
     }

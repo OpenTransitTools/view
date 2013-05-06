@@ -6,8 +6,9 @@
     "lon":"-122.680762",
 
     "stop_img_url" : "",
-    "planner_url"  : "",
     "tracker_url"  : "",
+    "from_planner_url"  : "",
+    "to_planner_url"  : "",
 
     "amenities": [
         "Shelter",

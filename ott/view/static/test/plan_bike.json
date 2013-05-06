@@ -3,7 +3,7 @@
     "from": {
         "lat": 45.50481328630658,
         "lon": -122.64243838083587,
-        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.642438381,45.5048132863/extraparams/format_options=layout:start",
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.642438381,45.5048132863/extraparams/format_options=layout:start",
         "name": "",
         "stop": null
     },
@@ -76,7 +76,7 @@
                     "from": {
                         "lat": 45.50481328630658,
                         "lon": -122.64243838083587,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.642438381,45.5048132863/extraparams/format_options=layout:start",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.642438381,45.5048132863/extraparams/format_options=layout:start",
                         "name": "",
                         "stop": null
                     },
@@ -1467,7 +1467,7 @@
                     "to": {
                         "lat": 45.515320547623865,
                         "lon": -122.6794129479116,
-                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.679412948,45.5153205476/extraparams/format_options=layout:end",
+                        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.679412948,45.5153205476/extraparams/format_options=layout:end",
                         "name": "PORTLAND CITY HALL",
                         "stop": null
                     },
@@ -1484,7 +1484,7 @@
     "to": {
         "lat": 45.515320547623865,
         "lon": -122.6794129479116,
-        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/-122.679412948,45.5153205476/extraparams/format_options=layout:end",
+        "map_img": "http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/300/height/288/zoom/7/coord/-122.679412948,45.5153205476/extraparams/format_options=layout:end",
         "name": "PORTLAND CITY HALL",
         "stop": null
     }
