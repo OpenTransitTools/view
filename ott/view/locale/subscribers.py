@@ -20,8 +20,47 @@ def add_localizer(event):
     request = event.request
     localizer = get_localizer(request)
     def auto_translate(*args, **kwargs):
-        f = tsf(*args, **kwargs)
-        t = localizer.translate(f, 'view')
+        """ Calls Babel to translate strings, etc...
+            @see: https://github.com/Pylons/pyramid_cookbook/blob/master/templates/mako_i18n.rst
+            @see: http://docs.pylonsproject.org/projects/translationstring/en/latest/tstrings.html
+            @see: http://pylonsbook.com/en/1.1/internationalization-and-localization.html
+            @see: http://www.gnu.org/software/gettext/manual/gettext.html#Plural-forms
+
+            NOTE Special code to handle 2 plural forms (only way I could figure out how to do plurals)
+
+            ${_('singular', 'plural', mapping={'number':1})}
+
+            msgid "singular"
+            msgstr "Singular ${number}"
+
+            msgid "plural"
+            msgstr "Plural ${number}"
+        """
+        # if template has plurals of this form ${_('singular', 'plural', mapping={'number':1})}
+        if len(args) == 2:
+            # step 1: expect 2 strings - singular & plural .po entries 
+            a = tsf(args[0])
+            b = tsf(args[1])
+            m = None
+            n = 0
+            # step 2a: find any mapping passed in 
+            if 'mapping' in kwargs:
+                m = kwargs['mapping']
+                # step 2b: find number indicating singular / plural
+                if 'number' in m:
+                    n = m['number']
+
+
+            # step 3: first step of two pass translation, finding out which .po string to use based on N
+            p = localizer.pluralize(a, b, n)
+
+            # step 4: second step of two pass translation, translating that string
+            t = localizer.translate(p, 'view', m)
+        else:
+            f = tsf(*args, **kwargs)
+            m = None if 'mapping' not in kwargs else kwargs['mapping']
+            t = localizer.translate(f, 'view', m)
+
         return t
     request.localizer = localizer
     request.translate = auto_translate
