@@ -311,11 +311,19 @@ ${_(u'transit vehicle')}
     </li>
 </%def>
 <%def name="itin_tab(itin_list, i, text)">
-    %if len(itin_list) >= i: 
-        %if itin_list[i-1]['selected']:
-        <li class="selected"><span><b>${text}</b><br />TODO mins, ${itinerary['transfers']} transfer, ${itinerary['fare']['adult']}</span></li>
+    %if len(itin_list) > i:
+        <%
+            it  = itin_list[i]
+            sel = it['selected'] 
+            n   = it['transfers']
+            dur = it['date_info']['duration_min']
+            tfer = _('transfer', 'transfers', mapping={'number':n})
+        %>
+        <!-- ${_('transfer')} or ${_('transfers')} -->
+        %if sel:
+        <li class="selected"><span><b>${text}</b><br />${dur} mins, ${tfer}, ${itinerary['fare']['adult']}</span></li>
         %else:
-        <li class="normal"><a href="${itin_list[i-1]['url']}"><span><b>${text}</b><br />TODO mins, ${itinerary['transfers']} transfer(TODO), ${itinerary['fare']['adult']}</span></a></li>
+        <li class="normal"><a href="${itin_list[i-1]['url']}"><span><b>${text}</b><br/>${dur} mins, ${tfer}, ${itinerary['fare']['adult']}</span></a></li>
         %endif
     %endif
 </%def>
@@ -333,9 +341,9 @@ ${_(u'transit vehicle')}
 
     %if len(plan['itineraries']) > 1:
     <ol id="plannertabs" class="group">
-        ${itin_tab(plan['itineraries'], 1, _(u'Your best bet'))}
-        ${itin_tab(plan['itineraries'], 2, _(u'Option 2'))}
-        ${itin_tab(plan['itineraries'], 3, _(u'Option 3'))}
+        ${itin_tab(plan['itineraries'], 0, _(u'Your best bet'))}
+        ${itin_tab(plan['itineraries'], 1, _(u'Option 2'))}
+        ${itin_tab(plan['itineraries'], 2, _(u'Option 3'))}
     </ol><!-- end #tabs -->
     %endif
 
