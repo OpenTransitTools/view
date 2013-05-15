@@ -60,12 +60,11 @@
 <%def name="alerts(alert_list, img_url='/images/triptools/alert.png')">
     <div id="alerts" class="group">
         <!--<h3><a href="${url_domain()}/alerts/">${_(u'Service Alerts')}</a></h3>-->
-		%for a in alert_list:
-			
-			<p><img src="${url_domain()}${img_url}" />
-				<span class="alert-text"><b>${a['name']}</b><br />${a['description']}</span>
-				<span class="alert-time">As of March 19 @ 10:15am</span>
-			</p>
-		%endfor
+        %for a in alert_list:
+            <p><img src="${url_domain()}${img_url}" />
+                <span class="alert-text"><b>${a['name']}</b><br />${a['description']}</span>
+                <span class="alert-time">As of March 19 @ 10:15am</span>
+            </p>
+        %endfor
     </div>
 </%def>

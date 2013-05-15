@@ -1,5 +1,6 @@
 <%inherit file="/desktop/base.html"/>
 <%namespace name="util"  file="/shared/util.mako"/>
+<%namespace name="plib"  file="/shared/planner.mako"/>
 <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
@@ -14,39 +15,18 @@
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="side_bar()">
     <aside id="aside" class="aside">
-        
-            <!--
-        <div id="icon" class="icon-rosette"> 
-        </div>
-            <h2>${_(u'Related')}</h2>  
-            <p class="lead">${_(u'The Trip Planner provides step-by-step directions including where to board, how much to pay and where to transfer.')}</p>
-            
-            <div class="disclaimer">
-                <p class="disclaimer-feedback">
-                    <strong>${_(u'Tell us about your trip')}</strong>
-                    <br/>
-                    ${_(u'Visit')} <a href="${util.url_domain()}/contact/" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);">trimet.org/contact</a> ${_(u'or call')} 503-238-RIDE (7433), ${_(u'option 5')}.
-                </p>
-                <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
-                    <a href="${util.url_domain()}/transittracker/about.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade; 
-                    ${_(u'for real-time arrival information and any Service Alerts that may affect your trip')}: ${_(u'Call')} 503-238-RIDE (7433), ${_(u'visit')} m.trimet.org, ${_(u'or text your Stop ID to')} 27299.
-                </p>
-            </div>
-            -->
-            
-    %if adverts:
         <div id="trimet-ads">
-        TODO format itinerary ads
-        %for a in adverts:
-            ${a['content'] | n}
-        %endfor
+            %if adverts:
+                TODO format itinerary ads
+                %for a in adverts:
+                    ${a['content'] | n}
+                %endfor
+            %endif
             <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'Fares']);"><img src="${util.img_url()}/ads/fare.png"><span>No fare increases right now. Just lettin' you know!</span></a></p>
             <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'Mobile ticketing']);"><img src="${util.img_url()}/ads/mobile.png"><span>Mobile ticketing for smartphones coming summer 2013.</span></a></p>
             <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'Gear store']);"><img src="${util.img_url()}/ads/gear.png"><span>Order mugs, bags, t-shirts and more in the TriMet Gear Store.</span></a></p>
             <p><a href="#" class="group" onclick="_gaq.push(['_trackEvent', 'TriMetAds-TripPlanner', 'ClickTo', 'CO2']);"><img src="${util.img_url()}/ads/co2.png"><span>Taking this trip instead of driving will help the environment.</span></a></p>
         </div><!-- end #trimet-ads -->
-    %endif
-        
         <div id="sidebar-icons">
             <p class="helptips"><a href="${util.url_domain()}/tripplanner/trip-help.htm"><span>${_(u'Help/tips')}</span></a></p>
             <p class="showonmap"><a href="http://ride.trimet.org?mapit=I"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
@@ -302,13 +282,16 @@ ${_(u'transit vehicle')}
 ##
 ## main content
 ##
+<%
+    itinerary = plib.get_itinerary(plan)
+%>
 
     <h1 class="tripplanner-icon"><a href="${util.url_domain()}/desktop/planner_form.html">${_(u'Your Trip on TriMet')}</a></h1>
     <div id="details" class="group">
         <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
         <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
-        <p class="tripinfo">${depart_arrive} ${time} ${itinerary['date_info']['pretty_date']}, ${_(u'riding on transit')} <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
-        <p class="tripinfo">${optimize} ${_(u'with a maximum walk of')} 1 mile <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        <p class="tripinfo">${plib.get_depart_arrive(plan)} ${plib.get_time(plan, itinerary)} ${itinerary['date_info']['pretty_date']}, ${_(u'riding on transit')} <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        <p class="tripinfo">${plib.get_optimize(plan)} ${_(u'with a maximum walk of')} 1 mile <a href="planner_form.html?${plan['params']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
     </div><!-- end #details -->
 
     %if len(plan['itineraries']) > 1:
