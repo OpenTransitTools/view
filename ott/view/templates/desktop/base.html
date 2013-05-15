@@ -72,10 +72,10 @@
                 ${next.body()}
             </section><!-- end #main -->
 
-            % if hasattr(c, 'skip_sidebar') == False:
-                ${self.side_bar()}
-            % else:
+            % if skip_sidebar:
                 <!-- sidebar intentionally skipped via attribute 'skip_sidebar' -->
+            % else:
+                ${self.side_bar()}
             % endif
 
         </div><!-- end #content -->
@@ -83,7 +83,6 @@
 
 
     <div id="bottom-wrap">
-    	TODO make this section optional ala sidebar
         <div id="disclaimer">
             <p>Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check
                 <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade; 

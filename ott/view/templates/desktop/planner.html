@@ -164,7 +164,7 @@
 <%def name="get_route_name(route)">${route['name']}${' ' + _(u'to') + ' ' + route['headsign'] if route['headsign'] else ''}</%def>
 <%def name="get_route_link(route, mode)">
 %if route is not None:
-<a href="${route['url']}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${get_route_name(route)}</a>
+<a href="${route['url']}" target="#" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${get_route_name(route)}</a>
 %else:
 ${_(u'transit vehicle')}
 %endif
@@ -187,7 +187,31 @@ ${_(u'transit vehicle')}
     </li>
 </%def>
 
-
+<%def name="render_elevation(up, down, grade)">
+                <p class="elevation"><span>
+                    ${_(u'Total elevation uphill')}: ${_(u'foot', u'feet', mapping={'number':up})}<br />
+                    ${_(u'Total elevation downhill')}: ${_(u'foot', u'feet', mapping={'number':down})}<br />
+                    ${_(u'Steepest grade')}: ${grade}<br />
+                    <a href="#">${_(u'Elevation chart')}</a></span>
+                </p>
+</%def>
+<%def name="render_start_end_maps(from_img_url, to_img_url)">
+                <div class="maps">
+                    <p class="walk-start">${_(u'Start')}<br /><img src="${from_img_url}" alt="${_(u'Map of starting point (300x288)')}" width="300" height="288" /></p>
+                    <p class="walk-end">
+                        ${_(u'End')}
+                        <br />
+                        <img src="${to_img_url}" alt="${_(u'Map of ending point (300x288)')}" width="300" height="288" />
+                    </p>
+                </div><!-- end .maps -->
+</%def>
+<%def name="render_steps(steps)">
+                <ol>
+                    %for l in steps:
+                    <li>${l['name']}</li>
+                    %endfor
+                </ol>
+</%def>
 <%def name="render_bicycle_leg(leg, i)">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
@@ -206,42 +230,20 @@ ${_(u'transit vehicle')}
         </p>
 
         <div class="normal"><!-- hidden walking directions and map -->
-            <a href="#leg_${i}" onClick="expandMe(this);" title="Biking directions" class="open"><span>Walking directions</span></a>
+            <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Biking directions')}" class="open"><span>${_(u'Biking directions')}</span></a>
             <div class="description">
-                <p class="elevation"><span>
-                    Total elevation uphill: 3 feet<br />
-                    Total elevation downhill: 3 feet<br />
-                    Steepest grade: 2%<br />
-                    <a href="#">Elevation chart</a></span>
-                </p>
-                <ol>
-                    <li>Walk 0.36 mile west on SE Water Ave.</li>
-                    <li>Turn left on SE Madison St.</li>
-                    <li>Walk a short distance west on SE Madison St.</li>
-                </ol>
-
-                %if leg['steps']:
-                    <div class="maps">
-                        <p class="walk-start">Start<br /><img src="${leg['from']['map_img']}" alt="Map of starting point (300x288)" width="300" height="288" /></p>
-                        <p class="walk-end">
-                            End 
-                            %for l in leg['steps']:
-                            (${l['name']})
-                            %endfor
-                            <br />
-                            <img src="${leg['to']['map_img']}" alt="Map of ending point (300x288)" width="300" height="288" />
-                        </p>
-                        <!--
-                        TODO TODO TODO
-                        1. generic 'direction' element in json
-                        2. enum for different walk insturctions Straight/Left/Slight Left/etc...
-                        3. Reformat entire Leg, ala what happens on old trip planner...
-                           http://maps5.trimet.org/maps/print/V1/tripplanner?fromPlace=pdx&toPlace=zoo&time=6:45%20pm
-                        4. Dynamic Load Images... 
-                        TODO TODO TODO
-                        -->
-                    </div><!-- end .maps -->
-                %endif
+                ${render_elevation(7, 1, '4%')}
+                ${render_steps(leg['steps'])}
+                ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'])}
+                    <!--
+                    TODO TODO TODO
+                    1. generic 'direction' element in json
+                    2. enum for different walk insturctions Straight/Left/Slight Left/etc...
+                    3. Reformat entire Leg, ala what happens on old trip planner...
+                       http://maps5.trimet.org/maps/print/V1/tripplanner?fromPlace=pdx&toPlace=zoo&time=6:45%20pm
+                    4. Dynamic Load Images... 
+                    TODO TODO TODO
+                    -->
             </div><!-- end .description -->
         </div><!-- end .normal/hidden walking directions -->
     </li>
@@ -263,48 +265,18 @@ ${_(u'transit vehicle')}
             %else:
             ${leg['to']['name']}
             %endif
-
             %if leg['to']['stop']:
             <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
             %endif
         </p>
 
         <div class="normal"><!-- hidden walking directions and map -->
-            <a href="#leg_${i}" onClick="expandMe(this);" title="Walking directions" class="open"><span>Walking directions</span></a>
+            <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Walking directions')}" class="open"><span>${_(u'Walking directions')}</span></a>
             <div class="description">
-                <p class="elevation"><span>
-                    Total elevation uphill: 3 feet<br />
-                    Total elevation downhill: 3 feet<br />
-                    Steepest grade: 2%<br />
-                    <a href="#">Elevation chart</a></span>
-                </p>
-                <ol>
-                    <li>Walk 0.36 mile west on SE Water Ave.</li>
-                    <li>Turn left on SE Madison St.</li>
-                    <li>Walk a short distance west on SE Madison St.</li>
-                </ol>
-
                 %if leg['steps']:
-                    <div class="maps">
-                        <p class="walk-start">Start<br /><img src="${leg['from']['map_img']}" alt="Map of starting point)" width="300" height="288" /></p>
-                        <p class="walk-end">
-                            End 
-                            %for l in leg['steps']:
-                            (${l['name']})
-                            %endfor
-                            <br />
-                            <img src="${leg['to']['map_img']}" alt="Map of ending point (300x288)" width="300" height="288" />
-                        </p>
-                        <!--
-                        TODO TODO TODO
-                        1. generic 'direction' element in json
-                        2. enum for different walk insturctions Straight/Left/Slight Left/etc...
-                        3. Reformat entire Leg, ala what happens on old trip planner...
-                           http://maps5.trimet.org/maps/print/V1/tripplanner?fromPlace=pdx&toPlace=zoo&time=6:45%20pm
-                        4. Dynamic Load Images... 
-                        TODO TODO TODO
-                        -->
-                    </div><!-- end .maps -->
+                ${render_elevation(7, 1, '4%')}
+                ${render_steps(leg['steps'])}
+                ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'])}
                 %endif
             </div><!-- end .description -->
         </div><!-- end .normal/hidden walking directions -->
