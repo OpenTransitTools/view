@@ -189,8 +189,8 @@ ${_(u'transit vehicle')}
 
 <%def name="render_elevation(up, down, grade)">
                 <p class="elevation"><span>
-                    ${_(u'Total elevation uphill')}: ${_(u'foot', u'feet', mapping={'number':up})}<br />
-                    ${_(u'Total elevation downhill')}: ${_(u'foot', u'feet', mapping={'number':down})}<br />
+                    ${_(u'Total elevation uphill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':up})}<br />
+                    ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':down})}<br />
                     ${_(u'Steepest grade')}: ${grade}<br />
                     <a href="#">${_(u'Elevation chart')}</a></span>
                 </p>
@@ -286,7 +286,7 @@ ${_(u'transit vehicle')}
     %if len(itin_list) > i:
         <%
             it  = itin_list[i]
-            sel = it['selected'] 
+            sel = it['selected']
             n   = it['transfers']
             dur = it['date_info']['duration_min']
             tfer = _('transfer', 'transfers', mapping={'number':n})

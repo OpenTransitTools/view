@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-05-14 02:10-0700\n"
+"POT-Creation-Date: 2013-05-15 02:21+0100\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -24,8 +24,8 @@ msgstr "TriMet: Paradas y Estaciones"
 #: ott/view/templates/desktop/feedback.html:4
 #: ott/view/templates/desktop/feedback.html:43
 #: ott/view/templates/desktop/planner.html:186
-#: ott/view/templates/desktop/planner.html:204
-#: ott/view/templates/desktop/planner.html:268
+#: ott/view/templates/desktop/planner.html:228
+#: ott/view/templates/desktop/planner.html:269
 #: ott/view/templates/desktop/stop.html:9
 #: ott/view/templates/desktop/stop.html:44
 #: ott/view/templates/desktop/stop_schedule.html:14
@@ -199,16 +199,16 @@ msgid "Trip Planner"
 msgstr ""
 
 #: ott/view/templates/desktop/planner.html:3
-#: ott/view/templates/desktop/planner.html:333
+#: ott/view/templates/desktop/planner.html:308
 #: ott/view/templates/desktop/planner_form.html:51
 msgid "From"
 msgstr ""
 
 #: ott/view/templates/desktop/planner.html:3
 #: ott/view/templates/desktop/planner.html:164
-#: ott/view/templates/desktop/planner.html:196
-#: ott/view/templates/desktop/planner.html:255
-#: ott/view/templates/desktop/planner.html:259
+#: ott/view/templates/desktop/planner.html:220
+#: ott/view/templates/desktop/planner.html:257
+#: ott/view/templates/desktop/planner.html:261
 msgid "to"
 msgstr ""
 
@@ -335,92 +335,137 @@ msgstr ""
 msgid "More information about this stop"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:198
-#: ott/view/templates/desktop/planner.html:262
+#: ott/view/templates/desktop/planner.html:192
+msgid "Total elevation uphill"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:192
+#: ott/view/templates/desktop/planner.html:193
+msgid "foot"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:193
+msgid "Total elevation downhill"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:194
+msgid "Steepest grade"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:195
+msgid "Elevation chart"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:200
+msgid "Start"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:200
+msgid "Map of starting point (300x288)"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:202
+msgid "End"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:204
+msgid "Map of ending point (300x288)"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:222
+#: ott/view/templates/desktop/planner.html:264
 msgid "Click for more information about this stop"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:257
+#: ott/view/templates/desktop/planner.html:233
+msgid "Biking directions"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:259
 msgid "Go to"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:317
-#: ott/view/templates/desktop/planner.html:319
+#: ott/view/templates/desktop/planner.html:274
+msgid "Walking directions"
+msgstr ""
+
+#: ott/view/templates/desktop/planner.html:292
+#: ott/view/templates/desktop/planner.html:294
 msgid "transfer"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:319
+#: ott/view/templates/desktop/planner.html:294
 msgid "transfers"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:331
+#: ott/view/templates/desktop/planner.html:306
 msgid "Your Trip on TriMet"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:334
+#: ott/view/templates/desktop/planner.html:309
 #: ott/view/templates/desktop/planner_form.html:61
 msgid "To"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:335
+#: ott/view/templates/desktop/planner.html:310
 msgid "riding on transit"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:335
-#: ott/view/templates/desktop/planner.html:336
+#: ott/view/templates/desktop/planner.html:310
+#: ott/view/templates/desktop/planner.html:311
 msgid "Edit"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:336
+#: ott/view/templates/desktop/planner.html:311
 msgid "with a maximum walk of"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:341
+#: ott/view/templates/desktop/planner.html:316
 msgid "Your best bet"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:342
+#: ott/view/templates/desktop/planner.html:317
 msgid "Option 2"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:343
+#: ott/view/templates/desktop/planner.html:318
 msgid "Option 3"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:356
+#: ott/view/templates/desktop/planner.html:331
 msgid "Adult"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:356
+#: ott/view/templates/desktop/planner.html:331
 msgid "Youth"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:356
+#: ott/view/templates/desktop/planner.html:331
 msgid "Honored Citizen"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:360
+#: ott/view/templates/desktop/planner.html:335
 #: ott/view/templates/shared/util.mako:62
 msgid "Service Alerts"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:376
+#: ott/view/templates/desktop/planner.html:351
 msgid "Email/Text"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:377
+#: ott/view/templates/desktop/planner.html:352
 msgid "Print"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:378
+#: ott/view/templates/desktop/planner.html:353
 msgid "View on mobile"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:381
+#: ott/view/templates/desktop/planner.html:356
 msgid "Return trip"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:382
+#: ott/view/templates/desktop/planner.html:357
 msgid "Edit/Start over"
 msgstr ""
 
