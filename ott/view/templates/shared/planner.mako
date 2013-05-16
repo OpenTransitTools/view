@@ -128,7 +128,9 @@
                     ${_(u'Total elevation uphill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['rise_ft']})}<br />
                     ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br />
                     ${_(u'Steepest grade')}: ${elevation['grade']}<br />
+                    %if elevation['points'] and len(elevation['points']) > 2:
                     <a href="#">${_(u'Elevation chart')}</a> <img src="/sparkline?points=${elevation['points']}"/></span>
+                    %endif
                 </p>
 </%def>
 
@@ -151,12 +153,15 @@
                     %for i, s in enumerate(steps):
                     <%
                         name = s['name']
+                        conjunction = _(u'on')
                         if name == '' and i == 0:
                             name = frm
+                            conjunction = _(u'from')
                         elif name == '' and i+1 == len(steps):
                             name = to
+                            conjunction = _(u'to')
 
-                        v = verb
+                        instruct_verb = verb
                         turn = None
                         dir = s['relative_direction']
                         if dir != None:
@@ -164,8 +169,9 @@
                             if dir not in ('continue'):
                                 turn = "{0} {1} {2} {3}".format(_(u'Turn'), dir, _(u'on'), name)
                             else:
-                                v = dir.title()
-                        instruct = "{0} {1} {2} {3} {4}".format(v, s['distance'], s['compass_direction'], _(u'on'), name)
+                                instruct_verb = dir.title()
+
+                        instruct = "{0} {1} {2} {3} {4}".format(instruct_verb, s['distance'], s['compass_direction'], conjunction, name)
                     %>
                     %if turn != None:
                     <li>${turn}</li>
