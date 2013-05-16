@@ -123,12 +123,12 @@
 <p class="fare">${_(u'Fare for this trip')}: <a href="${fares_url}" target="#">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
 </%def>
 
-<%def name="render_elevation(up, down, grade)">
+<%def name="render_elevation(elevation)">
                 <p class="elevation"><span>
-                    ${_(u'Total elevation uphill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':up})}<br />
-                    ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':down})}<br />
-                    ${_(u'Steepest grade')}: ${grade}<br />
-                    <a href="#">${_(u'Elevation chart')}</a></span>
+                    ${_(u'Total elevation uphill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['rise_ft']})}<br />
+                    ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br />
+                    ${_(u'Steepest grade')}: ${elevation['grade']}<br />
+                    <a href="#">${_(u'Elevation chart')}</a> <img src="/sparkline?points=${elevation['points']}"/></span>
                 </p>
 </%def>
 
@@ -156,16 +156,16 @@
                         elif name == '' and i+1 == len(steps):
                             name = to
 
-                        instruct = "{0} {1} {2} {3} {4}".format(verb, s['distance'], s['compass_direction'], _(u'on'), name)
-                        turn     = None
+                        v = verb
+                        turn = None
                         dir = s['relative_direction']
                         if dir != None:
                             dir = dir.lower().replace('_', ' ')
                             if dir not in ('continue'):
-                                dir = "{0} {1}".format(_(u'Turn'), dir)
+                                turn = "{0} {1} {2} {3}".format(_(u'Turn'), dir, _(u'on'), name)
                             else:
-                                dir = dir.title()
-                            turn = "{0} {1} {2}".format(dir, _(u'on'), name)
+                                v = dir.title()
+                        instruct = "{0} {1} {2} {3} {4}".format(v, s['distance'], s['compass_direction'], _(u'on'), name)
                     %>
                     %if turn != None:
                     <li>${turn}</li>
@@ -198,8 +198,8 @@
         <div class="normal"><!-- hidden walking directions and map -->
             <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Biking directions')}" class="open"><span>${_(u'Biking directions')}</span></a>
             <div class="description">
-                ${render_elevation(7, 1, '4%')}
-                ${render_steps(_(u'Bike'), 'from - todo', 'to - todo', leg['steps'])}
+                ${render_elevation(leg['elevation'])}
+                ${render_steps(_(u'Bike'), leg['from']['name'], leg['to']['name'], leg['steps'])}
                 ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'])}
                     <!--
                     TODO TODO TODO
@@ -244,8 +244,8 @@
             <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Walking directions')}" class="open"><span>${_(u'Walking directions')}</span></a>
             <div class="description">
                 %if leg['steps']:
-                ${render_elevation(7, 1, '4%')}
-                ${render_steps(_(u'Walk'), 'from - todo', 'to - todo', leg['steps'])}
+                ${render_elevation(leg['elevation'])}
+                ${render_steps(_(u'Walk'), leg['from']['name'], leg['to']['name'], leg['steps'])}
                 ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'])}
                 %endif
             </div><!-- end .description -->
