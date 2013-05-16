@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-<%def name="url_domain()">http://dev.trimet.org</%def>
+<%def name="url_domain()"><%return "http://dev.trimet.org"%></%def>
 <%def name="img_url()">${url_domain()}/images/triptools</%def>
 <%def name="planner_img_url()">${img_url()}/mode</%def>
 

@@ -2450,7 +2450,8 @@
                         "id": "203",
                         "name": "WES Commuter Rail",
                         "trip": "3581017",
-                        "url": "http://trimet.org/schedules/r203.htm"
+                        "url": "http://trimet.org/schedules/r203.htm",
+                        "schedulemap_url": "http://trimet.org/images/schedulemaps/203.gif"
                     },
                     "steps": null,
                     "to": {
@@ -2606,7 +2607,8 @@
                         "id": "20",
                         "name": "20-Burnside/Stark",
                         "trip": "3570368",
-                        "url": "http://trimet.org/schedules/r020.htm"
+                        "url": "http://trimet.org/schedules/r020.htm",
+                        "schedulemap_url": "http://trimet.org/images/schedulemaps/020.gif"
                     },
                     "steps": null,
                     "to": {
@@ -6603,7 +6605,8 @@
                         "id": "203",
                         "name": "WES Commuter Rail",
                         "trip": "3581018",
-                        "url": "http://trimet.org/schedules/r203.htm"
+                        "url": "http://trimet.org/schedules/r203.htm",
+                        "schedulemap_url": "http://trimet.org/images/schedulemaps/203.gif"
                     },
                     "steps": null,
                     "to": {
@@ -6759,7 +6762,8 @@
                         "id": "20",
                         "name": "20-Burnside/Stark",
                         "trip": "3570369",
-                        "url": "http://trimet.org/schedules/r020.htm"
+                        "url": "http://trimet.org/schedules/r020.htm",
+                        "schedulemap_url": "http://trimet.org/images/schedulemaps/020.gif"
                     },
                     "steps": null,
                     "to": {
@@ -10757,7 +10761,8 @@
                         "id": "203",
                         "name": "WES Commuter Rail",
                         "trip": "3581019",
-                        "url": "http://trimet.org/schedules/r203.htm"
+                        "url": "http://trimet.org/schedules/r203.htm",
+                        "schedulemap_url": "http://trimet.org/images/schedulemaps/203.gif"
                     },
                     "steps": null,
                     "to": {
@@ -10913,7 +10918,8 @@
                         "id": "20",
                         "name": "20-Burnside/Stark",
                         "trip": "3570371",
-                        "url": "http://trimet.org/schedules/r020.htm"
+                        "url": "http://trimet.org/schedules/r020.htm",
+                        "schedulemap_url": "http://trimet.org/images/schedulemaps/020.gif"
                     },
                     "steps": null,
                     "to": {

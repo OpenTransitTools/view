@@ -6,10 +6,9 @@
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
     <script src="${util.url_domain()}/scripts/triptools.js"></script>
 </%def>
-
 <%def name="meta_data()">
-    <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner"/>
-    <meta name="Description" content=""/>
+    <meta name="Keywords"    content="triplanner, trip planner, open trip planner, OTP, route planner, planner, transit planner"/>
+    <meta name="Description" content="text interface for trimet trip planner"/>
 </%def>
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="side_bar()">
@@ -38,6 +37,7 @@
 ## main content
 ##
 <%
+    is_mobile = False
     itinerary = plib.get_itinerary(plan)
 %>
 
@@ -62,15 +62,14 @@
         ## loop through the legs between start and end elements
         ## ${plib.render_leg(leg, n)}
         %for n, leg in enumerate(itinerary['legs']):
-            ${plib.render_leg(leg, n)}
+            ${plib.render_leg(leg, n, is_mobile)}
         %endfor
     </ol><!-- end #itinerary -->
 
-    <p class="fare">${_(u'Fare for this trip')}: <a href="/fares/index.htm">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
+    ${plib.render_fares(itinerary, util.url_domain() + '/fares/index.htm')}
 
 %if itinerary['has_alerts']:
     <div id="alerts" class="group">
-        <!--<a target="#" href="${util.url_domain()}/alerts/"><img border="0" src="${util.url_domain()}/v3/images/tripplanner/alert.png">${_(u'Service Alerts')}</a>-->
         TODO display full alert text and time alert is active
         <p><img src="${util.img_url()}/alert.png" />
             <span class="alert-text">Until further notice, the westbound stop on SE Division at 37th (Stop ID 1457) is closed.</span>

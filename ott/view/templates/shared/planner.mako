@@ -114,13 +114,13 @@
 </%def>
 
 
-<%def name="get_route_name(route)">${route['name']}${' ' + _(u'to') + ' ' + route['headsign'] if route['headsign'] else ''}</%def>
-<%def name="get_route_link(route, mode)">
-%if route is not None:
-<a href="${route['url']}" target="#" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${get_route_name(route)}</a>
-%else:
-${_(u'transit vehicle')}
-%endif
+<%def name="get_route_name(route)"><% return "{0} {1} {2}".format(route['name'], _(u'to'), route['headsign']  if route['headsign'] else '')%></%def>
+<%def name="get_route_link(name, url, mode)">
+<a href="${url}" target="#" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a>
+</%def>
+
+<%def name="render_fares(itinerary, fares_url)">
+<p class="fare">${_(u'Fare for this trip')}: <a href="${fares_url}" target="#">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
 </%def>
 
 <%def name="render_elevation(up, down, grade)">
@@ -229,11 +229,30 @@ ${_(u'transit vehicle')}
     </li>
 </%def>
 
-<%def name="render_transit_leg(leg, i, j)">
+<%def name="render_transit_leg(leg, i, j, is_mobile)">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
-            <a href="${leg['from']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['from']['name']}" class="step-time">${leg['date_info']['start_time']}</a> ${_(u'Board')} ${get_route_link(leg['route'], leg['mode'])} 
+            <%
+                from_sched = leg['from']['stop']['schedule']
+                from_name  = leg['from']['name']
+                from_stop  = leg['from']['stop']['id']
+                start_time = leg['date_info']['start_time']
+
+                to_sched   = leg['to']['stop']['schedule']
+                to_name    = leg['to']['name']
+                to_stop    = leg['to']['stop']['id']
+                end_time   = leg['date_info']['end_time']
+
+                route_name = get_route_name(leg['route'])
+                route_mode = leg['mode']
+
+                if is_mobile:
+                    route_url = leg['route']['schedulemap_url']
+                else:
+                    route_url = leg['route']['url']
+            %>
+            <a href="${from_sched}" title="${_(u'Show schedule for')} ${from_name}" class="step-time">${start_time}</a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)} 
             %if leg['alerts']:
             <a href="#alerts" title="${_(u'There is an alert that applies to this transit leg.  See the "alerts" section below for details')}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>
             %endif
@@ -242,12 +261,12 @@ ${_(u'transit vehicle')}
 
     <li class="num${j}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
-        <p><a href="${leg['to']['stop']['schedule']}" title="${_(u'Show schedule for')} ${leg['to']['name']}" class="step-time">${leg['date_info']['end_time']}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title="${_(u'More information about this stop')}">${leg['to']['name']}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span></p>
+        <p><a href="${to_sched}" title="${_(u'Show schedule for')} ${to_name}" class="step-time">${end_time}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title="${_(u'More information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
     </li>
 </%def>
 
 <% leg_id = 1 %>
-<%def name="render_leg(leg, n)">
+<%def name="render_leg(leg, n, is_mobile=False)">
 <%
     ''' call render stuff above...
     '''
@@ -257,7 +276,7 @@ ${_(u'transit vehicle')}
     if n == 0:
         leg_id = 1
     if leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN, util.attr.GONDOLA):
-        ret_val = render_transit_leg(leg, leg_id, leg_id+1)
+        ret_val = render_transit_leg(leg, leg_id, leg_id+1, is_mobile)
         leg_id = leg_id + 2 
     elif leg['mode'] == util.attr.WALK:
         ret_val = render_walk_leg(leg, leg_id)
