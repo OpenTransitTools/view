@@ -143,10 +143,34 @@
                 </div><!-- end .maps -->
 </%def>
 
-<%def name="render_steps(steps)">
+## They want 2-stage walk instructions, as per mock up...
+## https://github.com/OpenTransitTools/view/blob/a5e80acff83277e593fb09b760ce94cf7311b454/ott/view/templates/desktop/planner.html
+## Walk 0.36 mile west on SE Water Ave., Turn left on SE Madison St., Walk a short distance west on SE Madison St.
+<%def name="render_steps(verb, frm, to, steps)">
                 <ol>
-                    %for l in steps:
-                    <li>${l['name']}</li>
+                    %for i, s in enumerate(steps):
+                    <%
+                        name = s['name']
+                        if name == '' and i == 0:
+                            name = frm
+                        elif name == '' and i+1 == len(steps):
+                            name = to
+
+                        instruct = "{0} {1} {2} {3} {4}".format(verb, s['distance'], s['compass_direction'], _(u'on'), name)
+                        turn     = None
+                        dir = s['relative_direction']
+                        if dir != None:
+                            dir = dir.lower().replace('_', ' ')
+                            if dir not in ('continue'):
+                                dir = "{0} {1}".format(_(u'Turn'), dir)
+                            else:
+                                dir = dir.title()
+                            turn = "{0} {1} {2}".format(dir, _(u'on'), name)
+                    %>
+                    %if turn != None:
+                    <li>${turn}</li>
+                    %endif
+                    <li>${instruct}</li>
                     %endfor
                 </ol>
 </%def>
@@ -175,7 +199,7 @@
             <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Biking directions')}" class="open"><span>${_(u'Biking directions')}</span></a>
             <div class="description">
                 ${render_elevation(7, 1, '4%')}
-                ${render_steps(leg['steps'])}
+                ${render_steps(_(u'Bike'), 'from - todo', 'to - todo', leg['steps'])}
                 ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'])}
                     <!--
                     TODO TODO TODO
@@ -221,7 +245,7 @@
             <div class="description">
                 %if leg['steps']:
                 ${render_elevation(7, 1, '4%')}
-                ${render_steps(leg['steps'])}
+                ${render_steps(_(u'Walk'), 'from - todo', 'to - todo', leg['steps'])}
                 ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'])}
                 %endif
             </div><!-- end .description -->
