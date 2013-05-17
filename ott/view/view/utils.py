@@ -5,6 +5,31 @@ import datetime
 import time
 from calendar import monthrange
 
+def is_between_zero_one(f):
+    ''' check string, int, float for a numeric value 0 > and <= 1 '''
+    ret_val = False
+    try:
+        if isinstance(f, (int, long, float)) and f > 0 and f <= 1:
+            ret_val = True
+        elif isinstance(f, (str, basestring, unicode)) and f.isdigit():
+            f = float(f)
+            if f > 0.0 and f <= 1.0:
+                ret_val = True
+    except Exception, e:
+        log.warn(e)
+    return ret_val
+
+def is_fraction_of_one(f):
+    ''' check to see if a string looks like a fraction with numbers on either side '''
+    ret_val = False
+    try:
+        s = f.split('/')
+        if len(s) == 2 and s[0].isdigit() and s[1].isdigit():
+            ret_val = True
+    except:
+        pass
+    return ret_val
+
 def is_valid_route(route):
     ''' will further parse the route string, and check for route in GTFSdb
     '''

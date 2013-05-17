@@ -57,7 +57,7 @@
             sel = it['selected']
             n   = it['transfers']
             dur = it['date_info']['duration_min']
-            tfer = _('transfer', 'transfers', mapping={'number':n})
+            tfer = _('${number} transfer', '${number} transfers', mapping={'number':n})
             fare = it['fare']['adult']
             url  = it['url']
         %>

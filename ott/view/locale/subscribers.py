@@ -9,6 +9,7 @@ log.setLevel(logging.DEBUG)
 '''
 from pyramid.i18n import get_localizer, TranslationStringFactory
 
+import ott.view.view.utils as utils
 
 def add_renderer_globals(event):
     request = event['request']
@@ -42,14 +43,17 @@ def add_localizer(event):
             a = tsf(args[0])
             b = tsf(args[1])
             m = None
-            n = 0
+            n = 0  # singular / plural by default 1==singular, any other number is plural
             # step 2a: find any mapping passed in 
             if 'mapping' in kwargs:
                 m = kwargs['mapping']
                 # step 2b: find number indicating singular / plural
                 if 'number' in m:
                     n = m['number']
-
+                    if utils.is_between_zero_one(n) or utils.is_fraction_of_one(n):
+                        n = 1   # trigger singular
+                    else:
+                        n = 111 # trigger plural
 
             # step 3: first step of two pass translation, finding out which .po string to use based on N
             p = localizer.pluralize(a, b, n)

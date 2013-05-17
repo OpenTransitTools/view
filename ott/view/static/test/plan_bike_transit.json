@@ -7,9 +7,11 @@
         "name": "FROM PLACE",
         "stop": null
     },
-    "itineraries": [
+    "itineraries": [ 
         {
             "has_alerts":false,
+            "modes":"bike, walk & transit",
+            "max_walk":"Zewro",
             "date_info": {
                 "bike_time_hours": null,
                 "bike_time_mins": null,
@@ -4183,6 +4185,7 @@
             "url": null
         },
         {
+            "modes":"bike, walk & transit",
             "date_info": {
                 "bike_time_hours": null,
                 "bike_time_mins": null,
