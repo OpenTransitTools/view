@@ -1,4 +1,5 @@
 import simplejson as json
+import urllib
 import logging
 log = logging.getLogger(__file__)
 
@@ -21,6 +22,7 @@ class ModelMock(Model):
         # TODO -- better stuff below for mock testing...
         #import pdb; pdb.set_trace()
         if 'mode' in kwargs:
+            if kwargs['mode'] in ('S','STREAM'):  return stream_json('http://localhost:34443/plan_trip')
             if kwargs['mode'] in ('T','TEST'):    return get_json('x.json')
             if kwargs['mode'] in ('A','ALERTS'):  return get_json('plan_alerts.json')
 
@@ -68,5 +70,21 @@ def get_json(file):
         except:
             log.info("Couldn't open file : {0} (or {1})".format(file, path))
 
+    return ret_val
+
+
+def stream_json(url):
+    ''' utility class to stream .json
+    '''
+    ret_val={}
+    try:
+        u = urllib.urlopen(url)
+        otp = u.read()
+        ret_val = json.loads(otp)
+    except:
+        log.info("Couldn't open url : {0}".format(url))
+
+    print url
+    print ret_val
     return ret_val
 
