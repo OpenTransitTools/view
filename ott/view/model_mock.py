@@ -35,16 +35,6 @@ class ModelMock(Model):
             return get_json('plan_bike_transit.json')
             #TODO - work on error return get_json('plan_error.json')
 
-    def get_adverts(self, **kwargs):
-        ret_val = None
-        if 'mode' in kwargs:
-            if Model.RAIL in kwargs['mode'] or Model.TRAM in kwargs['mode'] or Model.GONDOLA in kwargs['mode']:
-                ret_val = get_json('adverts_rail.json')
-            else:
-                ret_val = get_json('adverts_bus.json')
-
-        return ret_val 
-
 
 def main():
     m=ModelMock()
