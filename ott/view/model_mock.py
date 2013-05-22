@@ -77,14 +77,8 @@ def stream_json(url):
     ''' utility class to stream .json
     '''
     ret_val={}
-    try:
-        u = urllib.urlopen(url)
-        otp = u.read()
-        ret_val = json.loads(otp)
-    except:
-        log.info("Couldn't open url : {0}".format(url))
-
-    print url
-    print ret_val
+    u = urllib.urlopen(url)
+    otp = u.read()
+    ret_val = json.loads(otp)
     return ret_val
 

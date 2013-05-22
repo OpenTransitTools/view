@@ -1,5 +1,17 @@
 from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPFound
 import utils
+
+
+@view_config(route_name='exception_desktop', renderer='desktop/exception.html')
+def exception_desktop(request):
+    '''
+       what do i do?
+       1. ...
+       2. ...
+    '''
+    ret_val = {}
+    return ret_val
 
 
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
@@ -20,11 +32,18 @@ def planner_form(request):
 def planner_itin(request):
     '''
        what do i do?
-       1. ...
+       1. 
        2. ...
     '''
-    plan = request.model.get_plan(**request.params)
-    return plan
+    ret_val = None
+    try:
+        ret_val = request.model.get_plan(**request.params)
+    except:
+        url = "{0}{1}?{2}".format(request.application_url, '/exception.html', request.query_string)
+        ret_val = HTTPFound(location=url, headers=request.headers)
+        print url
+
+    return ret_val
 
 
 @view_config(route_name='stop_desktop', renderer='desktop/stop.html')

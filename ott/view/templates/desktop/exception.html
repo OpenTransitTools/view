@@ -1,0 +1,31 @@
+<%inherit file="/desktop/base.html"/>
+<%namespace name="util"  file="/shared/util.mako"/>
+<%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
+
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
+</%def>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner" />
+    <meta name="Description" content="" />
+</%def>
+<%def name="side_bar()">
+</%def>
+
+<%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def> 
+
+
+<div id="main-fullwidth">
+    <h1>${_(u'The TripPlanner is not working...')}</h1>
+</div><!-- end #main-fullwidth -->
+
+<p>&nbsp;</p>
+
+<div id="imap-wrap">
+    <section id="imap" class="group">
+        <h3><a href="/maptripplanner/index.htm"><strong>Interactive Map Trip Planner</strong>: Get transit + biking directions in one itinerary &raquo;</a></h3>
+    </section><!-- end #imap -->
+</div><!-- end #promobar-wrap -->
+
+<p>&nbsp;</p>
+

@@ -48,6 +48,7 @@ def do_view_config(config):
     config.add_route('stop_schedule_desktop', '/stop_schedule.html')
     config.add_route('stop_geocode_desktop',  '/stop_geocode.html')
 
+    config.add_route('exception_desktop',     '/exception.html')
     config.add_route('planner_form_desktop',  '/planner_form.html')
     config.add_route('planner_itin_desktop',  '/planner.html')
 
