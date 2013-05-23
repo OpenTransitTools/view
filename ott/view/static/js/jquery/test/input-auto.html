@@ -44,7 +44,6 @@
 
 <script>
 $("#mainPage").on("pageshow", function(e) {
-    console.log("Ready to bring the awesome.");
     var sugList = $("#suggestions");
 
     $("#searchField").on("input", function(e) {
@@ -53,11 +52,18 @@ $("#mainPage").on("pageshow", function(e) {
             sugList.html("");
             sugList.listview("refresh");
         } else {
-            $.get("http://www.raymondcamden.com/demos/2012/mar/27/service.cfc?method=getSuggestions&callback=x", {search:text}, function(res,code) {
+            //$.get("http://www.raymondcamden.com/demos/2012/mar/27/service.cfc?method=getSuggestions&callback=x", {search:text}, function(res,code) {
+            $.get("http://maps5.trimet.org/solr/select?start=0&limit=10&wt=json&qt=dismax&rows=10", {q:text}, function(res,code) {
                 var str = "";
-                for(var i=0, len=res.length; i<len; i++) {
-                    str += "<li>"+res[i]+"</li>";
+
+                docs = res.response.docs;
+                len=docs.length;
+                for(var i=0; i < len; i++)
+                {
+                    str += "<li>" + docs[i].name + " (" + docs[i].city + ")</li>";
+                    console.log()
                 }
+
                 sugList.html(str);
                 sugList.listview("refresh");
                 console.dir(res);
