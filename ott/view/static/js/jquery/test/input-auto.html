@@ -61,12 +61,10 @@ $("#mainPage").on("pageshow", function(e) {
                 for(var i=0; i < len; i++)
                 {
                     str += "<li>" + docs[i].name + " (" + docs[i].city + ")</li>";
-                    console.log()
                 }
 
                 sugList.html(str);
                 sugList.listview("refresh");
-                console.dir(res);
             },"json");
         }
     });
