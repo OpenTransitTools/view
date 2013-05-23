@@ -42,7 +42,7 @@ def is_valid_route(route):
     return ret_val
 
 
-def get_time_info(t=time.localtime()):
+def get_time_info(t):
     ''' gets a dict with a few params based on input date-time object
     '''
     # import pdb; pdb.set_trace()
@@ -53,13 +53,15 @@ def get_time_info(t=time.localtime()):
     }
     return ret_val
 
-def get_day_info(dt=datetime.date.today()):
+def get_day_info(dt):
     ''' gets a dict with a few params based on input date-time object
     '''
     st,end=monthrange(dt.year, dt.month)
     ret_val = {
         'year'    : dt.year,
         'month'   : dt.month,
+        'm_abbrv' : dt.strftime("%b"),
+        'm_name'  : dt.strftime("%B"),
         'numdays' : end,
         'day'     : dt.day
     }

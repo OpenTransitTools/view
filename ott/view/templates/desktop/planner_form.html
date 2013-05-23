@@ -12,58 +12,31 @@
     <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner" />
     <meta name="Description" content="" />
 </%def>
-<%def name="side_bar()">
-            <!-- begin #sidebar 
-            <aside id="aside" class="aside">
-                <div id="icon" class="icon-tripplanner">
-                <p class="lead">${_(u'The Trip Planner provides step-by-step directions including where to board, how much to pay and where to transfer.')}</p>
-                    <h2>${_(u'Related')}</h2>  
-                    <ul class="links">
-                      <li><a href="http://ride.trimet.org?mapit=I" title="${_(u'Plan trip on interactive map (fast connection recommended)')}">${_(u'Try out the Interactive Map Trip Planner')}</a></li>
-                      <li><a href="${util.url_domain()}/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
-                    </ul>
-                </div>
-                <p class="feedback"><a href="/feedback.html?app=">${_(u'Having problems? Click here for technical support.')}</a></p>
-            </aside>
-             end #sidebar -->
-</%def>
+<%def name="side_bar()"></%def>
 
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def> 
 
-
 <div id="main-fullwidth">
-    
     <h1>${_(u'Plan your trip on TriMet')}</h1>
-    <!--
-    <p>${_(u'Step-by-step travel directions')}</p>
-    <p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
-    -->
-   
     <div id="plantrip" class="group">
         <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style" />
-            <input type="hidden" name="lang" value="t"  />
-            <input type="hidden" name="action" value="entry" />
-            <input type="hidden" name="today" value=2013/02/28>
-            <input type="hidden" name="date" value=02/28/13>
 
         <div id="plantrip-left">
             <fieldset>
                 <label for="from" class="hide">${_(u'From')}:</label>
-                <input type="text" id="from" tabindex="1" name=Orig value="${fromPlace}" onFocus="doClear(this,'From');" onBlur="doText(this,'From');" class="regular" size="45" maxlength="80" />
-                <!--<p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>-->
+                <input type="text" id="from" name="from" value="${fromPlace}" tabindex="1" onFocus="doClear(this,'${_(u'From')}');" onBlur="doText(this,'${_(u'From')}');" class="regular" size="45" maxlength="80" />
                 <div class="form-help">
                     <div class="form-help-popup-onright">
-                        <p>You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.</p>
+                        <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
                     </div>
                 </div>
             </fieldset>
             <fieldset>
                 <label for="going" class="hide">${_(u'To')}:</label>
-                <input type="text" id="going" tabindex="2" name=Dest value="${toPlace}" onFocus="doClear(this,'To');" onBlur="doText(this,'To');" class="regular" size="45" maxlength="80" />
-                <!--<p class="instructions">${_(u'Address, intersection, landmark or Stop ID')}</p>-->
+                <input type="text" id="going" name="to" value="${toPlace}" tabindex="2" onFocus="doClear(this,'${_(u'To')}');" onBlur="doText(this,'${_(u'To')}');" class="regular" size="45" maxlength="80" />
                 <div class="form-help">
                     <div class="form-help-popup-onright">
-                        <p>You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.</p>
+                        <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
                     </div>
                 </div>
             </fieldset>

@@ -20,7 +20,7 @@ class ModelMock(Model):
         ''' @todo: MODE strings should come from gtfsdb code...
         '''
         # TODO -- better stuff below for mock testing...
-        #import pdb; pdb.set_trace()
+        import pdb; pdb.set_trace()
         if 'mode' in kwargs:
             if kwargs['mode'] in ('S','STREAM'):  return stream_json('http://localhost:34443/plan_trip')
             if kwargs['mode'] in ('T','TEST'):    return get_json('x.json')

@@ -1,5 +1,9 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
+
+import datetime
+import time
+
 import utils
 
 
@@ -22,8 +26,9 @@ def planner_form(request):
        2. ...
     '''
     ret_val = {}
-    ret_val['date_info'] = utils.get_day_info()
-    ret_val['time_info'] = utils.get_time_info()
+    ret_val['date_info'] = utils.get_day_info(datetime.date.today())
+    ret_val['time_info'] = utils.get_time_info(time.localtime())
+    print ret_val
 
     return ret_val
 
