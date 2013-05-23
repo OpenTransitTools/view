@@ -63,19 +63,16 @@
 
     ${plib.render_fares(itinerary, util.url_domain() + '/fares/index.htm')}
 
-%if itinerary['has_alerts']:
+    %if itinerary['has_alerts']:
     <div id="alerts" class="group">
-        TODO display full alert text and time alert is active
+        %for alert in itinerary['alerts']:
         <p><img src="${util.img_url()}/alert.png" />
-            <span class="alert-text">Until further notice, the westbound stop on SE Division at 37th (Stop ID 1457) is closed.</span>
-            <span class="alert-time">As of March 19 @ 10:15am</span>
+            <span class="alert-text">${alert['text']}</span>
+            <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']}   <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
         </p>
-        <p><img src="${util.img_url()}/alert.png" />
-            <span class="alert-text">Until further notice, the westbound stop on SE Division at 37th (Stop ID 1457) is closed.</span>
-            <span class="alert-time">As of March 19 @ 10:15am</span>
-        </p>
+        %endfor
     </div><!-- end #alerts -->
-%endif
+    %endif
 
 
     <div id="console" class="group hide">
