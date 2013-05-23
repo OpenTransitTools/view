@@ -30,9 +30,16 @@
     <div data-role="content">
 
         <p>
-        <input type="text" id="searchField" placeholder="Search">
-        <ul id="suggestions" data-role="listview" data-inset="true"></ul>
+        <input type="text" id="from_input" placeholder="From">
+        <ul id="from_suggestions" data-role="listview" data-inset="true"></ul>
         </p>
+
+        <br/>
+        <p>
+        <input type="text" id="to_input" placeholder="To">
+        <ul id="to_suggestions" data-role="listview" data-inset="true"></ul>
+        </p>
+
 
     </div>
 
@@ -43,10 +50,11 @@
 </div>
 
 <script>
-$("#mainPage").on("pageshow", function(e) {
-    var sugList = $("#suggestions");
+function auto_suggest(form, sug_list)
+{
+    var sugList = $(sug_list);
 
-    $("#searchField").on("input", function(e) {
+    $(form).on("input", function(e) {
         var text = $(this).val();
         if(text.length < 1) {
             sugList.html("");
@@ -68,7 +76,12 @@ $("#mainPage").on("pageshow", function(e) {
             },"json");
         }
     });
+}
 
+
+$("#mainPage").on("pageshow", function(e) {
+    auto_suggest("#from_input", "#from_suggestions");
+    auto_suggest("#to_input",   "#to_suggestions");
 });
 </script>
 
