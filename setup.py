@@ -18,7 +18,7 @@ requires = [
     'simplejson',
     'pil',
     'colander',
-
+    'qrcode',
 ]
 
 #
