@@ -32,9 +32,9 @@ class ModelMock(Model):
             elif  Model.STREETCAR == kwargs['mode']: return get_json('plan_streetcar.json') 
             elif  Model.GONDOLA == kwargs['mode'] or  Model.TRAM in kwargs['mode']: return get_json('plan_tram.json') 
             elif  Model.TRANSIT in kwargs['mode'] and Model.BIKE in kwargs['mode']: return get_json('plan_bike_transit.json') 
-            else: return get_json('plan_transit.json') 
+            else: return stream_json('http://localhost:34443/plan_trip')
         else:
-            return get_json('plan_bike_transit.json')
+            return stream_json('http://localhost:34443/plan_trip')
             #TODO - work on error return get_json('plan_error.json')
 
 
