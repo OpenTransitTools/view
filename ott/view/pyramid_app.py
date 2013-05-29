@@ -49,7 +49,7 @@ def application_created_subscriber(event):
     ''' what do i do?
         I'm called at startup of the Pyramid app.  
     '''
-    #log.info('Starting pyramid server -- visit me on http://localhost:8080')
+    #log.info('Starting pyramid server -- visit me on http://127.0.0.1:8080')
     print event
 
 
@@ -66,7 +66,7 @@ def new_request_subscriber(event):
 
 def cmdline():
     ''' as an alternate to pserve, you can run this via bin/python ott/view/pyramid_app 
-        it should start the server on http://localhost:8080
+        it should start the server on http://127.0.0.1:8080
     '''
     from wsgiref.simple_server import make_server
 

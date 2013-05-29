@@ -23,7 +23,7 @@ class ModelMock(Model):
         #import pdb; pdb.set_trace()
         '''
         if 'mode' in kwargs:
-            if kwargs['mode'] in ('S','STREAM'):  return stream_json('http://localhost:34443/plan_trip', get_params)
+            if kwargs['mode'] in ('S','STREAM'):  return stream_json('http://127.0.0.1:34443/plan_trip', get_params)
             if kwargs['mode'] in ('T','TEST'):    return get_json('x.json')
             if kwargs['mode'] in ('A','ALERTS'):  return get_json('plan_alerts.json')
 
@@ -33,12 +33,12 @@ class ModelMock(Model):
             elif  Model.STREETCAR == kwargs['mode']: return get_json('plan_streetcar.json') 
             elif  Model.GONDOLA == kwargs['mode'] or  Model.TRAM in kwargs['mode']: return get_json('plan_tram.json') 
             elif  Model.TRANSIT in kwargs['mode'] and Model.BIKE in kwargs['mode']: return get_json('plan_bike_transit.json') 
-            else: return stream_json('http://localhost:34443/plan_trip')
+            else: return stream_json('http://127.0.0.1:34443/plan_trip')
         else:
-            return stream_json('http://localhost:34443/plan_trip', get_params)
+            return stream_json('http://127.0.0.1:34443/plan_trip', get_params)
         '''
             #TODO - work on error return get_json('plan_error.json')
-        return stream_json('http://localhost:34443/plan_trip', get_params)
+        return stream_json('http://127.0.0.1:34443/plan_trip', get_params)
 
 def main():
     m=ModelMock()

@@ -99,7 +99,7 @@ def application_created_subscriber(event):
        1. I'm called at startup of the Pyramid app.  
        2. I could be used to make db connection (pools), etc...
     '''
-    log.info('Starting pyramid server -- visit me on http://localhost:8080')
+    log.info('Starting pyramid server...')
 
 
 @subscriber(NewRequest)
