@@ -79,7 +79,7 @@ def stream_json(u, args):
     ''' utility class to stream .json
     '''
     ret_val={}
-    url = "{}?{}".format(u, args)
+    url = "{0}?{1}".format(u, args)
     stream = urllib.urlopen(url)
     otp = stream.read()
     ret_val = json.loads(otp)
