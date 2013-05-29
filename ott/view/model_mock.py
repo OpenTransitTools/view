@@ -21,6 +21,7 @@ class ModelMock(Model):
         '''
         # TODO -- better stuff below for mock testing...
         #import pdb; pdb.set_trace()
+        '''
         if 'mode' in kwargs:
             if kwargs['mode'] in ('S','STREAM'):  return stream_json('http://localhost:34443/plan_trip', get_params)
             if kwargs['mode'] in ('T','TEST'):    return get_json('x.json')
@@ -35,8 +36,9 @@ class ModelMock(Model):
             else: return stream_json('http://localhost:34443/plan_trip')
         else:
             return stream_json('http://localhost:34443/plan_trip', get_params)
+        '''
             #TODO - work on error return get_json('plan_error.json')
-
+        return stream_json('http://localhost:34443/plan_trip', get_params)
 
 def main():
     m=ModelMock()

@@ -3,6 +3,15 @@
 ##
 <%namespace name="util"  file="/shared/util.mako"/>
 
+<%def name="pretty_distance(dist)">
+<%
+    try:
+        return "{0} {1}".format(dist['distance'], _(dist['measure']))
+    except:
+        return dist
+%>
+</%def>
+
 <%def name="get_mode_img(mode)">
 <%
     ''' return 20x20px mode gif for leg list 
@@ -171,7 +180,7 @@
                             else:
                                 instruct_verb = dir.title()
 
-                        instruct = "{0} {1} {2} {3} {4}".format(instruct_verb, s['distance'], s['compass_direction'], conjunction, name)
+                        instruct = "{0} {1} {2} {3} {4}".format(instruct_verb, pretty_distance(s['distance']), s['compass_direction'], conjunction, name)
                     %>
                     %if turn != None:
                     <li>${turn}</li>
@@ -187,7 +196,7 @@
         <p>
             <%
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
-                bike_title = "{0} {1} {2}".format(_(u'Bike'), dir, leg['distance'])
+                bike_title = "{0} {1} {2}".format(_(u'Bike'), dir, pretty_distance(leg['distance']))
             %>
             ${bike_title} ${_(u'to')}
             %if leg['to']['stop']:
@@ -227,7 +236,7 @@
         <p>
             <% 
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
-                walk_title = "{0} {1} {2}".format(_(u'Walk'), dir, leg['distance'])
+                walk_title = "{0} {1} {2}".format(_(u'Walk'), dir, pretty_distance(leg['distance']))
             %>
             %if leg['steps']:
             ${walk_title} ${_(u'to')}
