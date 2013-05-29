@@ -17,7 +17,7 @@ class Model():
 
 
     def get_routes(self): pass
-    def get_plans(self, **kwargs): pass
+    def get_plan(self, get_params, **kwargs): pass
 
 def main():
     m=Model()

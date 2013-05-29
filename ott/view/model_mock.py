@@ -16,13 +16,13 @@ class ModelMock(Model):
     def get_routes(self): return get_json('routes.json')
     def get_stop(self):   return get_json('stop.json')
 
-    def get_plan(self, **kwargs):
+    def get_plan(self, get_params, **kwargs):
         ''' @todo: MODE strings should come from gtfsdb code...
         '''
         # TODO -- better stuff below for mock testing...
         #import pdb; pdb.set_trace()
         if 'mode' in kwargs:
-            if kwargs['mode'] in ('S','STREAM'):  return stream_json('http://localhost:34443/plan_trip')
+            if kwargs['mode'] in ('S','STREAM'):  return stream_json('http://localhost:34443/plan_trip', get_params)
             if kwargs['mode'] in ('T','TEST'):    return get_json('x.json')
             if kwargs['mode'] in ('A','ALERTS'):  return get_json('plan_alerts.json')
 
@@ -34,7 +34,7 @@ class ModelMock(Model):
             elif  Model.TRANSIT in kwargs['mode'] and Model.BIKE in kwargs['mode']: return get_json('plan_bike_transit.json') 
             else: return stream_json('http://localhost:34443/plan_trip')
         else:
-            return stream_json('http://localhost:34443/plan_trip')
+            return stream_json('http://localhost:34443/plan_trip', get_params)
             #TODO - work on error return get_json('plan_error.json')
 
 
@@ -73,12 +73,13 @@ def get_json(file):
     return ret_val
 
 
-def stream_json(url):
+def stream_json(u, args):
     ''' utility class to stream .json
     '''
     ret_val={}
-    u = urllib.urlopen(url)
-    otp = u.read()
+    url = "{}?{}".format(u, args)
+    stream = urllib.urlopen(url)
+    otp = stream.read()
     ret_val = json.loads(otp)
     return ret_val
 

@@ -42,7 +42,8 @@ def planner_itin(request):
     '''
     ret_val = None
     try:
-        ret_val = request.model.get_plan(**request.params)
+        #import pdb; pdb.set_trace()
+        ret_val = request.model.get_plan(request.query_string, **request.params)
     except:
         url = "{0}{1}?{2}".format(request.application_url, '/exception.html', request.query_string)
         ret_val = HTTPFound(location=url, headers=request.headers)
