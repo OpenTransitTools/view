@@ -133,6 +133,7 @@
 </%def>
 
 <%def name="render_elevation(elevation)">
+            %if elevation != None:
                 <p class="elevation"><span>
                     ${_(u'Total elevation uphill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['rise_ft']})}<br />
                     ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br />
@@ -141,6 +142,7 @@
                     <a href="#">${_(u'Elevation chart')}</a> <img src="/sparkline?points=${elevation['points']}"/></span>
                     %endif
                 </p>
+            %endif
 </%def>
 
 <%def name="render_start_end_maps(from_img_url, to_img_url)">
