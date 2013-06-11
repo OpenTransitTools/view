@@ -144,9 +144,9 @@
             <fieldset class="preferences">
                 <label for="trip-options">${_(u'Travel by')}:</label>
                 <select name="mode" tabindex="11"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
-                    <option selected="selected" value="A">${_(u'Bus or train')}</option>
-                    <option value="B">${_(u'Bus only')}</option>
-                    <option value="T">${_(u'Train only')}</option>
+                    <option selected="selected" value="TRANSIT,WALK">${_(u'Bus or train')}</option>
+                    <option value="BUSISH,WALK">${_(u'Bus only')}</option>
+                    <option value="TRAINISH,WALK">${_(u'Train only')}</option>
                 </select>
             </fieldset>
             <div class="spacer"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></div>
