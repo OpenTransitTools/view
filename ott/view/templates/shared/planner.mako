@@ -139,7 +139,7 @@
                     ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br />
                     ${_(u'Steepest grade')}: ${elevation['grade']}<br />
                     %if elevation['points'] and len(elevation['points']) > 2:
-                    <a href="#">${_(u'Elevation chart')}</a> <img src="/sparkline?points=${elevation['points']}"/></span>
+                    <a href="#">${_(u'Elevation chart')}</a> <img src="sparkline?points=${elevation['points']}"/></span>
                     %endif
                 </p>
             %endif
