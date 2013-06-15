@@ -54,7 +54,7 @@
             <input type="hidden" name="date"   value="${date}" />
             <input type="hidden" name="sort" value="${sort_val}" />
             %if more_form:
-            ${util.month_select(more_form['month'])}${util.day_select(more_form['day'])}
+            ${util.month_select(more_form['month'])} ${util.day_select(more_form['day'], more_form['numdays'])}
             <input name="submit" type="submit" value="${_(u'Select')}" class="submit" />
              %endif
         </form>
@@ -66,7 +66,6 @@
     ${stop['single_route']}
     [<a href="/stop_schedule.html?stopID=${stop['id']}&date=${date}&sort=${sort_val}">${_(u'all routes')}</a>]
     %endif
-    
 
     <p style="float:right;">
         <% u = "/stop_schedule.html?stopID={0}&route={1}&date={2}".format(stop['id'], route, date) %>
