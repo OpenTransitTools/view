@@ -4,7 +4,9 @@ from pyramid.httpexceptions import HTTPFound
 import datetime
 import time
 
-import utils
+import ott.view.utils.date_utils as date_utils
+import ott.view.utils.html_utils as html_utils
+import ott.view.utils.transit_utils as transit_utils
 
 
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
@@ -26,8 +28,8 @@ def planner_form(request):
        2. ...
     '''
     ret_val = {}
-    ret_val['date_info'] = utils.get_day_info(datetime.date.today())
-    ret_val['time_info'] = utils.get_time_info(time.localtime())
+    ret_val['date_info'] = date_utils.get_day_info(datetime.date.today())
+    ret_val['time_info'] = date_utils.get_time_info(time.localtime())
     print ret_val
 
     return ret_val
@@ -79,14 +81,14 @@ def stop_schedule(request):
        2. ...
     '''
 #    import pdb; pdb.set_trace()
-    date  = utils.get_first_param_as_date(request)
-    month = utils.get_first_param_as_int(request, 'month')
-    day   = utils.get_first_param_as_int(request, 'day')
-    date  = utils.set_date(date, month, day)
+    date  = html_utils.get_first_param_as_date(request)
+    month = html_utils.get_first_param_as_int(request, 'month')
+    day   = html_utils.get_first_param_as_int(request, 'day')
+    date  = date_utils.set_date(date, month, day)
 
-    more  = utils.get_first_param(request, 'more')
-    route = utils.get_first_param(request, 'route')
-    has_route = utils.is_valid_route(route)
+    more  = html_utils.get_first_param(request, 'more')
+    route = html_utils.get_first_param(request, 'route')
+    has_route = transit_utils.is_valid_route(route)
     stop  = None
     if has_route:
         stop = request.model.get_stop_schedule_single(route)
@@ -100,9 +102,9 @@ def stop_schedule(request):
 
     ret_val = {}
     ret_val['stop'] = stop
-    ret_val['more_form']   = utils.get_day_info(date)
-    ret_val['pretty_date'] = utils.pretty_date(date)
-    ret_val['tabs'] = utils.get_svc_date_tabs(date, '/stop_schedule.html?route={0}'.format(route), more is None) 
+    ret_val['more_form']   = date_utils.get_day_info(date)
+    ret_val['pretty_date'] = date_utils.pretty_date(date)
+    ret_val['tabs'] = date_utils.get_svc_date_tabs(date, '/stop_schedule.html?route={0}'.format(route), more is None) 
 
     return ret_val
 
@@ -127,7 +129,7 @@ def route_stops_list(request):
        1. ...
        2. ...
     '''
-    route = utils.get_first_param(request, 'route')
+    route = html_utils.get_first_param(request, 'route')
     ret_val = {}
     ret_val['route_stops'] = request.model.get_route_stops(route)
 

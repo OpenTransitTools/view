@@ -9,14 +9,39 @@ log.setLevel(logging.DEBUG)
 '''
 from pyramid.i18n import get_localizer, TranslationStringFactory
 
-import ott.view.view.utils as utils
+def is_between_zero_one(f):
+    ''' check string, int, float for a numeric value 0 > and <= 1 '''
+    ret_val = False
+    try:
+        if isinstance(f, (int, long, float)) and f > 0 and f <= 1:
+            ret_val = True
+        elif isinstance(f, (str, basestring, unicode)) and f.isdigit():
+            f = float(f)
+            if f > 0.0 and f <= 1.0:
+                ret_val = True
+    except Exception, e:
+        log.warn(e)
+    return ret_val
+
+def is_fraction_of_one(f):
+    ''' check to see if a string looks like a fraction with numbers on either side '''
+    ret_val = False
+    try:
+        s = f.split('/')
+        if len(s) == 2 and s[0].isdigit() and s[1].isdigit():
+            ret_val = True
+    except:
+        pass
+    return ret_val
+
 
 def add_renderer_globals(event):
     request = event['request']
     event['_'] = request.translate
     event['localizer'] = request.localizer
 
-tsf = TranslationStringFactory('view')
+#tf = TranslationStringFactory('YOUR_GETTEXT_DOMAIN')
+tsf = TranslationStringFactory('controller')
 def add_localizer(event):
     request = event.request
     localizer = get_localizer(request)
@@ -50,7 +75,7 @@ def add_localizer(event):
                 # step 2b: find number indicating singular / plural
                 if 'number' in m:
                     n = m['number']
-                    if utils.is_between_zero_one(n) or utils.is_fraction_of_one(n):
+                    if is_between_zero_one(n) or is_fraction_of_one(n):
                         n = 1   # trigger singular
                     else:
                         n = 111 # trigger plural
@@ -59,11 +84,11 @@ def add_localizer(event):
             p = localizer.pluralize(a, b, n)
 
             # step 4: second step of two pass translation, translating that string
-            t = localizer.translate(p, 'view', m)
+            t = localizer.translate(p, 'controller', m)
         else:
             f = tsf(*args, **kwargs)
             m = None if 'mapping' not in kwargs else kwargs['mapping']
-            t = localizer.translate(f, 'view', m)
+            t = localizer.translate(f, 'controller', m)
 
         return t
     request.localizer = localizer
