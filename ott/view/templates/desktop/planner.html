@@ -40,8 +40,8 @@
     <div id="details" class="group">
         <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
         <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
-        <p class="tripinfo">${plib.get_depart_arrive(plan['params']['is_arrive_by'])} ${plib.get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
-        <p class="tripinfo">${plib.get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${_(u'${number} mile', u'${number} miles', mapping={'number':plan['max_walk']})} <a href="planner_form.html?${plan['params']['edit_trip']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        <p class="tripinfo">${plib.get_depart_arrive(plan['params']['is_arrive_by'])} ${plib.get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        <p class="tripinfo">${plib.get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
     </div><!-- end #details -->
 
     %if len(plan['itineraries']) > 1:
