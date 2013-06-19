@@ -79,21 +79,21 @@
     %endif
 </%def>
 
-<%def name="get_optimize(plan)">
+<%def name="get_optimize(optimize)">
 <%
-    if plan['optimize'] == 'SAFE':
-        optimize = _(u'Safest trip')
-    elif plan['optimize'] == 'TRANSFERS':
-        optimize = _(u'Fewest transfers')
+    if optimize == 'SAFE':
+        ret_val = _(u'Safest trip')
+    elif optimize == 'TRANSFERS':
+        ret_val = _(u'Fewest transfers')
     else:
-        optimize = _(u'Quickest trip')
-    return optimize
+        ret_val = _(u'Quickest trip')
+    return ret_val
 %>
 </%def>
 
-<%def name="get_time(plan, itinerary)">
+<%def name="get_time(itinerary, is_arrive_by)">
 <%
-    if plan['arrive_by']:
+    if is_arrive_by:
         time = itinerary['date_info']['end_time']
     else:
         time = itinerary['date_info']['start_time']
@@ -112,13 +112,13 @@
 %>
 </%def>
 
-<%def name="get_depart_arrive(plan)">
+<%def name="get_depart_arrive(is_arrive=False)">
 <%
-    if plan['arrive_by']:
-        depart_arrive = _(u'Arrive by')
+    if is_arrive:
+        ret_val = _(u'Arrive by')
     else:
-        depart_arrive = _(u'Depart after') 
-    return depart_arrive
+        ret_val = _(u'Depart after') 
+    return ret_val
 %>
 </%def>
 

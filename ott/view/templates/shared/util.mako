@@ -80,7 +80,7 @@
         %for a in alert_list:
             <p><img src="${url_domain()}${img_url}" />
                 <span class="alert-text"><b>${a['name']}</b><br />${a['description']}</span>
-                <span class="alert-time">As of March 19 @ 10:15am</span>
+                <span class="alert-time">As of March 19 @ 10:15am TODO</span>
             </p>
         %endfor
     </div>
