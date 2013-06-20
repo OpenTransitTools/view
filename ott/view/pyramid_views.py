@@ -1,6 +1,8 @@
 import logging
 log = logging.getLogger(__file__)
 
+import StringIO
+
 from pyramid.response import Response
 from pyramid.view import view_config
 
@@ -18,6 +20,11 @@ import ott.view.view.mobile
 
 from ott.view.model import Model
 from ott.view.model_mock import ModelMock
+
+import ott.view.utils.html_utils as html_utils
+from ott.view.view.spark import sparkline_smooth
+
+
 
 MODEL_GLOBAL = None
 def get_model():
@@ -63,12 +70,8 @@ def do_view_config(config):
 def sparkline(request):
     ''' returns a sparkline image in png format...
     '''
-    import ott.view.view.utils as utils
-    import StringIO
-    from ott.view.view.spark import sparkline_smooth
-
     response = Response(content_type='image/png')
-    points = utils.get_param_as_list(request, 'points', float)
+    points = html_utils.get_param_as_list(request, 'points', float)
     im = sparkline_smooth(results=points) #, bg_color='#FF0000', fill_color='#0000FF'
     img_io = StringIO.StringIO()
     im.save(img_io, "PNG")
