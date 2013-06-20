@@ -3,6 +3,19 @@ log = logging.getLogger(__file__)
 
 import datetime
 
+
+def planner_form_params(request):
+    ret_val = {
+        "fromPlace" : "From",  #TODO localize....
+        "fromLat"   : "45.5,-122.5",
+        "toPlace"   : "To",    #TODO localize....
+        "toLat"     : "45.6,-122.55",
+    }
+
+
+    return ret_val
+
+
 def params_to_dict(request):
     ''' turn Pyramid's  MultDict of GET params to a normal dict.  
         multi-values will only use the first param value (and save off all to special _all param)

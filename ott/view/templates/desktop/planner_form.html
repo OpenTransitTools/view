@@ -1,13 +1,6 @@
 <%inherit file="/desktop/base.html"/>
 <%namespace name="util"  file="/shared/util.mako"/>
 
-<% 
-    fromPlace='From'
-    fromLat=''
-    toPlace='To'
-    toLat=''
-%>
-
 <%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
 
 <%def name="app_css()">
@@ -21,28 +14,61 @@
 
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def> 
 
+<script>
+    function append_geocode_coord(parent, id)
+    {
+        try
+        {
+            var fm = document.getElementById(id)
+            var coord = fm.attributes['coord'].value;
+            var val   = fm.attributes['value'].value;
+
+            if(coord && coord != "")
+            {
+                fm.value = val + "::"+ coord;
+            }
+        }
+        catch(e)
+        {
+        }
+    }
+
+    function set_geocode_coord(fm)
+    {
+        append_geocode_coord(fm, 'from');
+        append_geocode_coord(fm, 'going');
+    }
+
+    function clear_geocode_coord(fm)
+    {
+        fm.attributes['coord'] = "";
+    }
+</script>
+
+
 <%def name="input_form(name, clear, id, tab, place, coord)">
-                <input type="text" id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}');" class="regular" size="45" maxlength="80" />
+                <input type="text" id="${id}" name="${name}" value="${place}" coord="${coord}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_geocode_coord(this);" class="regular" size="45" maxlength="80" />
                 <div class="form-help">
                     <div class="form-help-popup-onright">
                         <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
                     </div>
-                </div></%def>
+                </div>
+</%def>
 
 <div id="main-fullwidth">
     <h1>${_(u'Plan your trip on TriMet')}</h1>
     <div id="plantrip" class="group">
-        <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style" />
+        <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style" onsubmit="set_geocode_coord(this);" />
 
         <div id="plantrip-left">
             <fieldset>
                 <label for="from" class="hide">${_(u'From')}:</label>
-                ${input_form('from', 'From', 'from', 1, fromPlace, fromLat)}
+                ${input_form('from', 'From', 'from', 1, params['fromPlace'], params['fromLat'])}
             </fieldset>
 
             <fieldset>
                 <label for="going" class="hide">${_(u'To')}:</label>
-                ${input_form('to', 'To', 'going', 2, toPlace, toLat)}
+                ${input_form('to', 'To', 'going', 2, params['toPlace'], params['toLat'])}
             </fieldset>
 
 

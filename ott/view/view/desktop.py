@@ -28,7 +28,7 @@ def planner_form(request):
        2. ...
     '''
     ret_val = {}
-    ret_val['params']    = html_utils.params_to_dict(request)
+    ret_val['params']    = html_utils.planner_form_params(request)
     ret_val['date_info'] = date_utils.get_day_info(datetime.date.today())
     ret_val['time_info'] = date_utils.get_time_info(time.localtime())
     print ret_val
