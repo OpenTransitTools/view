@@ -1,7 +1,12 @@
 <%inherit file="/desktop/base.html"/>
 <%namespace name="util"  file="/shared/util.mako"/>
 
-<% fromPlace='From'; toPlace='To' %>
+<% 
+    fromPlace='From'
+    fromLat=''
+    toPlace='To'
+    toLat=''
+%>
 
 <%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
 
@@ -16,6 +21,14 @@
 
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def> 
 
+<%def name="input_form(name, clear, id, tab, place, coord)">
+                <input type="text" id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}');" class="regular" size="45" maxlength="80" />
+                <div class="form-help">
+                    <div class="form-help-popup-onright">
+                        <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
+                    </div>
+                </div></%def>
+
 <div id="main-fullwidth">
     <h1>${_(u'Plan your trip on TriMet')}</h1>
     <div id="plantrip" class="group">
@@ -24,21 +37,12 @@
         <div id="plantrip-left">
             <fieldset>
                 <label for="from" class="hide">${_(u'From')}:</label>
-                <input type="text" id="from" name="from" value="${fromPlace}" tabindex="1" onFocus="doClear(this,'${_(u'From')}');" onBlur="doText(this,'${_(u'From')}');" class="regular" size="45" maxlength="80" />
-                <div class="form-help">
-                    <div class="form-help-popup-onright">
-                        <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
-                    </div>
-                </div>
+                ${input_form('from', 'From', 'from', 1, fromPlace, fromLat)}
             </fieldset>
+
             <fieldset>
                 <label for="going" class="hide">${_(u'To')}:</label>
-                <input type="text" id="going" name="to" value="${toPlace}" tabindex="2" onFocus="doClear(this,'${_(u'To')}');" onBlur="doText(this,'${_(u'To')}');" class="regular" size="45" maxlength="80" />
-                <div class="form-help">
-                    <div class="form-help-popup-onright">
-                        <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
-                    </div>
-                </div>
+                ${input_form('to', 'To', 'going', 2, toPlace, toLat)}
             </fieldset>
 
 
