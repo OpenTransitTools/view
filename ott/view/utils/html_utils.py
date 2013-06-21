@@ -3,6 +3,7 @@ log = logging.getLogger(__file__)
 
 import datetime
 import date_utils
+import num_utils
 
 def planner_form_params(request):
 
@@ -33,8 +34,14 @@ def planner_form_params(request):
 
     # step 2: blanket assignment
     for k,v in params.items():
+        #import pdb; pdb.set_trace()
         if k in ret_val and v is not None and len(v) > 0:
-            ret_val[k] = v
+            if type(ret_val[k]) == bool:
+                ret_val[k] = (v == 'True')
+            if type(ret_val[k]) == int:
+                ret_val[k] = num_utils.to_int(v, ret_val[k]) 
+            else:
+                ret_val[k] = v
 
     # step 3: handle from & to
     if "from" in params and len(params["from"]) > 0:

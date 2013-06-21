@@ -44,7 +44,7 @@
 
 <%def name="month_abbv_options(selected)">
     %for m in (_(u'Jan'), _(u'Feb'), _(u'Mar'), _(u'Apr'), _(u'May'), _(u'Jun'), _(u'Jul'), _(u'Aug'), _(u'Sep'), _(u'Oct'), _(u'Nov'), _(u'Dec')):
-        <option value="${loop.index + 1}" ${'selected' if  m == selected or loop.index+1 == selected else ''} >${m}</option>
+        <option value="${loop.index + 1}" ${'selected' if  m == selected or str(loop.index+1) == str(selected) else ''}>${m}</option>
     %endfor
 </%def>
 <%def name="month_abbv_select(selected)"><select name="month" tabindex="7" >
