@@ -1,9 +1,6 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
-import datetime
-import time
-
 import ott.view.utils.date_utils as date_utils
 import ott.view.utils.html_utils as html_utils
 import ott.view.utils.transit_utils as transit_utils
@@ -28,10 +25,8 @@ def planner_form(request):
        2. ...
     '''
     ret_val = {}
-    ret_val['params']    = html_utils.planner_form_params(request)
-    ret_val['date_info'] = date_utils.get_day_info(datetime.date.today())
-    ret_val['time_info'] = date_utils.get_time_info(time.localtime())
-    print ret_val
+    params = html_utils.planner_form_params(request)
+    ret_val['params']    = params
 
     return ret_val
 

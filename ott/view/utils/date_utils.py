@@ -6,19 +6,24 @@ import time
 from calendar import monthrange
 
 
-def get_time_info(t):
+def get_local_time():
+    return time.localtime()
+
+def get_local_date():
+    return datetime.date.today()
+
+def get_time_info(tm=get_local_time()):
     ''' gets a dict with a few params based on input date-time object
     '''
-    # import pdb; pdb.set_trace()
     ret_val = {
-        'hour'    : int(time.strftime('%I', t).strip('0')),
-        'minute'  : int(time.strftime('%M', t)),
-        'is_am'   : time.strftime('%p', t) == 'AM'
+        'hour'    : int(time.strftime('%I', tm).strip('0')),
+        'minute'  : int(time.strftime('%M', tm)), 
+        'is_am'   : time.strftime('%p', tm) == 'AM'
     }
     return ret_val
 
 
-def get_day_info(dt):
+def get_day_info(dt=get_local_date()):
     ''' gets a dict with a few params based on input date-time object
     '''
     st,end=monthrange(dt.year, dt.month)

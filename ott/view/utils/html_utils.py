@@ -2,16 +2,57 @@ import logging
 log = logging.getLogger(__file__)
 
 import datetime
-
+import date_utils
 
 def planner_form_params(request):
+
+    # step 0: default values for the trip planner form 
+    dt = date_utils.get_day_info()
+    tm = date_utils.get_time_info()
     ret_val = {
-        "fromPlace" : "From",  #TODO localize....
-        "fromLat"   : "45.5,-122.5",
-        "toPlace"   : "To",    #TODO localize....
-        "toLat"     : "45.6,-122.55",
+        "fromPlace" : "From",             #TODO localize....
+        "fromCoord" : "45.5,-122.5",
+        "toPlace"   : "To",                           #TODO localize....
+        "toCoord"   : "45.6,-122.55",
+        "Hour"      : tm['hour'],
+        "Minute"    : tm['minute'],
+        "AmPm"      : "am" if tm['is_am'] else "pm",
+        "is_am"     : tm['is_am'],
+        "month"     : dt['m_abbrv'],
+        "day"       : dt['day'],
+        "year"      : dt['year'],
+        "numdays"   : dt['numdays'],
+        "Walk"      : 1,
+        "Arr"       : False,
+        "optimize"  : "QUICK",
+        "mode"      : "TRANSIT,WALK"
     }
 
+    # step 1: get params dict
+    params = params_to_dict(request)
+
+    # step 2: blanket assignment
+    for k,v in params.items():
+        if k in ret_val and v is not None and len(v) > 0:
+            ret_val[k] = v
+
+    # step 3: handle from & to
+    if "from" in params and len(params["from"]) > 0:
+        parts = params["from"].split("::") 
+        ret_val["fromPlace"] = parts[0]
+        if len(parts) > 1:
+            ret_val["fromCoord"] = parts[1]
+
+    if "to" in params and len(params["to"]) > 0:
+        parts = params["to"].split("::") 
+        ret_val["toPlace"] = parts[0]
+        if len(parts) > 1:
+            ret_val["toCoord"] = parts[1]
+
+    # step 4: special handle other params...
+    ret_val["is_am"] = True if ret_val['AmPm'] == "am" else False
+    ret_val["min"] = ret_val["optimize"] # TODO remove me by changing min to optimize all over...
+    # ret_val["numdays"] = # TODO ... have to calculate another date time object to get this value...
 
     return ret_val
 

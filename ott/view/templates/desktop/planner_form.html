@@ -20,7 +20,7 @@
         try
         {
             var fm = document.getElementById(id)
-            fm.value = "" 
+            fm.value = ""
         }
         catch(e)
         {
@@ -47,12 +47,12 @@
         <div id="plantrip-left">
             <fieldset>
                 <label for="from" class="hide">${_(u'From')}:</label>
-                ${input_form('from', 'From', 'from', 1, params['fromPlace'], params['fromLat'])}
+                ${input_form('from', 'From', 'from', 1, params['fromPlace'], params['fromCoord'])}
             </fieldset>
 
             <fieldset>
                 <label for="going" class="hide">${_(u'To')}:</label>
-                ${input_form('to', 'To', 'going', 2, params['toPlace'], params['toLat'])}
+                ${input_form('to', 'To', 'going', 2, params['toPlace'], params['toCoord'])}
             </fieldset>
 
 
@@ -66,24 +66,24 @@
                 </select>
                 <select name="Hour" id="Hour" tabindex="4"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                 %for i in range(1, 13):
-                    ${option(i, i, time_info['hour'] == i)}
+                    ${option(i, i, params['Hour'] == i)}
                 % endfor
                 </select>
                 <b>:</b>
                 <select name="Minute" id="Minute" tabindex="5" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                 %for i in range(60):
-                    ${option(i, str(i).rjust(2,'0'), time_info['minute'] == i)}
+                    ${option(i, str(i).rjust(2,'0'), params['Minute'] == i)}
                 % endfor
                 </select>
                 <select name="AmPm" id="AmPm" tabindex="6"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
-                    ${option('am', _(u'am'), time_info['is_am'])}
-                    ${option('pm', _(u'pm'), not time_info['is_am'])}
+                    ${option('am', _(u'am'), params['is_am'])}
+                    ${option('pm', _(u'pm'), not params['is_am'])}
                 </select>
                 <select name="month" id="Month" tabindex="7"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
-                    ${util.month_abbv_options(date_info['month'])}
+                    ${util.month_abbv_options(params['month'])}
                 </select>
                 <select name="day" id="Day" tabindex="8"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
-                    ${util.day_options(date_info['day'], date_info['numdays'])}
+                    ${util.day_options(params['day'], params['numdays'])}
                 </select>
             </fieldset>
 
