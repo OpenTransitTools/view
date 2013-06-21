@@ -34,7 +34,7 @@
 
 <%def name="month_options(selected)">
     %for m in (_(u'January'), _(u'February'), _(u'March'), _(u'April'), _(u'May'), _(u'June'), _(u'July'), _(u'August'), _(u'September'), _(u'October'), _(u'November'), _(u'December')):
-        <option value="${loop.index + 1}" ${'selected' if  m == selected or loop.index+1 == selected else ''} >${m}</option>
+        <option value="${loop.index + 1}" ${'selected' if m == selected or str(loop.index+1) == str(selected) else ''} >${m}</option>
     %endfor
 </%def>
 <%def name="month_select(selected)"><select name="month" tabindex="7" >
@@ -80,7 +80,7 @@
         %for a in alert_list:
             <p><img src="${url_domain()}${img_url}" />
                 <span class="alert-text"><b>${a['name']}</b><br />${a['description']}</span>
-                <span class="alert-time">As of March 19 @ 10:15am TODO</span>
+                <span class="alert-time">TODO ??? As of March 19 @ 10:15am ??? TODO</span>
             </p>
         %endfor
     </div>
