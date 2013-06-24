@@ -3,6 +3,32 @@
 ##
 <%namespace name="util"  file="/shared/util.mako"/>
 
+<%def name="arrive_depart_opt()">
+<%
+    opts = [ 
+        {
+            "k": "D",
+            "v": _(u'Depart after')
+        },
+        {
+            "k": "A",
+            "v": _(u'Arrive by')
+        },
+        {
+            "k": "L",
+            "v": _(u'Late as possible')
+        },
+        {
+            "k": "E",
+            "v": _(u'Early as possible')
+        },
+    ]
+    for o in opts:
+        util.option(o['k'], o['v'])
+%>
+</%def>
+
+
 <%def name="pretty_distance(dist)">
 <%
     try:
