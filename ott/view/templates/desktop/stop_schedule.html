@@ -54,7 +54,7 @@
             <input type="hidden" name="date"   value="${date}" />
             <input type="hidden" name="sort" value="${sort_val}" />
             %if more_form:
-            ${util.month_select(more_form['month'])} ${util.day_select(more_form['day'], more_form['numdays'])}
+            ${util.month_select(more_form['month'])} ${util.day_select(more_form['day'])}
             <input name="submit" type="submit" value="${_(u'Select')}" class="submit" />
              %endif
         </form>

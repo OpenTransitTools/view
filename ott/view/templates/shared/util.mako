@@ -52,13 +52,13 @@
     </select></%def>
 
 
-<%def name="day_options(selected, len)">
-    %for d in range(1, len+1):
+<%def name="day_options(selected)">
+    %for d in range(1, 32):
         <option value="${d}" ${'selected' if d == selected else ''}>${d}</option>
     %endfor
 </%def>
-<%def name="day_select(selected=1, len=31)"><select name="day" tabindex="8" >
-    ${day_options(selected, len)}
+<%def name="day_select(selected=1)"><select name="day" tabindex="8" >
+    ${day_options(selected)}
     </select></%def>
 
 <%def name="link_or_strong(label, make_strong, url, label_prefix='', l_bracket='[', r_bracket=']')">
