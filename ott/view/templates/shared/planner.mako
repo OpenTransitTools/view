@@ -41,7 +41,7 @@
             "k": "TRANSFERS",
             "v": _(u'Fewest transfers')
         }
-   ]
+    ]
     for o in opts:
         util.option(o['k'], o['v'], sel_key == o['k'])
 %>
@@ -52,44 +52,44 @@
 <%
     opts = [ 
         {
-            "k": "0.10",
+            "k": "160",
             "v": _(u'1/10 mile')
         },
         {
-            "k": "0.25",
+            "k": "420",
             "v": _(u'1/4 mile')
         },
         {
-            "k": "0.50",
+            "k": "840",
             "v": _(u'1/2 mile')
         },
         {
-            "k": "0.75",
+            "k": "1260",
             "v": _(u'3/4 mile')
         },
         {
-            "k": "1.0",
+            "k": "1609",
             "v": _(u'1 mile')
         },
         {
-            "k": "2.0",
+            "k": "3219",
             "v": _(u'2 miles')
         },
         {
-            "k": "3.0",
+            "k": "4828",
             "v": _(u'3 miles')
         },
         {
-            "k": "5.0",
+            "k": "8047",
             "v": _(u'5 miles')
         },
         {
-            "k": "10.0",
+            "k": "16093",
             "v": _(u'10 miles')
         },
-   ]
+    ]
     for o in opts:
-        util.option(o['k'], o['v'], sel_key == o['k'])
+        util.option(o['k'], o['v'], util.compare_values(sel_key, o['k']))
 %>
 </%def>
 

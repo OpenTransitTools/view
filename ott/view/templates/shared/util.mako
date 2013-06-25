@@ -86,3 +86,16 @@
         %endfor
     </div>
 </%def>
+
+<%def name="compare_values(a, b)">
+<%
+    ret_val = False
+    try:
+        ret_val = float(a) == float(b)
+    except:
+        ret_val = a == b
+    return ret_val
+%>
+</%def>
+
+
