@@ -3,7 +3,8 @@
 ##
 <%namespace name="util"  file="/shared/util.mako"/>
 
-<%def name="arrive_depart_opt()">
+
+<%def name="arrive_depart_form_option(sel_key)">
 <%
     opts = [ 
         {
@@ -24,7 +25,105 @@
         },
     ]
     for o in opts:
-        util.option(o['k'], o['v'])
+        util.option(o['k'], o['v'], sel_key == o['k'])
+%>
+</%def>
+
+
+<%def name="optimize_form_option(sel_key)">
+<%
+    opts = [ 
+        {
+            "k": "QUICK",
+            "v": _(u'Quickest trip')
+        },
+        {
+            "k": "TRANSFERS",
+            "v": _(u'Fewest transfers')
+        }
+   ]
+    for o in opts:
+        util.option(o['k'], o['v'], sel_key == o['k'])
+%>
+</%def>
+
+
+<%def name="walk_form_option(sel_key)">
+<%
+    opts = [ 
+        {
+            "k": "0.10",
+            "v": _(u'1/10 mile')
+        },
+        {
+            "k": "0.25",
+            "v": _(u'1/4 mile')
+        },
+        {
+            "k": "0.50",
+            "v": _(u'1/2 mile')
+        },
+        {
+            "k": "0.75",
+            "v": _(u'3/4 mile')
+        },
+        {
+            "k": "1.0",
+            "v": _(u'1 mile')
+        },
+        {
+            "k": "2.0",
+            "v": _(u'2 miles')
+        },
+        {
+            "k": "3.0",
+            "v": _(u'3 miles')
+        },
+        {
+            "k": "5.0",
+            "v": _(u'5 miles')
+        },
+        {
+            "k": "10.0",
+            "v": _(u'10 miles')
+        },
+   ]
+    for o in opts:
+        util.option(o['k'], o['v'], sel_key == o['k'])
+%>
+</%def>
+
+
+<%def name="mode_form_option(sel_key)">
+<%
+    opts = [ 
+        {
+            "k": "TRANSIT,WALK",
+            "v": _(u'Bus or train')
+        },
+        {
+            "k": "TRAINISH,BICYCLE",
+            "v": _(u'Train only')
+        },
+        {
+            "k": "BUSISH,WALK",
+            "v": _(u'Bus only')
+        },
+        {
+            "k": "TRANSIT,BICYCLE",
+            "v": _(u'Bike to Transit')
+        },
+        {
+            "k": "TRAINISH,BICYCLE",
+            "v": _(u'Bike and Train only')
+        },
+        {
+            "k": "WALK",
+            "v": _(u'Walk only')
+        },
+   ]
+    for o in opts:
+        util.option(o['k'], o['v'], sel_key == o['k'])
 %>
 </%def>
 
