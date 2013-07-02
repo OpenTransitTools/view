@@ -35,6 +35,7 @@ dev_extras = (
     'coverage>=3.5.2',
     'fabric>=1.4.3',
     'zest.releaser>=3.37',
+    'nose'
 )
 
 # when you run: bin/py setup.py extract_messages
