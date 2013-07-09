@@ -18,12 +18,11 @@ from pyramid.events import ApplicationCreated
 import ott.view.view.desktop
 import ott.view.view.mobile
 
-from ott.view.model import Model
-from ott.view.model_mock import ModelMock
+from ott.view.model.model import Model
+from ott.view.model.mock import Mock
 
-import ott.view.utils.html_utils as html_utils
+from ott.view.utils import html_utils
 from ott.view.view.spark import sparkline_smooth
-
 
 
 MODEL_GLOBAL = None
@@ -33,7 +32,7 @@ def get_model():
     global MODEL_GLOBAL
     if MODEL_GLOBAL is None:
         # do something to create a model...
-        MODEL_GLOBAL = ModelMock()
+        MODEL_GLOBAL = Mock()
 
     return MODEL_GLOBAL
 

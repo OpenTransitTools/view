@@ -3,10 +3,10 @@ import urllib
 import logging
 log = logging.getLogger(__file__)
 
-from ott.view.model import Model
+from ott.view.model.base import Base
 
 
-class ModelMock(Model):
+class Mock(Base):
     def get_stop_schedule_single(self, route): return get_json('stop_schedule_single.json')
     def get_stop_schedule_multiple(self, route=None): return get_json('stop_schedule_multiple.json')
 
@@ -41,7 +41,7 @@ class ModelMock(Model):
         return stream_json('http://127.0.0.1:34443/plan_trip', get_params)
 
 def main():
-    m=ModelMock()
+    m=Mock()
     #print m.get_stop()
     #print m.get_route_stops_list()
     print m.get_stop_schedule_single()
