@@ -15,14 +15,14 @@ from pyramid.events import NewRequest
 from pyramid.events import subscriber
 from pyramid.events import ApplicationCreated
 
-import ott.view.view.desktop
-import ott.view.view.mobile
+import ott.view.pyramid.desktop
+import ott.view.pyramid.mobile
 
 from ott.view.model.model import Model
 from ott.view.model.mock import Mock
 
 from ott.view.utils import html_utils
-from ott.view.view.spark import sparkline_smooth
+from ott.view.utils.spark import sparkline_smooth
 
 
 MODEL_GLOBAL = None

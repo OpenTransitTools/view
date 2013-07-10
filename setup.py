@@ -78,6 +78,6 @@ setup(
     test_suite="ott.view",
     entry_points="""\
         [paste.app_factory]
-        main = ott.view.pyramid_app:main
+        main = ott.view.pyramid.config:main
     """,
 )

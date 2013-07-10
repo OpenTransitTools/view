@@ -8,7 +8,7 @@ from pyramid.events import subscriber
 from pyramid.events import ApplicationCreated
 from pyramid.events import NewRequest
 
-import pyramid_views as views
+from ott.view.pyramid import views
 
 
 def main(global_config, **settings):
