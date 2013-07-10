@@ -41,7 +41,6 @@ def planner_itin(request):
     '''
     ret_val = None
     try:
-        #import pdb; pdb.set_trace()
         ret_val = request.model.get_plan(request.query_string, **request.params)
     except:
         url = "{0}{1}?{2}".format(request.application_url, '/exception.html', request.query_string)
@@ -77,7 +76,7 @@ def stop_schedule(request):
        1. ...
        2. ...
     '''
-#    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     date  = html_utils.get_first_param_as_date(request)
     month = html_utils.get_first_param_as_int(request, 'month')
     day   = html_utils.get_first_param_as_int(request, 'day')
@@ -90,7 +89,6 @@ def stop_schedule(request):
     if has_route:
         stop = request.model.get_stop_schedule(request.query_string, **request.params)
     else:
-        route = ''
         stop = request.model.get_stop_schedule(request.query_string, **request.params)
 
     ret_val = {}
