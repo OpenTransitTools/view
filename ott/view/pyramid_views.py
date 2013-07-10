@@ -32,6 +32,7 @@ def get_model():
     global MODEL_GLOBAL
     if MODEL_GLOBAL is None:
         # do something to create a model...
+        #MODEL_GLOBAL = Model()
         MODEL_GLOBAL = Mock()
 
     return MODEL_GLOBAL

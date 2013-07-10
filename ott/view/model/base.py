@@ -1,3 +1,5 @@
+
+
 class Base():
 
     TRAIN     = 'TRAIN'
@@ -11,5 +13,9 @@ class Base():
     BIKE      =  BICYCLE
 
 
-    def get_routes(self): pass
     def get_plan(self, get_params, **kwargs): pass
+
+    def get_stop(self, get_params, **kwargs): pass
+    def get_stop_schedule(self, get_params, **kwargs): pass
+
+    def get_routes(self, get_params, **kwargs): pass

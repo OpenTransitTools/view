@@ -58,8 +58,8 @@ def stop(request):
        1. ...
        2. ...
     '''
-    stop   = request.model.get_stop()
-    routes = request.model.get_routes()
+    stop   = request.model.get_stop(request.query_string, **request.params)
+    routes = request.model.get_routes(request.query_string, **request.params)
     if stop and routes:
         stop['routes'] = routes
         stop['alerts'] = request.model.get_alerts(routes, stop['id'])
@@ -88,20 +88,16 @@ def stop_schedule(request):
     has_route = transit_utils.is_valid_route(route)
     stop  = None
     if has_route:
-        stop = request.model.get_stop_schedule_single(route)
+        stop = request.model.get_stop_schedule(request.query_string, **request.params)
     else:
         route = ''
-        stop = request.model.get_stop_schedule_multiple()
-
-    alerts = request.model.get_alerts(route, stop['id'])
-    stop['alerts'] = alerts
-
+        stop = request.model.get_stop_schedule(request.query_string, **request.params)
 
     ret_val = {}
     ret_val['stop'] = stop
     ret_val['more_form']   = date_utils.get_day_info(date)
     ret_val['pretty_date'] = date_utils.pretty_date(date)
-    ret_val['tabs'] = date_utils.get_svc_date_tabs(date, '/stop_schedule.html?route={0}'.format(route), more is None) 
+    ret_val['tabs'] = date_utils.get_svc_date_tabs(date, 'stop_schedule.html?route={0}'.format(route), more is None) 
 
     return ret_val
 
@@ -114,7 +110,7 @@ def stop_geocode(request):
        2. ...
     '''
     ret_val = {}
-    ret_val['stop'] = request.model.get_stop()
+    ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
 
     return ret_val
 
@@ -128,7 +124,7 @@ def route_stops_list(request):
     '''
     route = html_utils.get_first_param(request, 'route')
     ret_val = {}
-    ret_val['route_stops'] = request.model.get_route_stops(route)
+    ret_val['route_stops'] = request.model.get_route_stops(request.query_string, **request.params)
 
     return ret_val
 
