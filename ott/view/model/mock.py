@@ -3,6 +3,9 @@ import urllib
 import logging
 log = logging.getLogger(__file__)
 
+from ott.view.utils import html_utils
+from ott.view.utils import transit_utils
+
 from ott.view.model.base import Base
 
 class Mock(Base):
@@ -13,14 +16,20 @@ class Mock(Base):
 
     def get_stop(self, get_params, **kwargs): return self.get_json('stop.json')
     def get_stop_schedule(self, get_params, **kwargs):
+        has_route = False
         if 'route' in kwargs:
+            has_route = transit_utils.is_valid_route(kwargs['route'])
+
+        if has_route:
             return self.get_json('stop_schedule_single.json') 
         else:
             return self.get_json('stop_schedule_multiple.json')
 
+
     def get_plan(self, get_params, **kwargs):
         #import pdb; pdb.set_trace() 
         return self.stream_json('http://127.0.0.1:34443/plan_trip', get_params)
+
 
     def Xget_plan(self, get_params, **kwargs):
         ''' @todo: MODE strings should come from gtfsdb code...

@@ -1,10 +1,7 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 
-import ott.view.utils.date_utils as date_utils
-import ott.view.utils.html_utils as html_utils
-import ott.view.utils.num_utils as num_utils
-import ott.view.utils.transit_utils as transit_utils
+from ott.view.utils import html_utils
 
 
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
@@ -55,7 +52,6 @@ def stop(request):
     '''
        what do i do?
        1. ...
-       2. ...
     '''
     stop   = request.model.get_stop(request.query_string, **request.params)
     routes = request.model.get_routes(request.query_string, **request.params)
@@ -73,29 +69,10 @@ def stop(request):
 def stop_schedule(request):
     '''
        what do i do?
-       1. ...
-       2. ...
+       1. 
     '''
-    #import pdb; pdb.set_trace()
-    date  = html_utils.get_first_param_as_date(request)
-    month = html_utils.get_first_param_as_int(request, 'month')
-    day   = html_utils.get_first_param_as_int(request, 'day')
-    date  = date_utils.set_date(date, month, day)
-
-    more  = html_utils.get_first_param(request, 'more')
-    route = html_utils.get_first_param(request, 'route')
-    has_route = transit_utils.is_valid_route(route)
-    stop  = None
-    if has_route:
-        stop = request.model.get_stop_schedule(request.query_string, **request.params)
-    else:
-        stop = request.model.get_stop_schedule(request.query_string, **request.params)
-
-    ret_val = {}
-    ret_val['stop'] = stop
-    ret_val['more_form']   = date_utils.get_day_info(date)
-    ret_val['pretty_date'] = date_utils.pretty_date(date)
-    ret_val['tabs'] = date_utils.get_svc_date_tabs(date, 'stop_schedule.html?route={0}'.format(route), more is None) 
+    ret_val = html_utils.service_tabs(request, 'stop_schedule.html?route={0}')
+    ret_val['stop'] = request.model.get_stop_schedule(request.query_string, **request.params)
 
     return ret_val
 
@@ -105,7 +82,6 @@ def stop_geocode(request):
     '''
        what do i do?
        1. ...
-       2. ...
     '''
     ret_val = {}
     ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)

@@ -4,9 +4,32 @@ log = logging.getLogger(__file__)
 import datetime
 import date_utils
 import num_utils
+import transit_utils
+
+
+def service_tabs(request, url_fmt):
+    '''
+    '''
+    date  = get_first_param_as_date(request)
+    month = get_first_param_as_int(request, 'month')
+    day   = get_first_param_as_int(request, 'day')
+    date  = date_utils.set_date(date, month, day)
+    more  = get_first_param(request, 'more')
+
+    route = get_first_param(request, 'route')
+    url = url_fmt.format(route)
+
+    ret_val = {}
+    ret_val['more_form']   = date_utils.get_day_info(date)
+    ret_val['pretty_date'] = date_utils.pretty_date(date)
+    ret_val['tabs'] = date_utils.get_svc_date_tabs(date, url, more is None) 
+
+    return ret_val
+
 
 def planner_form_params(request):
-
+    '''
+    '''
     # step 0: default values for the trip planner form 
     dt = date_utils.get_day_info()
     tm = date_utils.get_time_info()
