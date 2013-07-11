@@ -3,9 +3,6 @@ from pyramid.view import view_config
 @view_config(route_name='find_stop_mobile', renderer='mobile/find_stop.html')
 def find_stop(request):
     '''
-       what do i do?
-       1. ...
-       2. ...
     '''
     ret_val = {}
     ret_val['routes'] = request.model.get_routes()['routes']
@@ -16,9 +13,6 @@ def find_stop(request):
 @view_config(route_name='stop_mobile', renderer='mobile/stop.html')
 def stop(request):
     '''
-       what do i do?
-       1. ...
-       2. ...
     '''
     ret_val = {}
     ret_val['routes'] = request.model.get_routes()['routes']

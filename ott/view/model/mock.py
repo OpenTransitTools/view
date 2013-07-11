@@ -14,7 +14,15 @@ class Mock(Base):
     def get_routes(self, get_params, **kwargs): return self.get_json('routes.json')
     def get_route_stops(self, get_params, **kwargs): return self.get_json('route_stop.json')
 
-    def get_stop(self, get_params, **kwargs): return self.get_json('stop.json')
+    def get_stop(self, get_params, **kwargs):
+        '''
+        routes = request.model.get_routes(request.query_string, **request.params)
+        if stop and routes:
+            stop['routes'] = routes
+            stop['alerts'] = request.model.get_alerts(routes, stop['id'])
+        '''
+        return self.get_json('stop.json')
+
     def get_stop_schedule(self, get_params, **kwargs):
         has_route = False
         if 'route' in kwargs:

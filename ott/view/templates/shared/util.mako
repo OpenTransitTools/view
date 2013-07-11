@@ -32,6 +32,15 @@
 <%def name="url_for(controller='main', action='route_stops_list')"></%def>
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def>
 
+<%def name="stop_and_city_name(stop)">
+<%
+    ret_val = stop['name']
+    if city in stop and len(stop['city']) > 1 and stop['city'] != Null and stop['city'] != "Null":
+         ret_val = "{0} {1} {2}".format(stop['stop'], _(u'in'), stop['city'])
+    return ret_val
+%>
+</%def>
+
 
 <%def name="month_options(selected)">
     %for m in (_(u'January'), _(u'February'), _(u'March'), _(u'April'), _(u'May'), _(u'June'), _(u'July'), _(u'August'), _(u'September'), _(u'October'), _(u'November'), _(u'December')):

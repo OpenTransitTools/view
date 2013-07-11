@@ -7,7 +7,7 @@ import num_utils
 import transit_utils
 
 
-def service_tabs(request, url_fmt):
+def service_tabs(request, url):
     '''
     '''
     date  = get_first_param_as_date(request)
@@ -15,9 +15,6 @@ def service_tabs(request, url_fmt):
     day   = get_first_param_as_int(request, 'day')
     date  = date_utils.set_date(date, month, day)
     more  = get_first_param(request, 'more')
-
-    route = get_first_param(request, 'route')
-    url = url_fmt.format(route)
 
     ret_val = {}
     ret_val['more_form']   = date_utils.get_day_info(date)

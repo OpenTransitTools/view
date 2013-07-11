@@ -7,12 +7,20 @@ from ott.view.model.base import Base
 
 class Model(Base):
 
-    def get_routes(self, get_params, **kwargs): return self.get_json('routes.json')
+    def get_routes(self, get_params, **kwargs):
+        return self.get_json('routes.json')
 
-    def get_stop(self, get_params, **kwargs): return self.stream_json('http://127.0.0.1:34443/stop', get_params)
-    def get_stop_schedule(self, get_params, **kwargs): return self.stream_json('http://127.0.0.1:34443/stop_schedule', get_params)
+    def get_stop(self, get_params, **kwargs):
+        #import pdb; pdb.set_trace() 
+        return self.stream_json('http://127.0.0.1:34443/stop', get_params)
 
-    def get_plan(self, get_params, **kwargs): return self.stream_json('http://127.0.0.1:34443/plan_trip', get_params)
+    def get_stop_schedule(self, get_params, **kwargs):
+        #import pdb; pdb.set_trace() 
+        ret_val = self.stream_json('http://127.0.0.1:34443/stop_schedule', get_params)
+        return ret_val
+
+    def get_plan(self, get_params, **kwargs):
+        return self.stream_json('http://127.0.0.1:34443/plan_trip', get_params)
 
 
 def main():

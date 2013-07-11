@@ -6,36 +6,21 @@ from ott.view.utils import html_utils
 
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
 def exception_desktop(request):
-    '''
-       what do i do?
-       1. ...
-       2. ...
-    '''
     ret_val = {}
     return ret_val
 
 
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
 def planner_form(request):
-    '''
-       what do i do?
-       1. ...
-       2. ...
-    '''
     ret_val = {}
     params = html_utils.planner_form_params(request)
-    ret_val['params']    = params
+    ret_val['params'] = params
 
     return ret_val
 
 
 @view_config(route_name='planner_itin_desktop', renderer='desktop/planner.html')
 def planner_itin(request):
-    '''
-       what do i do?
-       1. 
-       2. ...
-    '''
     ret_val = None
     try:
         ret_val = request.model.get_plan(request.query_string, **request.params)
@@ -49,15 +34,7 @@ def planner_itin(request):
 
 @view_config(route_name='stop_desktop', renderer='desktop/stop.html')
 def stop(request):
-    '''
-       what do i do?
-       1. ...
-    '''
     stop   = request.model.get_stop(request.query_string, **request.params)
-    routes = request.model.get_routes(request.query_string, **request.params)
-    if stop and routes:
-        stop['routes'] = routes
-        stop['alerts'] = request.model.get_alerts(routes, stop['id'])
 
     ret_val = {}
     ret_val['stop'] = stop
@@ -67,11 +44,11 @@ def stop(request):
 
 @view_config(route_name='stop_schedule_desktop', renderer='desktop/stop_schedule.html')
 def stop_schedule(request):
-    '''
-       what do i do?
-       1. 
-    '''
-    ret_val = html_utils.service_tabs(request, 'stop_schedule.html?route={0}')
+    stop_id = html_utils.get_first_param(request, 'stop_id')
+    route   = html_utils.get_first_param(request, 'route')
+    url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
+
+    ret_val = html_utils.service_tabs(request, url)
     ret_val['stop'] = request.model.get_stop_schedule(request.query_string, **request.params)
 
     return ret_val
@@ -79,10 +56,6 @@ def stop_schedule(request):
 
 @view_config(route_name='stop_geocode_desktop', renderer='desktop/stop_geocode.html')
 def stop_geocode(request):
-    '''
-       what do i do?
-       1. ...
-    '''
     ret_val = {}
     ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
 
@@ -92,9 +65,6 @@ def stop_geocode(request):
 @view_config(route_name='route_stop_desktop', renderer='desktop/route_stop_list.html')
 def route_stops_list(request):
     '''
-       what do i do?
-       1. ...
-       2. ...
     '''
     route = html_utils.get_first_param(request, 'route')
     ret_val = {}
@@ -106,9 +76,6 @@ def route_stops_list(request):
 @view_config(route_name='find_stop_desktop', renderer='desktop/find_stop.html')
 def find_stop(request):
     '''
-       what do i do?
-       1. ...
-       2. ...
     '''
     ret_val = {}
     ret_val['routes'] = request.model.get_routes()
@@ -120,9 +87,6 @@ def find_stop(request):
 @view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
 def feedback(request):
     '''
-       what do i do?
-       1. ...
-       2. ...
     '''
     stop = request.model.get_stop()
     stop['routes'] = request.model.get_routes()
@@ -136,9 +100,6 @@ def feedback(request):
 @view_config(route_name='tracker_desktop', renderer='desktop/tracker.html')
 def tracker(request):
     '''
-       what do i do?
-       1. ...
-       2. ...
     '''
     ret_val = {}
     ret_val['routes'] = request.model.get_routes()['routes']

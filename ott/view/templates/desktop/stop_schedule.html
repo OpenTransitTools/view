@@ -11,7 +11,7 @@
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
 %>
 
-<%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['id']}</%def>
+<%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['stop_id']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
@@ -22,20 +22,16 @@
 <%def name="side_bar()">
     <!-- begin #sidebar -->
     <aside id="aside" class="aside">
-
     </aside>
     <!-- end #sidebar -->
 </%def>
 
 <%def name="schedule_selected()">class="selected"</%def>
-<!--
-    <p class="mobile"><a href="${util.url_domain()}/mobile/stop/stopID=${stop['id']}"><span>${_(u'Mobile')}</span></a><br/></p>
--->
-    <h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">Stops &amp; Stations</a></h1>
-    
-    <h2><a href="/stop.html?stopID=${stop['id']}&date=${date}">${_(u'Stop ID')} ${stop['id']}</a></h2>
-    <p>${stop['name']} ${_(u'in')} ${stop['city']}</p>
-    
+    <h1 class="stopsstations-icon"><a href="http://trimet.org/stopsstations/index.htm">Stops &amp; Stations</a></h1>
+
+    <h2><a href="stop.html?stop_id=${stop['stop_id']}&date=${date}">${_(u'Stop ID')} ${stop['stop_id']}</a></h2>
+    <p>${util.stop_and_city_name(stop)}</p>
+
     <ul id="contenttabs">
         %for t in tabs:
           %if 'url' in t:
@@ -50,7 +46,7 @@
     %if 'more' in request.params:
     <div id="moreform" class="group">
         <form name="select_date" id="select_date_id" method="GET" action="/stop_schedule.html" class="triptools-form">
-            <input type="hidden" name="stopID" value="${stop['id']}" />
+            <input type="hidden" name="stopID" value="${stop['stop_id']}" />
             <input type="hidden" name="date"   value="${date}" />
             <input type="hidden" name="sort" value="${sort_val}" />
             %if more_form:
@@ -64,11 +60,11 @@
 
     %if 'single_route' in stop:
     ${stop['single_route']}
-    [<a href="/stop_schedule.html?stopID=${stop['id']}&date=${date}&sort=${sort_val}">${_(u'all routes')}</a>]
+    [<a href="stop_schedule.html?stop_id=${stop['stop_id']}&date=${date}&sort=${sort_val}">${_(u'all routes')}</a>]
     %endif
 
     <p style="float:right;">
-        <% u = "/stop_schedule.html?stopID={0}&route={1}&date={2}".format(stop['id'], route, date) %>
+        <% u = "stop_schedule.html?stop_id={0}&route={1}&date={2}".format(stop['stop_id'], route, date) %>
         Sort:
         ${util.link_or_strong(_(u'By destination'), not sort_by_time, u + '&sort=destination', _('sort'))}
          &nbsp;|&nbsp; 
