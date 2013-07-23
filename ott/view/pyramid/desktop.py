@@ -78,7 +78,7 @@ def find_stop(request):
     '''
     '''
     ret_val = {}
-    ret_val['routes'] = request.model.get_routes()
+    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
     ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
 
     return ret_val

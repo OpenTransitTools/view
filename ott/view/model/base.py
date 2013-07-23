@@ -22,6 +22,7 @@ class Base():
     def get_stop_schedule(self, get_params, **kwargs): pass
 
     def get_routes(self, get_params, **kwargs): pass
+    def get_route_stops(self, get_params, **kwargs): pass
 
     def stream_json(self, u, args):
         ''' utility class to stream .json

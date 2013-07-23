@@ -10,6 +10,9 @@ class Model(Base):
     def get_routes(self, get_params, **kwargs):
         return self.get_json('routes.json')
 
+    def get_route_stops(self, get_params, **kwargs): 
+        return self.get_json('route_stop.json')
+
     def get_stop(self, get_params, **kwargs):
         #import pdb; pdb.set_trace() 
         return self.stream_json('http://127.0.0.1:34443/stop', get_params)
