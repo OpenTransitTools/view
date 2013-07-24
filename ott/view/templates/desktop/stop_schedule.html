@@ -27,8 +27,7 @@
 </%def>
 
 <%def name="schedule_selected()">class="selected"</%def>
-    <h1 class="stopsstations-icon"><a href="http://trimet.org/stopsstations/index.htm">Stops &amp; Stations</a></h1>
-
+    <h1 class="stopsstations-icon"><a href="find_stop.html?stop_id=${stop['stop_id']}">${_(u'Stops & Stations')}</a></h1>
     <h2><a href="stop.html?stop_id=${stop['stop_id']}&date=${date}">${_(u'Stop ID')} ${stop['stop_id']}</a></h2>
     <p>${util.stop_and_city_name(stop)}</p>
 
@@ -46,9 +45,9 @@
     %if 'more' in request.params:
     <div id="moreform" class="group">
         <form name="select_date" id="select_date_id" method="GET" action="/stop_schedule.html" class="triptools-form">
-            <input type="hidden" name="stopID" value="${stop['stop_id']}" />
-            <input type="hidden" name="date"   value="${date}" />
-            <input type="hidden" name="sort" value="${sort_val}" />
+            <input type="hidden" name="stop_id" value="${stop['stop_id']}" />
+            <input type="hidden" name="date"    value="${date}" />
+            <input type="hidden" name="sort"    value="${sort_val}" />
             %if more_form:
             ${util.month_select(more_form['month'])} ${util.day_select(more_form['day'])}
             <input name="submit" type="submit" value="${_(u'Select')}" class="submit" />
