@@ -51,7 +51,7 @@
                 ${r['direction']}<br/>
                 %endif
                 <a href="${r['arrival_url']}">${_(u'Next arrivals')}</a>
-                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['id']}">${_(u'Schedule')}</a> 
+                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}">${_(u'Schedule')}</a> 
                 &nbsp;&bull;&nbsp; <a href="${r['route_url']}" title="${_(u'Show map and schedules for this route')}.">${_(u'Route info')}</a>
             </p>
             %endfor

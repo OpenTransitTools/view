@@ -58,8 +58,8 @@
     %endif
 
 
-    %if 'single_route' in stop:
-    ${stop['single_route']}
+    %if 'single_route_name' in stop and stop['single_route_name'] != None:
+    ${stop['single_route_name']}
     [<a href="stop_schedule.html?stop_id=${stop['stop_id']}&date=${date}&sort=${sort_val}">${_(u'all routes')}</a>]
     %endif
 
