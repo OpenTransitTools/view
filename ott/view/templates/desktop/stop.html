@@ -20,10 +20,10 @@
     <aside id="aside" class="aside">
         <h2>${_(u'See also')}</h2>  
         <ul class="links">
-            <li><a href="nearest_stops?lang=en&X=-122.675681&Y=45.420598">${_(u'Find closest stops to')} ${stop['name']}</a></li>
+            <li><a href="nearest_stops?name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}">${_(u'Find closest stops to')} ${stop['name']}</a></li>
         </ul>
         <p class="feedback"><a href="feedback.html?app=stop&stop_id=${stop['stop_id']}">${_(u'Having problems? Click here for technical support.')}</a></p>
-        <p><a href="find_stop.html?stop_id=${stop['stop_id']}" class="image">find stop</a></p>
+        <p><a href="find_stop.html?stop_id=${stop['stop_id']}&name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}" class="image">find stop</a></p>
     </aside>
     <!-- end #sidebar -->
 </%def>
@@ -89,7 +89,7 @@
             </p>
 
             <h3 class="tight">${_(u'Plan a trip')}</h3>
-            <p><a href="planner_form.html?to=${stop['stop_id']}">${_(u'to here')}</a> &ndash;  <a href="planner_form.html?from=${stop['stop_id']}">${_(u'from here')}</a></p>
+            <p><a href="planner_form.html?to=${stop['name']}::${stop['lat']},${stop['lon']}">${_(u'to here')}</a> &ndash;  <a href="planner_form.html?from=${stop['name']}::${stop['lat']},${stop['lon']}">${_(u'from here')}</a></p>
         </div><!-- end .right-column -->
     </div><!-- end .group -->
 
