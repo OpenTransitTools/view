@@ -16,7 +16,7 @@ requires = [
     'Babel',
     'lingua',
     'simplejson',
-    'pil',
+    'pillow',
     'colander',
     'qrcode',
 ]

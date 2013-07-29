@@ -36,7 +36,7 @@
     itinerary = plib.get_itinerary(plan)
 %>
 
-    <h1 class="tripplanner-icon"><a href="${util.url_domain()}/desktop/planner_form.html">${_(u'Your Trip on TriMet')}</a></h1>
+    <h1 class="tripplanner-icon"><a href="planner_form.html">${_(u'Your Trip on TriMet')}</a></h1>
     <div id="details" class="group">
         <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
         <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
