@@ -84,12 +84,12 @@ def add_localizer(event):
             p = localizer.pluralize(a, b, n)
 
             # step 4: second step of two pass translation, translating that string
-            t = localizer.translate(p, 'controller', m)
+            t = localizer.translate(p, 'view', m)
         else:
             f = tsf(*args, **kwargs)
             m = None if 'mapping' not in kwargs else kwargs['mapping']
-            t = localizer.translate(f, 'controller', m)
-
+            t = localizer.translate(f, 'view', m)
         return t
+
     request.localizer = localizer
     request.translate = auto_translate
