@@ -41,6 +41,25 @@
 %>
 </%def>
 
+<%def name="get_extra_params()">
+<%
+    from ott.view.utils import html_utils
+
+    ''' extra_params: this variable is built here, and should be appended to all <a href> urls.  The string is pre-pended with
+        an ampersand, so if there are no parameters on a given url, maybe add something bogus to the url prior to ${extra_parmas}
+    '''
+    extra_params=''
+
+    # step 1: append any locale url param to extra_params... 
+    loc = html_utils.get_first_param(request, '_LOCALE_')
+    if loc:
+        extra_params = "{0}&_LOCALE_={1}".format(extra_params, loc)
+
+    return extra_params
+%>
+</%def>
+
+
 
 <%def name="month_options(selected)">
     %for m in (_(u'January'), _(u'February'), _(u'March'), _(u'April'), _(u'May'), _(u'June'), _(u'July'), _(u'August'), _(u'September'), _(u'October'), _(u'November'), _(u'December')):

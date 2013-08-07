@@ -1,11 +1,9 @@
 <%inherit file="/desktop/base.html"/>
-
 <%namespace name="util"  file="/shared/util.mako"/>
-
 <%
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
+    extra_params = util.get_extra_params()
 %>
-
 <%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
@@ -29,7 +27,7 @@
 </%def>
 
 <%def name="stations_selected()">class="selected"</%def>
-    <h1 class="stopsstations-icon"><a href="find_stop.html?stop_id=${stop['stop_id']}">${_(u'Stops & Stations')}</a></h1>
+    <h1 class="stopsstations-icon"><a href="find_stop.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Stops & Stations')}</a></h1>
     <div class="group">
         <div class="left-column">
             <h2>${_(u'Stop ID')} ${stop['stop_id']}
@@ -51,7 +49,7 @@
                 ${r['direction']}<br/>
                 %endif
                 <a href="${r['arrival_url']}">${_(u'Next arrivals')}</a>
-                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}">${_(u'Schedule')}</a> 
+                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}${extra_params}">${_(u'Schedule')}</a> 
                 &nbsp;&bull;&nbsp; <a href="${r['route_url']}" title="${_(u'Show map and schedules for this route')}.">${_(u'Route info')}</a>
             </p>
             %endfor
@@ -60,7 +58,7 @@
             <h4>${_(u'All routes')}</h4>
             <p>
                 <a class="hide" href="${stop['arrival_url']}">${_(u'Next arrivals')}</a>
-                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}">${_(u'Schedule')}</a>
+                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Schedule')}</a>
             </p>
             %endif
 
@@ -81,15 +79,15 @@
 
         <div class="right-column">
             <!-- TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc... -->
-            <p><a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}"><img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/340/height/336/zoom/6/extraparams/format_options=layout:scale/id/${stop['stop_id']}" /></a></p>
+            <p><a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}${extra_params}"><img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/340/height/336/zoom/6/extraparams/format_options=layout:scale/id/${stop['stop_id']}" /></a></p>
 
             <p class="imap">
-                <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}">${_(u'View on Interactive Map')}</a><br />
+                <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}${extra_params}">${_(u'View on Interactive Map')}</a><br />
                 <span class="secondary">${_(u'High-speed connection recommended')}</span>
             </p>
 
             <h3 class="tight">${_(u'Plan a trip')}</h3>
-            <p><a href="planner_form.html?to=${stop['name']}::${stop['lat']},${stop['lon']}">${_(u'to here')}</a> &ndash;  <a href="planner_form.html?from=${stop['name']}::${stop['lat']},${stop['lon']}">${_(u'from here')}</a></p>
+            <p><a href="planner_form.html?to=${stop['name']}::${stop['lat']},${stop['lon']}${extra_params}">${_(u'to here')}</a> &ndash;  <a href="planner_form.html?from=${stop['name']}::${stop['lat']},${stop['lon']}${extra_params}">${_(u'from here')}</a></p>
         </div><!-- end .right-column -->
     </div><!-- end .group -->
 
