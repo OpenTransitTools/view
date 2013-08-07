@@ -1,5 +1,4 @@
 <%inherit file="/desktop/base.html"/>
-
 <%namespace name="util"  file="/shared/util.mako"/>
 
 <!-- mako template ... url parameter variables -->
@@ -9,6 +8,7 @@
     date  = '' if 'date'  not in request.params else request.params['date']
     route = '' if 'route' not in request.params else request.params['route']
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
+    extra_params = util.get_extra_params()
 %>
 
 <%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['stop_id']}</%def>
@@ -27,14 +27,14 @@
 </%def>
 
 <%def name="schedule_selected()">class="selected"</%def>
-    <h1 class="stopsstations-icon"><a href="find_stop.html?stop_id=${stop['stop_id']}">${_(u'Stops & Stations')}</a></h1>
-    <h2><a href="stop.html?stop_id=${stop['stop_id']}&date=${date}">${_(u'Stop ID')} ${stop['stop_id']}</a></h2>
+    <h1 class="stopsstations-icon"><a href="find_stop.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Stops & Stations')}</a></h1>
+    <h2><a href="stop.html?stop_id=${stop['stop_id']}&date=${date}${extra_params}">${_(u'Stop ID')} ${stop['stop_id']}</a></h2>
     <p>${util.stop_and_city_name(stop)}</p>
 
     <ul id="contenttabs">
         %for t in tabs:
           %if 'url' in t:
-            <li class="normal"><a href="${t['url']}&sort=${sort_val}"><span>${t['name']}</span></a></li>
+            <li class="normal"><a href="${t['url']}&sort=${sort_val}${extra_params}"><span>${t['name']}</span></a></li>
           %else:
             <li class="selected"><span>${t['name']}</span></li>
           %endif
@@ -59,11 +59,11 @@
 
     %if 'single_route_name' in stop and stop['single_route_name'] != None:
     ${stop['single_route_name']}
-    [<a href="stop_schedule.html?stop_id=${stop['stop_id']}&date=${date}&sort=${sort_val}">${_(u'all routes')}</a>]
+    [<a href="stop_schedule.html?stop_id=${stop['stop_id']}&date=${date}&sort=${sort_val}${extra_params}">${_(u'all routes')}</a>]
     %endif
 
     <p style="float:right;">
-        <% u = "stop_schedule.html?stop_id={0}&route={1}&date={2}".format(stop['stop_id'], route, date) %>
+        <% u = "stop_schedule.html?stop_id={0}&route={1}&date={2}{3}".format(stop['stop_id'], route, date, extra_params) %>
         Sort:
         ${util.link_or_strong(_(u'By destination'), not sort_by_time, u + '&sort=destination', _('sort'))}
          &nbsp;|&nbsp; 
