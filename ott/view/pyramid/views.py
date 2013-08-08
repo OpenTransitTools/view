@@ -21,9 +21,9 @@ import ott.view.pyramid.mobile
 from ott.view.model.model import Model
 from ott.view.model.mock import Mock
 
-from ott.view.utils import html_utils
 from ott.view.utils.spark import sparkline_smooth
-
+from ott.view.utils.qr import qr_to_stream
+from ott.view.utils import html_utils
 
 MODEL_GLOBAL = None
 def get_model():
@@ -43,26 +43,32 @@ def do_view_config(config):
     '''
 
     # routes setup
-    config.add_route('index',                 '/')
-    config.add_route('tracker_desktop',       '/arrivals')
+    config.add_route('index',                           '/')
+    config.add_route('sparkline',                       '/sparkline')
+    config.add_route('qrcode',                          '/qrcode')
 
-    config.add_route('sparkline',             '/sparkline')
+    config.add_route('exception_desktop',               '/exception.html')
+    config.add_route('feedback_desktop',                '/feedback.html')
 
-    config.add_route('stop_desktop',          '/stop.html')
-    config.add_route('find_stop_desktop',     '/find_stop.html')
-    config.add_route('route_stop_desktop',    '/route_stop_list.html')
-    config.add_route('stop_schedule_desktop', '/stop_schedule.html')
-    config.add_route('stop_geocode_desktop',  '/stop_geocode.html')
+    config.add_route('planner_form_desktop',            '/planner_form.html')
+    config.add_route('planner_desktop',                 '/planner.html')
 
-    config.add_route('exception_desktop',     '/exception.html')
-    config.add_route('planner_form_desktop',  '/planner_form.html')
-    config.add_route('planner_itin_desktop',  '/planner.html')
+    config.add_route('stop_desktop',                    '/stop.html')
+    config.add_route('stop_schedule_desktop',           '/stop_schedule.html')
 
-    config.add_route('feedback_desktop',      '/feedback.html')
+    config.add_route('find_stop_form_desktop',          '/find_stop_form.html')
+    config.add_route('find_stop_list_desktop',          '/find_stop_list.html')
+    config.add_route('find_stop_geocode_desktop',       '/find_stop_geocode.html')
+    config.add_route('find_stop_desktop',               '/find_stop.html')
 
-    config.add_route('find_stop_mobile',      '/mobile/find_stop.html')
-    config.add_route('stop_mobile',           '/mobile/stop.html')
-    config.add_route('feedback_mobile',       '/mobile/feedback.html')
+    config.add_route('nearest_service_form_desktop',    '/nearest_service_form.html')
+    config.add_route('nearest_service_geocode_desktop', '/nearest_service_geocode.html')
+    config.add_route('nearest_service_desktop',         '/nearest_service.html')
+
+
+    config.add_route('find_stop_mobile',        '/mobile/find_stop.html')
+    config.add_route('stop_mobile',             '/mobile/stop.html')
+    config.add_route('feedback_mobile',         '/mobile/feedback.html')
 
 
 @view_config(route_name='sparkline')
@@ -79,15 +85,19 @@ def sparkline(request):
     return response
 
 
+@view_config(route_name='qrcode')
+def qrcode(request):
+    ''' streams a qrcode image for the param 'content' (defaults to http://trimet.org)
+    '''
+    response = Response(content_type='image/png')
+    content = html_utils.get_first_param(request, 'content', 'http://trimet.org')
+    img_io = qr_to_stream(content)
+    response.app_iter = img_io
+    return response
+
+
 @view_config(route_name='index', renderer='index.html')
 def index_view(request):
-    '''
-       what do i do?
-
-       1. check authentication / authorization 
-       2. if not authenticated, ...
-       3. if not authenticated ...
-    '''
     auth = "True"
     perm = "True"
     return {'authenticated':auth, 'authorized':perm}

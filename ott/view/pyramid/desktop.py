@@ -9,38 +9,40 @@ def exception_desktop(request):
     ret_val = {}
     return ret_val
 
+@view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
+def feedback(request):
+    stop = request.model.get_stop()
+    stop['routes'] = request.model.get_routes()
+    ret_val = {}
+    ret_val['stop'] = stop
+    return ret_val
+
 
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
 def planner_form(request):
     ret_val = {}
     params = html_utils.planner_form_params(request)
     ret_val['params'] = params
-
     return ret_val
 
 
-@view_config(route_name='planner_itin_desktop', renderer='desktop/planner.html')
-def planner_itin(request):
+@view_config(route_name='planner_desktop', renderer='desktop/planner.html')
+def planner(request):
     ret_val = None
     try:
         ret_val = request.model.get_plan(request.query_string, **request.params)
     except:
         url = "{0}{1}?{2}".format(request.application_url, '/exception.html', request.query_string)
         ret_val = HTTPFound(location=url, headers=request.headers)
-        print url
-
     return ret_val
 
 
 @view_config(route_name='stop_desktop', renderer='desktop/stop.html')
 def stop(request):
     stop   = request.model.get_stop(request.query_string, **request.params)
-
     ret_val = {}
     ret_val['stop'] = stop
-
     return ret_val
-
 
 @view_config(route_name='stop_schedule_desktop', renderer='desktop/stop_schedule.html')
 def stop_schedule(request):
@@ -50,58 +52,56 @@ def stop_schedule(request):
 
     ret_val = html_utils.service_tabs(request, url)
     ret_val['stop'] = request.model.get_stop_schedule(request.query_string, **request.params)
-
     return ret_val
 
 
-@view_config(route_name='stop_geocode_desktop', renderer='desktop/stop_geocode.html')
-def stop_geocode(request):
-    ret_val = {}
-    ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
-
-    return ret_val
-
-
-@view_config(route_name='route_stop_desktop', renderer='desktop/route_stop_list.html')
-def route_stops_list(request):
-    '''
-    '''
-    route = html_utils.get_first_param(request, 'route')
-    ret_val = {}
-    ret_val['route_stops'] = request.model.get_route_stops(request.query_string, **request.params)
-
-    return ret_val
-
-
-@view_config(route_name='find_stop_desktop', renderer='desktop/find_stop.html')
-def find_stop(request):
-    '''
-    '''
+@view_config(route_name='find_stop_form_desktop', renderer='desktop/find_stop_form.html')
+def find_stop_form(request):
     ret_val = {}
     ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
     ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
-
     return ret_val
 
-
-@view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
-def feedback(request):
-    '''
-    '''
-    stop = request.model.get_stop()
-    stop['routes'] = request.model.get_routes()
-
+@view_config(route_name='find_stop_list_desktop', renderer='desktop/find_stop_list.html')
+def find_stop_list(request):
+    route = html_utils.get_first_param(request, 'route')
     ret_val = {}
-    ret_val['stop'] = stop
-
+    ret_val['route_stops'] = request.model.get_route_stops(request.query_string, **request.params)
     return ret_val
 
-
-@view_config(route_name='tracker_desktop', renderer='desktop/tracker.html')
-def tracker(request):
-    '''
-    '''
+@view_config(route_name='find_stop_geocode_desktop', renderer='desktop/find_stop_geocode.html')
+def find_stop_geocode(request):
     ret_val = {}
-    ret_val['routes'] = request.model.get_routes()['routes']
-
+    ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
     return ret_val
+
+@view_config(route_name='find_stop_desktop', renderer='desktop/find_stop.html')
+def find_stop(request):
+    ret_val = {}
+    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
+    ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
+    return ret_val
+
+
+
+@view_config(route_name='nearest_service_form_desktop', renderer='desktop/nearest_service_form.html')
+def nearest_service_form(request):
+    ret_val = {}
+    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
+    ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
+    return ret_val
+
+@view_config(route_name='nearest_service_geocode_desktop', renderer='desktop/nearest_service_geocode.html')
+def nearest_service_geocode(request):
+    ret_val = {}
+    ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
+    return ret_val
+
+@view_config(route_name='nearest_service_desktop', renderer='desktop/nearest_service.html')
+def nearest_service(request):
+    ret_val = {}
+    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
+    ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
+    return ret_val
+
+

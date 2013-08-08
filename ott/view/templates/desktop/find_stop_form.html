@@ -1,0 +1,58 @@
+<%inherit file="/desktop/base.html"/>
+
+<%namespace name="util" file="/shared/util.mako"/>
+<%namespace name="rs"   file="/shared/route_select.mako"/>
+
+<%
+    ga_select_route ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
+    ga_find_stop    ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
+    extra_params = util.get_extra_params()
+%>
+
+<%def name="title()">TriMet: ${_(u'Stops and Stations')}</%def>
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
+</%def>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Stops, stations"/>
+    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
+</%def>
+<%def name="side_bar()">
+    <!-- begin #sidebar -->
+    <aside id="aside" class="aside">
+        <h2>${_(u'Related')}</h2>  
+        <ul class="links">
+            <li><a href="/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
+            <li><a href="/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
+            <li><a href="/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
+            <li><a href="/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
+            <li><a href="/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
+        </ul>
+    </aside>
+    <!-- end #sidebar -->
+</%def>
+
+<%def name="stations_selected()">class="selected"</%def>
+<h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">${_(u'Stops & Stations')}</a></h1>
+
+<div id="findstop">
+    <form name="cstops" id="cstops_id" method="get" action="/find_stop_geocode.html" class="triptools-form">
+        <fieldset>
+            ${util.get_extra_params_hidden_inputs()}
+            <label for="geocode_form">${_(u'Find stops and stations:')}</label>
+            <input name="geocode_form" id="geocode_form" type="text" value="${_(u'Address, intersection, landmark or Stop ID')}" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID');" class="regular" size="15" maxlength="80" />
+                <div class="form-help">
+                    ${util.form_help_right()}
+                </div>
+        </fieldset>
+        <fieldset>
+            <input type="submit" value="${_(u'Find stops')}" class="submit" onClick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);" />
+        </fieldset>
+    </form>
+    
+    <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /></div>
+
+    ${rs.route_select_form('/find_stop_list.html', routes, ga_select_route)}
+
+</div>
+
