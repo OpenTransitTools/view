@@ -1,7 +1,11 @@
 <%inherit file="/desktop/base.html"/>
-
 <%namespace name="util"  file="/shared/util.mako"/>
 <%namespace name="rs"   file="/shared/route_select.mako"/>
+<%
+    from ott.view.utils import html_utils
+    extra_params = util.get_extra_params()
+    more_stops = html_utils.get_first_param(request, 'more_stops')
+%>
 
 <%def name="title()">TriMet: ${_(u'Stops near') } ${place['name']}</%def>
 <%def name="app_css()">
@@ -28,17 +32,13 @@
 
 <%def name="stations_selected()">class="selected"</%def>
 
-<% 
+<%
 ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
 ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
 %>
 
-<!--<p class="mobile"><a href="${util.url_domain()}/mobile/find_stop"><span>${_(u'Mobile')}</span></a></p>-->
-
-<h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">Stops &amp; Stations</a></h1>
-
-<h2>Stops near <a href="showmap.cgi?lang=en&long=-122.677271&lat=45.503650&icon=start&area=PO&desc=Stop%20ID%201923">Stop ID 1923 in Portland</a></h2>
-
+<h1 class="stopsstations-icon"><a href="find_stop_form.html?list${extra_params}">${_(u'Stops & Stations')}</a></h1>
+<h2>${_('Stops near')} <a href="showmap.cgi?lang=en&long=-122.677271&lat=45.503650&icon=start&area=PO&desc=Stop%20ID%201923">Stop ID 1923</a></h2>
 
 <ul id="stopslist" class="group">
     <li>
@@ -62,13 +62,12 @@ ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Sea
         <h3 class="tight"><a href="stop_info.pl?lang=en&Id=5497&acode1=PO&x1=45.503559&y1=-122.678571" title="Click for more information about this stop">SW 1st &amp; Arthur Northbound</a> <span class="stopid">Stop ID 1923</span></h3>
         <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.23 mile</a> &nbsp;&bull;&nbsp; Served by: 43</p>
     </li>
+    %if more_stops is None:
     <li>
-        <p align="center"><a href="cstops.pl?lang=en&loc1=1923&x1=45.503650&y1=-122.677271&acode1=PO&more=t">Show more stops</a></p>
+        <p align="center"><a href="find_stop.html?more_stops&${request.query_string}{extra_params}">${_('Show more stops')}</a></p>
     </li>
+    %endif
 </ul>
-
-
-
 
 
 <div id="alerts" class="group">

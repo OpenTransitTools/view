@@ -27,17 +27,15 @@
     <!-- end #sidebar -->
 </%def>
 
+<!-- find_stop.html?stop_id=${stop['stop_id']}${extra_params} -->
 <%def name="stations_selected()">class="selected"</%def>
-    <h1 class="stopsstations-icon"><a href="find_stop.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Stops & Stations')}</a></h1>
+    <h1 class="stopsstations-icon"><a href="find_stop_form.html?name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Stops & Stations')}</a></h1>
     <div class="group">
         <div class="left-column">
             <h2>${_(u'Stop ID')} ${stop['stop_id']}
                 %if has_alerts:
                 ${util.alerts_inline_icon_link()}
                 %endif
-                <!-- TODO formatting for alert icon
-                <a href="#alerts" class="stop-alert"><img src="${util.img_url()}/alert-icon.png" alt="Service alert at this stop" /></a>
-                -->
             </h2>
             <p>${util.stop_and_city_name(stop)}</p>
 

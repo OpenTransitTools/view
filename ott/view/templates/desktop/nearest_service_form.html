@@ -1,15 +1,15 @@
 <%inherit file="/desktop/base.html"/>
 
 <%namespace name="util" file="/shared/util.mako"/>
-<%namespace name="rs"   file="/shared/route_select.mako"/>
 
 <%
     ga_select_route ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
     ga_find_stop    ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
+    extra_params = util.get_extra_params()
 %>
 
 
-<%def name="title()">TriMet: ${_(u'Stops and Stations')}</%def>
+<%def name="title()">TriMet: ${_(u'Nearest Service')}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
@@ -32,47 +32,46 @@
     <!-- end #sidebar -->
 </%def>
 
+<h1 class="stopsstations-icon"><a href="find_stop_form.html?near_service${extra_params}">${_(u'Stops & Stations')}</a></h1>
 <%def name="stations_selected()">class="selected"</%def>
-<!--
 <p class="mobile"><a href="${util.url_domain()}/mobile/find_stop"><span>${_(u'Mobile')}</span></a></p>
--->
-
-
-<h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">${_(u'Stops & Stations')}</a></h1>
 
 <div id="findstop">
-    <form name="cstops" id="cstops_id" method="get" action="/stop_geocode.html" class="triptools-form">
-        <fieldset>
-            <label for="geocode_form">${_(u'Find stops and stations:')}</label>
-            <input name="geocode_form" id="geocode_form" type="text" value="Address, intersection, landmark or Stop ID" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID');" class="regular" size="15" maxlength="80" />
-                <div class="form-help">
-                    <div class="form-help-popup-onright">
-                        <p>
-                            There are several ways to enter a location:<br />
-                            <b>Address</b><br /><kbd>4012 SE 17</kbd><br />
-                            <b>Intersection</b> (where two streets cross each other)<br /><kbd>SE 17 &amp; Center</kbd>.<br />
-                            <b>Landmarks</b><br /><kbd>PDX</kbd><br /><kbd>Rose Quarter Arena</kbd><br /><kbd>Clackamas Town Center</kbd>.
-                        </p>
-                    </div>
-                </div>
-        </fieldset>
-        <fieldset>
-            <input type="submit" value="${_(u'Find stops')}" class="submit" onClick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);" /><!--onclick="${ga_find_stop}"-->
-        </fieldset>
-    </form>
-    
-    <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /></div>
-    
-    ${rs.route_select_form('/route_stop_list.html', routes, ga_select_route)}
-    
+        <div class="continue-form-top" id="continue-form">
+           <!-- The Entry Form -->
+           <form action="nearest_service_geocode.html" name="" id="sched_id" method="GET"  class="form-style">
+           <p>${_('Show TriMet service within')} <select name="Walk" tabindex="1" >
+           <option value="0.02">100 feet</option>
+           <option value="0.05">250 feet</option>
+           <option value="0.10">1/10 mile</option>
+           <option value="0.25">1/4 mile</option>
+           <option value="0.50">1/2 mile</option>
+           <option value="0.75"> 3/4 mile</option>
+           <option selected="selected" value="0.9999">1 mile</option>
+           </select>
+           ${_('of')}:
+           <br/>
+           <input type="text" tabindex="1" name=Loc value="834 SE Lambert Circle"
+                onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="45" maxlength="80" />
+           <br/>
+           <br/>
+           ${_('Starting at')} <select name="Time1" tabindex="5" >
+           <option value="12:00 am">12:00 am</option>
+           <option value="1:00 am">1:00 am</option>
+           </select> <select name="month" tabindex="7" >
+           <option value="January">January</option>
+           <option value="December">December</option>
+           </select><select name="day" tabindex="8" >
+           <option value="1">1</option>
+           <option value="31">31</option>
+           </select>
+           ${_('for')} <select name="Range" tabindex="9" >
+           <option value="1">1</option>
+           <option value="24">24</option>
+           </select> ${_('hours')}
+           <fieldset class="continue">
+             <input type="submit" value="${_(u'Find service')}" class="submit" onClick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);" />
+          </fieldset>
+       </form>
+   </div>
 </div>
-                        
-
-
-
-
-
-
-
-
-

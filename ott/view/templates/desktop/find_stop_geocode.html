@@ -1,6 +1,9 @@
 <%inherit file="/desktop/base.html"/>
-
 <%namespace name="util"  file="/shared/util.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
+
 <%def name="title()">TriMet: ${_(u'Uncertain location')}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
@@ -12,44 +15,21 @@
 <%def name="side_bar()">
     <!-- begin #sidebar -->
     <aside id="aside" class="aside">
-
     </aside>
     <!-- end #sidebar -->
 </%def>
 
 <%def name="stations_selected()">class="selected"</%def>
 
-<!--
-<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
--->
-
-<h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">Stops &amp; Stations</a></h1>
-
+<h1 class="stopsstations-icon"><a href="find_stop_form.html?geo${extra_params}">${_(u'Stops & Stations')}</a></h1>
 <h2 class="error">Uncertain location: 834 SE LAMBERT</h2>
 
 <div id="location">
     <!-- The Entry Form -->
-    <form name="ambig" method="POST" action="cstops.pl" class="triptools-form">
-        <!-- Hidden Form Information -->
-        <input type="hidden" name="action" value="ambig">
-        <input type="hidden" name="resptype" value="U">
-        <input type="hidden" name="access" value="N">
-    
-        <!-- Hide information entered on original input page -->
-        <input type="hidden" name="lang" value="en"  />
-        <input type="hidden" name="oldArea" value=""  />
-        <input type="hidden" name="oldLoc" value="834 SE LAMBERT"  />
-        <!-- Hide information about each location -->
-        <input type="hidden" name="x1" value="45.490943" />
-        <input type="hidden" name="y1" value="-122.406561" />
-        <input type="hidden" name="loc1" value="834+SE+LAMBERT+CIRCLE" />
-        <input type="hidden" name="acode1" value="GR" />
-    
-        <input type="hidden" name="x2" value="45.468602" />
-        <input type="hidden" name="y2" value="-122.657627" />
-        <input type="hidden" name="loc2" value="834+SE+LAMBERT+ST" />
-        <input type="hidden" name="acode2" value="PO" />
-    
+    <form action="find_stop.html"  method="GET" name="ambig" class="triptools-form">
+
+        ${util.get_extra_params_hidden_inputs()}
+
         <!-- Directions/Help -->
         <fieldset>
             <label>Select a location:</label><!-- Scrolling List of Possible Locations -->
@@ -62,22 +42,15 @@
            <!-- Action Button -->
            <input name="select" tabindex="2" type="submit" value="Select" class="submit" />
         </fieldset>
-        
+
+
         <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /><br />TODO spanish version of "or" </div>
-        
         <!-- Text Box for Re-Typing Location -->
         <fieldset>
             <label>Re-type location:</label>
             <input type="text" name="newloc" value="834 SE LAMBERT" size="43" maxlength="80" id="newloc" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
             <div class="form-help">
-                <div class="form-help-popup-onright">
-                    <p>
-                        There are several ways to enter a location:<br />
-                        <b>Address</b><br /><kbd>4012 SE 17</kbd><br />
-                        <b>Intersection</b> (where two streets cross each other)<br /><kbd>SE 17 &amp; Center</kbd>.<br />
-                        <b>Landmarks</b><br /><kbd>PDX</kbd><br /><kbd>Rose Quarter Arena</kbd><br /><kbd>Clackamas Town Center</kbd>.
-                    </p>
-                </div>
+                ${util.form_help_right()}
             </div>
         </fieldset>
         <fieldset>
@@ -86,10 +59,6 @@
         </fieldset>
     </form>
 </div>
-    
-
-
-
 
 <!-- help highslide -->
 <div class="highslide-html-content" id="highslide-help" style="width:700px;">

@@ -33,8 +33,7 @@
 </%def>
 
 <%def name="stations_selected()">class="selected"</%def>
-<h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">${_(u'Stops & Stations')}</a></h1>
-
+<h1 class="stopsstations-icon"><a href="find_stop_form.html?me${extra_params}">${_(u'Stops & Stations')}</a></h1>
 <div id="findstop">
     <form name="cstops" id="cstops_id" method="get" action="/find_stop_geocode.html" class="triptools-form">
         <fieldset>
