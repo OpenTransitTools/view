@@ -11,10 +11,8 @@ def exception_desktop(request):
 
 @view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
 def feedback(request):
-    stop = request.model.get_stop()
-    stop['routes'] = request.model.get_routes()
     ret_val = {}
-    ret_val['stop'] = stop
+    ret_val['stop'] = None
     return ret_val
 
 

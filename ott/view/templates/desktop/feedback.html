@@ -1,20 +1,19 @@
 <%inherit file="/desktop/base.html"/>
 
 <%namespace name="util"  file="/shared/util.mako"/>
-<%def name="title()">${_(u'TriMet: Stops and Stations')} - ${_(u'Stop ID')} ${stop['id']} - ${stop['name']}</%def>
+<%def name="title()">Feedback</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
 <%def name="meta_data()">
-    <meta name="Keywords"    content="Stops, stations"/>
-    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
+    <meta name="Keywords"    content="Feedback"/>
+    <meta name="Description" content="Feedback."/>
 </%def>
 <%def name="side_bar()">
     <!-- begin #sidebar -->
     <aside id="aside" class="aside">
         <h2>${_(u'Related')}</h2>  
         <ul class="links">
-          <li><a href="nearest_stops?lang=en&X=-122.675681&Y=45.420598">${_(u'Find closest stops to')} ${stop['name']}</a></li>
           <li><a href="/tripplanner/help.htm" tabindex="17" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/help.htm']);">${_(u'Trip Planner tips & help')}</a></li>
         </ul>
     </aside>
@@ -28,63 +27,5 @@ ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm 
 ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
 %>
 
-<!--
-<p class="mobile"><a href="${util.url_domain()}/mobile/stop/locationID=${id}"><span>${_(u'Mobile')}</span></a></p>
-<a href="/find_stop.html" class="image"></a>
--->
+<h1 class="stopsstations-icon">FEEDBACK <i>todo</i></h1>
 
-TODO I'm not sure what this page is... thought it was supposed to be a form that submits to email
-        
-<h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">Stops &amp; Stations</a></h1>
-
-
-<div class="stops-content">
-    <p style="float:right"><b></b></p>
-    <h2 class="stop">${_(u'Stop ID')} ${stop['id']}</h2>
-    <p class="stop-location">${stop['name']} ${_(u'in')} ${stop['city']}</p>
-    <p class="stopid"></p>
-</div>
-<div id="stopinfo">
-    <h3 class="imageRight">
-        <img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/275/height/275/zoom/6/extraparams/format_options=layout:scale/id/2" title="${_(u'View on Interactive Map')} ${_(u'(High-speed connection recommended)')}"/>
-        <p class="map" style="width:220px;">
-            <a href="http://ride.trimet.org/?zoom=16&pLat=45.420598&pLon=-122.675681&pText=A%20Ave%20%26amp%3B%20Chandler">${_(u'View on Interactive Map')}</a>
-            <br/>
-            <span class="secondary">${_(u'High-speed connection recommended')}</span>
-        </p>
-    </h3>
-    
-    <h3>${_(u'Served by')}</h3>
-    for x in ...
-    <p>
-        <span class="bold">37-Lake Grove</span>
-        <br/>To Lake Oswego TC<br/>
-        <a class="hide" href="/arrivals/tracker.html?locationID=2&route=037">${_(u'Next arrivals')}</a>
-        / <a href="sched.pl?lang=en&line=037&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598">${_(u'Schedule')}</a> 
-        / <a href="/schedules/r037.htm" title = "Show map and schedules for this route.">${_(u'Route info')}</a>
-    </p>
-    <p>
-        <span class="bold">${_(u'All routes')}</span><br/>
-        <a class="hide" href="/arrivals/tracker.html?locationID=2">${_(u'Next arrivals')}</a>
-        / <a href="sched.pl?lang=en&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598">${_(u'Schedule')}</a>
-    </p>
-    
-    <h3>${_(u'Amenities')}</h3>
-    <ul class="amenities">
-        TODO: how to manage a localized set of attribute string????
-        for a in amenities ...
-        <li>No shelter</li>
-        <li>Stop is on the near side of the intersection</li>
-        <li>Pavement at back door of bus</li>
-        <li>Curb ramp near stop</li>
-        <li>Pavement at front door of bus</li>
-        <li>Sidewalk at stop</li>
-        <li>Crosswalk</li>
-    </ul>
-    
-    <h3>${_(u'Plan a trip')}</h3>
-        <p class="link"><a href="plantrip.cgi?to=2&lang=en">${_(u'to here')}</a>
-        &ndash; 
-        <a href="plantrip.cgi?from=2&lang=en">${_(u'from here')}</a></p>
-        
-</div><!-- stop info -->
