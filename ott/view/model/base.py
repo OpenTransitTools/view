@@ -34,7 +34,7 @@ class Base():
         ret_val = json.loads(otp)
         return ret_val
 
-    def get_json(self, file, path='ott/view/static/test/'):
+    def get_json(self, file, path='ott/view/static/mock/'):
         ''' utility class to load a static .json file for mock'ing a service
         '''
         ret_val={}
