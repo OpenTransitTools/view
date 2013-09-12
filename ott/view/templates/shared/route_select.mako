@@ -9,7 +9,7 @@
             <select id="route" name="route">
             %if route_list:
             %for r in route_list:
-                <option value="${r['id']}">${r['name']}</option>
+                <option value="${r['route_id']}">${r['name']}</option>
             %endfor
             %endif
             </select>
