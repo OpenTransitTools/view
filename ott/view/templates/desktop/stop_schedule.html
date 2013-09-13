@@ -46,12 +46,11 @@
     <div id="moreform" class="group">
         <form name="select_date" id="select_date_id" method="GET" action="/stop_schedule.html" class="triptools-form">
             <input type="hidden" name="stop_id" value="${stop['stop_id']}" />
-            <input type="hidden" name="date"    value="${date}" />
             <input type="hidden" name="sort"    value="${sort_val}" />
             %if more_form:
             ${util.month_select(more_form['month'])} ${util.day_select(more_form['day'])}
             <input name="submit" type="submit" value="${_(u'Select')}" class="submit" />
-             %endif
+            %endif
         </form>
     </div>
     %endif

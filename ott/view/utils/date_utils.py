@@ -55,24 +55,42 @@ def set_date(dt=datetime.date.today(), month=None, day=None, year=None):
 def pretty_date(dt=datetime.date.today(), fmt='%A, %B %d, %Y'):
     return dt.strftime(fmt)
 
+def make_tab_obj(name, uri=None, date=None):
+    ''' for the date tab on the stop schedule page, we expect an object that has a name and a url
+        this method builds that structure, and most importantly, the url for those tabs
+    '''
+
+    ret_val = {}
+
+    # put the name of the tab first (and strip off any leading / trailing ZEROs if the name is a date)
+    ret_val["name"] = name.lstrip('0').replace('/0','/')
+
+    # next give the tab object a URL ... date is broken up into month and day parts 
+    if uri:
+        month = ""
+        day = ""
+        if date:
+            month = "&month={0}".format(date.month)
+            day = "&day={0}".format(date.day)
+        ret_val["url"] = "{0}{1}{2}".format(uri, month, day) 
+
+    return ret_val
 
 def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
     ''' return 3 date strings representing the next WEEKDAY, SAT, SUN 
     '''
     ret_val = []
 
-    #TODO: how to localize these here in python????
-    #today=_$(u'Today')
-    #more=_$(u'more')
+    # TODO ... localize
     today='Today'
     more='more'
 
     # step 1: is 'today' the active tab, or is target date in future, so that's active, and we have a 'today' tab to left
     if datetime.date.today() == dt:
-        ret_val.append({"name":today})
+        ret_val.append(make_tab_obj(today))
     else:
-        ret_val.append({"name":today, "url": uri + "&date=" + datetime.date.today().strftime(fmt)})
-        ret_val.append({"name":dt.strftime(smfmt).lstrip('0').replace('/0','/')})
+        ret_val.append(make_tab_obj(today, uri, datetime.date.today()))
+        ret_val.append(make_tab_obj(dt.strftime(smfmt)))
 
     # step 2: figure out how many days from target is next sat, sunday and/or monday (next two service days different from today)
     delta1 = 1
@@ -90,8 +108,9 @@ def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', ptt
     #print "{0} {1} {2}={3} {4}={5}".format(dt, dt.weekday(), delta1, d1, delta2, d2)
 
     # step 3: add the next to service day tabs to our return array
-    ret_val.append({"name":d1.strftime(smfmt).lstrip('0').replace('/0','/'), "url": uri + "&date=" + d1.strftime(fmt)})
-    ret_val.append({"name":d2.strftime(smfmt).lstrip('0').replace('/0','/'), "url": uri + "&date=" + d2.strftime(fmt)})
+    ret_val.append(make_tab_obj(d1.strftime(smfmt), uri, d1))
+    ret_val.append(make_tab_obj(d2.strftime(smfmt), uri, d2))
+    #ret_val.append({"name":d2.strftime(smfmt).lstrip('0').replace('/0','/'), "url": uri + "&date=" + d2.strftime(fmt)})
 
     # TODO put the ret_val appen stuff in a separte method that builds up the dict...
     #      and add a pretty_date to that dict, so that we can create a css TOOLTIP that shows what weekday / date the 2/1, 2/5, 2/6 dates represent...
@@ -99,7 +118,7 @@ def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', ptt
 
     # step 4: if we are not showing the date form, give the 'more' option which will show that form 
     if more_tab:
-        ret_val.append({"name":more,   "url": uri + "&more&date=" + dt.strftime(fmt)})
+        ret_val.append(make_tab_obj(more, uri, dt))
 
     return ret_val
 

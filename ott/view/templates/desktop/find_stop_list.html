@@ -37,7 +37,7 @@
     <form action="stop.html" method="get" class="triptools-form">
         <fieldset>
             ${util.get_extra_params_hidden_inputs()}
-            <label for="${d['name']}">${d['name']}</label>
+            <label for="${d['name']}">${_(u'To')} ${d['name']}</label>
             <select name="stop_id" id="${d['name']}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
                 % for s in d['stops']:
                 <option value="${s['stop_id']}">${s['name']}</option>
