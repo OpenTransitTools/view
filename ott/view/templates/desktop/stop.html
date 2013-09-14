@@ -19,7 +19,6 @@
     <aside id="aside" class="aside">
         <h2>${_(u'See also')}</h2>  
         <ul class="links">
-            <li><a href="find_stop_form.html?name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Find closest stops to')} ${stop['name']}</a></li>
             <li><a href="nearest_service_form.html?stop_id=${stop['stop_id']}&name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Find nearest service to')} ${stop['name']}</a></li>
         </ul>
         <p class="feedback"><a href="feedback.html?app=stop&stop_id=${stop['stop_id']}${extra_params}">${_(u'Having problems? Click here for technical support.')}</a></p>
@@ -29,7 +28,7 @@
 
 <!-- find_stop.html?stop_id=${stop['stop_id']}${extra_params} -->
 <%def name="stations_selected()">class="selected"</%def>
-    <h1 class="stopsstations-icon"><a href="find_stop_form.html?name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Stops & Stations')}</a></h1>
+    <h1 class="stopsstations-icon"><a href="stop_select_form.html?stoppage&name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Stops & Stations')}</a></h1>
     <div class="group">
         <div class="left-column">
             <h2>${_(u'Stop ID')} ${stop['stop_id']}

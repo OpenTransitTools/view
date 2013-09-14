@@ -1,7 +1,7 @@
 from pyramid.view import view_config
 
-@view_config(route_name='find_stop_mobile', renderer='mobile/find_stop.html')
-def find_stop(request):
+@view_config(route_name='stop_select_form_mobile', renderer='mobile/stop_select_form.html')
+def stop_select_form(request):
     '''
     '''
     ret_val = {}

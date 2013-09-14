@@ -53,22 +53,25 @@ def do_view_config(config):
     config.add_route('planner_form_desktop',            '/planner_form.html')
     config.add_route('planner_desktop',                 '/planner.html')
 
+    config.add_route('stop_select_form_desktop',        '/stop_select_form.html')
+    config.add_route('stop_select_list_desktop',        '/stop_select_list.html')
+    config.add_route('stop_select_geocode_desktop',     '/stop_select_geocode.html')
+
     config.add_route('stop_desktop',                    '/stop.html')
     config.add_route('stop_schedule_desktop',           '/stop_schedule.html')
-
-    config.add_route('find_stop_form_desktop',          '/find_stop_form.html')
-    config.add_route('find_stop_list_desktop',          '/find_stop_list.html')
-    config.add_route('find_stop_geocode_desktop',       '/find_stop_geocode.html')
-    config.add_route('find_stop_desktop',               '/find_stop.html')
 
     config.add_route('nearest_service_form_desktop',    '/nearest_service_form.html')
     config.add_route('nearest_service_geocode_desktop', '/nearest_service_geocode.html')
     config.add_route('nearest_service_desktop',         '/nearest_service.html')
 
 
-    config.add_route('find_stop_mobile',        '/mobile/find_stop.html')
-    config.add_route('stop_mobile',             '/mobile/stop.html')
-    config.add_route('feedback_mobile',         '/mobile/feedback.html')
+    ###
+    ### TODO ... anyway to alias pages?  
+    ###
+    config.add_route('stop_select_form_mobile',         '/m/stop_select_form.html')
+    #config.add_route('stop_select_form_mobile',         '/m/ss.html')
+    config.add_route('stop_mobile',                     '/m/stop.html')
+    config.add_route('feedback_mobile',                 '/m/feedback.html')
 
 
 @view_config(route_name='sparkline')

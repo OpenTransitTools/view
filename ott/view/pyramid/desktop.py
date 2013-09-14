@@ -53,31 +53,24 @@ def stop_schedule(request):
     return ret_val
 
 
-@view_config(route_name='find_stop_form_desktop', renderer='desktop/find_stop_form.html')
-def find_stop_form(request):
+@view_config(route_name='stop_select_form_desktop', renderer='desktop/stop_select_form.html')
+def stop_select_form(request):
     ret_val = {}
     ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
     ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
     return ret_val
 
-@view_config(route_name='find_stop_list_desktop', renderer='desktop/find_stop_list.html')
-def find_stop_list(request):
+@view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
+def stop_select_list(request):
     route = html_utils.get_first_param(request, 'route')
     ret_val = {}
     ret_val['route_stops'] = request.model.get_route_stops(request.query_string, **request.params)
     return ret_val
 
-@view_config(route_name='find_stop_geocode_desktop', renderer='desktop/find_stop_geocode.html')
-def find_stop_geocode(request):
+@view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
+def stop_select_geocode(request):
     ret_val = {}
     ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
-    return ret_val
-
-@view_config(route_name='find_stop_desktop', renderer='desktop/find_stop.html')
-def find_stop(request):
-    ret_val = {}
-    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
-    ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
     return ret_val
 
 
