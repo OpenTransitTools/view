@@ -3,6 +3,31 @@
 ##
 <%namespace name="util"  file="/shared/util.mako"/>
 
+<%def name="input_form(name, clear, id, tab, place, coord)">
+                <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
+                <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_tp_element('${id}_coord');" class="regular" size="45" maxlength="80" />
+                <div class="form-help">
+                    <div class="form-help-popup-onright">
+                        <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
+                    </div>
+                </div>
+</%def>
+
+<%def name="clear_tp_element_scriptlet()">
+    <script>
+        function clear_tp_element(id)
+        {
+            try
+            {
+                var fm = document.getElementById(id)
+                fm.value = ""
+            }
+            catch(e)
+            {
+            }
+        }
+    </script>
+</%def>
 
 <%def name="arrive_depart_form_option(sel_key)">
 <%

@@ -18,6 +18,19 @@
 <%def name="stations_selected()"></%def>
 <%def name="alerts_selected()"></%def>
 
+##
+## customize what DIVs surrounds the page content by overriding main_wrap_top() and main_wrap_bottom()
+## 
+<%def name="main_wrap_top()">
+            <section id="main" ${self.mainContentStyle()} class="main">
+                <%include file="/shared/share.html"/>
+</%def>
+<%def name="main_wrap_bottom()">
+            </section><!-- end #main -->
+</%def>
+
+
+
 <!doctype html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -68,10 +81,9 @@
         <div id="content" class="group">
             <a name="content"></a>
 
-            <section id="main" ${self.mainContentStyle()} class="main"><!-- need to figure out how to resolve #main and #main-fullwidth -->
-                <%include file="/shared/share.html"/>
-                ${next.body()}
-            </section><!-- end #main -->
+            ${self.main_wrap_top()}
+            ${next.body()}
+            ${self.main_wrap_bottom()}
 
             % if skip_sidebar:
                 <!-- sidebar intentionally skipped via attribute 'skip_sidebar' -->
