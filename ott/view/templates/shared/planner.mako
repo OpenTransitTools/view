@@ -275,7 +275,11 @@
 
 <%def name="get_route_name(route)"><% return "{0} {1} {2}".format(route['name'], _(u'to'), route['headsign']  if route['headsign'] else '')%></%def>
 <%def name="get_route_link(name, url, mode)">
-<a href="${url}" target="#" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a>
+<a href="${url}" target="#" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
+<%def name="get_interline_note(interline)">
+%if interline != None:
+${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
+%endif
 </%def>
 
 <%def name="render_fares(itinerary, fares_url)">
@@ -420,30 +424,51 @@
     </li>
 </%def>
 
-<%def name="render_transit_leg(leg, i, j, is_mobile)">
+<%def name="is_interline(leg_list, n)">
+<%
+    ret_val = False
+    try:
+        if leg_list[n]['interline']:
+            ret_val = True
+    except:
+        pass
+    return ret_val
+%>
+</%def>
+
+<%def name="render_transit_leg(leg_list, n, i, j, is_mobile)">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
             <%
+                leg = leg_list[n] 
+
+                route_name = get_route_name(leg['route'])
+                route_mode = leg['mode']
+
                 from_sched = leg['from']['stop']['schedule']
                 from_name  = leg['from']['name']
                 from_stop  = leg['from']['stop']['id']
                 start_time = leg['date_info']['start_time']
+
+                # with interline trips, we use the next leg for the arrival time / stop / etc...
+                # (interline leg itself will be skipped ... see logic in render_leg(), which 'pass'es on interlines )
+                interline = None
+                if is_interline(leg_list, n+1):
+                    leg = leg_list[n+1]
+                    interline = leg['route']['name']
 
                 to_sched   = leg['to']['stop']['schedule']
                 to_name    = leg['to']['name']
                 to_stop    = leg['to']['stop']['id']
                 end_time   = leg['date_info']['end_time']
 
-                route_name = get_route_name(leg['route'])
-                route_mode = leg['mode']
-
                 if is_mobile:
                     route_url = leg['route']['schedulemap_url']
                 else:
                     route_url = leg['route']['url']
             %>
-            <a href="${from_sched}" title="${_(u'Show schedule for')} ${from_name}" class="step-time">${start_time}</a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)} 
+            <a href="${from_sched}" title="${_(u'Show schedule for')} ${from_name}" class="step-time">${start_time}</a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)}${get_interline_note(interline)}
             %if leg['alerts']:
             <a href="#alerts" title="${_(u'There is an alert that applies to this transit leg.  See the "alerts" section below for details')}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>
             %endif
@@ -457,7 +482,7 @@
 </%def>
 
 <% leg_id = 1 %>
-<%def name="render_leg(leg, n, is_mobile=False)">
+<%def name="render_leg(itinerary, n, is_mobile=False)">
 <%
     ''' call render stuff above...
     '''
@@ -466,8 +491,14 @@
     global leg_id
     if n == 0:
         leg_id = 1
-    if leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN, util.attr.GONDOLA):
-        ret_val = render_transit_leg(leg, leg_id, leg_id+1, is_mobile)
+
+    leg_list = itinerary['legs']
+    leg = leg_list[n]
+
+    if is_interline(leg_list, n):
+        pass   # ignore interline legs (assume they're interline transit legs, which are handled below)
+    elif leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN, util.attr.GONDOLA):
+        ret_val = render_transit_leg(leg_list, n, leg_id, leg_id+1, is_mobile)
         leg_id = leg_id + 2 
     elif leg['mode'] == util.attr.WALK:
         ret_val = render_walk_leg(leg, leg_id)
