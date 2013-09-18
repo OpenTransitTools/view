@@ -32,9 +32,9 @@ def planner_form_params(request):
     tm = date_utils.get_time_info()
     ret_val = {
         "fromPlace" : "From",             #TODO localize....
-        "fromCoord" : "45.5,-122.5",
+        "fromCoord" : None,
         "toPlace"   : "To",                           #TODO localize....
-        "toCoord"   : "45.6,-122.55",
+        "toCoord"   : None,
         "Hour"      : tm['hour'],
         "Minute"    : tm['minute'],
         "AmPm"      : "am" if tm['is_am'] else "pm",
