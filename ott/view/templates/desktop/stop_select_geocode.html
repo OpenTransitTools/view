@@ -26,29 +26,27 @@
 <h2 class="error">Uncertain location: 834 SE LAMBERT</h2>
 
 <div id="location">
-    <!-- The Entry Form -->
-    <form action="stop.html"  method="GET" name="ambig" class="triptools-form">
-
+    <form action="stop_select_geocode_nearest.html"  method="GET" name="ambig" class="triptools-form">
         ${util.get_extra_params_hidden_inputs()}
-
-        <!-- Directions/Help -->
+        <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
         <fieldset>
-            <label>Select a location:</label><!-- Scrolling List of Possible Locations -->
-            <select name="locations" size="1" id="locations" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
-                <option value="1">834 SE LAMBERT CIRCLE (in GRESHAM)</option>
-                <option value="2">834 SE LAMBERT ST (in PORTLAND)</option>
+            <label>${_(u'Select a location')}:</label><!-- Scrolling List of Possible Locations -->
+            <select size="1"  name="stop_id" id="stop_id" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
+                <option value="1">834 SE LAMBERT CIRCLE (${_(u'in')} GRESHAM)</option>
+                <option value="2">834 SE LAMBERT ST (${_(u'in')} PORTLAND)</option>
             </select>
         </fieldset>
         <fieldset>
            <!-- Action Button -->
            <input name="select" tabindex="2" type="submit" value="Select" class="submit" />
         </fieldset>
-
-
-        <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /><br />TODO spanish version of "or" </div>
-        <!-- Text Box for Re-Typing Location -->
+    </form>
+    <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /><br />TODO spanish version of "or" </div>
+    <form action="stop_select_geocode.html"  method="GET" name="ambig" class="triptools-form">
+        ${util.get_extra_params_hidden_inputs()}
+        <!-- Text box for re-geocoding a string -->
         <fieldset>
-            <label>Re-type location:</label>
+            <label>${_(u'Re-type location')}:</label>
             <input type="text" name="newloc" value="834 SE LAMBERT" size="43" maxlength="80" id="newloc" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
             <div class="form-help">
                 ${util.form_help_right()}
@@ -56,9 +54,8 @@
         </fieldset>
         <fieldset>
             <input name="submit" tabindex="4" type="submit" value="Continue" class="submit" />
-            <p class="form-help-highslide"><a href="#" onClick="return hs.htmlExpand(this, { contentId: 'highslide-help' } )" class="highslide image">Help</a></p>
+            ${help.geocode_highslide()}
         </fieldset>
     </form>
 </div>
 
-${help.geocode_highslide()}

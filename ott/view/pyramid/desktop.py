@@ -73,6 +73,15 @@ def stop_select_geocode(request):
     ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
     return ret_val
 
+@view_config(route_name='stop_select_geocode_nearest_desktop', renderer='desktop/stop_select_geocode_nearest.html')
+def stop_select_geocode_nearest(request):
+    ret_val = {}
+    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
+    ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
+    return ret_val
+
+
+
 
 
 @view_config(route_name='nearest_service_form_desktop', renderer='desktop/nearest_service_form.html')
