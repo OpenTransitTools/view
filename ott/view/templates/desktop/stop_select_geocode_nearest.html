@@ -1,8 +1,10 @@
 <%inherit file="/desktop/base.html"/>
-
 <%namespace name="util"  file="/shared/util.mako"/>
 <%namespace name="rs"   file="/shared/route_select.mako"/>
-
+<%
+    extra_params = util.get_extra_params()
+%>
+<%def name="stations_selected()">class="selected"</%def>
 <%def name="title()">TriMet: ${_(u'Stops near') } ${place['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
@@ -26,24 +28,19 @@
     <!-- end #sidebar -->
 </%def>
 
-<%def name="stations_selected()">class="selected"</%def>
-
 <% 
 ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
 ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
 %>
 
-<!--<p class="mobile"><a href="${util.url_domain()}/mobile/stop_select_form.html"><span>${_(u'Mobile')}</span></a></p>-->
 
-<h1 class="stopsstations-icon"><a href="/stopsstations/index.htm">Stops &amp; Stations</a></h1>
+<h1 class="stopsstations-icon"><a href="stop_select_form.html?geo${extra_params}">${_(u'Stops & Stations')}</a></h1>
 
-<h2>Stops near <a href="showmap.cgi?lang=en&long=-122.677271&lat=45.503650&icon=start&area=PO&desc=Stop%20ID%201923">Stop ID 1923 in Portland</a></h2>
-
-
+<h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
 <ul id="stopslist" class="group">
     <li>
-        <h3 class="tight"><a href="stop_info.pl?lang=en&Id=1649&acode1=PO&x1=45.503650&y1=-122.677271" title="Click for more information about this stop">SW Naito Parkway &amp; Arthur Northbound</a> <span class="stopid">Stop ID 1923</span> <a href="#alerts" class="stop-arrivals"><img src="${util.img_url()}/alert-icon.png" alt="Alert at this stop" /></a></h3>
-        <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.01 mile</a> &nbsp;&bull;&nbsp; Served by: 35, 36</p>
+        <h3 class="tight"><a href="stop.html?stop_id=1649${extra_params}" title="${_(u'Click for more information about this stop')}">SW Naito Parkway &amp; Arthur Northbound</a> <span class="stopid">${_(u'Stop ID')} 1923</span></h3>
+        <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.01 mile</a> &nbsp;&bull;&nbsp; ${_(u'Served by')}: 35, 36</p>
     </li>
     <li>
         <h3 class="tight"><a href="stop_info.pl?lang=en&Id=2674&acode1=PO&x1=45.502008&y1=-122.675261" title="Click for more information about this stop">SW Kelly &amp; Corbett Northbound</a> <span class="stopid">Stop ID 1923</span></h3>
@@ -66,18 +63,3 @@ ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Sea
         <p align="center"><a href="cstops.pl?lang=en&loc1=1923&x1=45.503650&y1=-122.677271&acode1=PO&more=t">Show more stops</a></p>
     </li>
 </ul>
-
-
-
-
-
-<div id="alerts" class="group">
-    <p><img src="${util.img_url()}/alert.png" />
-        <span class="alert-text">Until further notice, the westbound stop on SE Division at 37th (Stop ID 1457) is closed.</span>
-        <span class="alert-time">As of March 19 @ 10:15am</span>
-    </p>
-    <p><img src="${util.img_url()}/alert.png" />
-        <span class="alert-text">Due to construction, the westbound stop on SE Belmont at 38th is closed (Stop ID 426). Board on Belmont at Cesar Chavez (Stop ID 428).</span>
-        <span class="alert-time">As of March 18 @ 9:15pm</span>
-    </p>
-</div><!-- end #alerts -->

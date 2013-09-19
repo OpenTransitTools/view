@@ -16,6 +16,14 @@
 <%def name="side_bar()">
     <!-- begin #sidebar -->
     <aside id="aside" class="aside">
+        <h2>${_(u'Related')}</h2>  
+        <ul class="links">
+            <li><a href="/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
+            <li><a href="/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
+            <li><a href="/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
+            <li><a href="/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
+            <li><a href="/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
+        </ul>
     </aside>
     <!-- end #sidebar -->
 </%def>
@@ -23,7 +31,7 @@
 <%def name="stations_selected()">class="selected"</%def>
 
 <h1 class="stopsstations-icon"><a href="stop_select_form.html?geo${extra_params}">${_(u'Stops & Stations')}</a></h1>
-<h2 class="error">Uncertain location: 834 SE LAMBERT</h2>
+<h2 class="error">${_(u'Uncertain location')}: 834 SE LAMBERT</h2>
 
 <div id="location">
     <form action="stop_select_geocode_nearest.html"  method="GET" name="ambig" class="triptools-form">

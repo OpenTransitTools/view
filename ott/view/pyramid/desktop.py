@@ -3,6 +3,12 @@ from pyramid.httpexceptions import HTTPFound
 
 from ott.view.utils import html_utils
 
+class Place(object):
+    def __init__(self, name, lat, lon, city=None):
+        self.name = name
+        self.lat = lat 
+        self.lon = lon
+        self.city = city
 
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
 def exception_desktop(request):
@@ -77,11 +83,20 @@ def stop_select_geocode(request):
 def stop_select_geocode_nearest(request):
     ret_val = {}
     ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
-    ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
+    ret_val['place']  = {'city':'Yo', 'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
     return ret_val
 
 
-
+@view_config(route_name='map_place_desktop', renderer='desktop/map_place.html')
+def map_place(request):
+    ret_val = {}
+    name = html_utils.get_first_param(request, 'name')
+    if name is None: name = 'Undefined Location'
+    lat  = html_utils.get_first_param(request, 'lat')
+    lon  = html_utils.get_first_param(request, 'lon')
+    p = Place(name, lat, lon)
+    ret_val['place'] = p.__dict__
+    return ret_val
 
 
 @view_config(route_name='nearest_service_form_desktop', renderer='desktop/nearest_service_form.html')

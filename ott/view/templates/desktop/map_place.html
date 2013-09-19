@@ -1,0 +1,20 @@
+<%inherit file="/desktop/base.html"/>
+<%namespace name="util"  file="/shared/util.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
+<%def name="schedule_selected()">class="selected"</%def>
+<h1>${place['name']}</h1>
+%if place['lat'] and place['lon']:
+<p>
+    <a href="http://ride.trimet.org/?zoom=16&pLat=${place['lat']}&pLon=${place['lon']}&pText=${place['name']}${extra_params}">
+    <img src="http://maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/640/height/480/zoom/7/coord/${place['lon']},${place['lat']}/extraparams/format_options=layout:start"/>
+    </a>
+</p>
+<p class="imap">
+    <a href="http://ride.trimet.org/?zoom=16&pLat=${place['lat']}&pLon=${place['lon']}&pText=${place['name']}${extra_params}">${_(u'View on Interactive Map')}</a><br/>
+    <span class="secondary">${_(u'High-speed connection recommended')}</span>
+</p>
+<h3 class="tight">${_(u'Plan a trip')}</h3>
+<p><a href="planner_form.html?to=${place['name']}::${place['lat']},${place['lon']}${extra_params}">${_(u'to here')}</a> &ndash;  <a href="planner_form.html?from=${place['name']}::${place['lat']},${place['lon']}${extra_params}">${_(u'from here')}</a></p>
+%endif

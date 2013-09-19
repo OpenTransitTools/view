@@ -32,6 +32,16 @@
 <%def name="url_for(controller='main', action='route_stops_list')"></%def>
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def>
 
+<%def name="map_place_link(place, path_prefix='')">
+<%
+    extra_params = get_extra_params()
+    city = ''
+    if 'city' in place and place['city']:
+        city = "{0} {1}".format(_(u'in'), place['city'])
+%>
+<a href="${path_prefix}map_place.html?name=${place['name']}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${place['name']} ${city}</a>
+</%def>
+
 <%def name="stop_and_city_name(stop)">
 <%
     ret_val = stop['name']

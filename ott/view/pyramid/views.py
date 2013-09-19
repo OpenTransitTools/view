@@ -65,6 +65,7 @@ def do_view_config(config):
     config.add_route('nearest_service_geocode_desktop',         '/nearest_service_geocode.html')
     config.add_route('nearest_service_desktop',                 '/nearest_service.html')
 
+    config.add_route('map_place_desktop',                       '/map_place.html')
 
     ###
     ### TODO ... anyway to alias pages?  
