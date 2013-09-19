@@ -41,17 +41,31 @@
 %>
 </%def>
 
-<%def name="get_extra_params()">
+<%def name="get_locale(def_val='en')">
 <%
     from ott.view.utils import html_utils
+    ret_val = def_val
+    try:
+        loc = html_utils.get_first_param(request, '_LOCALE_')
+        if loc:
+            ret_val = loc
+        
+    except:
+        ret_val = def_val
+    return ret_val
+%>
+</%def>
 
+
+<%def name="get_extra_params(def_val='')">
+<%
     ''' extra_params: this variable is built here, and should be appended to all <a href> urls.  The string is pre-pended with
         an ampersand, so if there are no parameters on a given url, maybe add something bogus to the url prior to ${extra_parmas}
     '''
-    extra_params=''
+    extra_params=def_val
 
     # step 1: append any locale url param to extra_params... 
-    loc = html_utils.get_first_param(request, '_LOCALE_')
+    loc = get_locale(None)
     if loc:
         extra_params = "{0}&_LOCALE_={1}".format(extra_params, loc)
 
@@ -61,10 +75,7 @@
 
 <%def name="get_extra_params_hidden_inputs()">
 <%
-    from ott.view.utils import html_utils
-
-    # step 1: append any locale url param to extra_params... 
-    loc = html_utils.get_first_param(request, '_LOCALE_')
+    loc = get_locale(None)
 %>
     %if loc:
         <input type="hidden" name="_LOCALE_" value="${loc}"/>
