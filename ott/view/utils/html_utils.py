@@ -104,7 +104,8 @@ def params_to_dict(request):
         if request.query_string and len(request.query_string) > 0:
             ret_val['query_string'] = request.query_string 
     except:
-        pass
+        # assume that request is the dict / string for params, and hope for the best...
+        ret_val = request
 
     return ret_val
 

@@ -20,6 +20,6 @@
     <br/>
     <span class="secondary">${_(u'High-speed connection recommended')}</span>
 </p>
-<h3 class="tight">${_(u'Plan a trip')}</h3>
-<p><a href="planner_form.html?to=${place['name']}::${place['lat']},${place['lon']}${extra_params}">${_(u'to here')}</a> &ndash;  <a href="planner_form.html?from=${place['name']}::${place['lat']},${place['lon']}${extra_params}">${_(u'from here')}</a></p>
+${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
 %endif
+

@@ -42,6 +42,20 @@
 <a href="${path_prefix}map_place.html?name=${place['name']}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${place['name']} ${city}</a>
 </%def>
 
+## from / to links
+<%def name="plan_a_trip_links(name, lon, lat, extra_params='')">
+<h3 class="tight">${_(u'Plan a trip')}</h3>
+<p>
+  <a href="planner_form.html?to=${name}::${lat},${lon}${extra_params}"
+    title="${_(u'Plan a trip to this place')})"
+    >${_(u'to here')}</a> &ndash; <a 
+    href="planner_form.html?from=${name}::${lat},${lon}${extra_params}"
+    title="${_(u'Plan a trip from this place')})"
+    >${_(u'from here')}</a>
+</p>
+</%def>
+
+
 <%def name="stop_and_city_name(stop)">
 <%
     ret_val = stop['name']

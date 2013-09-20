@@ -4,11 +4,27 @@ from pyramid.httpexceptions import HTTPFound
 from ott.view.utils import html_utils
 
 class Place(object):
-    def __init__(self, name, lat, lon, city=None):
+    def __init__(self, name=None, lat=None, lon=None, city=None):
+        self.set_values(name, lat, lon, city)
+
+    def set_values(self, name=None, lat=None, lon=None, city=None):
         self.name = name
         self.lat = lat 
         self.lon = lon
         self.city = city
+
+    @classmethod
+    def make_from_request(cls, request):
+        ret_val = Place()
+        try:
+            name = html_utils.get_first_param(request, 'name')
+            if name is None: name = 'Undefined Location'
+            lat  = html_utils.get_first_param(request, 'lat')
+            lon  = html_utils.get_first_param(request, 'lon')
+            city = html_utils.get_first_param(request, 'city')
+            ret_val.set_values(name, lat, lon, city)
+        except: pass
+        return ret_val
 
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
 def exception_desktop(request):
@@ -82,19 +98,15 @@ def stop_select_geocode(request):
 @view_config(route_name='stop_select_geocode_nearest_desktop', renderer='desktop/stop_select_geocode_nearest.html')
 def stop_select_geocode_nearest(request):
     ret_val = {}
-    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
-    ret_val['place']  = {'city':'Yo', 'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
+    p = Place.make_from_request(request)
+    ret_val['place'] = p.__dict__
     return ret_val
 
 
 @view_config(route_name='map_place_desktop', renderer='desktop/map_place.html')
 def map_place(request):
     ret_val = {}
-    name = html_utils.get_first_param(request, 'name')
-    if name is None: name = 'Undefined Location'
-    lat  = html_utils.get_first_param(request, 'lat')
-    lon  = html_utils.get_first_param(request, 'lon')
-    p = Place(name, lat, lon)
+    p = Place.make_from_request(request)
     ret_val['place'] = p.__dict__
     return ret_val
 
