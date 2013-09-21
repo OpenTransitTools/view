@@ -44,17 +44,48 @@
 
 ## from / to links
 <%def name="plan_a_trip_links(name, lon, lat, extra_params='')">
+<!-- TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc... -->
 <h3 class="tight">${_(u'Plan a trip')}</h3>
 <p>
   <a href="planner_form.html?to=${name}::${lat},${lon}${extra_params}"
-    title="${_(u'Plan a trip to this place')})"
+    title="${_(u'Plan a trip')} ${_(u'to')} ${name}"
     >${_(u'to here')}</a> &ndash; <a 
     href="planner_form.html?from=${name}::${lat},${lon}${extra_params}"
-    title="${_(u'Plan a trip from this place')})"
+    title="${_(u'Plan a trip')} ${_(u'from')} ${name}"
     >${_(u'from here')}</a>
 </p>
 </%def>
 
+## static map block
+<%def name="staticmap_imap_link(name, lon, lat, extra_params, map_url)">
+<p>
+    <a href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}"
+       target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"
+    ><img src="${map_url}"/></a>
+</p>
+<p class="imap">
+    <a href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params} title="${_(u'View on Interactive Map')} 
+       target="#" title="${_(u'High-speed connection recommended')}">${_(u'View on Interactive Map')}</a>
+    <br/>
+    <span class="secondary">${_(u'High-speed connection recommended')}</span>
+</p>
+</%def>
+
+## places map with lat/lon
+<%def name="place_map(name, lon, lat, extra_params='')">
+<%
+    map_url = "http://ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/{0},{1}/extraparams/format_options=layout:scale".format(lon, lat)
+    staticmap_imap_link(name, lon, lat, extra_params, map_url) 
+%>
+</%def>
+
+## stops map with lat/lon
+<%def name="stop_map(name, stop_id, lon, lat, extra_params='')">
+<%
+    map_url = "http://ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/340/height/336/zoom/6/extraparams/format_options=layout:scale/id/{0}".format(stop_id)
+    staticmap_imap_link(name, lon, lat, extra_params, map_url)
+%>
+</%def>
 
 <%def name="stop_and_city_name(stop)">
 <%

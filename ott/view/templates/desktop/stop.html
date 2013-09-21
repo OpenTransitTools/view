@@ -76,16 +76,8 @@
         </div><!-- end .left-column -->
 
         <div class="right-column">
-            <!-- TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc... -->
-            <p><a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}${extra_params}"><img src="http://maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/340/height/336/zoom/6/extraparams/format_options=layout:scale/id/${stop['stop_id']}" /></a></p>
-
-            <p class="imap">
-                <a href="http://ride.trimet.org/?zoom=16&pLat=${stop['lat']}&pLon=${stop['lon']}&pText=${stop['name']}${extra_params}">${_(u'View on Interactive Map')}</a><br />
-                <span class="secondary">${_(u'High-speed connection recommended')}</span>
-            </p>
-
-            <h3 class="tight">${_(u'Plan a trip')}</h3>
-            <p><a href="planner_form.html?to=${stop['name']}::${stop['lat']},${stop['lon']}${extra_params}">${_(u'to here')}</a> &ndash;  <a href="planner_form.html?from=${stop['name']}::${stop['lat']},${stop['lon']}${extra_params}">${_(u'from here')}</a></p>
+            ${util.stop_map(stop['name'], stop['stop_id'], stop['lon'], stop['lat'], extra_params)}
+            ${util.plan_a_trip_links(stop['name'], stop['lon'], stop['lat'], extra_params)}
         </div><!-- end .right-column -->
     </div><!-- end .group -->
 

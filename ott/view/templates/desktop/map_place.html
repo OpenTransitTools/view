@@ -7,19 +7,7 @@
 <%def name="schedule_selected()">class="selected"</%def>
 <h1>${place['name']}</h1>
 %if place['lat'] and place['lon']:
-<p>
-    <a href="http://ride.trimet.org/?zoom=16&pLat=${place['lat']}&pLon=${place['lon']}&pText=${place['name']}${extra_params}"
-       target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"  
-    >
-    <img src="http://ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/600/height/300/zoom/7/coord/${place['lon']},${place['lat']}/extraparams/format_options=layout:scale"/>
-    </a>
-</p>
-<p class="imap">
-    <a href="http://ride.trimet.org/?zoom=16&pLat=${place['lat']}&pLon=${place['lon']}&pText=${place['name']}${extra_params} title="${_(u'View on Interactive Map')} 
-       target="#" title="${_(u'High-speed connection recommended')})">${_(u'View on Interactive Map')}</a>
-    <br/>
-    <span class="secondary">${_(u'High-speed connection recommended')}</span>
-</p>
+${util.place_map(place['name'], place['lon'], place['lat'], extra_params)}
 ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
 %endif
 
