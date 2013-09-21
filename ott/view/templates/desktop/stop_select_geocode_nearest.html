@@ -3,6 +3,16 @@
 <%namespace name="rs"   file="/shared/route_select.mako"/>
 <%
     extra_params = util.get_extra_params()
+    nearest_stops = [
+      {
+          'stop_id': 2,
+          'name':'stop name',
+          'distance': 0.04,
+          'route_id_list':'2,23,33,MAX Red,44'
+          
+      }
+    ]
+    stop_id = "TODO "
 %>
 <%def name="stations_selected()">class="selected"</%def>
 <%def name="title()">TriMet: ${_(u'Stops near') } ${place['name']}</%def>
@@ -38,28 +48,15 @@ ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Sea
 
 <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
 <ul id="stopslist" class="group">
+    %for s in nearest_stops:
     <li>
-        <h3 class="tight"><a href="stop.html?stop_id=1649${extra_params}" title="${_(u'Click for more information about this stop')}">SW Naito Parkway &amp; Arthur Northbound</a> <span class="stopid">${_(u'Stop ID')} 1923</span></h3>
-        <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.01 mile</a> &nbsp;&bull;&nbsp; ${_(u'Served by')}: 35, 36</p>
+        <h3 class="tight"><a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a> <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span></h3>
+        <p><a href="planner_walk.html?">${s['distance']} todo plural mile</a> &nbsp;&bull;&nbsp; ${_(u'Served by')}: ${s['route_id_list']}</p>
     </li>
+    %endfor
+
     <li>
-        <h3 class="tight"><a href="stop_info.pl?lang=en&Id=2674&acode1=PO&x1=45.502008&y1=-122.675261" title="Click for more information about this stop">SW Kelly &amp; Corbett Northbound</a> <span class="stopid">Stop ID 1923</span></h3>
-        <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.18 mile</a> &nbsp;&bull;&nbsp; Served by: 9, 17, 19</p>
-        
-    </li>
-    <li>
-        <h3 class="tight"><a href="stop_info.pl?lang=en&Id=133&acode1=PO&x1=45.503820&y1=-122.678420" title="Click for more information about this stop">SW Arthur &amp; 1st Westbound</a> <span class="stopid">Stop ID 1923</span> <a href="#alerts" class="stop-arrivals"><img src="${util.img_url()}/alert-icon.png" alt="Alert at this stop" /></a></h3>
-        <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.21 mile</a> &nbsp;&bull;&nbsp; Served by: 9, 17, 19, 66</p>
-    </li>
-    <li>
-        <h3 class="tight"><a href="stop_info.pl?lang=en&Id=5496&acode1=PO&x1=45.503839&y1=-122.678811" title="Click for more information about this stop">SW 1st &amp; Arthur Southbound</a> <span class="stopid">Stop ID 1923</span></h3>
-        <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.23 mile</a> &nbsp;&bull;&nbsp; Served by: 43</p>
-    </li>
-    <li>
-        <h3 class="tight"><a href="stop_info.pl?lang=en&Id=5497&acode1=PO&x1=45.503559&y1=-122.678571" title="Click for more information about this stop">SW 1st &amp; Arthur Northbound</a> <span class="stopid">Stop ID 1923</span></h3>
-        <p><a href="walk_dir.pl?lang=en&Floc=Stop%20ID%201923&Fxcoord=45.503650&Fycoord=-122.677271&Tloc=SW%20Kelly%20%26amp%3B%20Corbett&Txcoord=45.502008&Tycoord=-122.675261&Walk=1.0&resptype=U">0.23 mile</a> &nbsp;&bull;&nbsp; Served by: 43</p>
-    </li>
-    <li>
-        <p align="center"><a href="cstops.pl?lang=en&loc1=1923&x1=45.503650&y1=-122.677271&acode1=PO&more=t">Show more stops</a></p>
+        <p align="center"><a href="nearest_stops?stop_id=${stop_id}">${_(u'Show more stops')}</a></p>
     </li>
 </ul>
+
