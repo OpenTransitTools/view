@@ -31,8 +31,10 @@ def get_model():
     '''
     global MODEL_GLOBAL
     if MODEL_GLOBAL is None:
+        # TODO ... this right?
+        # TODO ... better way to attach this to view?
+        # TODO ... multi-threading/
         # do something to create a model...
-        #MODEL_GLOBAL = Mock()
         MODEL_GLOBAL = Model()
     return MODEL_GLOBAL
 

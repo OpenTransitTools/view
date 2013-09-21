@@ -39,9 +39,9 @@
         <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
         <fieldset>
             <label>${_(u'Select a location')}:</label><!-- Scrolling List of Possible Locations -->
-            <select size="1"  name="stop_id" id="stop_id" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
-                <option value="1">834 SE LAMBERT CIRCLE (${_(u'in')} GRESHAM)</option>
-                <option value="2">834 SE LAMBERT ST (${_(u'in')} PORTLAND)</option>
+            <select size="1"  name="place" id="stop_id" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
+                <option value="834 SE LAMBERT CIRCLE::45.5,-122.5::GRESHAM">${util.name_city_str('834 SE LAMBERT CIRCLE', 'GRESHAM')}</option>
+                <option value="834 SE LAMBERT ST::45.6,-122.6::PORTLAND">${util.name_city_str('834 SE LAMBERT ST', 'PORTLAND')}</option>
             </select>
         </fieldset>
         <fieldset>

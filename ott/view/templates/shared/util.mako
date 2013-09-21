@@ -32,14 +32,46 @@
 <%def name="url_for(controller='main', action='route_stops_list')"></%def>
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def>
 
+<%def name="get_ele(struct, name, def_val=None)">
+<%
+    ret_val = def_val
+    if name in struct and struct[name]:
+        ret_val = struct[name]
+    return ret_val
+%>
+</%def>
+
+
+<%def name="name_city_str(name, city)">
+<%
+    ret_val = _(u'Undefined')
+    if name and len(name) > 0:
+        ret_val = name
+    if city and len(city) > 0:
+        ret_val = "{0} ({1} {2})".format(ret_val, _(u'in'), city)
+    return ret_val
+%>
+</%def>
+
+
+<%def name="struct_name_city_str(struct)">
+<%
+    name = get_ele(struct, 'name')
+    city = get_ele(struct, 'city')
+    name_city = name_city_str(name, city) 
+    return name_city
+%>
+</%def>
+
+## ...
 <%def name="map_place_link(place, path_prefix='')">
 <%
     extra_params = get_extra_params()
-    city = ''
-    if 'city' in place and place['city']:
-        city = "{0} {1}".format(_(u'in'), place['city'])
+    name = get_ele(place, 'name', _(u'Undefined'))
+    city = get_ele(place, 'city', '')
+    name_city = struct_name_city_str(place)
 %>
-<a href="${path_prefix}map_place.html?name=${place['name']}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${place['name']} ${city}</a>
+<a href="${path_prefix}map_place.html?name=${name}&city=${city}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
 </%def>
 
 ## from / to links
@@ -87,14 +119,6 @@
 %>
 </%def>
 
-<%def name="stop_and_city_name(stop)">
-<%
-    ret_val = stop['name']
-    if city in stop and len(stop['city']) > 1 and stop['city'] != Null and stop['city'] != "Null":
-         ret_val = "{0} {1} {2}".format(stop['stop'], _(u'in'), stop['city'])
-    return ret_val
-%>
-</%def>
 
 <%def name="get_locale(def_val='en')">
 <%
