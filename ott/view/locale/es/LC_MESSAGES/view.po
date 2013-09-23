@@ -420,12 +420,12 @@ msgstr "Encontrar paradas"
 #: ott/view/templates/desktop/stop_select_geocode.html:41
 #, fuzzy
 msgid "Select a location"
-msgstr "Seleccionar ruta"
+msgstr "Seleccionar lugar"
 
 #: ott/view/templates/desktop/stop_select_geocode.html:57
 #, fuzzy
 msgid "Re-type location"
-msgstr "Localización indeterminada"
+msgstr "Reescriba la dirección"
 
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:53
 #: ott/view/templates/shared/planner.mako:359
@@ -436,7 +436,7 @@ msgstr "Haga clic para obtener más información sobre esta parada"
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:59
 #, fuzzy
 msgid "Show more stops"
-msgstr "Muestra el viaje"
+msgstr "Muestre más paradas"
 
 #: ott/view/templates/desktop/stop_select_list.html:48
 msgid "Select stop"
