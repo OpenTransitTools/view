@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-09-23 23:56+0100\n"
+"POT-Creation-Date: 2013-09-24 00:02+0100\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -54,7 +54,6 @@ msgid "Trip Planner tips & help"
 msgstr "Sugerencias y ayuda"
 
 #: ott/view/templates/desktop/map_place.html:6
-#, fuzzy
 msgid "Map location "
 msgstr "Localización indeterminada"
 
@@ -284,8 +283,6 @@ msgid "pm"
 msgstr ""
 
 #: ott/view/templates/desktop/planner_form.html:65
-#, fuzzy
-#| msgid "Biking directions"
 msgid "Get directions"
 msgstr "En otros planificadores de bicicletas"
 
@@ -408,7 +405,6 @@ msgid "Schedule for"
 msgstr "Horarios de"
 
 #: ott/view/templates/desktop/stop_select_form.html:12
-#, fuzzy
 msgid "Stops and Stations"
 msgstr "Paradas y Estaciones"
 
@@ -425,12 +421,10 @@ msgid "Find stops"
 msgstr "Encontrar paradas"
 
 #: ott/view/templates/desktop/stop_select_geocode.html:41
-#, fuzzy
 msgid "Select a location"
 msgstr "Seleccionar lugar"
 
 #: ott/view/templates/desktop/stop_select_geocode.html:57
-#, fuzzy
 msgid "Re-type location"
 msgstr "Reescriba la dirección"
 
@@ -445,7 +439,6 @@ msgid "Click for more information about this stop"
 msgstr "Haga clic para obtener más información sobre esta parada"
 
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:59
-#, fuzzy
 msgid "Show more stops"
 msgstr "Muestre más paradas"
 
@@ -657,7 +650,6 @@ msgstr "Girar"
 
 #: ott/view/templates/shared/planner.mako:355
 #: ott/view/templates/shared/planner.mako:373
-#, fuzzy
 msgid "Bike"
 msgstr "Móvil"
 
@@ -704,7 +696,6 @@ msgid "More information about this stop"
 msgstr "Más información sobre esta parada"
 
 #: ott/view/templates/shared/route_select.mako:8
-#, fuzzy
 msgid "Select a line"
 msgstr "Seleccionar ruta"
 
@@ -740,7 +731,6 @@ msgid "Address"
 msgstr "Dirección"
 
 #: ott/view/templates/shared/util.mako:170
-#, fuzzy
 msgid "Intersection"
 msgstr "Intersección"
 
