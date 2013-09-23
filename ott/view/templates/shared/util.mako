@@ -54,7 +54,7 @@
 </%def>
 
 
-<%def name="struct_name_city_str(struct)">
+<%def name="name_city_str_from_struct(struct)">
 <%
     name = get_ele(struct, 'name')
     city = get_ele(struct, 'city')
@@ -69,7 +69,7 @@
     extra_params = get_extra_params()
     name = get_ele(place, 'name', _(u'Undefined'))
     city = get_ele(place, 'city', '')
-    name_city = struct_name_city_str(place)
+    name_city = name_city_str_from_struct(place)
 %>
 <a href="${path_prefix}map_place.html?name=${name}&city=${city}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
 </%def>

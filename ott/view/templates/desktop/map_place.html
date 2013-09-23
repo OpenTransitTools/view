@@ -3,9 +3,9 @@
 <%
     extra_params = util.get_extra_params()
 %>
-<%def name="title()">TriMet: ${_(u'Map location ')} ${util.struct_name_city_str(place)}</%def>
+<%def name="title()">TriMet: ${_(u'Map location ')} ${util.name_city_str_from_struct(place)}</%def>
 <%def name="schedule_selected()">class="selected"</%def>
-<h1>${util.struct_name_city_str(place)}</h1>
+<h1>${util.name_city_str_from_struct(place)}</h1>
 %if place['lat'] and place['lon']:
 ${util.place_map(place['name'], place['lon'], place['lat'], extra_params)}
 ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
