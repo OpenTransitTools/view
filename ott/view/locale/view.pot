@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-09-23 23:42+0100\n"
+"POT-Creation-Date: 2013-09-23 23:56+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -281,6 +281,10 @@ msgid "pm"
 msgstr ""
 
 #: ott/view/templates/desktop/planner_form.html:65
+msgid "Get directions"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_form.html:65
 msgid "Submit your trip plan information"
 msgstr ""
 
@@ -367,6 +371,7 @@ msgid "Amenities"
 msgstr ""
 
 #: ott/view/templates/desktop/stop_schedule.html:52
+#: ott/view/templates/desktop/stop_select_geocode.html:49
 #: ott/view/templates/shared/route_select.mako:18
 msgid "Select"
 msgstr ""
@@ -414,6 +419,10 @@ msgstr ""
 
 #: ott/view/templates/desktop/stop_select_geocode.html:57
 msgid "Re-type location"
+msgstr ""
+
+#: ott/view/templates/desktop/stop_select_geocode.html:64
+msgid "Continue"
 msgstr ""
 
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:53

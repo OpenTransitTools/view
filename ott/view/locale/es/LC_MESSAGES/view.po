@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-09-23 23:18+0100\n"
+"POT-Creation-Date: 2013-09-23 23:56+0100\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -284,6 +284,12 @@ msgid "pm"
 msgstr ""
 
 #: ott/view/templates/desktop/planner_form.html:65
+#, fuzzy
+#| msgid "Biking directions"
+msgid "Get directions"
+msgstr "En otros planificadores de bicicletas"
+
+#: ott/view/templates/desktop/planner_form.html:65
 msgid "Submit your trip plan information"
 msgstr "Agregue la información para su viaje"
 
@@ -375,6 +381,7 @@ msgid "Amenities"
 msgstr "Comodidades"
 
 #: ott/view/templates/desktop/stop_schedule.html:52
+#: ott/view/templates/desktop/stop_select_geocode.html:49
 #: ott/view/templates/shared/route_select.mako:18
 msgid "Select"
 msgstr "Consultar"
@@ -427,6 +434,10 @@ msgstr "Seleccionar lugar"
 msgid "Re-type location"
 msgstr "Reescriba la dirección"
 
+#: ott/view/templates/desktop/stop_select_geocode.html:64
+msgid "Continue"
+msgstr "Continuar"
+
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:53
 #: ott/view/templates/shared/planner.mako:359
 #: ott/view/templates/shared/planner.mako:405
@@ -446,7 +457,11 @@ msgstr "Seleccionar una parada"
 msgid ""
 "You can type in an address, intersection, landmark or Stop ID here. For "
 "the best results, don't include a city, state or ZIP code."
-msgstr "El programa de Internet Trip Planner le muestra paso a paso cómo llegar a destino mediante autobuses, trenes MAX Light Rail y tranvías Portland Streetcar.Sólo nos tiene que decir donde inicia el viaje y adónde se dirige, y nosotros hacemos el resto."
+msgstr ""
+"El programa de Internet Trip Planner le muestra paso a paso cómo llegar a"
+" destino mediante autobuses, trenes MAX Light Rail y tranvías Portland "
+"Streetcar.Sólo nos tiene que decir donde inicia el viaje y adónde se "
+"dirige, y nosotros hacemos el resto."
 
 #: ott/view/templates/shared/planner.mako:37
 #: ott/view/templates/shared/planner.mako:270
@@ -677,8 +692,8 @@ msgid ""
 "There is an alert that applies to this transit leg.  See the \"alerts\" "
 "section below for details"
 msgstr ""
-"No es una alerta que se aplica a esta etapa de tránsito. Vea la sección \ "alertas \" "
-"para obtener detalles"
+"No es una alerta que se aplica a esta etapa de tránsito. Vea la sección "
+"\\ \"alertas \" para obtener detalles"
 
 #: ott/view/templates/shared/planner.mako:480
 msgid "Get off at"
