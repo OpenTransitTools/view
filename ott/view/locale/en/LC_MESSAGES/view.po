@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-09-24 00:05+0100\n"
+"POT-Creation-Date: 2013-09-24 00:14+0100\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -16,6 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
+
+#: ott/view/templates/desktop/base.html:100
+msgid ""
+"Times shown are estimates based on schedules and can be affected by "
+"traffic, road conditions, detours and other factors. Before you go, check"
+msgstr ""
+
+#: ott/view/templates/desktop/base.html:102
+msgid ""
+"for real-time arrival information and any Service Alerts that may affect "
+"your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your "
+"Stop ID to 27299."
+msgstr ""
 
 #: ott/view/templates/desktop/exception.html:3
 #: ott/view/templates/desktop/planner.html:4
