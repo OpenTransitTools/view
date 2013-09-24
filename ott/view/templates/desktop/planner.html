@@ -57,7 +57,7 @@
         ## loop through the legs between start and end elements
         ## ${plib.render_leg(leg, n)}
         %for n, leg in enumerate(itinerary['legs']):
-            ${plib.render_leg(itinerary, n, is_mobile)}
+            ${plib.render_leg(itinerary, n, is_mobile, extra_params)}
         %endfor
     </ol><!-- end #itinerary -->
 

@@ -209,7 +209,7 @@
 %>
 </%def>
 
-<%def name="itin_tab(itin_list, i, text)">
+<%def name="itin_tab(itin_list, i, text, extra_params='')">
     %if len(itin_list) > i:
         <%
             it  = itin_list[i]
@@ -224,7 +224,7 @@
         %if sel:
         <li class="selected"><span><b>${text}</b><br />${dur} ${_('mins')}, ${tfer}, ${fare}</span></li>
         %else:
-        <li class="normal"><a href="${url}"><span><b>${text}</b><br/>${dur} ${_('mins')}, ${tfer}, ${fare}</span></a></li>
+        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br/>${dur} ${_('mins')}, ${tfer}, ${fare}</span></a></li>
         %endif
     %endif
 </%def>
@@ -346,7 +346,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 </ol>
 </%def>
 
-<%def name="render_bicycle_leg(leg, i)">
+<%def name="render_bicycle_leg(leg, i, extra_params='')">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
@@ -356,7 +356,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %>
             ${bike_title} ${_(u'to')}
             %if leg['to']['stop']:
-            <a href="${leg['to']['stop']['info']}" title="${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
+            <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
             %else:
             ${leg['to']['name']}
             %endif
@@ -386,7 +386,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
     </li>
 </%def>
 
-<%def name="render_walk_leg(leg, i)">
+<%def name="render_walk_leg(leg, i, extra_params='')">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
@@ -402,7 +402,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             ${walk_title} ${_(u'to')}
             %endif
             %if leg['to']['stop']:
-            <a href="${leg['to']['stop']['info']}" title="${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
+            <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
             %else:
             ${leg['to']['name']}
             %endif
@@ -436,7 +436,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 %>
 </%def>
 
-<%def name="render_transit_leg(leg_list, n, i, j, is_mobile)">
+<%def name="render_transit_leg(leg_list, n, i, j, is_mobile, extra_params='')">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
@@ -468,7 +468,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 else:
                     route_url = leg['route']['url']
             %>
-            <a href="${from_sched}" title="${_(u'Show schedule for')} ${from_name}" class="step-time">${start_time}</a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)}${get_interline_note(interline)}
+            <a href="${from_sched}${extra_params}" title="${_(u'Show schedule for')} ${from_name}" class="step-time">${start_time}</a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)}${get_interline_note(interline)}
             %if leg['alerts']:
             <a href="#alerts" title="${_(u'There is an alert that applies to this transit leg.  See the "alerts" section below for details')}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>
             %endif
@@ -477,12 +477,12 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 
     <li class="num${j}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
-        <p><a href="${to_sched}" title="${_(u'Show schedule for')} ${to_name}" class="step-time">${end_time}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}" title="${_(u'More information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
+        <p><a href="${to_sched}${extra_params}" title="${_(u'Show schedule for')} ${to_name}" class="step-time">${end_time}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'More information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
     </li>
 </%def>
 
 <% leg_id = 1 %>
-<%def name="render_leg(itinerary, n, is_mobile=False)">
+<%def name="render_leg(itinerary, n, is_mobile=False, extra_params='')">
 <%
     ''' call render stuff above...
     '''
@@ -498,13 +498,13 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
     if is_interline(leg_list, n):
         pass   # ignore interline legs (assume they're interline transit legs, which are handled below)
     elif leg['mode'] in (util.attr.BUS, util.attr.TRAM, util.attr.RAIL, util.attr.TRAIN, util.attr.GONDOLA):
-        ret_val = render_transit_leg(leg_list, n, leg_id, leg_id+1, is_mobile)
+        ret_val = render_transit_leg(leg_list, n, leg_id, leg_id+1, is_mobile, extra_params)
         leg_id = leg_id + 2 
     elif leg['mode'] == util.attr.WALK:
-        ret_val = render_walk_leg(leg, leg_id)
+        ret_val = render_walk_leg(leg, leg_id, extra_params)
         leg_id = leg_id + 1 
     elif leg['mode'] == util.attr.BICYCLE:
-        ret_val = render_bicycle_leg(leg, leg_id)
+        ret_val = render_bicycle_leg(leg, leg_id, extra_params)
         leg_id = leg_id + 1
 
     return ret_val
