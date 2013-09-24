@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-09-24 00:14+0100\n"
+"POT-Creation-Date: 2013-09-24 01:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,7 +31,7 @@ msgid ""
 msgstr ""
 
 #: ott/view/templates/desktop/exception.html:3
-#: ott/view/templates/desktop/planner.html:4
+#: ott/view/templates/desktop/planner.html:9
 #: ott/view/templates/desktop/planner_form.html:6
 msgid "Trip Planner"
 msgstr ""
@@ -172,13 +172,13 @@ msgstr ""
 msgid "Uncertain location"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:4
+#: ott/view/templates/desktop/planner.html:9
 #: ott/view/templates/desktop/planner.html:41
-#: ott/view/templates/desktop/planner_form.html:27
+#: ott/view/templates/desktop/planner_form.html:26
 msgid "From"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:4
+#: ott/view/templates/desktop/planner.html:9
 #: ott/view/templates/desktop/stop_schedule.html:81
 #: ott/view/templates/desktop/stop_schedule.html:95
 #: ott/view/templates/shared/planner.mako:276
@@ -190,27 +190,27 @@ msgstr ""
 msgid "to"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:24
+#: ott/view/templates/desktop/planner.html:29
 msgid "Help/tips"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:25
+#: ott/view/templates/desktop/planner.html:30
 #: ott/view/templates/shared/util.mako:95 ott/view/templates/shared/util.mako:99
 #: ott/view/templates/shared/util.mako:100
 msgid "View on Interactive Map"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:25
+#: ott/view/templates/desktop/planner.html:30
 #: ott/view/templates/shared/util.mako:95 ott/view/templates/shared/util.mako:100
 #: ott/view/templates/shared/util.mako:102
 msgid "High-speed connection recommended"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:25
+#: ott/view/templates/desktop/planner.html:30
 msgid "Show this trip on Interactive Map"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:26
+#: ott/view/templates/desktop/planner.html:31
 msgid "Feedback/report a problem"
 msgstr ""
 
@@ -219,7 +219,7 @@ msgid "Your Trip on TriMet"
 msgstr ""
 
 #: ott/view/templates/desktop/planner.html:42
-#: ott/view/templates/desktop/planner_form.html:32
+#: ott/view/templates/desktop/planner_form.html:31
 #: ott/view/templates/desktop/stop_select_list.html:40
 msgid "To"
 msgstr ""
@@ -281,15 +281,15 @@ msgstr ""
 msgid "Plan your trip on TriMet"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_form.html:37
+#: ott/view/templates/desktop/planner_form.html:36
 msgid "When"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_form.html:53
+#: ott/view/templates/desktop/planner_form.html:52
 msgid "am"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_form.html:54
+#: ott/view/templates/desktop/planner_form.html:53
 msgid "pm"
 msgstr ""
 
@@ -302,6 +302,7 @@ msgid "Submit your trip plan information"
 msgstr ""
 
 #: ott/view/templates/desktop/planner_form.html:66
+#: ott/view/templates/desktop/planner_form.html:67
 msgid "Show trip on an interactive map (broadband/desktop only)"
 msgstr ""
 
@@ -327,6 +328,14 @@ msgstr ""
 
 #: ott/view/templates/desktop/planner_form.html:91
 msgid "Help"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_form.html:100
+msgid "Interactive Map Trip Planner"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_form.html:100
+msgid "Get transit + biking directions in one itinerary"
 msgstr ""
 
 #: ott/view/templates/desktop/stop.html:7 ott/view/templates/desktop/stop.html:34
