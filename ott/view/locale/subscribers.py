@@ -9,6 +9,18 @@ log.setLevel(logging.DEBUG)
 '''
 from pyramid.i18n import get_localizer, TranslationStringFactory
 
+def mock_translator(str):
+    return str
+
+def get_translator(request):
+    ret_val = mock_translator
+    try:
+        if request.translate:
+            ret_val = request.translate
+    except Exception, e:
+        log.warn(e)
+    return ret_val
+
 def is_between_zero_one(f):
     ''' check string, int, float for a numeric value 0 > and <= 1 '''
     ret_val = False
@@ -41,7 +53,7 @@ def add_renderer_globals(event):
     event['localizer'] = request.localizer
 
 #tf = TranslationStringFactory('YOUR_GETTEXT_DOMAIN')
-tsf = TranslationStringFactory('controller')
+tsf = TranslationStringFactory('view')
 def add_localizer(event):
     request = event.request
     localizer = get_localizer(request)

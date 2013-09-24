@@ -6,6 +6,7 @@ import date_utils
 import num_utils
 import transit_utils
 
+from ott.view.locale.subscribers import get_translator
 
 def service_tabs(request, url):
     '''
@@ -27,13 +28,17 @@ def service_tabs(request, url):
 def planner_form_params(request):
     '''
     '''
+    #import pdb; pdb.set_trace()
+
     # step 0: default values for the trip planner form 
     dt = date_utils.get_day_info()
     tm = date_utils.get_time_info()
+    _  = get_translator(request)
+
     ret_val = {
-        "fromPlace" : "From",             #TODO localize....
+        "fromPlace" : _(u"From"),
         "fromCoord" : None,
-        "toPlace"   : "To",                           #TODO localize....
+        "toPlace"   : _(u"To"),
         "toCoord"   : None,
         "Hour"      : tm['hour'],
         "Minute"    : tm['minute'],
