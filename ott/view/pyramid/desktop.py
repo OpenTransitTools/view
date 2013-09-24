@@ -3,6 +3,7 @@ from pyramid.httpexceptions import HTTPFound
 
 from ott.view.utils import html_utils
 
+
 class Place(object):
     def __init__(self, name=None, lat=None, lon=None, city=None):
         self.set_values(name, lat, lon, city)
