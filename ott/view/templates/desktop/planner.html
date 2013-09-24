@@ -46,9 +46,9 @@
 
     %if len(plan['itineraries']) > 1:
     <ol id="plannertabs" class="group">
-        ${plib.itin_tab(plan['itineraries'], 0, _(u'Your best bet'))}
-        ${plib.itin_tab(plan['itineraries'], 1, _(u'Option 2'))}
-        ${plib.itin_tab(plan['itineraries'], 2, _(u'Option 3'))}
+        ${plib.itin_tab(plan['itineraries'], 0, _(u'Your best bet'), extra_params)}
+        ${plib.itin_tab(plan['itineraries'], 1, _(u'Option 2'), extra_params)}
+        ${plib.itin_tab(plan['itineraries'], 2, _(u'Option 3'), extra_params)}
     </ol><!-- end #tabs -->
     %endif
 
