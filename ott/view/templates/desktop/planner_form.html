@@ -15,9 +15,6 @@ ${plib.clear_tp_element_scriptlet()}
     <div id="main-fullwidth" ${self.mainContentStyle()} class="main">
     <%include file="/shared/share.html"/>
 </%def>
-<%def name="main_wrap_bottom()">
-    </div><!-- end #main-fullwidth -->
-</%def>
         <h1>${_(u'Plan your trip on TriMet')}</h1>
         <div id="plantrip" class="group">
             <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style"/>
@@ -88,16 +85,18 @@ ${plib.clear_tp_element_scriptlet()}
                         ${plib.mode_form_option(params['mode'])}
                     </select>
                 </fieldset>
-                <div class="spacer"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);">${_(u'Help')}</a></div>
+                <div class="spacer"><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);" class="trip-help">${_(u'Help')}</a></div>
             </div><!-- end #plantrip-right -->
             </form>
         <!-- ${params} -->
         </div><!-- end #plantrip -->
-        <p>&nbsp;</p>
 
         <div id="imap-wrap">
             <section id="imap" class="group">
                 <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
             </section><!-- end #imap -->
         </div><!-- end #promobar-wrap -->
-        <p>&nbsp;</p>
+        
+<%def name="main_wrap_bottom()">
+    </div><!-- end #main-fullwidth -->
+</%def>
