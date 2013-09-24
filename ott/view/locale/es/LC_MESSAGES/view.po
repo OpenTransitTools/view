@@ -301,7 +301,7 @@ msgstr ""
 
 #: ott/view/templates/desktop/planner_form.html:65
 msgid "Get directions"
-msgstr "En otros planificadores de bicicletas"
+msgstr "Obtener indicaciones"
 
 #: ott/view/templates/desktop/planner_form.html:65
 msgid "Submit your trip plan information"
@@ -479,7 +479,7 @@ msgid ""
 msgstr ""
 "El programa de Internet Trip Planner le muestra paso a paso cómo llegar a"
 " destino mediante autobuses, trenes MAX Light Rail y tranvías Portland "
-"Streetcar.Sólo nos tiene que decir donde inicia el viaje y adónde se "
+"Streetcar.  Sólo nos tiene que decir donde inicia el viaje y adónde se "
 "dirige, y nosotros hacemos el resto."
 
 #: ott/view/templates/shared/planner.mako:37

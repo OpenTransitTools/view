@@ -28,7 +28,7 @@
         <div id="sidebar-icons">
             <p class="helptips"><a href="${util.url_domain()}/tripplanner/trip-help.htm" target="#"><span>${_(u'Help/tips')}</span></a></p>
             <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
-            <p class="feedbackreport"><a href="/feedback.html?app=${plan['params']['feedback_url']}${extra_params}" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);"><span>${_(u'Feedback/report a problem')} ${plan['params']['feedback_txt']}</span></a></p>
+            <p class="feedbackreport"><a href="/feedback.html?app=${plan['params']['feedback_url']}" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);"><span>${_(u'Feedback/report a problem')} ${plan['params']['feedback_txt']}</span></a></p>
         </div><!-- end #sidebar-icons -->
         
     </aside><!-- end #sidebar -->
