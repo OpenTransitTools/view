@@ -3,7 +3,7 @@ import urllib
 import logging
 log = logging.getLogger(__file__)
 
-class Base():
+class Base(object):
 
     TRAIN     = 'TRAIN'
     RAIL      = 'RAIL'
