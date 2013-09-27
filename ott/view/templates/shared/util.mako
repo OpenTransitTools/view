@@ -119,6 +119,7 @@
 </%def>
 
 
+
 <%def name="get_locale(def_val='en')">
 <%
     from ott.view.utils import html_utils
@@ -171,6 +172,13 @@
                         </p>
                     </div>
 </%def>
+
+
+<%def name="print_year()"><%
+    from ott.view.utils import date_utils
+    dt = date_utils.get_day_info()
+%>${dt['year']}</%def>
+
 
 <%def name="month_options(selected)">
     %for m in (_(u'January'), _(u'February'), _(u'March'), _(u'April'), _(u'May'), _(u'June'), _(u'July'), _(u'August'), _(u'September'), _(u'October'), _(u'November'), _(u'December')):
