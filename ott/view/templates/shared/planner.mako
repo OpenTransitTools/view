@@ -275,7 +275,7 @@
 
 <%def name="get_route_name(route)"><% return "{0} {1} {2}".format(route['name'], _(u'to'), route['headsign']  if route['headsign'] else '')%></%def>
 <%def name="get_route_link(name, url, mode)">
-<a href="${url}" target="#" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
+<a href="${url}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
 <%def name="get_interline_note(interline)">
 %if interline != None:
 ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
@@ -283,7 +283,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 </%def>
 
 <%def name="render_fares(itinerary, fares_url)">
-<p class="fare">${_(u'Fare for this trip')}: <a href="${fares_url}" target="#">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
+<p class="fare">${_(u'Fare for this trip')}: <a href="${fares_url}">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
 </%def>
 
 <%def name="render_elevation(elevation)">
@@ -367,7 +367,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         </p>
 
         <div class="normal"><!-- hidden walking directions and map -->
-            <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Biking directions')}" class="open"><span>${_(u'Biking directions')}</span></a>
+            <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Biking directions')}" class="open"><span class="open-text">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
             <div class="description">
                 ${render_elevation(leg['elevation'])}
                 ${render_steps(_(u'Bike'), leg['from']['name'], leg['to']['name'], leg['steps'])}
@@ -412,7 +412,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         </p>
 
         <div class="normal"><!-- hidden walking directions and map -->
-            <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Walking directions')}" class="open"><span>${_(u'Walking directions')}</span></a>
+            <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Walking directions')}" class="open"><span class="open-text">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
             <div class="description">
                 %if leg['steps']:
                 ${render_elevation(leg['elevation'])}
@@ -468,7 +468,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 else:
                     route_url = leg['route']['url']
             %>
-            <a href="${from_sched}${extra_params}" title="${_(u'Show schedule for')} ${from_name}" class="step-time">${start_time}</a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)}${get_interline_note(interline)}
+            <a href="${from_sched}${extra_params}" title="${_(u'Show schedule for')} ${from_name}" class="step-time"><span>${start_time}</span></a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)}${get_interline_note(interline)}
             %if leg['alerts']:
             <a href="#alerts" title="${_(u'There is an alert that applies to this transit leg.  See the "alerts" section below for details')}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>
             %endif
@@ -477,7 +477,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 
     <li class="num${j}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
-        <p><a href="${to_sched}${extra_params}" title="${_(u'Show schedule for')} ${to_name}" class="step-time">${end_time}</a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'More information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
+        <p><a href="${to_sched}${extra_params}" title="${_(u'Show schedule for')} ${to_name}" class="step-time"><span>${end_time}</span></a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'More information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
     </li>
 </%def>
 

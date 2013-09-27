@@ -26,7 +26,7 @@
     <!-- end #sidebar -->
 </%def>
 
-<%def name="schedule_selected()">class="selected"</%def>
+<%def name="stations_selected()">class="selected"</%def>
     <h1 class="stopsstations-icon"><a href="stop_select_form.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Stops & Stations')}</a></h1>
     <h2><a href="stop.html?stop_id=${stop['stop_id']}&date=${date}${extra_params}">${_(u'Stop ID')} ${stop['stop_id']}</a></h2>
     <p>${util.name_city_str_from_struct(stop)}</p>

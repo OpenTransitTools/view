@@ -25,7 +25,6 @@
 <h2 class="error">Uncertain location: 834 SE LAMBERT</h2>
 
 <div id="location">
-    <!-- The Entry Form -->
     <form action="nearest_service.html"  method="GET" name="ambig" class="triptools-form">
 
         ${util.get_extra_params_hidden_inputs()}
@@ -43,8 +42,11 @@
            <input name="select" tabindex="2" type="submit" value="Select" class="submit" />
         </fieldset>
 
-
-        <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /><br />TODO spanish version of "or" </div>
+        <div class="or">
+        	<div class="or-bar"></div>
+            <div class="or-text">${_(u'Or')}</div>
+        </div>
+        
         <!-- Text Box for Re-Typing Location -->
         <fieldset>
             <label>Re-type location:</label>
@@ -55,7 +57,7 @@
         </fieldset>
         <fieldset>
             <input name="submit" tabindex="4" type="submit" value="Continue" class="submit" />
-            <p class="form-help-highslide"><a href="#" onClick="return hs.htmlExpand(this, { contentId: 'highslide-help' } )" class="highslide image">Help</a> TODO not sure why highslide isn't working</p>
+            <p class="form-help-highslide"><a href="#" onClick="return hs.htmlExpand(this, { contentId: 'highslide-help' } )" class="highslide image">Help</a></p>
         </fieldset>
     </form>
 </div>

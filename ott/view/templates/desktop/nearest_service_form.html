@@ -34,44 +34,57 @@
 
 <h1 class="stopsstations-icon"><a href="stop_select_form.html?near_service${extra_params}">${_(u'Stops & Stations')}</a></h1>
 <%def name="stations_selected()">class="selected"</%def>
-<p class="mobile"><a href="${util.url_domain()}/mobile/stop_select_form.html"><span>${_(u'Mobile')}</span></a></p>
 
-<div id="findstop">
-        <div class="continue-form-top" id="continue-form">
-           <!-- The Entry Form -->
-           <form action="nearest_service_geocode.html" name="" id="sched_id" method="GET"  class="form-style">
-           <p>${_('Show TriMet service within')} <select name="Walk" tabindex="1" >
-           <option value="0.02">100 feet</option>
-           <option value="0.05">250 feet</option>
-           <option value="0.10">1/10 mile</option>
-           <option value="0.25">1/4 mile</option>
-           <option value="0.50">1/2 mile</option>
-           <option value="0.75"> 3/4 mile</option>
-           <option selected="selected" value="0.9999">1 mile</option>
-           </select>
-           ${_('of')}:
-           <br/>
-           <input type="text" tabindex="1" name=Loc value="834 SE Lambert Circle"
-                onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular" size="45" maxlength="80" />
-           <br/>
-           <br/>
-           ${_('Starting at')} <select name="Time1" tabindex="5" >
-           <option value="12:00 am">12:00 am</option>
-           <option value="1:00 am">1:00 am</option>
-           </select> <select name="month" tabindex="7" >
-           <option value="January">January</option>
-           <option value="December">December</option>
-           </select><select name="day" tabindex="8" >
-           <option value="1">1</option>
-           <option value="31">31</option>
-           </select>
-           ${_('for')} <select name="Range" tabindex="9" >
-           <option value="1">1</option>
-           <option value="24">24</option>
-           </select> ${_('hours')}
-           <fieldset class="continue">
-             <input type="submit" value="${_(u'Find service')}" class="submit" onClick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);" />
-          </fieldset>
-       </form>
-   </div>
+<h2>Find the nearest service to your location</h2>
+<p>&nbsp;</p>
+<div id="findservice">
+    <form action="nearest_service_geocode.html" name="" id="sched_id" method="GET" class="triptools-form">
+        <fieldset>
+            <label for="Loc">${_(u'Location')}:</label>
+            <input name="Loc" id="Loc" type="text" value="${_(u'Address, intersection, landmark or Stop ID')}" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID');" class="regular" size="15" maxlength="80" />
+                <div class="form-help">
+                    ${util.form_help_right()}
+                </div>
+        </fieldset>
+        <fieldset>
+            <label for="Walk">${_(u'Within')}:</label>
+            <select id="Walk" name="Walk" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
+                <option value="0.02">100 feet</option>
+                <option value="0.05">250 feet</option>
+                <option value="0.10">1/10 mile</option>
+                <option value="0.25">1/4 mile</option>
+                <option value="0.50">1/2 mile</option>
+                <option value="0.75">3/4 mile</option>
+                <option selected="selected" value="0.9999">1 mile</option>
+            </select>
+            <span>of my location</span>
+        </fieldset>
+        <fieldset>
+            <label for="time">${_(u'Starting at')}:</label>
+            <select id="time" name="Time1" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
+                <option value="12:00 am">12:00 am</option>
+                <option value="1:00 am">1:00 am</option>
+            </select>
+            <span>on</span>
+            <label for="month" class="hide">${_(u'Month')}:</label>
+            <select id="month" name="month" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
+                <option value="January">January</option>
+                <option value="December">December</option>
+            </select>
+            <label for="day" class="hide">${_(u'Day')}:</label>
+            <select id="day" name="day" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
+                <option value="1">1</option>
+                <option value="31">31</option>
+            </select>
+            <span>for</span>
+            <label for="range" class="hide">${_(u'Length of time')}:</label>
+            <select id="range" name="Range" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
+                <option value="1">1 hour</option>
+                <option value="24">24 hours</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            <input type="submit" value="${_(u'Find service')}" class="submit" onClick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'Find Nearest Service submit']);" />
+        </fieldset>
+    </form>
 </div>

@@ -81,25 +81,24 @@
 <p>
   <a href="planner_form.html?to=${name}::${lat},${lon}${extra_params}"
     title="${_(u'Plan a trip')} ${_(u'to')} ${name}"
-    >${_(u'to here')}</a> &ndash; <a 
+    >${_(u'To here')}</a> &nbsp;&bull;&nbsp; <a 
     href="planner_form.html?from=${name}::${lat},${lon}${extra_params}"
     title="${_(u'Plan a trip')} ${_(u'from')} ${name}"
-    >${_(u'from here')}</a>
+    >${_(u'From here')}</a>
 </p>
 </%def>
 
 ## static map block
 <%def name="staticmap_imap_link(name, lon, lat, extra_params, map_url)">
 <p>
-    <a href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}"
-       target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"
-    ><img src="${map_url}"/></a>
+    <a href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" title="${_(u'View on Interactive Map')}">
+		<img src="${map_url}" alt="${_(u'Stop location on a map')}" />
+	</a>
 </p>
-<p class="imap">
-    <a href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params} title="${_(u'View on Interactive Map')} 
-       target="#" title="${_(u'High-speed connection recommended')}">${_(u'View on Interactive Map')}</a>
-    <br/>
-    <span class="secondary">${_(u'High-speed connection recommended')}</span>
+<p>
+    <a class="imap" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params} title="${_(u'View on Interactive Map')}>
+	   <span class="imap-text">${_(u'View on Interactive Map')}</span><br /><span class="secondary">${_(u'High-speed connection recommended')}</span>
+	</a>
 </p>
 </%def>
 

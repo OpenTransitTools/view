@@ -48,7 +48,10 @@
             <input type="submit" value="${_(u'Find stops')}" class="submit" onClick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);" />
         </fieldset>
     </form>
-    <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /></div>
+    <div class="or">
+        <div class="or-bar"></div>
+        <div class="or-text">${_(u'Or')}</div>
+    </div>
     ${rs.route_select_form('stop_select_list.html', routes['routes'], ga_select_route)}
 </div>
 

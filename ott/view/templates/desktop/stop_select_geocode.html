@@ -49,7 +49,12 @@
            <input name="select" tabindex="2" type="submit" value="${_(u'Select')}" class="submit" />
         </fieldset>
     </form>
-    <div class="or-bar"><img src="${util.img_url()}/or-bar.png" alt="or" /><br />TODO spanish version of "or" </div>
+
+    <div class="or">
+        <div class="or-bar"></div>
+        <div class="or-text">${_(u'Or')}</div>
+    </div>
+
     <form action="stop_select_geocode.html"  method="GET" name="ambig" class="triptools-form">
         ${util.get_extra_params_hidden_inputs()}
         <!-- Text box for re-geocoding a string -->
