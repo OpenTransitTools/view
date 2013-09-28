@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*- 
+## -*- coding: utf-8 -*-
 <!doctype html><!-- lines 2-6 need to be up here for IE to parse correctly -->
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
@@ -16,6 +16,7 @@
 <%def name="js_onload()">/** ABSTRACT js_onload() **/</%def>
 <%def name="emergency_content()"><!-- ABSTRACT emergency_content() --></%def>
 <%def name="side_bar()"><!-- ABSTRACT side_bar() --></%def>
+<%def name="bottom()"><!-- ABSTRACT bottom() --></%def>
 <%def name="mainContentStyle()"></%def>
 
 <%def name="planner_selected()"></%def>
@@ -34,8 +35,6 @@
 <%def name="main_wrap_bottom()">
     </section><!-- end #main -->
 </%def>
-
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -53,10 +52,7 @@
     ${self.header()}
     <%include file="/shared/head-bottom.html" />
 </head>
-
-
 <body class="standard" onLoad="${self.js_onload()}">
-
     <%include file="/shared/topnav.html" />
     ${self.emergency_content()|n,decode.utf8}
 
@@ -76,11 +72,9 @@
         </div><!-- end #triptools-wrap -->
     </header><!-- end #header-wrap -->
 
-
     <div id="content-wrap" class="group">
         <div id="content" class="group">
             <a name="content"></a>
-
             ${self.main_wrap_top()}
             ${next.body()}
             ${self.main_wrap_bottom()}
@@ -90,29 +84,12 @@
             % else:
                 ${self.side_bar()}
             % endif
-
         </div><!-- end #content -->
     </div><!-- end #content-wrap -->
 
-
     <div id="bottom-wrap" class="group">
-<!-- TODO: I need a way to define a bottom area similar to the way we handle the sidebar -->
-        <!-- only show the imap promo if the planner_form page -->
-        <div id="imap-wrap">
-            <section id="imap" class="group">
-                <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
-            </section><!-- end #imap -->
-        </div><!-- end #promobar-wrap -->
-        <!-- only show the disclaimer if the planner page -->
-        <div id="disclaimer">
-            <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
-                <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
-                ${_(u'for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
-            </p>
-        </div>
-<!-- end TODO -->
+        ${self.bottom()}
     </div>
-
 
     <%include file="/shared/footer.html" />
 </body>

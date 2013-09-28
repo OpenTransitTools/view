@@ -13,6 +13,21 @@
                 </div>
 </%def>
 
+<%def name="planner_bottom()">
+        <div id="imap-wrap">
+            <section id="imap" class="group">
+                <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
+            </section><!-- end #imap -->
+        </div><!-- end #promobar-wrap -->
+        <!-- only show the disclaimer if the planner page -->
+        <div id="disclaimer">
+            <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
+                <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
+                ${_(u'for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
+            </p>
+        </div>
+</%def>
+
 <%def name="clear_tp_element_scriptlet()">
     <script>
         function clear_tp_element(id)
