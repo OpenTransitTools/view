@@ -18,6 +18,7 @@ def feedback(request):
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
 def planner_form(request):
     ret_val = {}
+    #import pdb; pdb.set_trace()
     params = html_utils.planner_form_params(request)
     ret_val['params'] = params
     return ret_val

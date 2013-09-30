@@ -44,12 +44,12 @@ def planner_form_params(request):
         "Minute"    : tm['minute'],
         "AmPm"      : "am" if tm['is_am'] else "pm",
         "is_am"     : tm['is_am'],
-        "month"     : dt['m_abbrv'],
+        "month"     : dt['month'],
         "day"       : dt['day'],
         "year"      : dt['year'],
         "numdays"   : dt['numdays'],
-        "Walk"      : 1,
         "Arr"       : False,
+        "Walk"      : 840,
         "optimize"  : "QUICK",
         "mode"      : "TRANSIT,WALK"
     }

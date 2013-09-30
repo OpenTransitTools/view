@@ -796,96 +796,96 @@ msgstr "Sitios de referencia"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "January"
-msgstr "enero"
+msgstr "Enero"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "February"
-msgstr "febrero"
+msgstr "Febrero"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "March"
-msgstr "marzo"
+msgstr "Marzo"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "April"
-msgstr "abril"
+msgstr "Abril"
 
 #: ott/view/templates/shared/util.mako:184
 #: ott/view/templates/shared/util.mako:194
 msgid "May"
-msgstr "mayo"
+msgstr "Mayo"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "June"
-msgstr "junio"
+msgstr "Junio"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "July"
-msgstr "julio"
+msgstr "Julio"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "August"
-msgstr "agosto"
+msgstr "Agosto"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "September"
-msgstr "septiembre"
+msgstr "Septiembre"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "October"
-msgstr "octubre"
+msgstr "Octubre"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "November"
-msgstr "noviembre"
+msgstr "Noviembre"
 
 #: ott/view/templates/shared/util.mako:184
 msgid "December"
-msgstr "diciembre"
+msgstr "Diciembre"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Jan"
-msgstr "enero"
+msgstr "Enero"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Feb"
-msgstr "feb"
+msgstr "Feb"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Mar"
-msgstr "marzo"
+msgstr "Marzo"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Apr"
-msgstr "abr"
+msgstr "Abr"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Jun"
-msgstr "jun"
+msgstr "Jun"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Jul"
-msgstr "jul"
+msgstr "Jul"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Aug"
-msgstr "agosto"
+msgstr "Agosto"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Sep"
-msgstr "sept"
+msgstr "Sept"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Oct"
-msgstr "oct"
+msgstr "Oct"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Nov"
-msgstr "nov"
+msgstr "Nov"
 
 #: ott/view/templates/shared/util.mako:194
 msgid "Dec"
-msgstr "dec"
+msgstr "Dic"
 
 #: ott/view/templates/shared/util.mako:221
 msgid "See footnote"
