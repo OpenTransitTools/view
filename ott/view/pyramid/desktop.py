@@ -29,7 +29,7 @@ def planner(request):
     try:
         ret_val = request.model.get_plan(request.query_string, **request.params)
     except:
-        url = "{1}?{2}".format('exception.html', request.query_string)
+        url = "{0}?{1}".format('exception.html', request.query_string)
         ret_val = HTTPFound(location=url, headers=request.headers)
     return ret_val
 
