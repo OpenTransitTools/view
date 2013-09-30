@@ -49,7 +49,7 @@ def do_view_config(config):
     config.add_route('sparkline',                               '/sparkline')
     config.add_route('qrcode',                                  '/qrcode')
 
-    config.add_route('exception_desktop',                       '/exception.html')
+    config.add_route('exception_desktop',                       'exception.html')
     config.add_route('feedback_desktop',                        '/feedback.html')
 
     config.add_route('planner_form_desktop',                    '/planner_form.html')
