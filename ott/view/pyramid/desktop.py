@@ -29,8 +29,11 @@ def planner(request):
     try:
         ret_val = request.model.get_plan(request.query_string, **request.params)
     except:
-        url = "{0}?{1}".format('exception.html', request.query_string)
-        ret_val = HTTPFound(location=url, headers=request.headers)
+        # TODO: have to figure out how to make this work with Apache mod_proxy, ala /planner/exception.html vs. /exception.html
+        #url = "{0}?{1}".format('exception.html', request.query_string)
+        #ret_val = HTTPFound(location=url, headers=request.headers)
+        ret_val = HTTPFound(location = request.route_url('exception_desktop', pagename='exception'))
+        pass
     return ret_val
 
 @view_config(route_name='stop_desktop', renderer='desktop/stop.html')
