@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-09-28 02:04+0100\n"
+"POT-Creation-Date: 2013-09-30 22:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,11 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 0.9.6\n"
+
+#: ott/view/model/place.py:41 ott/view/templates/desktop/nearest_service_geocode.html:7 ott/view/templates/desktop/stop_select_geocode.html:8
+#: ott/view/templates/desktop/stop_select_geocode.html:34
+msgid "Uncertain location"
+msgstr ""
 
 #: ott/view/templates/desktop/exception.html:3 ott/view/templates/desktop/planner.html:9 ott/view/templates/desktop/planner_form.html:6
 msgid "Trip Planner"
@@ -131,11 +136,6 @@ msgstr ""
 
 #: ott/view/templates/desktop/nearest_service_form.html:87
 msgid "Find service"
-msgstr ""
-
-#: ott/view/templates/desktop/nearest_service_geocode.html:7 ott/view/templates/desktop/stop_select_geocode.html:8
-#: ott/view/templates/desktop/stop_select_geocode.html:34
-msgid "Uncertain location"
 msgstr ""
 
 #: ott/view/templates/desktop/nearest_service_geocode.html:47 ott/view/templates/desktop/stop_select_form.html:53
