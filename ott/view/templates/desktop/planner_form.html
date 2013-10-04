@@ -11,6 +11,7 @@ ${plib.clear_tp_element_scriptlet()}
     <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner" />
     <meta name="Description" content="" />
 </%def>
+<%def name="planner_selected()">class="selected"</%def>
 ## override section ID to make this page full width
 <%def name="main_wrap_top()">
     <section id="main-fullwidth" ${self.mainContentStyle()} class="main">
@@ -20,7 +21,11 @@ ${plib.clear_tp_element_scriptlet()}
     </section><!-- end #main-fullwidth -->
 </%def>
 <%def name="bottom()">
-    ${plib.planner_bottom()}
+    <div id="imap-wrap">
+        <section id="imap" class="group">
+            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
+        </section><!-- end #imap -->
+    </div><!-- end #promobar-wrap -->
 </%def>
 ##
 ## main content
