@@ -18,17 +18,20 @@ class Base(object):
 
     def get_plan(self, get_params, **kwargs): pass
 
+    def get_geocode(self, get_params, **kwargs): pass
+
     def get_stop(self, get_params, **kwargs): pass
     def get_stop_schedule(self, get_params, **kwargs): pass
 
     def get_routes(self, get_params, **kwargs): pass
     def get_route_stops(self, get_params, **kwargs): pass
 
-    def stream_json(self, u, args):
+
+    def stream_json(self, svc, args, domain="http://127.0.0.1:34443"):
         ''' utility class to stream .json
         '''
         ret_val={}
-        url = "{0}?{1}".format(u, args)
+        url = "{0}/{1}?{2}".format(domain, svc, args)
         stream = urllib.urlopen(url)
         otp = stream.read()
         ret_val = json.loads(otp)

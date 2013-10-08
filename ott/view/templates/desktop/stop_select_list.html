@@ -40,7 +40,7 @@
             <label for="${d['name']}">${_(u'To')} ${d['name']}</label>
             <select name="stop_id" id="${d['name']}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
                 % for s in d['stops']:
-                <option value="${s['stop_id']}">${s['name']}</option>
+                <option value="${s['stop_id']}">${s['name']} (#${s['stop_id']})</option>
                 % endfor
             </select>
         </fieldset>

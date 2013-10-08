@@ -57,20 +57,19 @@ def stop_schedule(request):
 def stop_select_form(request):
     ret_val = {}
     ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
-    ret_val['place']  = {'name':'822 SE XXX Street', 'lat':'45.5', 'lon':'-122.5'}
     return ret_val
 
 @view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
 def stop_select_list(request):
-    route = html_utils.get_first_param(request, 'route')
     ret_val = {}
+    route = html_utils.get_first_param(request, 'route')
     ret_val['route_stops'] = request.model.get_route_stops(request.query_string, **request.params)
     return ret_val
 
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
 def stop_select_geocode(request):
     ret_val = {}
-    ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
+    #ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
     return ret_val
 
 @view_config(route_name='stop_select_geocode_nearest_desktop', renderer='desktop/stop_select_geocode_nearest.html')
