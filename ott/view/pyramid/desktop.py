@@ -69,7 +69,7 @@ def stop_select_list(request):
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
 def stop_select_geocode(request):
     ret_val = {}
-    #ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
+    ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
     return ret_val
 
 @view_config(route_name='stop_select_geocode_nearest_desktop', renderer='desktop/stop_select_geocode_nearest.html')

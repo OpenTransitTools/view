@@ -25,7 +25,7 @@ class Model(Base):
         return self.stream_json('plan_trip', get_params)
 
     def get_geocode(self, get_params, **kwargs): 
-        pass
+        return self.stream_json('plan_trip', get_params)
 
 def main():
     m=Model()
