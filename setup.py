@@ -19,6 +19,7 @@ requires = [
     'pillow',
     'colander',
     'qrcode',
+    'six',
 ]
 
 #
