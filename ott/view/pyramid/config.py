@@ -35,7 +35,8 @@ def do_static_config(config):
     config.add_static_view('images', 'static/images',   cache_max_age=cache_age)
 
     # important ... allow .html extension on mako templates
-    config.add_renderer(".html", "pyramid.mako_templating.renderer_factory")
+    config.include('pyramid_mako')
+    config.add_renderer(".html", "pyramid_mako.renderer_factory")
 
     # internationalization ... @see: locale/subscribers.py for more info
     config.add_translation_dirs('ott.view:locale')
