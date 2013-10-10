@@ -336,11 +336,11 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                         if dir != None:
                             dir = dir.lower().replace('_', ' ')
                             if dir not in ('continue'):
-                                turn = "{0} {1} {2} {3}".format(_(u'Turn'), dir, _(u'on'), name)
+                                turn = "{0} {1} {2} {3}".format(_(u'Turn'), _(dir), _(u'on'), name)
                             else:
                                 instruct_verb = dir.title()
 
-                        instruct = "{0} {1} {2} {3} {4}".format(instruct_verb, pretty_distance(s['distance']), s['compass_direction'], conjunction, name)
+                        instruct = "{0} {1} {2} {3} {4}".format(instruct_verb, pretty_distance(s['distance']), _(s['compass_direction']), conjunction, name)
                     %>
                     %if turn != None:
                     <li>${turn}</li>

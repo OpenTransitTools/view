@@ -13,6 +13,7 @@ requires = [
     'pyramid_mako',
     'pyramid',
     'pyramid_debugtoolbar',
+    'mako',
     'waitress',
     'Babel',
     'lingua',
@@ -47,6 +48,7 @@ dev_extras = (
 # @see: http://blog.abourget.net/2011/1/13/pyramid-and-mako:-how-to-do-i18n-the-pylons-way/
 find_translation_strings_in_these_files = {'.' : [
             ('ott/**.py', 'python', None),
+            ('ott/**/locale/*.html',     'mako', None),
             ('ott/**/templates/**.html', 'mako', None),
             ('ott/**/templates/**.mako', 'mako', None),
             ('ott/**/static/**', 'ignore', None)
