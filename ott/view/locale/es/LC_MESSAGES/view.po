@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-10-10 16:48-0700\n"
+"POT-Creation-Date: 2013-10-15 00:04+0100\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 1.3\n"
+"Generated-By: Babel 0.9.6\n"
 
 #: ott/view/locale/misc-strings.html:6
 msgid "Bench"
@@ -47,7 +47,7 @@ msgstr "TransitTracker Sign"
 
 #: ott/view/locale/misc-strings.html:13
 msgid "Food Vending Machine"
-msgstr ""
+msgstr "Máquina Expendedora de Alimentos"
 
 #: ott/view/locale/misc-strings.html:14
 msgid "Information Display"
@@ -111,117 +111,142 @@ msgstr "Basurero"
 
 #: ott/view/locale/misc-strings.html:29
 msgid "Vending Machine"
-msgstr ""
+msgstr "Expendedor Automático"
 
 #: ott/view/locale/misc-strings.html:32
-msgid "north"
-msgstr "norte"
+msgid "left"
+msgstr "a la izquierda"
 
 #: ott/view/locale/misc-strings.html:33
-msgid "south"
-msgstr "sur"
+msgid "right"
+msgstr "a la derecha"
 
 #: ott/view/locale/misc-strings.html:34
-msgid "east"
-msgstr "este"
+msgid "slightly left"
+msgstr "ligeramente a la izquierda"
 
 #: ott/view/locale/misc-strings.html:35
-msgid "west"
-msgstr "oeste"
+msgid "slightly right"
+msgstr "ligeramente a la derecha"
 
 #: ott/view/locale/misc-strings.html:36
-msgid "northeast"
-msgstr "nordeste"
+msgid "hard left"
+msgstr "completamente a la izquierda"
 
 #: ott/view/locale/misc-strings.html:37
-msgid "northwest"
-msgstr "noroeste"
+msgid "hard right"
+msgstr "completamente a la derecha"
 
 #: ott/view/locale/misc-strings.html:38
-msgid "southeast"
-msgstr "sureste"
-
-#: ott/view/locale/misc-strings.html:39
-msgid "southwest"
-msgstr "sudoeste"
-
-#: ott/view/locale/misc-strings.html:41
-msgid "left"
-msgstr "gira a la izquierda"
-
-#: ott/view/locale/misc-strings.html:42
-#, fuzzy
-msgid "right"
-msgstr "gira a la derecha"
-
-#: ott/view/locale/misc-strings.html:43
-msgid "slight left"
-msgstr "gira ligeramente a la izquierda"
-
-#: ott/view/locale/misc-strings.html:44
-msgid "slight right"
-msgstr "gira ligeramente a la derecha"
-
-#: ott/view/locale/misc-strings.html:45
-msgid "hard left"
-msgstr "gira completamente a la izquierda"
-
-#: ott/view/locale/misc-strings.html:46
-msgid "hard right"
-msgstr "gira completamente a la derecha"
-
-#: ott/view/locale/misc-strings.html:47
 msgid "continue"
 msgstr "sigue recto por"
 
-#: ott/view/locale/misc-strings.html:48
+#: ott/view/locale/misc-strings.html:39
 msgid "continue to"
 msgstr "para continuar en"
 
-#: ott/view/locale/misc-strings.html:49
+#: ott/view/locale/misc-strings.html:40
 msgid "becomes"
 msgstr "se hace"
 
-#: ott/view/locale/misc-strings.html:50
+#: ott/view/locale/misc-strings.html:41
 msgid "take roundabout counterclockwise"
 msgstr ""
 
-#: ott/view/locale/misc-strings.html:51
+#: ott/view/locale/misc-strings.html:42
 msgid "take roundabout clockwise"
 msgstr ""
 
-#: ott/view/locale/misc-strings.html:56
+#: ott/view/locale/misc-strings.html:44
+msgid "north"
+msgstr "norte"
+
+#: ott/view/locale/misc-strings.html:45
+msgid "south"
+msgstr "sur"
+
+#: ott/view/locale/misc-strings.html:46
+msgid "east"
+msgstr "este"
+
+#: ott/view/locale/misc-strings.html:47
+msgid "west"
+msgstr "oeste"
+
+#: ott/view/locale/misc-strings.html:48
+msgid "northeast"
+msgstr "nordeste"
+
+#: ott/view/locale/misc-strings.html:49
+msgid "northwest"
+msgstr "noroeste"
+
+#: ott/view/locale/misc-strings.html:50
+msgid "southeast"
+msgstr "sureste"
+
+#: ott/view/locale/misc-strings.html:51
+msgid "southwest"
+msgstr "sudoeste"
+
+#: ott/view/locale/misc-strings.html:53
 msgid "foot"
 msgstr "pie"
 
-#: ott/view/locale/misc-strings.html:57
+#: ott/view/locale/misc-strings.html:54
 msgid "feet"
 msgstr "pies"
 
-#: ott/view/locale/misc-strings.html:58
+#: ott/view/locale/misc-strings.html:55
 msgid "mile"
 msgstr "milla"
 
-#: ott/view/locale/misc-strings.html:59
+#: ott/view/locale/misc-strings.html:56
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:56
 msgid "miles"
 msgstr "millas"
 
 #: ott/view/model/place.py:41
 #: ott/view/templates/desktop/nearest_service_geocode.html:7
 #: ott/view/templates/desktop/stop_select_geocode.html:8
-#: ott/view/templates/desktop/stop_select_geocode.html:34
+#: ott/view/templates/desktop/stop_select_geocode.html:35
 msgid "Uncertain location"
 msgstr "Localización indeterminada"
 
 #: ott/view/templates/desktop/exception.html:3
+msgid "Exception"
+msgstr "Excepción"
+
+#: ott/view/templates/desktop/exception.html:19
 #: ott/view/templates/desktop/planner.html:9
+#: ott/view/templates/desktop/planner.html:47
 #: ott/view/templates/desktop/planner_form.html:6
+#: ott/view/templates/desktop/planner_form.html:33
+#: ott/view/templates/desktop/planner_walk.html:9
+#: ott/view/templates/desktop/planner_walk.html:47
 msgid "Trip Planner"
 msgstr "Planificador de Viajes"
 
+#: ott/view/templates/desktop/exception.html:19
+#: ott/view/templates/desktop/map_place.html:15
+#: ott/view/templates/desktop/nearest_service.html:39
+#: ott/view/templates/desktop/nearest_service_form.html:36
+#: ott/view/templates/desktop/nearest_service_geocode.html:25
+#: ott/view/templates/desktop/planner.html:47
+#: ott/view/templates/desktop/planner_form.html:33
+#: ott/view/templates/desktop/planner_walk.html:47
+#: ott/view/templates/desktop/stop.html:32
+#: ott/view/templates/desktop/stop_schedule.html:31
+#: ott/view/templates/desktop/stop_select_form.html:37
+#: ott/view/templates/desktop/stop_select_geocode.html:34
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:47
+#: ott/view/templates/desktop/stop_select_list.html:33
+msgid "Home"
+msgstr "Teléfono cerca de la parada"
+
 #: ott/view/templates/desktop/exception.html:20
-msgid "Exception"
-msgstr "Excepción"
+msgid "Oops!"
+msgstr "Vaya"
 
 #: ott/view/templates/desktop/exception.html:21
 msgid "The TripPlanner is not working..."
@@ -253,9 +278,13 @@ msgstr "Sugerencias y ayuda"
 msgid "Map location "
 msgstr "Muestre el mapa interactivo"
 
+#: ott/view/templates/desktop/map_place.html:15
+msgid "Maps & Schedules"
+msgstr "Mapas y Horarios"
+
 #: ott/view/templates/desktop/nearest_service.html:6
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:18
-#: ott/view/templates/desktop/stop_select_geocode_nearest.html:49
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:51
 msgid "Stops near"
 msgstr "Paradas cercanas a"
 
@@ -309,84 +338,105 @@ msgstr ""
 msgid "Mobile"
 msgstr "Móvil"
 
+#: ott/view/templates/desktop/nearest_service.html:39
+#: ott/view/templates/desktop/nearest_service_form.html:36
+#: ott/view/templates/desktop/nearest_service_geocode.html:25
+#: ott/view/templates/desktop/stop.html:32
+#: ott/view/templates/desktop/stop_schedule.html:31
+#: ott/view/templates/desktop/stop_select_form.html:37
+#: ott/view/templates/desktop/stop_select_form.html:38
+#: ott/view/templates/desktop/stop_select_geocode.html:34
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:47
+#: ott/view/templates/desktop/stop_select_list.html:33
+msgid "Stops & Stations"
+msgstr "Paradas y Estaciones"
+
 #: ott/view/templates/desktop/nearest_service_form.html:12
 msgid "Nearest Service"
 msgstr "Servicio más cercano"
 
-#: ott/view/templates/desktop/nearest_service_form.html:35
-#: ott/view/templates/desktop/nearest_service_geocode.html:24
-#: ott/view/templates/desktop/stop.html:31
-#: ott/view/templates/desktop/stop_schedule.html:30
-#: ott/view/templates/desktop/stop_select_form.html:36
-#: ott/view/templates/desktop/stop_select_geocode.html:33
-#: ott/view/templates/desktop/stop_select_geocode_nearest.html:47
-#: ott/view/templates/desktop/stop_select_list.html:32
-msgid "Stops & Stations"
-msgstr "Paradas y Estaciones"
+#: ott/view/templates/desktop/nearest_service_form.html:37
+msgid "Nearest service"
+msgstr "Servicio más cercano"
 
-#: ott/view/templates/desktop/nearest_service_form.html:43
+#: ott/view/templates/desktop/nearest_service_form.html:41
+msgid "Find the nearest service to your location"
+msgstr "Encuentre servicio más cercano a"
+
+#: ott/view/templates/desktop/nearest_service_form.html:46
 msgid "Location"
 msgstr "Muestre el mapa interactivo"
 
-#: ott/view/templates/desktop/nearest_service_form.html:44
-#: ott/view/templates/desktop/stop_select_form.html:42
+#: ott/view/templates/desktop/nearest_service_form.html:47
+#: ott/view/templates/desktop/stop_select_form.html:45
 msgid "Address, intersection, landmark or Stop ID"
 msgstr "Dirección, intersección, lugar o Stop ID (número de la parada)"
 
-#: ott/view/templates/desktop/nearest_service_form.html:50
+#: ott/view/templates/desktop/nearest_service_form.html:53
 msgid "Within"
 msgstr "Dentro de"
 
-#: ott/view/templates/desktop/nearest_service_form.html:63
+#: ott/view/templates/desktop/nearest_service_form.html:66
 msgid "Starting at"
 msgstr "Partiendo desde"
 
-#: ott/view/templates/desktop/nearest_service_form.html:69
+#: ott/view/templates/desktop/nearest_service_form.html:72
 msgid "Month"
 msgstr "Mes"
 
-#: ott/view/templates/desktop/nearest_service_form.html:74
+#: ott/view/templates/desktop/nearest_service_form.html:77
 msgid "Day"
 msgstr "Día"
 
-#: ott/view/templates/desktop/nearest_service_form.html:80
+#: ott/view/templates/desktop/nearest_service_form.html:83
 msgid "Length of time"
 msgstr "Cantidad de tiempo"
 
-#: ott/view/templates/desktop/nearest_service_form.html:87
+#: ott/view/templates/desktop/nearest_service_form.html:90
 msgid "Find service"
 msgstr "Buscar servicio"
 
-#: ott/view/templates/desktop/nearest_service_geocode.html:47
-#: ott/view/templates/desktop/stop_select_form.html:53
-#: ott/view/templates/desktop/stop_select_geocode.html:55
+#: ott/view/templates/desktop/nearest_service_geocode.html:28
+#: ott/view/templates/desktop/stop_select_geocode.html:37
+msgid "We cannot find"
+msgstr "No podemos encontrar a"
+
+#: ott/view/templates/desktop/nearest_service_geocode.html:50
+#: ott/view/templates/desktop/stop_select_form.html:56
+#: ott/view/templates/desktop/stop_select_geocode.html:58
+#: ott/view/templates/desktop/stop_select_list.html:58
 msgid "Or"
 msgstr "O"
 
 #: ott/view/templates/desktop/planner.html:9
 #: ott/view/templates/desktop/planner.html:49
 #: ott/view/templates/desktop/planner_form.html:38
+#: ott/view/templates/desktop/planner_walk.html:9
+#: ott/view/templates/desktop/planner_walk.html:49
 #: ott/view/utils/html_utils.py:39
 msgid "From"
 msgstr "De"
 
 #: ott/view/templates/desktop/planner.html:9
-#: ott/view/templates/desktop/stop_schedule.html:81
-#: ott/view/templates/desktop/stop_schedule.html:95
+#: ott/view/templates/desktop/planner_walk.html:9
+#: ott/view/templates/desktop/stop_schedule.html:84
+#: ott/view/templates/desktop/stop_schedule.html:98
 #: ott/view/templates/shared/planner.mako:280
 #: ott/view/templates/shared/planner.mako:331
-#: ott/view/templates/shared/planner.mako:361
-#: ott/view/templates/shared/planner.mako:402
-#: ott/view/templates/shared/planner.mako:406
+#: ott/view/templates/shared/planner.mako:362
+#: ott/view/templates/shared/planner.mako:403
+#: ott/view/templates/shared/planner.mako:407
 #: ott/view/templates/shared/util.mako:83
 msgid "to"
 msgstr "a"
 
 #: ott/view/templates/desktop/planner.html:29
+#: ott/view/templates/desktop/planner_walk.html:29
 msgid "Help/tips"
 msgstr "Ayuda / consejos"
 
 #: ott/view/templates/desktop/planner.html:30
+#: ott/view/templates/desktop/planner_walk.html:30
 #: ott/view/templates/shared/util.mako:94
 #: ott/view/templates/shared/util.mako:99
 #: ott/view/templates/shared/util.mako:100
@@ -394,19 +444,23 @@ msgid "View on Interactive Map"
 msgstr "Muestre el mapa interactivo"
 
 #: ott/view/templates/desktop/planner.html:30
+#: ott/view/templates/desktop/planner_walk.html:30
 #: ott/view/templates/shared/util.mako:100
 msgid "High-speed connection recommended"
 msgstr "Se recomienda tener conexión de internet rápida"
 
 #: ott/view/templates/desktop/planner.html:30
+#: ott/view/templates/desktop/planner_walk.html:30
 msgid "Show this trip on Interactive Map"
 msgstr "Mostrar este viaje en el mapa interactivo"
 
 #: ott/view/templates/desktop/planner.html:31
+#: ott/view/templates/desktop/planner_walk.html:31
 msgid "Feedback/report a problem"
 msgstr "Formulario de comentarios"
 
 #: ott/view/templates/desktop/planner.html:38
+#: ott/view/templates/desktop/planner_walk.html:38
 msgid ""
 "Times shown are estimates based on schedules and can be affected by "
 "traffic, road conditions, detours and other factors. Before you go, check"
@@ -417,6 +471,7 @@ msgstr ""
 " sobre llegadas en tiempo real de"
 
 #: ott/view/templates/desktop/planner.html:40
+#: ott/view/templates/desktop/planner_walk.html:40
 msgid ""
 "for real-time arrival information and any Service Alerts that may affect "
 "your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your "
@@ -424,26 +479,32 @@ msgid ""
 msgstr "y actualizaciones sobre cualquier alerta del servicio."
 
 #: ott/view/templates/desktop/planner.html:47
+#: ott/view/templates/desktop/planner_walk.html:47
 msgid "Your Trip on TriMet"
 msgstr "Su viaje en TriMet"
 
 #: ott/view/templates/desktop/planner.html:50
 #: ott/view/templates/desktop/planner_form.html:43
-#: ott/view/templates/desktop/stop_select_list.html:40
+#: ott/view/templates/desktop/planner_walk.html:50
+#: ott/view/templates/desktop/stop_select_list.html:44
 #: ott/view/utils/html_utils.py:41
 msgid "To"
 msgstr "A"
 
 #: ott/view/templates/desktop/planner.html:51
+#: ott/view/templates/desktop/planner_walk.html:51
 msgid "using"
 msgstr "uso"
 
 #: ott/view/templates/desktop/planner.html:51
 #: ott/view/templates/desktop/planner.html:52
+#: ott/view/templates/desktop/planner_walk.html:51
+#: ott/view/templates/desktop/planner_walk.html:52
 msgid "Edit"
 msgstr "Ajustar"
 
 #: ott/view/templates/desktop/planner.html:52
+#: ott/view/templates/desktop/planner_walk.html:52
 msgid "with a maximum walk of"
 msgstr "con un recorrido a pie máximo de"
 
@@ -460,30 +521,37 @@ msgid "Option 3"
 msgstr "Opción 3"
 
 #: ott/view/templates/desktop/planner.html:80
+#: ott/view/templates/desktop/planner_walk.html:71
 msgid "As of"
 msgstr "A partir de"
 
 #: ott/view/templates/desktop/planner.html:80
+#: ott/view/templates/desktop/planner_walk.html:71
 msgid "(more...)"
 msgstr "(más información...)"
 
 #: ott/view/templates/desktop/planner.html:88
+#: ott/view/templates/desktop/planner_walk.html:79
 msgid "Email/Text"
 msgstr "Email/Texto"
 
 #: ott/view/templates/desktop/planner.html:89
+#: ott/view/templates/desktop/planner_walk.html:80
 msgid "Print"
 msgstr "Imprima"
 
 #: ott/view/templates/desktop/planner.html:90
+#: ott/view/templates/desktop/planner_walk.html:81
 msgid "View on mobile"
 msgstr "Ver en el móvil"
 
 #: ott/view/templates/desktop/planner.html:93
+#: ott/view/templates/desktop/planner_walk.html:84
 msgid "Return trip"
 msgstr "Viaje de regreso"
 
 #: ott/view/templates/desktop/planner.html:94
+#: ott/view/templates/desktop/planner_walk.html:85
 msgid "Edit/Start over"
 msgstr "Ajustar"
 
@@ -513,7 +581,7 @@ msgstr ""
 
 #: ott/view/templates/desktop/planner_form.html:69
 #: ott/view/templates/shared/planner.mako:325
-#: ott/view/templates/shared/planner.mako:339
+#: ott/view/templates/shared/planner.mako:340
 msgid "on"
 msgstr "en"
 
@@ -544,26 +612,26 @@ msgstr "Preferencias de viaje (opcional)"
 msgid "Show me the"
 msgstr "Muestra el viaje"
 
-#: ott/view/templates/desktop/planner_form.html:95
+#: ott/view/templates/desktop/planner_form.html:100
 msgid "Maximum walk"
 msgstr "Caminata máxima"
 
-#: ott/view/templates/desktop/planner_form.html:101
+#: ott/view/templates/desktop/planner_form.html:111
 msgid "Travel by"
 msgstr "Viaje en"
 
-#: ott/view/templates/desktop/planner_form.html:106
+#: ott/view/templates/desktop/planner_form.html:121
 msgid "Help"
 msgstr "Ayuda"
 
 #: ott/view/templates/desktop/stop.html:7
-#: ott/view/templates/desktop/stop.html:34
+#: ott/view/templates/desktop/stop.html:33
 #: ott/view/templates/desktop/stop_schedule.html:14
-#: ott/view/templates/desktop/stop_schedule.html:31
-#: ott/view/templates/desktop/stop_select_geocode_nearest.html:53
-#: ott/view/templates/shared/planner.mako:369
-#: ott/view/templates/shared/planner.mako:414
-#: ott/view/templates/shared/planner.mako:484
+#: ott/view/templates/desktop/stop_schedule.html:32
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:55
+#: ott/view/templates/shared/planner.mako:370
+#: ott/view/templates/shared/planner.mako:415
+#: ott/view/templates/shared/planner.mako:485
 msgid "Stop ID"
 msgstr "Stop ID (número de la parada)"
 
@@ -580,63 +648,63 @@ msgstr "Encuentre servicio más cercano a"
 msgid "Having problems? Click here for technical support."
 msgstr "Formulario de asistencia técnica de Trip Planner"
 
-#: ott/view/templates/desktop/stop.html:41
-#: ott/view/templates/desktop/stop_select_geocode_nearest.html:54
+#: ott/view/templates/desktop/stop.html:42
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:56
 msgid "Served by"
 msgstr "Da servicio"
 
-#: ott/view/templates/desktop/stop.html:49
-#: ott/view/templates/desktop/stop.html:58
-#: ott/view/templates/desktop/stop_schedule.html:101
+#: ott/view/templates/desktop/stop.html:50
+#: ott/view/templates/desktop/stop.html:59
+#: ott/view/templates/desktop/stop_schedule.html:104
 msgid "Next arrivals"
 msgstr "Próximas llegadas"
 
-#: ott/view/templates/desktop/stop.html:50
-#: ott/view/templates/desktop/stop.html:59
+#: ott/view/templates/desktop/stop.html:51
+#: ott/view/templates/desktop/stop.html:60
 msgid "Schedule"
 msgstr "Horarios"
 
-#: ott/view/templates/desktop/stop.html:51
-#: ott/view/templates/desktop/stop_schedule.html:93
+#: ott/view/templates/desktop/stop.html:52
+#: ott/view/templates/desktop/stop_schedule.html:96
 msgid "Show map and schedules for this route"
 msgstr "Mostrar mapa y horarios para esta ruta"
 
-#: ott/view/templates/desktop/stop.html:51
+#: ott/view/templates/desktop/stop.html:52
 msgid "Route info"
 msgstr "Información de ruta"
 
-#: ott/view/templates/desktop/stop.html:56
+#: ott/view/templates/desktop/stop.html:57
 msgid "All routes"
 msgstr "Aodas las rutas"
 
-#: ott/view/templates/desktop/stop.html:64
+#: ott/view/templates/desktop/stop.html:65
 msgid "Amenities"
 msgstr "Comodidades"
 
-#: ott/view/templates/desktop/stop_schedule.html:52
-#: ott/view/templates/desktop/stop_select_geocode.html:49
+#: ott/view/templates/desktop/stop_schedule.html:55
+#: ott/view/templates/desktop/stop_select_geocode.html:52
 #: ott/view/templates/shared/route_select.mako:18
 msgid "Select"
 msgstr "Consultar"
 
-#: ott/view/templates/desktop/stop_schedule.html:61
+#: ott/view/templates/desktop/stop_schedule.html:64
 msgid "all routes"
 msgstr "todas las rutas"
 
-#: ott/view/templates/desktop/stop_schedule.html:67
+#: ott/view/templates/desktop/stop_schedule.html:70
 msgid "By destination"
 msgstr "Por ruta"
 
-#: ott/view/templates/desktop/stop_schedule.html:67
-#: ott/view/templates/desktop/stop_schedule.html:69
+#: ott/view/templates/desktop/stop_schedule.html:70
+#: ott/view/templates/desktop/stop_schedule.html:72
 msgid "sort"
 msgstr "por"
 
-#: ott/view/templates/desktop/stop_schedule.html:69
+#: ott/view/templates/desktop/stop_schedule.html:72
 msgid "By time"
 msgstr "Por horas"
 
-#: ott/view/templates/desktop/stop_schedule.html:71
+#: ott/view/templates/desktop/stop_schedule.html:74
 msgid "Schedule for"
 msgstr "Horarios de"
 
@@ -644,37 +712,41 @@ msgstr "Horarios de"
 msgid "Stops and Stations"
 msgstr "Paradas y Estaciones"
 
-#: ott/view/templates/desktop/stop_select_form.html:41
+#: ott/view/templates/desktop/stop_select_form.html:44
 msgid "Find stops and stations"
 msgstr "Encontrar paradas y estaciones"
 
-#: ott/view/templates/desktop/stop_select_form.html:48
+#: ott/view/templates/desktop/stop_select_form.html:51
 msgid "Find stops"
 msgstr "Encontrar paradas"
 
-#: ott/view/templates/desktop/stop_select_geocode.html:41
+#: ott/view/templates/desktop/stop_select_geocode.html:44
 msgid "Select a location"
 msgstr "Seleccionar lugar"
 
-#: ott/view/templates/desktop/stop_select_geocode.html:62
+#: ott/view/templates/desktop/stop_select_geocode.html:65
 msgid "Re-type location"
 msgstr "Reescriba la dirección"
 
-#: ott/view/templates/desktop/stop_select_geocode.html:69
+#: ott/view/templates/desktop/stop_select_geocode.html:72
 msgid "Continue"
 msgstr "Continuar"
 
-#: ott/view/templates/desktop/stop_select_geocode_nearest.html:53
-#: ott/view/templates/shared/planner.mako:363
-#: ott/view/templates/shared/planner.mako:409
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:48
+msgid "Nearest Stops"
+msgstr "Seleccionar una parada"
+
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:55
+#: ott/view/templates/shared/planner.mako:364
+#: ott/view/templates/shared/planner.mako:410
 msgid "Click for more information about this stop"
 msgstr "Haga clic para obtener más información sobre esta parada"
 
-#: ott/view/templates/desktop/stop_select_geocode_nearest.html:59
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:61
 msgid "Show more stops"
 msgstr "Muestre más paradas"
 
-#: ott/view/templates/desktop/stop_select_list.html:48
+#: ott/view/templates/desktop/stop_select_list.html:52
 msgid "Select stop"
 msgstr "Seleccionar una parada"
 
@@ -871,56 +943,56 @@ msgstr "Mapa del punto final (300x288)"
 msgid "from"
 msgstr "de"
 
-#: ott/view/templates/shared/planner.mako:339
+#: ott/view/templates/shared/planner.mako:340
 msgid "Turn"
 msgstr "Girar"
 
-#: ott/view/templates/shared/planner.mako:343
+#: ott/view/templates/shared/planner.mako:344
 msgid "compass_direction"
 msgstr ""
 
-#: ott/view/templates/shared/planner.mako:359
-#: ott/view/templates/shared/planner.mako:377
+#: ott/view/templates/shared/planner.mako:360
+#: ott/view/templates/shared/planner.mako:378
 msgid "Bike"
 msgstr "Móvil"
 
-#: ott/view/templates/shared/planner.mako:374
+#: ott/view/templates/shared/planner.mako:375
 msgid "Biking directions"
 msgstr "En otros planificadores de bicicletas"
 
-#: ott/view/templates/shared/planner.mako:374
-#: ott/view/templates/shared/planner.mako:419
+#: ott/view/templates/shared/planner.mako:375
+#: ott/view/templates/shared/planner.mako:420
 msgid "Expand"
 msgstr "Expandir"
 
-#: ott/view/templates/shared/planner.mako:374
-#: ott/view/templates/shared/planner.mako:419
+#: ott/view/templates/shared/planner.mako:375
+#: ott/view/templates/shared/planner.mako:420
 msgid "Close"
 msgstr "Cerrar"
 
-#: ott/view/templates/shared/planner.mako:399
-#: ott/view/templates/shared/planner.mako:423
+#: ott/view/templates/shared/planner.mako:400
+#: ott/view/templates/shared/planner.mako:424
 msgid "Walk"
 msgstr "Andar"
 
-#: ott/view/templates/shared/planner.mako:404
+#: ott/view/templates/shared/planner.mako:405
 msgid "Go to"
 msgstr "Empezar"
 
-#: ott/view/templates/shared/planner.mako:419
+#: ott/view/templates/shared/planner.mako:420
 msgid "Walking directions"
 msgstr "Indicaciones para ir a pie"
 
-#: ott/view/templates/shared/planner.mako:475
-#: ott/view/templates/shared/planner.mako:484
+#: ott/view/templates/shared/planner.mako:476
+#: ott/view/templates/shared/planner.mako:485
 msgid "Show schedule for"
 msgstr "Mostrar horarios para"
 
-#: ott/view/templates/shared/planner.mako:475
+#: ott/view/templates/shared/planner.mako:476
 msgid "Board"
 msgstr "Súbase al"
 
-#: ott/view/templates/shared/planner.mako:477
+#: ott/view/templates/shared/planner.mako:478
 msgid ""
 "There is an alert that applies to this transit leg.  See the \"alerts\" "
 "section below for details"
@@ -928,11 +1000,11 @@ msgstr ""
 "No es una alerta que se aplica a esta etapa de tránsito. Vea la sección "
 "\\ \"alertas \" para obtener detalles"
 
-#: ott/view/templates/shared/planner.mako:484
+#: ott/view/templates/shared/planner.mako:485
 msgid "Get off at"
 msgstr "Bájese en"
 
-#: ott/view/templates/shared/planner.mako:484
+#: ott/view/templates/shared/planner.mako:485
 msgid "More information about this stop"
 msgstr "Más información sobre esta parada"
 

@@ -4,13 +4,13 @@
 <%namespace name="util"  file="/shared/util.mako"/>
 
 <%def name="input_form(name, clear, id, tab, place, coord)">
-	<input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-	<input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_tp_element('${id}_coord');" class="regular" size="45" maxlength="80" />
-	<div class="form-help">
-		<div class="form-help-popup-onright">
-			<p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
-		</div>
-	</div>
+    <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
+    <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_tp_element('${id}_coord');" class="regular" size="45" maxlength="80" />
+    <div class="form-help">
+        <div class="form-help-popup-onright">
+            <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
+        </div>
+    </div>
 </%def>
 
 <%def name="planner_bottom()">
@@ -334,13 +334,14 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                         turn = None
                         dir = s['relative_direction']
                         if dir != None:
-                            dir = dir.lower().replace('_', ' ')
+                            dir = dir.lower().replace('_', ' ').strip()
+                            print dir, _(dir), _(unicode(dir)), _('right'), _(u'right'), _('left'), _('slightly left')
                             if dir not in ('continue'):
-                                turn = "{0} {1} {2} {3}".format(_(u'Turn'), _(dir), _(u'on'), name)
+                                turn = "{0} {1} {2} {3}".format(_(u'Turn'), _(dir), _(u'on'), _(name))
                             else:
                                 instruct_verb = dir.title()
 
-                        instruct = "{0} {1} {2} {3} {4}".format(instruct_verb, pretty_distance(s['distance']), _(s['compass_direction']), conjunction, name)
+                        instruct = "{0} {1} {2} {3} {4}".format(_(instruct_verb), pretty_distance(s['distance']), _(s['compass_direction']), conjunction, _(name))
                     %>
                     %if turn != None:
                     <li>${turn}</li>
@@ -356,7 +357,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         <p>
             <%
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
-                bike_title = "{0} {1} {2}".format(_(u'Bike'), dir, pretty_distance(leg['distance']))
+                bike_title = "{0} {1} {2}".format(_(u'Bike'), _(dir), pretty_distance(leg['distance']))
             %>
             ${bike_title} ${_(u'to')}
             %if leg['to']['stop']:
@@ -396,7 +397,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         <p>
             <% 
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
-                walk_title = "{0} {1} {2}".format(_(u'Walk'), dir, pretty_distance(leg['distance']))
+                walk_title = "{0} {1} {2}".format(_(u'Walk'), _(dir), pretty_distance(leg['distance']))
             %>
             %if leg['steps']:
             ${walk_title} ${_(u'to')}
