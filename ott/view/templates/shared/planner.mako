@@ -335,7 +335,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                         dir = s['relative_direction']
                         if dir != None:
                             dir = dir.lower().replace('_', ' ').strip()
-                            print dir, _(dir), _(unicode(dir)), _('right'), _(u'right'), _('left'), _('slightly left')
+                            #print dir, _(dir), _(unicode(dir)), _('right'), _(u'right'), _('left'), _('slightly left')
                             if dir not in ('continue'):
                                 turn = "{0} {1} {2} {3}".format(_(u'Turn'), _(dir), _(u'on'), _(name))
                             else:

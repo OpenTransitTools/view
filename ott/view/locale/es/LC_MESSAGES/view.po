@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-10-15 00:04+0100\n"
+"POT-Creation-Date: 2013-10-15 00:20+0100\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -113,95 +113,106 @@ msgstr "Basurero"
 msgid "Vending Machine"
 msgstr "Expendedor Automático"
 
+#: ott/view/locale/misc-strings.html:31
+msgid "Elevator"
+msgstr "Ascensor"
+
 #: ott/view/locale/misc-strings.html:32
+msgid "elevator"
+msgstr "ascensor"
+
+#: ott/view/locale/misc-strings.html:35
+#: ott/view/templates/shared/planner.mako:338
 msgid "left"
 msgstr "a la izquierda"
 
-#: ott/view/locale/misc-strings.html:33
+#: ott/view/locale/misc-strings.html:36
+#: ott/view/templates/shared/planner.mako:338
 msgid "right"
 msgstr "a la derecha"
 
-#: ott/view/locale/misc-strings.html:34
+#: ott/view/locale/misc-strings.html:37
+#: ott/view/templates/shared/planner.mako:338
 msgid "slightly left"
 msgstr "ligeramente a la izquierda"
 
-#: ott/view/locale/misc-strings.html:35
+#: ott/view/locale/misc-strings.html:38
 msgid "slightly right"
 msgstr "ligeramente a la derecha"
 
-#: ott/view/locale/misc-strings.html:36
+#: ott/view/locale/misc-strings.html:39
 msgid "hard left"
 msgstr "completamente a la izquierda"
 
-#: ott/view/locale/misc-strings.html:37
+#: ott/view/locale/misc-strings.html:40
 msgid "hard right"
 msgstr "completamente a la derecha"
 
-#: ott/view/locale/misc-strings.html:38
+#: ott/view/locale/misc-strings.html:41
 msgid "continue"
 msgstr "sigue recto por"
 
-#: ott/view/locale/misc-strings.html:39
+#: ott/view/locale/misc-strings.html:42
 msgid "continue to"
 msgstr "para continuar en"
 
-#: ott/view/locale/misc-strings.html:40
+#: ott/view/locale/misc-strings.html:43
 msgid "becomes"
 msgstr "se hace"
 
-#: ott/view/locale/misc-strings.html:41
+#: ott/view/locale/misc-strings.html:44
 msgid "take roundabout counterclockwise"
 msgstr ""
 
-#: ott/view/locale/misc-strings.html:42
+#: ott/view/locale/misc-strings.html:45
 msgid "take roundabout clockwise"
 msgstr ""
 
-#: ott/view/locale/misc-strings.html:44
+#: ott/view/locale/misc-strings.html:47
 msgid "north"
 msgstr "norte"
 
-#: ott/view/locale/misc-strings.html:45
+#: ott/view/locale/misc-strings.html:48
 msgid "south"
 msgstr "sur"
 
-#: ott/view/locale/misc-strings.html:46
+#: ott/view/locale/misc-strings.html:49
 msgid "east"
 msgstr "este"
 
-#: ott/view/locale/misc-strings.html:47
+#: ott/view/locale/misc-strings.html:50
 msgid "west"
 msgstr "oeste"
 
-#: ott/view/locale/misc-strings.html:48
+#: ott/view/locale/misc-strings.html:51
 msgid "northeast"
 msgstr "nordeste"
 
-#: ott/view/locale/misc-strings.html:49
+#: ott/view/locale/misc-strings.html:52
 msgid "northwest"
 msgstr "noroeste"
 
-#: ott/view/locale/misc-strings.html:50
+#: ott/view/locale/misc-strings.html:53
 msgid "southeast"
 msgstr "sureste"
 
-#: ott/view/locale/misc-strings.html:51
+#: ott/view/locale/misc-strings.html:54
 msgid "southwest"
 msgstr "sudoeste"
 
-#: ott/view/locale/misc-strings.html:53
+#: ott/view/locale/misc-strings.html:56
 msgid "foot"
 msgstr "pie"
 
-#: ott/view/locale/misc-strings.html:54
+#: ott/view/locale/misc-strings.html:57
 msgid "feet"
 msgstr "pies"
 
-#: ott/view/locale/misc-strings.html:55
+#: ott/view/locale/misc-strings.html:58
 msgid "mile"
 msgstr "milla"
 
-#: ott/view/locale/misc-strings.html:56
+#: ott/view/locale/misc-strings.html:59
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:56
 msgid "miles"
 msgstr "millas"

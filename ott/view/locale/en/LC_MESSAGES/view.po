@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-10-15 00:04+0100\n"
+"POT-Creation-Date: 2013-10-15 00:20+0100\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: en <LL@li.org>\n"
@@ -113,95 +113,106 @@ msgstr ""
 msgid "Vending Machine"
 msgstr ""
 
+#: ott/view/locale/misc-strings.html:31
+msgid "Elevator"
+msgstr ""
+
 #: ott/view/locale/misc-strings.html:32
-msgid "left"
-msgstr ""
-
-#: ott/view/locale/misc-strings.html:33
-msgid "right"
-msgstr ""
-
-#: ott/view/locale/misc-strings.html:34
-msgid "slightly left"
+msgid "elevator"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:35
-msgid "slightly right"
+#: ott/view/templates/shared/planner.mako:338
+msgid "left"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:36
-msgid "hard left"
+#: ott/view/templates/shared/planner.mako:338
+msgid "right"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:37
-msgid "hard right"
+#: ott/view/templates/shared/planner.mako:338
+msgid "slightly left"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:38
-msgid "continue"
+msgid "slightly right"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:39
-msgid "continue to"
+msgid "hard left"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:40
-msgid "becomes"
+msgid "hard right"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:41
-msgid "take roundabout counterclockwise"
+msgid "continue"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:42
-msgid "take roundabout clockwise"
+msgid "continue to"
+msgstr ""
+
+#: ott/view/locale/misc-strings.html:43
+msgid "becomes"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:44
-msgid "north"
+msgid "take roundabout counterclockwise"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:45
-msgid "south"
-msgstr ""
-
-#: ott/view/locale/misc-strings.html:46
-msgid "east"
+msgid "take roundabout clockwise"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:47
-msgid "west"
+msgid "north"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:48
-msgid "northeast"
+msgid "south"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:49
-msgid "northwest"
+msgid "east"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:50
-msgid "southeast"
+msgid "west"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:51
-msgid "southwest"
+msgid "northeast"
+msgstr ""
+
+#: ott/view/locale/misc-strings.html:52
+msgid "northwest"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:53
-msgid "foot"
+msgid "southeast"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:54
-msgid "feet"
-msgstr ""
-
-#: ott/view/locale/misc-strings.html:55
-msgid "mile"
+msgid "southwest"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:56
+msgid "foot"
+msgstr ""
+
+#: ott/view/locale/misc-strings.html:57
+msgid "feet"
+msgstr ""
+
+#: ott/view/locale/misc-strings.html:58
+msgid "mile"
+msgstr ""
+
+#: ott/view/locale/misc-strings.html:59
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:56
 msgid "miles"
 msgstr ""

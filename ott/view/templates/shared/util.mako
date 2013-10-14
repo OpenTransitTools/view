@@ -128,7 +128,6 @@
         loc = html_utils.get_first_param(request, '_LOCALE_')
         if loc:
             ret_val = loc
-        
     except:
         ret_val = def_val
     return ret_val
