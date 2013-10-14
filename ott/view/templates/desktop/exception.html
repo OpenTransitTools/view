@@ -1,6 +1,6 @@
 <%inherit file="/desktop/base.html"/>
 <%namespace name="util"  file="/shared/util.mako"/>
-<%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
+<%def name="title()">TriMet: ${_(u'Exception')}</%def>
 
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
@@ -11,19 +11,15 @@
 </%def>
 <%def name="side_bar()">
 </%def>
+<%def name="planner_selected()">class="selected"</%def>
 
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def> 
 
-
-<div id="main-fullwidth">
-    <div id="plantrip-left" class="group">
-        <h2>${_(u'Exception')}:</h2>
-        <h2>${_(u'The TripPlanner is not working...')}</h2>
-        <h2>${_(u'Email TriMet and let us know...')}</h2>
-    </div>
-</div><!-- end #main-fullwidth -->
-
-
-
+<h1 class="tripplanner-icon">
+    <a href="planner_form.html" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>
+    ${_(u'Oops!')}</h1>
+<h2>${_(u'The TripPlanner is not working...')}</h2>
+<p>${_(u'Email TriMet and let us know...')}</p>
 <p>&nbsp;</p>
+
 

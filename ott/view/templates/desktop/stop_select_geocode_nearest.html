@@ -44,7 +44,10 @@ ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Sea
 %>
 
 
-<h1 class="stopsstations-icon"><a href="stop_select_form.html?geo${extra_params}">${_(u'Stops & Stations')}</a></h1>
+<h1 class="stopsstations-icon">
+    <a href="stop_select_form.html?geo${extra_params}" title="${_(u'Stops & Stations')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Stops & Stations')} ${_(u'Home')}</span></a>
+	Nearest Stops
+</h1>
 
 <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
 <ul id="stopslist" class="group">
