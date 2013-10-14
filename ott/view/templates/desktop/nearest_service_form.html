@@ -34,11 +34,11 @@
 
 <h1 class="stopsstations-icon">
     <a href="stop_select_form.html?near_service${extra_params}" title="${_(u'Stops & Stations')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Stops & Stations')} ${_(u'Home')}</span></a>
-	Nearest service
+    ${_(u'Nearest service')}
 </h1>
 <%def name="stations_selected()">class="selected"</%def>
 
-<p>Find the nearest service to your location</p>
+<p>${_(u'Find the nearest service to your location')}</p>
 
 <div id="findservice">
     <form action="nearest_service_geocode.html" name="" id="sched_id" method="GET" class="triptools-form">

@@ -54,6 +54,7 @@ def do_view_config(config):
 
     config.add_route('planner_form_desktop',                    '/planner_form.html')
     config.add_route('planner_desktop',                         '/planner.html')
+    config.add_route('planner_walk_desktop',                    '/planner_walk.html')
 
     config.add_route('stop_select_form_desktop',                '/stop_select_form.html')
     config.add_route('stop_select_list_desktop',                '/stop_select_list.html')

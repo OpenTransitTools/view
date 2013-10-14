@@ -43,10 +43,9 @@ ga_select_route="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm 
 ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
 %>
 
-
 <h1 class="stopsstations-icon">
     <a href="stop_select_form.html?geo${extra_params}" title="${_(u'Stops & Stations')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Stops & Stations')} ${_(u'Home')}</span></a>
-	Nearest Stops
+    ${_(u'Nearest Stops')}
 </h1>
 
 <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
@@ -54,12 +53,12 @@ ga_find_stop="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Sea
     %for s in nearest_stops:
     <li>
         <h3 class="tight"><a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a> <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span></h3>
-        <p><a href="planner_walk.html?">${s['distance']} todo plural mile</a> &nbsp;&bull;&nbsp; ${_(u'Served by')}: ${s['route_id_list']}</p>
+        <p><a href="planner_walk.html?">${_(u'miles', s['distance'])}</a> &nbsp;&bull;&nbsp; ${_(u'Served by')}: ${s['route_id_list']}</p>
     </li>
     %endfor
 
     <li>
-        <p align="center"><a href="nearest_stops?stop_id=${stop_id}">${_(u'Show more stops')}</a></p>
+        <p align="center"><a href="stop_select_geocode_nearest.html?show_more=true&stop_id=${stop_id}${extra_params}">${_(u'Show more stops')}</a></p>
     </li>
 </ul>
 

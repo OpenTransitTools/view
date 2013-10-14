@@ -36,6 +36,20 @@ def planner(request):
         pass
     return ret_val
 
+@view_config(route_name='planner_walk_desktop', renderer='desktop/planner_walk.html')
+def planner_walk(request):
+    ret_val = None
+    try:
+        ret_val = request.model.get_plan(request.query_string, **request.params)
+    except:
+        # TODO: have to figure out how to make this work with Apache mod_proxy, ala /planner/exception.html vs. /exception.html
+        #url = "{0}?{1}".format('exception.html', request.query_string)
+        #ret_val = HTTPFound(location=url, headers=request.headers)
+        ret_val = HTTPFound(location = request.route_url('exception_desktop', pagename='exception'))
+        pass
+    return ret_val
+
+
 @view_config(route_name='stop_desktop', renderer='desktop/stop.html')
 def stop(request):
     stop   = request.model.get_stop(request.query_string, **request.params)
