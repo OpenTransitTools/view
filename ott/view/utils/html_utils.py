@@ -33,12 +33,11 @@ def planner_form_params(request):
     # step 0: default values for the trip planner form 
     dt = date_utils.get_day_info()
     tm = date_utils.get_time_info()
-    _  = get_translator(request)
 
     ret_val = {
-        "fromPlace" : _(u"From"),
+        "fromPlace" : None,
         "fromCoord" : None,
-        "toPlace"   : _(u"To"),
+        "toPlace"   : None,
         "toCoord"   : None,
         "Hour"      : tm['hour'],
         "Minute"    : tm['minute'],
@@ -83,8 +82,7 @@ def planner_form_params(request):
 
     # step 4: special handle other params...
     ret_val["is_am"] = True if ret_val['AmPm'] == "am" else False
-    ret_val["min"] = ret_val["optimize"] # TODO remove me by changing min to optimize all over...
-    # ret_val["numdays"] = # TODO ... have to calculate another date time object to get this value...
+    ret_val["min"] = ret_val["optimize"]  # TODO remove me by changing min to optimize all over...
 
     return ret_val
 

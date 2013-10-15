@@ -4,6 +4,10 @@
 <%namespace name="util"  file="/shared/util.mako"/>
 
 <%def name="input_form(name, clear, id, tab, place, coord)">
+    <%
+        if place == None:
+            place = _(clear)
+    %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
     <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_tp_element('${id}_coord');" class="regular" size="45" maxlength="80" />
     <div class="form-help">
