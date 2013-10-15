@@ -1,5 +1,6 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
+from pyramid.request import Request
 
 from ott.view.utils import html_utils
 from ott.view.model.place import Place
@@ -29,11 +30,10 @@ def planner(request):
     try:
         ret_val = request.model.get_plan(request.query_string, **request.params)
     except:
-        # TODO: have to figure out how to make this work with Apache mod_proxy, ala /planner/exception.html vs. /exception.html
-        #url = "{0}?{1}".format('exception.html', request.query_string)
-        #ret_val = HTTPFound(location=url, headers=request.headers)
-        ret_val = HTTPFound(location = request.route_url('exception_desktop', pagename='exception'))
-        pass
+        # http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/subrequest.html
+        subreq = Request.blank('/exception.html')
+        subreq.query_string = request.query_string
+        ret_val = request.invoke_subrequest(subreq)
     return ret_val
 
 @view_config(route_name='planner_walk_desktop', renderer='desktop/planner_walk.html')
@@ -42,11 +42,9 @@ def planner_walk(request):
     try:
         ret_val = request.model.get_plan(request.query_string, **request.params)
     except:
-        # TODO: have to figure out how to make this work with Apache mod_proxy, ala /planner/exception.html vs. /exception.html
-        #url = "{0}?{1}".format('exception.html', request.query_string)
-        #ret_val = HTTPFound(location=url, headers=request.headers)
-        ret_val = HTTPFound(location = request.route_url('exception_desktop', pagename='exception'))
-        pass
+        subreq = Request.blank('/exception.html')
+        subreq.query_string = request.query_string
+        ret_val = request.invoke_subrequest(subreq)
     return ret_val
 
 
