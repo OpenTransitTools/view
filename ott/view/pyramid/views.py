@@ -107,7 +107,12 @@ def qrcode(request):
 
 @view_config(route_name='adverts', renderer='adverts.html')
 def adverts(request):
-    return {}
+    ret_val = {}
+    ret_val['bus_adverts']     = request.model.get_adverts("mode=bus&_LOCALE_=en", **request.params)
+    ret_val['bus_adverts_es']  = request.model.get_adverts("mode=bus&_LOCALE_=es", **request.params)
+    ret_val['rail_adverts']    = request.model.get_adverts("mode=rail&_LOCALE_=en", **request.params)
+    ret_val['rail_adverts_es'] = request.model.get_adverts("mode=rail&_LOCALE_=es", **request.params)
+    return ret_val
 
 
 @view_config(route_name='index', renderer='index.html')

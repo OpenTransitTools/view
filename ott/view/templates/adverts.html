@@ -1,5 +1,50 @@
-
-<H1>LANG=ENGLISH (en), MODE=RAIL</H1>
-    %for a in adverts:
+<%namespace name="util"  file="/shared/util.mako"/>
+<head>
+<link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
+<style>
+body {
+  background-color:white;
+}
+</style>
+</head>
+<body>
+<aside id="aside" class="aside">
+<div id="trimet-ads">
+<H1>LANG=ENGLISH MODE=BUS</H1>
+    %for a in bus_adverts:
         ${a['content'] | n}
     %endfor
+</div>
+<a target="#" href="planner.html?from=SE17thCenter::45.493576,-122.648254&to=SELAMBERT ST::45.468384,-122.65718">test bus trip</a>
+</aside>
+
+<aside id="aside" class="aside">
+<div id="trimet-ads">
+<H1>LANG=SPANISH MODE=BUS</H1>
+    %for a in bus_adverts_es:
+        ${a['content'] | n}
+    %endfor
+</div>
+<a target="#" href="planner.html?from=SE17thCenter::45.493576,-122.648254&to=SELAMBERT ST::45.468384,-122.65718&_LOCALE_=es">test bus trip</a>
+</aside>
+
+<aside id="aside" class="aside">
+<div id="trimet-ads">
+<H1>LANG=ENGLISH MODE=RAIL</H1>
+    %for a in rail_adverts:
+        ${a['content'] | n}
+    %endfor
+</div>
+<a target="#" href="planner.html?from=PDX::45.58985,-122.599266&to=Zoo::45.510185,-122.71586">test rail trip</a>
+</aside>
+
+<aside id="aside" class="aside">
+<div id="trimet-ads">
+<H1>LANG=SPANISH MODE=RAIL</H1>
+    %for a in rail_adverts_es:
+        ${a['content'] | n}
+    %endfor
+</div>
+<a target="#" href="planner.html?from=PDX::45.58985,-122.599266&to=Zoo::45.510185,-122.71586&_LOCALE_=es">test rail trip</a>
+</aside>
+</body>

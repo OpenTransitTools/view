@@ -36,7 +36,7 @@ class Mock(Base):
 
     def get_plan(self, get_params, **kwargs):
         #import pdb; pdb.set_trace() 
-        return self.stream_json('http://127.0.0.1:34443/plan_trip', get_params)
+        return self.stream_json('plan_trip', get_params)
 
 
     def Xget_plan(self, get_params, **kwargs):
