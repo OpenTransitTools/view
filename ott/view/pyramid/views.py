@@ -48,6 +48,7 @@ def do_view_config(config):
     config.add_route('index',                                   '/')
     config.add_route('sparkline',                               '/sparkline')
     config.add_route('qrcode',                                  '/qrcode')
+    config.add_route('adverts',                                 '/adverts.html')
 
     config.add_route('exception_desktop',                       '/exception.html')
     config.add_route('feedback_desktop',                        '/feedback.html')
@@ -102,6 +103,11 @@ def qrcode(request):
     img_io = qr_to_stream(content)
     response.app_iter = img_io
     return response
+
+
+@view_config(route_name='adverts', renderer='adverts.html')
+def adverts(request):
+    return {}
 
 
 @view_config(route_name='index', renderer='index.html')
