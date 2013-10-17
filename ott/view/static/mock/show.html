@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="../js/dynamic_img.js"></script>
 <style>
     div.desc {
         display: none;
     }
 </style>
+</head>
+<body>
+    <a onclick="show(1)">show 1</a><br/>
+    <a onclick="show(2)">show 2</a><br/>
+    <a onclick="show(3)">show 3</a><br/>
+    <br/>
+    <br/>
+    <div class="desc" id="desc_1">
+        <img src="http://maps.trimet.org/images/ui/s.gif" dwidth="400" dheight="400" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230017-00011.png">
+    </div>
+    <div class="desc" id="desc_2">
+        <img src="http://maps.trimet.org/images/ui/s.gif" dwidth="400" dheight="400" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230018-00018.png">
+    </div>
+    <div class="desc" id="desc_3">
+        <img src="http://maps.trimet.org/images/ui/s.gif" dwidth="400" dheight="400" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230018-00016.png">
+    </div>
+</body>
 <script>
-    var DEF_IMG_WIDTH=400;
-    var DEF_IMG_HEIGHT=400;
-
-    function dynamiclyLoadImages(el)
-    {
-        try
-        {
-            var img_list = el.getElementsByTagName('img');
-            for(var i in img_list)
-            {
-                var img = img_list[i];
-                if(img && img.attributes.dsrc && img.src != img.attributes.dsrc.value)
-                {
-                    img.src    = img.attributes.dsrc.value;
-                    img.width  = img.attributes.dwidth  ? img.attributes.dwidth.value  : DEF_IMG_WIDTH;
-                    img.height = img.attributes.dheight ? img.attributes.dheight.value : DEF_IMG_HEIGHT;
-                    console.log(img.src)
-                }
-            }
-        }
-        catch(e)
-        {}
-    }
-
     var desc_el = null;
-
     function show_hide_el(el, cmd)
     {
         if(el && el.style)
@@ -77,21 +70,5 @@
         desc_el = el;
     }
 </script>
-</head>
-<body>
-    <a onclick="show(1)">show 1</a><br/>
-    <a onclick="show(2)">show 2</a><br/>
-    <a onclick="show(3)">show 3</a><br/>
-    <br/>
-    <br/>
-    <div class="desc" id="desc_1">
-        <img src="http://maps.trimet.org/images/ui/s.gif" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230017-00011.png">
-    </div>
-    <div class="desc" id="desc_2">
-        <img src="http://maps.trimet.org/images/ui/s.gif" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230018-00018.png">
-    </div>
-    <div class="desc" id="desc_3">
-        <img src="http://maps.trimet.org/images/ui/s.gif" dsrc="http://www.designdownloader.com/item/pngl/billiards01/billiards01-20110830230018-00016.png">
-    </div>
-</body>
+
 </html>
