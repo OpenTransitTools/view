@@ -301,7 +301,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                     ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br />
                     ${_(u'Steepest grade')}: ${elevation['grade']}<br />
                     %if elevation['points'] and len(elevation['points']) > 2:
-                    <a href="#">${_(u'Elevation chart')}</a> <img src="sparkline?points=${elevation['points']}"/></span>
+                    <a href="#">${_(u'Elevation chart')}</a> ${util.dynamic_img("sparkline?points=" + elevation['points'], 100, 20)}</span>
                     %endif
                 </p>
             %endif
@@ -309,13 +309,9 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 
 <%def name="render_start_end_maps(from_img_url, to_img_url)">
                 <div class="maps">
-                    <p class="walk-start">${_(u'Start')}<br /><img src="${from_img_url}" alt="${_(u'Map of starting point (300x288)')}" width="300" height="288" /></p>
-                    <p class="walk-end">
-                        ${_(u'End')}
-                        <br />
-                        <img src="${to_img_url}" alt="${_(u'Map of ending point (300x288)')}" width="300" height="288" />
-                    </p>
-                </div><!-- end .maps -->
+                    <p class="walk-start">${_(u'Start')}<br />${util.dynamic_img(from_img_url, 300, 288, _(u'Map of starting point (300x288)'))}</p>
+                    <p class="walk-end">${_(u'End')}<br/>${util.dynamic_img(to_img_url, 300, 288, _(u'Map of ending point (300x288)'))}</p>
+                </div><!-- end maps -->
 </%def>
 
 ## They want 2-stage walk instructions, as per mock up...

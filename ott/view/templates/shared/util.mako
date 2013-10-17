@@ -88,17 +88,20 @@
 </p>
 </%def>
 
+## dynamic img ... see dynamiclyLoadImages() in triptools.js for more
+<%def name="dynamic_img(url, w, h, alt='dynamic img (requires javascript)', def_img='http://maps.trimet.org/images/ui/s.gif')"><img dsrc="${url}" dwidth="${w}" dheight="${h}" alt="${alt}" src="${def_img}"/></%def>
+
 ## static map block
 <%def name="staticmap_imap_link(name, lon, lat, extra_params, map_url)">
 <p>
     <a href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" title="${_(u'View on Interactive Map')}">
-		<img src="${map_url}" alt="${_(u'Stop location on a map')}" />
-	</a>
+        <img src="${map_url}" alt="${_(u'Stop location on a map')}" />
+    </a>
 </p>
 <p>
     <a class="imap" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params} title="${_(u'View on Interactive Map')}>
-	   <span class="imap-text">${_(u'View on Interactive Map')}</span><br /><span class="secondary">${_(u'High-speed connection recommended')}</span>
-	</a>
+       <span class="imap-text">${_(u'View on Interactive Map')}</span><br /><span class="secondary">${_(u'High-speed connection recommended')}</span>
+    </a>
 </p>
 </%def>
 
@@ -196,7 +199,7 @@
 </%def>
 <%def name="month_abbv_select(selected)"><select name="month" tabindex="7" >
     ${month_abbv_options(selected)}
-    </select></%def>
+</select></%def>
 
 
 <%def name="day_options(selected)">
@@ -218,7 +221,7 @@
 
 <%def name="alerts_inline_icon_link(img_url='/images/triptools/alert-icon.png')">
     <!--<a href="#alerts" class="alert"><img border="0" src="${url_domain()}${img_url}" alt="${_(u'See footnote')}" title="${_(u'See footnote')}"/></a>-->
-	<a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="Service alert at this stop" /></a>
+    <a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="Service alert at this stop" /></a>
 </%def>
 
 <%def name="alerts(alert_list, img_url='/images/triptools/alert.png')">
