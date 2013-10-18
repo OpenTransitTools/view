@@ -34,7 +34,7 @@
     <a href="stop_select_form.html?geo${extra_params}" title="${_(u'Stops & Stations')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Stops & Stations')} ${_(u'Home')}</span></a>
     ${_(u'Uncertain location')}
 </h1>
-<h2 class="error">${_(u'We cannot find')} 834 SE LAMBERT</h2>
+<h2 class="error">${_(u'We cannot find')} ${stop_geocode}</h2>
 
 <div id="location">
     <form action="stop_select_geocode_nearest.html"  method="GET" name="ambig" class="triptools-form">
@@ -43,8 +43,9 @@
         <fieldset>
             <label>${_(u'Select a location')}:</label><!-- Scrolling List of Possible Locations -->
             <select size="1"  name="place" id="stop_id" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
-                <option value="834 SE LAMBERT CIRCLE::45.5,-122.5::GRESHAM">${util.name_city_str('834 SE LAMBERT CIRCLE', 'GRESHAM')}</option>
-                <option value="834 SE LAMBERT ST::45.6,-122.6::PORTLAND">${util.name_city_str('834 SE LAMBERT ST', 'PORTLAND')}</option>
+                %for l in geocodes:
+                <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'])}</option>
+                %endfor
             </select>
         </fieldset>
         <fieldset>
@@ -63,7 +64,7 @@
         <!-- Text box for re-geocoding a string -->
         <fieldset>
             <label>${_(u'Re-type location')}:</label>
-            <input type="text" name="newloc" value="834 SE LAMBERT" size="43" maxlength="80" id="newloc" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
+            <input type="text" name="stop_geocode" value="${stop_geocode}" size="43" maxlength="80" id="newloc" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
             <div class="form-help">
                 ${util.form_help_right()}
             </div>

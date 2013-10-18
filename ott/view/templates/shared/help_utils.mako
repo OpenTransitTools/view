@@ -57,7 +57,7 @@
         <div class="highslide-header">
             <ul>
                 <li class="highslide-move"><a href="#" onClick="return false">Move</a></li>
-                <li class="highslide-close"><a href="#" onClick="return hs.close(this)">Close</a></li>
+                <li class="highslide-close"><a href="#" onClick="return hs.close(this)">$_({u'Close')}</a></li>
             </ul>
         </div>
         <div class="highslide-body" style="text-align:left;">

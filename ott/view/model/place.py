@@ -37,7 +37,7 @@ class Place(object):
         try:
             name = html_utils.get_first_param(request, 'name')
             if name is None:
-                _  = get_translator(request) 
+                _  = get_translator(request)
                 name = _(u'Uncertain location')
 
             lat  = html_utils.get_first_param(request, 'lat')

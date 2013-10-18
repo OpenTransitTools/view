@@ -1,7 +1,7 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from pyramid.request import Request
-
+from ott.view.locale.subscribers import get_translator
 from ott.view.utils import html_utils
 from ott.view.model.place import Place
 
@@ -81,7 +81,15 @@ def stop_select_list(request):
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
 def stop_select_geocode(request):
     ret_val = {}
-    ret_val['stop'] = request.model.get_stop(request.query_string, **request.params)
+    _  = get_translator(request)
+    stop_geocode = html_utils.get_first_param(request, 'stop_geocode', _('Undefined'))
+    geocodes = [
+       {'name':'X', 'city':'A', 'lat':'1', 'lon':'1'},
+       {'name':'Y', 'city':'B', 'lat':'2', 'lon':'1'},
+       {'name':'Z', 'city':'C', 'lat':'3', 'lon':'1'},
+    ]
+    ret_val['geocodes'] = geocodes
+    ret_val['stop_geocode'] = stop_geocode
     return ret_val
 
 @view_config(route_name='stop_select_geocode_nearest_desktop', renderer='desktop/stop_select_geocode_nearest.html')

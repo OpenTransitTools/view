@@ -31,13 +31,23 @@
     <form action="nearest_service.html"  method="GET" name="ambig" class="triptools-form">
 
         ${util.get_extra_params_hidden_inputs()}
+<!--
+    DONT EDIT ME
+    DONT EDIT ME
+
+    IMPORTANT:  THIS IS NOT A CURRENT APP  You Want stop_select_geocode .... not me, Frank!   Leave now, loser.
+
+    DONT EDIT ME
+    DONT EDIT ME 
+-->
 
         <!-- Directions/Help -->
         <fieldset>
-            <label>Select a location:</label><!-- Scrolling List of Possible Locations -->
+            <label>${_(u'Select a location')}:</label><!-- Scrolling List of Possible Locations -->
             <select name="locations" size="1" id="locations" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
-                <option value="1">834 SE LAMBERT CIRCLE (in GRESHAM)</option>
-                <option value="2">834 SE LAMBERT ST (in PORTLAND)</option>
+                %for l in locs:
+                <option value="1">834 SE LAMBERT CIRCLE (${_(u'in')} GRESHAM)</option>
+                %endfor
             </select>
         </fieldset>
         <fieldset>
