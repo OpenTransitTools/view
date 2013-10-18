@@ -3,8 +3,6 @@
 <%namespace name="help" file="/shared/help_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
-    if 'stop_geocode' not in locals():
-        stop_geocode = _('Undefined')
 %>
 
 <%def name="title()">TriMet: ${_(u'Uncertain location')}</%def>
