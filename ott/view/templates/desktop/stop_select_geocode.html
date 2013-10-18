@@ -3,6 +3,8 @@
 <%namespace name="help" file="/shared/help_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
+    if 'stop_geocode' not in locals():
+        stop_geocode = _('Undefined')
 %>
 
 <%def name="title()">TriMet: ${_(u'Uncertain location')}</%def>
@@ -37,6 +39,7 @@
 <h2 class="error">${_(u'We cannot find')} ${stop_geocode}</h2>
 
 <div id="location">
+    %if geocodes and len(geocodes) > 0:
     <form action="stop_select_geocode_nearest.html"  method="GET" name="ambig" class="triptools-form">
         ${util.get_extra_params_hidden_inputs()}
         <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
@@ -58,6 +61,7 @@
         <div class="or-bar"></div>
         <div class="or-text">${_(u'Or')}</div>
     </div>
+    %endif
 
     <form action="stop_select_geocode.html"  method="GET" name="ambig" class="triptools-form">
         ${util.get_extra_params_hidden_inputs()}

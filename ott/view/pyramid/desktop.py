@@ -81,8 +81,8 @@ def stop_select_list(request):
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
 def stop_select_geocode(request):
     ret_val = {}
-    _  = get_translator(request)
-    stop_geocode = html_utils.get_first_param(request, 'stop_geocode', _('Undefined'))
+    #_  = get_translator(request)
+    stop_geocode = html_utils.get_first_param(request, 'stop_geocode')
     geocodes = [
        {'name':'X', 'city':'A', 'lat':'1', 'lon':'1'},
        {'name':'Y', 'city':'B', 'lat':'2', 'lon':'1'},
