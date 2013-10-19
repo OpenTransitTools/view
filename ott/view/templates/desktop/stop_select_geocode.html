@@ -37,15 +37,15 @@
 <h2 class="error">${_(u'We cannot find')} ${stop_geocode}</h2>
 
 <div id="location">
-    %if geocodes and len(geocodes) > 0:
+    %if geocode and 'results' in geocode and geocode['results'] and len(geocode['results']) > 0:
     <form action="stop_select_geocode_nearest.html"  method="GET" name="ambig" class="triptools-form">
         ${util.get_extra_params_hidden_inputs()}
         <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
         <fieldset>
             <label>${_(u'Select a location')}:</label><!-- Scrolling List of Possible Locations -->
             <select size="1"  name="place" id="stop_id" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
-                %for l in geocodes:
-                <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'])}</option>
+                %for l in geocode['results']:
+                <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'], l['type_name'])}</option>
                 %endfor
             </select>
         </fieldset>

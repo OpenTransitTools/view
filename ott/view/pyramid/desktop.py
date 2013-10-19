@@ -90,7 +90,7 @@ def stop_select_geocode(request):
            {'name':'Y', 'city':'B', 'lat':'2', 'lon':'1'},
            {'name':'Z', 'city':'C', 'lat':'3', 'lon':'1'},
         ]
-        ret_val['geocodes'] = geocodes
+        ret_val['geocode'] = request.model.get_geocode(stop_geocode)
     else:
         stop_geocode = _(u'Undefined')
 

@@ -42,13 +42,36 @@
 </%def>
 
 
-<%def name="name_city_str(name, city)">
+<%def name="localize_str(s, def_val=None)">
+<%
+    ret_val = def_val
+    try:
+        ret_val = _(s)
+        ret_val = s    # localized string breaks the name_city_str below...
+        if len(s) < 1:
+            ret_val = def_val
+    except:
+        ret_val = def_val
+    return ret_val
+%>
+</%def>
+
+<%def name="name_city_str(name, city, type_name=None)">
 <%
     ret_val = _(u'Undefined')
     if name and len(name) > 0:
-        ret_val = name
-    if city and len(city) > 0:
+        ret_val = name.replace('%26', '&')
+    
+    city = localize_str(city)
+    type_name = localize_str(type_name)
+
+    if city and type_name:
+        ret_val = "{0} ({1} {2} {3})".format(ret_val, type_name, _(u'in'), city)
+    elif type_name:
+        ret_val = "{0} ({1})".format(ret_val, type_name)
+    elif city:
         ret_val = "{0} ({1} {2})".format(ret_val, _(u'in'), city)
+
     return ret_val
 %>
 </%def>

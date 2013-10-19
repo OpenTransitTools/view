@@ -24,10 +24,10 @@ class Model(Base):
     def get_plan(self, get_params, **kwargs):
         return self.stream_json('plan_trip', get_params)
 
-    def get_geocode(self, get_params, **kwargs): 
-        return self.stream_json('plan_trip', get_params)
+    def get_geocode(self, search):
+        return self.stream_json('geocode', "place={0}".format(search))
 
-    def get_adverts(self, get_params, **kwargs): 
+    def get_adverts(self, get_params, **kwargs):
         ret_val = self.stream_json('adverts', get_params)
         return ret_val
 
