@@ -56,8 +56,8 @@
     <div class="highslide-html-content" id="highslide-help" style="width:700px;">
         <div class="highslide-header">
             <ul>
-                <li class="highslide-move"><a href="#" onClick="return false">Move</a></li>
-                <li class="highslide-close"><a href="#" onClick="return hs.close(this)">$_({u'Close')}</a></li>
+                <li class="highslide-move"><a href="#" onClick="return false">$(_{u'Move')}</a></li>
+                <li class="highslide-close"><a href="#" onClick="return hs.close(this)">$(_{u'Close')}</a></li>
             </ul>
         </div>
         <div class="highslide-body" style="text-align:left;">
@@ -67,7 +67,7 @@
             %else:
                 ${help_english()}
             %endif
-            <p align="center"><a href="#" onClick="return hs.close(this)">$_({u'Close')}</a></p>
+            <p align="center"><a href="#" onClick="return hs.close(this)">$(_{u'Close')}</a></p>
         </div>
     </div>
 </%def>
