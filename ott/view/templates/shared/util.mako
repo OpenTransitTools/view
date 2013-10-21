@@ -47,9 +47,19 @@
     ret_val = def_val
     try:
         ret_val = _(s)
-        ret_val = s    # localized string breaks the name_city_str below...
         if len(s) < 1:
             ret_val = def_val
+    except:
+        ret_val = def_val
+    return ret_val
+%>
+</%def>
+
+<%def name="unicode_to_str(s, def_val=None)">
+<%
+    ret_val = def_val
+    try:
+        ret_val = str(s)
     except:
         ret_val = def_val
     return ret_val
@@ -61,16 +71,20 @@
     ret_val = _(u'Undefined')
     if name and len(name) > 0:
         ret_val = name.replace('%26', '&')
-    
-    city = localize_str(city)
-    type_name = localize_str(type_name)
 
-    if city and type_name:
-        ret_val = "{0} ({1} {2} {3})".format(ret_val, type_name, _(u'in'), city)
-    elif type_name:
-        ret_val = "{0} ({1})".format(ret_val, type_name)
-    elif city:
-        ret_val = "{0} ({1} {2})".format(ret_val, _(u'in'), city)
+    city = localize_str(city)
+    tn = localize_str(type_name, type_name)
+    type_name = unicode_to_str(tn, type_name) # have to do this for .format()
+
+    try:
+        if city and type_name:
+            ret_val = "{0} ({1} {2} {3})".format(ret_val, type_name, _(u'in'), city)
+        elif type_name:
+            ret_val = "{0} ({1})".format(ret_val, type_name)
+        elif city:
+            ret_val = "{0} ({1} {2})".format(ret_val, _(u'in'), city)
+    except:
+        pass
 
     return ret_val
 %>
