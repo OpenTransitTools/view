@@ -46,9 +46,10 @@
 <%
     ret_val = def_val
     try:
-        ret_val = _(s)
-        if len(s) < 1:
-            ret_val = def_val
+        if s is not None:
+            ret_val = _(s)
+            if len(s) < 1:
+                ret_val = def_val
     except:
         ret_val = def_val
     return ret_val
@@ -59,7 +60,8 @@
 <%
     ret_val = def_val
     try:
-        ret_val = str(s)
+        if s:
+            ret_val = str(s)
     except:
         ret_val = def_val
     return ret_val
@@ -79,12 +81,13 @@
     try:
         if city and type_name:
             ret_val = "{0} ({1} {2} {3})".format(ret_val, type_name, _(u'in'), city)
-        elif type_name:
-            ret_val = "{0} ({1})".format(ret_val, type_name)
         elif city:
             ret_val = "{0} ({1} {2})".format(ret_val, _(u'in'), city)
+        elif type_name:
+            ret_val = "{0} ({1})".format(ret_val, type_name)
     except:
         pass
+
 
     return ret_val
 %>
