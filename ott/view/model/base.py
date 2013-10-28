@@ -28,7 +28,8 @@ class Base(object):
 
     def get_adverts(self, get_params, **kwargs): pass
 
-    def stream_json(self, svc, args, domain="http://127.0.0.1:34443"):
+    #def stream_json(self, svc, args, domain="http://127.0.0.1:34443"):
+    def stream_json(self, svc, args, domain="http://maps1:34443"):
         ''' utility class to stream .json
         '''
         ret_val={}

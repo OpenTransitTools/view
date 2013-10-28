@@ -37,7 +37,7 @@ def do_static_config(config):
 
     # important ... allow .html extension on mako templates
     config.include('pyramid_mako')
-    config.add_renderer(".html", "pyramid.mako_templating.renderer_factory")
+    config.add_mako_renderer('.html', settings_prefix='mako.')
 
     # internationalization ... @see: locale/subscribers.py for more info
     config.add_translation_dirs('ott.view:locale')
