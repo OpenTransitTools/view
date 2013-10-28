@@ -3,6 +3,8 @@ import urllib
 import logging
 log = logging.getLogger(__file__)
 
+from ott.view.utils import config
+
 class Base(object):
 
     TRAIN     = 'TRAIN'
@@ -14,7 +16,6 @@ class Base(object):
     TRANSIT   = 'TRANSIT'
     BICYCLE   = 'BICYCLE'
     BIKE      =  BICYCLE
-
 
     def get_plan(self, get_params, **kwargs): pass
 
@@ -28,12 +29,13 @@ class Base(object):
 
     def get_adverts(self, get_params, **kwargs): pass
 
-    #def stream_json(self, svc, args, domain="http://127.0.0.1:34443"):
-    def stream_json(self, svc, args, domain="http://maps1:34443"):
+    def stream_json(self, svc, args):
         ''' utility class to stream .json
         '''
         ret_val={}
+        domain = config.get('controller', 'http://127.0.0.1:34443')
         url = "{0}/{1}?{2}".format(domain, svc, args)
+        log.debug("calling service: ", url)
         stream = urllib.urlopen(url)
         otp = stream.read()
         ret_val = json.loads(otp)

@@ -3,7 +3,7 @@ import glob
 import logging
 log = logging.getLogger()
 
-INI=['project.ini', 'controller.ini', 'app.ini']
+INI=['view.ini', 'app.ini']
 parser = None
 
 def get_parser(ini=None):
