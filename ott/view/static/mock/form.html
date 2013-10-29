@@ -1,0 +1,289 @@
+<!doctype html><!-- lines 2-6 need to be up here for IE to parse correctly -->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8 | !(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>TriMet: Trip Planner</title>
+    <meta name="viewport" content="width=1040" />
+    <link rel="alternate" type="application/rss+xml" title="TriMet: All News and Service Alerts" href="https://public.govdelivery.com/accounts/ORTRIMET/feed.rss?code=ORTRIMET" />
+    <link rel="shortcut icon" href="http://dev.trimet.org/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="http://dev.trimet.org/images/trimet-logo-iphone.png" />
+
+    <link rel="stylesheet" href="http://dev.trimet.org/css/global.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="http://dev.trimet.org/css/ie.css" type="text/css" media="all" /><![endif]-->
+    <!--[if lte IE 6]><link rel="stylesheet" href="http://dev.trimet.org/css/ie6.css" type="text/css" media="all" /><![endif]-->
+
+    <link href="http://dev.trimet.org/css/print.css" rel="stylesheet" type="text/css" media="print" />
+
+    <script type="text/javascript" src="http://dev.trimet.org/scripts/highslide-min.js" language="javascript"></script>
+
+    <link rel="stylesheet" href="http://dev.trimet.org/css/content.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="http://dev.trimet.org/css/triptools.css" type="text/css" media="all" />
+    <!--[if IE]><link rel="stylesheet" href="http://dev.trimet.org/css/triptools-ie.css" type="text/css" media="all" /><![endif]-->
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700,700italic|PT+Sans+Narrow:700,400' rel='stylesheet' type='text/css'>
+    
+    <link rel="stylesheet" href="http://dev.trimet.org/css/triptools-tp.css" type="text/css" media="all" />
+
+    <!-- this must sit at the bottom -->
+    <script src="http://dev.trimet.org/scripts/libs/modernizr-2.5.3.min.js"></script>
+</head>
+<body class="standard" onLoad="/** ABSTRACT js_onload() **/">
+    <a href="#content" class="visuallyhidden">Skip navigation</a>
+    <section id="topnav" class="group"></section><!-- end #topnav -->
+    <header id="header-wrap" class="group">
+        <div id="nav-wrap" class="group">
+    <nav id="nav">
+        <div id="logo"><a href="/index.htm"><span class="visuallyhidden">TriMet</span></a></div>
+        <ul id="modes">
+            <li class="bus"><a href="/bus/index.htm" title="Learn more about TriMet bus service"><abbr title="Learn more about TriMet bus service"><span>Bus</span></abbr></a></li>
+            <li class="max"><a href="/max/index.htm" title="Learn more about TriMet MAX Light Rail service"><abbr title="Learn more about TriMet MAX Light Rail service"><span>MAX</span></abbr></a></li>
+            <li class="wes"><a href="/wes/index.htm" title="Learn more about TriMet WES Commuter Rail service"><abbr title="Learn more about TriMet WES Commuter Rail service"><span>WES</span></abbr></a></li>
+            <li class="streetcar"><a href="/streetcar/index.htm" title="Learn more about Portland Streetcar service"><abbr title="Learn more about Portland Streetcar service"><span>Streetcar</span></abbr></a></li>
+        </ul>
+    </nav><!-- end #nav -->
+    </div><!-- end #nav-wrap -->
+    </header><!-- end #header-wrap -->
+
+    <div id="content-wrap" class="group">
+        <div id="content" class="group">
+            <a name="content"></a>
+           <section id="main-fullwidth"  class="main">
+        <div id="share">
+            <script type="text/javascript" src="http://dev.trimet.org/scripts/share.js"></script>
+        </div>
+    <script>
+        function clear_tp_element(id)
+        {
+            try
+            {
+                var fm = document.getElementById(id)
+                fm.value = ""
+            }
+            catch(e)
+            {
+            }
+        }
+    </script>
+
+<h1 class="tripplanner-icon"><a href="planner_form.html" title="Trip Planner Home" class="homelink"><span class="visuallyhidden">Trip Planner Home</span></a>Plan your trip on TriMet</h1>
+<div id="plantrip" class="group">
+    <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style"/>
+    <div id="plantrip-left">
+        <fieldset>
+            <label for="from">From</label>
+            
+    
+    <input type="hidden" id="from_coord" name="fromCoord" value="None" />
+    <input type="text"   id="from" name="from" value="Address, intersection, landmark or Stop ID" tabindex="1" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID'); clear_tp_element('from_coord');" class="regular" size="45" maxlength="80" />
+    <div class="form-help">
+        <div class="form-help-popup-onright">
+            <p>You can type in an address, intersection, landmark or Stop ID here. For the best results, don&#39;t include a city, state or ZIP code.</p>
+        </div>
+    </div>
+
+        </fieldset>
+
+        <fieldset>
+            <label for="going">To</label>
+            
+    
+    <input type="hidden" id="going_coord" name="toCoord" value="None" />
+    <input type="text"   id="going" name="to" value="A Ave " tabindex="2" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID'); clear_tp_element('going_coord');" class="regular" size="45" maxlength="80" />
+    <div class="form-help">
+        <div class="form-help-popup-onright">
+            <p>You can type in an address, intersection, landmark or Stop ID here. For the best results, don&#39;t include a city, state or ZIP code.</p>
+        </div>
+    </div>
+
+        </fieldset>
+
+        <fieldset class="departwhen">
+            <label for="when" class="hide">When:</label>
+            <select name="Arr" id="depart" tabindex="3"  onchange="showTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                
+<option  value="D">Depart after</option><option  value="A">Arrive by</option><option  value="L">Late as possible</option><option  value="E">Early as possible</option>
+
+            </select>
+        </fieldset>
+        <fieldset>
+            <select name="Hour" id="Hour" tabindex="4"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                
+<option selected="selected" value="1">1</option>
+
+            </select>
+            <b>:</b>
+            <select name="Minute" id="Minute" tabindex="5" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                
+<option  value="0">00</option>
+
+            </select>
+            <select name="AmPm" id="AmPm" tabindex="6"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <option selected="selected" value="am">am</option>
+                <option  value="pm">pm</option>
+            </select>
+            <span>on</span>
+            <select name="month" id="Month" tabindex="7"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                
+        <option value="1" >Jan</option>
+        <option value="2" >Feb</option>
+        <option value="3" >Mar</option>
+        <option value="4" >Apr</option>
+        <option value="5" >May</option>
+        <option value="6" >Jun</option>
+        <option value="7" >Jul</option>
+        <option value="8" >Aug</option>
+        <option value="9" >Sep</option>
+        <option value="10" selected>Oct</option>
+        <option value="11" >Nov</option>
+        <option value="12" >Dec</option>
+
+            </select>
+            <select name="day" id="Day" tabindex="8"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                
+        <option value="1" >1</option>
+
+
+            </select>
+        </fieldset>
+
+        <fieldset class="submit">
+            
+
+
+
+            <input name="submit" tabindex="13" type="submit" value="Get directions &raquo;" id="submit" title="Submit your trip plan information" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
+            <input type="checkbox" id="mapcheckbox" tabindex="12" title="Show trip on an interactive map (broadband/desktop only)" name="mapit"  value="A" onclick="doMap();">
+            <label for="mapcheckbox" class="mapcheckbox-label" title="Show trip on an interactive map (broadband/desktop only)">Use Interactive Map</label>
+        </fieldset>
+    </div><!-- end #plantrip-left -->
+
+    <div id="plantrip-right">
+        <!--<p class="options">Trip preferences (optional)</p>-->
+        <fieldset class="preferences">
+            <label for="trip-options">Show me the</label>
+            <select name="optimize" tabindex="9"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                
+<option selected="selected" value="QUICK">Quickest trip</option><option  value="TRANSFERS">Fewest transfers</option>
+
+            </select>
+            <div class="form-help">
+                <div class="form-help-popup-onright">
+                    <p>The quickest trips usually involve transferring between buses and trains and walking a short distance. You can choose &#39;fewest transfers&#39; if you prefer not to transfer, but your trip will probably take longer.</p>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="preferences">
+            <label for="trip-options">Maximum walk</label>
+            <select name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                
+
+<option  value="160">1/10 mile</option>
+<option  value="420">1/4 mile</option>
+<option selected="selected" value="840">1/2 mile</option>
+
+
+            </select>
+            <div class="form-help">
+                <div class="form-help-popup-onright">
+                    <p>Here, you can specify how far you are willing to walk to and from the bus stop or rail station. Note: If set to less than 1 mile, some trips may not be possible.</p>
+                </div>
+            </div>
+        </fieldset>
+        <fieldset class="preferences">
+            <label for="trip-options">Travel by</label>
+            <select name="mode" tabindex="11"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                
+<option selected="selected" value="TRANSIT,WALK">Bus or train</option><option  value="TRAINISH,BICYCLE">Train only</option><option  value="BUSISH,WALK">Bus only</option><option  value="TRANSIT,BICYCLE">Bike to Transit</option><option  value="TRAINISH,BICYCLE">Bike and Train only</option><option  value="WALK">Walk only</option>
+
+            </select>
+            <div class="form-help">
+                <div class="form-help-popup-onright">
+                    <p>Most trips involve a combination of buses and trains. You can specify bus-only or train-only, but keep in mind that some trips may not be possible as a result. To plan a bike + transit trip, use the Map Trip Planner.</p>
+                </div>
+            </div>
+        </fieldset>
+        <div><a href="http://dev.trimet.org/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);" class="trip-help">Help</a></div>
+    </div><!-- end #plantrip-right -->
+    </form>
+<!-- {&#39;optimize&#39;: &#39;QUICK&#39;, &#39;toCoord&#39;: None, &#39;fromCoord&#39;: None, &#39;Walk&#39;: 840, &#39;Hour&#39;: 1, &#39;AmPm&#39;: &#39;am&#39;, &#39;min&#39;: &#39;QUICK&#39;, &#39;Arr&#39;: False, &#39;toPlace&#39;: u&#39;A Ave &#39;, &#39;is_am&#39;: True, &#39;numdays&#39;: 31, &#39;year&#39;: 2013, &#39;fromPlace&#39;: None, &#39;month&#39;: 10, &#39;day&#39;: 29, &#39;Minute&#39;: 44, &#39;mode&#39;: &#39;TRANSIT,WALK&#39;} -->
+</div><!-- end #plantrip -->
+
+        
+
+
+            
+    </section><!-- end #main-fullwidth -->
+
+
+                <!-- ABSTRACT side_bar() -->
+        </div><!-- end #content -->
+    </div><!-- end #content-wrap -->
+
+    <div id="bottom-wrap" class="group">
+        
+    <div id="imap-wrap">
+        <section id="imap" class="group">
+            <h3><a href="http://dev.trimet.org/maptripplanner/index.htm"><strong>Interactive Map Trip Planner</strong>: Get transit + biking directions in one itinerary &raquo;</a></h3>
+        </section><!-- end #imap -->
+    </div><!-- end #promobar-wrap -->
+
+    </div>
+
+
+<div id="footer-wrap" class="group">
+    <div id="footer" class="group">
+        <section id="footer-trimet" class="group">
+            <article id="footer-trimet-logo"></article>
+            <article id="footer-trimet-text">
+                <p>TriMet provides bus, light rail and commuter rail transit services in the Portland, Oregon, metro area. We connect people with their community, while easing traffic congestion and reducing air pollution&mdash;making the Portland area a better place to live. <a href="/about/index.htm">More</a></p>
+            </article>
+            <article id="footer-trimet-search">
+                <h2>Search trimet.org</h2>
+                <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+                <script type="text/javascript">
+                  google.load('search', '1');
+                  google.setOnLoadCallback(function() {
+                    google.search.CustomSearchControl.attachAutoCompletion(
+                      '009014880959573829355:b8mecw7atko',
+                      document.getElementById('q'),
+                      'cse-search-box');
+                  });
+                  
+                  function submitsearch() {
+                      if (document.getElementById("q").value == "Search trimet.org") {
+                          alert("Looking for something on trimet.org? Type it in the white box and click the 'Go' button.");
+                      }
+                      else {
+                          document.forms["cse-search-box"].submit();
+                      }
+                  }
+                </script>
+                <form action="/search/results.htm" id="cse-search-box">
+                  <div>
+                    <input type="hidden" name="cx" value="009014880959573829355:b8mecw7atko" />
+                    <input type="hidden" name="cof" value="FORID:10;NB:1" />
+                    <input type="hidden" name="ie" value="UTF-8" />
+                    <input type="text" name="q" id="q" autocomplete="off" size="30" onFocus="doClear(this); doClassHighlight(this);" onBlur="doText(this); doClassRegular(this);" class="regular" value="Search trimet.org" />
+                    <input type="button" name="sa" value="Go &raquo;" class="button" onClick="submitsearch();" />
+                  </div>
+                </form>
+          </article>
+        </section>
+
+    </div><!-- end #footer -->
+</div><!-- end #footer-wrap -->
+
+<div id="fb-root"></div><!-- for facebook  -->
+
+<div id="footer-print">
+    <p>&copy; 2013 TriMet</p>
+</div>
+
+<script type="text/javascript" src="http://dev.trimet.org/scripts/basic.js"></script><!-- basic global scripts -->
+
+</body>
+</html>
