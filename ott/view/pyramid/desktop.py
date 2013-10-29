@@ -1,3 +1,6 @@
+import logging
+log = logging.getLogger(__file__)
+
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 from pyramid.request import Request
