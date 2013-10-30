@@ -20,7 +20,7 @@ def service_tabs(request, url):
     ret_val = {}
     ret_val['more_form']   = date_utils.get_day_info(date)
     ret_val['pretty_date'] = date_utils.pretty_date(date)
-    ret_val['tabs'] = date_utils.get_svc_date_tabs(date, url, more is None) 
+    ret_val['tabs'] = date_utils.get_svc_date_tabs(date, url, more is None, get_translator(request)) 
 
     return ret_val
 
