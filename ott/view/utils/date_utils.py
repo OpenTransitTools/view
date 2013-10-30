@@ -5,6 +5,12 @@ import datetime
 import time
 from calendar import monthrange
 
+def ret_me(s):
+    return s
+_ = ret_me
+
+MORE=_('more')
+TODAY=_('Today')
 
 def get_local_time():
     return time.localtime()
@@ -51,11 +57,10 @@ def set_date(dt=datetime.date.today(), month=None, day=None, year=None):
         pass
     return ret_val
 
-
 def pretty_date(dt=datetime.date.today(), fmt='%A, %B %d, %Y'):
     return dt.strftime(fmt)
 
-def make_tab_obj(name, uri=None, date=None):
+def make_tab_obj(name, uri=None, date=None, append=None):
     ''' for the date tab on the stop schedule page, we expect an object that has a name and a url
         this method builds that structure, and most importantly, the url for those tabs
     '''
@@ -72,24 +77,24 @@ def make_tab_obj(name, uri=None, date=None):
         if date:
             month = "&month={0}".format(date.month)
             day = "&day={0}".format(date.day)
-        ret_val["url"] = "{0}{1}{2}".format(uri, month, day) 
+        ret_val["url"] = "{0}{1}{2}".format(uri, month, day)
+        if append:
+            ret_val["url"] = "{0}&{1}".format(ret_val["url"], append)
 
     return ret_val
 
-def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
+def get_svc_date_tabs(dt, uri, more_tab=True, translate=ret_me, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
     ''' return 3 date strings representing the next WEEKDAY, SAT, SUN 
     '''
     ret_val = []
 
-    # TODO ... localize
-    today='Today'
-    more='more'
+    #import pdb; pdb.set_trace()
 
     # step 1: is 'today' the active tab, or is target date in future, so that's active, and we have a 'today' tab to left
     if datetime.date.today() == dt:
-        ret_val.append(make_tab_obj(today))
+        ret_val.append(make_tab_obj(translate(TODAY)))
     else:
-        ret_val.append(make_tab_obj(today, uri, datetime.date.today()))
+        ret_val.append(make_tab_obj(translate(TODAY), uri, datetime.date.today()))
         ret_val.append(make_tab_obj(dt.strftime(smfmt)))
 
     # step 2: figure out how many days from target is next sat, sunday and/or monday (next two service days different from today)
@@ -116,9 +121,9 @@ def get_svc_date_tabs(dt, uri, more_tab=True, fmt='%m/%d/%Y', smfmt='%m/%d', ptt
     #      and add a pretty_date to that dict, so that we can create a css TOOLTIP that shows what weekday / date the 2/1, 2/5, 2/6 dates represent...
     #, "pretty_date": pretty_date(d1, pttyfmt)})
 
-    # step 4: if we are not showing the date form, give the 'more' option which will show that form 
+    # step 4: if we are not showing the date form, give the 'more' option which will show that form
     if more_tab:
-        ret_val.append(make_tab_obj(more, uri, dt))
+        ret_val.append(make_tab_obj(translate(MORE), uri, dt, MORE))
 
     return ret_val
 
