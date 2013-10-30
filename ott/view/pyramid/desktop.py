@@ -27,6 +27,28 @@ def planner_form(request):
     ret_val['params'] = params
     return ret_val
 
+def call_geocoder(request, no_geocode_msg='Undefined'):
+    ret_val = {}
+
+    _  = get_translator(request)
+    geocode = html_utils.get_first_param(request, 'place')
+    if geocode:
+        res = request.model.get_geocode(geocode)
+        if res and 'results' in res:
+            ret_val['geocoder_results'] = res['results']
+    else:
+        geocode = _(no_geocode_msg)
+
+    ret_val['place'] = geocode
+    return ret_val
+
+
+@view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
+def planner_geocode(request):
+    ret_val = call_geocoder(request)
+    return ret_val
+
+
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 def planner(request):
     ret_val = None
@@ -83,22 +105,7 @@ def stop_select_list(request):
 
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
 def stop_select_geocode(request):
-    ret_val = {}
-
-    _  = get_translator(request)
-    stop_geocode = html_utils.get_first_param(request, 'stop_geocode')
-    if stop_geocode:
-        geocodes = [
-           {'name':'X', 'city':'A', 'lat':'1', 'lon':'1'},
-           {'name':'Y', 'city':'B', 'lat':'2', 'lon':'1'},
-           {'name':'Z', 'city':'C', 'lat':'3', 'lon':'1'},
-        ]
-        ret_val['geocode'] = request.model.get_geocode(stop_geocode)
-    else:
-        stop_geocode = _(u'Undefined')
-
-    ret_val['stop_geocode'] = stop_geocode
-
+    ret_val = call_geocoder(request)
     return ret_val
 
 @view_config(route_name='stop_select_geocode_nearest_desktop', renderer='desktop/stop_select_geocode_nearest.html')

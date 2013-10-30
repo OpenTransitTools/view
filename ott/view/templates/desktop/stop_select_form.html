@@ -42,7 +42,7 @@
         <fieldset>
             ${util.get_extra_params_hidden_inputs()}
             <label for="geocode_form">${_(u'Find stops and stations')}:</label>
-            <input name="stop_geocode" id="geocode_form" type="text" value="${_(u'Address, intersection, landmark or Stop ID')}" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID');" class="regular" size="15" maxlength="80" />
+            <input name="place" id="geocode_form" type="text" value="${_(u'Address, intersection, landmark or Stop ID')}" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID');" class="regular" size="15" maxlength="80" />
                 <div class="form-help">
                     ${util.form_help_right()}
                 </div>

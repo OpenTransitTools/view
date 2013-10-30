@@ -1,0 +1,70 @@
+<%inherit file="/desktop/base.html"/>
+<%namespace name="util"  file="/shared/util.mako"/>
+<%namespace name="form"  file="/shared/form_utils.mako"/>
+<%namespace name="help"  file="/shared/help_utils.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
+
+<%def name="title()">TriMet: ${_(u'Trip Planner')} ${_(u'Uncertain location')}</%def>
+<%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
+</%def>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Tripplanner, OTP, routeplanner, planner" />
+    <meta name="Description" content="" />
+</%def>
+<%def name="planner_selected()">class="selected"</%def>
+## override section ID to make this page full width
+<%def name="main_wrap_top()">
+    <section id="main-fullwidth" ${self.mainContentStyle()} class="main">
+    <%include file="/shared/share.html"/>
+</%def>
+<%def name="main_wrap_bottom()">
+    </section><!-- end #main-fullwidth -->
+</%def>
+<%def name="bottom()">
+    <div id="imap-wrap">
+        <section id="imap" class="group">
+            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
+        </section><!-- end #imap -->
+    </div><!-- end #promobar-wrap -->
+</%def>
+<h1 class="tripplanner-icon">
+    <a href="planner_form.html" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>
+    ${_(u'Plan your trip on TriMet')}
+</h1>
+<h2 class="error">${_(u'We cannot find')} ${place}</h2>
+<div id="location">
+    %if geocoder_results and len(geocoder_results) > 0:
+    <form action="stop_select_geocode_nearest.html"  method="GET" name="ambig" class="triptools-form">
+        ${util.get_extra_params_hidden_inputs()}
+        <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
+        <fieldset>
+            <label>${_(u'Select a location')}:</label><!-- Scrolling List of Possible Locations -->
+            <select size="1"  name="place" id="stop_id" onFocus="doClassHighlight(this);" class="regular" onBlur="doClassRegular(this);" />
+                %for l in geocoder_results:
+                <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'], l['type_name'])}</option>
+                %endfor
+            </select>
+        </fieldset>
+        <fieldset>
+           <!-- Action Button -->
+           <input name="select" tabindex="2" type="submit" value="${_(u'Select')}" class="submit" />
+        </fieldset>
+    </form>
+
+    <div class="or">
+        <div class="or-bar"></div>
+        <div class="or-text">${_(u'Or')}</div>
+    </div>
+    %endif
+
+    <form action="stop_select_geocode.html"  method="GET" name="ambig" class="triptools-form">
+        ${util.get_extra_params_hidden_inputs()}
+        ${form.search_input()}
+        ${form.search_submit()}
+    </form>
+</div>
+
