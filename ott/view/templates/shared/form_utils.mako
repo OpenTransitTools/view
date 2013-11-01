@@ -3,7 +3,7 @@
 ##
 <%namespace name="util"  file="/shared/util.mako"/>
 <%namespace name="help"  file="/shared/help_utils.mako"/>
-
+<%namespace name="an"    file="/shared/analytics_utils.mako"/>
 #
 # search list form
 # Scrolling List of Possible Locations
@@ -63,11 +63,11 @@
         <% 
         if name is None:
             name = _(u'Select')
+        if analytics is None:
+            analytics = an.empty_method
         %>
         <fieldset>
-            ## TODO: analytics -- onClick="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);
-            <input name="submit" class="submit" type="submit" value="${name}" tabindex="${tab}"/>
-
+            <input name="submit" class="submit" type="submit" value="${name}" tabindex="${tab}" ${analytics()}/>
             ## TODO: Jonathan -- what is geocode_highslide supposed to look like?
             ## ${help.geocode_highslide()}
         </fieldset>
