@@ -1,7 +1,7 @@
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/util.mako"/>
-<%namespace name="form"  file="/shared/form_utils.mako"/>
-<%namespace name="help"  file="/shared/help_utils.mako"/>
+<%namespace name="util" file="/shared/util.mako"/>
+<%namespace name="form" file="/shared/form_utils.mako"/>
+<%namespace name="help" file="/shared/help_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
@@ -63,8 +63,8 @@
 
     <form action="stop_select_geocode.html"  method="GET" name="ambig" class="triptools-form">
         ${util.get_extra_params_hidden_inputs()}
-        ${form.search_input()}
-        ${form.search_submit()}
+        ${form.search_input(_(u'Re-type location'), place, size="90")}
+        ${form.search_submit(_(u'Continue'))}
     </form>
 </div>
 

@@ -1,6 +1,8 @@
 <%inherit file="/desktop/base.html"/>
 
 <%namespace name="util" file="/shared/util.mako"/>
+<%namespace name="help" file="/shared/help_utils.mako"/>
+<%namespace name="form" file="/shared/form_utils.mako"/>
 
 <%
     ga_select_route ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
@@ -43,11 +45,7 @@
 <div id="findservice">
     <form action="nearest_service_geocode.html" name="" id="sched_id" method="GET" class="triptools-form">
         <fieldset>
-            <label for="Loc">${_(u'Location')}:</label>
-            <input name="Loc" id="Loc" type="text" value="${_(u'Address, intersection, landmark or Stop ID')}" onFocus="doClear(this,'Address, intersection, landmark or Stop ID');" onBlur="doText(this,'Address, intersection, landmark or Stop ID');" class="regular" size="15" maxlength="80" />
-                <div class="form-help">
-                    ${util.form_help_right()}
-                </div>
+            ${form.search_input(_(u'Location'))}
         </fieldset>
         <fieldset>
             <label for="Walk">${_(u'Within')}:</label>
