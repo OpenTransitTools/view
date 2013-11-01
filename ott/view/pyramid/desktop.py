@@ -93,6 +93,7 @@ def stop_schedule(request):
 @view_config(route_name='stop_select_form_desktop', renderer='desktop/stop_select_form.html')
 def stop_select_form(request):
     ret_val = {}
+    ret_val['place']  = html_utils.get_first_param(request, 'place')
     ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
     return ret_val
 
