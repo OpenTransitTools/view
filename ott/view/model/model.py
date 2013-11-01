@@ -4,6 +4,7 @@ import logging
 log = logging.getLogger(__file__)
 
 from ott.view.model.base import Base
+from ott.view.utils import object_utils
 
 class Model(Base):
     def get_routes(self, get_params, **kwargs):
@@ -25,7 +26,7 @@ class Model(Base):
         return self.stream_json('plan_trip', get_params)
 
     def get_geocode(self, search):
-        return self.stream_json('geocode', "place={0}".format(search))
+        return self.stream_json('geocode', "place={0}".format(object_utils.to_str(search)))
 
     def get_adverts(self, get_params, **kwargs):
         ret_val = self.stream_json('adverts', get_params)

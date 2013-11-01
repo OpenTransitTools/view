@@ -6,6 +6,7 @@ from pyramid.httpexceptions import HTTPFound
 from pyramid.request import Request
 from ott.view.locale.subscribers import get_translator  #_  = get_translator(request)
 from ott.view.utils import html_utils
+from ott.view.utils import object_utils
 from ott.view.model.place import Place
 
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
@@ -30,13 +31,14 @@ def planner_form(request):
 def call_geocoder(request, no_geocode_msg='Undefined'):
     ret_val = {}
 
-    _  = get_translator(request)
     geocode = html_utils.get_first_param(request, 'place')
+    geocode = object_utils.to_str(geocode)
     if geocode:
         res = request.model.get_geocode(geocode)
         if res and 'results' in res:
             ret_val['geocoder_results'] = res['results']
     else:
+        _  = get_translator(request)
         geocode = _(no_geocode_msg)
 
     ret_val['place'] = geocode
