@@ -1,83 +1,68 @@
+## -*- coding: utf-8 -*-
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%
-    has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
     extra_params = util.get_extra_params()
 %>
 <%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
-<%def name="meta_data()">
-    <meta name="Keywords"    content="Stops, stations"/>
-    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
-</%def>
+<%def name="meta_data()">${meta.stop()}</%def>
+<%def name="side_bar()">${side.stop(stop, util.get_extra_params())}</%def>
+<%
+  name = "{0} {1}".format(_(u'Stop ID').encode('utf-8'), stop['stop_id']).decode('utf-8')
+  pre  = "stop&name={0}&lat={1}&lon={2}".format(stop['name'], stop['lat'], stop['lon'])
+  has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
+%>
+${page.stop_select(name, extra_params, pre, has_alerts)}
 
-<%def name="side_bar()">
-    <!-- begin #sidebar -->
-    <% extra_params = util.get_extra_params() %>
-    <aside id="aside" class="aside">
-        <h2>${_(u'See also')}</h2>  
-        <ul class="links">
-            <li><a href="nearest_service_form.html?stop_id=${stop['stop_id']}&name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Find nearest service to')} ${stop['name']}</a></li>
-        </ul>
-        <p class="feedback"><a href="feedback.html?app=stop&stop_id=${stop['stop_id']}${extra_params}">${_(u'Having problems? Click here for technical support.')}</a></p>
-    </aside>
-    <!-- end #sidebar -->
-</%def>
+<div class="group">
+    <div class="left-column">
+        <h2>${util.name_city_str_from_struct(stop)}</h2>
 
-<!-- find_stop.html?stop_id=${stop['stop_id']}${extra_params} -->
-<%def name="stations_selected()">class="selected"</%def>
-    <h1 class="stopsstations-icon">
-        <a href="stop_select_form.html?stoppage&name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}" title="${_(u'Stops & Stations')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Stops & Stations')} ${_(u'Home')}</span></a>
-        ${_(u'Stop ID')} ${stop['stop_id']}
-        %if has_alerts:
-        ${util.alerts_inline_icon_link()}
-        %endif
-    </h1>
-    <div class="group">
-        <div class="left-column">
-            <h2>${util.name_city_str_from_struct(stop)}</h2>
+        <h3>${_(u'Served by')}</h3>
 
-            <h3>${_(u'Served by')}</h3>
-
-            %for r in stop['routes']:
-            <h4>${r['name']}</h4>
-            <p>
-                %if 'direction' in r:
-                ${r['direction']}<br/>
-                %endif
-                <a href="${r['arrival_url']}">${_(u'Next arrivals')}</a>
+        %for r in stop['routes']:
+        <h4>${r['name']}</h4>
+        <p>
+            %if 'direction' in r:
+            ${r['direction']}<br/>
+            %endif
+            <a href="${r['arrival_url']}">${_(u'Next arrivals')}</a>
                 &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}${extra_params}">${_(u'Schedule')}</a> 
                 &nbsp;&bull;&nbsp; <a href="${r['route_url']}" title="${_(u'Show map and schedules for this route')}.">${_(u'Route info')}</a>
-            </p>
-            %endfor
+        </p>
+        %endfor
 
-            %if len(stop['routes']) > 1:
-            <h4>${_(u'All routes')}</h4>
-            <p>
-                <a class="hide" href="${stop['arrival_url']}">${_(u'Next arrivals')}</a>
+        %if len(stop['routes']) > 1:
+        <h4>${_(u'All routes')}</h4>
+        <p>
+            <a class="hide" href="${stop['arrival_url']}">${_(u'Next arrivals')}</a>
                 &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Schedule')}</a>
-            </p>
-            %endif
+        </p>
+        %endif
 
-            %if len(stop['amenities']) > 1:
-            <h3 class="tight">${_(u'Amenities')}</h3>
-            <ul class="small">
-                %for a in stop['amenities']:
-                <li>${_(a)}</li>
-                %endfor
-            </ul>
-            %endif
+        %if len(stop['amenities']) > 1:
+        <h3 class="tight">${_(u'Amenities')}</h3>
+        <ul class="small">
+            %for a in stop['amenities']:
+            <li>${_(a)}</li>
+            %endfor
+        </ul>
+        %endif
 
-            %if has_alerts:
-                ${util.alerts(stop['alerts'])}
-            %endif
-        </div><!-- end .left-column -->
+        %if has_alerts:
+            ${util.alerts(stop['alerts'])}
+        %endif
+    </div><!-- end .left-column -->
 
-        <div class="right-column">
-            ${util.stop_map(stop['name'], stop['stop_id'], stop['lon'], stop['lat'], extra_params)}
-            ${util.plan_a_trip_links(stop['name'], stop['lon'], stop['lat'], extra_params)}
-        </div><!-- end .right-column -->
-    </div><!-- end .group -->
-
+    <div class="right-column">
+        ${util.stop_map(stop['name'], stop['stop_id'], stop['lon'], stop['lat'], extra_params)}
+        ${util.plan_a_trip_links(stop['name'], stop['lon'], stop['lat'], extra_params)}
+    </div><!-- end .right-column -->
+</div><!-- end .group -->

@@ -16,3 +16,15 @@
     </aside>
     <!-- end #sidebar -->
 </%def>
+
+
+<%def name="stop(stop, extra_params)">
+    <aside id="aside" class="aside">
+        <h2>${_(u'See also')}</h2>  
+        <ul class="links">
+            <li><a href="nearest_service_form.html?stop_id=${stop['stop_id']}&name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Find nearest service to')} ${stop['name']}</a></li>
+        </ul>
+        <p class="feedback"><a href="feedback.html?app=stop&stop_id=${stop['stop_id']}${extra_params}">${_(u'Having problems? Click here for technical support.')}</a></p>
+    </aside>
+    <!-- end #sidebar -->
+</%def>

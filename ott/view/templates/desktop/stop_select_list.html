@@ -1,41 +1,22 @@
+## -*- coding: utf-8 -*-
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
-
 <%def name="title()">TriMet: ${route_stops['name']}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
-<%def name="meta_data()">
-    <meta name="Keywords"    content="Stops, stations"/>
-    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
-</%def>
-<%def name="side_bar()">
-    <!-- begin #sidebar -->
-    <aside id="aside" class="aside">
-        <h2>${_(u'Related')}</h2>  
-        <ul class="links">
-            <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
-            <li><a href="${util.url_domain()}/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
-            <li><a href="${util.url_domain()}/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
-            <li><a href="${util.url_domain()}/parkandride/index.htm">${_(u'Park & Ride lots')}</a> </li>
-            <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
-        </ul>
-        <p class="feedback"><a href="feedback.html?app=route_stop_list">${_(u'Having problems? Click here for technical support.')}</a></p>
-    </aside>
-    <!-- end #sidebar -->
-</%def>
+<%def name="meta_data()">${meta.stop()}</%def>
+<%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
 
-<%def name="stations_selected()">class="selected"</%def>
-<h1 class="stopsstations-icon">
-    <a href="stop_select_form.html?list${extra_params}" title="${_(u'Stops & Stations')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Stops & Stations')} ${_(u'Home')}</span></a>
-    ${route_stops['name']}
-</h1>
-<!--
-<h2 class="center">${route_stops['name']}</h2>
--->
+${page.stop_select(route_stops['name'], extra_params, 'list')}
+
 <div id="stoplist">
     % for d in route_stops['directions']:
     <form action="stop.html" method="get" class="triptools-form">
