@@ -2,6 +2,7 @@
 ##
 ## routines for stop / stop_schedule pages
 ##
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 
 <%def name="page_title(stop)">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>

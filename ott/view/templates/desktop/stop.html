@@ -5,16 +5,16 @@
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="stpu" file="/shared/utils/stop_utils.mako"/>
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
 <%
-    name = stpu.make_name_id(stop)
-    stop_params = stpu.make_url_params(stop)
-    has_alerts = stpu.has_alerts(stop)
+    name = su.make_name_id(stop)
+    stop_params = su.make_url_params(stop)
+    has_alerts = su.has_alerts(stop)
 %>
-<%def name="title()">${stpu.page_title(stop)}</%def>
+<%def name="title()">${su.page_title(stop)}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>

@@ -5,16 +5,17 @@
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="stpu" file="/shared/utils/stop_utils.mako"/>
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
+<%namespace name="ssu"  file="/shared/utils/stop_schedule_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
 <%
-    name = stpu.make_name_id(stop)
-    stop_params = stpu.make_url_params(stop)
-    has_alerts = stpu.has_alerts(stop)
+    name = su.make_name_id(stop)
+    stop_params = su.make_url_params(stop)
+    has_alerts = su.has_alerts(stop)
 %>
-<%def name="title()">${stpu.page_title(stop)}</%def>
+<%def name="title()">${su.page_title(stop)}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
@@ -23,105 +24,13 @@
 <%def name="stations_selected()">class="selected"</%def>
 ${page.stop(name, extra_params, stop_params, has_alerts, stop)}
 
-    <h2>${util.name_city_str_from_struct(stop)}</h2>
+<h2>${util.name_city_str_from_struct(stop)}</h2>
 
-<%
-    sort_val     = 'time' if 'sort' in request.params and request.params['sort'] == 'time' else 'destination'
-    sort_by_time = True   if 'sort' in request.params and request.params['sort'] == 'time' else False
-    date  = '' if 'date'  not in request.params else request.params['date']
-    route = '' if 'route' not in request.params else request.params['route']
-    has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
-%>
-    <ul id="contenttabs">
-        %for t in tabs:
-          %if 'url' in t:
-            <li class="normal"><a href="${t['url']}&sort=${sort_val}${extra_params}"><span>${t['name']}</span></a></li>
-          %else:
-            <li class="selected"><span>${t['name']}</span></li>
-          %endif
-        %endfor
-    </ul>
-
-
-    %if 'more' in request.params:
-    <div id="moreform" class="group">
-        <form name="select_date" id="select_date_id" method="GET" action="/stop_schedule.html" class="triptools-form">
-            ${util.get_extra_params_hidden_inputs()}
-            <input type="hidden" name="stop_id" value="${stop['stop_id']}" />
-            <input type="hidden" name="sort"    value="${sort_val}" />
-            %if more_form:
-            ${util.month_select(more_form['month'])} ${util.day_select(more_form['day'])}
-            <input name="submit" type="submit" value="${_(u'Select')}" class="submit" />
-            %endif
-        </form>
-    </div>
-    %endif
-
-
-    %if 'single_route_name' in stop and stop['single_route_name'] != None:
-    ${stop['single_route_name']}
-    ## TODO &date=${date}
-    [<a href="stop_schedule.html?stop_id=${stop['stop_id']}&sort=${sort_val}${extra_params}">${_(u'all routes')}</a>]
-    %endif
-
-    <p style="float:right;">
-        <% u = "stop_schedule.html?stop_id={0}&route={1}&date={2}{3}".format(stop['stop_id'], route, date, extra_params) %>
-        Sort:
-        ${util.link_or_strong(_(u'By destination'), not sort_by_time, u + '&sort=destination', _('sort'))}
-         &nbsp;|&nbsp; 
-        ${util.link_or_strong(_(u'By time'), sort_by_time, u + '&sort=time', _('sort'))}
-    </p>
-    <p>${_(u'Schedule for')} ${pretty_date}</p>
-
-    %if sort_by_time:
-        %for s in stop['schedule']:
-        <% 
-            id = s['h']
-            route = stop['headsigns'][id]
-            alerts = True if 'alerts' in route and len(route['alerts']) > 0 else False
-        %> 
-        <p><b>${s['t']}</b> ${route['route_name']} ${_(u'to')} ${route['headsign']}</p>
-        %endfor
-    %else:
-    %for h in stop['headsigns'].keys():
-    <% 
-        route = stop['headsigns'][h]
-        route_url = '' if 'route_url' not in route else route['route_url']
-        alerts = True if 'alerts' in route and len(route['alerts']) > 0 else False
-    %>
-
-    <h3 class="tight">
-        %if route_url:
-            <a href="${route_url}" title="${_(u'Show map and schedules for this route')}.">
-        %endif
-            ${route['route_name']} ${_(u'to')} ${route['headsign']}
-        %if route_url:
-            </a>
-        %endif
-        
-        %if 'arrival_url' in route:
-            <a href="${route['arrival_url']}" class="stop-arrivals"><img src="${util.img_url()}/transittracker-icon.png" alt="${_(u'Next arrivals')}" /></a>
-        %endif
-        
-        %if alerts:
-            ${util.alerts_inline_icon_link()}
-        %endif
-    </h3>
-    <p>
-        %for s in stop['schedule']:
-        %if s['h'] == h:
-        ${s['t']}
-        %endif
-        %endfor
-    </p>
-
-    %endfor
-    %endif
-
-
+    ${ssu.svc_key_tabs(tabs, extra_params)}
+    ${ssu.schedule_all_routes_link(stop, extra_params)}
+    ${ssu.schedule_sort_by_links(stop, extra_params)}
+    ${ssu.schedule_render(stop, pretty_date, extra_params)}
     %if has_alerts:
         ${util.alerts(stop['alerts'])}
     %endif
-    
-
 
