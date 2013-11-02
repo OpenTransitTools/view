@@ -22,7 +22,7 @@
     month  = '' if 'month' not in request.params else "&month={0}".format(request.params['month'])
     day    = '' if 'day'   not in request.params else "&day={0}".format(request.params['day'])
     route  = '' if all or 'route' not in request.params else "&route={0}".format(request.params['route'])
-    url = "stop_schedule.html?stop_id={0}&sort={1}{2}{3}{4}".format(stop['stop_id'], sort, route, month, day, extra_params)
+    url = "stop_schedule.html?stop_id={0}&sort={1}{2}{3}{4}{5}".format(stop['stop_id'], sort, route, month, day, extra_params)
     return url
 %>
 </%def>
