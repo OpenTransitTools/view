@@ -1,8 +1,12 @@
 ## -*- coding: utf-8 -*-
 ##
-## these methods name of the page, any links in that name, etc...
+## these methods control the page background (css file), the name of the page, any links in that name, etc...
 ##
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
+
+# css include controls the page look
+<%def name="stop_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" /></%def>
+<%def name="tripplanner_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all"/></%def>
 
 <%def name="h1_base_stop_stations(name, extra_params, base_params)">
     <h1 class="stopsstations-icon">
@@ -16,7 +20,6 @@
        ${name}
     </h1>
 </%def>
-
 
 #
 # for stop & station pages that have specific stop info (ala alerts / stop landing page link / etc...)
@@ -36,5 +39,9 @@
 
 
 <%def name="trip_planner(name='', extra_params='', base_params='me')">
+<h1 class="tripplanner-icon">
+    <a href="planner_form.html?exception${extra_params}" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>
+    ${name}
+</h1>
 </%def>
 

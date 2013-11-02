@@ -3,6 +3,8 @@
 ##
 <%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 
+<%def name="page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
+
 <%def name="input_form(name, clear, id, tab, place, coord)">
     <%
         if place == None:

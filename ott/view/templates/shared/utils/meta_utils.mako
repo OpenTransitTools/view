@@ -11,5 +11,7 @@
 ## routines for the different page meta-data 
 ##
 <%def name="tripplanner()">
+    <meta name="Keywords"    content="Triplanner, OTP, routeplanner, planner" />
+    <meta name="Description" content="" />
 </%def>
 
