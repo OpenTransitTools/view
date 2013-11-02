@@ -5,21 +5,23 @@
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="stpu" file="/shared/utils/stop_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
-<%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
+<%
+    name = stpu.make_name_id(stop)
+    stop_params = stpu.make_url_params(stop)
+    has_alerts = stpu.has_alerts(stop)
+%>
+<%def name="title()">${stpu.page_title(stop)}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
 </%def>
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="side_bar()">${side.stop(stop, util.get_extra_params())}</%def>
-<%
-  name = "{0} {1}".format(_(u'Stop ID').encode('utf-8'), stop['stop_id']).decode('utf-8')
-  pre  = "stop&name={0}&lat={1}&lon={2}".format(stop['name'], stop['lat'], stop['lon'])
-  has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
-%>
-${page.stop_select(name, extra_params, pre, has_alerts)}
+<%def name="stations_selected()">class="selected"</%def>
+${page.stop(name, extra_params, stop_params, has_alerts, stop)}
 
 <div class="group">
     <div class="left-column">

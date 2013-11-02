@@ -1,38 +1,37 @@
+## -*- coding: utf-8 -*-
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
-<!-- mako template ... url parameter variables -->
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="stpu" file="/shared/utils/stop_utils.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
+<%
+    name = stpu.make_name_id(stop)
+    stop_params = stpu.make_url_params(stop)
+    has_alerts = stpu.has_alerts(stop)
+%>
+<%def name="title()">${stpu.page_title(stop)}</%def>
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
+</%def>
+<%def name="meta_data()">${meta.stop()}</%def>
+<%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
+<%def name="stations_selected()">class="selected"</%def>
+${page.stop(name, extra_params, stop_params, has_alerts, stop)}
+
+    <h2>${util.name_city_str_from_struct(stop)}</h2>
+
 <%
     sort_val     = 'time' if 'sort' in request.params and request.params['sort'] == 'time' else 'destination'
     sort_by_time = True   if 'sort' in request.params and request.params['sort'] == 'time' else False
     date  = '' if 'date'  not in request.params else request.params['date']
     route = '' if 'route' not in request.params else request.params['route']
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
-    extra_params = util.get_extra_params()
 %>
-
-<%def name="title()">TriMet: ${_(u'Stop ID')} ${stop['stop_id']}</%def>
-<%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" />
-</%def>
-<%def name="meta_data()">
-    <meta name="Keywords"    content="Stops, stations"/>
-    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
-</%def>
-<%def name="side_bar()">
-    <!-- begin #sidebar -->
-    <aside id="aside" class="aside">
-    </aside>
-    <!-- end #sidebar -->
-</%def>
-
-<%def name="stations_selected()">class="selected"</%def>
-    <h1 class="stopsstations-icon">
-        <a href="stop_select_form.html?stop_id=${stop['stop_id']}${extra_params}" title="${_(u'Stops & Stations')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Stops & Stations')} ${_(u'Home')}</span></a>
-        <a href="stop.html?stop_id=${stop['stop_id']}&date=${date}${extra_params}">${_(u'Stop ID')} ${stop['stop_id']}</a>
-    </h1>
-
-    <h2>${util.name_city_str_from_struct(stop)}</h2>
-
     <ul id="contenttabs">
         %for t in tabs:
           %if 'url' in t:

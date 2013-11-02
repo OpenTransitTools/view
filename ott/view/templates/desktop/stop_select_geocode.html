@@ -14,7 +14,7 @@
 </%def>
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
-
+<%def name="stations_selected()">class="selected"</%def>
 ${page.stop_select(_(u'Uncertain location'), extra_params, 'geo')}
 
 <h2 class="error">${_(u'We cannot find')} ${place}</h2>
