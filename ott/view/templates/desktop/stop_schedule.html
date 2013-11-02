@@ -60,7 +60,8 @@ ${page.stop(name, extra_params, stop_params, has_alerts, stop)}
 
     %if 'single_route_name' in stop and stop['single_route_name'] != None:
     ${stop['single_route_name']}
-    [<a href="stop_schedule.html?stop_id=${stop['stop_id']}&date=${date}&sort=${sort_val}${extra_params}">${_(u'all routes')}</a>]
+    ## TODO &date=${date}
+    [<a href="stop_schedule.html?stop_id=${stop['stop_id']}&sort=${sort_val}${extra_params}">${_(u'all routes')}</a>]
     %endif
 
     <p style="float:right;">
