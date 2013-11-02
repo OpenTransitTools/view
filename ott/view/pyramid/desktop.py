@@ -32,7 +32,6 @@ def call_geocoder(request, no_geocode_msg='Undefined'):
     ret_val = {}
 
     geocode = html_utils.get_first_param(request, 'place')
-    geocode = object_utils.to_str(geocode)
     if geocode:
         res = request.model.get_geocode(geocode)
         if res and 'results' in res:

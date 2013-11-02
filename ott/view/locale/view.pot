@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2013-10-29 19:20-0700\n"
+"POT-Creation-Date: 2013-11-01 22:10-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -217,7 +217,7 @@ msgstr ""
 msgid "Route"
 msgstr ""
 
-#: ott/view/locale/misc-strings.html:63 ott/view/templates/shared/util.mako:211
+#: ott/view/locale/misc-strings.html:63 ott/view/templates/shared/help_utils.mako:79
 msgid "Address"
 msgstr ""
 
@@ -257,13 +257,9 @@ msgstr ""
 msgid "more"
 msgstr ""
 
-#: ott/view/model/place.py:41 ott/view/templates/desktop/nearest_service_geocode.html:7 ott/view/templates/desktop/stop_select_geocode.html:8
-#: ott/view/templates/desktop/stop_select_geocode.html:35
+#: ott/view/model/place.py:41 ott/view/templates/desktop/nearest_service_geocode.html:7 ott/view/templates/desktop/planner_geocode.html:10
+#: ott/view/templates/desktop/stop_select_geocode.html:10 ott/view/templates/desktop/stop_select_geocode.html:37
 msgid "Uncertain location"
-msgstr ""
-
-#: ott/view/pyramid/desktop.py:98 ott/view/templates/shared/util.mako:73 ott/view/templates/shared/util.mako:110
-msgid "Undefined"
 msgstr ""
 
 #: ott/view/templates/desktop/exception.html:8
@@ -271,17 +267,18 @@ msgid "Exception"
 msgstr ""
 
 #: ott/view/templates/desktop/exception.html:24 ott/view/templates/desktop/planner.html:9 ott/view/templates/desktop/planner.html:47
-#: ott/view/templates/desktop/planner_form.html:6 ott/view/templates/desktop/planner_form.html:33 ott/view/templates/desktop/planner_walk.html:9
+#: ott/view/templates/desktop/planner_form.html:6 ott/view/templates/desktop/planner_form.html:33 ott/view/templates/desktop/planner_geocode.html:10
+#: ott/view/templates/desktop/planner_geocode.html:11 ott/view/templates/desktop/planner_geocode.html:36 ott/view/templates/desktop/planner_walk.html:9
 #: ott/view/templates/desktop/planner_walk.html:47
 msgid "Trip Planner"
 msgstr ""
 
-#: ott/view/templates/desktop/exception.html:24 ott/view/templates/desktop/map_place.html:15 ott/view/templates/desktop/nearest_service.html:39
-#: ott/view/templates/desktop/nearest_service_form.html:36 ott/view/templates/desktop/nearest_service_geocode.html:25
-#: ott/view/templates/desktop/planner.html:47 ott/view/templates/desktop/planner_form.html:33 ott/view/templates/desktop/planner_walk.html:47
-#: ott/view/templates/desktop/stop.html:32 ott/view/templates/desktop/stop_schedule.html:31 ott/view/templates/desktop/stop_select_form.html:37
-#: ott/view/templates/desktop/stop_select_geocode.html:34 ott/view/templates/desktop/stop_select_geocode_nearest.html:47
-#: ott/view/templates/desktop/stop_select_list.html:33
+#: ott/view/templates/desktop/exception.html:24 ott/view/templates/desktop/map_place.html:15 ott/view/templates/desktop/nearest_service.html:34
+#: ott/view/templates/desktop/nearest_service_form.html:38 ott/view/templates/desktop/nearest_service_geocode.html:25
+#: ott/view/templates/desktop/planner.html:47 ott/view/templates/desktop/planner_form.html:33 ott/view/templates/desktop/planner_geocode.html:36
+#: ott/view/templates/desktop/planner_walk.html:47 ott/view/templates/desktop/stop.html:32 ott/view/templates/desktop/stop_schedule.html:31
+#: ott/view/templates/desktop/stop_select_form.html:38 ott/view/templates/desktop/stop_select_geocode.html:36
+#: ott/view/templates/desktop/stop_select_geocode_nearest.html:47 ott/view/templates/desktop/stop_select_list.html:33
 msgid "Home"
 msgstr ""
 
@@ -297,8 +294,8 @@ msgstr ""
 msgid "Email TriMet and let us know..."
 msgstr ""
 
-#: ott/view/templates/desktop/feedback.html:15 ott/view/templates/desktop/nearest_service.html:17 ott/view/templates/desktop/nearest_service_form.html:23
-#: ott/view/templates/desktop/stop_select_form.html:23 ott/view/templates/desktop/stop_select_geocode.html:19
+#: ott/view/templates/desktop/feedback.html:15 ott/view/templates/desktop/nearest_service.html:17 ott/view/templates/desktop/nearest_service_form.html:25
+#: ott/view/templates/desktop/stop_select_form.html:24 ott/view/templates/desktop/stop_select_geocode.html:21
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:29 ott/view/templates/desktop/stop_select_list.html:18
 msgid "Related"
 msgstr ""
@@ -328,107 +325,86 @@ msgstr ""
 msgid "Stops near"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service.html:19 ott/view/templates/desktop/nearest_service_form.html:25
-#: ott/view/templates/desktop/stop_select_form.html:25 ott/view/templates/desktop/stop_select_geocode.html:21
+#: ott/view/templates/desktop/nearest_service.html:19 ott/view/templates/desktop/nearest_service_form.html:27
+#: ott/view/templates/desktop/stop_select_form.html:26 ott/view/templates/desktop/stop_select_geocode.html:23
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:31 ott/view/templates/desktop/stop_select_list.html:20
 msgid "Transit Centers"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service.html:20 ott/view/templates/desktop/nearest_service_form.html:26
-#: ott/view/templates/desktop/stop_select_form.html:26 ott/view/templates/desktop/stop_select_geocode.html:22
+#: ott/view/templates/desktop/nearest_service.html:20 ott/view/templates/desktop/nearest_service_form.html:28
+#: ott/view/templates/desktop/stop_select_form.html:27 ott/view/templates/desktop/stop_select_geocode.html:24
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:32 ott/view/templates/desktop/stop_select_list.html:21
 msgid "MAX Light Rail stations"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service.html:21 ott/view/templates/desktop/nearest_service_form.html:27
-#: ott/view/templates/desktop/stop_select_form.html:27 ott/view/templates/desktop/stop_select_geocode.html:23
+#: ott/view/templates/desktop/nearest_service.html:21 ott/view/templates/desktop/nearest_service_form.html:29
+#: ott/view/templates/desktop/stop_select_form.html:28 ott/view/templates/desktop/stop_select_geocode.html:25
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:33 ott/view/templates/desktop/stop_select_list.html:22
 msgid "WES Commuter Rail stations"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service.html:22 ott/view/templates/desktop/nearest_service_form.html:28
-#: ott/view/templates/desktop/stop_select_form.html:28 ott/view/templates/desktop/stop_select_geocode.html:24
+#: ott/view/templates/desktop/nearest_service.html:22 ott/view/templates/desktop/nearest_service_form.html:30
+#: ott/view/templates/desktop/stop_select_form.html:29 ott/view/templates/desktop/stop_select_geocode.html:26
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:34 ott/view/templates/desktop/stop_select_list.html:23
 msgid "Park & Ride lots"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service.html:23 ott/view/templates/desktop/nearest_service_form.html:29
-#: ott/view/templates/desktop/stop_select_form.html:29 ott/view/templates/desktop/stop_select_geocode.html:25
+#: ott/view/templates/desktop/nearest_service.html:23 ott/view/templates/desktop/nearest_service_form.html:31
+#: ott/view/templates/desktop/stop_select_form.html:30 ott/view/templates/desktop/stop_select_geocode.html:27
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:35 ott/view/templates/desktop/stop_select_list.html:24
 msgid "Portland Transit Mall"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service.html:36 ott/view/templates/desktop/tracker.html:48
+#: ott/view/templates/desktop/nearest_service.html:31 ott/view/templates/desktop/tracker.html:48
 msgid "Mobile"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service.html:39 ott/view/templates/desktop/nearest_service_form.html:36
+#: ott/view/templates/desktop/nearest_service.html:34 ott/view/templates/desktop/nearest_service_form.html:38
 #: ott/view/templates/desktop/nearest_service_geocode.html:25 ott/view/templates/desktop/stop.html:32 ott/view/templates/desktop/stop_schedule.html:31
-#: ott/view/templates/desktop/stop_select_form.html:37 ott/view/templates/desktop/stop_select_form.html:38
-#: ott/view/templates/desktop/stop_select_geocode.html:34 ott/view/templates/desktop/stop_select_geocode_nearest.html:47
+#: ott/view/templates/desktop/stop_select_form.html:38 ott/view/templates/desktop/stop_select_form.html:39
+#: ott/view/templates/desktop/stop_select_geocode.html:36 ott/view/templates/desktop/stop_select_geocode_nearest.html:47
 #: ott/view/templates/desktop/stop_select_list.html:33
 msgid "Stops & Stations"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:12
+#: ott/view/templates/desktop/nearest_service_form.html:14
 msgid "Nearest Service"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:37
+#: ott/view/templates/desktop/nearest_service_form.html:39
 msgid "Nearest service"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:41
+#: ott/view/templates/desktop/nearest_service_form.html:43
 msgid "Find the nearest service to your location"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:46
+#: ott/view/templates/desktop/nearest_service_form.html:48
 msgid "Location"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:47 ott/view/templates/desktop/stop_select_form.html:45
-msgid "Address, intersection, landmark or Stop ID"
-msgstr ""
-
-#: ott/view/templates/desktop/nearest_service_form.html:53
+#: ott/view/templates/desktop/nearest_service_form.html:51
 msgid "Within"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:66
+#: ott/view/templates/desktop/nearest_service_form.html:64
 msgid "Starting at"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:72
+#: ott/view/templates/desktop/nearest_service_form.html:70
 msgid "Month"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:77
+#: ott/view/templates/desktop/nearest_service_form.html:75
 msgid "Day"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:83
+#: ott/view/templates/desktop/nearest_service_form.html:81
 msgid "Length of time"
 msgstr ""
 
-#: ott/view/templates/desktop/nearest_service_form.html:90
+#: ott/view/templates/desktop/nearest_service_form.html:88
 msgid "Find service"
-msgstr ""
-
-#: ott/view/templates/desktop/nearest_service_geocode.html:28 ott/view/templates/desktop/stop_select_geocode.html:37
-msgid "We cannot find"
-msgstr ""
-
-#: ott/view/templates/desktop/nearest_service_geocode.html:46 ott/view/templates/desktop/stop_select_geocode.html:45
-msgid "Select a location"
-msgstr ""
-
-#: ott/view/templates/desktop/nearest_service_geocode.html:49 ott/view/templates/shared/util.mako:83 ott/view/templates/shared/util.mako:85
-msgid "in"
-msgstr ""
-
-#: ott/view/templates/desktop/nearest_service_geocode.html:60 ott/view/templates/desktop/stop_select_form.html:56
-#: ott/view/templates/desktop/stop_select_geocode.html:60 ott/view/templates/desktop/stop_select_list.html:58
-msgid "Or"
 msgstr ""
 
 #: ott/view/templates/desktop/planner.html:9 ott/view/templates/desktop/planner.html:49 ott/view/templates/desktop/planner_form.html:38
@@ -436,8 +412,8 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: ott/view/templates/desktop/planner.html:9 ott/view/templates/desktop/planner_walk.html:9 ott/view/templates/desktop/stop_schedule.html:83
-#: ott/view/templates/desktop/stop_schedule.html:97 ott/view/templates/shared/planner.mako:284 ott/view/templates/shared/planner.mako:331
+#: ott/view/templates/desktop/planner.html:9 ott/view/templates/desktop/planner_walk.html:9 ott/view/templates/desktop/stop_schedule.html:84
+#: ott/view/templates/desktop/stop_schedule.html:98 ott/view/templates/shared/planner.mako:284 ott/view/templates/shared/planner.mako:331
 #: ott/view/templates/shared/planner.mako:362 ott/view/templates/shared/planner.mako:403 ott/view/templates/shared/planner.mako:407
 #: ott/view/templates/shared/util.mako:123
 msgid "to"
@@ -536,15 +512,15 @@ msgstr ""
 msgid "Edit/Start over"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_form.html:26
+#: ott/view/templates/desktop/planner_form.html:26 ott/view/templates/desktop/planner_geocode.html:31
 msgid "Interactive Map Trip Planner"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_form.html:26
+#: ott/view/templates/desktop/planner_form.html:26 ott/view/templates/desktop/planner_geocode.html:31
 msgid "Get transit + biking directions in one itinerary"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_form.html:33
+#: ott/view/templates/desktop/planner_form.html:33 ott/view/templates/desktop/planner_geocode.html:37
 msgid "Plan your trip on TriMet"
 msgstr ""
 
@@ -618,6 +594,22 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#: ott/view/templates/desktop/planner_geocode.html:39 ott/view/templates/desktop/stop_select_geocode.html:39
+msgid "We cannot find"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_geocode.html:45 ott/view/templates/desktop/stop_select_geocode.html:47 ott/view/templates/shared/form_utils.mako:14
+msgid "Select a location"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_geocode.html:51
+msgid "Re-type location"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_geocode.html:52 ott/view/templates/desktop/stop_select_geocode.html:69
+msgid "Continue"
+msgstr ""
+
 #: ott/view/templates/desktop/stop.html:7 ott/view/templates/desktop/stop.html:33 ott/view/templates/desktop/stop_schedule.html:14
 #: ott/view/templates/desktop/stop_schedule.html:32 ott/view/templates/desktop/stop_select_geocode_nearest.html:55
 #: ott/view/templates/shared/planner.mako:370 ott/view/templates/shared/planner.mako:415 ott/view/templates/shared/planner.mako:485
@@ -640,7 +632,7 @@ msgstr ""
 msgid "Served by"
 msgstr ""
 
-#: ott/view/templates/desktop/stop.html:50 ott/view/templates/desktop/stop.html:59 ott/view/templates/desktop/stop_schedule.html:103
+#: ott/view/templates/desktop/stop.html:50 ott/view/templates/desktop/stop.html:59 ott/view/templates/desktop/stop_schedule.html:104
 msgid "Next arrivals"
 msgstr ""
 
@@ -648,7 +640,7 @@ msgstr ""
 msgid "Schedule"
 msgstr ""
 
-#: ott/view/templates/desktop/stop.html:52 ott/view/templates/desktop/stop_schedule.html:95
+#: ott/view/templates/desktop/stop.html:52 ott/view/templates/desktop/stop_schedule.html:96
 msgid "Show map and schedules for this route"
 msgstr ""
 
@@ -664,48 +656,46 @@ msgstr ""
 msgid "Amenities"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_schedule.html:55 ott/view/templates/desktop/stop_select_geocode.html:54 ott/view/templates/shared/route_select.mako:18
+#: ott/view/templates/desktop/stop_schedule.html:56 ott/view/templates/desktop/stop_select_geocode.html:56 ott/view/templates/shared/form_utils.mako:65
+#: ott/view/templates/shared/route_select.mako:18
 msgid "Select"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_schedule.html:64
+#: ott/view/templates/desktop/stop_schedule.html:65
 msgid "all routes"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_schedule.html:70
+#: ott/view/templates/desktop/stop_schedule.html:71
 msgid "By destination"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_schedule.html:70 ott/view/templates/desktop/stop_schedule.html:72
+#: ott/view/templates/desktop/stop_schedule.html:71 ott/view/templates/desktop/stop_schedule.html:73
 msgid "sort"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_schedule.html:72
+#: ott/view/templates/desktop/stop_schedule.html:73
 msgid "By time"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_schedule.html:74
+#: ott/view/templates/desktop/stop_schedule.html:75
 msgid "Schedule for"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_select_form.html:12
+#: ott/view/templates/desktop/stop_select_form.html:13
 msgid "Stops and Stations"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_select_form.html:44
+#: ott/view/templates/desktop/stop_select_form.html:44 ott/view/templates/desktop/stop_select_geocode.html:68
 msgid "Find stops and stations"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_select_form.html:51
+#: ott/view/templates/desktop/stop_select_form.html:45
 msgid "Find stops"
 msgstr ""
 
-#: ott/view/templates/desktop/stop_select_geocode.html:68
-msgid "Re-type location"
-msgstr ""
-
-#: ott/view/templates/desktop/stop_select_geocode.html:75
-msgid "Continue"
+#: ott/view/templates/desktop/stop_select_form.html:49 ott/view/templates/desktop/stop_select_geocode.html:62
+#: ott/view/templates/desktop/stop_select_list.html:58 ott/view/templates/shared/form_utils.mako:32
+msgid "Or"
 msgstr ""
 
 #: ott/view/templates/desktop/stop_select_geocode_nearest.html:48
@@ -724,8 +714,28 @@ msgstr ""
 msgid "Select stop"
 msgstr ""
 
-#: ott/view/templates/shared/planner.mako:15
+#: ott/view/templates/shared/form_utils.mako:44
+msgid "Address, intersection, landmark or Stop ID"
+msgstr ""
+
+#: ott/view/templates/shared/form_utils.mako:88 ott/view/templates/shared/planner.mako:15
 msgid "You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code."
+msgstr ""
+
+#: ott/view/templates/shared/help_utils.mako:78
+msgid "There are several ways to enter a location"
+msgstr ""
+
+#: ott/view/templates/shared/help_utils.mako:80
+msgid "Intersection"
+msgstr ""
+
+#: ott/view/templates/shared/help_utils.mako:80
+msgid "(where two streets cross each other)"
+msgstr ""
+
+#: ott/view/templates/shared/help_utils.mako:81
+msgid "Landmarks"
 msgstr ""
 
 #: ott/view/templates/shared/planner.mako:45 ott/view/templates/shared/planner.mako:278
@@ -964,6 +974,14 @@ msgstr ""
 msgid "Select a line"
 msgstr ""
 
+#: ott/view/templates/shared/util.mako:73 ott/view/templates/shared/util.mako:110
+msgid "Undefined"
+msgstr ""
+
+#: ott/view/templates/shared/util.mako:83 ott/view/templates/shared/util.mako:85
+msgid "in"
+msgstr ""
+
 #: ott/view/templates/shared/util.mako:120 ott/view/templates/shared/util.mako:123 ott/view/templates/shared/util.mako:126
 msgid "Plan a trip"
 msgstr ""
@@ -980,119 +998,103 @@ msgstr ""
 msgid "Stop location on a map"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:210
-msgid "There are several ways to enter a location"
-msgstr ""
-
-#: ott/view/templates/shared/util.mako:212
-msgid "Intersection"
-msgstr ""
-
-#: ott/view/templates/shared/util.mako:212
-msgid "(where two streets cross each other)"
-msgstr ""
-
-#: ott/view/templates/shared/util.mako:213
-msgid "Landmarks"
-msgstr ""
-
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "January"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "February"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "March"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "April"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226 ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:214 ott/view/templates/shared/util.mako:224
 msgid "May"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "June"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "July"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "August"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "September"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "October"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "November"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:226
+#: ott/view/templates/shared/util.mako:214
 msgid "December"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Jan"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Feb"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Mar"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Apr"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Jun"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Jul"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Aug"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Sep"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Oct"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Nov"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:236
+#: ott/view/templates/shared/util.mako:224
 msgid "Dec"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:263
+#: ott/view/templates/shared/util.mako:251
 msgid "See footnote"
 msgstr ""
 
-#: ott/view/templates/shared/util.mako:269
+#: ott/view/templates/shared/util.mako:257
 msgid "Service Alerts"
 msgstr ""
 

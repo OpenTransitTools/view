@@ -6,10 +6,10 @@ log = logging.getLogger(__file__)
 from ott.view.model.base import Base
 from ott.view.utils import object_utils
 
+#import pdb; pdb.set_trace()
+
 class Model(Base):
     def get_routes(self, get_params, **kwargs):
-        #import pdb; pdb.set_trace() 
-        # TODO ..
         return self.stream_json('routes', get_params)
 
     def get_route_stops(self, get_params, **kwargs): 

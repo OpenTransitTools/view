@@ -1,9 +1,12 @@
-##
-##  
+## -*- coding: utf-8 -*-
+## 
+## library of routines that do input forms and drop down lists 
+## (geocoder mostly)
 ##
 <%namespace name="util"  file="/shared/util.mako"/>
 <%namespace name="help"  file="/shared/help_utils.mako"/>
 <%namespace name="an"    file="/shared/analytics_utils.mako"/>
+
 #
 # search list form
 # Scrolling List of Possible Locations
