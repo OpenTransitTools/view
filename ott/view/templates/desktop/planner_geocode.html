@@ -1,14 +1,12 @@
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util" file="/shared/util.mako"/>
-<%namespace name="form" file="/shared/form_utils.mako"/>
-<%namespace name="help" file="/shared/help_utils.mako"/>
-<%namespace name="an"   file="/shared/analytics_utils.mako"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="help" file="/shared/utils/help_utils.mako"/>
+<%namespace name="an"   file="/shared/utils/analytics_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
-
 <%def name="title()">TriMet: ${_(u'Trip Planner')} ${_(u'Uncertain location')}</%def>
-<%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
 <%def name="app_css()">
     <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
 </%def>

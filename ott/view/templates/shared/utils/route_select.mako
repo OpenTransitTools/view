@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-<%namespace name="util" file="/shared/util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
 <%def name="route_select_form(url, route_list, analytics='')">
     <!-- BEGIN route_select_form() --> 
     <form action="${url}" method="get" class="triptools-form">

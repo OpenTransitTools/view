@@ -1,7 +1,7 @@
 ##
 ## 
 ##
-<%namespace name="util"  file="/shared/util.mako"/>
+<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 
 <%def name="input_form(name, clear, id, tab, place, coord)">
     <%

@@ -1,6 +1,5 @@
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/util.mako"/>
-
+<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 <!-- mako template ... url parameter variables -->
 <%
     sort_val     = 'time' if 'sort' in request.params and request.params['sort'] == 'time' else 'destination'
