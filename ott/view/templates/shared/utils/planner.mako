@@ -5,6 +5,29 @@
 
 <%def name="page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 
+##
+##
+##
+<%def name="bottom_imap_bar()">
+    <div id="imap-wrap">
+        <section id="imap" class="group">
+            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
+        </section><!-- end #imap -->
+    </div><!-- end #promobar-wrap -->
+</%def>
+
+##
+##
+##
+<%def name="bottom_disclaimer()">
+    <div id="disclaimer">
+        <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
+            <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
+            ${_(u'for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
+        </p>
+    </div>
+</%def>
+
 <%def name="input_form(name, clear, id, tab, place, coord)">
     <%
         if place == None:

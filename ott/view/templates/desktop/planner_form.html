@@ -1,36 +1,30 @@
+## -*- coding: utf-8 -*-
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
+<%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
+<%def name="meta_data()">${meta.tripplanner()}</%def>
+<%def name="side_bar()"></%def>
+<%def name="planner_selected()">class="selected"</%def>
+<%def name="app_css()">${page.tripplanner_css()}</%def>
+${page.trip_planner(_(u'Trip Planner'), extra_params, 'exception')}
 ${plib.clear_tp_element_scriptlet()}
 
-<%def name="title()">TriMet: ${_(u'Trip Planner')}</%def>
-<%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
-</%def>
-<%def name="meta_data()">
-    <meta name="Keywords"    content="Tripplanner, OTP, routeplanner, planner" />
-    <meta name="Description" content="" />
-</%def>
-<%def name="planner_selected()">class="selected"</%def>
 ## override section ID to make this page full width
-<%def name="main_wrap_top()">
-    <section id="main-fullwidth" ${self.mainContentStyle()} class="main">
-    <%include file="/shared/share.html"/>
-</%def>
-<%def name="main_wrap_bottom()">
-    </section><!-- end #main-fullwidth -->
-</%def>
-<%def name="bottom()">
-    <div id="imap-wrap">
-        <section id="imap" class="group">
-            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
-        </section><!-- end #imap -->
-    </div><!-- end #promobar-wrap -->
-</%def>
+<%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"><%include file="/shared/share.html"/></%def>
+<%def name="main_wrap_bottom()"></section><!-- end #main-fullwidth --></%def>
+<%def name="bottom()">${plib.bottom_imap_bar()}</%def>
+
 ##
 ## main content
 ##
-<h1 class="tripplanner-icon"><a href="planner_form.html" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>${_(u'Plan your trip on TriMet')}</h1>
+
 <div id="plantrip" class="group">
     <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style"/>
     <div id="plantrip-left">

@@ -2,8 +2,6 @@
 <%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 <%
-    is_mobile = False
-    itinerary = plib.get_itinerary(plan)
     extra_params = util.get_extra_params()
 %>
 <%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
@@ -33,17 +31,15 @@
         
     </aside><!-- end #sidebar -->
 </%def>
-<%def name="bottom()">
-    <div id="disclaimer">
-        <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
-            <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
-            ${_(u'for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
-        </p>
-    </div>
-</%def>
+
+
 ##
 ## main content
 ##
+<%
+    is_mobile = False
+    itinerary = plib.get_itinerary(plan)
+%>
 <h1 class="tripplanner-icon"><a href="planner_form.html?plan${extra_params}" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>${_(u'Your Trip on TriMet')}</h1>
 <div id="details" class="group">
     <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
