@@ -1,37 +1,28 @@
+## -*- coding: utf-8 -*-
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
-<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
-<%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
-    <script src="${util.url_domain()}/scripts/triptools.js"></script>
-</%def>
-<%def name="meta_data()">
-    <meta name="Keywords"    content="triplanner, trip planner, open trip planner, OTP, route planner, planner, transit planner"/>
-    <meta name="Description" content="text interface for trimet trip planner"/>
-</%def>
-<%def name="planner_selected()">class="selected"</%def>
+<%def name="title()">${plib.itin_page_title(plan)}</%def>
+<%def name="meta_data()">${meta.tripplanner()}</%def>
 <%def name="side_bar()">
     <aside id="aside" class="aside">
-        <div id="trimet-ads">
-            %if adverts:
-                %for a in adverts:
-                    ${a['content'] | n}
-                %endfor
-            %endif
-        </div><!-- end #trimet-ads -->
-        <div id="sidebar-icons">
-            <p class="helptips"><a href="${util.url_domain()}/tripplanner/trip-help.htm" target="#"><span>${_(u'Help/tips')}</span></a></p>
-            <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
-            <p class="feedbackreport"><a href="/feedback.html?app=${plan['params']['feedback_url']}" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);"><span>${_(u'Feedback/report a problem')} ${plan['params']['feedback_txt']}</span></a></p>
-        </div><!-- end #sidebar-icons -->
-        
-    </aside><!-- end #sidebar -->
+        ${side.sidebar_adverts(adverts)}
+        ${side.help_map_feedback(plan['params']['map_planner'], plan['params']['feedback_url'], plan['params']['feedback_txt'], '/tripplanner/trip-help.htm')}
+    </aside>
 </%def>
+<%def name="planner_selected()">class="selected"</%def>
+<%def name="app_css()">${page.tripplanner_css()}</%def>
+<script src="${util.url_domain()}/scripts/triptools.js"></script>
+${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner')}
+${plib.clear_tp_element_scriptlet()}
 
+<%def name="bottom()">${plib.bottom_imap_bar()} ${plib.bottom_disclaimer()}</%def>
 
 ##
 ## main content
@@ -40,7 +31,6 @@
     is_mobile = False
     itinerary = plib.get_itinerary(plan)
 %>
-<h1 class="tripplanner-icon"><a href="planner_form.html?plan${extra_params}" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>${_(u'Your Trip on TriMet')}</h1>
 <div id="details" class="group">
     <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
     <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
@@ -81,9 +71,9 @@ ${plib.render_fares(itinerary, util.url_domain() + '/fares/index.htm')}
 
 <div id="console" class="group hide">
     <p class="console-left">
-        <a href="#" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
+        <a href="#TODO_TODO" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
         <a href="javascript:window.print();" class="console-print" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);"><span>${_(u'Print')}</span></a>
-        <a href="#" class="console-mobile" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary view on mobile']);"><span>${_(u'View on mobile')}</span></a>
+        <a href="#TODO_TODO" class="console-mobile" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary view on mobile']);"><span>${_(u'View on mobile')}</span></a>
     </p>
     <p class="console-right">
         <a href="planner_form.html?${plan['params']['return_trip']}${extra_params}" class="console-returntrip" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);"><span>${_(u'Return trip')}</span></a>

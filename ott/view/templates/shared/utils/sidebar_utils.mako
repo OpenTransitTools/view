@@ -20,7 +20,40 @@
     <!-- end #sidebar -->
 </%def>
 
+##
+## loop through any adverts 
+##
+<%def name="sidebar_adverts(adverts=None)">
+    %if adverts:
+    <div id="trimet-ads">
+        %for a in adverts:
+        ${a['content'] | n}
+        %endfor
+    </div><!-- end #trimet-ads -->
+    %endif
+</%def>
 
+##
+##  show a few links on the sidebar (w/icons)
+##  help: specify the url (default to trip planner)
+##  imap: link to the imap
+##  feedback: link to feedback too ... caller provides
+##  onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']); 
+## 
+##
+<%def name="help_map_feedback(map_params='map', feedback_params=None, feedback_txt=None, help_url='/tripplanner/trip-help.htm')">
+    <div id="sidebar-icons">
+        <p class="helptips"><a href="${util.url_domain()}${help_url}" target="#"><span>${_(u'Help/tips')}</span></a></p>
+        <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${map_params}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
+        %if feedback_params and feedback_txt:
+             <p class="feedbackreport"><a href="/feedback.html?app=${feedback_params}"><span>${_(u'Feedback/report a problem')} ${feedback_txt}</span></a></p>
+        %endif
+    </div><!-- end #sidebar-icons -->
+</%def>
+
+##
+##
+##
 <%def name="stop(stop, extra_params)">
     <aside id="aside" class="aside">
         <h2>${_(u'See also')}</h2>  

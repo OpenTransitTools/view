@@ -13,7 +13,7 @@
 <%def name="side_bar()"></%def>
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">${page.tripplanner_css()}</%def>
-${page.trip_planner(_(u'Trip Planner'), extra_params, 'exception')}
+${page.trip_planner(_(u'Trip Planner'), extra_params, 'form')}
 ${plib.clear_tp_element_scriptlet()}
 
 ## override section ID to make this page full width

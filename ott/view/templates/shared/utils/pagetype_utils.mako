@@ -40,7 +40,7 @@
 
 <%def name="trip_planner(name='', extra_params='', base_params='me')">
 <h1 class="tripplanner-icon">
-    <a href="planner_form.html?exception${extra_params}" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>
+    <a href="planner_form.html?${base_params}${extra_params}" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>
     ${name}
 </h1>
 </%def>

@@ -1,12 +1,13 @@
 ##
-## 
+## planner lib
 ##
 <%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 
-<%def name="page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
+<%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 
 ##
-##
+## footer of the trip planner form
+## a img bar for the imap, with link to the map
 ##
 <%def name="bottom_imap_bar()">
     <div id="imap-wrap">
@@ -17,7 +18,7 @@
 </%def>
 
 ##
-##
+## footer with the trip plan disclaimer
 ##
 <%def name="bottom_disclaimer()">
     <div id="disclaimer">
