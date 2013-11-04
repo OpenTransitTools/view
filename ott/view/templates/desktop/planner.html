@@ -20,7 +20,6 @@
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
 ${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner')}
-${plib.clear_tp_element_scriptlet()}
 
 <%def name="bottom()">${plib.bottom_imap_bar()} ${plib.bottom_disclaimer()}</%def>
 
