@@ -19,13 +19,15 @@ ${page.stop_select(_(u'Uncertain location'), extra_params, 'geo')}
 
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
-    <form action="stop_select_geocode_nearest.html"  method="GET" name="ambig" class="triptools-form">
+    <form action="stop_select_nearest.html"  method="GET" name="ambig" class="triptools-form">
+        <input type="hidden" name="has_geocode" value="true"/>
         ${util.get_extra_params_hidden_inputs()}
         ${form.search_list(_(u'Select a location'), geocoder_results)}
     </form>
     %endif
 
-    <form action="stop_select_geocode.html"  method="GET" name="ambig" class="triptools-form">
+    <form action="stop_select_nearest.html"  method="GET" name="ambig" class="triptools-form">
+        <input type="hidden" name="has_geocode" value="false"/>
         ${util.get_extra_params_hidden_inputs()}
         ${form.search_input(_(u'Find stops and stations'), place)}
         ${form.search_submit(_(u'Continue'))}

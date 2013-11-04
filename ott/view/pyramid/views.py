@@ -61,14 +61,10 @@ def do_view_config(config):
     config.add_route('stop_select_form_desktop',                '/stop_select_form.html')
     config.add_route('stop_select_list_desktop',                '/stop_select_list.html')
     config.add_route('stop_select_geocode_desktop',             '/stop_select_geocode.html')
-    config.add_route('stop_select_geocode_nearest_desktop',     '/stop_select_geocode_nearest.html')
+    config.add_route('stop_select_nearest_desktop',             '/stop_select_nearest.html')
 
     config.add_route('stop_desktop',                            '/stop.html')
     config.add_route('stop_schedule_desktop',                   '/stop_schedule.html')
-
-    config.add_route('nearest_service_form_desktop',            '/nearest_service_form.html')
-    config.add_route('nearest_service_geocode_desktop',         '/nearest_service_geocode.html')
-    config.add_route('nearest_service_desktop',                 '/nearest_service.html')
 
     config.add_route('map_place_desktop',                       '/map_place.html')
 
