@@ -31,6 +31,10 @@ class Place(object):
             pass
 
 
+#TODO
+#  We have both Place and GeoResponse...(plus other assorted geo classes
+#TODO
+
     @classmethod
     def make_from_request(cls, request):
         ret_val = Place()

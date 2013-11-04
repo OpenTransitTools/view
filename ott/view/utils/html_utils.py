@@ -138,6 +138,26 @@ def get_first_param_as_int(request, name, def_val=None):
     return ret_val
 
 
+def get_first_param_as_boolean(request, name, def_val=False):
+    ''' utility function to get a variable
+    '''
+    ret_val = def_val
+
+    val=get_first_param(request, name, def_val)
+    try:
+        if isinstance(val, bool):
+            ret_val = val
+        elif isinstance(val, str) or isinstance(val, unicode):
+            if val.lower() == 'true':
+                ret_val = True
+            else: 
+                ret_val = False
+
+    except:
+        pass
+    return ret_val
+
+
 def get_first_param_as_date(request, name='date', fmt='%m/%d/%Y', def_val=datetime.date.today()):
     ''' utility function to parse a request object for something that looks like a date object...
     '''

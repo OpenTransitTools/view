@@ -28,25 +28,29 @@ def planner_form(request):
     ret_val['params'] = params
     return ret_val
 
-def call_geocoder(request, no_geocode_msg='Undefined'):
+
+def call_geocoder(request, place, no_geocode_msg='Undefined'):
     ret_val = {}
 
-    geocode = html_utils.get_first_param(request, 'place')
-    if geocode:
-        res = request.model.get_geocode(geocode)
+    count = 0
+    if place:
+        res = request.model.get_geocode(place)
         if res and 'results' in res:
             ret_val['geocoder_results'] = res['results']
+            count = len(ret_val['geocoder_results'])
     else:
         _  = get_translator(request)
-        geocode = _(no_geocode_msg)
+        place = _(no_geocode_msg)
 
-    ret_val['place'] = geocode
+    ret_val['place'] = place
+    ret_val['count'] = count
     return ret_val
 
 
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
 def planner_geocode(request):
-    ret_val = call_geocoder(request)
+    place = html_utils.get_first_param(request, 'place')
+    ret_val = call_geocoder(request, place)
     return ret_val
 
 
@@ -107,14 +111,30 @@ def stop_select_list(request):
 
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
 def stop_select_geocode(request):
-    ret_val = call_geocoder(request)
+    place = html_utils.get_first_param(request, 'place')
+    ret_val = call_geocoder(request, place)
     return ret_val
 
 @view_config(route_name='stop_select_nearest_desktop', renderer='desktop/stop_select_nearest.html')
 def stop_select_nearest(request):
     ret_val = {}
-    p = Place.make_from_request(request)
-    ret_val['place'] = p.__dict__
+
+    #import pdb; pdb.set_trace()
+
+    has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
+    if not has_geocode:
+        place = html_utils.get_first_param(request, 'place')
+        geo = call_geocoder(request, place)
+
+        if geo['count'] == 1:
+            ret_val['place'] = dict(geo['geocoder_results'][0])
+        else:
+            subreq = Request.blank('/stop_select_geocode.html')
+            subreq.query_string = request.query_string
+            ret_val = request.invoke_subrequest(subreq)
+    else:
+        p = Place.make_from_request(request)
+        ret_val['place'] = p.__dict__
     return ret_val
 
 @view_config(route_name='map_place_desktop', renderer='desktop/map_place.html')
