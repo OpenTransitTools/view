@@ -127,7 +127,13 @@ def stop_select_nearest(request):
         geo = call_geocoder(request, place)
 
         if geo['count'] == 1:
-            ret_val['place'] = dict(geo['geocoder_results'][0])
+            single_geo = geo['geocoder_results'][0]
+            if single_geo['type'] == 'stop':
+                subreq = Request.blank("/stop.html")
+                subreq.query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
+                ret_val = request.invoke_subrequest(subreq)
+            else:
+                ret_val['place'] = dict(single_geo)
         else:
             subreq = Request.blank('/stop_select_geocode.html')
             subreq.query_string = request.query_string
