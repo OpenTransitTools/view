@@ -7,6 +7,7 @@
 <%namespace name="help"  file="/shared/utils/help_utils.mako"/>
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 
+
 #
 # search list form
 # Scrolling List of Possible Locations
@@ -77,7 +78,7 @@
 </%def>
 
 #
-# planner form
+# text form used for geocoding (like the from & to forms for the trip planner) 
 #
 <%def name="input_form(name, clear, id, tab, place, coord)">
     <%
@@ -91,5 +92,25 @@
             <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
         </div>
     </div>
+</%def>
+
+
+#
+# hidden param to indicate whether some input has already been geocoded
+#
+<%def name="has_geocode_hidden(val='false')">
+        <input type="hidden" name="has_geocode" value="${val}"/>
+</%def>
+
+#
+# misc hidden params to insert into a <form> element
+#
+<%def name="get_extra_params_hidden_inputs()">
+<%
+    loc = util.get_locale(None)
+%>
+    %if loc:
+        <input type="hidden" name="_LOCALE_" value="${loc}"/>
+    %endif
 </%def>
 

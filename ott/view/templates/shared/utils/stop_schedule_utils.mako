@@ -3,6 +3,7 @@
 ## routines for stop / stop_schedule pages
 ##
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
 
 <%def name="sort_val()">
 <%
@@ -43,7 +44,7 @@
     %if 'more' in request.params:
     <div id="moreform" class="group">
         <form name="select_date" id="select_date_id" method="GET" action="stop_schedule.html" class="triptools-form">
-            ${util.get_extra_params_hidden_inputs()}
+            ${form.get_extra_params_hidden_inputs()}
             <input type="hidden" name="stop_id" value="${stop['stop_id']}" />
             <input type="hidden" name="sort"    value="${sort_val()}" />
             %if more_form:

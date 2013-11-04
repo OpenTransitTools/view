@@ -19,7 +19,7 @@ ${page.stop_select(route_stops['name'], extra_params, 'list')}
     % for d in route_stops['directions']:
     <form action="stop.html" method="get" class="triptools-form">
         <fieldset>
-            ${util.get_extra_params_hidden_inputs()}
+            ${form.get_extra_params_hidden_inputs()}
             <label for="${d['name']}">${_(u'To')} ${d['name']}</label>
             <select name="stop_id" id="${d['name']}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
                 % for s in d['stops']:

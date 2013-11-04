@@ -194,15 +194,6 @@
 %>
 </%def>
 
-<%def name="get_extra_params_hidden_inputs()">
-<%
-    loc = get_locale(None)
-%>
-    %if loc:
-        <input type="hidden" name="_LOCALE_" value="${loc}"/>
-    %endif
-</%def>
-
 
 <%def name="print_year()"><%
     from ott.view.utils import date_utils

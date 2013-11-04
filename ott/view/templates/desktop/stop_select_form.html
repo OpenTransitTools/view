@@ -21,8 +21,8 @@ ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
 
 <div id="findstop">
     <form action="stop_select_nearest.html" class="triptools-form" method="GET" name="ambig" class="triptools-form">
-        <input type="hidden" name="has_geocode" value="false"/>
-        ${util.get_extra_params_hidden_inputs()}
+        ${form.has_geocode_hidden('false')}
+        ${form.get_extra_params_hidden_inputs()}
         ${form.search_input(_(u'Find stops and stations'), place)}
         ${form.search_submit(_(u'Find stops'))}
     </form>
