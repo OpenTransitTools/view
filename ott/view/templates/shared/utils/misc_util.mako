@@ -68,7 +68,7 @@
 %>
 </%def>
 
-<%def name="name_city_str(name, city, type_name=None)">
+<%def name="name_city_str(name, city, type_name=None, stop_id='')">
 <%
     ret_val = _(u'Undefined')
     if name and len(name) > 0:
@@ -77,12 +77,16 @@
     city = localize_str(city)
     tn = localize_str(type_name, type_name)
     type_name = unicode_to_str(tn, type_name) # have to do this for .format()
+    if stop_id == None:
+        stop_id = ''
 
     try:
         if city and type_name:
-            ret_val = "{0} ({1} {2} {3})".format(ret_val, type_name, _(u'in'), city)
+            ret_val = "{0} ({1} {2} {3} {4})".format(ret_val, type_name, stop_id, _(u'in'), city)
         elif city:
             ret_val = "{0} ({1} {2})".format(ret_val, _(u'in'), city)
+        elif type_name and len(stop_id) > 0:
+            ret_val = "{0} ({1} {2})".format(ret_val, type_name, stop_id)
         elif type_name:
             ret_val = "{0} ({1})".format(ret_val, type_name)
     except:

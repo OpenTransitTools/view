@@ -23,7 +23,7 @@
             <label>${name}:</label>
             <select size="${size}" name="place" class="regular" id="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" />
                 %for l in list:
-                <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'], l['type_name'])}</option>
+                <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'], l['type_name'], l['stop_id'])}</option>
                 %endfor
             </select>
         </fieldset>
