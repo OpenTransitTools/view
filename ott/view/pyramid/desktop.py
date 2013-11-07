@@ -115,11 +115,20 @@ def stop_select_geocode(request):
     ret_val = call_geocoder(request, place)
     return ret_val
 
-@view_config(route_name='stop_select_nearest_desktop', renderer='desktop/stop_select_nearest.html')
-def stop_select_nearest(request):
+@view_config(route_name='stops_near_desktop', renderer='desktop/stops_near.html')
+def stops_near(request):
     ret_val = {}
 
     #import pdb; pdb.set_trace()
+    def call_near_ws(geo=None):
+        p = Place.make_from_request(request)
+        p.update_values_via_dict(geo)
+        params = p.to_url_params()
+        ret_val['place']   = p.__dict__
+        ret_val['params']  = params
+        if html_utils.get_first_param(request, 'show_more', None):
+            params = "num=30&{0}".format(params)
+        ret_val['nearest'] = request.model.get_stops_near(params, **request.params)
 
     has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
     if not has_geocode:
@@ -133,14 +142,13 @@ def stop_select_nearest(request):
                 subreq.query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
                 ret_val = request.invoke_subrequest(subreq)
             else:
-                ret_val['place'] = dict(single_geo)
+                call_near_ws(single_geo)
         else:
             subreq = Request.blank('/stop_select_geocode.html')
             subreq.query_string = request.query_string
             ret_val = request.invoke_subrequest(subreq)
     else:
-        p = Place.make_from_request(request)
-        ret_val['place'] = p.__dict__
+        call_near_ws()
     return ret_val
 
 @view_config(route_name='map_place_desktop', renderer='desktop/map_place.html')

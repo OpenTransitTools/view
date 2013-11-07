@@ -19,3 +19,13 @@
     params = "stop&name={0}&lat={1}&lon={2}".format(stop['name'], stop['lat'], stop['lon'])
     return params
 %></%def>
+
+
+<%def name="planner_walk_link(from_place, to_stop)">
+<a href="planner_walk.html?">${_(u'miles', to_stop['distance'])}</a>
+</%def>
+
+<%def name="routes_served(stop)">
+ ${_(u'Served by')}: ${stop['stop_id']}
+</%def>
+ 

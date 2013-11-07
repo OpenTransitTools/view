@@ -23,6 +23,7 @@ class Base(object):
 
     def get_stop(self, get_params, **kwargs): pass
     def get_stop_schedule(self, get_params, **kwargs): pass
+    def get_stops_near(self, get_params, **kwargs): pass
 
     def get_routes(self, get_params, **kwargs): pass
     def get_route_stops(self, get_params, **kwargs): pass

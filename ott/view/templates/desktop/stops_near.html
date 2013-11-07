@@ -5,6 +5,7 @@
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="stop" file="/shared/utils/stop_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
@@ -17,27 +18,17 @@ ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
 
 <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
 <ul id="stopslist" class="group">
-<%
-    nearest_stops = [
-      {
-          'stop_id': 2,
-          'name':'stop name',
-          'distance': 0.04,
-          'route_id_list':'2,23,33,MAX Red,44'
-          
-      }
-    ]
-    stop_id = "TODO "
-%>
-    %for s in nearest_stops:
+    %if nearest and 'stops' in nearest:
+    %for s in nearest['stops']:
     <li>
         <h3 class="tight"><a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a> <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span></h3>
-        <p><a href="planner_walk.html?">${_(u'miles', s['distance'])}</a> &nbsp;&bull;&nbsp; ${_(u'Served by')}: ${s['route_id_list']}</p>
+        <p>${stop.planner_walk_link(place, s)} &nbsp;&bull;&nbsp; ${stop.routes_served(s)}</p>
     </li>
     %endfor
+    %endif
 
     <li>
-        <p align="center"><a href="stop_select_geocode_nearest.html?show_more=true&stop_id=${stop_id}${extra_params}">${_(u'Show more stops')}</a></p>
+        <p align="center"><a href="stops_near.html?has_geocode=true&show_more=true&${params}${extra_params}">${_(u'Show more stops')}</a></p>
     </li>
 </ul>
 

@@ -15,6 +15,9 @@ class Model(Base):
     def get_route_stops(self, get_params, **kwargs): 
         return self.stream_json('route_stops', get_params)
 
+    def get_stops_near(self, get_params, **kwargs):
+        return self.stream_json('stops_near', get_params)
+
     def get_stop(self, get_params, **kwargs):
         return self.stream_json('stop', get_params)
 

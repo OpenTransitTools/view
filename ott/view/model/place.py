@@ -4,12 +4,25 @@ from ott.view.locale.subscribers import get_translator
 class Place(object):
     def __init__(self, name=None, lat=None, lon=None, city=None):
         self.set_values(name, lat, lon, city)
+        self.place = None
+
+    def to_url_params(self):
+        ret_val = self.__dict__
+        #HOW TO USE NEW : ret_val = "name={name}&lon={lon}&lat={lat}&city={city}".format(self.__dict__)
+        ret_val = "name=%(name)s&lon=%(lon)s&lat=%(lat)s&city=%(city)s" % self.__dict__
+        if self.place:
+            ret_val = "{0}&place={1}".format(ret_val, self.place)
+        return ret_val
 
     def set_values(self, name=None, lat=None, lon=None, city=None):
         self.name = name
         self.lat = lat 
         self.lon = lon
         self.city = city
+
+    def update_values_via_dict(self, dict):
+        try:    self.__dict__.update(dict)
+        except: pass
 
     def set_values_via_place_str(self, place):
         ''' will set the values of a <name>::<lat>,<lon>::<city> string into a place object
@@ -27,11 +40,12 @@ class Place(object):
                     self.lon = ll[1].strip()
             if p[2] and len(p[2]) > 0:
                 self.city = p[2]
+            self.place = p
         except:
             pass
 
 
-#TODO
+#TODO: REFACTOR NEEDED for Place(), GeoResponse(), etc...
 #  We have both Place and GeoResponse...(plus other assorted geo classes
 #TODO
 
