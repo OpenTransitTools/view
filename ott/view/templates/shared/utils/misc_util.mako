@@ -165,6 +165,16 @@
 %>
 </%def>
 
+<%def name="has_url_param(param_name)">
+<%
+    from ott.view.utils import html_utils
+    ret_val = False
+    loc = html_utils.get_first_param(request, param_name)
+    if loc:
+        ret_val = True
+    return ret_val
+%>
+</%def>
 
 
 <%def name="get_locale(def_val='en')">

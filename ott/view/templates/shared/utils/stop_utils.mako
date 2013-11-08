@@ -25,7 +25,22 @@
 <a href="planner_walk.html?">${_(u'miles', to_stop['distance'])}</a>
 </%def>
 
+<%def name="route_abrv_list(stop)">
+<%
+    ret_val = ''
+    try:
+        for r in stop['routes']:
+            print r
+            if len(ret_val) > 0:
+                ret_val = ret_val + ', '
+            ret_val = ret_val + r['route_id']
+    except Exception, e: 
+        print e
+    return ret_val
+%>
+</%def>
+
 <%def name="routes_served(stop)">
- ${_(u'Served by')}: ${stop['stop_id']}
+ ${_(u'Served by')}: ${route_abrv_list(stop)}
 </%def>
  
