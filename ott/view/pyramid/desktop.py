@@ -127,8 +127,10 @@ def stops_near(request):
         params = p.to_url_params()
         ret_val['place']   = p.__dict__
         ret_val['params']  = params
+        num = 5
         if html_utils.get_first_param(request, 'show_more', None):
-            params = "num=30&{0}".format(params)
+            num = 30
+        params = "num={0}&{1}".format(num, params)
         ret_val['nearest'] = request.model.get_stops_near(params, **request.params)
 
     has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')

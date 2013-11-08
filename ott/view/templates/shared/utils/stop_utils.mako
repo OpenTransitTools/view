@@ -20,10 +20,20 @@
     return params
 %></%def>
 
+<%def name="make_named_coord(obj)"><%
+    name = obj['name'].replace('&', '%26')
+    ret_val = "{0}::{1},{2}".format(name, obj['lat'] ,obj['lon'])
+    return ret_val
+%></%def>
 
-<%def name="planner_walk_link(from_place, to_stop)">
-<a href="planner_walk.html?">${_(u'miles', to_stop['distance'])}</a>
+<%def name="planner_walk_link(frm, to, extra_params)">
+<%
+dist = _('${number} mile', '${number} miles', mapping={'number':round(to['distance'], 2)})
+%>
+<a href="planner_walk.html?mode=WALK&from=${make_named_coord(frm)}&to=${make_named_coord(to)}${extra_params}">${dist}</a>
 </%def>
+
+
 
 <%def name="route_abrv_list(stop)">
     %if stop and stop['routes']:

@@ -21,8 +21,11 @@ ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
     %if nearest and 'stops' in nearest:
     %for s in nearest['stops']:
     <li>
-        <h3 class="tight"><a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a> <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span></h3>
-        <p>${stop.planner_walk_link(place, s)} &nbsp;&bull;&nbsp; ${stop.routes_served(s)}</p>
+        <h3 class="tight">
+            <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a>
+            <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span>
+        </h3>
+        <p>${stop.planner_walk_link(place, s, extra_params)} &nbsp;&bull;&nbsp; ${stop.routes_served(s)}</p>
     </li>
     %endfor
     %endif
