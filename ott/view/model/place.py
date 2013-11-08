@@ -40,7 +40,7 @@ class Place(object):
                     self.lon = ll[1].strip()
             if p[2] and len(p[2]) > 0:
                 self.city = p[2]
-            self.place = p
+            self.place = place
         except:
             pass
 
@@ -65,6 +65,7 @@ class Place(object):
 
             place = html_utils.get_first_param(request, 'place')
             ret_val.set_values_via_place_str(place)
+
         except: pass
         return ret_val
 

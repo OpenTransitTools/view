@@ -121,6 +121,7 @@ def stops_near(request):
 
     #import pdb; pdb.set_trace()
     def call_near_ws(geo=None):
+        #import pdb; pdb.set_trace()
         p = Place.make_from_request(request)
         p.update_values_via_dict(geo)
         params = p.to_url_params()
