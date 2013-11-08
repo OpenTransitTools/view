@@ -26,18 +26,11 @@
 </%def>
 
 <%def name="route_abrv_list(stop)">
-<%
-    ret_val = ''
-    try:
-        for r in stop['routes']:
-            print r
-            if len(ret_val) > 0:
-                ret_val = ret_val + ', '
-            ret_val = ret_val + r['route_id']
-    except Exception, e: 
-        print e
-    return ret_val
-%>
+    %if stop and stop['routes']:
+    %for i, r in enumerate(stop['routes']):
+${', ' if (i > 0) else ''}<a target="#" href="${r['route_url']}">${r['short_name']}</a>
+%endfor
+%endif
 </%def>
 
 <%def name="routes_served(stop)">
