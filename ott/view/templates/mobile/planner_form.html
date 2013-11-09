@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/desktop/base.html"/>
+<%inherit file="/mobile/base.html"/>
 <%include file="/shared/app/planner_form.mako"/>
 
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
@@ -16,3 +16,8 @@
 <%def name="side_bar()"></%def>
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">${page.tripplanner_css()}</%def>
+
+## override section ID to make this page full width
+<%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"><%include file="/shared/share.html"/></%def>
+<%def name="main_wrap_bottom()"></section><!-- end #main-fullwidth --></%def>
+<%def name="bottom()">${plib.bottom_imap_bar()}</%def>
