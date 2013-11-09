@@ -1,0 +1,154 @@
+@charset "utf-8";
+@import url("/css/highslide.css");
+@import url("/css/styles.css");
+
+#content-wrap {
+	width: 100%;
+	clear: left;
+}
+	#content {
+		width: 61.25em; /* 980px */
+		margin: 0 auto;
+		padding: 1em 0 0 0;
+		margin-bottom: 2em;
+	}
+#contentheader {
+	width: 61.25em; /* 980px */
+	margin: 1em auto;
+	padding: 1em 0 0 0;
+}
+
+
+#main {
+	float: left;
+	margin: 0;
+	padding: 0;
+	width: 37.5em;	/* 600px */
+	width: 41.1875em;	/* 659px */
+	position: relative;
+}
+
+#aside {
+	float: left;
+	margin: 0 0 0 1.875em;	/* 30px */
+	padding: 0;
+	width: 18.125em;	/* 290px */
+	border-left: .0625em solid #b1aca7;
+	position: relative;
+}
+	#aside.noborder {
+		border-left: .0625em solid #ffffff;
+		margin-left: 0.9375em;
+	}
+		.aside .icon-bus, 
+		.aside .icon-bus-route, 
+		.aside .icon-max, 
+		.aside .icon-max-route, 
+		.aside .icon-wes, 
+		.aside .icon-wes-route, 
+		.aside .icon-streetcar, 
+		.aside .icon-bike, 
+		.aside .icon-tripplanner,
+		.aside .icon-transittracker,
+		.aside .icon-stopsstations,
+		.aside .icon-alerts,
+		.aside .icon-stops,
+		.aside .icon-rosette,
+		.aside .icon-snow,
+		.aside .icon-plane,
+		.aside .icon-accessibility,
+		.aside .icon-tv,
+		.aside .icon-apps,
+		.aside .icon-store,
+		.aside .icon-email,
+		.aside .icon-schedules,
+		.aside .icon-blank
+		{
+			background: url("/images/icons/bus.gif") 0 0 no-repeat;
+			min-height: 18.125em;	/* 290px */
+			_height: 18.125em;	/* for IE only */
+			margin: 1.5625em 0 0 0;
+			padding: 1.875em 0.3125em 0 0;
+		}
+			.aside .icon-bus {
+				background-image: url("/images/icons/bus.gif");
+			}
+			.aside .icon-bus-route {
+				background-image: url("/images/icons/bus-route.gif");
+			}
+			.aside .icon-max-route {
+				background-image: url("/images/icons/max-route.gif");
+			}
+			.aside .icon-max {
+				background-image: url("/images/icons/max.gif");
+			}
+			.aside .icon-wes {
+				background-image: url("/images/icons/wes.gif");
+			}
+			.aside .icon-wes-route {
+				background-image: url("/images/icons/wes-route.gif");
+			}
+			.aside .icon-streetcar {
+				background-image: url("/images/icons/streetcar.gif");
+			}
+			.aside .icon-bike {
+				background-image: url("/images/icons/bike.gif");
+			}
+			.aside .icon-tripplanner {
+				background-image: url("/images/icons/tripplanner.gif");
+			}
+			.aside .icon-transittracker {
+				background-image: url("/images/icons/transittracker.gif");
+			}
+			.aside .icon-stopsstations {
+				background-image: url("/images/icons/stopsstations.gif");
+			}
+			.aside .icon-alerts {
+				background-image: url("/images/icons/servicealerts.gif");
+			}
+			.aside .icon-stops {
+				background-image: url("/images/icons/stops.gif");
+			}
+			.aside .icon-rosette {
+				background-image: url("/images/icons/rosette.gif");
+			}
+			.aside .icon-snow {
+				background-image: url("/images/icons/snow.gif");
+			}
+			.aside .icon-plane {
+				background-image: url("/images/icons/plane.gif");
+			}
+			.aside .icon-tv {
+				background-image: url("/images/icons/tv.gif");
+			}
+			.aside .icon-apps {
+				background-image: url("/images/icons/apps.gif");
+			}
+			.aside .icon-store {
+				background-image: url("/images/icons/store.gif");
+			}
+			.aside .icon-email {
+				background-image: url("/images/icons/email.gif");
+			}
+			.aside .icon-accessibility {
+				background-image: url("/images/icons/accessibility.gif");
+			}
+			.aside .icon-schedules {
+				background-image: url("/images/icons/schedules.gif");
+			}
+			.aside .icon-blank {
+				background-image: none;
+				padding-top: 0;
+			}
+	
+	
+
+
+
+
+
+#bottom {
+	width: 61.25em; /* 980px */
+	margin: 0 auto;
+	padding: 1em 0 1em 0;
+}

@@ -1,0 +1,200 @@
+
+#triptools-wrap {
+	width: 100%;
+	height: 2.5625em; /* 41px */
+	background-color: #2e2d2a;
+	border-bottom: .0625em solid #000;
+	clear: left;
+	border-top: .0625em solid #fff;
+}
+	#triptools {
+		width: 61.25em; /* 980px */
+		height: 2.5625em; /* 41px */
+		margin: 0 auto;
+	}
+
+	ul#triptools-tabs {	/* format tabs list */
+		height: 2.5625em; /* 41px */
+		margin: 0;
+		padding: 0;
+		background: url("/images/structure/triptools.png") .0625em -0.25em no-repeat #2e2d2a;	/* offset for left border */
+		background-size: 61.25em 12em;	/* 980px 192px */
+	}
+	#triptools-tabs li {
+		float: left;
+		list-style: none;
+		display: inline;
+		padding: 0;
+		margin: 0;
+		position: relative;
+	}
+	#triptools-tabs li a, #triptools-tabs li div.noclick, #triptools-tabs li.selected {
+		height: 2.0625em; /* 2.5625em minus padding */
+		border-bottom: none;
+		display: block;
+	}
+		#triptools-tabs li span {
+			text-decoration: none;
+			font-weight: bold;
+		}
+		li#tripplanner div.noclick {	/* for use on homepage only, where tripplanner is not is an <a> tag */
+			cursor: default;
+		}
+	
+	
+	
+	
+	
+	li#tripplanner a, li#transittracker a, li#schedulesmap a, li#stopsstations a, li#servicealerts a,
+	li#tripplanner div.noclick {	/* add just tripplanner here for home page */
+		padding: .5em 0 0 3.125em;	/* add padding to height and width to get real size of each tab */
+		color: #eeeeee;
+		text-decoration: none;
+		border-left: .0625em solid #222222;
+		position: relative;
+		font-weight: bold;
+	}
+		li#tripplanner a, li#tripplanner div.noclick {
+			width: 7.3125em; /* 10.4375em */
+		}
+		li#transittracker a {
+			width: 8.375em; /* 11.5em */
+		}
+		li#schedulesmap a {
+			width: 10.375em; /* 13.5em */
+		}
+		li#stopsstations a {
+			width: 9.5625em; /* 12.6875em */
+		}
+		li#servicealerts a {
+			width: 9.3125em; /* 12.75em, 9.5625em - cheating for resize rounding error */
+			position: relative;
+			border-right: .0625em solid #222222;
+		}
+			li#servicealerts a span.number-wrap {
+				-moz-border-radius: .5em;
+				-webkit-border-radius: .5em;
+				border-radius: .5em;
+				background-color: #fff;
+				color: #000;
+				width: 1em;
+				height: 1em;
+					font-size: 1em;
+				
+				display: block;
+				position: absolute;
+				top: .5em;
+				right: .5em;
+			}
+				li#servicealerts a span.number {
+					font-weight: normal;
+					font-size: .75em;
+					line-height: .25;
+				}
+			
+			
+	li#tripplanner a:hover, li#transittracker a:hover, li#schedulesmap a:hover, li#stopsstations a:hover, li#servicealerts a:hover,
+	li#tripplanner.selected a, li#tripplanner.selected div.noclick, li#transittracker.selected a, li#schedulesmap.selected a, li#stopsstations.selected a, li#servicealerts.selected a {
+		background-image: url("/images/structure/triptools.png");
+		background-size: 61.25em 12em;	/* 980px 192px */
+	}
+		li#tripplanner.selected a, li#tripplanner.selected div.noclick, li#transittracker.selected a, li#schedulesmap.selected a, li#stopsstations.selected a, li#servicealerts.selected a {
+			color: #ffffff;
+			background-color: #4d4d47;
+		}
+		li#tripplanner a:hover {
+			background-color: #222222;
+			background-position: 0 -4.25em;
+		}
+			li#tripplanner.selected a, li#tripplanner.selected div.noclick {
+				background-position: 0 -8.25em;
+			}
+		li#transittracker a:hover {
+			background-color: #222222;
+			background-position: -10.5em -4.25em;
+		}
+			li#transittracker.selected a {
+				background-position: -10.5em -8.25em;
+			}
+		li#schedulesmap a:hover {
+			background-color: #222222;
+			background-position: -22.0625em -4.25em;
+		}
+			li#schedulesmap.selected a {
+				background-position: -22.0625em -8.25em;
+			}
+		li#stopsstations a:hover {
+			background-color: #222222;
+			background-position: -35.625em -4.25em;
+		}
+			li#stopsstations.selected a {
+				background-position: -35.625em -8.25em;
+			}
+		li#servicealerts a:hover {
+			background-color: #222222;
+			background-position: -48.375em -4.25em;
+		}
+			li#servicealerts.selected a {
+				background-position: -48.375em -8.25em;
+			}
+		
+		
+		#triptools-tabs .triptools-pointer {
+			display: none;
+		}
+		li#tripplanner.selected .triptools-pointer, li#transittracker.selected .triptools-pointer, li#schedulesmap.selected .triptools-pointer, li#stopsstations.selected .triptools-pointer, li#servicealerts.selected .triptools-pointer {
+			display: block;
+			background: url("/images/structure/triptools-pointer.png") 0 0 no-repeat;
+			width: 2em;
+			height: 1em;
+			z-index: 100;
+			position: absolute;	/* have to position this absolute for IE */
+			bottom: -1.5em;
+		}
+			li#tripplanner.selected .triptools-pointer {
+				left: 4.1875em;
+			}
+			li#transittracker.selected .triptools-pointer {
+				left: 4.84375em;
+			}
+			li#schedulesmap.selected .triptools-pointer {
+				left: 5.8125em;
+			}
+			li#stopsstations.selected .triptools-pointer {
+				left: 5.4375em;
+			}
+			li#servicealerts.selected .triptools-pointer {
+				left: 5.3125em;
+			}
+			
+			/* tooltips formatting - not currently using */
+			#triptools-tabs .triptools-tooltip {
+				display: none;
+			}
+			#triptools-tabs li a:hover .triptools-tooltip {
+				width: 11em;
+				height: 2em;
+				border: .0625em solid #222222;
+				background-color: #aaaaaa;
+				display: block;
+				position: absolute;
+				bottom: -3.75em;
+				left: 0;
+				z-index: 100;
+				color: #000;
+				padding: .5em;
+			}
+			#triptools-tabs li a:hover .triptools-tooltip p {
+				font-size: .75em;
+			}
+				#triptools-tabs li a .triptools-tooltip-pointer {
+					display: block;
+					background: url("/images/structure/triptools-tooltip-pointer.png") 0 0 no-repeat;
+					width: 2em;
+					height: 1em;
+					z-index: 100;
+					position: absolute;	/* have to position this absolute for IE */
+					top: -1em;
+					left: 0.8125em;
+				}
+
