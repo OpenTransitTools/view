@@ -4,7 +4,6 @@ log = logging.getLogger(__file__)
 import StringIO
 
 from pyramid.response import Response
-from pyramid.view import view_config
 
 from pyramid.view import view_config
 from pyramid.config import Configurator
@@ -15,28 +14,12 @@ from pyramid.events import NewRequest
 from pyramid.events import subscriber
 from pyramid.events import ApplicationCreated
 
-import ott.view.pyramid.desktop
-import ott.view.pyramid.mobile
-
 from ott.view.model.model import Model
 from ott.view.model.mock import Mock
 
 from ott.view.utils.spark import sparkline_smooth
 from ott.view.utils.qr import qr_to_stream
 from ott.view.utils import html_utils
-
-MODEL_GLOBAL = None
-def get_model():
-    ''' @see make_views() below, which should have a model passed in to configure the model global 
-    '''
-    global MODEL_GLOBAL
-    if MODEL_GLOBAL is None:
-        # TODO ... this right?
-        # TODO ... better way to attach this to view?
-        # TODO ... multi-threading/
-        # do something to create a model...
-        MODEL_GLOBAL = Model()
-    return MODEL_GLOBAL
 
 
 def do_view_config(config):
@@ -50,6 +33,9 @@ def do_view_config(config):
     config.add_route('qrcode',                                  '/qrcode')
     config.add_route('adverts',                                 '/adverts.html')
 
+    ###
+    ### DESKTOP PAGES
+    ###
     config.add_route('exception_desktop',                       '/exception.html')
     config.add_route('feedback_desktop',                        '/feedback.html')
 
@@ -62,20 +48,229 @@ def do_view_config(config):
     config.add_route('stop_select_list_desktop',                '/stop_select_list.html')
     config.add_route('stop_select_geocode_desktop',             '/stop_select_geocode.html')
 
-    config.add_route('stops_near_desktop',                      '/stops_near.html')
     config.add_route('stop_desktop',                            '/stop.html')
+    config.add_route('stops_near_desktop',                      '/stops_near.html')
     config.add_route('stop_schedule_desktop',                   '/stop_schedule.html')
 
     config.add_route('map_place_desktop',                       '/map_place.html')
 
     ###
-    ### TODO ... anyway to alias pages?  
+    ### MOBILE PAGES
     ###
+    config.add_route('exception_mobile',                        '/m/exception.html')
+    config.add_route('feedback_mobile',                         '/m/feedback.html')
+
+    config.add_route('planner_form_mobile',                     '/m/planner_form.html')
+    config.add_route('planner_geocode_mobile',                  '/m/planner_geocode.html')
+    config.add_route('planner_mobile',                          '/m/planner.html')
+    config.add_route('planner_walk_mobile',                     '/m/planner_walk.html')
+
     config.add_route('stop_select_form_mobile',                 '/m/stop_select_form.html')
     config.add_route('stop_select_form_mobile_short',           '/m/ss.html')
-    
+    config.add_route('stop_select_list_mobile',                 '/m/stop_select_list.html')
+    config.add_route('stop_select_geocode_mobile',              '/m/stop_select_geocode.html')
+
     config.add_route('stop_mobile',                             '/m/stop.html')
     config.add_route('stop_mobile_short',                       '/m/s.html')
+    config.add_route('stops_near_mobile',                       '/m/stops_near.html')
+    config.add_route('stop_schedule_mobile',                    '/m/stop_schedule.html')
+
+    config.add_route('map_place_mobile',                        '/m/map_place.html')
+
+
+import logging
+log = logging.getLogger(__file__)
+
+from pyramid.view import view_config
+from pyramid.httpexceptions import HTTPFound
+from pyramid.request import Request
+from ott.view.locale.subscribers import get_translator  #_  = get_translator(request)
+from ott.view.utils import html_utils
+from ott.view.utils import object_utils
+from ott.view.model.place import Place
+
+@view_config(route_name='exception_mobile', renderer='mobile/exception.html')
+@view_config(route_name='exception_desktop', renderer='desktop/exception.html')
+def exception_desktop(request):
+    ret_val = {}
+    return ret_val
+
+@view_config(route_name='feedback_mobile', renderer='mobile/feedback.html')
+@view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
+def feedback(request):
+    ret_val = {}
+    ret_val['stop'] = None
+    return ret_val
+
+@view_config(route_name='planner_form_mobile', renderer='mobile/planner_form.html')
+@view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
+def planner_form(request):
+    ret_val = {}
+    #import pdb; pdb.set_trace()
+    params = html_utils.planner_form_params(request)
+    ret_val['params'] = params
+    return ret_val
+
+
+def call_geocoder(request, place, no_geocode_msg='Undefined'):
+    ret_val = {}
+
+    count = 0
+    if place:
+        res = request.model.get_geocode(place)
+        if res and 'results' in res:
+            ret_val['geocoder_results'] = res['results']
+            count = len(ret_val['geocoder_results'])
+    else:
+        _  = get_translator(request)
+        place = _(no_geocode_msg)
+
+    ret_val['place'] = place
+    ret_val['count'] = count
+    return ret_val
+
+
+@view_config(route_name='planner_geocode_mobile', renderer='mobile/planner_geocode.html')
+@view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
+def planner_geocode(request):
+    place = html_utils.get_first_param(request, 'place')
+    ret_val = call_geocoder(request, place)
+    return ret_val
+
+@view_config(route_name='planner_mobile', renderer='mobile/planner.html')
+@view_config(route_name='planner_desktop', renderer='desktop/planner.html')
+def planner(request):
+    ret_val = None
+    try:
+        ret_val = request.model.get_plan(request.query_string, **request.params)
+    except:
+        ret_val = make_subrequest(request, '/exception.html')
+    return ret_val
+
+@view_config(route_name='planner_walk_mobile', renderer='mobile/planner_walk.html')
+@view_config(route_name='planner_walk_desktop', renderer='desktop/planner_walk.html')
+def planner_walk(request):
+    ret_val = None
+    try:
+        ret_val = request.model.get_plan(request.query_string, **request.params)
+    except:
+        ret_val = make_subrequest(request, '/exception.html')
+    return ret_val
+
+
+@view_config(route_name='stop_mobile_short', renderer='mobile/stop.html')
+@view_config(route_name='stop_mobile',       renderer='mobile/stop.html')
+@view_config(route_name='stop_desktop',      renderer='desktop/stop.html')
+def stop(request):
+    stop   = request.model.get_stop(request.query_string, **request.params)
+    ret_val = {}
+    ret_val['stop'] = stop
+    return ret_val
+
+@view_config(route_name='stop_schedule_mobile', renderer='mobile/stop_schedule.html')
+@view_config(route_name='stop_schedule_desktop', renderer='desktop/stop_schedule.html')
+def stop_schedule(request):
+    stop_id = html_utils.get_first_param(request, 'stop_id')
+    route   = html_utils.get_first_param(request, 'route')
+    url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
+
+    ret_val = html_utils.service_tabs(request, url)
+    ret_val['stop'] = request.model.get_stop_schedule(request.query_string, **request.params)
+    return ret_val
+
+@view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')
+@view_config(route_name='stop_select_form_mobile',       renderer='mobile/stop_select_form.html')
+@view_config(route_name='stop_select_form_desktop',      renderer='desktop/stop_select_form.html')
+def stop_select_form(request):
+    ret_val = {}
+    ret_val['place']  = html_utils.get_first_param(request, 'place')
+    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
+    return ret_val
+
+@view_config(route_name='stop_select_list_mobile', renderer='mobile/stop_select_list.html')
+@view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
+def stop_select_list(request):
+    ret_val = {}
+    route = html_utils.get_first_param(request, 'route')
+    ret_val['route_stops'] = request.model.get_route_stops(request.query_string, **request.params)
+    return ret_val
+
+@view_config(route_name='stop_select_geocode_mobile', renderer='mobile/stop_select_geocode.html')
+@view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
+def stop_select_geocode(request):
+    place = html_utils.get_first_param(request, 'place')
+    ret_val = call_geocoder(request, place)
+    return ret_val
+
+
+@view_config(route_name='stops_near_mobile', renderer='mobile/stops_near.html')
+@view_config(route_name='stops_near_desktop', renderer='desktop/stops_near.html')
+def stops_near(request):
+    ret_val = {}
+
+    #import pdb; pdb.set_trace()
+    def call_near_ws(geo=None):
+        #import pdb; pdb.set_trace()
+        p = Place.make_from_request(request)
+        p.update_values_via_dict(geo)
+        params = p.to_url_params()
+        ret_val['place']   = p.__dict__
+        ret_val['params']  = params
+        num = 5
+        if html_utils.get_first_param(request, 'show_more', None):
+            num = 30
+        params = "num={0}&{1}".format(num, params)
+        ret_val['nearest'] = request.model.get_stops_near(params, **request.params)
+
+    has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
+    if not has_geocode:
+        place = html_utils.get_first_param(request, 'place')
+        geo = call_geocoder(request, place)
+
+        if geo['count'] == 1:
+            single_geo = geo['geocoder_results'][0]
+            if single_geo['type'] == 'stop':
+                query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
+                ret_val = make_subrequest(request, '/stop.html', query_string)
+            else:
+                call_near_ws(single_geo)
+        else:
+            ret_val = make_subrequest(request, '/stop_select_geocode.html')
+    else:
+        call_near_ws()
+    return ret_val
+
+
+@view_config(route_name='map_place_mobile', renderer='mobile/map_place.html')
+@view_config(route_name='map_place_desktop', renderer='desktop/map_place.html')
+def map_place(request):
+    ret_val = {}
+    p = Place.make_from_request(request)
+    ret_val['place'] = p.__dict__
+    return ret_val
+
+def is_mobile(request):
+    return '/m/' in request.path_url
+
+def get_path(request, path):
+    ret_val = path
+    if is_mobile(request):
+        ret_val = '/m' + path
+    return ret_val
+
+def make_subrequest(request, path, query_string=None):
+    ''' create a subrequest to call another page in the app...
+        http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/subrequest.html
+    '''
+    path = get_path(request, path)
+    subreq = Request.blank(path)
+    if query_string is None:
+        query_string = request.query_string
+    subreq.query_string = query_string
+    ret_val = request.invoke_subrequest(subreq)
+    return ret_val
+
+
 
 @view_config(route_name='sparkline')
 def sparkline(request):
@@ -128,6 +323,20 @@ def application_created_subscriber(event):
        2. I could be used to make db connection (pools), etc...
     '''
     log.info('Starting pyramid server...')
+
+
+MODEL_GLOBAL = None
+def get_model():
+    ''' @see make_views() below, which should have a model passed in to configure the model global 
+    '''
+    global MODEL_GLOBAL
+    if MODEL_GLOBAL is None:
+        # TODO ... this right?
+        # TODO ... better way to attach this to view?
+        # TODO ... multi-threading/
+        # do something to create a model...
+        MODEL_GLOBAL = Model()
+    return MODEL_GLOBAL
 
 
 @subscriber(NewRequest)
