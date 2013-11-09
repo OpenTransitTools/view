@@ -1,0 +1,37 @@
+## -*- coding: utf-8 -*-
+<%inherit file="/mobile/base.html"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
+<%def name="title()">TriMet: ${_(u'Uncertain location')}</%def>
+<%def name="meta_data()">${meta.stop()}</%def>
+<%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
+<%def name="stations_selected()">class="selected"</%def>
+<%def name="app_css()">${page.stop_css()}</%def>
+${page.stop_select(_(u'Uncertain location'), extra_params, 'geo')}
+
+<h2 class="error">${_(u'We cannot find')} ${place}</h2>
+
+<div id="location">
+    %if geocoder_results and len(geocoder_results) > 0:
+    <form action="stops_near.html"  method="GET" name="ambig" class="triptools-form">
+        <style>select {width: 32em;}</style>
+        ${form.has_geocode_hidden('true')}
+        ${form.get_extra_params_hidden_inputs()}
+        ${form.search_list(_(u'Select a location'), geocoder_results)}
+    </form>
+    %endif
+
+    <form action="stops_near.html"  method="GET" name="ambig" class="triptools-form">
+        ${form.has_geocode_hidden('false')}
+        ${form.get_extra_params_hidden_inputs()}
+        ${form.search_input(_(u'Find stops and stations'), place)}
+        ${form.search_submit(_(u'Continue'))}
+    </form>
+</div>
+

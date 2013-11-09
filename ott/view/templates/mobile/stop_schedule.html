@@ -1,0 +1,34 @@
+## -*- coding: utf-8 -*-
+<%inherit file="/mobile/base.html"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
+<%namespace name="ssu"  file="/shared/utils/stop_schedule_utils.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
+<%
+    name = su.make_name_id(stop)
+    stop_params = su.make_url_params(stop)
+    has_alerts = su.has_alerts(stop)
+%>
+<%def name="title()">${su.page_title(stop)}</%def>
+<%def name="meta_data()">${meta.stop()}</%def>
+<%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
+<%def name="stations_selected()">class="selected"</%def>
+<%def name="app_css()">${page.stop_css()}</%def>
+${page.stop(name, extra_params, stop_params, has_alerts, stop)}
+
+<h2>${util.name_city_str_from_struct(stop)}</h2>
+
+    ${ssu.svc_key_tabs(tabs, extra_params)}
+    ${ssu.schedule_all_routes_link(stop, extra_params)}
+    ${ssu.schedule_sort_by_links(stop, extra_params)}
+    ${ssu.schedule_render(stop, pretty_date, extra_params)}
+    %if has_alerts:
+        ${util.alerts(stop['alerts'])}
+    %endif
+
