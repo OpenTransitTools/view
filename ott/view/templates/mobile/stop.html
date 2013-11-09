@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/desktop/base.html"/>
+<%inherit file="/mobile/base.html"/>
 <%include file="/shared/app/stop.mako"/>
 
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
@@ -13,4 +13,3 @@
 <%def name="side_bar()">${side.stop(stop, util.get_extra_params())}</%def>
 <%def name="app_css()">${page.stop_css()}</%def>
 <%def name="stations_selected()">class="selected"</%def>
-

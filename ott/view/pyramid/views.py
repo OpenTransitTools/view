@@ -72,10 +72,10 @@ def do_view_config(config):
     ### TODO ... anyway to alias pages?  
     ###
     config.add_route('stop_select_form_mobile',                 '/m/stop_select_form.html')
-    #config.add_route('stop_select_form_mobile',                 '/m/ss.html')
+    config.add_route('stop_select_form_mobile_short',           '/m/ss.html')
+    
     config.add_route('stop_mobile',                             '/m/stop.html')
-    config.add_route('feedback_mobile',                         '/m/feedback.html')
-
+    config.add_route('stop_mobile_short',                       '/m/s.html')
 
 @view_config(route_name='sparkline')
 def sparkline(request):
