@@ -47,6 +47,49 @@
 	## not currently using 
 </%def>
 
+<%def name="gps_form_scriptlet()">
+<script>
+    // for trip planner page
+    function checkgps()
+    {
+        if (navigator.geolocation) 
+        {  
+            // if browser supports geolocation, hide instructions and show GPS link instead
+            document.getElementById('from-instructions').style.display = 'none';
+            document.getElementById('from-gps').style.display = 'block';
+            document.getElementById('to-instructions').style.display = 'none';
+            document.getElementById('to-gps').style.display = 'block';
+        }
+    }
+    function getFromGPS()
+    {
+        // Get location no more than 1 minute old. 60000 ms = 1 minute.
+        navigator.geolocation.getCurrentPosition(showFromGPS, showError, {enableHighAccuracy:true,maximumAge:0});
+        _gaq.push(['_trackEvent', 'GPS', 'Submit', 'Mobile Trip Planner GPS submit']);
+    }
+    function showFromGPS(position)
+    {
+        document.forms['itin'].elements['from'].value = position.coords.latitude + ', ' + position.coords.longitude;
+    }
+    function getToGPS()
+    {
+        // Get location no more than 1 minute old. 60000 ms = 1 minute.
+        navigator.geolocation.getCurrentPosition(showToGPS, showError, {enableHighAccuracy:true,maximumAge:0});
+        _gaq.push(['_trackEvent', 'GPS', 'Submit', 'Mobile Trip Planner GPS submit']);
+    }
+    function showToGPS(position)
+    {
+        document.forms['itin'].elements['to'].value = position.coords.latitude + ', ' + position.coords.longitude;
+    }
+    function showError(error)
+    {
+        alert('${_("Please make sure your GPS setting is turned on for this browser")} (' + error.code + ')' );
+    }
+</script>
+<style onload="javascript:checkgps();"></style>
+</%def>
+
+
 <%def name="clear_tp_element_scriptlet()">
     <script>
         function clear_tp_element(id)

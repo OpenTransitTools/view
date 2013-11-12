@@ -5,7 +5,7 @@
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="plib"  file="/shared/utils/planner.mako"/>
+<%namespace name="plib" file="/shared/utils/planner.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
@@ -16,6 +16,7 @@
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 ${page.trip_planner(_(u'Trip Planner'), extra_params, 'form')}
 ${plib.clear_tp_element_scriptlet()}
+${plib.gps_form_scriptlet()}
 
 ## override section ID to make this page full width
 <%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"><%include file="/shared/share.html"/></%def>
@@ -25,18 +26,21 @@ ${plib.clear_tp_element_scriptlet()}
 ##
 ## main content
 ##
-
 <div id="plantrip" class="group">
     <form name="itin" id="itin_id" method="GET" action="planner.html" class="form-style"/>
     <div id="plantrip-left">
         <fieldset>
             <label for="from">${_(u'From')}</label>
-            ${plib.input_form('from', 'Address, intersection, landmark or Stop ID', 'from', 1, params['fromPlace'], params['fromCoord'])}
+            ${plib.input_form('from', ' ', 'from', 1, params['fromPlace'], params['fromCoord'])}
+            <p id="from-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
+            <p id="from-gps" style="display:none;" class="instructions"><a href="#" onclick="getFromGPS();">${_(u'Use my current GPS location')}</a></p>
         </fieldset>
 
         <fieldset>
-            <label for="going">${_(u'To')}</label>
-            ${plib.input_form('to', 'Address, intersection, landmark or Stop ID', 'going', 2, params['toPlace'], params['toCoord'])}
+            <label for="to">${_(u'To')}</label>
+            ${plib.input_form('to', ' ', 'to', 2, params['toPlace'], params['toCoord'])}
+            <p id="to-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
+            <p id="to-gps" style="display:none;" class="instructions"><a href="#" onclick="getToGPS();">${_(u'Use my current GPS location')}</a></p>
         </fieldset>
 
         <fieldset class="departwhen">
