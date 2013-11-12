@@ -1,0 +1,81 @@
+## -*- coding: utf-8 -*-
+<%inherit file="/mobile/base.html"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="plib"  file="/shared/utils/planner.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
+<%def name="title()">${plib.itin_page_title(plan)}</%def>
+<%def name="meta_data()">${meta.tripplanner()}</%def>
+<%def name="side_bar()">
+    <aside id="aside" class="aside">
+        ${side.sidebar_adverts(adverts)}
+        ${side.help_map_feedback(plan['params']['map_planner'], plan['params']['feedback_url'], plan['params']['feedback_txt'], '/tripplanner/trip-help.htm')}
+    </aside>
+</%def>
+<%def name="planner_selected()">class="selected"</%def>
+<%def name="app_css()">${page.tripplanner_css()}</%def>
+<script src="${util.url_domain()}/scripts/triptools.js"></script>
+${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner')}
+
+<%def name="bottom()">${plib.bottom_disclaimer()}</%def>
+
+##
+## main content
+##
+<%
+    is_mobile = True
+    itinerary = plib.get_itinerary(plan)
+%>
+<div id="details" class="group">
+    <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
+    <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
+    <p class="tripinfo">${plib.get_depart_arrive(plan['params']['is_arrive_by'])} ${plib.get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+    <p class="tripinfo">${plib.get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+</div><!-- end #details -->
+
+%if len(plan['itineraries']) > 1:
+<ol id="plannertabs" class="group">
+    ${plib.itin_tab(plan['itineraries'], 0, _(u'Your best bet'), extra_params)}
+    ${plib.itin_tab(plan['itineraries'], 1, _(u'Option 2'), extra_params)}
+    ${plib.itin_tab(plan['itineraries'], 2, _(u'Option 3'), extra_params)}
+</ol><!-- end #tabs -->
+<div class="plannertabs-underline"></div>
+%endif
+
+<ol id="itinerary" class="transit">
+    ##
+    ## loop through the legs between start and end elements
+    ## ${plib.render_leg(leg, n)}
+    %for n, leg in enumerate(itinerary['legs']):
+        ${plib.render_leg(itinerary, n, is_mobile, extra_params)}
+    %endfor
+</ol><!-- end #itinerary -->
+
+${plib.render_fares(itinerary, util.url_domain() + '/fares/index.htm')}
+
+%if itinerary['has_alerts']:
+<div id="alerts" class="group">
+    %for alert in itinerary['alerts']:
+    <p><img src="${util.img_url()}/alert.png" />
+        <span class="alert-text">${alert['text']}</span>
+        <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']}   <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
+    </p>
+    %endfor
+</div><!-- end #alerts -->
+%endif
+
+<div id="console" class="group hide">
+    <p class="console-left">
+        <a href="#TODO_TODO" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
+        <a href="javascript:window.print();" class="console-print" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);"><span>${_(u'Print')}</span></a>
+        <a href="#TODO_TODO" class="console-mobile" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary view on mobile']);"><span>${_(u'View on mobile')}</span></a>
+    </p>
+    <p class="console-right">
+        <a href="planner_form.html?${plan['params']['return_trip']}${extra_params}" class="console-returntrip" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);"><span>${_(u'Return trip')}</span></a>
+        <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" class="console-edit" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
+    </p>
+</div><!-- end #console -->
