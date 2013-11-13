@@ -39,6 +39,8 @@ def do_view_config(config):
     config.add_route('exception_desktop',                       '/exception.html')
     config.add_route('feedback_desktop',                        '/feedback.html')
 
+    config.add_route('pform_standalone',                        '/pform_standalone.html')
+    config.add_route('pform_example',                           '/pform_example.html')
     config.add_route('planner_form_desktop',                    '/planner_form.html')
     config.add_route('planner_geocode_desktop',                 '/planner_geocode.html')
     config.add_route('planner_desktop',                         '/planner.html')
@@ -104,9 +106,11 @@ def feedback(request):
 
 @view_config(route_name='planner_form_mobile', renderer='mobile/planner_form.html')
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
+@view_config(route_name='pform_example',    renderer='shared/app/pform_example.html')
+@view_config(route_name='pform_standalone', renderer='shared/app/pform_standalone.html')
 def planner_form(request):
-    ret_val = {}
     #import pdb; pdb.set_trace()
+    ret_val = {}
     params = html_utils.planner_form_params(request)
     ret_val['params'] = params
     return ret_val

@@ -1,7 +1,7 @@
+import datetime
 import logging
 log = logging.getLogger(__file__)
 
-import datetime
 import date_utils
 import num_utils
 import transit_utils
@@ -138,6 +138,16 @@ def get_first_param_as_int(request, name, def_val=None):
     return ret_val
 
 
+def get_first_param_as_float(request, name, def_val=None):
+    ''' utility function to parse a request object for a certain value (and return an integer based on the param if it's an int)
+    '''
+    ret_val=get_first_param(request, name, def_val)
+    try:
+        ret_val = float(ret_val)
+    except:
+        pass
+    return ret_val
+
 def get_first_param_as_boolean(request, name, def_val=False):
     ''' utility function to get a variable
     '''
@@ -152,15 +162,17 @@ def get_first_param_as_boolean(request, name, def_val=False):
                 ret_val = True
             else: 
                 ret_val = False
-
     except:
         pass
     return ret_val
 
 
-def get_first_param_as_date(request, name='date', fmt='%m/%d/%Y', def_val=datetime.date.today()):
+def get_first_param_as_date(request, name='date', fmt='%m/%d/%Y', def_val=None):
     ''' utility function to parse a request object for something that looks like a date object...
     '''
+    if def_val == None:
+        def_val = datetime.date.today()
+
     ret_val = def_val
     try:
         dstr = get_first_param(request, name)
@@ -184,6 +196,9 @@ def get_first_param(request, name, def_val=None):
     except:
         pass
     return ret_val
+
+def get_lang(request, def_val="en"):
+    return get_first_param(request, "_LOCALE_", def_val)
 
 
 def unescape_html(dict_list):

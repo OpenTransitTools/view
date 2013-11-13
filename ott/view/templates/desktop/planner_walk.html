@@ -1,46 +1,31 @@
+## -*- coding: utf-8 -*-
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 <%
     is_mobile = False
-    itinerary = plib.get_itinerary(plan)
     extra_params = util.get_extra_params()
 %>
-<%def name="title()">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
-<%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all" />
-    <script src="${util.url_domain()}/scripts/triptools.js"></script>
-</%def>
-<%def name="meta_data()">
-    <meta name="Keywords"    content="triplanner, trip planner, open trip planner, OTP, route planner, planner, transit planner"/>
-    <meta name="Description" content="text interface for trimet trip planner"/>
-</%def>
-<%def name="planner_selected()">class="selected"</%def>
+<%def name="title()">${plib.itin_page_title(plan)}</%def>
+<%def name="meta_data()">${meta.tripplanner()}</%def>
 <%def name="side_bar()">
     <aside id="aside" class="aside">
-        <div id="trimet-ads">
-            %if adverts:
-                %for a in adverts:
-                    ${a['content'] | n}
-                %endfor
-            %endif
-        </div><!-- end #trimet-ads -->
-        <div id="sidebar-icons">
-            <p class="helptips"><a href="${util.url_domain()}/tripplanner/trip-help.htm" target="#"><span>${_(u'Help/tips')}</span></a></p>
-            <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
-            <p class="feedbackreport"><a href="/feedback.html?app=${plan['params']['feedback_url']}" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']);"><span>${_(u'Feedback/report a problem')} ${plan['params']['feedback_txt']}</span></a></p>
-        </div><!-- end #sidebar-icons -->
-        
-    </aside><!-- end #sidebar -->
+        ${side.sidebar_adverts(adverts)}
+        ${side.help_map_feedback(plan['params']['map_planner'], plan['params']['feedback_url'], plan['params']['feedback_txt'], '/tripplanner/trip-help.htm')}
+    </aside>
 </%def>
-<%def name="bottom()">
-    <div id="disclaimer">
-        <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
-            <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
-            ${_(u'for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
-        </p>
-    </div>
+<%def name="planner_selected()">class="selected"</%def>
+<%def name="app_css()">
+    ${page.tripplanner_css()}
+    <script src="${util.url_domain()}/scripts/triptools.js"></script>
 </%def>
+${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner')}
+
+<%def name="bottom()">${plib.bottom_imap_bar()} ${plib.bottom_disclaimer()}</%def>
+
 ##
 ## main content
 ##

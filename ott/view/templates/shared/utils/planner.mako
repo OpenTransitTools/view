@@ -1,8 +1,12 @@
+## -*- coding: utf-8 -*-
 ##
 ## planner lib
 ##
 <%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 
+##
+## typical itinerary page title
+##
 <%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 
 ##
