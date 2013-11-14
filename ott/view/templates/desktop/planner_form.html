@@ -16,7 +16,7 @@
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 ${page.trip_planner(_(u'Trip Planner'), extra_params, 'form')}
-${plib.clear_tp_element_scriptlet()}
+${pform.clear_tp_element_scriptlet()}
 
 ## override section ID to make this page full width
 <%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"><%include file="/shared/share.html"/></%def>
