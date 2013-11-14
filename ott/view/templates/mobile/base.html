@@ -23,7 +23,7 @@
 ${self.app_css()}
 ${self.header()}
 </head>
-<body>
+<body class="standard" onLoad="${self.js_onload()}">
 ${self.emergency_content()|n,decode.utf8}
 
 <h1><a href="http://trimet.org/m/" class="image"><img src="/images/m/trimet-logo.gif" border="0" align="left" /></a>${self.title()}</h1>

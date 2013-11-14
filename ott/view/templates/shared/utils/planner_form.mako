@@ -117,7 +117,10 @@
 <%def name="input_form(name, clear, id, tab, place, coord, is_mobile=False)">
     <%
         if place is None:
-            place = _(clear)
+            if is_mobile is False:
+                place = _(clear)
+            else:
+                place = ''
     %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
     <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_tp_element('${id}_coord');" class="regular" size="45" maxlength="80" />
@@ -293,7 +296,6 @@
         alert('${_("Please make sure your GPS setting is turned on for this browser")} (' + error.code + ')' );
     }
 </script>
-<style onload="javascript:checkgps();"></style>
 </%def>
 
 
