@@ -44,9 +44,12 @@ def get_day_info(dt=get_local_date()):
     return ret_val
 
 
-def set_date(dt=datetime.date.today(), month=None, day=None, year=None):
+def set_date(dt=None, month=None, day=None, year=None):
     ''' return a datetime object, setting new month & day ranges
     '''
+    if dt is None:
+        dt = datetime.date.today()
+
     ret_val = dt
     try:
         if not year : year  = dt.year
@@ -57,7 +60,9 @@ def set_date(dt=datetime.date.today(), month=None, day=None, year=None):
         pass
     return ret_val
 
-def pretty_date(dt=datetime.date.today(), fmt='%A, %B %d, %Y'):
+def pretty_date(dt=None, fmt='%A, %B %d, %Y'):
+    if dt is None:
+        dt = datetime.date.today()
     return dt.strftime(fmt)
 
 def make_tab_obj(name, uri=None, date=None, append=None):

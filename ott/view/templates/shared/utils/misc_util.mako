@@ -77,7 +77,7 @@
     city = localize_str(city)
     tn = localize_str(type_name, type_name)
     type_name = unicode_to_str(tn, type_name) # have to do this for .format()
-    if stop_id == None:
+    if stop_id is None:
         stop_id = ''
 
     try:

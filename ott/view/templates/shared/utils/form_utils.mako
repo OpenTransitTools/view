@@ -82,7 +82,7 @@
 #
 <%def name="input_form(name, clear, id, tab, place, coord)">
     <%
-        if place == None:
+        if place is None:
             place = _(clear)
     %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />

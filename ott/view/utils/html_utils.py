@@ -170,7 +170,7 @@ def get_first_param_as_boolean(request, name, def_val=False):
 def get_first_param_as_date(request, name='date', fmt='%m/%d/%Y', def_val=None):
     ''' utility function to parse a request object for something that looks like a date object...
     '''
-    if def_val == None:
+    if def_val is None:
         def_val = datetime.date.today()
 
     ret_val = def_val
