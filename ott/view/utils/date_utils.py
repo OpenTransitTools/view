@@ -18,9 +18,11 @@ def get_local_time():
 def get_local_date():
     return datetime.date.today()
 
-def get_time_info(tm=get_local_time()):
+def get_time_info(tm=None):
     ''' gets a dict with a few params based on input date-time object
     '''
+    if tm is None:
+        tm = get_local_time()
     ret_val = {
         'hour'    : int(time.strftime('%I', tm).strip('0')),
         'minute'  : int(time.strftime('%M', tm)), 
@@ -29,9 +31,12 @@ def get_time_info(tm=get_local_time()):
     return ret_val
 
 
-def get_day_info(dt=get_local_date()):
+def get_day_info(dt=None):
     ''' gets a dict with a few params based on input date-time object
     '''
+    if dt is None:
+        dt = get_local_date()
+
     st,end=monthrange(dt.year, dt.month)
     ret_val = {
         'year'    : dt.year,
