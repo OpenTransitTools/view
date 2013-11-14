@@ -3,16 +3,19 @@ log = logging.getLogger(__file__)
 
 import StringIO
 
+from pyramid.request import Request
 from pyramid.response import Response
+from pyramid.httpexceptions import HTTPFound
 
 from pyramid.view import view_config
 from pyramid.config import Configurator
 from pyramid.session import UnencryptedCookieSessionFactoryConfig
-from pyramid.response import Response
-from pyramid.config import Configurator
+
 from pyramid.events import NewRequest
-from pyramid.events import subscriber
 from pyramid.events import ApplicationCreated
+from pyramid.events import subscriber
+
+from ott.view.locale.subscribers import get_translator  #_  = get_translator(request)
 
 from ott.view.model.model import Model
 from ott.view.model.mock import Mock
@@ -20,6 +23,8 @@ from ott.view.model.mock import Mock
 from ott.view.utils.spark import sparkline_smooth
 from ott.view.utils.qr import qr_to_stream
 from ott.view.utils import html_utils
+from ott.view.utils import object_utils
+from ott.view.model.place import Place
 
 
 def do_view_config(config):
@@ -28,10 +33,14 @@ def do_view_config(config):
     '''
 
     # routes setup
-    config.add_route('index',                                   '/')
-    config.add_route('sparkline',                               '/sparkline')
-    config.add_route('qrcode',                                  '/qrcode')
-    config.add_route('adverts',                                 '/adverts.html')
+    config.add_route('index_desktop',                           '/')
+    config.add_route('index_mobile',                            '/m')
+    config.add_route('sparkline_desktop',                       '/sparkline')
+    config.add_route('sparkline_mobile',                        '/m/sparkline')
+    config.add_route('qrcode_desktop',                          '/qrcode')
+    config.add_route('qrcode_mobile',                           '/m/qrcode')
+    config.add_route('adverts_desktop',                         '/adverts.html')
+    config.add_route('adverts_mobile',                          '/m/adverts.html')
 
     ###
     ### DESKTOP PAGES
@@ -79,17 +88,6 @@ def do_view_config(config):
 
     config.add_route('map_place_mobile',                        '/m/map_place.html')
 
-
-import logging
-log = logging.getLogger(__file__)
-
-from pyramid.view import view_config
-from pyramid.httpexceptions import HTTPFound
-from pyramid.request import Request
-from ott.view.locale.subscribers import get_translator  #_  = get_translator(request)
-from ott.view.utils import html_utils
-from ott.view.utils import object_utils
-from ott.view.model.place import Place
 
 @view_config(route_name='exception_mobile', renderer='mobile/exception.html')
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
@@ -275,8 +273,8 @@ def make_subrequest(request, path, query_string=None):
     return ret_val
 
 
-
-@view_config(route_name='sparkline')
+@view_config(route_name='sparkline_desktop')
+@view_config(route_name='sparkline_mobile')
 def sparkline(request):
     ''' returns a sparkline image in png format...
     '''
@@ -290,7 +288,8 @@ def sparkline(request):
     return response
 
 
-@view_config(route_name='qrcode')
+@view_config(route_name='qrcode_desktop')
+@view_config(route_name='qrcode_mobile')
 def qrcode(request):
     ''' streams a qrcode image for the param 'content' (defaults to http://trimet.org)
     '''
@@ -301,7 +300,8 @@ def qrcode(request):
     return response
 
 
-@view_config(route_name='adverts', renderer='adverts.html')
+@view_config(route_name='adverts_desktop', renderer='adverts.html')
+@view_config(route_name='adverts_mobile',  renderer='adverts.html')
 def adverts(request):
     ret_val = {}
     ret_val['bus_adverts']     = request.model.get_adverts("mode=bus&_LOCALE_=en",  **request.params)
@@ -311,7 +311,8 @@ def adverts(request):
     return ret_val
 
 
-@view_config(route_name='index', renderer='index.html')
+@view_config(route_name='index_desktop', renderer='index.html')
+@view_config(route_name='index_mobile',  renderer='index.html')
 def index_view(request):
     auth = "True"
     perm = "True"
