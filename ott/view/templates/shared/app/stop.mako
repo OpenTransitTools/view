@@ -1,4 +1,5 @@
 ## -*- coding: utf-8 -*-
+<%page args="is_mobile=False"/>
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
@@ -45,7 +46,7 @@ ${page.stop(name, extra_params, stop_params, has_alerts, stop)}
         <h3 class="tight">${_(u'Amenities')}</h3>
         <ul class="small">
             %for a in stop['amenities']:
-            <li>${_(a)}</li>
+            <li>${_(a).capitalize()}</li>
             %endfor
         </ul>
         %endif
@@ -56,7 +57,7 @@ ${page.stop(name, extra_params, stop_params, has_alerts, stop)}
     </div><!-- end .left-column -->
 
     <div class="right-column">
-        ${su.stop_map(stop['name'], stop['stop_id'], stop['lon'], stop['lat'], extra_params, True)}
+        ${su.stop_map(stop['name'], stop['stop_id'], stop['lon'], stop['lat'], extra_params, is_mobile)}
         ${util.plan_a_trip_links(stop['name'], stop['lon'], stop['lat'], extra_params)}
     </div><!-- end .right-column -->
 </div><!-- end .group -->

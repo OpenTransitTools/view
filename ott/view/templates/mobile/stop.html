@@ -1,13 +1,11 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/mobile/base.html"/>
-<%include file="/shared/app/stop.mako"/>
-
+<%include file="/shared/app/stop.mako" args="is_mobile=True"/>
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
-
 <%def name="title()">${su.page_title(stop)}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="side_bar()">${side.stop(stop, util.get_extra_params())}</%def>
