@@ -10,16 +10,16 @@ README = open(os.path.join(here, 'README.md')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
-    'pillow',
-    'pyramid_mako',
     'pyramid',
-    #'pyramid_debugtoolbar',
-    'mako',
+    'pyramid_mako',
+    'pyramid_beaker',
     'waitress',
+    'mako',
+    'colander',
+    'pillow',
     'Babel',
     'lingua',
     'simplejson',
-    'colander',
     'qrcode',
     'six',
 ]
