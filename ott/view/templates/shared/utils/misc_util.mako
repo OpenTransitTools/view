@@ -263,7 +263,6 @@
 <%def name="alerts(alert_list, img_url='/images/triptools/alert.png')">
     %if alert_list and len(alert_list) > 0:
     <div id="alerts" class="group">
-        <h3><a href="${url_domain()}/alerts/">${_(u'Service alerts')}</a></h3>
         <% alert_rendered=[] %>
         %for a in alert_list:
             %if a['alert_id'] not in alert_rendered:
