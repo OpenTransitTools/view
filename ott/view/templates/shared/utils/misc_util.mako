@@ -41,7 +41,6 @@
 %>
 </%def>
 
-
 <%def name="localize_str(s, def_val=None)">
 <%
     ret_val = def_val
@@ -68,6 +67,21 @@
 %>
 </%def>
 
+##
+## do things like escape & in intersection names, etc...
+##
+<%def name="prep_url_params(params)">
+<%
+    ret_val = params
+    try:
+        ret_val = params.replace(' & ', ' %26 ')
+    except:
+        pass
+    return ret_val
+%>
+</%def>
+
+
 <%def name="name_city_str(name, city, type_name=None, stop_id='')">
 <%
     ret_val = _(u'Undefined')
@@ -92,7 +106,6 @@
     except:
         pass
 
-
     return ret_val
 %>
 </%def>
@@ -107,7 +120,7 @@
 %>
 </%def>
 
-## ...
+## 
 <%def name="map_place_link(place, path_prefix='')">
 <%
     extra_params = get_extra_params()
@@ -118,15 +131,29 @@
 <a href="${path_prefix}map_place.html?name=${name}&city=${city}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
 </%def>
 
+<%def name="make_named_coord(name, lat, lon)">
+<%
+    name = name.replace('&', '%26')
+    ret_val = "{0}::{1},{2}".format(name, lat, lon)
+    return ret_val
+%>
+</%def>
+
+<%def name="make_named_coord_from_obj(obj)">
+<%
+    return make_named_coord(obj['name'], obj['lat'] ,obj['lon']) 
+%>
+</%def>
+
 ## from / to links
+## TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc...
 <%def name="plan_a_trip_links(name, lon, lat, extra_params='')">
-<!-- TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc... -->
 <h3 class="tight">${_(u'Plan a trip')}</h3>
 <p>
-  <a href="planner_form.html?to=${name}::${lat},${lon}${extra_params}"
+  <a href="planner_form.html?to=${make_named_coord(name, lat, lon)}${extra_params}"
     title="${_(u'Plan a trip')} ${_(u'to')} ${name}"
     >${_(u'To here')}</a> &nbsp;&bull;&nbsp; <a 
-    href="planner_form.html?from=${name}::${lat},${lon}${extra_params}"
+    href="planner_form.html?from=${make_named_coord(name, lat, lon)}${extra_params}"
     title="${_(u'Plan a trip')} ${_(u'from')} ${name}"
     >${_(u'From here')}</a>
 </p>

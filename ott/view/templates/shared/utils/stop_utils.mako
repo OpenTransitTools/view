@@ -20,11 +20,13 @@
     return params
 %></%def>
 
-<%def name="make_named_coord(obj)"><%
+<%def name="make_named_coord(obj)">
+<%
     name = obj['name'].replace('&', '%26')
     ret_val = "{0}::{1},{2}".format(name, obj['lat'] ,obj['lon'])
     return ret_val
-%></%def>
+%>
+</%def>
 
 <%def name="planner_walk_link(frm, to, extra_params)">
 <%
