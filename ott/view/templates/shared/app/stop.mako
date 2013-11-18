@@ -14,7 +14,7 @@
     stop_params = su.make_url_params(stop)
     has_alerts = su.has_alerts(stop)
 %>
-${page.stop(name, extra_params, stop_params, has_alerts, stop)}
+${page.stop(name, extra_params, stop_params, stop, has_alerts)}
 
 <div class="group">
     <div class="left-column">

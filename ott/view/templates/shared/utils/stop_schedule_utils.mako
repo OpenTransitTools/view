@@ -90,7 +90,6 @@
         <% 
             id = s['h']
             route = stop['headsigns'][id]
-            alerts = True if 'alerts' in route and len(route['alerts']) > 0 else False
         %> 
         <b>${s['t']}</b> ${route['route_name']} ${_(u'to')} ${route['headsign']}<br/>
         %endfor
@@ -100,9 +99,7 @@
     <% 
         route = stop['headsigns'][h]
         route_url = '' if 'route_url' not in route else route['route_url']
-        alerts = True if 'alerts' in route and len(route['alerts']) > 0 else False
     %>
-
     <h3 class="tight">
         %if route_url:
             <a href="${route_url}" title="${_(u'Show map and schedules for this route')}.">
@@ -111,12 +108,10 @@
         %if route_url:
             </a>
         %endif
-        
         %if 'arrival_url' in route:
             <a href="${route['arrival_url']}" class="stop-arrivals"><img src="${util.img_url()}/transittracker-icon.png" alt="${_(u'Next arrivals')}" /></a>
         %endif
-        
-        %if alerts:
+        %if route['has_alert']:
             ${util.alerts_inline_icon_link()}
         %endif
     </h3>

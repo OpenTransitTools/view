@@ -13,14 +13,13 @@
 <%
     name = su.make_name_id(stop)
     stop_params = su.make_url_params(stop)
-    has_alerts = su.has_alerts(stop)
 %>
 <%def name="title()">${su.page_title(stop)}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
 <%def name="stations_selected()">class="selected"</%def>
 <%def name="app_css()">${page.stop_css()}</%def>
-${page.stop(name, extra_params, stop_params, has_alerts, stop)}
+${page.stop(name, extra_params, stop_params, stop)}
 
 <h2>${util.name_city_str_from_struct(stop)}</h2>
 
@@ -28,7 +27,4 @@ ${page.stop(name, extra_params, stop_params, has_alerts, stop)}
     ${ssu.schedule_all_routes_link(stop, extra_params)}
     ${ssu.schedule_sort_by_links(stop, extra_params)}
     ${ssu.schedule_render(stop, pretty_date, extra_params)}
-    %if has_alerts:
-        ${util.alerts(stop['alerts'])}
-    %endif
-
+    ${util.alerts(stop['alerts'])}

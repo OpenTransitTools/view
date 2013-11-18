@@ -24,7 +24,7 @@
 #
 # for stop & station pages that have specific stop info (ala alerts / stop landing page link / etc...)
 #
-<%def name="stop(name='', extra_params='', base_params='me', has_alerts=False, stop=None)">
+<%def name="stop(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${h1_base_stop_stations(name, extra_params, base_params)}
         %if stop:
         <a href="stop.html?stop_id=${stop['stop_id']}${extra_params}">${name}</a>

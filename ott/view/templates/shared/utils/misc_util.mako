@@ -223,20 +223,32 @@
 </%def>
 
 <%def name="alerts_inline_icon_link(img_url='/images/triptools/alert-icon.png')">
-    <!--<a href="#alerts" class="alert"><img border="0" src="${url_domain()}${img_url}" alt="${_(u'See footnote')}" title="${_(u'See footnote')}"/></a>-->
-    <a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="Service alert at this stop" /></a>
+    <a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="${_(u'Service alert at this stop')}" /></a>
 </%def>
 
 <%def name="alerts(alert_list, img_url='/images/triptools/alert.png')">
+    %if alert_list and len(alert_list) > 0:
     <div id="alerts" class="group">
-        <!--<h3><a href="${url_domain()}/alerts/">${_(u'Service Alerts')}</a></h3>-->
+        <h3><a href="${url_domain()}/alerts/">${_(u'Service Alerts')}</a></h3>
+        <% alert_rendered=[] %>
         %for a in alert_list:
+            %if a['alert_id'] not in alert_rendered:
+            <% alert_rendered.append(a['alert_id']) %>
             <p><img src="${url_domain()}${img_url}" />
-                <span class="alert-text"><b>${a['name']}</b><br />${a['description']}</span>
-                <span class="alert-time">TODO ??? As of March 19 @ 10:15am ??? TODO</span>
+                <span class="alert-text">
+                    %if a['header_text']:
+                    <b>${a['header_text']}</b><br/>
+                    %endif
+                    ${a['description_text']}
+                </span>
+                %if a['pretty_start_date']:
+                <span class="alert-time">${_(u'As of')} ${a['pretty_start_date']} @ ${a['pretty_start_time']}</span>
+                %endif
             </p>
+            %endif
         %endfor
     </div>
+    %endif
 </%def>
 
 <%def name="compare_values(a, b)">
