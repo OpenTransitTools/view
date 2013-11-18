@@ -45,6 +45,9 @@ ${', ' if (i > 0) else ''}<a target="#" href="${r['route_url']}">${r['short_name
  ${_(u'Served by')}: ${route_abrv_list(stop)}
 </%def>
 
+<%def name="nearby_stops_link(stop, extra_params)">
+    <p><a href="stops_near.html?has_geocode=true&place=${make_named_coord(stop)}${extra_params}">${_(u'Find nearby stops')}</a></p>
+</%def>
 
 ## static map block
 <%def name="static_map_img(map_url)"><img src="${map_url}" alt="${_(u'Stop location on a map')}" /></%def>

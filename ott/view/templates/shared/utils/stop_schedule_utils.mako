@@ -4,6 +4,7 @@
 ##
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 
 <%def name="sort_val()">
 <%
