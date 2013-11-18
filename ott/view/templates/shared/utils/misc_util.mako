@@ -254,6 +254,8 @@
     %endif
 </%def>
 
+<%def name="list_to_str(list, sep=', ')">${sep.join(list)}</%def>
+
 <%def name="alerts_inline_icon_link(img_url='/images/triptools/alert-icon.png')">
     <a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="${_(u'Service alert at this stop')}" /></a>
 </%def>
@@ -261,7 +263,7 @@
 <%def name="alerts(alert_list, img_url='/images/triptools/alert.png')">
     %if alert_list and len(alert_list) > 0:
     <div id="alerts" class="group">
-        <h3><a href="${url_domain()}/alerts/">${_(u'Service Alerts')}</a></h3>
+        <h3><a href="${url_domain()}/alerts/">${_(u'Service alerts')}</a></h3>
         <% alert_rendered=[] %>
         %for a in alert_list:
             %if a['alert_id'] not in alert_rendered:
@@ -271,7 +273,7 @@
                     %if a['header_text']:
                     <b>${a['header_text']}</b><br/>
                     %endif
-                    ${a['description_text']}
+                    <b>${list_to_str(a['route_short_names'])}: </b> ${a['description_text']}
                 </span>
                 %if a['pretty_start_date']:
                 <span class="alert-time">${_(u'As of')} ${a['pretty_start_date']} @ ${a['pretty_start_time']}</span>
