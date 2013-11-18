@@ -28,7 +28,7 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
             %if 'direction' in r:
             ${r['direction']}<br/>
             %endif
-            <a href="${r['arrival_url']}">${_(u'Next arrivals')}</a>
+            <a href="${r['arrival_url'].format(stop_id=stop['stop_id'])}">${_(u'Next arrivals')}</a>
                 &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}${extra_params}">${_(u'Schedule')}</a> 
                 &nbsp;&bull;&nbsp; <a href="${r['route_url']}" title="${_(u'Show map and schedules for this route')}.">${_(u'Route info')}</a>
         </p>

@@ -45,7 +45,9 @@
 <%
     ret_val = def_val
     try:
-        if s is not None:
+        if s == "None":
+            s = None
+        elif s is not None:
             ret_val = _(s)
             if len(s) < 1:
                 ret_val = def_val
@@ -70,11 +72,14 @@
 ##
 ## do things like escape & in intersection names, etc...
 ##
-<%def name="prep_url_params(params)">
+<%def name="prep_url_params(params, no_space=False)">
 <%
     ret_val = params
     try:
-        ret_val = params.replace(' & ', ' %26 ')
+        if no_space:
+            ret_val = ret_val.replace('&', '%26')
+        else:
+            ret_val = ret_val.replace(' & ', ' %26 ')
     except:
         pass
     return ret_val
@@ -128,7 +133,7 @@
     city = get_ele(place, 'city', '')
     name_city = name_city_str_from_struct(place)
 %>
-<a href="${path_prefix}map_place.html?name=${name}&city=${city}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
+<a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
 </%def>
 
 <%def name="make_named_coord(name, lat, lon)">

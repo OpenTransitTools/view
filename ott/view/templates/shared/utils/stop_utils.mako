@@ -20,19 +20,11 @@
     return params
 %></%def>
 
-<%def name="make_named_coord(obj)">
-<%
-    name = obj['name'].replace('&', '%26')
-    ret_val = "{0}::{1},{2}".format(name, obj['lat'] ,obj['lon'])
-    return ret_val
-%>
-</%def>
-
 <%def name="planner_walk_link(frm, to, extra_params)">
 <%
 dist = _('${number} mile', '${number} miles', mapping={'number':round(to['distance'], 2)})
 %>
-<a href="planner_walk.html?mode=WALK&from=${make_named_coord(frm)}&to=${make_named_coord(to)}${extra_params}">${dist}</a>
+<a href="planner_walk.html?mode=WALK&from=${util.make_named_coord_from_obj(frm)}&to=${util.make_named_coord_from_obj(to)}${extra_params}">${dist}</a>
 </%def>
 
 <%def name="route_abrv_list(stop)">
@@ -48,11 +40,11 @@ ${', ' if (i > 0) else ''}<a target="#" href="${r['route_url']}">${r['short_name
 </%def>
 
 <%def name="nearby_stops_link(stop, extra_params)">
-    <p><a href="stops_near.html?has_geocode=true&place=${make_named_coord(stop)}${extra_params}">${_(u'Find nearby stops')}</a></p>
+    <p><a href="stops_near.html?has_geocode=true&place=${util.make_named_coord_from_obj(stop)}${extra_params}">${_(u'Find nearby stops')}</a></p>
 </%def>
 
 ## static map block
-<%def name="static_map_img(map_url)"><img src="${map_url}" alt="${_(u'Stop location on a map')}" /></%def>
+<%def name="static_map_img(map_url)"><img src="${map_url}" alt="${_(u'Stop location on a map')}"/></%def>
 
 <%def name="staticmap_imap_link(name, lon, lat, extra_params, map_url)">
 <p>
