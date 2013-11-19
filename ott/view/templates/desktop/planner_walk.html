@@ -6,6 +6,8 @@
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 <%
+    is_mobile = False
+    itinerary = plib.get_itinerary(plan)
     extra_params = util.get_extra_params()
 %>
 <%def name="title()">${plib.itin_page_title(plan)}</%def>
@@ -15,27 +17,17 @@
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
 ${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
-<style>
-    ol.transit li.num1 .step-number img {display:none}
-    ol.transit li.num1 div {display: block}
-    ol.transit * * * {display: block}
-</style>
-
 
 ##
 ## main content
 ##
-<%
-    is_mobile = False
-    itinerary = plib.get_itinerary(plan)
-%>
-${plib.trip_details(plan)}
 
-<ol id="itinerary" class="transit">
-    ##
-    ## loop through the legs between start and end elements
-    ## ${plib.render_leg(leg, n)}
-    %for n, leg in enumerate(itinerary['legs']):
-        ${plib.render_leg(itinerary, n, is_mobile, extra_params, no_expand=True)}
-    %endfor
-</ol><!-- end #itinerary -->
+## CSS customizations for walk directions
+<style>
+    ol.transit li.num1 .step-number img {display:none}
+    ol.transit li.num1 div {display: block}
+    ol.transit * * * {display: block}
+    #details { padding: 0}
+</style>
+${plib.render_trip_details(plan)}
+${plib.render_itinerary(itinerary, extra_params)}

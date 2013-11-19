@@ -19,10 +19,8 @@
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
-${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner')}
-
 <%def name="bottom()">${plib.bottom_imap_bar()} ${plib.bottom_disclaimer()}</%def>
-
+${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner')}
 ##
 ## main content
 ##
@@ -30,38 +28,11 @@ ${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner')}
     is_mobile = False
     itinerary = plib.get_itinerary(plan)
 %>
-${plib.trip_details(plan, itinerary, extra_params)}
-
-%if len(plan['itineraries']) > 1:
-<ol id="plannertabs" class="group">
-    ${plib.itin_tab(plan['itineraries'], 0, _(u'Your best bet'), extra_params)}
-    ${plib.itin_tab(plan['itineraries'], 1, _(u'Option 2'), extra_params)}
-    ${plib.itin_tab(plan['itineraries'], 2, _(u'Option 3'), extra_params)}
-</ol><!-- end #tabs -->
-<div class="plannertabs-underline"></div>
-%endif
-
-<ol id="itinerary" class="transit">
-    ##
-    ## loop through the legs between start and end elements
-    ## ${plib.render_leg(leg, n)}
-    %for n, leg in enumerate(itinerary['legs']):
-        ${plib.render_leg(itinerary, n, is_mobile, extra_params)}
-    %endfor
-</ol><!-- end #itinerary -->
-
+${plib.render_trip_details(plan, itinerary, extra_params)}
+${plib.render_tabs(plan, extra_params)}
+${plib.render_itinerary(itinerary, extra_params)}
 ${plib.render_fares(itinerary, util.url_domain() + '/fares/index.htm')}
-
-%if itinerary['has_alerts']:
-<div id="alerts" class="group">
-    %for alert in itinerary['alerts']:
-    <p><img src="${util.img_url()}/alert.png" />
-        <span class="alert-text">${alert['text']}</span>
-        <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']}   <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
-    </p>
-    %endfor
-</div><!-- end #alerts -->
-%endif
+${plib.render_alerts(itinerary)}
 
 <div id="console" class="group hide">
     <p class="console-left">

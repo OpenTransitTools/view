@@ -4,35 +4,73 @@
 ##
 <%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 
+#
+# header details w/ from & to details, plus optional trip details & edit links
+#
+<%def name="render_trip_details(plan, itinerary=None, extra_params='')">
+    <div id="details" class="group">
+        <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
+        <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
+        %if itinerary:
+        <p class="tripinfo">${get_depart_arrive(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        <p class="tripinfo">${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        %endif
+    </div><!-- end #details -->
+</%def>
+
 ##
 ## typical itinerary page title
 ##
 <%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 
 ##
-## footer of the trip planner form
-## a img bar for the imap, with link to the map
 ##
-<%def name="bottom_imap_bar()">
-    <div id="imap-wrap">
-        <section id="imap" class="group">
-            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
-        </section><!-- end #imap -->
-    </div><!-- end #promobar-wrap -->
+##
+<%def name="render_tabs(plan, extra_params)">
+%if len(plan['itineraries']) > 1:
+    <ol id="plannertabs" class="group">
+        ${itin_tab(plan['itineraries'], 0, _(u'Your best bet'), extra_params)}
+        ${itin_tab(plan['itineraries'], 1, _(u'Option 2'), extra_params)}
+        ${itin_tab(plan['itineraries'], 2, _(u'Option 3'), extra_params)}
+    </ol><!-- end #tabs -->
+    <div class="plannertabs-underline"></div>
+%endif
 </%def>
 
 ##
-## footer with the trip plan disclaimer
+## main part of the renderer
+## (loop over the legs, and render them
 ##
-<%def name="bottom_disclaimer()">
-    <div id="disclaimer">
-        <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
-            <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
-            ${_(u'for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
+<%def name="render_itinerary(itinerary, extra_params, is_mobile=False, no_expand=False)">
+    <ol id="itinerary" class="transit">
+        ##
+        ## loop through the legs between start and end elements
+        ## ${render_leg(leg, n)}
+        %for n, leg in enumerate(itinerary['legs']):
+            ${render_leg(itinerary, n, is_mobile, extra_params, no_expand=True)}
+        %endfor
+    </ol><!-- end #itinerary -->
+</%def>
+
+##
+##
+##
+<%def name="render_alerts(itinerary)">
+    %if itinerary['has_alerts']:
+    <div id="alerts" class="group">
+        %for alert in itinerary['alerts']:
+        <p><img src="${util.img_url()}/alert.png" />
+            <span class="alert-text">${alert['text']}</span>
+            <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
         </p>
-    </div>
+        %endfor
+    </div><!-- end #alerts -->
+    %endif
 </%def>
 
+<%def name="render_fares(itinerary, fares_url)">
+<p class="fare">${_(u'Fare for this trip')}: <a href="${fares_url}">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
+</%def>
 
 <%def name="pretty_distance(dist)">
 <%
@@ -90,20 +128,6 @@
 %>
 </%def>
 
-#
-# header 
-#
-<%def name="trip_details(plan, itinerary=None, extra_params='')">
-    <div id="details" class="group">
-        <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
-        <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
-        %if itinerary:
-        <p class="tripinfo">${get_depart_arrive(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
-        <p class="tripinfo">${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
-        %endif
-    </div><!-- end #details -->
-</%def>
-
 
 <%def name="itin_tab(itin_list, i, text, extra_params='')">
     %if len(itin_list) > i:
@@ -136,6 +160,32 @@
     return ret_val
 %>
 </%def>
+
+
+##
+## footer of the trip planner form
+## a img bar for the imap, with link to the map
+##
+<%def name="bottom_imap_bar()">
+    <div id="imap-wrap">
+        <section id="imap" class="group">
+            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
+        </section><!-- end #imap -->
+    </div><!-- end #promobar-wrap -->
+</%def>
+
+##
+## footer with the trip plan disclaimer
+##
+<%def name="bottom_disclaimer()">
+    <div id="disclaimer">
+        <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
+            <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
+            ${_(u'for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
+        </p>
+    </div>
+</%def>
+
 
 <%def name="get_time(itinerary, is_arrive_by)">
 <%
@@ -176,10 +226,6 @@
 %if interline != None:
 ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 %endif
-</%def>
-
-<%def name="render_fares(itinerary, fares_url)">
-<p class="fare">${_(u'Fare for this trip')}: <a href="${fares_url}">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
 </%def>
 
 <%def name="render_elevation(elevation, no_expand=False)">
