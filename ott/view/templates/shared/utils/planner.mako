@@ -182,24 +182,24 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 <p class="fare">${_(u'Fare for this trip')}: <a href="${fares_url}">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
 </%def>
 
-<%def name="render_elevation(elevation)">
+<%def name="render_elevation(elevation, no_expand=False)">
             %if elevation != None:
                 <p class="elevation"><span>
                     ${_(u'Total elevation uphill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['rise_ft']})}<br />
                     ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br />
                     ${_(u'Steepest grade')}: ${elevation['grade']}<br />
                     %if elevation['points'] and len(elevation['points']) > 2:
-                    <a href="#">${_(u'Elevation chart')}</a> ${util.dynamic_img("sparkline?points=" + elevation['points'], 100, 20)}</span>
+                    <a href="#">${_(u'Elevation chart')}</a> ${util.dynamic_img("sparkline?points=" + elevation['points'], 100, 20, no_expand=no_expand)}</span>
                     %endif
                 </p>
             %endif
 </%def>
 
-<%def name="render_start_end_maps(from_img_url, to_img_url)">
-                <div class="maps">
-                    <p class="walk-start">${_(u'Start')}<br />${util.dynamic_img(from_img_url, 300, 288, _(u'Map of starting point (300x288)'))}</p>
-                    <p class="walk-end">${_(u'End')}<br/>${util.dynamic_img(to_img_url, 300, 288, _(u'Map of ending point (300x288)'))}</p>
-                </div><!-- end maps -->
+<%def name="render_start_end_maps(from_img_url, to_img_url, no_expand=False)">
+        <div class="maps">
+             <p class="walk-start">${_(u'Start')}<br />${util.dynamic_img(from_img_url, 300, 288, _(u'Map of starting point (300x288)'), no_expand=no_expand)}</p>
+             <p class="walk-end">${_(u'End')}<br/>${util.dynamic_img(to_img_url, 300, 288, _(u'Map of ending point (300x288)'), no_expand=no_expand)}</p>
+        </div><!-- end maps -->
 </%def>
 
 ## They want 2-stage walk instructions, as per mock up...
@@ -239,7 +239,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 </ol>
 </%def>
 
-<%def name="render_bicycle_leg(leg, i, extra_params='')">
+<%def name="render_bicycle_leg(leg, i, extra_params='', no_expand=False)">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
@@ -264,7 +264,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             <div class="description">
                 ${render_elevation(leg['elevation'])}
                 ${render_steps(_(u'Bike'), leg['from']['name'], leg['to']['name'], leg['steps'])}
-                ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'])}
+                ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'], no_expand=no_expand)}
                     <!--
                     TODO TODO TODO
                     1. generic 'direction' element in json
@@ -279,7 +279,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
     </li>
 </%def>
 
-<%def name="render_walk_leg(leg, i, extra_params='')">
+<%def name="render_walk_leg(leg, i, extra_params='', no_expand=False)">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p>
@@ -305,13 +305,17 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         </p>
 
         <div class="normal"><!-- hidden walking directions and map -->
+            %if no_expand:
+            <div class="description">
+            %else:
             <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Walking directions')}" class="open"><span class="open-text">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
             <div class="description">
-                %if leg['steps']:
-                ${render_elevation(leg['elevation'])}
+            %endif
+            %if leg['steps']:
+                ${render_elevation(leg['elevation'], no_expand=no_expand)}
                 ${render_steps(_(u'Walk'), leg['from']['name'], leg['to']['name'], leg['steps'])}
-                ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'])}
-                %endif
+                ${render_start_end_maps(leg['from']['map_img'], leg['to']['map_img'], no_expand=no_expand)}
+            %endif
             </div><!-- end .description -->
         </div><!-- end .normal/hidden walking directions -->
     </li>
@@ -375,7 +379,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 </%def>
 
 <% leg_id = 1 %>
-<%def name="render_leg(itinerary, n, is_mobile=False, extra_params='')">
+<%def name="render_leg(itinerary, n, is_mobile=False, extra_params='', no_expand=False)">
 <%
     ''' call render stuff above...
     '''
@@ -394,7 +398,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         ret_val = render_transit_leg(leg_list, n, leg_id, leg_id+1, is_mobile, extra_params)
         leg_id = leg_id + 2 
     elif leg['mode'] == util.attr.WALK:
-        ret_val = render_walk_leg(leg, leg_id, extra_params)
+        ret_val = render_walk_leg(leg, leg_id, extra_params, no_expand)
         leg_id = leg_id + 1 
     elif leg['mode'] == util.attr.BICYCLE:
         ret_val = render_bicycle_leg(leg, leg_id, extra_params)

@@ -165,7 +165,13 @@
 </%def>
 
 ## dynamic img ... see dynamiclyLoadImages() in triptools.js for more
-<%def name="dynamic_img(url, w, h, alt='dynamic img (requires javascript)', def_img='http://maps.trimet.org/images/ui/s.gif')"><img dsrc="${url}" dwidth="${w}" dheight="${h}" alt="${alt}" src="${def_img}"/></%def>
+<%def name="dynamic_img(url, w, h, alt='dynamic img (requires javascript)', def_img='http://maps.trimet.org/images/ui/s.gif', no_expand=False)">
+%if no_expand:
+<img src="${url}" alt="${alt}"/>
+%else:
+<img dsrc="${url}" dwidth="${w}" dheight="${h}" alt="${alt}" src="${def_img}"/>
+%endif
+</%def>
 
 <%def name="has_url_param(param_name)">
 <%

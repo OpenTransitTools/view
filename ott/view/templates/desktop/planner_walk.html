@@ -15,6 +15,12 @@
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
 ${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
+<style>
+    ol.transit li.num1 .step-number img {display:none}
+    ol.transit li.num1 div {display: block}
+    ol.transit * * * {display: block}
+</style>
+
 
 ##
 ## main content
@@ -30,6 +36,6 @@ ${plib.trip_details(plan)}
     ## loop through the legs between start and end elements
     ## ${plib.render_leg(leg, n)}
     %for n, leg in enumerate(itinerary['legs']):
-        ${plib.render_leg(itinerary, n, is_mobile, extra_params)}
+        ${plib.render_leg(itinerary, n, is_mobile, extra_params, no_expand=True)}
     %endfor
 </ol><!-- end #itinerary -->
