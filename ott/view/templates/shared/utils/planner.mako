@@ -90,6 +90,21 @@
 %>
 </%def>
 
+#
+# header 
+#
+<%def name="trip_details(plan, itinerary=None, extra_params='')">
+    <div id="details" class="group">
+        <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
+        <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
+        %if itinerary:
+        <p class="tripinfo">${get_depart_arrive(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        <p class="tripinfo">${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        %endif
+    </div><!-- end #details -->
+</%def>
+
+
 <%def name="itin_tab(itin_list, i, text, extra_params='')">
     %if len(itin_list) > i:
         <%
