@@ -1,0 +1,63 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Autocomplete - XML data parsed once</title>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <style>
+    body {
+        font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+        font-size: 62.5%;
+    }
+    .ui-autocomplete-loading { background: white url('busy.gif') right center no-repeat; }
+    </style>
+    <script>
+    $(function() {
+        function log( message ) {
+            $( "<div/>" ).text( message ).prependTo( "#log" );
+            $( "#log" ).attr( "scrollTop", 0 );
+        }
+
+        $.ajax({
+            url: "london.xml",
+            dataType: "xml",
+            success: function( xmlResponse ) {
+                var data = $( "geoname", xmlResponse ).map(function() {
+                    return {
+                        value: $( "name", this ).text() + ", " +
+                            ( $.trim( $( "countryName", this ).text() ) || "(unknown country)" ),
+                        id: $( "geonameId", this ).text()
+                    };
+                }).get();
+                $( "#birds" ).autocomplete({
+                    source: data,
+                    minLength: 0,
+                    select: function( event, ui ) {
+                        log( ui.item ?
+                            "Selected: " + ui.item.value + ", geonameId: " + ui.item.id :
+                            "Nothing selected, input was " + this.value );
+                    }
+                });
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+
+<div class="ui-widget">
+    <label for="birds">London matches: </label>
+    <input id="birds" />
+</div>
+
+<div class="ui-widget" style="margin-top: 2em; font-family: Arial;">
+    Result:
+    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+</div>
+
+
+</body>
+</html>
