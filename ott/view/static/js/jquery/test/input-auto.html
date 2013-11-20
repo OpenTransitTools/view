@@ -50,6 +50,9 @@
 </div>
 
 <script>
+function clickr(n) {
+    console.log(n);
+}
 function auto_suggest(form, sug_list)
 {
     var sugList = $(sug_list);
@@ -68,7 +71,7 @@ function auto_suggest(form, sug_list)
                 len=docs.length;
                 for(var i=0; i < len; i++)
                 {
-                    str += "<li>" + docs[i].name + " (" + docs[i].city + ")</li>";
+                    str += "<li><a target='#' onClick='clickr("+ i + ")'></a>" + docs[i].name + " (" + docs[i].city + ")</li>";
                 }
 
                 sugList.html(str);

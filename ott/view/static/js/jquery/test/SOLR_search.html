@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:regular,bold" type="text/css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {  
+
+            // Icon Click Focus
+            $('div.icon').click(function(){
+                    $('input#search').focus();
+            });
+
+            // Live Search
+            // On Search Submit and Get Results
+            function search() {
+                var query_value = $('input#search').val();
+                $('b#search-string').html(query_value);
+                if(query_value !== '')
+                {
+                    $.ajax({
+                        type:     "GET",
+                        dataType: "json",
+                        url: "http://maps5.trimet.org/solr/select",
+                        data: {
+                            q:  query_value,
+                            wt: "json",
+                            qt: "dismax",
+                            rows: "20"
+                        },
+                        cache: false,
+                        success: function(data) {
+                             
+                             $("ul#results").html();
+                        }
+                    });
+                }
+                return false;    
+            }
+
+            $("input#search").live("keyup", function(e) {
+               clearTimeout($.data(this, 'timer'));
+               var search_string = $(this).val();
+
+                // Do Search
+                if (search_string == '') {
+                    $("ul#results").fadeOut();
+                    $('h4#results-text').fadeOut();
+                }else{
+                    $("ul#results").fadeIn();
+                    $('h4#results-text').fadeIn();
+                    $(this).data('timer', setTimeout(search, 100));
+                };          
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="main">
+
+        <input type="text" id="search" autocomplete="off">
+
+        <!-- Show Results -->
+        <h4 id="results-text">Showing results for: <b id="search-string">Array</b></h4>
+        <ul id="results"></ul>
+    </div>
+</body>
+</html>
