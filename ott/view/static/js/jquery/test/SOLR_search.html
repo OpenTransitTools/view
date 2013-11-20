@@ -1,9 +1,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <link href="SOLR_style.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:regular,bold" type="text/css" />
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script>
+        function geo_select(num)
+        {
+            console.log(num)
+        }
         $(document).ready(function() {  
 
             // Icon Click Focus
@@ -29,9 +34,15 @@
                             rows: "20"
                         },
                         cache: false,
-                        success: function(data) {
-                             
-                             $("ul#results").html();
+                        success: function(resp, resp_code) {
+                            docs = resp.response.docs;
+                            len=docs.length;
+                            str = ''
+                            for(var i=0; i < len; i++)
+                            {
+                                str += "<li><a target='#' onClick='geo_select("+ i + ")'>" + docs[i].name + " (" + docs[i].city + ")</a></li>";
+                            }
+                             $("ul#results").html(str);
                         }
                     });
                 }
