@@ -4,6 +4,11 @@
 ##
 <%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 
+##
+## typical itinerary page title
+##
+<%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
+
 #
 # header details w/ from & to details, plus optional trip details & edit links
 #
@@ -17,11 +22,6 @@
         %endif
     </div><!-- end #details -->
 </%def>
-
-##
-## typical itinerary page title
-##
-<%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 
 ##
 ##
@@ -47,9 +47,26 @@
         ## loop through the legs between start and end elements
         ## ${render_leg(leg, n)}
         %for n, leg in enumerate(itinerary['legs']):
-            ${render_leg(itinerary, n, is_mobile, extra_params, no_expand=True)}
+            ${_render_leg(itinerary, n, is_mobile, extra_params, no_expand)}
         %endfor
     </ol><!-- end #itinerary -->
+</%def>
+
+##
+## bottom console buttons for email, feedback, print, etc...
+##
+<%def name="render_console(plan, extra_params)">
+    <div id="console" class="group hide">
+        <p class="console-left">
+            <a href="#TODO_TODO" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
+            <a href="javascript:window.print();" class="console-print" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);"><span>${_(u'Print')}</span></a>
+            <a href="#TODO_TODO" class="console-mobile" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary view on mobile']);"><span>${_(u'View on mobile')}</span></a>
+        </p>
+        <p class="console-right">
+            <a href="planner_form.html?${plan['params']['return_trip']}${extra_params}" class="console-returntrip" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);"><span>${_(u'Return trip')}</span></a>
+            <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" class="console-edit" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
+        </p>
+    </div><!-- end #console -->
 </%def>
 
 ##
@@ -425,7 +442,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 </%def>
 
 <% leg_id = 1 %>
-<%def name="render_leg(itinerary, n, is_mobile=False, extra_params='', no_expand=False)">
+<%def name="_render_leg(itinerary, n, is_mobile, extra_params, no_expand)">
 <%
     ''' call render stuff above...
     '''
