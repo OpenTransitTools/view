@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>Autocomplete - XML data parsed once</title>
+    <title>SOLR AutoComplete</title>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
@@ -15,42 +15,66 @@
     .ui-autocomplete-loading { background: white url('busy.gif') right center no-repeat; }
     </style>
     <script>
-    $(function() {
-        function log( message ) {
-            $( "<div/>" ).text( message ).prependTo( "#log" );
-            $( "#log" ).attr( "scrollTop", 0 );
+    function SOLRAutoComplete(input_div, log_div, solr_url)
+    {
+        this.input_div = input_div || "#input";
+        this.log_div   = log_div || "#log";
+        this.solr_url  = solr_url || "london.xml";
+
+        function log(log_div, message)
+        {
+            $("<div/>").text( message ).prependTo(log_div);
+            $(log_div).attr( "scrollTop", 0 );
         }
 
-        $.ajax({
-            url: "london.xml",
-            dataType: "xml",
-            success: function( xmlResponse ) {
-                var data = $( "geoname", xmlResponse ).map(function() {
+        function solr_success(response)
+        {
+            var THIS = this.THIS;
+
+            var data = $("geoname", response).map(function() {
                     return {
-                        value: $( "name", this ).text() + ", " +
-                            ( $.trim( $( "countryName", this ).text() ) || "(unknown country)" ),
-                        id: $( "geonameId", this ).text()
+                        value: $("name", this).text() + ", " +
+                               ($.trim($("countryName", this).text()) || "(unknown country)" ),
+                        id: $("geonameId", this).text()
                     };
-                }).get();
-                $( "#birds" ).autocomplete({
+            }).get();
+
+            $(THIS.input_div).autocomplete({
                     source: data,
                     minLength: 0,
-                    select: function( event, ui ) {
-                        log( ui.item ?
+                    select: function(event, ui) {
+                        log(THIS.log_div, ui.item ?
                             "Selected: " + ui.item.value + ", geonameId: " + ui.item.id :
                             "Nothing selected, input was " + this.value );
-                    }
-                });
-            }
-        });
-    });
+                    } 
+            });
+        }
+        this.solr_success = solr_success;
+
+        function enable_ajax()
+        {
+            ajax_cfg = {
+                url: this.solr_url,
+                dataType: "xml",
+                success: this.solr_success,
+                THIS: this
+            };
+            $.ajax(ajax_cfg);
+        }
+        this.enable_ajax=enable_ajax;
+    };
+
+    a = new SOLRAutoComplete();
+    a.enable_ajax();
+    b = new SOLRAutoComplete('#xput', '#xlog');
+    b.enable_ajax();
     </script>
 </head>
 <body>
 
 <div class="ui-widget">
-    <label for="birds">London matches: </label>
-    <input id="birds" />
+    <label for="input">London matches: </label>
+    <input id="input"/>
 </div>
 
 <div class="ui-widget" style="margin-top: 2em; font-family: Arial;">
@@ -59,5 +83,14 @@
 </div>
 
 
+<div class="ui-widget">
+    <label for="xput">City matches: </label>
+    <input id="xput" />
+</div>
+
+<div class="ui-widget" style="margin-top: 2em; font-family: Arial;">
+    Result:
+    <div id="xlog" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+</div>
 </body>
 </html>
