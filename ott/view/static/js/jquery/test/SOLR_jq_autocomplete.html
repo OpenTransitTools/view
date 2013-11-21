@@ -13,6 +13,15 @@
         font-size: 62.5%;
     }
     .ui-autocomplete-loading { background: white url('busy.gif') right center no-repeat; }
+    .ui-autocomplete {
+        max-height: 210px;
+        overflow-y: auto;
+        overflow-x: hidden; /* prevent horizontal scrollbar */
+    }
+    /* IE 6 doesn't support max-height we use height instead, but this forces the menu to always be this tall */
+    * html .ui-autocomplete {
+        height: 100px;
+    }
     </style>
     <script>
     function SOLRAutoComplete(input_div, log_div, solr_url)
@@ -39,28 +48,39 @@
 
             $(THIS.input_div).autocomplete({
                 minLength: 1,
+                delay: 500,
                 source: function( request, response ) {
                     $.ajax({
-                        url: "http://ws.geonames.org/searchJSON",
-                        dataType: "jsonp",
+                        type:     "GET",
+                        dataType: "json",
+                        url: "http://maps5.trimet.org/solr/select",
                         data: {
-                            featureClass: "P",
-                            style: "full",
-                            maxRows: 12,
-                            name_startsWith: request.term
+                            q:  request.term,
+                            wt: "json",
+                            qt: "dismax",
+                            rows: "20"
                         },
-                        success: function( data ) {
-                            response( $.map( data.geonames, function( item ) {
-                                return {
-                                    label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryName,
-                                    value: item.name
-                                }
-                            }));
+                        cache: false,
+                        success: function(resp, resp_code) {
+                            docs = resp.response.docs;
+                            len=docs.length;
+                            var data=[];
+                            for(var i=0; i < len; i++)
+                            {
+                                var lab = docs[i].name;
+                                if(docs[i].city && docs[i].city.length > 0 && docs[i].city != 'undefined')
+                                    lab = lab + " (" + docs[i].city + ")";
+                                var s = {"id": docs[i].id, "label": lab, "value": lab, "solr_doc":docs[i]};
+                                data.push(s);
+                            }
+
+                            response(data);
                         }
                     });
                 },
                 minLength: 0,
                 select: function(event, ui) {
+                        console.log(ui.item.solr_doc);
                         log(THIS.log_div, ui.item ?
                             "Selected: " + ui.item.value + ", geonameId: " + ui.item.id :
                             "Nothing selected, input was " + this.value );
