@@ -20,51 +20,45 @@
         this.input_div = input_div || "#input";
         this.log_div   = log_div || "#log";
         this.solr_url  = solr_url || "london.xml";
-        THIS = this;
-        
-        function log( message )
+
+        function log(log_div, message)
         {
-            $("<div/>").text( message ).prependTo(this.log_div);
-            $(this.log_div).attr( "scrollTop", 0 );
+            $("<div/>").text( message ).prependTo(log_div);
+            $(log_div).attr( "scrollTop", 0 );
         }
 
-        function solr_handler( event, ui )
+        function solr_success(response)
         {
-            console.log("in_div:" + this.input_div, "log:" + this.log_div + " " + THIS);
-            log( ui.item ?
-                "Selected: " + ui.item.value + ", geonameId: " + ui.item.id :
-                "Nothing selected, input was " + this.value );
-        }
-        this.solr_handler = solr_handler;
+            var THIS = this.THIS;
 
-        function solr_success( xmlResponse )
-        {
-            console.log("url:" + this.solr_url);
-            var data = $( "geoname", xmlResponse ).map(function() {
+            var data = $("geoname", response).map(function() {
                     return {
-                        value: $( "name", this ).text() + ", " +
-                            ( $.trim( $( "countryName", this ).text() ) || "(unknown country)" ),
-                        id: $( "geonameId", this ).text()
+                        value: $("name", this).text() + ", " +
+                               ($.trim($("countryName", this).text()) || "(unknown country)" ),
+                        id: $("geonameId", this).text()
                     };
             }).get();
-            $( this.input_div ).autocomplete({
+
+            $(THIS.input_div).autocomplete({
                     source: data,
                     minLength: 0,
-                    select: this.solr_handler
+                    select: function(event, ui) {
+                        log(THIS.log_div, ui.item ?
+                            "Selected: " + ui.item.value + ", geonameId: " + ui.item.id :
+                            "Nothing selected, input was " + this.value );
+                    } 
             });
         }
+        this.solr_success = solr_success;
 
         function enable_ajax()
         {
             ajax_cfg = {
                 url: this.solr_url,
                 dataType: "xml",
-                success: solr_success,
-                solr_url:  this.solr_url,
-                input_div: this.input_div,
-                solr_handler: this.solr_handler
+                success: this.solr_success,
+                THIS: this
             };
-            console.log(ajax_cfg);
             $.ajax(ajax_cfg);
         }
         this.enable_ajax=enable_ajax;
@@ -98,7 +92,5 @@
     Result:
     <div id="xlog" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
 </div>
-
-
 </body>
 </html>
