@@ -145,7 +145,9 @@
 %>
 </%def>
 
-
+##
+##
+##
 <%def name="itin_tab(itin_list, i, text, extra_params='')">
     %if len(itin_list) > i:
         <%
@@ -166,6 +168,9 @@
     %endif
 </%def>
 
+##
+##
+##
 <%def name="get_optimize(optimize)">
 <%
     if optimize == 'SAFE':
@@ -177,7 +182,6 @@
     return ret_val
 %>
 </%def>
-
 
 ##
 ## footer of the trip planner form

@@ -7,6 +7,22 @@
 <%namespace name="help"  file="/shared/utils/help_utils.mako"/>
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 
+##
+## javascript for clearing out an html element field...
+## (used in GEO <input> form elements ... hidden geo data element e.g., placeCoord)
+##
+<%def name="clear_element_scriptlet()">
+<script>
+    function clear_element(id) {
+        try {
+            var fm = document.getElementById(id)
+            fm.value = ""
+        }
+        catch(e) {}
+    }
+</script>
+</%def>
+
 #
 # search list form
 # Scrolling List of Possible Locations
@@ -42,21 +58,22 @@
 ## search input form
 ##
 <%def name="search_input(name, place=None, clear=None, id='place', coord='', size='67', maxlength='100')">
-        <%
-           if clear is None:
-               clear = _(u'Address, intersection, landmark or Stop ID')
-           if place is None:
-               place = clear
-        %>
-        <!-- Text box for re-geocoding a string -->
-        <fieldset>
-            <label for="geocode_form">${name}:</label>
-            <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}"/>
-            <input type="text"   id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" />
-            <div class="form-help">
-                ${help.form_help_right()}
-            </div>
-        </fieldset>
+<%
+   if clear is None:
+       clear = _(u'Address, intersection, landmark or Stop ID')
+   if place is None:
+       place = clear
+%>
+    ${clear_element_scriptlet()}
+    <!-- Text box for re-geocoding a string -->
+    <fieldset>
+        <label for="geocode_form">${name}:</label>
+        <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}"/>
+        <input type="text"   id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>  
+        <div class="form-help">
+            ${help.form_help_right()}
+        </div>
+    </fieldset>
 </%def>
 
 #
@@ -93,17 +110,16 @@
     <script src="/js/autocomplete.js"></script>
 </%def>
 
-
 ##
 ## search submit BUTTON
 ##
 <%def name="search_submit(name=None, tab=2, analytics=None)">
-        <% 
-        if name is None:
-            name = _(u'Select')
-        if analytics is None:
-            analytics = an.empty_method
-        %>
+<% 
+    if name is None:
+        name = _(u'Select')
+    if analytics is None:
+        analytics = an.empty_method
+%>
         <fieldset>
             <input name="submit" class="submit" type="submit" value="${name}" tabindex="${tab}" ${analytics()}/>
             ## TODO: Jonathan -- what is geocode_highslide supposed to look like?

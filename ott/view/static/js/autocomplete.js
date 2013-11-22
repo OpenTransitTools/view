@@ -71,9 +71,13 @@ function SOLRAutoComplete(input_div, num_results, solr_url) {
             /** jQuery autocomplete selected value callback */
             select : function(event, ui)
             {
-                // call our custom callback with the SOLR document
-                THIS.select_callback(ui.item);
-                
+                try {
+                    // call our custom callback with the SOLR document
+                    THIS.select_callback(ui.item);
+                } catch(e) {
+                    try { console.log("SOLRAutoComplete - select callback: " + e); }
+                    catch(e) {}
+                }
             }
         });
     }

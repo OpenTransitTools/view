@@ -15,7 +15,6 @@
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 <%def name="js_onload()">javascript:checkgps();</%def>
 ${page.trip_planner(_(u'Trip Planner'), extra_params, 'form')}
-${pform.clear_tp_element_scriptlet()}
 ${pform.gps_form_scriptlet()}
 
 ## override section ID to make this page full width

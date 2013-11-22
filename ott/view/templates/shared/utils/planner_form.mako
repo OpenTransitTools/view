@@ -6,29 +6,16 @@
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 
-<%def name="clear_tp_element_scriptlet()">
-    <script>
-        function clear_tp_element(id) {
-            try {
-                var fm = document.getElementById(id)
-                fm.value = ""
-            }
-            catch(e) {
-            }
-        }
-    </script>
-</%def>
-
 <%def name="input_form(name, clear, id, tab, place, coord, is_mobile=False)">
-    <%
-        if place is None:
-            if is_mobile is False:
-                place = _(clear)
-            else:
-                place = ''
-    %>
+<%
+    if place is None:
+        if is_mobile is False:
+            place = _(clear)
+        else:
+            place = ''
+%>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_tp_element('${id}_coord');" class="regular" size="45" maxlength="80" />
+    <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}');" class="regular" size="45" maxlength="80" />
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">
@@ -50,9 +37,11 @@
     </script>
 </%def>
 
-
-
+##
+##
+##
 <%def name="planner_form(form_action='planner.html', is_mobile=False)">
+${form.clear_element_scriptlet()}
 <div id="plantrip" class="group">
     <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style"/>
     <div id="plantrip-left">
