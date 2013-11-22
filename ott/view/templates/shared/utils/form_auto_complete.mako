@@ -1,17 +1,22 @@
-<!doctype html>
+## -*- coding: utf-8 -*-
+## 
+## library of routines that enable jQuery autocomplete routine for abitrary input form(s)
+## (geocoder mostly)
+##
+<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>SOLR AutoComplete</title>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+#
+# search list form
+# Scrolling List of Possible Locations
+#
+<%def name="jquery_includes()">
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet" />
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</%def>
+
+<%def name="custom_css()">
     <style>
-    body {
-        font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
-        font-size: 62.5%;
-    }
     .ui-autocomplete-loading { background: white url('busy.gif') right center no-repeat; }
     .ui-autocomplete {
         max-height: 210px;
@@ -23,12 +28,15 @@
         height: 100px;
     }
     </style>
+</%def>
+
+<%def name="custom_js(def_url='http://maps5.trimet.org/solr/select', num_rows='20')">
     <script>
     function SOLRAutoComplete(input_div, log_div, solr_url)
     {
         this.input_div = input_div || "#input";
-        this.log_div   = log_div || "#log";
-        this.solr_url  = solr_url || "http://maps5.trimet.org/solr/select";
+        this.log_div   = log_div   || "#log";
+        this.solr_url  = solr_url  || "${def_url}";
 
         function log(log_div, message)
         {
@@ -53,7 +61,7 @@
                     $.ajax({
                         type:     "GET",
                         dataType: "json",
-                        url: THIS.solr_url,
+                        url:      THIS.solr_url,
                         data: {
                             q:  request.term,
                             wt: "json",
@@ -73,6 +81,7 @@
                                 var s = {"id": docs[i].id, "label": lab, "value": lab, "solr_doc":docs[i]};
                                 data.push(s);
                             }
+
                             response(data);
                         }
                     });
@@ -80,47 +89,34 @@
                 minLength: 0,
                 select: function(event, ui) {
                         console.log(ui.item.solr_doc);
-                        log(THIS.log_div, ui.item == null ?
-                            "Selected: " + ui.item.value + ", geonameId: " + ui.item.id :
-                            "Nothing selected, input was " + this.value );
+                        log(THIS.log_div, ui.item ?
+                            "${_(u'Selected')}: " + ui.item.value + ", geonameId: " + ui.item.id :
+                            "${_(u'Nothing selected, input was')}: " + this.value );
                 } 
             });
         }
         this.enable_ajax=enable_ajax;
     };
+</%def>
 
+<%def name="find_stop()">
+    <script>
     // main entry 
     $(function(){
-        a = new SOLRAutoComplete();
-        a.enable_ajax();
-        b = new SOLRAutoComplete('#xput', '#xlog');
-        b.enable_ajax();
+        stop = new SOLRAutoComplete('#stop');
+        stop.enable_ajax();
     });
     </script>
-</head>
-<body>
+</%def>
 
-
-
-<div class="ui-widget">
-    <label for="input">London matches: </label>
-    <input id="input" />
-</div>
-
-<div class="ui-widget" style="margin-top: 2em; font-family: Arial;">
-    Result:
-    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-</div>
-
-
-<div class="ui-widget">
-    <label for="xput">City matches: </label>
-    <input id="xput" />
-</div>
-
-<div class="ui-widget" style="margin-top: 2em; font-family: Arial;">
-    Result:
-    <div id="xlog" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
-</div>
-</body>
-</html>
+<%def name="trip_planner()">
+    <script>
+    // main entry 
+    $(function(){
+        fm = new SOLRAutoComplete('#from');
+        fm.enable_ajax();
+        to = new SOLRAutoComplete('#to', '#xlog');
+        to.enable_ajax();
+    });
+    </script>
+</%def>
