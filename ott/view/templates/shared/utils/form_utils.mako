@@ -59,6 +59,34 @@
 </%def>
 
 
+#
+# autocomplete: CSS and JS includes...
+#
+<%def name="autocomplete_includes()">
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="/static/js/auto_complete.js"></script>
+</%def>
+
+
+#
+# autocomplete: instance creation for the jQuery autocomplete...
+#
+<%def name="autocomplete_search_input(input_name='#place')">
+    <script>
+    // main entry 
+    $(function(){
+        stop = new SOLRAutoComplete('${input_name}');
+        stop.enable_ajax();
+    });
+    </script>
+</%def>
+
+
+
+
+
 ##
 ## search submit BUTTON
 ##

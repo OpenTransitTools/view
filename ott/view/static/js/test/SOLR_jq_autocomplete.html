@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SOLR AutoComplete</title>
+
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="../../css/autocomplete.css" />
+    <style>
+    body {
+        font-family: "Trebuchet MS", "Helvetica", "Arial",  "Verdana", "sans-serif";
+        font-size: 62.5%;
+    }
+    </style>
+
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="../autocomplete.js"></script>
+    <script>
+    // main entry
+    $(function(){
+        var a = new SOLRAutoComplete('#input');
+        a.enable_ajax();
+        var b = new SOLRAutoComplete('#xput');
+        b.enable_ajax();
+
+        function my_select_callback(solr_doc)
+        {
+            var message = '!!! My Selected:' + solr_doc.value + ", id: " + solr_doc.id + " " + this.solr_url;
+            console.log(message);
+            $("<div/>").text( message ).prependTo(this.log_div);
+            $(this.log_div).attr( "scrollTop", 0 );
+        }
+        a.log_div = "#log";
+        a.select_callback = my_select_callback;
+        b.log_div = "#xlog";
+        b.select_callback = my_select_callback;
+    });
+    </script>
+</head>
+<body>
+
+
+
+<div class="ui-widget">
+    <label for="input">London matches: </label>
+    <input id="input" />
+</div>
+
+<div class="ui-widget" style="margin-top: 2em; font-family: Arial;">
+    Result:
+    <div id="log" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+</div>
+
+
+<div class="ui-widget">
+    <label for="xput">City matches: </label>
+    <input id="xput" />
+</div>
+
+<div class="ui-widget" style="margin-top: 2em; font-family: Arial;">
+    Result:
+    <div id="xlog" style="height: 200px; width: 300px; overflow: auto;" class="ui-widget-content"></div>
+</div>
+</body>
+</html>

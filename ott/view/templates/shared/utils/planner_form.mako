@@ -6,6 +6,52 @@
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 
+<%def name="clear_tp_element_scriptlet()">
+    <script>
+        function clear_tp_element(id) {
+            try {
+                var fm = document.getElementById(id)
+                fm.value = ""
+            }
+            catch(e) {
+            }
+        }
+    </script>
+</%def>
+
+<%def name="input_form(name, clear, id, tab, place, coord, is_mobile=False)">
+    <%
+        if place is None:
+            if is_mobile is False:
+                place = _(clear)
+            else:
+                place = ''
+    %>
+    <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
+    <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_tp_element('${id}_coord');" class="regular" size="45" maxlength="80" />
+    %if not is_mobile:
+    <div class="form-help">
+        <div class="form-help-popup-onright">
+            <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
+        </div>
+    </div>
+    %endif
+</%def>
+
+<%def name="autocomplete_trip_planner(from_name='#from', to_name='#to')">
+    <script>
+    // main entry 
+    $(function(){
+        fm = new SOLRAutoComplete('#from');
+        fm.enable_ajax();
+        to = new SOLRAutoComplete('#to', '#xlog');
+        to.enable_ajax();
+    });
+    </script>
+</%def>
+
+
+
 <%def name="planner_form(form_action='planner.html', is_mobile=False)">
 <div id="plantrip" class="group">
     <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style"/>
@@ -112,25 +158,6 @@
     </div><!-- end #plantrip-right -->
     </form>
 </div><!-- end #plantrip -->
-</%def>
-
-<%def name="input_form(name, clear, id, tab, place, coord, is_mobile=False)">
-    <%
-        if place is None:
-            if is_mobile is False:
-                place = _(clear)
-            else:
-                place = ''
-    %>
-    <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}'); clear_tp_element('${id}_coord');" class="regular" size="45" maxlength="80" />
-    %if not is_mobile:
-    <div class="form-help">
-        <div class="form-help-popup-onright">
-            <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
-        </div>
-    </div>
-    %endif
 </%def>
 
 <%def name="arrive_depart_form_option(sel_key, is_mobile=False)">
@@ -296,21 +323,4 @@
         alert('${_("Please make sure your GPS setting is turned on for this browser")} (' + error.code + ')' );
     }
 </script>
-</%def>
-
-
-<%def name="clear_tp_element_scriptlet()">
-    <script>
-        function clear_tp_element(id)
-        {
-            try
-            {
-                var fm = document.getElementById(id)
-                fm.value = ""
-            }
-            catch(e)
-            {
-            }
-        }
-    </script>
 </%def>

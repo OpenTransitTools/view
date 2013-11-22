@@ -1,0 +1,12 @@
+.ui-autocomplete-loading {
+    background: white url('busy.gif') right center no-repeat;
+}
+.ui-autocomplete {
+    max-height: 210px;
+    overflow-y: auto;
+    overflow-x: hidden; /* prevent horizontal scrollbar */
+}
+/* IE 6 doesn't support max-height we use height instead, but this forces the menu to always be this tall */
+* html .ui-autocomplete {
+    height: 100px;
+}
