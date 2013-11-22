@@ -6,7 +6,6 @@
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="rs"   file="/shared/utils/route_select.mako"/>
-<%namespace name="ac"   file="/shared/utils/form_auto_complete.mako"/>
 <%
     #TODO - analyt
     ga_select_route ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
@@ -17,13 +16,11 @@
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
 <%def name="stations_selected()">class="selected"</%def>
-<%def name="app_css()">${page.stop_css()}</%def>
+<%def name="app_css()">
+    ${page.stop_css()}
+    ${form.autocomplete_css_includes()}
+</%def>
 ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
-
-${ac.jquery_includes()}
-${ac.custom_css()}
-${ac.custom_js()}
-${ac.stop_select_form()}
 
 <div id="findstop">
     <form action="stops_near.html" class="triptools-form" method="GET" name="ambig" class="triptools-form">
@@ -38,4 +35,7 @@ ${ac.stop_select_form()}
     </div>
     ${rs.route_select_form('stop_select_list.html', routes['routes'], ga_select_route)}
 </div>
+
+${form.autocomplete_js_includes()}
+${form.autocomplete_search_input()}
 

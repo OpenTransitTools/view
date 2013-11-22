@@ -25,9 +25,9 @@
         var b = new SOLRAutoComplete('#xput');
         b.enable_ajax();
 
-        function my_select_callback(solr_doc)
+        function my_select_callback(sel)
         {
-            var message = '!!! My Selected:' + solr_doc.value + ", id: " + solr_doc.id + " " + this.solr_url;
+            var message = '!!! My Selected:' + sel.value + ", id: " + sel.id + " " + this.solr_url;
             console.log(message);
             $("<div/>").text( message ).prependTo(this.log_div);
             $(this.log_div).attr( "scrollTop", 0 );

@@ -1,7 +1,9 @@
 /**
+ * SOLRAutoComplete class that will call SOLR, and return text data...
+ * new SOLRAutoComplete('#input_div_id')
  * 
  * @param {Object} input_div
- * @param {Object} log_div
+ * @param {Object} num_results
  * @param {Object} solr_url
  */
 function SOLRAutoComplete(input_div, num_results, solr_url) {
@@ -9,10 +11,10 @@ function SOLRAutoComplete(input_div, num_results, solr_url) {
     this.num_results = num_results || "20";
     this.solr_url    = solr_url    || "http://maps5.trimet.org/solr/select";
 
-    function select_callback(solr_doc)
+    /** callback (that you override) to get the resulting clicked SOLR document */
+    function select_callback(sel)
     {
-        console.log('Selected:' + solr_doc.value + ", id: " + solr_doc.id + " " + this.solr_url);
-        
+        console.log('Selected:' + sel.value + ", id: " + sel.id + " " + this.solr_url);
     }
     this.select_callback = select_callback;
 
@@ -35,8 +37,8 @@ function SOLRAutoComplete(input_div, num_results, solr_url) {
                         rows : THIS.num_results
                     },
                     cache : false,
-                    // jQuery ajax callback
-                    success : function(resp, resp_code)
+
+                    success : function(resp, resp_code)  // jQuery ajax callback
                     {
                         // step 0: SOLR elements...
                         docs = resp.response.docs;
@@ -66,9 +68,10 @@ function SOLRAutoComplete(input_div, num_results, solr_url) {
                 });
             },
 
-            // jQuery autocomplete selected value callback
+            /** jQuery autocomplete selected value callback */
             select : function(event, ui)
             {
+                // call our custom callback with the SOLR document
                 THIS.select_callback(ui.item);
                 
             }
