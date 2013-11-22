@@ -102,12 +102,12 @@
 #
 <%def name="autocomplete_css_includes()">
     <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
-    <link href="/css/autocomplete.css" rel="stylesheet"/>
+    <link href="css/autocomplete.css" rel="stylesheet"/>
 </%def>
 <%def name="autocomplete_js_includes()">
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="/js/autocomplete.js"></script>
+    <script src="js/autocomplete.js"></script>
 </%def>
 
 ##
