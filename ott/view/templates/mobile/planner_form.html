@@ -5,6 +5,7 @@
 <%namespace name="page"  file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 <%namespace name="pform" file="/shared/utils/planner_form.mako"/>
+<%namespace name="form"  file="/shared/utils/form_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
@@ -12,7 +13,10 @@
 <%def name="meta_data()">${meta.tripplanner()}</%def>
 <%def name="side_bar()"></%def>
 <%def name="planner_selected()">class="selected"</%def>
-<%def name="app_css()">${page.tripplanner_css()}</%def>
+<%def name="app_css()">
+    ${page.tripplanner_css()}
+    ${form.autocomplete_css_includes()}
+</%def>
 <%def name="js_onload()">javascript:checkgps();</%def>
 ${page.trip_planner(_(u'Trip Planner'), extra_params, 'form')}
 ${pform.gps_form_scriptlet()}
@@ -25,3 +29,6 @@ ${pform.gps_form_scriptlet()}
 ## main content
 ##
 ${pform.planner_form(is_mobile=True)}
+
+${form.autocomplete_js_includes()}
+${pform.autocomplete_trip_planner()}

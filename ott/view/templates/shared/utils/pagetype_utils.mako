@@ -4,7 +4,7 @@
 ##
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
 
-# css include controls the page look
+## css include controls the page look
 <%def name="stop_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" /></%def>
 <%def name="tripplanner_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all"/></%def>
 

@@ -6,7 +6,7 @@
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 
-<%def name="input_form(name, clear, id, tab, place, coord, is_mobile=False)">
+<%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
 <%
     if place is None:
         if is_mobile is False:
@@ -25,14 +25,23 @@
     %endif
 </%def>
 
-<%def name="autocomplete_trip_planner(from_name='#from', to_name='#to')">
+<%def name="autocomplete_trip_planner(fm_id='#from', to_id='#going')">
     <script>
     // main entry 
     $(function(){
-        fm = new SOLRAutoComplete('#from');
+        fm = new SOLRAutoComplete('${fm_id}');
         fm.enable_ajax();
-        to = new SOLRAutoComplete('#to', '#xlog');
+        to = new SOLRAutoComplete('${to_id}');
         to.enable_ajax();
+
+        function tp_geo_callback(sel)
+        {
+            $(this.geo_div).val(sel.solr_doc.lat + ',' + sel.solr_doc.lon);
+        }
+        fm.geo_div = "${fm_id}_coord";
+        to.geo_div   = "${to_id}_coord";
+        fm.select_callback = tp_geo_callback;
+        to.select_callback = tp_geo_callback;
     });
     </script>
 </%def>
@@ -47,7 +56,7 @@ ${form.clear_element_scriptlet()}
     <div id="plantrip-left">
         <fieldset>
             <label for="from">${_(u'From')}</label>
-            ${input_form('from', 'Address, intersection, landmark or Stop ID', 'from', 1, params['fromPlace'], params['fromCoord'], is_mobile)}
+            ${input_form('from', 'from', 'Address, intersection, landmark or Stop ID', 1, params['fromPlace'], params['fromCoord'], is_mobile)}
             %if is_mobile:
             <p id="from-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
             <p id="from-gps" style="display:none;" class="instructions"><a href="#" onclick="getFromGPS();">${_(u'Use my current GPS location')}</a></p>
@@ -56,7 +65,7 @@ ${form.clear_element_scriptlet()}
 
         <fieldset>
             <label for="going">${_(u'To')}</label>
-            ${input_form('to', 'Address, intersection, landmark or Stop ID', 'going', 2, params['toPlace'], params['toCoord'], is_mobile)}
+            ${input_form('to', 'going', 'Address, intersection, landmark or Stop ID', 2, params['toPlace'], params['toCoord'], is_mobile)}
             %if is_mobile:
             <p id="to-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
             <p id="to-gps" style="display:none;" class="instructions"><a href="#" onclick="getToGPS();">${_(u'Use my current GPS location')}</a></p>
