@@ -7,7 +7,6 @@
 <%namespace name="help"  file="/shared/utils/help_utils.mako"/>
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 
-
 #
 # search list form
 # Scrolling List of Possible Locations
@@ -42,7 +41,7 @@
 ##
 ## search input form
 ##
-<%def name="search_input(name, place=None, clear=None, size='43', maxlength='80', id='newloc')">
+<%def name="search_input(name, place=None, clear=None, size='43', maxlength='80', id='place')">
         <%
            if clear is None:
                clear = _(u'Address, intersection, landmark or Stop ID')
@@ -52,7 +51,7 @@
         <!-- Text box for re-geocoding a string -->
         <fieldset>
             <label for="geocode_form">${name}:</label>
-            <input type="text" name="place" value="${place}" size="${size}" maxlength="${maxlength}" id="${id}" class="regular" onFocus="doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" />
+            <input type="text" id="${id}" name="place" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" />
             <div class="form-help">
                 ${help.form_help_right()}
             </div>

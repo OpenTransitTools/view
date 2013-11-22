@@ -97,19 +97,20 @@
         }
         this.enable_ajax=enable_ajax;
     };
+    </script>
 </%def>
 
-<%def name="find_stop()">
+<%def name="stop_select_form(input_name='#place')">
     <script>
     // main entry 
     $(function(){
-        stop = new SOLRAutoComplete('#stop');
+        stop = new SOLRAutoComplete('${input_name}');
         stop.enable_ajax();
     });
     </script>
 </%def>
 
-<%def name="trip_planner()">
+<%def name="trip_planner(from_name='#from', to_name='#to')">
     <script>
     // main entry 
     $(function(){
