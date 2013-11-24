@@ -8,6 +8,7 @@ import transit_utils
 
 from ott.view.locale.subscribers import get_translator
 
+
 def service_tabs(request, url):
     '''
     '''
@@ -147,6 +148,22 @@ def get_first_param_as_float(request, name, def_val=None):
     except:
         pass
     return ret_val
+
+def get_first_param_is_a_coord(request, name, def_val=False):
+    ''' looks for a string, which has a comma (assuming lat,lon) and is at least 7 chars in length ala 0.0,0.0
+    '''
+    ret_val = def_val
+    val = get_first_param(request, name, def_val)
+    if len(val) > 6 and ',' in val:
+        ret_val = True
+    return ret_val
+
+def get_first_param_as_coord(request, name, def_val=None, to_float=False):
+    ''' return lat,lon floats
+    '''
+    val = get_first_param(request, name, def_val)
+    lat,lon = num_utils.ll_from_str(val, def_val, to_float)
+    return lat,lon
 
 def get_first_param_as_boolean(request, name, def_val=False):
     ''' utility function to get a variable

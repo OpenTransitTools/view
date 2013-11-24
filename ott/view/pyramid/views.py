@@ -225,7 +225,10 @@ def stops_near(request):
         ret_val['nearest'] = request.model.get_stops_near(params, **request.params)
 
     has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
-    if not has_geocode:
+    has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
+    if has_geocode or has_coord:
+        call_near_ws()
+    else:
         place = html_utils.get_first_param(request, 'place')
         geo = call_geocoder(request, place)
 
@@ -238,8 +241,7 @@ def stops_near(request):
                 call_near_ws(single_geo)
         else:
             ret_val = make_subrequest(request, '/stop_select_geocode.html')
-    else:
-        call_near_ws()
+
     return ret_val
 
 

@@ -1,4 +1,5 @@
 from ott.view.utils import html_utils
+from ott.view.utils import num_utils
 from ott.view.locale.subscribers import get_translator
 
 class Place(object):
@@ -24,6 +25,13 @@ class Place(object):
         try:    self.__dict__.update(dict)
         except: pass
 
+    def set_values_via_coord_str(self, coord):
+        ''' from 0.0,0.0 to self.lat and self.lon 
+        '''
+        lat,lon = num_utils.ll_from_str(coord)
+        if lat: self.lat = lat
+        if lon: self.lon = lon
+
     def set_values_via_place_str(self, place):
         ''' will set the values of a <name>::<lat>,<lon>::<city> string into a place object
             ala PDX::45.5,-122.5::Portland will populate the Place object attributes
@@ -31,13 +39,11 @@ class Place(object):
         try:
             # import pdb; pdb.set_trace() 
             p = place.split("::")
-            if p[0] and len(p[0]) > 0:
+            l = len(p)
+            if l > 0 and p[0] and len(p[0]) > 0:
                 self.name = p[0]
-            if p[1] and len(p[1]) > 0 and ',' in p[1]:
-                ll = p[1].split(',')
-                if ll and len(ll) >= 2:
-                    self.lat = ll[0].strip()
-                    self.lon = ll[1].strip()
+            if l > 1 and p[1]:
+                self.set_values_via_coord_str(p[1])
             if p[2] and len(p[2]) > 0:
                 self.city = p[2]
             self.place = place
@@ -65,6 +71,9 @@ class Place(object):
 
             place = html_utils.get_first_param(request, 'place')
             ret_val.set_values_via_place_str(place)
+
+            place_coord = html_utils.get_first_param(request, 'placeCoord')
+            ret_val.set_values_via_coord_str(place_coord)
 
         except: pass
         return ret_val
