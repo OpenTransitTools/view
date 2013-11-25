@@ -9,9 +9,16 @@
         {'label': 'Stop Pages'},
         {'u':'stop_select_form.html', 'p':'test'},
         {'u':'stop_select_list.html', 'p':'route=100'},
-        {'u':'', 'p':''},
-        #stops_near.html?placeCoord=45.52321%2C-122.678246&place=8+NW+8TH+AVE%2C+PORTLAND
+        {'u':'stop_select_geocode.html', 'p':'place=8+NW+8TH+AVE%2C+PORTLAND'},
         {'u':'stop.html', 'p':'stop_id=2'},
+        {'u':'stops_near.html', 'p':'place=2', 'n':'(hit a geocode directly ... go directly to stop page)'},
+        {'u':'stops_near.html', 'p':'place=SE+D+ST+%26+SE+D+PL%2C+Milwaukie', 'n':'(ambiguous ... calls geocoder)'},
+        {'u':'stops_near.html', 'p':'place=SE+D+ST+%26+SE+D+PL%2C+Milwaukie', 'n':'(has placeGeocode do direct to stops near)'},
+        {'u':'stops_near.html', 'p':'place=SE+D+ST+%26+SE+D+PL%2C+Milwaukie&placeCoord=45.52321%2C-122.678246', 'n':'(has placeCoord, which will do stops near)'},
+        {'u':'stops_near.html', 'p':'has_geocode=true&place=SE+D+ST+%2526+SE+D+PL%3A%3A45.448814%2C-122.631935%3A%3AMilwaukie', 'n':'(use place::geo_code, which will do stops near)'},
+        {'u':'stops_near.html', 'p':'place=834 SE Mill St', 'n':'(show more link -- full 20 stops nearby address...)'},
+        {'u':'', 'p':''},
+        #map_place.html?name=834 SE MILL ST&city=Portland&lon=-122.65705&lat=45.509865
         {'label': 'Trip Planner Pages'}
     ] 
 %>
@@ -38,7 +45,7 @@
         %if 'label' in p:
             <br/><br/><h2>${p['label']}</h2>
         %else:
-            <a target="#" href="${path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a><br/>
+            <a target="#" href="${path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a>  ${p['n'] if 'n' in p else ''}<br/>
         %endif
     %endfor
 
