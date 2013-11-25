@@ -2,7 +2,6 @@
 <%def name="url_domain()"><%return "http://dev.trimet.org"%></%def>
 <%def name="img_url()">${url_domain()}/images/triptools</%def>
 <%def name="planner_img_url()">${img_url()}/mode</%def>
-
 <%!
     ''' access these variables in other space via <namespace>.attr, ala util.attr, ala util.attr.WALK
     '''
@@ -23,6 +22,7 @@
     BUSISH     = 'BUSISH'
     TRAIN      = 'TRAIN' 
 %>
+
 
 ## misc methods (defined someplace in the shared space...needed for things to work.
 <%def name="form(url='', method='get', class_='form-style')"></%def>

@@ -1,1 +1,36 @@
-HI THERE ... I"M INDEX.HTML
+## -*- coding: utf-8 -*-
+<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%
+    extra_params = util.get_extra_params()
+    path=''
+    if util.has_url_param('mobile'):
+        path = 'm/'
+    pages = [
+        {'u':'stop.html', 'p':'stop_id=2'},
+    ] 
+%>
+<html>
+<head>
+    <title>TriMet: OTT planner page list</title>
+</head>
+<body>
+    <button onclick="location.href='?_LOCALE_=es'">Spanish</button><button onclick="location.href='/'">English</button><button onclick="location.href='?mobile=1${extra_params}'">Mobile</button>
+    <br/><br/>
+    %if len(path) > 1:
+        Mobile...
+    %else:
+        Desktop...
+    %endif
+    %if len(extra_params) > 1:
+        Spanish...
+    %else:
+        English...
+    %endif
+    <br/><br/>
+    %for p in pages:
+        <a target="#" href="${path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a><br/>
+    %endfor
+
+
+</body>
+</html>
