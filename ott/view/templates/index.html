@@ -6,7 +6,11 @@
     if util.has_url_param('mobile'):
         path = 'm/'
     pages = [
+        {'label': 'Stop Pages'},
         {'u':'stop.html', 'p':'stop_id=2'},
+        {'u':'stop.html', 'p':'stop_id=2'},
+        {'u':'stop.html', 'p':'stop_id=2'},
+        {'label': 'Trip Planner Pages'}
     ] 
 %>
 <html>
@@ -14,8 +18,9 @@
     <title>TriMet: OTT planner page list</title>
 </head>
 <body>
-    <button onclick="location.href='?_LOCALE_=es'">Spanish</button><button onclick="location.href='/'">English</button><button onclick="location.href='?mobile=1${extra_params}'">Mobile</button>
+    <button onclick="location.href='/'">English</button><button onclick="location.href='?_LOCALE_=es'">Spanish</button><button onclick="location.href='?mobile=1${extra_params}'">Mobile</button>
     <br/><br/>
+    <h1>
     %if len(path) > 1:
         Mobile...
     %else:
@@ -26,9 +31,13 @@
     %else:
         English...
     %endif
-    <br/><br/>
+    </h1>
     %for p in pages:
-        <a target="#" href="${path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a><br/>
+        %if 'label' in p:
+            <br/><br/><h2>${p['label']}</h2>
+        %else:
+            <a target="#" href="${path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a><br/>
+        %endif
     %endfor
 
 
