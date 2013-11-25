@@ -153,9 +153,12 @@ def get_first_param_is_a_coord(request, name, def_val=False):
     ''' looks for a string, which has a comma (assuming lat,lon) and is at least 7 chars in length ala 0.0,0.0
     '''
     ret_val = def_val
-    val = get_first_param(request, name, def_val)
-    if len(val) > 6 and ',' in val:
-        ret_val = True
+    try:
+        val = get_first_param(request, name, def_val)
+        if len(val) > 6 and ',' in val:
+            ret_val = True
+    except:
+        pass
     return ret_val
 
 def get_first_param_as_coord(request, name, def_val=None, to_float=False):
