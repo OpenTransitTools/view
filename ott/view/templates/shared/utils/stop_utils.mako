@@ -53,7 +53,7 @@ ${', ' if (i > 0) else ''}<a target="#" href="${r['route_url']}">${r['short_name
     </a>
 </p>
 <p>
-    <a class="imap" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params} title="${_(u'View on Interactive Map')}>
+    <a class="imap" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" title="${_(u'View on Interactive Map')}">
        <span class="imap-text">${_(u'View on Interactive Map')}</span><br /><span class="secondary">${_(u'High-speed connection recommended')}</span>
     </a>
 </p>
