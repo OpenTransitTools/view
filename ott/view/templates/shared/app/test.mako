@@ -1,9 +1,9 @@
 <%namespace name="util"  file="/shared/utils/misc_util.mako"/>
 <%
     extra_params = util.get_extra_params()
-    path='./'
+    rel_path='./'
     if util.has_url_param('mobile'):
-        path = './m/'
+        rel_path = './m/'
     pages = [
         {'label': 'Stop Pages'},
         {'u':'stop_select_form.html', 'p':'test'},
@@ -28,14 +28,14 @@
         {'u':'planner.html', 'p':'from=2&to=zoo&Hour=12&Minute=35&AmPm=pm&mode=BICYCLE', 'n':'Bike Only Trip'},
         {'u':'planner_walk.html', 'p':'mode=WALK&from=45.448814,-122.631935&to=45.443102,-122.636399', 'n':'NOTE: Separate Walk Direction Planner Page'},
         {'u':'adverts.html', 'p':'', 'n':'Adverts testing page'},
-        {'u':'', 'p':'', 'n':''},
+        {'u':'http://dev.trimet.org/map/trimet-ssi.htm', 'path':'', 'p':'from=zoo&to=pdx', 'n':'example of the embedded form page via server-side includes (note the url params populating the form, and the Spanish localization)'},
         {'u':'', 'p':'', 'n':''},
     ] 
 %>
     <button onclick="location.href='.'">ENGLISH</button> <button onclick="location.href='.?_LOCALE_=es'">SPANISH</button> <button onclick="location.href='.?mobile=1${extra_params}'">MOBILE</button>
     <br/>
     <h1>
-    %if 'm' in path:
+    %if 'm' in rel_path:
         MOBILE |
     %else:
         DESKTOP |
@@ -50,6 +50,6 @@
         %if 'label' in p:
             <h2>${p['label']}</h2>
         %else:
-            <a target="#" href="${path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a>  ${p['n'] if 'n' in p else ''}<br/>
+            <a target="#" href="${p['path'] if 'path' in p else rel_path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a>  ${p['n'] if 'n' in p else ''}<br/>
         %endif
     %endfor
