@@ -1,9 +1,14 @@
 ## -*- coding: utf-8 -*-
-<html>
-<head>
-    <title>TriMet: OTT planner page list</title>
-</head>
-<body>
+<%inherit file="/desktop/base.html"/>
+<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
+<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
+<%def name="title()">TriMet: Trip Planner Application</%def>
+<%def name="meta_data()">${meta.stop()}</%def>
+<%def name="side_bar()"></%def>
+<%def name="app_css()"></%def>
+<%def name="stations_selected()">class="selected"</%def>
 <%include file="/shared/app/test.mako"/>
-</body>
-</html>
+
