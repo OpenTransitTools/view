@@ -1,65 +1,9 @@
 ## -*- coding: utf-8 -*-
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
-<%
-    extra_params = util.get_extra_params()
-    path='./'
-    if util.has_url_param('mobile'):
-        path = './m/'
-    pages = [
-        {'label': 'Stop Pages'},
-        {'u':'stop_select_form.html', 'p':'test'},
-        {'u':'stop_select_list.html', 'p':'route=100'},
-        {'u':'stop_select_geocode.html', 'p':'place=8+NW+8TH+AVE%2C+PORTLAND'},
-        {'u':'stop.html', 'p':'stop_id=2'},
-        {'u':'stops_near.html', 'p':'place=2', 'n':'(hit a geocode directly ... go directly to stop page)'},
-        {'u':'stops_near.html', 'p':'place=SE+D+ST+%26+SE+D+PL%2C+Milwaukie', 'n':'(ambiguous ... calls geocoder)'},
-        {'u':'stops_near.html', 'p':'place=SE+D+ST+%26+SE+D+PL%2C+Milwaukie', 'n':'(has placeGeocode do direct to stops near)'},
-        {'u':'stops_near.html', 'p':'place=SE+D+ST+%26+SE+D+PL%2C+Milwaukie&placeCoord=45.52321%2C-122.678246', 'n':'(has placeCoord, which will do stops near)'},
-        {'u':'stops_near.html', 'p':'has_geocode=true&place=SE+D+ST+%2526+SE+D+PL%3A%3A45.448814%2C-122.631935%3A%3AMilwaukie', 'n':'(use place::geo_code, which will do stops near)'},
-        {'u':'stops_near.html', 'p':'place=834 SE Mill St&show_more=true', 'n':'(show more link -- full 20 stops nearby address...)'},
-        {'label': 'Stop Schedule'},
-        {'u':'stop_schedule.html', 'p':'stop_id=11507&route=190', 'n':'Single Route Listing'},
-        {'u':'stop_schedule.html', 'p':'stop_id=11507', 'n':'All routes for stop'},
-        {'u':'stop_schedule.html', 'p':'stop_id=11507&sort=time', 'n':'sort by time'},
-        {'u':'stop_schedule.html', 'p':'stop_id=11507&more', 'n':'more button'},
-
-        {'label': 'Trip Planner Pages'},
-        {'u':'planner_form.html', 'p':'from=2'},
-        {'u':'planner.html', 'p':'from=2&to=zoo&Hour=12&Minute=35&AmPm=pm'},
-        {'u':'planner.html', 'p':'from=2&to=zoo&Hour=12&Minute=35&AmPm=pm&mode=BICYCLE', 'n':'Bike Only Trip'},
-        {'u':'planner_walk.html', 'p':'mode=WALK&from=45.448814,-122.631935&to=45.443102,-122.636399', 'n':'NOTE: Separate Walk Direction Planner Page'},
-        {'u':'adverts.html', 'p':'', 'n':'Adverts testing page'},
-        {'u':'', 'p':'', 'n':''},
-        {'u':'', 'p':'', 'n':''},
-    ] 
-%>
 <html>
 <head>
     <title>TriMet: OTT planner page list</title>
 </head>
 <body>
-    <button onclick="location.href='.'">English</button><button onclick="location.href='.?_LOCALE_=es'">Spanish</button><button onclick="location.href='.?mobile=1${extra_params}'">Mobile</button>
-    <br/><br/>
-    <h1>
-    %if len(path) > 1:
-        Mobile...
-    %else:
-        Desktop...
-    %endif
-    %if len(extra_params) > 1:
-        Spanish...
-    %else:
-        English...
-    %endif
-    </h1>
-    %for p in pages:
-        %if 'label' in p:
-            <br/><br/><h2>${p['label']}</h2>
-        %else:
-            <a target="#" href="${path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a>  ${p['n'] if 'n' in p else ''}<br/>
-        %endif
-    %endfor
-
-
+<%include file="/shared/app/test.mako"/>
 </body>
 </html>
