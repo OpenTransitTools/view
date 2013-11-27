@@ -114,7 +114,7 @@ def planner_form(request):
     return ret_val
 
 
-def call_geocoder(request, place, no_geocode_msg='Undefined'):
+def call_geocoder(request, place, type='place', no_geocode_msg='Undefined'):
     ret_val = {}
 
     count = 0
@@ -127,7 +127,7 @@ def call_geocoder(request, place, no_geocode_msg='Undefined'):
         _  = get_translator(request)
         place = _(no_geocode_msg)
 
-    ret_val['place'] = place
+    ret_val[type]    = place
     ret_val['count'] = count
     return ret_val
 
@@ -135,15 +135,21 @@ def call_geocoder(request, place, no_geocode_msg='Undefined'):
 @view_config(route_name='planner_geocode_mobile', renderer='mobile/planner_geocode.html')
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
 def planner_geocode(request):
-    place = html_utils.get_first_param(request, 'place')
-    ret_val = call_geocoder(request, place)
+    place = None
+    type = html_utils.get_first_param(request, 'type', 'place')
+    if 'from' in type:
+        place = html_utils.get_first_param(request, 'from')
+    elif 'to' in type:
+        place = html_utils.get_first_param(request, 'to')
+
+    ret_val = call_geocoder(request, place, type)
     return ret_val
 
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 def planner(request):
-    return request.model.get_plan(request.query_string, **request.params)
-    ## TODO ...
+    #return request.model.get_plan(request.query_string, **request.params)
+
     ret_val = {}
 
     has_from_coord = html_utils.get_first_param_is_a_coord(request, 'fromCoord')
@@ -151,18 +157,8 @@ def planner(request):
     if has_from_coord and has_to_coord:
         ret_val = request.model.get_plan(request.query_string, **request.params)
     else:
-        find = 'from'
-        if has_from_coord:
-            find = 'to'
-
-        place = html_utils.get_first_param(request, find)
-        geo = call_geocoder(request, place)
-        if geo['count'] == 1:
-            single_geo = geo['geocoder_results'][0]
-            query_string = "{0}Coord={1},{2}&{3}".format(find, single_geo['lat'], single_geo['lon'], request.query_string)
-            ret_val = make_subrequest(request, '/planner.html', query_string)
-        else:
-            ret_val = make_subrequest(request, '/planner_geocode.html')
+        #import pdb; pdb.set_trace()
+        ret_val = make_subrequest(request, '/planner_geocode.html', extra_params='type=to' if has_from_coord else 'type=from')
     return ret_val
 
 
@@ -279,14 +275,26 @@ def get_path(request, path):
         ret_val = '/m' + path
     return ret_val
 
-def make_subrequest(request, path, query_string=None):
+def make_subrequest(request, path, query_string=None, extra_params=None):
     ''' create a subrequest to call another page in the app...
         http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/subrequest.html
     '''
+    # step 1: make a new request object...
     path = get_path(request, path)
     subreq = Request.blank(path)
+
+    # step 2: default to request's querystring as default qs
     if query_string is None:
         query_string = request.query_string
+
+     # step 3: pre-pend any extra stuff to our querytring
+    if extra_params:
+        newqs = extra_params
+        if len(query_string) > 0:
+            newqs = newqs + "&" + query_string
+        query_string = newqs
+
+    # step 4: finish the qs crap, and call this sucker...
     subreq.query_string = query_string
     ret_val = request.invoke_subrequest(subreq)
     return ret_val

@@ -62,7 +62,7 @@
 ##
 ## planner ambiguous geocode form(s) 
 ##
-<%def name="geocode_form(geocoder_results, form_action='planner.html', is_mobile=False)">
+<%def name="geocode_form(geocoder_results, place='', form_action='planner.html', is_mobile=False)">
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
     <style>select {width: 40em;}</style>
