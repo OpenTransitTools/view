@@ -92,7 +92,7 @@
 <%def name="pretty_distance(dist)">
 <%
     try:
-        return "{0} {1}".format(dist['distance'], _(dist['measure']))
+        return str(dist['distance']) + " " + _(dist['measure'])
     except:
         return dist
 %>
@@ -240,7 +240,7 @@
 </%def>
 
 
-<%def name="get_route_name(route)"><% return "{0} {1} {2}".format(route['name'], _(u'to'), route['headsign']  if route['headsign'] else '')%></%def>
+<%def name="get_route_name(route)"><% return route['name'] + " " + _(u'to') + " " + route['headsign'] if route['headsign'] else ''%></%def>
 <%def name="get_route_link(name, url, mode)">
 <a href="${url}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
 <%def name="get_interline_note(interline)">
@@ -292,11 +292,11 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                             dir = dir.lower().replace('_', ' ').strip()
                             #print dir, _(dir), _(unicode(dir)), _('right'), _(u'right'), _('left'), _('slightly left')
                             if dir not in ('continue'):
-                                turn = "{0} {1} {2} {3}".format(_(u'Turn'), _(dir), _(u'on'), _(name))
+                                turn = _(u'Turn') + " " + _(dir) + " " + _(u'on') + " " + _(name)
                             else:
                                 instruct_verb = dir.title()
 
-                        instruct = "{0} {1} {2} {3} {4}".format(_(instruct_verb), pretty_distance(s['distance']), _(s['compass_direction']), conjunction, _(name))
+                        instruct = _(instruct_verb) + " " + pretty_distance(s['distance']) + " " + _(s['compass_direction']) + " " + conjunction + " " + _(name)
                     %>
                     %if turn != None:
                     <li>${turn}</li>
@@ -312,7 +312,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         <p>
             <%
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
-                bike_title = "{0} {1} {2}".format(_(u'Bike'), _(dir), pretty_distance(leg['distance']))
+                bike_title = _(u'Bike') + " " + _(dir) + " " + pretty_distance(leg['distance'])
             %>
             ${bike_title} ${_(u'to')}
             %if leg['to']['stop']:
@@ -352,7 +352,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         <p>
             <% 
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
-                walk_title = "{0} {1} {2}".format(_(u'Walk'), _(dir), pretty_distance(leg['distance']))
+                walk_title = _(u'Walk') + " " + _(dir) + " " + pretty_distance(leg['distance'])
             %>
             %if leg['steps']:
             ${walk_title} ${_(u'to')}
