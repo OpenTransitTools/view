@@ -2,9 +2,10 @@
 ##
 ## routine(s) for the trip planner form(s)
 ##
-<%namespace name="util" file="/shared/utils/misc_util.mako"/>
-<%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="form"  file="/shared/utils/form_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
+<%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 
 <%def name="from_to_img_url(type=None, def_val=False)">
 <%
@@ -61,7 +62,7 @@
 ##
 ## planner ambiguous geocode form(s) 
 ##
-<%def name="planner_geocode_form(form_action='planner.html', is_mobile=False)">
+<%def name="geocode_form(form_action='planner.html', is_mobile=False)">
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
     <style>select {width: 40em;}</style>
@@ -80,7 +81,6 @@
     </form>
 </div>
 </%def>
-
 
 ##
 ##
