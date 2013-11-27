@@ -4,25 +4,57 @@
 ##
 <%namespace name="util" file="/shared/utils/misc_util.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
 
 <%def name="page_title(stop)">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 
-<%def name="has_alerts(stop)"><%
+##
+## stop ambiguous geocode form(s) 
+##
+<%def name="geocode_form(geocoder_results, form_action='stops_near.html', is_mobile=False)">
+<div id="location">
+    %if geocoder_results and len(geocoder_results) > 0:
+    <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
+        <style>select {width: 32em;}</style>
+        ${form.has_geocode_hidden('true')}
+        ${form.get_extra_params_hidden_inputs()}
+        ${form.search_list(_(u'Select a location'), geocoder_results)}
+    </form>
+    %endif
+
+    <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
+        ${form.has_geocode_hidden('false')}
+        ${form.get_extra_params_hidden_inputs()}
+        ${form.search_input(_(u'Find stops and stations'), place)}
+        ${form.search_submit(_(u'Continue'))}
+    </form>
+</div>
+</%def>
+
+<%def name="has_alerts(stop)">
+<%
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
     return has_alerts
-%></%def>
-<%def name="make_name_id(stop)"><%
+%>
+</%def>
+
+<%def name="make_name_id(stop)">
+<%
     name = "{0} {1}".format(_(u'Stop ID').encode('utf-8'), stop['stop_id']).decode('utf-8')
     return name
-%></%def>
-<%def name="make_url_params(stop)"><%
+%>
+</%def>
+
+<%def name="make_url_params(stop)">
+<%
     params = "stop&name={0}&lat={1}&lon={2}".format(stop['name'], stop['lat'], stop['lon'])
     return params
-%></%def>
+%>
+</%def>
 
 <%def name="planner_walk_link(frm, to, extra_params)">
 <%
-dist = _('${number} mile', '${number} miles', mapping={'number':round(to['distance'], 2)})
+    dist = _('${number} mile', '${number} miles', mapping={'number':round(to['distance'], 2)})
 %>
 <a href="planner_walk.html?mode=WALK&from=${util.make_named_coord_from_obj(frm)}&to=${util.make_named_coord_from_obj(to)}${extra_params}">${dist}</a>
 </%def>
