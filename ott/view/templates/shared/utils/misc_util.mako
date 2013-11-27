@@ -173,6 +173,13 @@
 %endif
 </%def>
 
+<%def name="get_first_param(param_name)">
+<%
+    from ott.view.utils import html_utils
+    return html_utils.get_first_param(request, param_name)
+%>
+</%def>
+
 <%def name="has_url_param(param_name)">
 <%
     from ott.view.utils import html_utils

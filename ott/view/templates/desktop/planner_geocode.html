@@ -10,6 +10,8 @@
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
+    type = util.get_first_param('type')
+    type_url = pform.from_to_img_url(type)
 %>
 <%def name="title()">TriMet: ${_(u'Trip Planner')} ${_(u'Uncertain location')}</%def>
 <%def name="meta_data()">${meta.tripplanner()}</%def>
@@ -19,15 +21,19 @@
     ${page.tripplanner_css()}
     ${form.autocomplete_css_includes()}
 </%def>
-${page.trip_planner(_(u'Plan your trip on TriMet'), extra_params, 'form')}
+${page.trip_planner(_(u'Uncertain location'), extra_params, 'form')}
 ${form.clear_element_scriptlet()}
 
 ## override section ID to make this page full width
 <%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"><%include file="/shared/share.html"/></%def>
 <%def name="main_wrap_bottom()"></section><!-- end #main-fullwidth --></%def>
 <%def name="bottom()">${plib.bottom_imap_bar()}</%def>
-
-<h2 class="error">${_(u'We cannot find')} ${place}</h2>
+<h2 class="error">
+    %if type_url:
+        <img src="${util.url_domain()}/${type_url}" />
+    %endif
+    ${_(u'We cannot find')} <i>${_(type) if type else ''}</i> ${_(u'location')}: ${place}
+</h2>
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
     <style>select {width: 40em;}</style>

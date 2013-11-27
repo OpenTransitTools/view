@@ -142,6 +142,8 @@ def planner_geocode(request):
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 def planner(request):
+    return request.model.get_plan(request.query_string, **request.params)
+    ## TODO ...
     ret_val = {}
 
     has_from_coord = html_utils.get_first_param_is_a_coord(request, 'fromCoord')
