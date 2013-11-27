@@ -7,12 +7,12 @@ class Place(object):
         self.set_values(name, lat, lon, city)
         self.place = None
 
-    def to_url_params(self):
+    def to_url_params(self, param_name='place'):
         ret_val = self.__dict__
         #HOW TO USE NEW : ret_val = "name={name}&lon={lon}&lat={lat}&city={city}".format(self.__dict__)
         ret_val = "name=%(name)s&lon=%(lon)s&lat=%(lat)s&city=%(city)s" % self.__dict__
         if self.place:
-            ret_val = "{0}&place={1}".format(ret_val, self.place)
+            ret_val = "{0}&{1}={2}".format(ret_val, param_name, self.place)
         return ret_val
 
     def set_values(self, name=None, lat=None, lon=None, city=None):
@@ -56,7 +56,7 @@ class Place(object):
 #TODO
 
     @classmethod
-    def make_from_request(cls, request):
+    def make_from_request(cls, request, param_name='place'):
         ret_val = Place()
         try:
             name = html_utils.get_first_param(request, 'name')
@@ -69,12 +69,11 @@ class Place(object):
             city = html_utils.get_first_param(request, 'city')
             ret_val.set_values(name, lat, lon, city)
 
-            place = html_utils.get_first_param(request, 'place')
+            place = html_utils.get_first_param(request, param_name)
             ret_val.set_values_via_place_str(place)
 
-            place_coord = html_utils.get_first_param(request, 'placeCoord')
+            place_coord = html_utils.get_first_param(request, param_name + 'Coord')
             ret_val.set_values_via_coord_str(place_coord)
-
         except: pass
         return ret_val
 
