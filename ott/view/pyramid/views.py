@@ -89,9 +89,9 @@ def do_view_config(config):
     config.add_route('map_place_mobile',                        '/m/map_place.html')
 
 
-@view_config(route_name='exception_mobile', renderer='mobile/exception.html')
+@view_config(route_name='exception_mobile',  renderer='mobile/exception.html')
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
-def exception_desktop(request):
+def handle_exception(request):
     ret_val = {}
     return ret_val
 
@@ -142,12 +142,27 @@ def planner_geocode(request):
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 def planner(request):
-    ret_val = None
-    try:
+    ret_val = {}
+
+    has_from_coord = html_utils.get_first_param_is_a_coord(request, 'fromCoord')
+    has_to_coord   = html_utils.get_first_param_is_a_coord(request, 'toCoord')
+    if has_from_coord and has_to_coord:
         ret_val = request.model.get_plan(request.query_string, **request.params)
-    except:
-        ret_val = make_subrequest(request, '/exception.html')
+    else:
+        find = 'from'
+        if has_from_coord:
+            find = 'to'
+
+        place = html_utils.get_first_param(request, find)
+        geo = call_geocoder(request, place)
+        if geo['count'] == 1:
+            single_geo = geo['geocoder_results'][0]
+            query_string = "{0}Coord={1},{2}&{3}".format(find, single_geo['lat'], single_geo['lon'], request.query_string)
+            ret_val = make_subrequest(request, '/planner.html', query_string)
+        else:
+            ret_val = make_subrequest(request, '/planner_geocode.html')
     return ret_val
+
 
 @view_config(route_name='planner_walk_mobile', renderer='mobile/planner_walk.html')
 @view_config(route_name='planner_walk_desktop', renderer='desktop/planner_walk.html')

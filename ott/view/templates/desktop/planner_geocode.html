@@ -1,12 +1,13 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/desktop/base.html"/>
-<%namespace name="util" file="/shared/utils/misc_util.mako"/>
-<%namespace name="form" file="/shared/utils/form_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="plib" file="/shared/utils/planner.mako"/>
-<%namespace name="an"   file="/shared/utils/analytics_utils.mako"/>
+<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="form"  file="/shared/utils/form_utils.mako"/>
+<%namespace name="side"  file="/shared/utils/sidebar_utils.mako"/>
+<%namespace name="meta"  file="/shared/utils/meta_utils.mako"/>
+<%namespace name="page"  file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="plib"  file="/shared/utils/planner.mako"/>
+<%namespace name="pform" file="/shared/utils/planner_form.mako"/>
+<%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
@@ -19,7 +20,7 @@
     ${form.autocomplete_css_includes()}
 </%def>
 ${page.trip_planner(_(u'Plan your trip on TriMet'), extra_params, 'form')}
-${plib.clear_tp_element_scriptlet()}
+${form.clear_element_scriptlet()}
 
 ## override section ID to make this page full width
 <%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"><%include file="/shared/share.html"/></%def>
@@ -40,11 +41,9 @@ ${plib.clear_tp_element_scriptlet()}
     <form action="planner.html"  method="GET" name="ambig" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        TODO : ${pform.search_input(_(u'Re-type location'), place, size="85")}
+        ${form.search_input(_(u'Re-type location'), place, size="85")}
         ${form.search_submit(_(u'Continue'), 4, analytics=an.trip_submit)}
     </form>
 </div>
-
 ${form.autocomplete_js_includes()}
 ${pform.autocomplete_trip_planner()}
-
