@@ -159,7 +159,7 @@ def planner(request):
         ret_val = request.model.get_plan(request.query_string, **request.params)
     else:
         #import pdb; pdb.set_trace()
-        ret_val = make_subrequest(request, '/planner_geocode.html', extra_params='type=to' if has_from_coord else 'type=from')
+        ret_val = make_subrequest(request, '/planner_geocode.html', extra_params='geo_type=to' if has_from_coord else 'geo_type=from')
     return ret_val
 
 
