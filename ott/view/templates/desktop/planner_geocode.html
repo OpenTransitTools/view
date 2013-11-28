@@ -36,7 +36,7 @@ ${form.clear_element_scriptlet()}
     ${_(u'We cannot find')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'location')}: ${place}
 </h2>
 ## ${pform.autocomplete_trip_planner()}
-${pform.geocode_form(geocoder_results, place)}
+${pform.geocode_form(geocoder_results, geo_type, place)}
 ${form.autocomplete_js_includes()}
 ${form.autocomplete_search_input()}
 

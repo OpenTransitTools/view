@@ -62,7 +62,7 @@
 ##
 ## planner ambiguous geocode form(s) 
 ##
-<%def name="geocode_form(geocoder_results, place='', form_action='planner.html', is_mobile=False)">
+<%def name="geocode_form(geocoder_results, geo_type='place', geo_place='', form_action='planner.html', is_mobile=False)">
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
     <style>select {width: 40em;}</style>
@@ -76,7 +76,7 @@
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Re-type location'), place, size="85")}
+        ${form.search_input(_(u'Re-type location'), geo_place, id=geo_type, size="85")}
         ${form.search_submit(_(u'Continue'), 4, analytics=an.trip_submit)}
     </form>
 </div>

@@ -68,7 +68,8 @@
     <!-- Text box for re-geocoding a string -->
     <fieldset>
         <label for="geocode_form">${name}:</label>
-        <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}"/>
+        <input type="hidden" name="geo_type"   value="${id}"/>
+        <input type="hidden" name="${id}Coord" value="${coord}"/>
         <input type="text"   id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>  
         <div class="form-help">
             ${help.form_help_right()}
