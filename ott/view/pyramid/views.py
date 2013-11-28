@@ -149,7 +149,7 @@ def planner_geocode(request):
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 def planner(request):
-    #return request.model.get_plan(request.query_string, **request.params)
+    return request.model.get_plan(request.query_string, **request.params)
 
     ret_val = {}
 
