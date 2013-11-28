@@ -132,6 +132,18 @@ def call_geocoder(request, geo_place='', geo_type='place', no_geocode_msg='Undef
     ret_val['count'] = count
     return ret_val
 
+def has_coord(request, type='place'):
+    ''' determine if the url has either a typeCoord url parameter, or a type::45.5,-122.5 param
+    '''
+    ret_val = False
+    coord = html_utils.get_first_param_is_a_coord(request, type + 'Coord')
+    if coord:
+        ret_val = True
+    else:
+        place = html_utils.get_first_param(request, type)
+        if place and "::" in place and "," in place:
+            ret_val = True
+    return ret_val
 
 @view_config(route_name='planner_geocode_mobile', renderer='mobile/planner_geocode.html')
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
@@ -149,16 +161,15 @@ def planner_geocode(request):
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 def planner(request):
-    return request.model.get_plan(request.query_string, **request.params)
+    #return request.model.get_plan(request.query_string, **request.params)
 
     ret_val = {}
-
-    has_from_coord = html_utils.get_first_param_is_a_coord(request, 'fromCoord')
-    has_to_coord   = html_utils.get_first_param_is_a_coord(request, 'toCoord')
+    #import pdb; pdb.set_trace()
+    has_from_coord = has_coord(request, 'from')
+    has_to_coord   = has_coord(request, 'to')
     if has_from_coord and has_to_coord:
         ret_val = request.model.get_plan(request.query_string, **request.params)
     else:
-        #import pdb; pdb.set_trace()
         ret_val = make_subrequest(request, '/planner_geocode.html', extra_params='geo_type=to' if has_from_coord else 'geo_type=from')
     return ret_val
 
