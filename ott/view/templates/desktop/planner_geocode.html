@@ -11,8 +11,6 @@
 <%
     extra_params = util.get_extra_params()
     type_img_url = pform.from_to_img_url(geo_type)
-    place = geo_place if geo_place and len(geo_place) > 0 else '?'
-
 %>
 <%def name="title()">TriMet: ${_(u'Trip Planner')} ${_(u'Uncertain location')}</%def>
 <%def name="meta_data()">${meta.tripplanner()}</%def>
@@ -33,10 +31,10 @@ ${form.clear_element_scriptlet()}
     %if type_img_url:
         <img src="${util.url_domain()}/${type_img_url}" />
     %endif
-    ${_(u'We cannot find')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'location')}: ${place}
+    ${_(u'We cannot find')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'location')}: ${geo_place}
 </h2>
 ## ${pform.autocomplete_trip_planner()}
-${pform.geocode_form(geocoder_results, geo_type, place)}
+${pform.geocode_form(geocoder_results, geo_place, geo_type)}
 ${form.autocomplete_js_includes()}
 ${form.autocomplete_search_input()}
 

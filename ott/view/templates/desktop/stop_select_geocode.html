@@ -19,7 +19,7 @@
 </%def>
 ${page.stop_select(_(u'Uncertain location'), extra_params, 'geo')}
 
-<h2 class="error">${_(u'We cannot find')} ${place}</h2>
-${su.geocode_form(geocoder_results)}
+<h2 class="error">${_(u'We cannot find')} ${geo_place}</h2>
+${su.geocode_form(geocoder_results, geo_place)}
 ${form.autocomplete_js_includes()}
 ${form.autocomplete_search_input()}

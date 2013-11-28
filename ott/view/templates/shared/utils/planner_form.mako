@@ -62,7 +62,7 @@
 ##
 ## planner ambiguous geocode form(s) 
 ##
-<%def name="geocode_form(geocoder_results, geo_type='place', geo_place='', form_action='planner.html', is_mobile=False)">
+<%def name="geocode_form(geocoder_results, geo_place='', geo_type='place', form_action='planner.html', is_mobile=False)">
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
     <style>select {width: 40em;}</style>
@@ -82,10 +82,8 @@
 </div>
 </%def>
 
-
-
 ##
-##
+## large trip planner form on planner_form.html
 ##
 <%def name="planner_form(form_action='planner.html', is_mobile=False)">
 ${form.clear_element_scriptlet()}

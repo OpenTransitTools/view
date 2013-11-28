@@ -11,7 +11,7 @@
 ##
 ## stop ambiguous geocode form(s) 
 ##
-<%def name="geocode_form(geocoder_results, form_action='stops_near.html', is_mobile=False)">
+<%def name="geocode_form(geocoder_results, geo_place='', geo_type='place', form_action='stops_near.html', is_mobile=False)">
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
@@ -25,7 +25,7 @@
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Find stops and stations'), place)}
+        ${form.search_input(_(u'Find stops and stations'), geo_place)}
         ${form.search_submit(_(u'Continue'))}
     </form>
 </div>

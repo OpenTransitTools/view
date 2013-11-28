@@ -36,7 +36,7 @@
         <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
         <fieldset>
             <label>${name}:</label>
-            <input type="hidden" name="geo_type"   value="${id}"/>
+            <input type="hidden" name="geo_type" value="${id}"/>
             <select size="${size}" name="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular"/>
                 %for l in list:
                 <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'], l['type_name'], l['stop_id'])}</option>
