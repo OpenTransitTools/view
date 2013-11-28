@@ -27,7 +27,7 @@
 # search list form
 # Scrolling List of Possible Locations
 #
-<%def name="search_list(name=None, list=None, show_or=True, show_submit=True, id='id', size=1)">
+<%def name="search_list(name=None, list=None, show_or=True, show_submit=True, id='place', size=1)">
     <%
         if name is None:
             name = _(u'Select a location')
@@ -36,7 +36,8 @@
         <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
         <fieldset>
             <label>${name}:</label>
-            <select size="${size}" name="place" class="regular" id="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" />
+            <input type="hidden" name="geo_type"   value="${id}"/>
+            <select size="${size}" name="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular"/>
                 %for l in list:
                 <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'], l['type_name'], l['stop_id'])}</option>
                 %endfor

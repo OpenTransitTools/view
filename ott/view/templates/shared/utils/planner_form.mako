@@ -69,7 +69,7 @@
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
         ${form.has_geocode_hidden('true')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_list(_(u'Select a location'), geocoder_results)}
+        ${form.search_list(_(u'Select a location'), geocoder_results, id=geo_type)}
     </form>
     %endif
 
