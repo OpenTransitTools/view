@@ -114,20 +114,21 @@ def planner_form(request):
     return ret_val
 
 
-def call_geocoder(request, place, type='place', no_geocode_msg='Undefined'):
+def call_geocoder(request, geo_place='', geo_type='place', no_geocode_msg='Undefined'):
     ret_val = {}
 
     count = 0
-    if place:
-        res = request.model.get_geocode(place)
+    if geo_place:
+        res = request.model.get_geocode(geo_place)
         if res and 'results' in res:
             ret_val['geocoder_results'] = res['results']
             count = len(ret_val['geocoder_results'])
     else:
         _  = get_translator(request)
-        place = _(no_geocode_msg)
+        geo_place = _(no_geocode_msg)
 
-    ret_val[type]    = place
+    ret_val['geo_type']  = geo_type
+    ret_val['geo_place'] = geo_place
     ret_val['count'] = count
     return ret_val
 
@@ -135,14 +136,14 @@ def call_geocoder(request, place, type='place', no_geocode_msg='Undefined'):
 @view_config(route_name='planner_geocode_mobile', renderer='mobile/planner_geocode.html')
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
 def planner_geocode(request):
-    place = None
-    type = html_utils.get_first_param(request, 'type', 'place')
-    if 'from' in type:
-        place = html_utils.get_first_param(request, 'from')
-    elif 'to' in type:
-        place = html_utils.get_first_param(request, 'to')
+    geo_place = None
+    geo_type = html_utils.get_first_param(request, 'geo_type', 'place')
+    if 'from' in geo_type:
+        geo_place = html_utils.get_first_param(request, 'from')
+    elif 'to' in geo_type:
+        geo_place = html_utils.get_first_param(request, 'to')
 
-    ret_val = call_geocoder(request, place, type)
+    ret_val = call_geocoder(request, geo_place, geo_type)
     return ret_val
 
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')

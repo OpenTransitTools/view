@@ -7,18 +7,6 @@
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 
-<%def name="from_to_img_url(type=None, def_val=False)">
-<%
-    ret_val = def_val
-    if type:
-        if 'from' in type:
-            ret_val = 'images/triptools/old/start.png'
-        elif 'to' in type:
-            ret_val = 'images/triptools/old/end.png'
-    return ret_val
-%>
-</%def>
-
 <%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
 <%
     if place is None:
@@ -36,6 +24,18 @@
         </div>
     </div>
     %endif
+</%def>
+
+<%def name="from_to_img_url(type=None, def_val=False)">
+<%
+    ret_val = def_val
+    if type:
+        if 'from' in type:
+            ret_val = 'images/triptools/old/start.png'
+        elif 'to' in type:
+            ret_val = 'images/triptools/old/end.png'
+    return ret_val
+%>
 </%def>
 
 <%def name="autocomplete_trip_planner(fm_id='#from', to_id='#going')">
@@ -81,6 +81,8 @@
     </form>
 </div>
 </%def>
+
+
 
 ##
 ##

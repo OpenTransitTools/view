@@ -41,6 +41,15 @@
 %>
 </%def>
 
+<%def name="get_val(val, def_val=None)">
+<%
+    ret_val = def_val
+    if val:
+        ret_val = val
+    return ret_val
+%>
+</%def>
+
 <%def name="localize_str(s, def_val=None)">
 <%
     ret_val = def_val
