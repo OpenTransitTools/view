@@ -20,7 +20,7 @@
 <p>&nbsp;</p>
 
 %if place['lat'] and place['lon']:
-    ${su.place_map(place['name'], place['lon'], place['lat'], extra_params)}
+    ${su.place_map(place['name'], place['lon'], place['lat'], extra_params, is_mobile=True)}
     ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
 %endif
 
