@@ -78,24 +78,6 @@
 %>
 </%def>
 
-##
-## do things like escape & in intersection names, etc...
-##
-<%def name="prep_url_params(params, no_space=False)">
-<%
-    ret_val = params
-    try:
-        if no_space:
-            ret_val = ret_val.replace('&', '%26')
-        else:
-            ret_val = ret_val.replace(' & ', ' %26 ')
-    except:
-        pass
-    return ret_val
-%>
-</%def>
-
-
 <%def name="name_city_str(name, city, type_name=None, stop_id='')">
 <%
     ret_val = _(u'Undefined')
@@ -135,6 +117,8 @@
 </%def>
 
 ## 
+## 
+## 
 <%def name="map_place_link(place, path_prefix='')">
 <%
     extra_params = get_extra_params()
@@ -143,20 +127,6 @@
     name_city = name_city_str_from_struct(place)
 %>
 <a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
-</%def>
-
-<%def name="make_named_coord(name, lat, lon)">
-<%
-    name = name.replace('&', '%26')
-    ret_val = "{0}::{1},{2}".format(name, lat, lon)
-    return ret_val
-%>
-</%def>
-
-<%def name="make_named_coord_from_obj(obj)">
-<%
-    return make_named_coord(obj['name'], obj['lat'] ,obj['lon']) 
-%>
 </%def>
 
 ## from / to links
@@ -173,7 +143,9 @@
 </p>
 </%def>
 
+##
 ## dynamic img ... see dynamiclyLoadImages() in triptools.js for more
+##
 <%def name="dynamic_img(url, w, h, alt='dynamic img (requires javascript)', def_img='http://maps.trimet.org/images/ui/s.gif', no_expand=False)">
 %if no_expand:
 <img src="${url}" alt="${alt}"/>
@@ -181,6 +153,40 @@
 <img dsrc="${url}" dwidth="${w}" dheight="${h}" alt="${alt}" src="${def_img}"/>
 %endif
 </%def>
+
+<%def name="make_named_coord(name, lat, lon)">
+<%
+    name = name.replace('&', '%26')
+    ret_val = "{0}::{1},{2}".format(name, lat, lon)
+    return ret_val
+%>
+</%def>
+
+<%def name="make_named_coord_from_obj(obj)">
+<%
+    return make_named_coord(obj['name'], obj['lat'] ,obj['lon']) 
+%>
+</%def>
+
+
+
+##
+## do things like escape & in intersection names, etc...
+##
+<%def name="prep_url_params(params, no_space=False)">
+<%
+    ret_val = params
+    try:
+        if no_space:
+            ret_val = ret_val.replace('&', '%26')
+        else:
+            ret_val = ret_val.replace(' & ', ' %26 ')
+    except:
+        pass
+    return ret_val
+%>
+</%def>
+
 
 <%def name="get_first_param(param_name)">
 <%

@@ -148,3 +148,17 @@
     %endif
 </%def>
 
+#
+# url params to hidden inputs
+#
+<%def name="url_params_to_hidden_inputs(params, skips=[])">
+<%
+    from ott.view.utils import html_utils
+    pdict = html_utils.params_to_dict(request)
+%>
+    %for k,v in pdict.items():
+    %if k and k not in skips:
+        <input type="hidden" name="${k}" value="${v}"/>
+    %endif
+    %endfor
+</%def>
