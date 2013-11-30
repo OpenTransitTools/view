@@ -16,11 +16,6 @@
 <%def name="app_css()">${page.stop_css()}</%def>
 ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
 
-XXXX
-${form.url_params_to_hidden_inputs(request.params)}
-XXXX
-
-
 <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
 <ul id="stopslist" class="group">
     %if nearest and 'stops' in nearest:
