@@ -148,6 +148,7 @@ def has_coord(request, type='place'):
 @view_config(route_name='planner_geocode_mobile', renderer='mobile/planner_geocode.html')
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
 def planner_geocode(request):
+    #import pdb; pdb.set_trace()
     geo_place = None
     geo_type = html_utils.get_first_param(request, 'geo_type', 'place')
     if 'from' in geo_type:
@@ -164,7 +165,6 @@ def planner(request):
     #return request.model.get_plan(request.query_string, **request.params)
 
     ret_val = {}
-    #import pdb; pdb.set_trace()
     has_from_coord = has_coord(request, 'from')
     has_to_coord   = has_coord(request, 'to')
     if has_from_coord and has_to_coord:

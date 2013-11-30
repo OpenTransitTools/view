@@ -212,7 +212,9 @@ def get_first_param(request, name, def_val=None):
     '''
     ret_val=def_val
     try:
-        ret_val = request.params.getone(name)
+        l = request.params.getall(name)
+        if l and len(l) > 0:
+            ret_val = l[0]
     except:
         pass
     return ret_val
