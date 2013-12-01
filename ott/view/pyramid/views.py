@@ -165,12 +165,42 @@ def planner(request):
     #return request.model.get_plan(request.query_string, **request.params)
 
     ret_val = {}
+    re_geocode = None
+    query_string = None
+
+    # step 1: check for from & to coord information in the url
     has_from_coord = has_coord(request, 'from')
     has_to_coord   = has_coord(request, 'to')
+
+    # step 2: we have coord info, so our job's easy ... call trip planner below.
     if has_from_coord and has_to_coord:
-        ret_val = request.model.get_plan(request.query_string, **request.params)
+        query_string = request.query_string
     else:
-        ret_val = make_subrequest(request, '/planner_geocode.html', extra_params='geo_type=to' if has_from_coord else 'geo_type=from')
+        # we currently don't have geocode info for from and/or to place strings...so let's find them.
+
+        # step 3: check we need to geocode the 'from' param ... 
+        if has_from_coord is False:
+            # step 3a: call the geocoder on 'from', hoping to hit on a single result from the geocoder
+            more_than_one_result = True # geocode()
+
+            # step 3b: if we return one result, we're good ... add that to the 
+            if more_than_one_result:
+                re_geocode = 'geo_type=from'
+
+        # step 4: check that we need to geocode the 'to' param 
+        if has_to_coord is False and re_geocode is None:
+            # step 4a: call the geocoder on 'to', hoping to hit on a single result from the geocoder
+            more_than_one_result = True # geocode()
+
+            # step 4b: if we return one result, we're good ... add that to the 
+            if more_than_one_result:
+                re_geocode = 'geo_type=to'
+
+    if re_geocode or query_string is None:
+        ret_val = make_subrequest(request, '/planner_geocode.html', extra_params=re_geocode)
+    else:
+        ret_val = request.model.get_plan(query_string, **request.params)
+
     return ret_val
 
 
