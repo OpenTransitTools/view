@@ -114,7 +114,9 @@ def planner_form(request):
     return ret_val
 
 
-def call_geocoder(request, geo_place='', geo_type='place', no_geocode_msg='Undefined'):
+def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
+    '''  call the geocoder service
+    '''
     ret_val = {}
 
     count = 0
@@ -176,7 +178,10 @@ def planner(request):
     if has_from_coord and has_to_coord:
         query_string = request.query_string
     else:
+
+        #
         # we currently don't have geocode info for from and/or to place strings...so let's find them.
+        #
 
         # step 3: check we need to geocode the 'from' param ... 
         if has_from_coord is False:
