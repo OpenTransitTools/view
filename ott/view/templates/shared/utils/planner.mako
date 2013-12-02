@@ -161,9 +161,9 @@
         %>
         <!-- ${_('transfer')} or ${_('transfers')} -->
         %if sel:
-        <li class="selected"><span><b>${text}</b><br />${dur} ${_('mins')}, ${tfer}, ${fare}</span></li>
+        <li class="selected"><span class="selectedpadding"><b>${text}</b><br />${dur} ${_('mins')}, <span class="nobreak">${tfer},</span> ${fare}</span></li>
         %else:
-        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br/>${dur} ${_('mins')}, ${tfer}, ${fare}</span></a></li>
+        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br/>${dur} ${_('mins')}, <span class="nobreak">${tfer},</span> ${fare}</span></a></li>
         %endif
     %endif
 </%def>
