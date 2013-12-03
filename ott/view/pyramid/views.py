@@ -168,45 +168,50 @@ def planner(request):
     #import pdb; pdb.set_trace()
 
     ret_val = {}
-    re_geocode   = None
+
     extra_params = None
-    query_string = None
+    query_string = request.query_string
 
     # step 1: check for from & to coord information in the url
     has_from_coord = has_coord(request, 'from')
     has_to_coord   = has_coord(request, 'to')
 
-    # step 2: we have coord info, so our job's easy ... call trip planner below.
+    # step 2: check we need to geocode the 'from' param ...
+    if has_from_coord is False:
+        extra_params = 'geo_type=from'
+
+        # step 3a: does the 'from' param need geocoding help?  do we have a param to geocode?
+        frm = html_utils.get_first_param(request, 'from')
+        if frm and len(frm) > 0:
+
+            # step 3b: we have something to geocode, so call the geocoder hoping to hit on a single result
+            g = call_geocoder(request, frm, 'from')
+            if g and g['count'] == 1:
+                # step 3c: got our single result, so now add that to our query string...
+                has_from_coord = True
+                query_string = "fromCoord={0},{1}&{2}".format(g['geocoder_results'][0]['lat'], g['geocoder_results'][0]['lon'], query_string)
+
+
+    # step 4: check that we need to geocode the 'to' param 
+    if has_to_coord is False and has_from_coord is True:
+        extra_params = 'geo_type=to'
+
+        # step 5a: does the 'to' param need geocoding help?  do we have a param to geocode?
+        to = html_utils.get_first_param(request, 'to')
+        if to and len(to) > 0:
+
+            # step 5b: we have something to geocode, so call the geocoder hoping to hit on a single result
+            g = call_geocoder(request, to, 'to')
+            if g and g['count'] == 1:
+                # step 5c: got our single result, so now add that to our query string...
+                has_to_coord = True
+                query_string = "toCoord=={0},{1}&{2}".format(g['geocoder_results'][0]['lat'], g['geocoder_results'][0]['lon'], query_string)
+
+    # step 6: either call the geocoder page, or the trip plan page...
     if has_from_coord and has_to_coord:
-        query_string = request.query_string
-    else:
-
-        #
-        # we currently don't have geocode info for from and/or to place strings...so let's find them.
-        #
-
-        # step 3: check we need to geocode the 'from' param ... 
-        if has_from_coord is False:
-            # step 3a: call the geocoder on 'from', hoping to hit on a single result from the geocoder
-            more_than_one_result = True # geocode()
-
-            # step 3b: if we return one result, we're good ... add that to the 
-            if more_than_one_result:
-                re_geocode = 'geo_type=from'
-
-        # step 4: check that we need to geocode the 'to' param 
-        if has_to_coord is False and re_geocode is None:
-            # step 4a: call the geocoder on 'to', hoping to hit on a single result from the geocoder
-            more_than_one_result = True # geocode()
-
-            # step 4b: if we return one result, we're good ... add that to the 
-            if more_than_one_result:
-                re_geocode = 'geo_type=to'
-
-    if re_geocode or query_string is None:
-        ret_val = make_subrequest(request, '/planner_geocode.html', extra_params=re_geocode)
-    else:
         ret_val = request.model.get_plan(query_string, **request.params)
+    else:
+        ret_val = make_subrequest(request, '/planner_geocode.html', extra_params=extra_params)
 
     return ret_val
 
