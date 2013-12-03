@@ -67,6 +67,7 @@
     %if geocoder_results and len(geocoder_results) > 0:
     <style>select {width: 40em;}</style>
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
+        ${form.url_params_to_hidden_inputs(request, [geo_type, geo_type + 'Coord'])}
         ${form.has_geocode_hidden('true')}
         ${form.get_extra_params_hidden_inputs()}
         ${form.search_list(_(u'Select a location'), geocoder_results, id=geo_type)}
@@ -74,6 +75,7 @@
     %endif
 
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
+        ${form.url_params_to_hidden_inputs(request, [geo_type, geo_type + 'Coord'])}
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
         ${form.search_input(_(u'Re-type location'), geo_place, id=geo_type, size="85")}

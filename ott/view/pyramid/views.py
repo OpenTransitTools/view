@@ -165,9 +165,11 @@ def planner_geocode(request):
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 def planner(request):
     #return request.model.get_plan(request.query_string, **request.params)
+    #import pdb; pdb.set_trace()
 
     ret_val = {}
-    re_geocode = None
+    re_geocode   = None
+    extra_params = None
     query_string = None
 
     # step 1: check for from & to coord information in the url
