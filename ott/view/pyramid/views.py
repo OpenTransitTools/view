@@ -215,10 +215,10 @@ def planner_geocode(request):
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 def planner(request):
     ''' will either call the trip planner, or if we're missing params, redirect to the ambiguous geocode page
+        basically, call the geocode checker, and then either call the ambiguous geocoder page, or plan the trip planner
     '''
     ret_val = {}
 
-    # call geocode checker, and then either call the ambiguous geocoder page, or plan the trip plan
     query_string, geocode_param = do_from_to_geocode_check(request)
     if geocode_param:
         ret_val = make_subrequest(request, '/planner_geocode.html', query_string, geocode_param)
