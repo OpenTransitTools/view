@@ -56,6 +56,6 @@
         %if 'label' in p:
             <h2>${p['label']}</h2>
         %else:
-            <a target="#" href="${p['path'] if 'path' in p else rel_path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a>  ${p['n'] if 'n' in p else ''}<br/>
+            <a target="_blank" href="${p['path'] if 'path' in p else rel_path}${p['u']}?${p['p']}${extra_params}">${p['u']}</a>  ${p['n'] if 'n' in p else ''}<br/>
         %endif
     %endfor
