@@ -7,25 +7,6 @@
 <%namespace name="plib"  file="/shared/utils/planner.mako"/>
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 
-<%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
-<%
-    if place is None:
-        if is_mobile is False:
-            place = _(clear)
-        else:
-            place = ''
-%>
-    <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}');" class="regular" size="45" maxlength="80" />
-    %if not is_mobile:
-    <div class="form-help">
-        <div class="form-help-popup-onright">
-            <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
-        </div>
-    </div>
-    %endif
-</%def>
-
 <%def name="from_to_img_url(type=None, def_val=False)">
 <%
     ret_val = def_val
@@ -80,8 +61,32 @@
         ${form.get_extra_params_hidden_inputs()}
         ${form.search_input(_(u'Re-type location'), geo_place, id=geo_type, size="85")}
         ${form.search_submit(_(u'Continue'), 4, analytics=an.trip_submit)}
+        ## TODO: need to add analytic events when customer hit's "ENTER" button / submit
     </form>
 </div>
+</%def>
+
+##
+## input_form for planner 
+## TODO: why this and not form.input_form?
+##
+<%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
+<%
+    if place is None:
+        if is_mobile is False:
+            place = _(clear)
+        else:
+            place = ''
+%>
+    <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
+    <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}');" class="regular" size="45" maxlength="80" />
+    %if not is_mobile:
+    <div class="form-help">
+        <div class="form-help-popup-onright">
+            <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
+        </div>
+    </div>
+    %endif
 </%def>
 
 ##

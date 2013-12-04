@@ -7,8 +7,8 @@
     pages = [
         {'label': 'Trip Planner Pages'},
         {'u':'planner_form.html', 'p':'from=2'},
-        {'u':'planner_geocode.html', 'p':'place=d&type=from', 'n':"uncertain 'from' location"},
-        {'u':'planner_geocode.html', 'p':'place=d&type=to',   'n':"uncertain 'to' location"},
+        {'u':'planner_geocode.html', 'p':'from=834&toCoord=45.363514%2C-122.59389&to=900+Block+Abernethy%2C+Oregon+City&time=11:11',   'n':"uncertain 'from' location"},
+        {'u':'planner_geocode.html', 'p':'to=834&fromCoord=45.363514%2C-122.59389&from=900+Block+Abernethy%2C+Oregon+City&time=11:11', 'n':"uncertain 'to' location"},
         {'u':'planner_geocode.html', 'p':'', 'n':"no geocoder options list (and neither from / to)"},
         {'u':'planner.html', 'p':'from=2&to=zoo&Hour=12&Minute=35&AmPm=pm'},
         {'u':'planner.html', 'p':'from=2&to=zoo&Hour=12&Minute=35&AmPm=pm&mode=BICYCLE', 'n':'Bike Only Trip'},

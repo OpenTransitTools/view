@@ -94,7 +94,6 @@
         }
         stop.geo_div = "${id}_coord";
         stop.select_callback = stop_geo_callback;
-        
     });
     </script>
 </%def>
