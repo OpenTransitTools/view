@@ -70,8 +70,8 @@
     <fieldset>
         <label for="geocode_form">${name}:</label>
         <input type="hidden" name="geo_type"   value="${id}"/>
-        <input type="hidden" name="${id}Coord" value="${coord}"/>
-        <input type="text"   id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>  
+        <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}" />
+        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>  
         <div class="form-help">
             ${help.form_help_right()}
         </div>
@@ -92,11 +92,30 @@
     <link href="css/autocomplete.css" rel="stylesheet"/>
 </%def>
 
+##
+## auto complete - localize name
+## (TODO - this won't work, ala AJAX ... so what to do?)
+##
+<%def name="autocomplete_localize_place_name()">
+        function localized_place_name_format(name, city, type, id)
+        {
+            var ret_val = name;
+            try {
+                var stop = ''
+                if(type == 'stop')
+                    stop = " (${_(u'Stop ID')} " + id + ")";
+                ret_val = name + city + stop;
+            }
+            catch(e) {
+            }
+            return ret_val;
+        }
+        stop.place_name_format = localized_place_name_format;
+</%def>
 
-
-#
-# autocomplete: instance creation for the jQuery autocomplete...
-#
+##
+## autocomplete: instance creation for the jQuery autocomplete...
+##
 <%def name="autocomplete_search_input(id='#place')">
     <script>
     // main entry 
@@ -110,28 +129,10 @@
         }
         stop.geo_div = "${id}_coord";
         stop.select_callback = stop_geo_callback;
+
+        ${autocomplete_localize_place_name()}
     });
     </script>
-</%def>
-
-##
-## auto complete - localize name
-## (TODO - this won't work, ala AJAX ... so what to do?)
-##
-<%def name="autocomplete_localize_place_name()">
-    function localized_place_name_format(name, city, type, id)
-    {
-        var ret_val = name;
-        try {
-            var stop = ''
-            if(type == 'stop')
-                stop = " (${_(u'Stop ID')} " + id + ")";
-            ret_val = name + city + stop;
-        }
-        catch(e) {
-        }
-        return ret_val;
-    }
 </%def>
 
 ##
