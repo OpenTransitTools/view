@@ -15,8 +15,6 @@ from pyramid.events import NewRequest
 from pyramid.events import ApplicationCreated
 from pyramid.events import subscriber
 
-from ott.view.locale.subscribers import get_translator  #_  = get_translator(request)
-
 from ott.view.model.model import Model
 from ott.view.model.mock import Mock
 
@@ -24,6 +22,7 @@ from ott.view.utils.spark import sparkline_smooth
 from ott.view.utils.qr import qr_to_stream
 from ott.view.utils import html_utils
 from ott.view.utils import object_utils
+from ott.view.utils import geocode_utils
 from ott.view.model.place import Place
 
 
@@ -107,94 +106,10 @@ def feedback(request):
 @view_config(route_name='pform_example',    renderer='shared/app/pform_example.html')
 @view_config(route_name='pform_standalone', renderer='shared/app/pform_standalone.html')
 def planner_form(request):
-    #import pdb; pdb.set_trace()
     ret_val = {}
     params = html_utils.planner_form_params(request)
     ret_val['params'] = params
     return ret_val
-
-
-def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
-    '''  call the geocoder service
-    '''
-    ret_val = {}
-
-    count = 0
-    if geo_place:
-        res = request.model.get_geocode(geo_place)
-        if res and 'results' in res:
-            ret_val['geocoder_results'] = res['results']
-            count = len(ret_val['geocoder_results'])
-    else:
-        _  = get_translator(request)
-        geo_place = _(no_geocode_msg)
-
-    ret_val['geo_type']  = geo_type
-    ret_val['geo_place'] = geo_place
-    ret_val['count'] = count
-    return ret_val
-
-def has_coord(request, type='place'):
-    ''' determine if the url has either a typeCoord url parameter, or a type::45.5,-122.5 param
-    '''
-    ret_val = False
-    coord = html_utils.get_first_param_is_a_coord(request, type + 'Coord')
-    if coord:
-        ret_val = True
-    else:
-        place = html_utils.get_first_param(request, type)
-        if place and "::" in place and "," in place:
-            ret_val = True
-    return ret_val
-
-def do_from_to_geocode_check(request):
-    ''' checks whether we have proper coordinates for the from & to params
-        if we're missing a coordinate, we'll geocode and see if there's a direct hit
-        if no direct hit, we return the geocode_paaram that tells the ambiguous redirect page what to do...
-
-        @return: a modified query string, and any extra params needed for the geocoder 
-    '''
-    geocode_param = None
-    query_string = request.query_string
-
-    # step 1: check for from & to coord information in the url
-    has_from_coord = has_coord(request, 'from')
-    has_to_coord   = has_coord(request, 'to')
-
-    # step 2: check we need to geocode the 'from' param ...
-    if has_from_coord is False:
-        geocode_param = 'geo_type=from'
-
-        # step 3a: does the 'from' param need geocoding help?  do we have a param to geocode?
-        frm = html_utils.get_first_param(request, 'from')
-        if frm and len(frm) > 0:
-
-            # step 3b: we have something to geocode, so call the geocoder hoping to hit on a single result
-            g = call_geocoder(request, frm, 'from')
-            if g and g['count'] == 1:
-                # step 3c: got our single result, so now add that to our query string...
-                has_from_coord = True
-                query_string = "fromCoord={0},{1}&{2}".format(g['geocoder_results'][0]['lat'], g['geocoder_results'][0]['lon'], query_string)
-                geocode_param = None
-
-    # step 4: check that we need to geocode the 'to' param 
-    if has_to_coord is False and has_from_coord is True:
-        geocode_param = 'geo_type=to'
-
-        # step 5a: does the 'to' param need geocoding help?  do we have a param to geocode?
-        to = html_utils.get_first_param(request, 'to')
-        if to and len(to) > 0:
-
-            # step 5b: we have something to geocode, so call the geocoder hoping to hit on a single result
-            g = call_geocoder(request, to, 'to')
-            if g and g['count'] == 1:
-                # step 5c: got our single result, so now add that to our query string...
-                has_to_coord = True
-                query_string = "toCoord=={0},{1}&{2}".format(g['geocoder_results'][0]['lat'], g['geocoder_results'][0]['lon'], query_string)
-                geocode_param = None
-
-    return query_string, geocode_param
-
 
 @view_config(route_name='planner_geocode_mobile', renderer='mobile/planner_geocode.html')
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
@@ -208,7 +123,7 @@ def planner_geocode(request):
     elif 'to' in geo_type:
         geo_place = html_utils.get_first_param(request, 'to')
 
-    ret_val = call_geocoder(request, geo_place, geo_type)
+    ret_val = geocode_utils.call_geocoder(request, geo_place, geo_type)
     return ret_val
 
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')
@@ -219,14 +134,13 @@ def planner(request):
     '''
     ret_val = {}
 
-    query_string, geocode_param = do_from_to_geocode_check(request)
+    query_string, geocode_param = geocode_utils.do_from_to_geocode_check(request)
     if geocode_param:
         ret_val = make_subrequest(request, '/planner_geocode.html', query_string, geocode_param)
     else:
         ret_val = request.model.get_plan(query_string, **request.params)
 
     return ret_val
-
 
 @view_config(route_name='planner_walk_mobile', renderer='mobile/planner_walk.html')
 @view_config(route_name='planner_walk_desktop', renderer='desktop/planner_walk.html')
@@ -283,7 +197,6 @@ def stop_select_geocode(request):
     ret_val = call_geocoder(request, place)
     return ret_val
 
-
 @view_config(route_name='stops_near_mobile', renderer='mobile/stops_near.html')
 @view_config(route_name='stops_near_desktop', renderer='desktop/stops_near.html')
 def stops_near(request):
@@ -291,7 +204,6 @@ def stops_near(request):
 
     #import pdb; pdb.set_trace()
     def call_near_ws(geo=None):
-        #import pdb; pdb.set_trace()
         p = Place.make_from_request(request)
         p.update_values_via_dict(geo)
         params = p.to_url_params()
@@ -330,39 +242,6 @@ def map_place(request):
     ret_val = {}
     p = Place.make_from_request(request)
     ret_val['place'] = p.__dict__
-    return ret_val
-
-def is_mobile(request):
-    return '/m/' in request.path_url
-
-def get_path(request, path):
-    ret_val = path
-    if is_mobile(request):
-        ret_val = '/m' + path
-    return ret_val
-
-def make_subrequest(request, path, query_string=None, extra_params=None):
-    ''' create a subrequest to call another page in the app...
-        http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/subrequest.html
-    '''
-    # step 1: make a new request object...
-    path = get_path(request, path)
-    subreq = Request.blank(path)
-
-    # step 2: default to request's querystring as default qs
-    if query_string is None:
-        query_string = request.query_string
-
-     # step 3: pre-pend any extra stuff to our querytring
-    if extra_params:
-        newqs = extra_params
-        if len(query_string) > 0:
-            newqs = newqs + "&" + query_string
-        query_string = newqs
-
-    # step 4: finish the qs crap, and call this sucker...
-    subreq.query_string = query_string
-    ret_val = request.invoke_subrequest(subreq)
     return ret_val
 
 
@@ -407,9 +286,7 @@ def adverts(request):
 @view_config(route_name='index_desktop', renderer='index.html')
 @view_config(route_name='index_mobile',  renderer='index.html')
 def index_view(request):
-    auth = "True"
-    perm = "True"
-    return {'authenticated':auth, 'authorized':perm}
+    return {}
 
 
 @subscriber(ApplicationCreated)
@@ -421,20 +298,6 @@ def application_created_subscriber(event):
        2. I could be used to make db connection (pools), etc...
     '''
     log.info('Starting pyramid server...')
-
-
-MODEL_GLOBAL = None
-def get_model():
-    ''' @see make_views() below, which should have a model passed in to configure the model global 
-    '''
-    global MODEL_GLOBAL
-    if MODEL_GLOBAL is None:
-        # TODO ... this right?
-        # TODO ... better way to attach this to view?
-        # TODO ... multi-threading/
-        # do something to create a model...
-        MODEL_GLOBAL = Model()
-    return MODEL_GLOBAL
 
 
 @subscriber(NewRequest)
@@ -451,6 +314,18 @@ def new_request_subscriber(event):
     settings = request.registry.settings
     request.add_finished_callback(cleanup)
 
+@view_config(context='pyramid.exceptions.NotFound', renderer='notfound.mako')
+def notfound_view(self):
+    '''
+        render the notfound.mako page anytime a request comes in that 
+        the app does't have mapped to a page or method
+    '''
+    return {}
+
+
+##
+## view utils
+##
 
 def cleanup(request):
     '''
@@ -463,11 +338,50 @@ def cleanup(request):
     log.debug("cleanup called -- request is 'finished'")
 
 
-@view_config(context='pyramid.exceptions.NotFound', renderer='notfound.mako')
-def notfound_view(self):
+def is_mobile(request):
+    return '/m/' in request.path_url
+
+def get_path(request, path):
+    ret_val = path
+    if is_mobile(request):
+        ret_val = '/m' + path
+    return ret_val
+
+def make_subrequest(request, path, query_string=None, extra_params=None):
+    ''' create a subrequest to call another page in the app...
+        http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/subrequest.html
     '''
-        render the notfound.mako page anytime a request comes in that 
-        the app does't have mapped to a page or method
+    # step 1: make a new request object...
+    path = get_path(request, path)
+    subreq = Request.blank(path)
+
+    # step 2: default to request's querystring as default qs
+    if query_string is None:
+        query_string = request.query_string
+
+     # step 3: pre-pend any extra stuff to our querytring
+    if extra_params:
+        newqs = extra_params
+        if len(query_string) > 0:
+            newqs = newqs + "&" + query_string
+        query_string = newqs
+
+    # step 4: finish the qs crap, and call this sucker...
+    subreq.query_string = query_string
+    ret_val = request.invoke_subrequest(subreq)
+    return ret_val
+
+
+MODEL_GLOBAL = None
+def get_model():
+    ''' @see make_views() below, which should have a model passed in to configure the model global 
     '''
-    return {}
+    global MODEL_GLOBAL
+    if MODEL_GLOBAL is None:
+        # TODO ... this right?
+        # TODO ... better way to attach this to view?
+        # TODO ... multi-threading/
+        # do something to create a model...
+        MODEL_GLOBAL = Model()
+    return MODEL_GLOBAL
 
