@@ -1,4 +1,4 @@
-<%namespace name="util"  file="/shared/util.mako"/>
+<%namespace name="util"  file="/shared/utils.mako"/>
 <%def name="help_english()">
         <!-- GeoCoder TIPS (should include localized version of this some way / shape / form) -->
         <h3>If the trip planner fails to find a location:</h3>

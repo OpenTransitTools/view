@@ -2,7 +2,7 @@
 ##
 ## these methods control the page background (css file), the name of the page, any links in that name, etc...
 ##
-<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 
 ## css include controls the page look
 <%def name="stop_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" /></%def>

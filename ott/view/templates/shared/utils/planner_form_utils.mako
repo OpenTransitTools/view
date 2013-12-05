@@ -2,9 +2,9 @@
 ##
 ## routine(s) for the trip planner form(s)
 ##
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
 <%namespace name="form"  file="/shared/utils/form_utils.mako"/>
-<%namespace name="plib"  file="/shared/utils/planner.mako"/>
+<%namespace name="plib"  file="/shared/utils/planner_utils.mako"/>
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 
 <%def name="from_to_img_url(type=None, def_val=False)">

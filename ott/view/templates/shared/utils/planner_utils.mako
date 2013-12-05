@@ -2,7 +2,7 @@
 ##
 ## planner lib
 ##
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
 
 ##
 ## typical itinerary page title

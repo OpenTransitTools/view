@@ -3,7 +3,7 @@
 ## library of routines that do input forms and drop down lists 
 ## (geocoder mostly)
 ##
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
 <%namespace name="help"  file="/shared/utils/help_utils.mako"/>
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 

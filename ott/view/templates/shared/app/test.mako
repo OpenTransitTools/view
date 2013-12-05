@@ -1,4 +1,4 @@
-<%namespace name="util"  file="/shared/utils/misc_util.mako"/>
+<%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
     rel_path='./'

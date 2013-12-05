@@ -2,7 +2,7 @@
 ##
 ## routines for different sidebar content
 ##
-<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 
 
 <%def name="tc_pr_lr_wes_mall()">

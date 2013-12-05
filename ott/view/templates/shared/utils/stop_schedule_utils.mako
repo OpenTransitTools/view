@@ -2,7 +2,7 @@
 ##
 ## routines for stop / stop_schedule pages
 ##
-<%namespace name="util" file="/shared/utils/misc_util.mako"/>
+<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 
