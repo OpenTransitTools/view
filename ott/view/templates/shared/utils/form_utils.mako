@@ -79,6 +79,22 @@
 </%def>
 
 #
+# autocomplete: CSS and JS includes...
+#
+<%def name="autocomplete_js_includes()">
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="js/autocomplete.js"></script>
+</%def>
+
+<%def name="autocomplete_css_includes()">
+    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+    <link href="css/autocomplete.css" rel="stylesheet"/>
+</%def>
+
+
+
+#
 # autocomplete: instance creation for the jQuery autocomplete...
 #
 <%def name="autocomplete_search_input(id='#place')">
@@ -98,17 +114,14 @@
     </script>
 </%def>
 
-#
-# autocomplete: CSS and JS includes...
-#
-<%def name="autocomplete_css_includes()">
-    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
-    <link href="css/autocomplete.css" rel="stylesheet"/>
-</%def>
-<%def name="autocomplete_js_includes()">
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="js/autocomplete.js"></script>
+##
+## auto complete - localize name
+## (TODO - this won't work, ala AJAX ... so what to do?)
+##
+<%def name="localize_place_name(name, type_name, city, stop_id)">
+    function localized_place_name_format(doc)
+    {
+    }
 </%def>
 
 ##

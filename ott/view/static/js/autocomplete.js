@@ -22,25 +22,20 @@ function SOLRAutoComplete(input_div, num_results, solr_url) {
      * function that controls the naming of the geo point
      * NOTE: this isn't localized (e.g., type name and city conjunction), so override in .mako
      *
-     * @return: formatted place name, ala "Ave A (Stop ID 2 in Lake Oswego)"
+     * @return: formatted place name, ala 844 SE X Street, Portland -or- A Ave, Portalnd (Stop ID 2)  
      */
-    function place_name_format(doc)
+    function place_name_format(name, city, type, id)
     {
-        var ret_val = '???'
+        var ret_val = name;
         try {
-            ret_val = doc.name;
-
-            city    = '';
-            stop_id = '';
-            if (doc.city && doc.city.length > 0 && doc.city != 'undefined')
-                city = ' in ' + doc.city;
-            if (doc.type_name == 'Stop ID' && doc.stop_id)
-                stop_id = ' ' + doc.stop_id;
-
-            ret_val = doc.name + ' (' + doc.type_name + stop_id + city + ')';
-        } catch(e) {
+            var stop = ''
+            if(type == 'stop')
+                stop = " (Stop ID " + id + ")";
+            ret_val = name + city + stop;
         }
-        return ret_val
+        catch(e) {
+        }
+        return ret_val;
     }
     this.place_name_format = place_name_format;
 
@@ -74,15 +69,25 @@ function SOLRAutoComplete(input_div, num_results, solr_url) {
                         var data = [];
                         for (var i = 0; i < len; i++)
                         {
-                            // step 2: make a label out of name and optionally city
-                            var label = THIS.place_name_format(docs[i]);
+                            var doc = docs[i];
+
+                            // step 2: make a label out of name, type_name and optionally city and stop id
+                            var city = '';
+                            if (doc.city && doc.city.length > 0)
+                                city = ", " + doc.city;
+
+                            var id = doc.id;
+                            if (doc.type == 'stop')
+                                id = doc.stop_id;
+
+                            var label = THIS.place_name_format(doc.name, city, doc.type, id);
 
                             // step 3: make the autocomplete object, and add it to our return array
                             var s = {
-                                "id" : docs[i].id,
-                                "label" : label,
-                                "value" : label,
-                                "solr_doc" : docs[i]
+                                "id"       : doc.id,
+                                "label"    : label,
+                                "value"    : label,
+                                "solr_doc" : doc
                             };
                             data.push(s);
                         }
