@@ -78,6 +78,26 @@
 %>
 </%def>
 
+
+<%def name="name_city_stopid(name, city, type=None, id=None)">
+<%
+    ret_val = _(u'Undefined')
+    try:
+        stop = ''
+        if type == 'stop':
+            stop = " (" + _(u'Stop ID') + " " + id + ")"
+        if city:
+            city = ', ' + city
+        else:
+            city = ''
+        ret_val = name.replace('%26', '&') + city + stop;
+    except:
+        pass
+    return ret_val
+%>
+</%def>
+
+
 <%def name="name_city_str(name, city, type_name=None, stop_id='')">
 <%
     ret_val = _(u'Undefined')

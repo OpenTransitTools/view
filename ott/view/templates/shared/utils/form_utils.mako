@@ -39,7 +39,7 @@
             <input type="hidden" name="geo_type" value="${id}"/>
             <select size="${size}" name="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular"/>
                 %for l in list:
-                <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_str(l['name'], l['city'], l['type_name'], l['stop_id'])}</option>
+                <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_stopid(l['name'], l['city'], l['type'], l['stop_id'])}</option>
                 %endfor
             </select>
         </fieldset>
@@ -118,9 +118,19 @@
 ## auto complete - localize name
 ## (TODO - this won't work, ala AJAX ... so what to do?)
 ##
-<%def name="localize_place_name(name, type_name, city, stop_id)">
-    function localized_place_name_format(doc)
+<%def name="autocomplete_localize_place_name()">
+    function localized_place_name_format(name, city, type, id)
     {
+        var ret_val = name;
+        try {
+            var stop = ''
+            if(type == 'stop')
+                stop = " (${_(u'Stop ID')} " + id + ")";
+            ret_val = name + city + stop;
+        }
+        catch(e) {
+        }
+        return ret_val;
     }
 </%def>
 
