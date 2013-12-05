@@ -105,8 +105,9 @@ def params_to_dict(request):
                 ret_val[key] = value
 
         # save off the full query string into this dict too...
-        if request.query_string and len(request.query_string) > 0:
-            ret_val['query_string'] = request.query_string 
+        #TODO: this is a good idea, bad implementation == makes the URL grow expo-large REALLY BAD 
+        #if request.query_string and len(request.query_string) > 0:
+        #    ret_val['query_string'] = request.query_string 
     except:
         # assume that request is the dict / string for params, and hope for the best...
         ret_val = request
