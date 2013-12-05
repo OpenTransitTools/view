@@ -18,6 +18,32 @@ function SOLRAutoComplete(input_div, num_results, solr_url) {
     }
     this.select_callback = select_callback;
 
+    /** 
+     * function that controls the naming of the geo point
+     * NOTE: this isn't localized (e.g., type name and city conjunction), so override in .mako
+     *
+     * @return: formatted place name, ala "Ave A (Stop ID 2 in Lake Oswego)"
+     */
+    function place_name_format(doc)
+    {
+        var ret_val = '???'
+        try {
+            ret_val = doc.name;
+
+            city    = '';
+            stop_id = '';
+            if (doc.city && doc.city.length > 0 && doc.city != 'undefined')
+                city = ' in ' + doc.city;
+            if (doc.type_name == 'Stop ID' && doc.stop_id)
+                stop_id = ' ' + doc.stop_id;
+
+            ret_val = doc.name + ' (' + doc.type_name + stop_id + city + ')';
+        } catch(e) {
+        }
+        return ret_val
+    }
+    this.place_name_format = place_name_format;
+
     function enable_ajax()
     {
         var THIS = this;  // make SOLRAutoComplete instance 'this' available to jQuery ajax stuff below 
@@ -49,9 +75,7 @@ function SOLRAutoComplete(input_div, num_results, solr_url) {
                         for (var i = 0; i < len; i++)
                         {
                             // step 2: make a label out of name and optionally city
-                            var label = docs[i].name;
-                            if (docs[i].city && docs[i].city.length > 0 && docs[i].city != 'undefined')
-                                label = label + ", " + docs[i].city;
+                            var label = THIS.place_name_format(docs[i]);
 
                             // step 3: make the autocomplete object, and add it to our return array
                             var s = {
