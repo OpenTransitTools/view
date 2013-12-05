@@ -194,7 +194,7 @@ def stop_select_list(request):
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
 def stop_select_geocode(request):
     place = html_utils.get_first_param(request, 'place')
-    ret_val = call_geocoder(request, place)
+    ret_val = geocode_utils.call_geocoder(request, place)
     return ret_val
 
 @view_config(route_name='stops_near_mobile', renderer='mobile/stops_near.html')
@@ -221,7 +221,7 @@ def stops_near(request):
         call_near_ws()
     else:
         place = html_utils.get_first_param(request, 'place')
-        geo = call_geocoder(request, place)
+        geo = geocode_utils.call_geocoder(request, place)
 
         if geo['count'] == 1:
             single_geo = geo['geocoder_results'][0]
