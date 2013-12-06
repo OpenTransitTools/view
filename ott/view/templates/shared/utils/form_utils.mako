@@ -81,15 +81,15 @@
 #
 # autocomplete: CSS and JS includes...
 #
-<%def name="autocomplete_js_includes()">
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-    <script src="js/autocomplete.js"></script>
+<%def name="autocomplete_js_includes(prefix='js')">
+    <script src="${prefix}/jquery.js"></script>
+    <script src="${prefix}/jquery-ui-autocomplete.js"></script>
+    <script src="${prefix}/autocomplete.js"></script>
 </%def>
 
-<%def name="autocomplete_css_includes()">
-    <link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
-    <link href="css/autocomplete.css" rel="stylesheet"/>
+<%def name="autocomplete_css_includes(prefix='css')">
+    <link href="${prefix}/jquery-ui-autocomplete.css" rel="stylesheet"/>
+    <link href="${prefix}/autocomplete.css" rel="stylesheet"/>
 </%def>
 
 ##

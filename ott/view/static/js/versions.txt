@@ -1,0 +1,2 @@
+http://code.jquery.com/jquery-1.9.1.js
+http://code.jquery.com/ui/1.10.3/jquery-ui.js (minimized / custom built jquery-ui.js for just autocomplete)
