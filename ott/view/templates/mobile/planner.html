@@ -15,7 +15,7 @@
 <%def name="side_bar()">
     <aside id="aside" class="aside">
         ${side.sidebar_adverts(adverts)}
-        ${side.help_map_feedback(plan['params']['map_planner'], plan['params']['feedback_url'], plan['params']['feedback_txt'], '/tripplanner/trip-help.htm')}
+        ${side.planner(plan, '/tripplanner/trip-help.htm')}
     </aside>
 </%def>
 <%def name="planner_selected()">class="selected"</%def>

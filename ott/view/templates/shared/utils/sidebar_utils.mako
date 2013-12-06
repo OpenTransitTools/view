@@ -33,21 +33,21 @@
     %endif
 </%def>
 
+<%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
+
 ##
 ##  show a few links on the sidebar (w/icons)
 ##  help: specify the url (default to trip planner)
 ##  imap: link to the imap
 ##  feedback: link to feedback too ... caller provides
 ##  onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/contact/']); 
-## 
+##  , plan['params']['feedback_url'], plan['params']['feedback_txt']
 ##
-<%def name="help_map_feedback(map_params='map', feedback_params=None, feedback_txt=None, help_url='/tripplanner/trip-help.htm')">
+<%def name="planner(plan, help_url='/tripplanner/trip-help.htm')">
     <div id="sidebar-icons">
         <p class="helptips"><a href="${util.url_domain()}${help_url}" target="#"><span>${_(u'Help/tips')}</span></a></p>
-        <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${map_params}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
-        %if feedback_params and feedback_txt:
-             <p class="feedbackreport"><a href="/feedback.html?app=${feedback_params}"><span>${_(u'Feedback/report a problem')} ${feedback_txt}</span></a></p>
-        %endif
+        <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
+        <p class="feedbackreport"><a target="_blank" href="${util.trimet_feedback_url(plib.str_title(plan), _(u'Tripplanner itinerary'), request.url)}">${_(u'Having problems? Click here for technical support.')}</a></p>
     </div><!-- end #sidebar-icons -->
 </%def>
 

@@ -8,7 +8,7 @@
 ## typical itinerary page title
 ##
 <%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
-
+<%def name="str_title(plan)"><% return "{0} - {1} {2} {3}".format(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])%></%def>
 #
 # header details w/ from & to details, plus optional trip details & edit links
 #
