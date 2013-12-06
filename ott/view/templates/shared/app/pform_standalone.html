@@ -1,4 +1,8 @@
 ## -*- coding: utf-8 -*-
 <%namespace name="pform" file="/shared/utils/planner_form_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="form"  file="/shared/utils/form_utils.mako"/>
+<%namespace name="page"  file="/shared/utils/pagetype_utils.mako"/>
+${form.autocomplete_css_includes()}
 ${pform.planner_form(form_action='/planner/planner.html')}
+${form.autocomplete_js_includes()}
+${pform.autocomplete_trip_planner()}
