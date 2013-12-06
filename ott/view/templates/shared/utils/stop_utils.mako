@@ -7,6 +7,7 @@
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 
 <%def name="page_title(stop)">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
+<%def name="str_title(stop)"><% return "Stop ID {0}".format(stop['stop_id']) %></%def>
 
 ##
 ## stop ambiguous geocode form(s) 

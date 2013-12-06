@@ -149,8 +149,15 @@
 <a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
 </%def>
 
+##
+## FEEDBACK URL: http://trimet.org/mailforms/tripfeedback?mailform[subject]=Stop X&mailform[url]=<a href='app url'>Blah</a>
+## 
+<%def name="trimet_feedback_url(subject, message, url='/mailforms/tripfeedback')"><% import urllib %>${url_domain()}${url}?mailform[subject]=${urllib.quote(subject)}&mailform[url]=${urllib.quote(message)}</%def>
+
+##
 ## from / to links
-## TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc...
+## TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc...\
+##
 <%def name="plan_a_trip_links(name, lon, lat, extra_params='')">
 <h3 class="tight">${_(u'Plan a trip')}</h3>
 <p>

@@ -3,7 +3,7 @@
 ## routines for different sidebar content
 ##
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 
 <%def name="tc_pr_lr_wes_mall()">
     <!-- begin #sidebar -->
@@ -51,16 +51,21 @@
     </div><!-- end #sidebar-icons -->
 </%def>
 
+
 ##
-##
+## make the stop landing page (right) sidebar
 ##
 <%def name="stop(stop, extra_params)">
+<%
+    subject = su.str_title(stop)
+    message = '<a href="{0}">{1}</a>'.format(request.url, subject)
+%>
     <aside id="aside" class="aside">
         <h2>${_(u'See also')}</h2>  
         <ul class="links">
             <li><a href="nearest_service_form.html?stop_id=${stop['stop_id']}&name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Find nearest service to')} ${stop['name']}</a></li>
         </ul>
-        <p class="feedback"><a href="feedback.html?app=stop&stop_id=${stop['stop_id']}${extra_params}">${_(u'Having problems? Click here for technical support.')}</a></p>
+        <p class="feedback"><a target="_blank" href="${util.trimet_feedback_url(subject, message)}">${_(u'Having problems? Click here for technical support.')}</a></p>
     </aside>
     <!-- end #sidebar -->
 </%def>
