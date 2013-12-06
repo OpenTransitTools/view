@@ -152,7 +152,7 @@
 ##
 ## FEEDBACK URL: http://trimet.org/mailforms/tripfeedback?mailform[subject]=Stop X&mailform[url]=<a href='app url'>Blah</a>
 ## 
-<%def name="trimet_feedback_url(subject, message, url='/mailforms/tripfeedback')"><% import urllib %>${url_domain()}${url}?mailform[subject]=${urllib.quote(subject)}&mailform[url]=${urllib.quote(message)}</%def>
+<%def name="trimet_feedback_url(subject, message, url)"><% import urllib %>http://trimet.org/mailforms/tripfeedback?mailform[subject]=${urllib.quote(subject)}&mailform[url]=<a href='${urllib.quote(url)}'>${urllib.quote(message)}</a></%def>
 
 ##
 ## from / to links
