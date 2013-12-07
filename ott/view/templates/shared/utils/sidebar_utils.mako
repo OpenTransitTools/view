@@ -47,7 +47,7 @@
     <div id="sidebar-icons">
         <p class="helptips"><a href="${util.url_domain()}${help_url}" target="#"><span>${_(u'Help/tips')}</span></a></p>
         <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
-        <p class="feedbackreport"><a target="_blank" href="${util.trimet_feedback_url(plib.str_title(plan), _(u'Tripplanner itinerary'), request.url)}">${_(u'Having problems? Click here for technical support.')}</a></p>
+        <p class="feedbackreport"><a target="_blank" href="${util.trimet_feedback_url(plib.str_title(plan), _(u'Tripplanner itinerary'))}">${_(u'Having problems? Click here for technical support.')}</a></p>
     </div><!-- end #sidebar-icons -->
 </%def>
 
@@ -61,7 +61,7 @@
         <ul class="links">
             <li><a href="nearest_service_form.html?stop_id=${stop['stop_id']}&name=${stop['name']}&lat=${stop['lat']}&lon=${stop['lon']}${extra_params}">${_(u'Find nearest service to')} ${stop['name']}</a></li>
         </ul>
-        <p class="feedback"><a target="_blank" href="${util.trimet_feedback_url(su.str_title(stop), _(u'Stop landing page'), request.url)}">${_(u'Having problems? Click here for technical support.')}</a></p>
+        <p class="feedback"><a target="_blank" href="${util.trimet_feedback_url(su.str_title(stop), _(u'Stop landing page'))}">${_(u'Having problems? Click here for technical support.')}</a></p>
     </aside>
     <!-- end #sidebar -->
 </%def>

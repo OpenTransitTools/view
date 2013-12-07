@@ -9,9 +9,27 @@
 ##
 <%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
 <%def name="str_title(plan)"><% return "{0} - {1} {2} {3}".format(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])%></%def>
-#
-# header details w/ from & to details, plus optional trip details & edit links
-#
+<%def name="str_description(plan)">
+<% 
+    title = arr = tm = dt = mode = opt = walk = ''
+    try:
+        title = str_title(plan)
+        arr   = get_depart_arrive(plan['params']['is_arrive_by'])
+        tm    = get_time(itinerary, plan['params']['is_arrive_by'])
+        dt    = itinerary['date_info']['pretty_date']
+        mode  = plan['params']['modes']
+        opt   = get_optimize(plan['params']['optimize'])
+        walk  = plan['params']['walk']
+    except:
+        pass
+
+    return "{0}\n{1} {2} {3} {4} {5}\n{6} {7} {8}".format(title, arr, tm, dt,  _(u'using'), mode, opt, _(u'with a maximum walk of'), walk)
+%>
+</%def>
+
+##
+## header details w/ from & to details, plus optional trip details & edit links
+##
 <%def name="render_trip_details(plan, itinerary=None, extra_params='')">
     <div id="details" class="group">
         <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
@@ -24,7 +42,7 @@
 </%def>
 
 ##
-##
+## option tabs
 ##
 <%def name="render_tabs(plan, extra_params)">
 %if len(plan['itineraries']) > 1:

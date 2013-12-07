@@ -152,7 +152,20 @@
 ##
 ## FEEDBACK URL: http://trimet.org/mailforms/tripfeedback?mailform[subject]=Stop X&mailform[url]=<a href='app url'>Blah</a>
 ## 
-<%def name="trimet_feedback_url(subject, message, url)"><% import urllib %>http://trimet.org/mailforms/tripfeedback?mailform[subject]=${urllib.quote(subject)}&mailform[url]=<a href='${urllib.quote(url)}'>${urllib.quote(message)}</a></%def>
+<%def name="trimet_feedback_url(subject, message, url=None)"><% 
+    # use escape method from urllib 
+    import urllib
+
+    # default to url in request object
+    if url is None:
+        url = request.url
+
+    # localized mailform app
+    mailform_page="tripfeedback"
+    if "_LOCALE_=es" in url:
+        mailform_page="es_tripfeedback"
+
+%>http://trimet.org/mailforms/${mailform_page}?mailform[subject]=${urllib.quote(subject)}&mailform[url]=<a href='${urllib.quote(url)}'>${urllib.quote(message)}</a></%def>
 
 ##
 ## from / to links
