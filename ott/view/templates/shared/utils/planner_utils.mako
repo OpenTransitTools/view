@@ -15,13 +15,15 @@
     try:
         title = str_title(plan)
         arr   = get_depart_arrive(plan['params']['is_arrive_by'])
-        tm    = get_time(itinerary, plan['params']['is_arrive_by'])
-        dt    = itinerary['date_info']['pretty_date']
         mode  = plan['params']['modes']
         opt   = get_optimize(plan['params']['optimize'])
         walk  = plan['params']['walk']
-    except:
-        pass
+
+        itinerary = get_itinerary(plan)
+        dt    = itinerary['date_info']['pretty_date']
+        tm    = get_time(itinerary, plan['params']['is_arrive_by'])
+    except Exception, e:
+        print e
 
     return "{0}\n{1} {2} {3} {4} {5}\n{6} {7} {8}".format(title, arr, tm, dt,  _(u'using'), mode, opt, _(u'with a maximum walk of'), walk)
 %>
