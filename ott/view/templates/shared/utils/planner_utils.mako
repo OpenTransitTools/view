@@ -25,7 +25,7 @@
     except Exception, e:
         print e
 
-    return "{0}\n{1} {2} {3} {4} {5}\n{6} {7} {8}".format(title, arr, tm, dt,  _(u'using'), mode, opt, _(u'with a maximum walk of'), walk)
+    return "{0}<br/>{1} {2}, {3}<br/>{4} {5} <br/>{6}<br/>{7} {8}".format(title, arr, tm, dt,  _(u'using'), mode, opt, _(u'with a maximum walk of'), walk)
 %>
 </%def>
 
