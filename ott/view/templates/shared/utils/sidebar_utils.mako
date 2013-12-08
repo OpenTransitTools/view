@@ -4,6 +4,7 @@
 ##
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
+<%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 
 <%def name="tc_pr_lr_wes_mall()">
     <!-- begin #sidebar -->
@@ -33,8 +34,6 @@
     %endif
 </%def>
 
-<%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
-
 ##
 ##  show a few links on the sidebar (w/icons)
 ##  help: specify the url (default to trip planner)
@@ -47,7 +46,7 @@
     <div id="sidebar-icons">
         <p class="helptips"><a href="${util.url_domain()}${help_url}" target="#"><span>${_(u'Help/tips')}</span></a></p>
         <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
-        <p class="feedbackreport"><a target="_blank" href="${util.trimet_feedback_url(plib.str_title(plan), _(u'Tripplanner itinerary'))}">${_(u'Having problems? Click here for technical support.')}</a></p>
+        <p class="feedbackreport"><a target="_blank" href="${util.trimet_feedback_url(plib.str_title(plan), plib.str_description(plan))}">${_(u'Having problems? Click here for technical support.')}</a></p>
     </div><!-- end #sidebar-icons -->
 </%def>
 
