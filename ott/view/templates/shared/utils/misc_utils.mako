@@ -153,19 +153,20 @@
 ## FEEDBACK URL: http://trimet.org/mailforms/tripfeedback?mailform[subject]=Stop X&mailform[url]=<a href='app url'>Blah</a>
 ## 
 <%def name="trimet_feedback_url(subject, message, url=None)"><% 
-    # use escape method from urllib 
-    import urllib
-
     # default to url in request object
     if url is None:
         url = request.url
+
+    url = prep_url_params(url, url_escape=True, spell_and=True)
+    subject = prep_url_params(subject, url_escape=True, spell_and=True)
+    message = prep_url_params(message, url_escape=True, spell_and=True)
 
     # localized mailform app
     mailform_page="tripfeedback"
     if "_LOCALE_=es" in url:
         mailform_page="es_tripfeedback"
 
-%>http://trimet.org/mailforms/${mailform_page}?mailform[subject]=${urllib.quote(subject)}&mailform[url]=<a href='${urllib.quote(url)}'>${urllib.quote(message)}</a></%def>
+%>http://trimet.org/mailforms/${mailform_page}?mailform[subject]=${subject}&mailform[url]=<a href='${url}'>${message}</a></%def>
 
 ##
 ## from / to links
@@ -213,14 +214,25 @@
 ##
 ## do things like escape & in intersection names, etc...
 ##
-<%def name="prep_url_params(params, no_space=False)">
+<%def name="prep_url_params(params, no_space=False, url_escape=False, spell_and=False)">
 <%
     ret_val = params
     try:
+        # step 1: convert & in intersection names, ala F Blvd & Z Ave to %26
         if no_space:
             ret_val = ret_val.replace('&', '%26')
         else:
             ret_val = ret_val.replace(' & ', ' %26 ')
+
+        # step 2: replace all instance of %26 with 'and'
+        if spell_and:
+            ret_val = ret_val.replace('%26', 'and')
+
+        # step 3: order is important ... want to convert to %26 above before escaping...else you'll get an &amp; in you name...
+        if url_escape:
+            # use escape method from urllib 
+            import urllib
+            ret_val = urllib.quote(ret_val) 
     except:
         pass
     return ret_val
