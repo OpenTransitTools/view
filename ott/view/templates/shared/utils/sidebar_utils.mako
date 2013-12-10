@@ -6,7 +6,7 @@
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 
-<%def name="tc_pr_lr_wes_mall()">
+<%def name="tc_pr_lr_wes_mall(msg='Stop related page')">
     <!-- begin #sidebar -->
     <aside id="aside" class="aside">
         <h2>${_(u'Related')}</h2>  
@@ -17,6 +17,7 @@
             <li><a href="${util.url_domain()}/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
             <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
         </ul>
+        <p class="feedback"><a target="_blank" href="${util.trimet_feedback_url(_(msg))}">${_(u'Having problems? Click here for technical support.')}</a></p>
     </aside>
     <!-- end #sidebar -->
 </%def>

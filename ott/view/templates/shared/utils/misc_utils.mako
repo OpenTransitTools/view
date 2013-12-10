@@ -152,10 +152,12 @@
 ##
 ## FEEDBACK URL: http://trimet.org/mailforms/tripfeedback?mailform[subject]=Stop X&mailform[url]=<a href='app url'>Blah</a>
 ## 
-<%def name="trimet_feedback_url(subject, message, url=None)"><% 
+<%def name="trimet_feedback_url(subject, message=None, url=None)"><% 
     # default to url in request object
     if url is None:
         url = request.url
+    if message is None:
+        message = request.url
 
     url = prep_url_params(url, url_escape=True, spell_and=True)
     subject = prep_url_params(subject, url_escape=True, spell_and=True)
