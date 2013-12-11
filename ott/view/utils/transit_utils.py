@@ -1,6 +1,8 @@
 import logging
 log = logging.getLogger(__file__)
 
+from ott.view.utils import object_utils
+
 def is_valid_route(route):
     ''' will further parse the route string, and check for route in GTFSdb
     '''
@@ -18,11 +20,19 @@ def plan_title(title, frm, sep, to, fmt=u"{0} - {1} {2} {3}", def_val=''):
         mostly done here to encode strings for utf-8 crap
     '''
     ret_val = def_val
+    #import pdb; pdb.set_trace()
     try:
-        ret_val = fmt.format(title, frm, sep, to)
+        ret_val = fmt.format(object_utils.to_str(title), object_utils.to_str(frm), object_utils.to_str(sep), object_utils.to_str(to))
     except Exception, e:
         log.debug(e)
+        try:
+            ret_val = object_utils.to_str(title)
+        except:
+            pass
+        if not object_utils.has_content(ret_val):
+            ret_val = def_val
     return ret_val
+
 
 def plan_description(plan, title, arr, opt, using_txt, max_walk_txt, fmt=u"{0}<br/>{1} {2}, {3}<br/>{4} {5} <br/>{6}<br/>{7} {8}"):
     ''' used for getting a planner description in text
