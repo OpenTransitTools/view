@@ -151,6 +151,8 @@
 
 ##
 ## FEEDBACK URL: http://trimet.org/mailforms/tripfeedback?mailform[subject]=Stop X&mailform[url]=<a href='app url'>Blah</a>
+##
+## TODO: have a default feedback_url, and override this method for trimet...
 ## 
 <%def name="trimet_feedback_url(subject, message=None, url=None)"><% 
     # default to url in request object
@@ -159,16 +161,24 @@
     if message is None:
         message = request.url
 
-    url = prep_url_params(url, url_escape=True, spell_and=True)
-    subject = prep_url_params(subject, url_escape=True, spell_and=True)
-    message = prep_url_params(message, url_escape=True, spell_and=True)
-
     # localized mailform app
     mailform_page="tripfeedback"
     if "_LOCALE_=es" in url:
         mailform_page="es_tripfeedback"
 
+    url = prep_url_params(url, url_escape=True, spell_and=True)
+    subject = prep_url_params(subject, url_escape=True, spell_and=True)
+    message = prep_url_params(message, url_escape=True, spell_and=True)
 %>http://trimet.org/mailforms/${mailform_page}?mailform[subject]=${subject}&mailform[url]=<a href='${url}'>${message}</a></%def>
+
+<%def name="mailto_url(subject='Link to TriMet', message='Check out this page on trimet.org', url=None)"><%
+    if url is None:
+        url = request.url
+    url = prep_url_params(url, url_escape=True, spell_and=True)
+    subject = prep_url_params(_(subject), url_escape=True, spell_and=True)
+    message = prep_url_params(_(message), url_escape=True, spell_and=True)
+%>mailto:?subject=${subject}&body=${message}%20:%20${url}</%def>
+
 
 ##
 ## from / to links
