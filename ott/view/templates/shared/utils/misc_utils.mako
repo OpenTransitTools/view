@@ -209,8 +209,9 @@
 
 <%def name="make_named_coord(name, lat, lon)">
 <%
+    name = unicode(name)
     name = name.replace('&', '%26')
-    ret_val = "{0}::{1},{2}".format(name, lat, lon)
+    ret_val = u"{0}::{1},{2}".format(name, lat, lon)
     return ret_val
 %>
 </%def>

@@ -38,7 +38,7 @@ class Base(object):
         #import pdb; pdb.set_trace()
         domain = config.get('controller', 'http://127.0.0.1:34443')
         url = "{0}/{1}?{2}".format(domain, svc, object_utils.to_str(args))
-        #log.info("calling service: {0}".format(url))
+        log.info("calling service: {0}".format(url))
         stream = urllib.urlopen(url)
         otp = stream.read()
         ret_val = json.loads(otp)
