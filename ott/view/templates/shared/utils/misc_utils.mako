@@ -175,8 +175,8 @@
     if url is None:
         url = request.url
     url = prep_url_params(url, url_escape=True, spell_and=True)
-    subject = prep_url_params(_(subject), url_escape=True, spell_and=True)
-    message = prep_url_params(_(message), url_escape=True, spell_and=True)
+    subject = prep_url_params(subject, url_escape=True, spell_and=True)
+    message = prep_url_params(message, url_escape=True, spell_and=True)
 %>mailto:?subject=${subject}&body=${message}%20:%20${url}</%def>
 
 

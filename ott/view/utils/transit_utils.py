@@ -15,7 +15,7 @@ def is_valid_route(route):
     return ret_val
 
 
-def plan_title(title, frm, sep, to, fmt=u"{0} - {1} {2} {3}", def_val=''):
+def plan_title(title, frm, sep, to, fmt="{0} - {1} {2} {3}", def_val=''):
     ''' used for getting a planner title
         mostly done here to encode strings for utf-8 crap
     '''
@@ -34,7 +34,7 @@ def plan_title(title, frm, sep, to, fmt=u"{0} - {1} {2} {3}", def_val=''):
     return ret_val
 
 
-def plan_description(plan, title, arr, opt, using_txt, max_walk_txt, fmt=u"{0}<br/>{1} {2}, {3}<br/>{4} {5} <br/>{6}<br/>{7} {8}"):
+def plan_description(plan, title, arr, opt, using_txt, max_walk_txt, fmt="{0}<br/>{1} {2}, {3}<br/>{4} {5} <br/>{6}<br/>{7} {8}"):
     ''' used for getting a planner description in text
         mostly done here to encode strings for utf-8 carap
     '''
@@ -46,11 +46,15 @@ def plan_description(plan, title, arr, opt, using_txt, max_walk_txt, fmt=u"{0}<b
         tm = get_time(itinerary, plan['params']['is_arrive_by'])
         dt = itinerary['date_info']['pretty_date']
 
-        mode  = plan['params']['modes']
+        mode  = object_utils.to_str(plan['params']['modes'])
         walk  = plan['params']['walk']
 
-        using_txt = using_txt
-        max_walk_txt = max_walk_txt
+        using_txt = object_utils.to_str(using_txt)
+        max_walk_txt = object_utils.to_str(max_walk_txt)
+        title = object_utils.to_str(title)
+        arr = object_utils.to_str(arr)
+        opt = object_utils.to_str(opt)
+        
     except Exception, e:
         log.debug(e)
 
