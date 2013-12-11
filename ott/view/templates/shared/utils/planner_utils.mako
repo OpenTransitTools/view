@@ -8,24 +8,26 @@
 ## typical itinerary page title
 ##
 <%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
-<%def name="str_title(plan)"><% return "{0} - {1} {2} {3}".format(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])%></%def>
-<%def name="str_description(plan)">
-<% 
+<%def name="str_title(plan)"><% return "{0} - {1} {2} {3}".format(_(u'Trip Planner').encode(), plan['from']['name'], _(u'to').encode(), plan['to']['name'])%></%def>
+<%def name="Xstr_description(plan)"><%
     title = arr = tm = dt = mode = opt = walk = ''
+    ret_val = ''
     try:
-        title = str_title(plan)
-        arr   = get_depart_arrive(plan['params']['is_arrive_by'])
-        mode  = plan['params']['modes']
-        opt   = get_optimize(plan['params']['optimize'])
-        walk  = plan['params']['walk']
+        title = str_title(plan).encode()
+        ret_val = title
+        arr   = get_depart_arrive(plan['params']['is_arrive_by']).encode()
+        mode  = plan['params']['modes'].encode()
+        opt   = get_optimize(plan['params']['optimize']).encode()
+        walk  = plan['params']['walk'].encode()
 
         itinerary = get_itinerary(plan)
-        dt    = itinerary['date_info']['pretty_date']
+        dt    = encode(itinerary['date_info']['pretty_date']).encode()
         tm    = get_time(itinerary, plan['params']['is_arrive_by'])
+        ret_val = "{0}<br/>{1} {2}, {3}<br/>{4} {5} <br/>{6}<br/>{7} {8}".format(title, arr, tm, dt,  _(u'using').encode(), mode, opt, _(u'with a maximum walk of').encode(), walk) 
     except Exception, e:
         print e
 
-    return "{0}<br/>{1} {2}, {3}<br/>{4} {5} <br/>{6}<br/>{7} {8}".format(title, arr, tm, dt,  _(u'using'), mode, opt, _(u'with a maximum walk of'), walk)
+    return ret_val
 %>
 </%def>
 
