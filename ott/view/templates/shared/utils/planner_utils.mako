@@ -8,28 +8,15 @@
 ## typical itinerary page title
 ##
 <%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
-<%def name="str_title(plan)"><% return "{0} - {1} {2} {3}".format(_(u'Trip Planner').encode(), plan['from']['name'], _(u'to').encode(), plan['to']['name'])%></%def>
-<%def name="Xstr_description(plan)"><%
-    title = arr = tm = dt = mode = opt = walk = ''
-    ret_val = ''
-    try:
-        title = str_title(plan).encode()
-        ret_val = title
-        arr   = get_depart_arrive(plan['params']['is_arrive_by']).encode()
-        mode  = plan['params']['modes'].encode()
-        opt   = get_optimize(plan['params']['optimize']).encode()
-        walk  = plan['params']['walk'].encode()
-
-        itinerary = get_itinerary(plan)
-        dt    = encode(itinerary['date_info']['pretty_date']).encode()
-        tm    = get_time(itinerary, plan['params']['is_arrive_by'])
-        ret_val = "{0}<br/>{1} {2}, {3}<br/>{4} {5} <br/>{6}<br/>{7} {8}".format(title, arr, tm, dt,  _(u'using').encode(), mode, opt, _(u'with a maximum walk of').encode(), walk) 
-    except Exception, e:
-        print e
-
-    return ret_val
+<%def name="str_title(plan)"><% from ott.view.utils import transit_utils; return transit_utils.plan_title(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])%></%def>
+<%def name="str_description(plan)"><% 
+    title = str_title(plan)
+    arr = get_depart_arrive(plan['params']['is_arrive_by'])
+    opt = get_optimize(plan['params']['optimize'])
+    from ott.view.utils import transit_utils;
+    return transit_utils.plan_description(plan, title, arr, opt, _(u'using'), _(u'with a maximum walk of'))
 %>
-</%def>
+</%def> 
 
 ##
 ## header details w/ from & to details, plus optional trip details & edit links
@@ -229,31 +216,9 @@
     </div>
 </%def>
 
-
-<%def name="get_time(itinerary, is_arrive_by)">
+<%def name="get_depart_arrive(is_arrive_by=False)">
 <%
     if is_arrive_by:
-        time = itinerary['date_info']['end_time']
-    else:
-        time = itinerary['date_info']['start_time']
-    return time
-%>
-</%def>
-
-<%def name="get_itinerary(plan)">
-<%
-    # find target itinerary 
-    for itin in plan['itineraries']:
-        itinerary = itin
-        if itin['selected']:
-            break
-    return itinerary
-%>
-</%def>
-
-<%def name="get_depart_arrive(is_arrive=False)">
-<%
-    if is_arrive:
         ret_val = _(u'Arrive by')
     else:
         ret_val = _(u'Depart after') 
@@ -261,10 +226,10 @@
 %>
 </%def>
 
-
 <%def name="get_route_name(route)"><% return route['name'] + " " + _(u'to') + " " + route['headsign'] if route['headsign'] else ''%></%def>
-<%def name="get_route_link(name, url, mode)">
-<a href="${url}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
+<%def name="get_time(itinerary, is_arrive_by)"><% from ott.view.utils import transit_utils; return transit_utils.get_time(itinerary, is_arrive_by)%></%def>
+<%def name="get_itinerary(plan)"><% from ott.view.utils import transit_utils; return transit_utils.get_itinerary(plan)%></%def>
+<%def name="get_route_link(name, url, mode)"><a href="${url}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
 <%def name="get_interline_note(interline)">
 %if interline != None:
 ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
