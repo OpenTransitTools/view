@@ -139,6 +139,9 @@ def planner(request):
         ret_val = make_subrequest(request, '/planner_geocode.html', query_string, geocode_param)
     else:
         ret_val = request.model.get_plan(query_string, **request.params)
+        ## TODO: more info / send ret_val to error page for error msg rendering, etc...
+        if ret_val and 'error' in ret_val:
+            ret_val = make_subrequest(request, '/exception.html')
 
     return ret_val
 
