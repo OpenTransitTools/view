@@ -23,7 +23,7 @@
     <title>TriMet: Public Transit in the Portland Area</title>
 
     <!--#include virtual="/includes/structure/head-top.htm" -->
-    <link rel="stylesheet" href="/css/home.css" type="text/css" media="all" />
+    <link rel="stylesheet" href="/css/triptools-home.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/css/triptools.css" type="text/css" media="all" />
 
     <!--#include virtual="/includes/structure/jquery-init.htm" --><!-- jquery for time/date and orbit slider -->
@@ -55,11 +55,12 @@
 		
         <div id="content"></div><!-- for skip navigation -->
 
-        <link rel="stylesheet" href="http://dev.trimet.org/css/triptools-tp.css" type="text/css" media="all"/>
-        <section id="main-fullwidth"  class="main">
-        <!--#include virtual="/planner/pform_standalone.html?$QUERY_STRING" -->
-        </section>
-
+		<div id="branding-wrap">
+            <section id="branding">
+                <!--#include virtual="/planner/pform_standalone.html?$QUERY_STRING" -->
+            </section>
+		</div>
+        
         <div id="imap-wrap">
             <section id="imap" class="group">
                 <h3><a href="/maptripplanner/index.htm" ><strong>Interactive Map Trip Planner</strong>: Get transit + biking directions in one itinerary &raquo;</a></h3>

@@ -94,11 +94,14 @@
 ##
 <%def name="planner_form(form_action='planner.html', is_mobile=False)">
 ${form.clear_element_scriptlet()}
-<div id="plantrip" class="group">
+<div id="plantrip" class="basic group">
+	%if is_homepage:
+	%endif 
+	<h2><b>Plan your trip</b> on TriMet</h2>
     <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style"/>
         <div id="plantrip-left">
-            <fieldset>
-                <label for="from">${_(u'From')}</label>
+            <fieldset class="normal">
+                <label for="from" class="homepage-hide">${_(u'From')}</label>
                 ${input_form('from', 'from', 'Address, intersection, landmark or Stop ID', 1, params['fromPlace'], params['fromCoord'], is_mobile)}
                 %if is_mobile:
                 <p id="from-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
@@ -106,8 +109,8 @@ ${form.clear_element_scriptlet()}
                 %endif 
             </fieldset>
 
-            <fieldset>
-                <label for="going">${_(u'To')}</label>
+            <fieldset class="normal">
+                <label for="going" class="homepage-hide">${_(u'To')}</label>
                 ${input_form('to', 'going', 'Address, intersection, landmark or Stop ID', 2, params['toPlace'], params['toCoord'], is_mobile)}
                 %if is_mobile:
                 <p id="to-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
@@ -121,7 +124,7 @@ ${form.clear_element_scriptlet()}
                     ${arrive_depart_form_option(params['Arr'], is_mobile)}
                 </select>
             </fieldset>
-            <fieldset>
+            <fieldset class="departwhen-units">
                 <div id="departwhen-time">
                     <select name="Hour" id="Hour" tabindex="4"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     %for i in range(1, 13):
@@ -140,7 +143,7 @@ ${form.clear_element_scriptlet()}
                     </select>
                 </div>
                 <div id="departwhen-date">
-                    <span>${_(u'on')}</span>
+                    <span class="homepage-hide">${_(u'on')}</span>
                     <select name="month" id="Month" tabindex="7"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                         ${util.month_abbv_options(params['month'])}
                     </select>
@@ -149,9 +152,14 @@ ${form.clear_element_scriptlet()}
                     </select>
                 </div>
             </fieldset>
+			%if is_homepage:
+			%endif 
+			<div id="more-options" class="basic">
+				<a href="javascript:showTripPlannerAdvanced();"><span>More options &raquo;</span></a>
+			</div>
         </div><!-- end #plantrip-left -->
 
-        <div id="plantrip-right">
+        <div id="plantrip-right" class="basic">
             <p id="trippreferences">${_(u'Trip preferences (optional)')}</p>
             <fieldset class="preferences">
                 <label for="trip-options">${_(u'Show me the')}</label>
@@ -192,7 +200,12 @@ ${form.clear_element_scriptlet()}
                 </div>
                 %endif
             </fieldset>
-            <div><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);" class="trip-help">${_(u'Help')}</a></div>
+            <!--<div><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);" class="trip-help">${_(u'Help')}</a></div>-->
+			%if is_homepage:
+			%endif 
+			<span id="less-options">
+				<a href="javascript:showTripPlannerAdvanced();"><span>&laquo; Fewer options</span></a>
+			</span>
         </div><!-- end #plantrip-right -->
 
         <fieldset class="submit">
