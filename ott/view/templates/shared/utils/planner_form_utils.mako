@@ -92,12 +92,15 @@
 ##
 ## large trip planner form on planner_form.html
 ##
-<%def name="planner_form(form_action='planner.html', is_mobile=False)">
+<%
+is_homepage=False
+%>
+<%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False)">
 ${form.clear_element_scriptlet()}
 <div id="plantrip" class="basic">
-	%if is_homepage:
-	<h2><b>Plan your trip</b> on TriMet</h2>
-	%endif 
+    %if is_homepage:
+    <h2><b>Plan your trip</b> on TriMet</h2>
+    %endif 
     <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style"/>
         <div id="plantrip-left">
             <fieldset class="normal">
@@ -152,11 +155,11 @@ ${form.clear_element_scriptlet()}
                     </select>
                 </div>
             </fieldset>
-			%if is_homepage:
-			<div id="more-options" class="basic">
-				<a href="javascript:showTripPlannerAdvanced();"><span>More options &raquo;</span></a>
-			</div>
-			%endif 
+            %if is_homepage:
+            <div id="more-options" class="basic">
+                <a href="javascript:showTripPlannerAdvanced();"><span>More options &raquo;</span></a>
+            </div>
+            %endif 
         </div><!-- end #plantrip-left -->
 
         <div id="plantrip-right" class="basic">
@@ -201,11 +204,11 @@ ${form.clear_element_scriptlet()}
                 %endif
             </fieldset>
             <!--<div><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);" class="trip-help">${_(u'Help')}</a></div>-->
-			%if is_homepage:
-			<span id="less-options">
-				<a href="javascript:showTripPlannerAdvanced();"><span>&laquo; Fewer options</span></a>
-			</span>
-			%endif 
+            %if is_homepage:
+            <span id="less-options">
+                <a href="javascript:showTripPlannerAdvanced();"><span>&laquo; Fewer options</span></a>
+            </span>
+            %endif 
         </div><!-- end #plantrip-right -->
 
         <fieldset class="submit">
