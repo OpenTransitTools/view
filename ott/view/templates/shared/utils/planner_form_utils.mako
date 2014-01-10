@@ -92,9 +92,6 @@
 ##
 ## large trip planner form on planner_form.html
 ##
-<%
-is_homepage=False
-%>
 <%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False)">
 ${form.clear_element_scriptlet()}
 <div id="plantrip" class="basic">
