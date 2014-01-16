@@ -263,9 +263,8 @@ msgid "Stop related page"
 msgstr ""
 
 #: ott/view/locale/misc-strings.html:78
-#, fuzzy
 msgid "Link to TriMet"
-msgstr "Transporte público y bicicleta"
+msgstr "a TriMet"
 
 #: ott/view/locale/misc-strings.html:79
 msgid "Check out this page on trimet.org"
@@ -367,13 +366,11 @@ msgstr "No podemos encontrar a"
 
 #: ott/view/templates/desktop/planner_geocode.html:34
 #: ott/view/templates/mobile/planner_geocode.html:34
-#, fuzzy
 msgid "location"
-msgstr "Muestre el mapa interactivo"
+msgstr ""
 
 #: ott/view/templates/desktop/planner_walk.html:19
 #: ott/view/templates/mobile/planner_walk.html:19
-#, fuzzy
 msgid "Walking Directions"
 msgstr "Indicaciones para ir a pie"
 
@@ -661,7 +658,6 @@ msgid "Dec"
 msgstr "Dic"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:353
-#, fuzzy
 msgid "Service alert at this stop"
 msgstr "Más información sobre esta parada"
 
@@ -690,8 +686,6 @@ msgstr ""
 "dirige, y nosotros hacemos el resto."
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:99
-#, fuzzy
-#| msgid "Plan a trip"
 msgid "Plan your trip"
 msgstr "Planee un viaje"
 
@@ -710,7 +704,6 @@ msgstr "De"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:107
 #: ott/view/templates/shared/utils/planner_form_utils.mako:116
-#, fuzzy
 msgid "Enter address, intersection, landmark or Stop ID"
 msgstr "Dirección, intersección, lugar o Stop ID (número de la parada)"
 
@@ -1010,25 +1003,22 @@ msgid ""
 msgstr ""
 "Los tiempos de tránsito son estimaciones basadas en la velocidad promedio"
 " del vehículo y la distancia entre paradas principales. Antes de partir, "
-"llame al 503-238-RIDE (7433) o visite trimet.org para obtener información"
-" sobre llegadas en tiempo real de"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:214
 msgid ""
 "for real-time arrival information and any Service Alerts that may affect "
 "your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your "
 "Stop ID to 27299."
-msgstr "y actualizaciones sobre cualquier alerta del servicio."
+msgstr ""
+" sobre llegadas en tiempo real de"
+" y actualizaciones sobre cualquier alerta del servicio."
+" llame al 503-238-RIDE (7433) o visite trimet.org para obtener información"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:231
-#, fuzzy
-#| msgid "Arrive by"
 msgid "Arrive at"
 msgstr "Hora de llegada"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:233
-#, fuzzy
-#| msgid "Depart after"
 msgid "Depart at"
 msgstr "Hora de salida"
 
@@ -1213,9 +1203,8 @@ msgid "all routes"
 msgstr "todas las rutas"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:75
-#, fuzzy
 msgid "Sort"
-msgstr "por"
+msgstr ""
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:76
 msgid "By destination"
@@ -1235,12 +1224,10 @@ msgid "Schedule for"
 msgstr "Horarios de"
 
 #: ott/view/templates/shared/utils/stop_utils.mako:58
-#, fuzzy
 msgid "${number} mile"
 msgstr "${number} pies"
 
 #: ott/view/templates/shared/utils/stop_utils.mako:76
-#, fuzzy
 msgid "Find nearby stops"
 msgstr "Encontrar paradas"
 
