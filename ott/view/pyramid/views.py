@@ -133,17 +133,18 @@ def planner(request):
         basically, call the geocode checker, and then either call the ambiguous geocoder page, or plan the trip planner
     '''
     ret_val = {}
-
+    import pdb; pdb.set_trace()
     query_string, geocode_param = geocode_utils.do_from_to_geocode_check(request)
     if geocode_param:
         ret_val = make_subrequest(request, '/planner_geocode.html', query_string, geocode_param)
     else:
         ret_val = request.model.get_plan(query_string, **request.params)
-        ## TODO: more info / send ret_val to error page for error msg rendering, etc...
         if ret_val and 'error' in ret_val:
-            ret_val = make_subrequest(request, '/exception.html')
+            msg = object_utils.get_error_message(ret_val)
+            ret_val = make_subrequest(request, '/exception.html', 'error_msg={0}'.format(msg))
 
     return ret_val
+
 
 @view_config(route_name='planner_walk_mobile', renderer='mobile/planner_walk.html')
 @view_config(route_name='planner_walk_desktop', renderer='desktop/planner_walk.html')
@@ -205,7 +206,6 @@ def stop_select_geocode(request):
 def stops_near(request):
     ret_val = {}
 
-    #import pdb; pdb.set_trace()
     def call_near_ws(geo=None):
         p = Place.make_from_request(request)
         p.update_values_via_dict(geo)

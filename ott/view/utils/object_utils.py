@@ -5,6 +5,16 @@ import simplejson as json
 import logging
 log = logging.getLogger(__file__)
 
+def get_error_message(err, def_val=None):
+    ''' return error message from an OTP error object
+        {'error': {'msg': 'Origin is within a trivial distance of the destination.', 'id': 409}}
+    '''
+    ret_val = def_val
+    try:
+        ret_val = err.error.msg
+    except:
+        ret_val = def_val
+    return ret_val
 
 def update_object(tgt, src):
     ''' copy values from src to tgt, for any shared element names between the two objects
