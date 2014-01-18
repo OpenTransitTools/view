@@ -138,10 +138,14 @@ def planner(request):
     if geocode_param:
         ret_val = make_subrequest(request, '/planner_geocode.html', query_string, geocode_param)
     else:
-        ret_val = request.model.get_plan(query_string, **request.params)
-        if ret_val and 'error' in ret_val:
-            msg = object_utils.get_error_message(ret_val)
-            ret_val = make_subrequest(request, '/exception.html', 'error_message={0}'.format(msg))
+        mapit = html_utils.get_first_param(request, 'mapit')
+        if mapit:
+            ret_val = forward_request(request, 'http://ride.trimet.org')
+        else:
+            ret_val = request.model.get_plan(query_string, **request.params)
+            if ret_val and 'error' in ret_val:
+                msg = object_utils.get_error_message(ret_val)
+                ret_val = make_subrequest(request, '/exception.html', 'error_message={0}'.format(msg))
 
     return ret_val
 
@@ -349,6 +353,11 @@ def get_path(request, path):
     if is_mobile(request):
         ret_val = '/m' + path
     return ret_val
+
+def forward_request(request, path, query_string=None, extra_params=None):
+    # http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}
+    # def map_url_params(self, fmt="from={frm}&to={to}&time={time}&maxHours={max_hours}&date={month}/{day}/{year}&mode={mode}&optimize={optimize}&maxWalkDistance={walk_meters:.0f}&arriveBy={arrive_depart}"):
+    return HTTPFound(location=path)
 
 def make_subrequest(request, path, query_string=None, extra_params=None):
     ''' create a subrequest to call another page in the app...
