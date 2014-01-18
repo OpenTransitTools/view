@@ -140,7 +140,7 @@ def planner(request):
     else:
         mapit = html_utils.get_first_param(request, 'mapit')
         if mapit:
-            ret_val = forward_request(request, 'http://ride.trimet.org')
+            ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + query_string)
         else:
             ret_val = request.model.get_plan(query_string, **request.params)
             if ret_val and 'error' in ret_val:

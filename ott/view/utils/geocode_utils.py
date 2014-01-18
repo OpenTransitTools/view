@@ -83,7 +83,7 @@ def do_from_to_geocode_check(request):
             if g and g['count'] == 1:
                 # step 5c: got our single result, so now add that to our query string...
                 has_to_coord = True
-                query_string = "toCoord=={0},{1}&{2}".format(g['geocoder_results'][0]['lat'], g['geocoder_results'][0]['lon'], query_string)
+                query_string = "toCoord={0},{1}&{2}".format(g['geocoder_results'][0]['lat'], g['geocoder_results'][0]['lon'], query_string)
                 geocode_param = None
 
     return query_string, geocode_param
