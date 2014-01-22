@@ -79,14 +79,18 @@ ${', ' if (i > 0) else ''}<a target="#" href="${r['route_url']}">${r['short_name
 ## static map block
 <%def name="static_map_img(map_url)"><img src="${map_url}" alt="${_(u'Stop location on a map')}"/></%def>
 
+<%def name="imap_a_link(name, lon, lat, extra_params, imap_cls=False)"><a ${'class="imap"' if imap_cls else '' | n} target="#" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" title="${_(u'View on Interactive Map')}"></%def>
+<%def name="imap_a_link_via_stop(stop, extra_params, imap_cls=False)">${imap_a_link(stop['name'], stop['lon'], stop['lat'], extra_params, imap_cls)}</%def>
+
+
 <%def name="staticmap_imap_link(name, lon, lat, extra_params, map_url)">
 <p>
-    <a href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" title="${_(u'View on Interactive Map')}">
+    ${imap_a_link(name, lon, lat, extra_params)}
         ${static_map_img(map_url)}
     </a>
 </p>
 <p>
-    <a class="imap" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" title="${_(u'View on Interactive Map')}">
+    ${imap_a_link(name, lon, lat, extra_params, True)}
        <span class="imap-text">${_(u'View on Interactive Map')}</span><br /><span class="secondary">${_(u'High-speed connection recommended')}</span>
     </a>
 </p>
