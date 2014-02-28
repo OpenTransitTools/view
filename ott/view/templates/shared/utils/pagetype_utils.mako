@@ -9,16 +9,18 @@
 <%def name="tripplanner_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all"/></%def>
 
 <%def name="h1_base_stop_stations(name, extra_params, base_params)">
-    <h1 class="stopsstations-icon">
-        <a href="stop_select_form.html?${base_params}${extra_params}" title="${_(u'Stops & Stations')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Stops & Stations')} ${_(u'Home')}</span></a>
+    <div id="triptool" class="stopsstations-icon">
+        <a href="stop_select_form.html?${base_params}${extra_params}">${_(u'Stops & Stations')}</a>
 </%def>
 #
 # for stop & station pages that only show the basic header (no specific stop info / alerts / etc...)
 #
 <%def name="stop_select(name='', extra_params='', base_params='me')">
     ${h1_base_stop_stations(name, extra_params, base_params)}
+    </div>
+	<h1>
        ${name}
-    </h1>
+	</h1>
 </%def>
 
 #
@@ -26,21 +28,25 @@
 #
 <%def name="stop(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${h1_base_stop_stations(name, extra_params, base_params)}
-        %if stop:
-        <a href="stop.html?stop_id=${stop['stop_id']}${extra_params}">${name}</a>
-        %else:
-        ${name}
-        %endif
-        %if has_alerts:
-        ${util.alerts_inline_icon_link()}
-        %endif
-    </h1>
+    </div>
+	<h1>
+		%if stop:
+		<a href="stop.html?stop_id=${stop['stop_id']}${extra_params}">${name}</a>
+		%else:
+		${name}
+		%endif
+		%if has_alerts:
+		${util.alerts_inline_icon_link()}
+		%endif
+	</h1>
 </%def>
 
 
 <%def name="trip_planner(name='', extra_params='', base_params='me')">
-<h1 class="tripplanner-icon">
-    <a href="planner_form.html?${base_params}${extra_params}" title="${_(u'Trip Planner')} ${_(u'Home')}" class="homelink"><span class="visuallyhidden">${_(u'Trip Planner')} ${_(u'Home')}</span></a>
+<div id="triptool" class="tripplanner-icon">
+	<a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
+</div>
+<h1>
     ${name}
 </h1>
 </%def>
