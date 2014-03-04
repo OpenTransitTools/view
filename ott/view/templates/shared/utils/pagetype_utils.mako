@@ -18,9 +18,9 @@
 <%def name="stop_select(name='', extra_params='', base_params='me')">
     ${h1_base_stop_stations(name, extra_params, base_params)}
     </div>
-	<h1>
+    <h1>
        ${name}
-	</h1>
+    </h1>
 </%def>
 
 #
@@ -29,22 +29,18 @@
 <%def name="stop(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${h1_base_stop_stations(name, extra_params, base_params)}
     </div>
-	<h1>
-		%if stop:
-		<a href="stop.html?stop_id=${stop['stop_id']}${extra_params}">${name}</a>
-		%else:
-		${name}
-		%endif
-		%if has_alerts:
-		${util.alerts_inline_icon_link()}
-		%endif
-	</h1>
+    <h1>
+        ${name}
+        %if has_alerts:
+        ${util.alerts_inline_icon_link()}
+        %endif
+    </h1>
 </%def>
 
 
 <%def name="trip_planner(name='', extra_params='', base_params='me')">
 <div id="triptool" class="tripplanner-icon">
-	<a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
+    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
 </div>
 <h1>
     ${name}

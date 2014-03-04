@@ -16,9 +16,9 @@
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 ${page.trip_planner(_(u'Oops!'), extra_params, 'exception')}
 %if error_message and error_message != 'None':
-<h2>${_(error_message)}</h2>
+<h2 class="error">${_(error_message)}</h2>
 %else:
-<h2>${_(u'The TripPlanner is not working...')}</h2>
-<p><a href="${feedback_url}">${_(u'Contact us')}</a> ${_(u'let us know more')}.</p>
+<h2 class="error">${_(u'The TripPlanner is not working...')}</h2>
+<p align="center"><a href="${feedback_url}">${_(u'Contact us')}</a> ${_(u'let us know more')}.</p>
 %endif
 <p>&nbsp;</p>

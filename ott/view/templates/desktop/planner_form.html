@@ -20,7 +20,7 @@
 ${page.trip_planner(_(u'Trip Planner'), extra_params, 'form')}
 
 ## override section ID to make this page full width
-<%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"><%include file="/shared/share.html"/></%def>
+<%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"></%def>
 <%def name="main_wrap_bottom()"></section><!-- end #main-fullwidth --></%def>
 <%def name="bottom()">${plib.bottom_imap_bar()}</%def>
 

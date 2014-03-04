@@ -28,7 +28,6 @@
 ## 
 <%def name="main_wrap_top()">
     <section id="main" ${self.mainContentStyle()} class="main">
-        <%include file="/shared/share.html"/>
 </%def>
 <%def name="main_wrap_bottom()">
     </section><!-- end #main -->
@@ -87,6 +86,7 @@
 
     <div id="bottom-wrap" class="group">
         ${self.bottom()}
+        <%include file="/shared/share.html"/>
     </div>
 
     <%include file="/shared/footer.html" />

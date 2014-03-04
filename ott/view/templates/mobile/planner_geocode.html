@@ -24,9 +24,9 @@ ${page.trip_planner(_(u'Uncertain location'), extra_params, 'form')}
 ${form.clear_element_scriptlet()}
 
 ## override section ID to make this page full width
-<%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"><%include file="/shared/share.html"/></%def>
+<%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"></%def>
 <%def name="main_wrap_bottom()"></section><!-- end #main-fullwidth --></%def>
-<%def name="bottom()">${plib.bottom_imap_bar()}</%def>
+<%def name="bottom()"></%def>
 <h2 class="error">
     %if type_img_url:
         <img src="${util.url_domain()}/${type_img_url}" />
