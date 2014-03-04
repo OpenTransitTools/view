@@ -20,12 +20,16 @@
 </%def>
 
 <%def name="autocomplete_trip_planner(fm_id='#from', to_id='#going')">
+<%
+    from ott.view.utils import config
+    solr_url = config.get('solr_url')
+%>
     <script>
     // main entry 
     $(function(){
-        fm = new SOLRAutoComplete('${fm_id}');
+        fm = new SOLRAutoComplete('${fm_id}', '${solr_url}');
         fm.enable_ajax();
-        to = new SOLRAutoComplete('${to_id}');
+        to = new SOLRAutoComplete('${to_id}', '${solr_url}');
         to.enable_ajax();
 
         function tp_geo_callback(sel)

@@ -117,10 +117,14 @@
 ## autocomplete: instance creation for the jQuery autocomplete...
 ##
 <%def name="autocomplete_search_input(id='#place')">
+<%
+    from ott.view.utils import config
+    solr_url = config.get('solr_url')
+%>
     <script>
     // main entry 
     $(function(){
-        stop = new SOLRAutoComplete('${id}');
+        stop = new SOLRAutoComplete('${id}', '${solr_url}');
         stop.enable_ajax();
 
         function stop_geo_callback(sel)

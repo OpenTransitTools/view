@@ -3,13 +3,14 @@
  * new SOLRAutoComplete('#input_div_id')
  * 
  * @param {Object} input_div
- * @param {Object} num_results
  * @param {Object} solr_url
+ * @param {Object} num_results
  */
-function SOLRAutoComplete(input_div, num_results, solr_url) {
+function SOLRAutoComplete(input_div, solr_url, num_results)
+{
     this.input_div   = input_div   || "#input";
+    this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "20";
-    this.solr_url    = solr_url    || "http://maps5.trimet.org/solr/select";
 
     /** callback (that you override) to get the resulting clicked SOLR document */
     function select_callback(sel)
