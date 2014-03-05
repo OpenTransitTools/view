@@ -5,8 +5,8 @@
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 
 ## css include controls the page look
-<%def name="stop_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools-ss.css" type="text/css" media="all" /></%def>
-<%def name="tripplanner_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools-tp.css" type="text/css" media="all"/></%def>
+<%def name="stop_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools/triptools-ss.css" type="text/css" media="all" /></%def>
+<%def name="tripplanner_css()"><link rel="stylesheet" href="${util.url_domain()}/css/triptools/triptools-tp.css" type="text/css" media="all"/></%def>
 
 <%def name="h1_base_stop_stations(name, extra_params, base_params)">
     <div id="triptool" class="stopsstations-icon">
