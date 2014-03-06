@@ -14,7 +14,12 @@
 %>
 <%def name="title()">TriMet: ${_(u'Trip Planner')} ${_(u'Uncertain location')}</%def>
 <%def name="meta_data()">${meta.tripplanner()}</%def>
-<%def name="side_bar()"></%def>
+<%def name="side_bar()">
+    <aside id="aside" class="aside">
+    	<!-- TODO should be getting adverts here, but I don't see them -->
+        ${side.sidebar_adverts(adverts)}
+    </aside>
+</%def>
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">
     ${page.tripplanner_css()}
@@ -23,9 +28,6 @@
 ${page.trip_planner(_(u'Uncertain location'), extra_params, 'form')}
 ${form.clear_element_scriptlet()}
 
-## override section ID to make this page full width
-<%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"></%def>
-<%def name="main_wrap_bottom()"></section><!-- end #main-fullwidth --></%def>
 <%def name="bottom()"></%def>
 <h2 class="error">
     %if type_img_url:

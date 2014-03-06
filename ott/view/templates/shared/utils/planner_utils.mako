@@ -307,7 +307,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 <%def name="render_bicycle_leg(leg, i, extra_params='', no_expand=False)">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
-        <p>
+        <p class="directions">
             <%
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
                 bike_title = _(u'Bike') + " " + _(dir) + " " + pretty_distance(leg['distance'])
@@ -347,7 +347,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 <%def name="render_walk_leg(leg, i, extra_params='', no_expand=False)">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
-        <p>
+        <p class="directions">
             <% 
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
                 walk_title = _(u'Walk') + " " + _(dir) + " " + pretty_distance(leg['distance'])
@@ -401,7 +401,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 <%def name="render_transit_leg(leg_list, n, i, j, is_mobile, extra_params='')">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
-        <p>
+        <p class="directions">
             <%
                 leg = leg_list[n] 
 

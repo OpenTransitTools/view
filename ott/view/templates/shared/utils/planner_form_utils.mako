@@ -50,7 +50,6 @@
 <%def name="geocode_form(geocoder_results, geo_place='', geo_type='place', form_action='planner.html', is_mobile=False)">
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
-    <style>select {width: 40em;}</style>
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
         ${form.url_params_to_hidden_inputs(request, [geo_type, geo_type + 'Coord'])}
         ${form.has_geocode_hidden('true')}
@@ -63,7 +62,7 @@
         ${form.url_params_to_hidden_inputs(request, [geo_type, geo_type + 'Coord'])}
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Re-type location'), geo_place, id=geo_type, size="85")}
+        ${form.search_input(_(u'Re-type location'), geo_place, id=geo_type, size="45")}
         ${form.search_submit(_(u'Continue'), 4, analytics=an.trip_submit)}
         ## TODO: need to add analytic events when customer hit's "ENTER" button / submit
     </form>
