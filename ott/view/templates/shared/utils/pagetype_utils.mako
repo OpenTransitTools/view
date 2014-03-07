@@ -43,7 +43,14 @@
 <h2 class="top">
     ${name}
 </h2>
-<!--
--->
+</%def>
+
+<%def name="trip_planner_form(name='', extra_params='', base_params='me')">
+<h1 id="triptool" class="tripplanner-icon">
+    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
+</h1>
+<h2 class="top">
+    ${name}
+</h2>
 </%def>
 

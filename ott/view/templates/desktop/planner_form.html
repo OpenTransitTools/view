@@ -17,18 +17,18 @@
     ${page.tripplanner_css()}
     ${form.autocomplete_css_includes()}
 </%def>
-${page.trip_planner(_(u'Plan your trip on TriMet'), extra_params, 'form')}
+${page.trip_planner_form(_(u'Plan your trip on TriMet'), extra_params, 'form')}
 
 ## override section ID to make this page full width
 <%def name="main_wrap_top()">
-	<style type="text/css">
+    <style type="text/css">
         #main-fullwidth {
-			margin-top: 3.75em;
-		}
-		#sharepage {	/* override for full width page */
-			margin-top: 1.5em;
-			padding-right: 0;
-		}
+            margin-top: 3.75em;
+        }
+        #sharepage {    /* override for full width page */
+            margin-top: 1.5em;
+            padding-right: 0;
+        }
     </style>
     <section id="main-fullwidth" ${self.mainContentStyle()} class="main">
 </%def>
