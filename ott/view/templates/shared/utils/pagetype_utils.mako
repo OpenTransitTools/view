@@ -18,9 +18,7 @@
 <%def name="stop_select(name='', extra_params='', base_params='me')">
     ${h1_base_stop_stations(name, extra_params, base_params)}
     </div>
-    <h1>
-       ${name}
-    </h1>
+    <h1>${name}</h1>
 </%def>
 
 #
@@ -39,11 +37,13 @@
 
 
 <%def name="trip_planner(name='', extra_params='', base_params='me')">
-<div id="triptool" class="tripplanner-icon">
+<h1 id="triptool" class="tripplanner-icon">
     <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
-</div>
-<h1>
-    ${name}
 </h1>
+<h2 class="top">
+    ${name}
+</h2>
+<!--
+-->
 </%def>
 
