@@ -2,6 +2,7 @@ import logging
 log = logging.getLogger(__file__)
 
 from ott.view.utils import object_utils
+from ott.view.utils.modes import Modes
 
 def is_valid_route(route):
     ''' will further parse the route string, and check for route in GTFSdb
@@ -78,3 +79,32 @@ def get_itinerary(plan):
             break
     return itinerary
 
+def has_transit(itinerary):
+    ''' see if there's a transit leg in our list...
+    '''
+    ret_val = False
+    for leg in itinerary['legs']:
+        if leg['mode'] in Modes.TRANSIT_MODES:
+            ret_val = True
+            break
+    return ret_val
+
+def fare(leg, itinerary):
+    ''' TODO: figure out what to return here:
+
+        if line 83 or 115 (for TriMet) are free to ride...
+        if line TRAM then fare is $4.00 round trip...
+        if ???  bunch of different fare rules...
+    '''
+    return True
+
+def has_fare(itinerary):
+    ''' tell whether this itinerary has a fare....
+    '''
+    ret_val = False
+    for leg in itinerary['legs']:
+        if leg['mode'] in Modes.TRANSIT_MODES:
+            if fare(leg, itinerary):
+                ret_val = True
+                break
+    return ret_val

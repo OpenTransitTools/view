@@ -5,6 +5,7 @@ log = logging.getLogger(__file__)
 
 from ott.view.utils import html_utils
 from ott.view.utils import transit_utils
+from ott.view.utils.modes import Modes
 
 from ott.view.model.base import Base
 
@@ -47,12 +48,12 @@ class Mock(Base):
             if kwargs['mode'] in ('T','TEST'):    return self.get_json('x.json')
             if kwargs['mode'] in ('A','ALERTS'):  return self.get_json('plan_alerts.json')
 
-            if    Model.WALK == kwargs['mode']: return self.get_json('plan_walk.json') 
-            elif  Model.BIKE == kwargs['mode']: return self.get_json('plan_bike.json') 
-            elif  Model.RAIL == kwargs['mode']: return self.get_json('plan_rail.json') 
-            elif  Model.STREETCAR == kwargs['mode']: return self.get_json('plan_streetcar.json') 
-            elif  Model.GONDOLA == kwargs['mode'] or  Model.TRAM in kwargs['mode']: return self.get_json('plan_tram.json') 
-            elif  Model.TRANSIT in kwargs['mode'] and Model.BIKE in kwargs['mode']: return self.get_json('plan_bike_transit.json') 
+            if    Modes.WALK == kwargs['mode']: return self.get_json('plan_walk.json') 
+            elif  Modes.BIKE == kwargs['mode']: return self.get_json('plan_bike.json') 
+            elif  Modes.RAIL == kwargs['mode']: return self.get_json('plan_rail.json') 
+            elif  Modes.STREETCAR == kwargs['mode']: return self.get_json('plan_streetcar.json') 
+            elif  Modes.GONDOLA == kwargs['mode'] or  Modes.TRAM in kwargs['mode']: return self.get_json('plan_tram.json') 
+            elif  Modes.TRANSIT in kwargs['mode'] and Modes.BIKE in kwargs['mode']: return self.get_json('plan_bike_transit.json') 
 
         return self.get_json('plan_bike_transit.json')
         #return stream_json('http://127.0.0.1:34443/plan_trip', get_params)

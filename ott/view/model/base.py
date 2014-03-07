@@ -8,16 +8,6 @@ from ott.view.utils import object_utils
 
 class Base(object):
 
-    TRAIN     = 'TRAIN'
-    RAIL      = 'RAIL'
-    STREETCAR = 'STREETCAR'
-    TRAM      = 'TRAM'
-    WALK      = 'WALK'
-    GONDOLA   = 'GONDOLA'
-    TRANSIT   = 'TRANSIT'
-    BICYCLE   = 'BICYCLE'
-    BIKE      =  BICYCLE
-
     def get_plan(self, get_params, **kwargs): pass
 
     def get_geocode(self, get_params, **kwargs): pass
