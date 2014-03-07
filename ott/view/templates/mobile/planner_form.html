@@ -18,7 +18,7 @@
     ${form.autocomplete_css_includes()}
 </%def>
 <%def name="js_onload()">javascript:checkgps();</%def>
-${page.trip_planner(_(u'Trip Planner'), extra_params, 'form')}
+${page.trip_planner_form(_(u'Trip Planner'), extra_params, 'form')}
 ${pform.gps_form_scriptlet()}
 
 ## override section ID to make this page full width
