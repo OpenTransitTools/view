@@ -35,20 +35,21 @@
     </h1>
 </%def>
 
-
-<%def name="trip_planner(name='', extra_params='', base_params='me')">
+<%def name="trip_form_link(name, extra_params, base_params)">
 <div id="triptool" class="tripplanner-icon">
     <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
 </div>
+</%def>
+
+<%def name="trip_planner(name='', extra_params='', base_params='me')">
+${trip_form_link(name, extra_params, base_params)}
 <h1>
     ${name}
 </h1>
 </%def>
 
 <%def name="trip_planner_form(name='', extra_params='', base_params='me')">
-<h1 id="triptool" class="tripplanner-icon">
-    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
-</h1>
+${trip_form_link(name, extra_params, base_params)}
 <!--
 <h2 class="top">
     ${name}
