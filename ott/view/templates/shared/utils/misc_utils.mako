@@ -320,7 +320,7 @@
         <option value="${loop.index + 1}" ${'selected' if m == selected or str(loop.index+1) == str(selected) else ''} >${m}</option>
     %endfor
 </%def>
-<%def name="month_select(selected)"><select name="month" tabindex="7" >
+<%def name="month_select(selected)"><select name="month" tabindex="7" id="month" class="regular" onblur="doClassRegular(this);" onfocus="doClassHighlight(this);">
     ${month_options(selected)}
     </select></%def>
 
@@ -330,7 +330,7 @@
         <option value="${loop.index + 1}" ${'selected' if  m == selected or str(loop.index+1) == str(selected) else ''}>${m}</option>
     %endfor
 </%def>
-<%def name="month_abbv_select(selected)"><select name="month" tabindex="7" id="Month" class="regular" onblur="doClassRegular(this);" onfocus="doClassHighlight(this);">
+<%def name="month_abbv_select(selected)"><select name="month" tabindex="7" id="month" class="regular" onblur="doClassRegular(this);" onfocus="doClassHighlight(this);">
     ${month_abbv_options(selected)}
 </select></%def>
 
@@ -340,7 +340,7 @@
         <option value="${d}" ${'selected' if d == selected else ''}>${d}</option>
     %endfor
 </%def>
-<%def name="day_select(selected=1)"><select name="day" tabindex="8" id="Day" class="regular" onblur="doClassRegular(this);" onfocus="doClassHighlight(this);">
+<%def name="day_select(selected=1)"><select name="day" tabindex="8" id="day" class="regular" onblur="doClassRegular(this);" onfocus="doClassHighlight(this);">
     ${day_options(selected)}
     </select></%def>
 
