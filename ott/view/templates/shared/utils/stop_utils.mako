@@ -131,3 +131,4 @@ ormat_options=layout:scale".format(w, h, lon, lat)
 =layout:scale/id/{2}".format(w, h, stop_id)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
 %>
+</%def>
