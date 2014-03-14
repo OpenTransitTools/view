@@ -23,10 +23,9 @@ ${page.stop(name, extra_params, stop_params, stop)}
 
 <h2>${util.name_city_str_from_struct(stop)}</h2>
 
-    ${ssu.svc_key_tabs(tabs, extra_params)}
-    ${ssu.schedule_all_routes_link(stop, extra_params)}
-    ${ssu.schedule_sort_by_links(stop, extra_params)}
-    ${ssu.schedule_render(stop, pretty_date, extra_params)}
-    ${util.alerts(stop['alerts'])}
-    ${su.nearby_stops_link(stop, extra_params)}
-
+${ssu.svc_key_tabs(tabs, extra_params)}
+${ssu.schedule_all_routes_link(stop, extra_params)}
+${ssu.schedule_sort_by_links(stop, extra_params)}
+${ssu.schedule_render(stop, pretty_date, extra_params)}
+${util.alerts(stop['alerts'])}
+<p>&nbsp;</p>

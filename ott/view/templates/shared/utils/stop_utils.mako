@@ -16,7 +16,6 @@
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
-        <style>select {width: 32em;}</style>
         ${form.has_geocode_hidden('true')}
         ${form.get_extra_params_hidden_inputs()}
         ${form.search_list(_(u'Select a location'), geocoder_results)}
@@ -69,7 +68,7 @@ ${', ' if (i > 0) else ''}<a target="#" href="${r['route_url']}">${r['short_name
 </%def>
 
 <%def name="routes_served(stop)">
- ${_(u'Served by')}: ${route_abrv_list(stop)}
+${_(u'Served by')}: ${route_abrv_list(stop)}
 </%def>
 
 <%def name="nearby_stops_link(stop, extra_params)">

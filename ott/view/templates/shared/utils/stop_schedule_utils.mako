@@ -12,12 +12,16 @@
     return sort_val
 %>
 </%def>
+
+
 <%def name="sort_by_time()">
 <%
     sort_by_time = True   if 'sort' in request.params and request.params['sort'] == 'time' else False
     return sort_by_time
 %>
 </%def>
+
+
 <%def name="make_stop_schedule_url(stop, sort, extra_params, all=False)">
 <%
     ## TODO: make the month/day/route variables more abstract, with better tests for None and '' values
@@ -61,67 +65,64 @@
 ## switch to show all routes if we're just showing a single route stop times...
 ##
 <%def name="schedule_all_routes_link(stop, extra_params)">
+<div class="contenttabs-bar group">
+    <p class="singleroute">
     %if 'single_route_name' in stop and stop['single_route_name'] != None:
-    ${stop['single_route_name']}
-    [<a href="${make_stop_schedule_url(stop, sort_val(), extra_params, True)}">${_(u'all routes')}</a>]
+    <b>${_(u'Showing only')} ${stop['single_route_name']}</b>
+     &nbsp;|&nbsp; <a href="${make_stop_schedule_url(stop, sort_val(), extra_params, True)}">${_(u'Show all lines')}</a>
     %endif
-</%def>
-
-##
-## sort schedule by either route (blocky view) or time (list view)
-##
-<%def name="schedule_sort_by_links(stop, extra_params)">
-    <p style="float:right;">
-        ${_(u'Sort')}:
-        ${util.link_or_strong(_(u'By destination'), not sort_by_time(), make_stop_schedule_url(stop, 'destination', extra_params), _('sort'))}
-         &nbsp;|&nbsp;
-        ${util.link_or_strong(_(u'By time'), sort_by_time(), make_stop_schedule_url(stop, 'time', extra_params), _('sort'))}
     </p>
 </%def>
 
 ##
 ## sort schedule by either route (blocky view) or time (list view)
 ##
-<%def name="schedule_render(stop, pretty_date, extra_params)">
-    <p>${_(u'Schedule for')} ${pretty_date}</p>
+<%def name="schedule_sort_by_links(stop, extra_params)">
+    <p class="sort">
+        <b>${_(u'Sort')}:</b>
+        ${util.link_or_strong(_(u'By destination'), not sort_by_time(), make_stop_schedule_url(stop, 'destination', extra_params), _('sort'))}
+         &nbsp;|&nbsp;
+        ${util.link_or_strong(_(u'By time'), sort_by_time(), make_stop_schedule_url(stop, 'time', extra_params), _('sort'))}
+    </p>
+</div><!-- end .contenttabs-bar -->
+</%def>
 
+##
+## sort schedule by either route (blocky view) or time (list view)
+##
+<%def name="schedule_render(stop, pretty_date, extra_params)">
     %if sort_by_time():
-        <p>
-        %for s in stop['schedule']:
-        <% 
-            id = s['h']
-            route = stop['headsigns'][id]
-        %> 
-        <b>${s['t']}</b> ${route['route_name']} ${_(u'to')} ${route['headsign']}<br/>
-        %endfor
-        </p>
+    <p>
+    %for s in stop['schedule']:
+    <% 
+        id = s['h']
+        route = stop['headsigns'][id]
+    %> 
+    <b>${s['t']}</b> ${route['route_name']} ${_(u'to')} ${route['headsign']}<br/>
+    %endfor
+    </p>
     %else:
     %for h in stop['headsigns'].keys():
     <% 
         route = stop['headsigns'][h]
-        route_url = '' if 'route_url' not in route else route['route_url']
     %>
     <h3 class="tight">
-        %if route_url:
-            <a href="${route_url}" title="${_(u'Show map and schedules for this route')}.">
-        %endif
-            ${route['route_name']} ${_(u'to')} ${route['headsign']}
-        %if route_url:
-            </a>
-        %endif
-        %if 'arrival_url' in route:
-            <a href="${route['arrival_url']}" class="stop-arrivals"><img src="${util.img_url()}/transittracker-icon.png" alt="${_(u'Next arrivals')}" /></a>
-        %endif
+        ${route['route_name']} ${_(u'to')} ${route['headsign']}
         %if route['has_alert']:
-            ${util.alerts_inline_icon_link()}
+        ${util.alerts_inline_icon_link()}
         %endif
     </h3>
-    <p>
+    <p class="tight">
         %for s in stop['schedule']:
         %if s['h'] == h:
-        ${s['t']}
+        ${s['t']}&nbsp; 
         %endif
         %endfor
+    </p>
+    <p>
+        %if 'arrival_url' in route:
+        <a href="${route['arrival_url']}">${_(u'Next arrivals')}</a>
+        %endif
     </p>
     %endfor
     %endif

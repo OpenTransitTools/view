@@ -8,34 +8,30 @@
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
-%>
-<%
     name = su.make_name_id(stop)
     stop_params = su.make_url_params(stop)
     has_alerts = su.has_alerts(stop)
 %>
 ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
+<h2>${util.name_city_str_from_struct(stop)}</h2>
 
 <div class="group">
     <div class="left-column">
-        <h2>${util.name_city_str_from_struct(stop)}</h2>
-
-        <h3>${_(u'Served by')}</h3>
 
         %for r in stop['routes']:
-        <h4>${r['name']}</h4>
+        <h3 class="tight">${r['name']}</h3>
         <p>
             %if 'direction' in r:
             ${r['direction']}<br/>
             %endif
             <a href="${r['arrival_url'].format(stop_id=stop['stop_id'])}">${_(u'Next arrivals')}</a>
-                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}${extra_params}">${_(u'Schedule')}</a> 
-                &nbsp;&bull;&nbsp; <a href="${r['route_url']}" title="${_(u'Show map and schedules for this route')}.">${_(u'Route info')}</a>
+                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedules for this stop')}.">${_(u'Schedule')}</a> 
+                &nbsp;&bull;&nbsp; <a href="${r['route_url']}" title="${_(u'Show map and schedules for this line')}.">${_(u'Route info')}</a>
         </p>
         %endfor
 
         %if len(stop['routes']) > 1:
-        <h4>${_(u'All routes')}</h4>
+        <h3 class="tight">${_(u'All routes')}</h3>
         <p>
             <a class="hide" href="${stop['arrival_url']}">${_(u'Next arrivals')}</a>
                 &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Schedule')}</a>
@@ -43,7 +39,7 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
         %endif
 
         %if len(stop['amenities']) > 1:
-        <h3 class="tight">${_(u'Amenities')}</h3>
+        <h4 class="tight">${_(u'Amenities')}</h4>
         <ul class="small">
             %for a in stop['amenities']:
             <li>${_(a).capitalize()}</li>

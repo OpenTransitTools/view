@@ -27,7 +27,7 @@
 <%def name="stop(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${h1_base_stop_stations(name, extra_params, base_params)}
     </div>
-    <h1>
+    <h1>${_(u'Schedule for')}<!--TODO only show this for stop_schedule.html -->
         ${name}
         %if has_alerts:
         ${util.alerts_inline_icon_link()}
