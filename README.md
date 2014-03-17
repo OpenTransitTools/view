@@ -12,7 +12,7 @@ build:
   4. git update-index --assume-unchanged .pydevproject
 
 run:
-  1. bin/pserve pyramid.ini --reload
+  1. rm nohup.out; nohup bin/pserve pyramid.ini --reload VIEW=1 &
   2. http://localhost:33333/stop.html?stop_id=2
 
 test:
