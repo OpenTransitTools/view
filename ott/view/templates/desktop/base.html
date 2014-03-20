@@ -45,7 +45,7 @@
     <%include file="/shared/head-bottom.html" />
 </head>
 <body class="standard" onLoad="${self.js_onload()}">
-    %if ${util.is_test()}:
+    %if util.is_test():
     <%include file="/shared/topnav-unlinked.html" />
     %else:
     <%include file="/shared/topnav.html" />
@@ -53,7 +53,7 @@
     ${self.emergency_content()|n,decode.utf8}
 
     <header id="header-wrap" class="group">
-        %if ${util.is_test()}:
+        %if util.is_test():
         <%include file="/shared/nav-unlinked.html" />
         %else:
         <%include file="/shared/nav.html" />
@@ -94,7 +94,7 @@
         </div>
     </div>
 
-    %if ${util.is_test()}:
+    %if util.is_test():
     <%include file="/shared/footer-unlinked.html" />
     %else:
     <%include file="/shared/footer.html" />
