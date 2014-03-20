@@ -14,7 +14,7 @@
         {'u':'planner.html', 'p':'from=2&to=zoo&Hour=12&Minute=35&AmPm=pm&mode=BICYCLE', 'n':'Bike Only Trip'},
         {'u':'planner_walk.html', 'p':'mode=WALK&from=45.448814,-122.631935&to=45.443102,-122.636399', 'n':'NOTE: Separate Walk Direction Planner Page'},
         {'u':'adverts.html', 'p':'', 'n':'Adverts testing page'},
-        {'u':'http://dev.trimet.org/map/trimet-ssi.htm', 'path':'', 'p':'from=zoo&to=pdx', 'n':'example of the embedded form page via server-side includes (note the url params populating the form, and the Spanish localization)'},
+        {'u':'/map/trimet-ssi.htm', 'path':'', 'p':'from=zoo&to=pdx', 'n':'example of the embedded trip planner form via server-side includes (note the url params populating the form, and the Spanish localization)'},
         {'u':'pform_standalone.html', 'p':'from=2&to=834', 'n':'basic embedded trip planner form (outside the home page, as opposed to the server-side include above)'},
         {'u':'', 'p':'', 'n':''},
 
@@ -53,9 +53,9 @@
         ENGLISH
     %endif
     </h1>
-	<h2>Welcome to the Trip Tools testing area!</h2>
-	<p>Use the links below to test out the Trip Planner and its related pages.</p>
-	<p>We'll probably want to cull this list a bit for the official testing. Reorganize, too. But we need to keep this page as-is... maybe make it test.html or something like that.</p>
+    <h2>Welcome to the Trip Tools testing area!</h2>
+    <p>Use the links below to test out the Trip Planner and its related pages.</p>
+    <p>We'll probably want to cull this list a bit for the official testing. Reorganize, too. But we need to keep this page as-is... maybe make it test.html or something like that.</p>
 
     %for p in pages:
         %if 'label' in p:
