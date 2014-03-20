@@ -45,11 +45,11 @@
     <%include file="/shared/head-bottom.html" />
 </head>
 <body class="standard" onLoad="${self.js_onload()}">
-    <%include file="/shared/topnav.html" />
+    <%include file="/shared/topnav-unlinked.html" />
     ${self.emergency_content()|n,decode.utf8}
 
     <header id="header-wrap" class="group">
-        <%include file="/shared/nav.html" />
+        <%include file="/shared/nav-unlinked.html" />
 
         <div id="triptools-wrap" class="group">
             <nav id="triptools">
@@ -86,6 +86,6 @@
         </div>
     </div>
 
-    <%include file="/shared/footer.html" />
+    <%include file="/shared/footer-unlinked.html" />
 </body>
 </html>

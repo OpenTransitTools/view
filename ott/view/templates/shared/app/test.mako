@@ -53,6 +53,10 @@
         ENGLISH
     %endif
     </h1>
+	<h2>Welcome to the Trip Tools testing area!</h2>
+	<p>Use the links below to test out the Trip Planner and its related pages.</p>
+	<p>We'll probably want to cull this list a bit for the official testing. Reorganize, too. But we need to keep this page as-is... maybe make it test.html or something like that.</p>
+
     %for p in pages:
         %if 'label' in p:
             <h2>${p['label']}</h2>
