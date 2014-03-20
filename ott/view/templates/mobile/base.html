@@ -30,18 +30,18 @@ ${self.emergency_content()|n,decode.utf8}
 <header id="header-wrap" class="group">
     <div id="nav-wrap" class="group">
         <nav id="nav">
-            <div id="logo"><a href="/index.htm"></a></div>
+            <div id="logo"><a href="/m/index.htm"></a></div>
             <div id="tabs-wrap">
                 <a id="tabs-icon-open" href="#nav">NAV</a>
-                <a id="tabs-icon-close" href="#top">Close</a>
+                <a id="tabs-icon-close" href="#top">${_(u'Close')}</a>
                 <div id="tabs-ul-wrap">
                     <ul id="tabs" class="group">
-                        <li ><a href="/arrivals/small/pickroute.html">Arrival Times (TransitTracker)</a></li>
-                        <li><a href="#">Plan a Trip</a></li>
-                        <li><a href="#">Service Alerts</a></li>
-                        <li><a href="#">Stops and Schedules</a></li>
-                        <li><a href="#">Maps</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li ><a href="/arrivals/small/pickroute.html">${_(u'Arrival Times')} (TransitTracker)</a></li>
+                        <li><a href="#">${_(u'Plan a Trip')}</a></li>
+                        <li><a href="#">${_(u'Service Alerts')}</a></li>
+                        <li><a href="#">${_(u'Stops and Schedules')}</a></li>
+                        <li><a href="#">${_(u'Maps')}</a></li>
+                        <li><a href="#">${_(u'Contact Us')}</a></li>
                     </ul><!-- end #tabs -->
                 </div>
             </div>
@@ -60,10 +60,10 @@ ${self.emergency_content()|n,decode.utf8}
 
 <div id="footer">
     <p class="footer" align="center">
-        <a href="mailto:mobile@trimet.org">Feedback</a> &nbsp;|&nbsp; <a href="/m/apps/index.htm">App Center</a> &nbsp;|&nbsp; <a href="/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'Footer - Standard site']);">Standard site</a>
+        <a href="mailto:mobile@trimet.org">${_(u'Feedback')}</a> &nbsp;|&nbsp; <a href="/m/apps/index.htm">${_(u'App Center')}</a> &nbsp;|&nbsp; <a href="/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'Footer - Standard site']);">${_(u'Standard site')}</a>
     </p>
     <p class="footer-links" align="center">
-        <a href="/m/terms.htm">Terms of Use</a> &nbsp;|&nbsp; <a href="/m/privacy.htm">Privacy Policy</a> &nbsp;|&nbsp; &copy; <!--#echo var="DATE_LOCAL" --> TriMet
+        <a href="/m/terms.htm">${_(u'Terms of Use')}</a> &nbsp;|&nbsp; <a href="/m/privacy.htm">${_(u'Privacy Policy')}</a> &nbsp;|&nbsp; &copy; <!--#echo var="DATE_LOCAL" --> TriMet
     </p>
 </div>
 <script type="text/javascript" src="${util.url_domain()}/scripts/basic.js"></script><!-- basic global scripts -->
