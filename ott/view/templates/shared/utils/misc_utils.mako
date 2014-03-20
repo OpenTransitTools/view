@@ -4,6 +4,11 @@
     return config.get('css_url')
 %>
 </%def>
+<%def name="is_test()"><%
+    from ott.view.utils import config
+    return config.get('is_test')
+%>
+</%def>
 <%def name="img_url()">${url_domain()}/images/triptools</%def>
 <%def name="planner_img_url()">${img_url()}/mode</%def>
 <%!
