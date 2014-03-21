@@ -32,7 +32,7 @@ ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
 
     %if not util.has_url_param('show_more'):
     <li>
-        <p align="center"><a href="stops_near.html?has_geocode=true&show_more=true&${params}${extra_params}">${_(u'Show more stops')}</a></p>
+        <p align="center"><a href="stops_near.html?has_geocode=true&show_more=true&${params | u}${extra_params}">${_(u'Show more stops')}</a></p>
     </li>
     %endif
 </ul>
