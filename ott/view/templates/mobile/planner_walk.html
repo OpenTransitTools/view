@@ -29,5 +29,9 @@ ${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
     ol.transit * * * {display: block}
     #details { padding: 0}
 </style>
+%if itinerary:
 ${plib.render_trip_details(plan)}
 ${plib.render_itinerary(itinerary, extra_params, is_mobile, True)}
+%else:
+${plib.get_error_msg(error, _('Uncertain planner problem'))}
+%endif
