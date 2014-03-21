@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
 "POT-Creation-Date: 2014-03-20 16:05-0700\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Frank Purcell <purcellf@trimet.org>\n"
 "Language-Team: es <LL@li.org>\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 "MIME-Version: 1.0\n"
@@ -324,17 +324,13 @@ msgid "Trip Planner tips & help"
 msgstr "Sugerencias y ayuda"
 
 #: ott/view/templates/desktop/planner.html:25
-#, fuzzy
-#| msgid "Your Trip on TriMet"
 msgid "Your trip on TriMet"
 msgstr "Su viaje en TriMet"
 
 #: ott/view/templates/desktop/planner_form.html:12
 #: ott/view/templates/desktop/planner_form.html:20
-#, fuzzy
-#| msgid "Your Trip on TriMet"
 msgid "Plan your trip on TriMet"
-msgstr "Su viaje en TriMet"
+msgstr "Planee su viaje en TriMet"
 
 #: ott/view/templates/desktop/planner_geocode.html:15
 #: ott/view/templates/mobile/planner_form.html:12
@@ -415,7 +411,7 @@ msgstr "Paradas cercanas a"
 #: ott/view/templates/desktop/stops_near.html:17
 #: ott/view/templates/mobile/stops_near.html:17
 msgid "Nearest Stops"
-msgstr "Seleccionar una parada"
+msgstr "Servicio más cercano"
 
 #: ott/view/templates/desktop/stops_near.html:25
 #: ott/view/templates/mobile/stops_near.html:25
@@ -522,8 +518,6 @@ msgid "Next arrivals"
 msgstr "Próximas llegadas"
 
 #: ott/view/templates/shared/app/stop.mako:28
-#, fuzzy
-#| msgid "Show map and schedules for this route"
 msgid "Show schedules for this stop"
 msgstr "Mostrar mapa y horarios para esta ruta"
 
@@ -533,8 +527,6 @@ msgid "Schedule"
 msgstr "Horarios"
 
 #: ott/view/templates/shared/app/stop.mako:29
-#, fuzzy
-#| msgid "Show map and schedules for this route"
 msgid "Show map and schedules for this line"
 msgstr "Mostrar mapa y horarios para esta ruta"
 
@@ -1250,10 +1242,8 @@ msgid "Stop landing page"
 msgstr "Información de la parada de tránsito"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:71
-#, fuzzy
-#| msgid "Train only"
 msgid "Showing only"
-msgstr "Sólo tren"
+msgstr "Mostrando sólo"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:72
 msgid "Show all lines"
