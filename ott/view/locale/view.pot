@@ -1,7 +1,7 @@
 # Translations template for ott.view.
 # Copyright (C) 2014 TriMet
 # This file is distributed under the same license as the ott.view project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+# Frank Purcell <purcellf@trimet.org>, 2014.
 #
 #, fuzzy
 msgid ""

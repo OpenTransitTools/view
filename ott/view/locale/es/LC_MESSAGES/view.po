@@ -1,7 +1,7 @@
 # Spanish translations for ott.view.
-# Copyright (C) 2013 TriMet
+# Copyright (C) 2014 TriMet
 # This file is distributed under the same license as the ott.view project.
-# Frank Purcell <ott@frankpurcell.com>, 2013.
+# Frank Purcell <ott@frankpurcell.com>, 2014.
 #
 msgid ""
 msgstr ""
@@ -159,11 +159,11 @@ msgstr "se hace"
 
 #: ott/view/locale/misc-strings.html:44
 msgid "take roundabout counterclockwise"
-msgstr ""
+msgstr "tomar la rotonda hacia la izquierda"
 
 #: ott/view/locale/misc-strings.html:45
 msgid "take roundabout clockwise"
-msgstr ""
+msgstr "tomar hacia la derecha rotonda"
 
 #: ott/view/locale/misc-strings.html:47
 msgid "north"
@@ -260,7 +260,7 @@ msgstr "más"
 
 #: ott/view/locale/misc-strings.html:77
 msgid "Stop related page"
-msgstr ""
+msgstr "Página web relacionada parada de tránsito"
 
 #: ott/view/locale/misc-strings.html:78
 msgid "Link to TriMet"
@@ -268,7 +268,7 @@ msgstr "a TriMet"
 
 #: ott/view/locale/misc-strings.html:79
 msgid "Check out this page on trimet.org"
-msgstr ""
+msgstr "Echa un vistazo a esta web"
 
 #: ott/view/model/place.py:65
 #: ott/view/templates/desktop/planner_geocode.html:15
@@ -300,12 +300,12 @@ msgstr "El planificador de viajes no está disponible por el momento"
 #: ott/view/templates/desktop/exception.html:22
 #: ott/view/templates/mobile/exception.html:22
 msgid "Contact us"
-msgstr ""
+msgstr "Contáctenos"
 
 #: ott/view/templates/desktop/exception.html:22
 #: ott/view/templates/mobile/exception.html:22
 msgid "let us know more"
-msgstr ""
+msgstr "vamos a saber más"
 
 #: ott/view/templates/desktop/feedback.html:15
 #: ott/view/templates/mobile/feedback.html:15
@@ -356,7 +356,7 @@ msgstr "No podemos encontrar a"
 #: ott/view/templates/desktop/planner_geocode.html:36
 #: ott/view/templates/mobile/planner_geocode.html:34
 msgid "location"
-msgstr ""
+msgstr "ubicación"
 
 #: ott/view/templates/desktop/planner_walk.html:19
 #: ott/view/templates/mobile/planner_walk.html:19
@@ -452,36 +452,28 @@ msgid "Close"
 msgstr "Cerrar"
 
 #: ott/view/templates/mobile/base.html:39
-#, fuzzy
-#| msgid "Next arrivals"
 msgid "Arrival Times"
 msgstr "Próximas llegadas"
 
 #: ott/view/templates/mobile/base.html:40
-#, fuzzy
-#| msgid "Plan a trip"
 msgid "Plan a Trip"
 msgstr "Planee un viaje"
 
 #: ott/view/templates/mobile/base.html:41
-#, fuzzy
-#| msgid "Service alert at this stop"
 msgid "Service Alerts"
-msgstr "Más información sobre esta parada"
+msgstr "Más información"
 
 #: ott/view/templates/mobile/base.html:42
-#, fuzzy
-#| msgid "Maps & Schedules"
 msgid "Stops and Schedules"
-msgstr "Mapas y Horarios"
+msgstr "Paradas y Horarios"
 
 #: ott/view/templates/mobile/base.html:43
 msgid "Maps"
-msgstr ""
+msgstr "Mapas"
 
 #: ott/view/templates/mobile/base.html:44
 msgid "Contact Us"
-msgstr ""
+msgstr "Contáctenos"
 
 #: ott/view/templates/mobile/base.html:63
 msgid "Feedback"
@@ -489,19 +481,19 @@ msgstr ""
 
 #: ott/view/templates/mobile/base.html:63
 msgid "App Center"
-msgstr ""
+msgstr "Aplicaciónes móvil"
 
 #: ott/view/templates/mobile/base.html:63
 msgid "Standard site"
-msgstr ""
+msgstr "Página web estándar"
 
 #: ott/view/templates/mobile/base.html:66
 msgid "Terms of Use"
-msgstr ""
+msgstr "Condiciones de Uso"
 
 #: ott/view/templates/mobile/base.html:66
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Política de Privacidad"
 
 #: ott/view/templates/mobile/map_place.html:7
 msgid "Map location "
@@ -783,7 +775,7 @@ msgstr "Dirección, intersección, lugar o Stop ID (número de la parada)"
 #: ott/view/templates/shared/utils/planner_form_utils.mako:111
 #: ott/view/templates/shared/utils/planner_form_utils.mako:120
 msgid "Use my current GPS location"
-msgstr ""
+msgstr "Usar mi ubicación actual del GPS"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:125
 msgid "When"
@@ -799,7 +791,7 @@ msgstr ""
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:160
 msgid "More options"
-msgstr ""
+msgstr "Más opciones"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:166
 msgid "Trip preferences (optional)"
@@ -856,7 +848,7 @@ msgstr "Ayuda"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:209
 msgid "Fewer options"
-msgstr ""
+msgstr "Menos opciones"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:216
 msgid "Get directions"
@@ -967,7 +959,7 @@ msgstr "Sólo a pie"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:386
 msgid "Please make sure your GPS setting is turned on for this browser"
-msgstr ""
+msgstr "Por favor, asegúrese de que su configuración de GPS está activado para este navegador"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:17
 #: ott/view/templates/shared/utils/planner_utils.mako:29
@@ -1255,7 +1247,7 @@ msgstr "Mostrar este viaje en el mapa interactivo"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:61
 msgid "Stop landing page"
-msgstr ""
+msgstr "Información de la parada de tránsito"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:71
 #, fuzzy
@@ -1265,11 +1257,11 @@ msgstr "Sólo tren"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:72
 msgid "Show all lines"
-msgstr ""
+msgstr "Mostrar todas las líneas de autobuses"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:82
 msgid "Sort"
-msgstr ""
+msgstr "por"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:83
 msgid "By destination"

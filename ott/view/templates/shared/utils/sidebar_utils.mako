@@ -9,7 +9,7 @@
 <%def name="tc_pr_lr_wes_mall(msg='Stop related page')">
     <!-- begin #sidebar -->
     <aside id="aside" class="aside">
-        <h2>${_(u'Related')}</h2>  
+        <h2>${_(u'Related')}</h2>
         <ul class="links">
             <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
             <li><a href="${util.url_domain()}/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>

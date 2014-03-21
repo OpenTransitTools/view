@@ -12,6 +12,9 @@
 <%def name="side_bar()"><!-- ABSTRACT side_bar() --></%def>
 <%def name="bottom()"><!-- ABSTRACT bottom() --></%def>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
+<%
+    extra_params = util.get_extra_params()
+%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -26,7 +29,6 @@ ${self.header()}
 <body class="standard" onLoad="${self.js_onload()}">
 ${self.emergency_content()|n,decode.utf8}
 
-
 <header id="header-wrap" class="group">
     <div id="nav-wrap" class="group">
         <nav id="nav">
@@ -36,12 +38,12 @@ ${self.emergency_content()|n,decode.utf8}
                 <a id="tabs-icon-close" href="#top">${_(u'Close')}</a>
                 <div id="tabs-ul-wrap">
                     <ul id="tabs" class="group">
-                        <li ><a href="/arrivals/small/pickroute.html">${_(u'Arrival Times')} (TransitTracker)</a></li>
-                        <li><a href="#">${_(u'Plan a Trip')}</a></li>
-                        <li><a href="#">${_(u'Service Alerts')}</a></li>
-                        <li><a href="#">${_(u'Stops and Schedules')}</a></li>
-                        <li><a href="#">${_(u'Maps')}</a></li>
-                        <li><a href="#">${_(u'Contact Us')}</a></li>
+                        <li><a href="/arrivals/small/pickroute.html">${_(u'Arrival Times')} (TransitTracker)</a></li>
+                        <li><a href="/ride/m/planner_form.html?dd${extra_params}">${_(u'Plan a Trip')}</a></li>
+                        <li><a href="/m/alerts/index.htm">${_(u'Service Alerts')}</a></li>
+                        <li><a href="/ride/m/stop_select_form.html?dd${extra_params}">${_(u'Stops and Schedules')}</a></li>
+                        <li><a href="/m/maps.htm">${_(u'Maps')}</a></li>
+                        <li><a href="/m/contact.htm?dd${extra_params}">${_(u'Contact Us')}</a></li>
                     </ul><!-- end #tabs -->
                 </div>
             </div>
