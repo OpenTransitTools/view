@@ -7,8 +7,43 @@
 ##
 ## typical itinerary page title
 ##
-<%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${_(u'From')} ${plan['from']['name']} ${_(u'to')} ${plan['to']['name']}</%def>
+<%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${from_to_msg(plan)}</%def>
+
+##
+## @returns From <orig> to <dest>
+##
+<%def name="get_from_to(plan, def_val='')"><% 
+    if plan and 'from' in plan and 'to' in plan:
+        return "{0} {1} {2} {3}".format(_(u'From'), plan['from']['name'], _(u'to'), plan['to']['name'])
+    else:
+        return def_val
+%></%def>
+
+##
+## @returns error['msg'] is that exits
+##
+<%def name="get_error_msg(error, def_val='')"><% return _(error['msg']) if error and 'msg' in error else def_val %></%def>
+
+##
+## if/else return for a decent page title
+##
+<%def name="from_to_msg(plan)"><%
+    ret_val = get_from_to(plan, None)
+    if ret_val is None:
+        ret_val = get_error_msg(error, None)
+    if ret_val is None:
+        ret_val = _(u'Uncertain planner problem.')
+    return ret_val
+%></%def>
+
+##
+## string page title ... for feedback / emailing (mostly)
+##
 <%def name="str_title(plan)"><% from ott.view.utils import transit_utils; return transit_utils.plan_title(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])%></%def>
+
+##
+## for feedback form ... briefly describe the trip request
+##
 <%def name="str_description(plan)"><% 
     title = str_title(plan)
     arr = get_depart_arrive(plan['params']['is_arrive_by'])
@@ -247,7 +282,16 @@
 
 <%def name="get_route_name(route)"><% return route['name'] + " " + _(u'to') + " " + route['headsign'] if route['headsign'] else ''%></%def>
 <%def name="get_time(itinerary, is_arrive_by)"><% from ott.view.utils import transit_utils; return transit_utils.get_time(itinerary, is_arrive_by)%></%def>
-<%def name="get_itinerary(plan)"><% from ott.view.utils import transit_utils; return transit_utils.get_itinerary(plan)%></%def>
+
+<%def name="get_itinerary(plan)"><%
+    from ott.view.utils import transit_utils
+    ret_val = None
+    try:
+        ret_val = transit_utils.get_itinerary(plan)
+    except:
+        pass
+    return ret_val
+%></%def>
 <%def name="has_transit(itinerary)"><% from ott.view.utils import transit_utils; return transit_utils.has_transit(itinerary)%></%def>
 <%def name="has_fare(itinerary)"><% from ott.view.utils import transit_utils; return transit_utils.has_fare(itinerary)%></%def>
 <%def name="get_route_link(name, url, mode)"><a href="${url}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>

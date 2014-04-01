@@ -7,8 +7,8 @@
 <%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 <%
     is_mobile = False
-    itinerary = plib.get_itinerary(plan)
     extra_params = util.get_extra_params()
+    itinerary = plib.get_itinerary(plan)
 %>
 <%def name="title()">${plib.itin_page_title(plan)}</%def>
 <%def name="meta_data()">${meta.tripplanner()}</%def>
@@ -29,5 +29,9 @@ ${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
     ol.transit * * * {display: block}
     #details { padding: 0}
 </style>
+%if itinerary:
 ${plib.render_trip_details(plan)}
 ${plib.render_itinerary(itinerary, extra_params, is_mobile, True)}
+%else:
+${plib.get_error_msg(error, _('Uncertain planner problem'))}
+%endif
