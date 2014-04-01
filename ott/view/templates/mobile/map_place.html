@@ -17,10 +17,11 @@
     ${_(u'Map location')}
 </h1>
 <h2 class="top">${util.name_city_str_from_struct(place)}</h2>
-<p>&nbsp;</p>
 
 %if place['lat'] and place['lon']:
+    <p>
     ${su.place_map(place['name'], place['lon'], place['lat'], extra_params, is_mobile=True)}
     ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
+    </p>
 %endif
 
