@@ -10,6 +10,7 @@ from pyramid.events import NewRequest
 
 from ott.view.pyramid import views
 
+from wsgiref.simple_server import make_server
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
@@ -73,7 +74,7 @@ def cmdline():
     ''' as an alternate to pserve, you can run this via bin/python ott/view/pyramid_app 
         it should start the server on http://127.0.0.1:8080
     '''
-    from wsgiref.simple_server import make_server
+    
 
     # configuration settings
     here = os.path.dirname(os.path.abspath(__file__))
