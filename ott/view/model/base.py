@@ -1,5 +1,6 @@
 import simplejson as json
 import urllib
+import re
 import logging
 log = logging.getLogger(__file__)
 
@@ -21,13 +22,21 @@ class Base(object):
 
     def get_adverts(self, get_params, **kwargs): pass
 
+    def get_service_url(self, svc, args):
+        #import pdb; pdb.set_trace()
+        domain = config.get('controller', 'http://127.0.0.1:44444')
+        url = "{0}///{1}?{2}".format(domain, svc, object_utils.to_str(args))
+        url = re.sub(r"/+", "/", url)
+        url = url.replace(":/", "://")
+        ret_val = urllib.quote_plus(url, safe="%/:=&?~#+!$,;'@()*[]")
+        return ret_val
+
+
     def stream_json(self, svc, args):
         ''' utility class to stream .json
         '''
         ret_val={}
-        #import pdb; pdb.set_trace()
-        domain = config.get('controller', 'http://127.0.0.1:34443')
-        url = "{0}/{1}?{2}".format(domain, svc, object_utils.to_str(args))
+        url = self.get_service_url(svc, args)
         log.info("calling service: {0}".format(url))
         stream = urllib.urlopen(url)
         otp = stream.read()
