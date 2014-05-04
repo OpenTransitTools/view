@@ -8,6 +8,8 @@ from ott.view.utils import config
 from ott.view.utils import object_utils
 
 class Base(object):
+    def __init__(self):
+        self.service_cache = {}
 
     def get_plan(self, get_params, **kwargs): pass
 
@@ -22,15 +24,37 @@ class Base(object):
 
     def get_adverts(self, get_params, **kwargs): pass
 
-    def get_service_url(self, svc, args):
-        #import pdb; pdb.set_trace()
-        domain = config.get('controller', 'http://127.0.0.1:44444')
-        url = "{0}///{1}?{2}".format(domain, svc, object_utils.to_str(args))
-        url = re.sub(r"/+", "/", url)
-        url = url.replace(":/", "://")
-        ret_val = urllib.quote_plus(url, safe="%/:=&?~#+!$,;'@()*[]")
+    def _cache_svc_url(self, svc):
+        ret_val = svc
+        if svc in self.service_cache:
+            ret_val = self.service_cache[svc]
+        else:
+            domain = config.get('controller', 'http://127.0.0.1:44444')
+            url = "{0}/{1}".format(domain, svc)
+            url = re.sub(r"/+", "/", url)     # get rid of extra /, ala http://x/y//z///b
+            url = url.replace(":/", "://")    # fix http:// part from line above...
+            url = urllib.quote_plus(url, safe="%/:=&?~#+!$,;'@()*[]")
+            self.service_cache[svc] = url
+            ret_val = url
         return ret_val
 
+    def get_service_url(self, svc, args):
+        #import pdb; pdb.set_trace()
+        url = self._cache_svc_url(svc)
+        url = "{0}?{1}".format(url, object_utils.to_str(args))
+        '''
+            TODO : IDEA
+            
+            PROBLEM: we might want to CACHE the return from the service
+                     problem is, the url to the the service might contain params that
+                     defeat caching
+            
+            Since a lot of pages will send down 'all' their params (in
+            
+        '''
+
+
+        return url
 
     def stream_json(self, svc, args):
         ''' utility class to stream .json
