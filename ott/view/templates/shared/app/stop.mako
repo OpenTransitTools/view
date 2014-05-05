@@ -37,7 +37,7 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
         %if len(stop['routes']) > 1:
         <h3 class="tight">${_(u'All routes')}</h3>
         <p>
-            <a class="hide" href="${url.get_arrivals_url(stop_id=stop['stop_id'])}">${_(u'Next arrivals')}</a>
+            <a class="hide" href="${url.get_arrivals_url(stop_id=stop['stop_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
                 &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Schedule')}</a>
         </p>
         %endif
