@@ -178,7 +178,7 @@ def stop_schedule(request):
     url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
 
     ret_val = html_utils.service_tabs(request, url)
-    ret_val['stop'] = request.model.get_stop_schedule(request.query_string, **request.params)
+    ret_val['ss'] = request.model.get_stop_schedule(request.query_string, **request.params)
     return ret_val
 
 @view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')
