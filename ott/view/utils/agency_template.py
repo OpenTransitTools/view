@@ -1,3 +1,10 @@
+AGENCY_TEMPLATE = None
+
+def make_url_template():
+    global AGENCY_TEMPLATE
+    if AGENCY_TEMPLATE is None:
+        AGENCY_TEMPLATE = AgencyTemplate()
+    return AGENCY_TEMPLATE
 
 
 class AgencyTemplate(object):
@@ -12,13 +19,13 @@ class AgencyTemplate(object):
                         'alerts'     : 'http://trimet.org/alerts',
                         'stop_img'   : 'http://ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/{w}/height/{h}/zoom/{z}/excparams/format_options=layout:scale/id/{stop_id}',
                         'imap'       : 'http://ride.trimet.org/?zoom=16&pLat={lat}&pLon={lon}&pText={name}',
-                        'route'      : 'http://trimet.org/schedules/r{route_id:03d}.htm',
+                        'route'      : 'http://trimet.org/schedules/r{route_id:0>3}.htm',
                     },
                     'mobile' : {
                         'arrivals'   : 'http://trimet.org/arrivals/small/tracker?stopID={stop_id}',
                         'alerts'     : 'http://trimet.org/m/alerts',
                         'stop_img'   : 'http://ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/{w}/height/{h}/zoom/{z}/excparams/format_options=layout:scale/id/{stop_id}',
-                        'route'      : 'http://trimet.org/images/schedulemaps/{route_id:03d}.gif',
+                        'route'      : 'http://trimet.org/images/schedulemaps/{route_id:0>3}.gif',
                     },
                 }
         }
@@ -27,11 +34,16 @@ class AgencyTemplate(object):
     def get_template(self, template, agency='TriMet', device='desktop', def_val=None):
         ret_val = def_val
         try:
+            if isinstance(device, bool):
+                device = self.device_type(device)
             ret_val = self.template_cache[agency][device][template]
-        except:
+        except Exception, e:
+            #log.debug(e)
             pass
         return ret_val
 
+    def device_type(self, is_mobile=False):
+        return 'mobile' if is_mobile else 'desktop'
 
     def get_arrivals_url(self, stop_id, route_id=None, route_fmt="route={route_id}", agency='TriMet', device='desktop', def_val=None):
         ret_val = def_val
@@ -73,6 +85,7 @@ class AgencyTemplate(object):
         return ret_val
 
     def get_route_url(self, route_id, agency='TriMet', device='desktop', def_val=None):
+        #import pdb; pdb.set_trace()
         ret_val = def_val
         url = self.get_template('route', agency, device, def_val)
         if url != def_val:

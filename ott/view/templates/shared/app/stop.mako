@@ -11,6 +11,10 @@
     name = su.make_name_id(stop)
     stop_params = su.make_url_params(stop)
     has_alerts = su.has_alerts(stop)
+
+    from ott.view.utils import agency_template
+    url = agency_template.make_url_template()
+    #device = url.device_type(is_mobile)
 %>
 ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
 <h2>${util.name_city_str_from_struct(stop)}</h2>
@@ -24,16 +28,16 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
             %if 'direction' in r:
             ${r['direction']}<br/>
             %endif
-            <a href="${r['arrival_url'].format(stop_id=stop['stop_id'])}">${_(u'Next arrivals')}</a>
+            <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], route_id=r['route_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
                 &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedules for this stop')}.">${_(u'Schedule')}</a> 
-                &nbsp;&bull;&nbsp; <a href="${r['route_url']}" title="${_(u'Show map and schedules for this line')}.">${_(u'Route info')}</a>
+                &nbsp;&bull;&nbsp; <a href="${url.get_route_url(route_id=r['route_id'], device=is_mobile)}" title="${_(u'Show map and schedules for this line')}.">${_(u'Route info')}</a>
         </p>
         %endfor
 
         %if len(stop['routes']) > 1:
         <h3 class="tight">${_(u'All routes')}</h3>
         <p>
-            <a class="hide" href="${stop['arrival_url']}">${_(u'Next arrivals')}</a>
+            <a class="hide" href="${url.get_arrivals_url(stop_id=stop['stop_id'])}">${_(u'Next arrivals')}</a>
                 &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Schedule')}</a>
         </p>
         %endif

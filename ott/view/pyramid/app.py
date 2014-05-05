@@ -9,8 +9,8 @@ from pyramid.events import ApplicationCreated
 from pyramid.events import NewRequest
 
 from ott.view.pyramid import views
-
 from wsgiref.simple_server import make_server
+
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
