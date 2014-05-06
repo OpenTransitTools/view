@@ -101,7 +101,7 @@
     ###  SHOW schedule as a list, with headsign to left of time...
     ###
     %for s in ss['stoptimes']:
-    <% 
+    <%
         id = s['h']
         hs = ss['headsigns'][id]
     %> 
@@ -112,16 +112,17 @@
     ###  SHOW schedule grouped under headsign
     ###
     %else:
-    %for h in ss['headsigns'].keys():
-    <% 
-        hs = ss['headsigns'][h]
+    <%
+        hs_list = ss['headsigns'].values()
+        hs_list.sort(key=lambda hs: hs['sort_order'], reverse=False)
     %>
+    %for hs in hs_list:
     <h3 class="tight">
         ${hs['route_name']} ${_(u'to')} ${hs['headsign']}
     </h3>
     <p class="tight">
         %for s in ss['stoptimes']:
-            %if s['h'] == h:
+            %if s['h'] == hs['id']:
             ${s['t']}&nbsp; 
             %endif
         %endfor
