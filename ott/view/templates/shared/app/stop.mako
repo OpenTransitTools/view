@@ -14,7 +14,6 @@
 
     from ott.view.utils import agency_template
     url = agency_template.make_url_template()
-    #device = url.device_type(is_mobile)
 %>
 ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
 <h2>${util.name_city_str_from_struct(stop)}</h2>

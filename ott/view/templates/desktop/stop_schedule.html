@@ -9,10 +9,10 @@
 <%namespace name="ssu"  file="/shared/utils/stop_schedule_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
-%>
-<%
-    name = su.make_name_id(ss['stop'])
-    stop_params = su.make_url_params(ss['stop'])
+
+    stop = ss['stop']
+    name = su.make_name_id(stop)
+    stop_params = su.make_url_params(stop)
 %>
 <%def name="title()">${su.page_title(ss['stop'])}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
@@ -20,13 +20,13 @@
 <%def name="stations_selected()">class="selected"</%def>
 <%def name="app_css()">${page.stop_css()}</%def>
 
-${page.stop(name, extra_params, stop_params, ss['stop'])}
+${page.stop(name, extra_params, stop_params, stop)}
 
-<h2>${util.name_city_str_from_struct(ss['stop'])}</h2>
+<h2>${util.name_city_str_from_struct(stop)}</h2>
 
 ${ssu.svc_key_tabs(tabs, extra_params)}
-${ssu.schedule_all_routes_link(ss['stop'], extra_params)}
-${ssu.schedule_sort_by_links(ss['stop'], extra_params)}
-$ {ssu.schedule_render(ss['stop'], pretty_date, extra_params)}
-${util.alerts(ss['stop']['alerts'])}
+${ssu.schedule_all_routes_link(stop, extra_params)}
+${ssu.schedule_sort_by_links(stop, extra_params)}
+${ssu.schedule_render(ss, pretty_date, extra_params)}
+${util.alerts(stop['alerts'])}
 <p>&nbsp;</p>

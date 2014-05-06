@@ -90,40 +90,50 @@
 ##
 ## sort schedule by either route (blocky view) or time (list view)
 ##
-<%def name="schedule_render(stop, pretty_date, extra_params)">
+<%def name="schedule_render(ss, pretty_date, extra_params, is_mobile=False)">
+    <%
+        from ott.view.utils import agency_template
+        url = agency_template.make_url_template()
+    %>
     %if sort_by_time():
     <p>
-    %for s in stop['schedule']:
+    %%
+    %% SHOW schedule as a list, with headsign to left of time...
+    %%
+    %for s in ss['stoptimes']:
     <% 
         id = s['h']
-        route = stop['headsigns'][id]
+        hs = ss['headsigns'][id]
     %> 
-    <b>${s['t']}</b> ${route['route_name']} ${_(u'to')} ${route['headsign']}<br/>
+    <b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}<br/>
     %endfor
     </p>
+    %%
+    %% SHOW schedule grouped under headsign
+    %%
     %else:
-    %for h in stop['headsigns'].keys():
+    %for h in ss['headsigns'].keys():
     <% 
-        route = stop['headsigns'][h]
+        hs = ss['headsigns'][h]
     %>
     <h3 class="tight">
-        ${route['route_name']} ${_(u'to')} ${route['headsign']}
-        %if route['has_alert']:
-        ${util.alerts_inline_icon_link()}
-        %endif
+        ${hs['route_name']} ${_(u'to')} ${hs['headsign']}
     </h3>
     <p class="tight">
-        %for s in stop['schedule']:
-        %if s['h'] == h:
-        ${s['t']}&nbsp; 
-        %endif
+        %for s in ss['stoptimes']:
+            %if s['h'] == h:
+            ${s['t']}&nbsp; 
+            %endif
         %endfor
     </p>
     <p>
-        %if 'arrival_url' in route:
-        <a href="${route['arrival_url']}">${_(u'Next arrivals')}</a>
-        %endif
+        <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
     </p>
     %endfor
     %endif
 </%def>
+
+        %if hs['has_alert']:
+        ${util.alerts_inline_icon_link()}
+        %endif
+
