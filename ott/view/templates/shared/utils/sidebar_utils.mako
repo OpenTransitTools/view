@@ -51,6 +51,16 @@
     </div><!-- end #sidebar-icons -->
 </%def>
 
+##
+## planner support pages ... no plan yet
+## 
+<%def name="planner_support_page(help_url='/tripplanner/trip-help.htm')">
+    <div id="sidebar-icons">
+        <p class="helptips"><a href="${util.url_domain()}${help_url}" target="#"><span>${_(u'Help/tips')}</span></a></p>
+        <p class="feedbackreport"><a target="_blank" href="${util.trimet_feedback_url(_(u"Having trouble with trip planner pages, like the geocoder..."))}">${_(u'Having problems? Click here for technical support.')}</a></p>
+    </div><!-- end #sidebar-icons -->
+</%def>
+
 
 ##
 ## make the stop landing page (right) sidebar

@@ -27,13 +27,25 @@
 <%def name="stop(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${h1_base_stop_stations(name, extra_params, base_params)}
     </div>
-    <h1>${_(u'Schedule for')}<!--TODO only show this for stop_schedule.html -->
+    <h1>
         ${name}
-        %if has_alerts:
+    </h1>
+</%def>
+
+#
+# for stop schedule pages that have specific stop info (ala alerts / stop landing page link / etc...)
+#
+<%def name="stop_schedule(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
+    ${h1_base_stop_stations(name, extra_params, base_params)}
+    </div>
+    <h1>${_(u'Schedule for')}
+        ${name}
+        %if has_alerts is True:
         ${util.alerts_inline_icon_link()}
         %endif
     </h1>
 </%def>
+
 
 <%def name="trip_form_link(name, extra_params, base_params)">
 <!--TODO this needs to change from a div to an h1 if it is the trip planner form page -->

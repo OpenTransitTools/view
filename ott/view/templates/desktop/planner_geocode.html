@@ -16,8 +16,9 @@
 <%def name="meta_data()">${meta.tripplanner()}</%def>
 <%def name="side_bar()">
     <aside id="aside" class="aside">
-    	<!-- TODO should be getting adverts here, but I don't see them -->
+        <!-- TODO should be getting adverts here, but I don't see them -->
         ${side.sidebar_adverts(adverts)}
+        ${side.planner_support_page()}
     </aside>
 </%def>
 <%def name="planner_selected()">class="selected"</%def>
