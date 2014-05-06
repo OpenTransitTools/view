@@ -97,9 +97,9 @@
     %>
     %if sort_by_time():
     <p>
-    <%'''
-      SHOW schedule as a list, with headsign to left of time...
-    '''%>
+    ###
+    ###  SHOW schedule as a list, with headsign to left of time...
+    ###
     %for s in ss['stoptimes']:
     <% 
         id = s['h']
@@ -108,9 +108,9 @@
     <b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}<br/>
     %endfor
     </p>
-    <%'''
-      SHOW schedule grouped under headsign
-    '''%>
+    ###
+    ###  SHOW schedule grouped under headsign
+    ###
     %else:
     %for h in ss['headsigns'].keys():
     <% 
