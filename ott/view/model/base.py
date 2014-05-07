@@ -1,5 +1,6 @@
 import simplejson as json
 import urllib
+import contextlib
 import re
 import logging
 log = logging.getLogger(__file__)
@@ -62,9 +63,9 @@ class Base(object):
         ret_val={}
         url = self.get_service_url(svc, args)
         log.info("calling service: {0}".format(url))
-        stream = urllib.urlopen(url)
-        otp = stream.read()
-        ret_val = json.loads(otp)
+        with contextlib.closing(urllib.urlopen(url)) as stream:
+            otp = stream.read()
+            ret_val = json.loads(otp)
         return ret_val
 
     def get_json(self, file, path='ott/view/static/mock/'):
