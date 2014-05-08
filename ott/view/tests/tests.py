@@ -15,16 +15,28 @@ class TestMyView(unittest.TestCase):
         pass
 
     def test_routes(self):
-        url = get_url('routes.html')
-        j = call_url(url)
+        # desktop
+        url = get_url('stop_select_form.html')
+        s = call_url(url)
         self.assertRegexpMatches(s,"MAX Blue")
 
-        url = get_url('m/routes.html')
-        j = call_url(url)
+        # mobile
+        url = get_url('m/stop_select_form.html')
+        s = call_url(url)
         self.assertRegexpMatches(s,"MAX Blue")
 
-        url = get_url('route_stops.html', 'route_id=100&direction_id=0')
-        self.assertRegexpMatches(s,"Hatfield Government")
+    def test_route_stops(self):
+        url = get_url('stop_select_list.html', 'route=100')
+        s = call_url(url)
+        self.assertRegexpMatches(s,"MAX Blue")
+        self.assertRegexpMatches(s,"Hatfield")
+
+        url = get_url('m/stop_select_form.html', 'route=100')
+        s = call_url(url)
+        self.assertRegexpMatches(s,"MAX Blue")
+        self.assertRegexpMatches(s,"Hatfield")
+
+'''
 
     def test_stop(self):
         url = get_url('stop.html', 'stop_id=2')
@@ -51,6 +63,7 @@ class TestMyView(unittest.TestCase):
         url = get_url('geocode', 'place=zoo')
         self.assertRegexpMatches(s,"-122.71")
         self.assertRegexpMatches(s,"45.51")
+'''
 
 def get_url(svc_name, params=None):
     ret_val = "http://localhost:{0}/{1}".format(PORT, svc_name)
