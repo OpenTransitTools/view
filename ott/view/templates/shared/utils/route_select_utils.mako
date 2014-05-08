@@ -21,3 +21,30 @@
     </form>
     <!-- END route_select_form() -->
 </%def>
+
+<%def name="route_stop_dropdown(route_stops, analytics='')">
+<div id="stoplist">
+    % for d in route_stops['directions']:
+    <form action="stop.html" method="get" class="triptools-form">
+        <fieldset>
+            ${form.get_extra_params_hidden_inputs()}
+            <label for="${d['direction_name']}">${d['direction_name']}</label>
+            <select name="stop_id" id="${d['direction_name']}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
+                % for s in d['stop_list']['stops']:
+                <option value="${s['stop_id']}">${s['name']} (#${s['stop_id']})</option>
+                % endfor
+            </select>
+        </fieldset>
+        <fieldset>
+            <input type="submit" class="submit" value="${_(u'Select stop')}" id="select" />
+        </fieldset>
+    </form>
+    %if not loop.last:
+    <div class="or">
+        <div class="or-bar"></div>
+        <div class="or-text">${_(u'Or')}</div>
+    </div>
+    %endif
+    % endfor
+</div>
+</%def>

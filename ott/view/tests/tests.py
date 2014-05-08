@@ -14,7 +14,8 @@ class TestMyView(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_routes(self):
+    def test_stop_select_form(self):
+        ''' routes ws: list of route '''
         # desktop
         url = get_url('stop_select_form.html')
         s = call_url(url)
@@ -25,7 +26,8 @@ class TestMyView(unittest.TestCase):
         s = call_url(url)
         self.assertRegexpMatches(s,"MAX Blue")
 
-    def test_route_stops(self):
+    def test_stop_select_list(self):
+        ''' route stops ws: stop select for each route direction '''
         url = get_url('stop_select_list.html', 'route=100')
         s = call_url(url)
         self.assertRegexpMatches(s,"MAX Blue")
