@@ -10,18 +10,16 @@ README = open(os.path.join(here, 'README.md')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
+    'Babel',
+    'lingua',
     'pyramid',
     'pyramid_mako',
     'pyramid_beaker',
     'waitress',
     'mako',
-    'colander',
     'pillow',
-    'Babel',
-    'lingua',
     'simplejson',
     'qrcode',
-    'six',
 ]
 
 #
@@ -38,7 +36,6 @@ dev_extras = (
     'coverage>=3.5.2',
     'fabric>=1.4.3',
     'zest.releaser>=3.37',
-    'nose'
 )
 
 # when you run: bin/py setup.py extract_messages
@@ -68,7 +65,7 @@ setup(
     ],
     author="Open Transit Tools",
     author_email="info@opentransittools.org",
-    dependency_links=('http://opentransittools.com',),
+    dependency_links=[],
     license="Mozilla-derived (http://opentransittools.com)",
     url='http://opentransittools.com',
     keywords='ott, otp, view, transit',
