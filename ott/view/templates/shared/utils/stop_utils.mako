@@ -9,6 +9,11 @@
 <%def name="page_title(stop)">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 <%def name="str_title(stop)"><% return "Stop ID {0}".format(stop['stop_id']) %></%def>
 
+<%
+   from ott.view.utils import agency_template
+   AGENCY_URL = agency_template.make_url_template()
+%>
+
 ##
 ## stop ambiguous geocode form(s) 
 ##
@@ -62,7 +67,7 @@
 <%def name="route_abrv_list(stop)">
     %if stop and stop['short_names']:
     %for i, r in enumerate(stop['short_names']):
-${', ' if (i > 0) else ''}<a target="#" href="${r['route_id']}">${r['route_short_name']}</a>
+${', ' if (i > 0) else ''}<a target="#" href="${r['route_id']}">${ r['route_short_name']}</a>
 %endfor
 %endif
 </%def>

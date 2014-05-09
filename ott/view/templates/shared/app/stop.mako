@@ -13,8 +13,10 @@
     has_alerts = su.has_alerts(stop)
 
     from ott.view.utils import agency_template
-    url = agency_template.make_url_template()
+    AGENCY_URL = agency_template.make_url_template()
+    ##### ${AGENCY_URL.get_route_url('44')}
 %>
+
 ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
 <h2>${util.name_city_str_from_struct(stop)}</h2>
 
