@@ -56,7 +56,6 @@ class TestMyView(unittest.TestCase):
             self.assertRegexpMatches(s, 'type="text"   id="from" name="from" value="PDX"')
             self.assertRegexpMatches(s, 'type="text"   id="going" name="to" value="ZOO"')
 
-
     def test_plan_trip(self):
         for m in ['', 'm/']:
             url = get_url(m + 'planner.html', 'to=pdx&from=zoo&Hour=9&Minute=0&AmPm=pm')
