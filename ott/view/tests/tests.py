@@ -29,13 +29,11 @@ class TestMyView(unittest.TestCase):
             self.assertRegexpMatches(s,"MAX Blue")
             self.assertRegexpMatches(s,"Hatfield")
 
-
     def test_stop(self):
         for m in ['', 'm/']:
             url = get_url(m + 'stop.html', 'stop_id=2')
             s = call_url(url)
             self.assertRegexpMatches(s,"Lake Oswego")
-
 
     def test_stops_near(self):
         for m in ['', 'm/']:
@@ -44,25 +42,32 @@ class TestMyView(unittest.TestCase):
             self.assertRegexpMatches(s,"SE Division")
             self.assertRegexpMatches(s,"XTCvsAdamAnt")
 
-
-'''
     def test_stop_schedule(self):
-        url = get_url('stop_schedule.html', 'stop_id=2')
-        self.assertRegexpMatches(s,"Lake Oswego")
+        for m in ['', 'm/']:
+            for t in ['&sort=destination', '&sort=time']:
+                url = get_url(m + 'stop_schedule.html', 'stop_id=2' + t)
+                s = call_url(url)
+                self.assertRegexpMatches(s,"Lake Oswego")
+
+    def test_plan_form(self):
+        for m in ['', 'm/']:
+            url = get_url(m + 'planner_form.html', 'to=SE%20Powell%20%26%20157th::45.495883,-122.501919')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"SE Powell")
 
     def test_plan_trip(self):
-        url = get_url('plan_trip.html', 'from=pdx&to=zoo')
-        j = call_url(url)
-        s = json.dumps(j)
-        #self.assertEqual(j['status_code'], 200)
-        self.assertRegexpMatches(s,"Zoo")
-        self.assertRegexpMatches(s,"itineraries")
+        for m in ['', 'm/']:
+            url = get_url(m + 'planner.html', 'to=pdx&from=zoo&Hour=9&Minute=0&AmPm=pm')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"MAX Red Line")
 
     def test_geocode(self):
-        url = get_url('geocode', 'place=zoo')
-        self.assertRegexpMatches(s,"-122.71")
-        self.assertRegexpMatches(s,"45.51")
-'''
+        for m in ['', 'm/']:
+            url = get_url(m + 'planner.html', 'from=834 SE')
+            s = call_url(url)
+            self.assertRegexpMatches(s, "834 SE MILL")
+            self.assertRegexpMatches(s, "834 SE LAMBERT")
+
 
 def get_url(svc_name, params=None):
     ret_val = "http://localhost:{0}/{1}".format(PORT, svc_name)
