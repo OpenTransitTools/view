@@ -33,22 +33,23 @@ class TestMyView(unittest.TestCase):
         self.assertRegexpMatches(s,"MAX Blue")
         self.assertRegexpMatches(s,"Hatfield")
 
-        url = get_url('m/stop_select_form.html', 'route=100')
+        url = get_url('m/stop_select_list.html', 'route=100')
         s = call_url(url)
         self.assertRegexpMatches(s,"MAX Blue")
         self.assertRegexpMatches(s,"Hatfield")
 
-'''
-
     def test_stop(self):
         url = get_url('stop.html', 'stop_id=2')
+        s = call_url(url)
         self.assertRegexpMatches(s,"Lake Oswego")
 
     def test_stops_near(self):
-        url = get_url('stops_near.html', 'lat=45.5&lon=-122.5')
-        self.assertEqual(j['count'], 10)
+        url = get_url('stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
+        s = call_url(url)
         self.assertRegexpMatches(s,"SE Division")
+        self.assertRegexpMatches(s,"XTCvsAdamAnt")
 
+'''
     def test_stop_schedule(self):
         url = get_url('stop_schedule.html', 'stop_id=2')
         self.assertRegexpMatches(s,"Lake Oswego")
