@@ -51,9 +51,11 @@ class TestMyView(unittest.TestCase):
 
     def test_plan_form(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'planner_form.html', 'to=SE%20Powell%20%26%20157th::45.495883,-122.501919')
+            url = get_url(m + 'planner_form.html', 'from=PDX&to=ZOO::45.495883,-122.501919')
             s = call_url(url)
-            self.assertRegexpMatches(s,"SE Powell")
+            self.assertRegexpMatches(s, 'type="text"   id="from" name="from" value="PDX"')
+            self.assertRegexpMatches(s, 'type="text"   id="going" name="to" value="ZOO"')
+
 
     def test_plan_trip(self):
         for m in ['', 'm/']:
@@ -61,12 +63,31 @@ class TestMyView(unittest.TestCase):
             s = call_url(url)
             self.assertRegexpMatches(s,"MAX Red Line")
 
+    def test_plan_walk(self):
+        for m in ['', 'm/']:
+            url = get_url(m + 'planner_walk.html', 'mode=WALK&from=pdx&to=zoo')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"Airport Way")
+
+    def test_map_place(self):
+        for m in ['', 'm/']:
+            url = get_url(m + 'map_place.html', 'name=834 SE MILL ST&city=Portland&lon=-122.65705&lat=45.509865')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"Plan a trip to 834 SE MILL ST")
+            self.assertRegexpMatches(s,"ride.trimet.org")
+
     def test_geocode(self):
         for m in ['', 'm/']:
             url = get_url(m + 'planner.html', 'from=834 SE')
             s = call_url(url)
             self.assertRegexpMatches(s, "834 SE MILL")
             self.assertRegexpMatches(s, "834 SE LAMBERT")
+
+    def test_homepage_form(self):
+        url = get_url('pform_standalone.html', 'from=PDX&to=ZOO')
+        s = call_url(url)
+        self.assertRegexpMatches(s, 'type="text"   id="from" name="from" value="PDX"')
+        self.assertRegexpMatches(s, 'type="text"   id="going" name="to" value="ZOO"')
 
 
 def get_url(svc_name, params=None):
