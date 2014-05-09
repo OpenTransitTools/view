@@ -60,9 +60,9 @@
 </%def>
 
 <%def name="route_abrv_list(stop)">
-    %if stop and stop['routes']:
-    %for i, r in enumerate(stop['routes']):
-${', ' if (i > 0) else ''}<a target="#" href="${r['route_url']}">${r['short_name']}</a>
+    %if stop and stop['short_names']:
+    %for i, r in enumerate(stop['short_names']):
+${', ' if (i > 0) else ''}<a target="#" href="${r['route_id']}">${r['route_short_name']}</a>
 %endfor
 %endif
 </%def>
