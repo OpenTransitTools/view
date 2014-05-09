@@ -30,9 +30,17 @@ class AgencyTemplate(object):
                 }
         }
 
+        ''' TODO: make agency=None in param calls, and use the get_agency() call to initialize '''
+        self.default_agency = 'TriMet'
 
-    def get_template(self, template, agency='TriMet', device='desktop', def_val=None):
+    def get_agency(self, agency):
+        if agency is None:
+            agency = self.default_agency
+        return agency
+
+    def get_template(self, template, agency=None, device='desktop', def_val=None):
         ret_val = def_val
+        agency = self.get_agency(agency)
         try:
             if isinstance(device, bool):
                 device = self.device_type(device)
@@ -45,8 +53,9 @@ class AgencyTemplate(object):
     def device_type(self, is_mobile=False):
         return 'mobile' if is_mobile else 'desktop'
 
-    def get_arrivals_url(self, stop_id, route_id=None, route_fmt="route={route_id}", agency='TriMet', device='desktop', def_val=None):
+    def get_arrivals_url(self, stop_id, route_id=None, route_fmt="route={route_id}", agency=None, device='desktop', def_val=None):
         ret_val = def_val
+        agency = self.get_agency(agency)
         url = self.get_template('arrivals', agency, device, def_val)
         if url != def_val:
             p = {'stop_id':stop_id}
@@ -56,8 +65,9 @@ class AgencyTemplate(object):
             ret_val = url.format(**p)
         return ret_val
 
-    def get_alerts_url(self, route_id=None, route_fmt="route={route_id}", agency='TriMet', device='desktop', def_val=None):
+    def get_alerts_url(self, route_id=None, route_fmt="route={route_id}", agency=None, device='desktop', def_val=None):
         ret_val = def_val
+        agency = self.get_agency(agency)
         url = self.get_template('alerts', agency, device, def_val)
         if url != def_val:
             ret_val = url
@@ -68,30 +78,37 @@ class AgencyTemplate(object):
                 ret_val = url.format(**p)
         return ret_val
 
-    def get_stop_img_url(self, stop_id, w=275, h=275, z=6, agency='TriMet', device='desktop', def_val=None):
+    def get_stop_img_url(self, stop_id, w=275, h=275, z=6, agency=None, device='desktop', def_val=None):
         ret_val = def_val
+        agency = self.get_agency(agency)
         url = self.get_template('stop_img', agency, device, def_val)
         if url != def_val:
             p = {'stop_id':stop_id, 'w':w, 'h':h, 'z':z}
             ret_val = url.format(**p)
         return ret_val
 
-    def get_interactive_map_url(self, lat, lon, name="", route_id=None, agency='TriMet', device='desktop', def_val=None):
+    def get_interactive_map_url(self, lat, lon, name="", route_id=None, agency=None, device='desktop', def_val=None):
         ret_val = def_val
+        agency = self.get_agency(agency)
         url = self.get_template('imap', agency, device, def_val)
         if url != def_val:
             p = {'name':name, 'lat':lat, 'lon':lon}
             ret_val = url.format(**p)
         return ret_val
 
-    def get_route_url(self, route_id, agency='TriMet', device='desktop', def_val=None):
+    def get_route_url(self, route_id, agency=None, device='desktop', def_val=None):
         #import pdb; pdb.set_trace()
         ret_val = def_val
+        agency = self.get_agency(agency)
         url = self.get_template('route', agency, device, def_val)
         if url != def_val:
             p = {'route_id':route_id}
             ret_val = url.format(**p)
         return ret_val
+    def mobile_route_url(self, route_id, agency=None, def_val=None):
+        return self.get_route_url(route_id, agency, 'mobile', def_val)
+    def desktop_route_url(self, route_id, agency=None, def_val=None):
+        return self.get_route_url(route_id, agency, 'desktop', def_val)
 
 def test():
     a = AgencyTemplate()

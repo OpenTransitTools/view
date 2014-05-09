@@ -9,11 +9,6 @@
 <%def name="page_title(stop)">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 <%def name="str_title(stop)"><% return "Stop ID {0}".format(stop['stop_id']) %></%def>
 
-<%
-   from ott.view.utils import agency_template
-   AGENCY_URL = agency_template.make_url_template()
-%>
-
 ##
 ## stop ambiguous geocode form(s) 
 ##
@@ -64,16 +59,19 @@
 <a href="planner_walk.html?mode=WALK&from=${util.make_named_coord_from_obj(frm)}&to=${util.make_named_coord_from_obj(to)}${extra_params}">${dist}</a>
 </%def>
 
-<%def name="route_abrv_list(stop)">
-    %if stop and stop['short_names']:
+##
+## NOTE: rte_url_tmpl is a closure method passed into routes_served.  
+##       @see utils.agency_template.py for more info...
+##
+<%def name="route_abrv_list(stop, rte_url_tmpl)">
+%if stop and stop['short_names']:
     %for i, r in enumerate(stop['short_names']):
-${', ' if (i > 0) else ''}<a target="#" href="${r['route_id']}">${ r['route_short_name']}</a>
+${', ' if (i > 0) else ''}<a target="#" href="${rte_url_tmpl(r['route_id'])}">${ r['route_short_name']}</a>
 %endfor
 %endif
 </%def>
-
-<%def name="routes_served(stop)">
-${_(u'Served by')}: ${route_abrv_list(stop)}
+<%def name="routes_served(stop, rte_url_tmpl)">
+${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
 </%def>
 
 <%def name="nearby_stops_link(stop, extra_params)">
