@@ -16,38 +16,34 @@ class TestMyView(unittest.TestCase):
 
     def test_stop_select_form(self):
         ''' routes ws: list of route '''
-        # desktop
-        url = get_url('stop_select_form.html')
-        s = call_url(url)
-        self.assertRegexpMatches(s,"MAX Blue")
-
-        # mobile
-        url = get_url('m/stop_select_form.html')
-        s = call_url(url)
-        self.assertRegexpMatches(s,"MAX Blue")
+        for m in ['', 'm/']:
+            url = get_url(m + 'stop_select_form.html')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"MAX Blue")
 
     def test_stop_select_list(self):
         ''' route stops ws: stop select for each route direction '''
-        url = get_url('stop_select_list.html', 'route=100')
-        s = call_url(url)
-        self.assertRegexpMatches(s,"MAX Blue")
-        self.assertRegexpMatches(s,"Hatfield")
+        for m in ['', 'm/']:
+            url = get_url(m + 'stop_select_list.html', 'route=100')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"MAX Blue")
+            self.assertRegexpMatches(s,"Hatfield")
 
-        url = get_url('m/stop_select_list.html', 'route=100')
-        s = call_url(url)
-        self.assertRegexpMatches(s,"MAX Blue")
-        self.assertRegexpMatches(s,"Hatfield")
 
     def test_stop(self):
-        url = get_url('stop.html', 'stop_id=2')
-        s = call_url(url)
-        self.assertRegexpMatches(s,"Lake Oswego")
+        for m in ['', 'm/']:
+            url = get_url(m + 'stop.html', 'stop_id=2')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"Lake Oswego")
+
 
     def test_stops_near(self):
-        url = get_url('stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
-        s = call_url(url)
-        self.assertRegexpMatches(s,"SE Division")
-        self.assertRegexpMatches(s,"XTCvsAdamAnt")
+        for m in ['', 'm/']:
+            url = get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"SE Division")
+            self.assertRegexpMatches(s,"XTCvsAdamAnt")
+
 
 '''
     def test_stop_schedule(self):
