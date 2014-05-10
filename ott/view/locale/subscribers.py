@@ -1,8 +1,6 @@
-# TODO: how to do this via .ini file
 import logging
 logging.basicConfig()
 log = logging.getLogger(__file__)
-log.setLevel(logging.DEBUG)
 
 ''' From http://docs.pylonsproject.org/projects/pyramid_cookbook/en/latest/templates/mako_i18n.html
     orig (http://blog.abourget.net/2011/1/13/pyramid-and-mako:-how-to-do-i18n-the-pylons-way/)

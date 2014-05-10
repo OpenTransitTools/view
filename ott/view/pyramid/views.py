@@ -28,7 +28,6 @@ from ott.view.model.place import Place
 
 def do_view_config(config):
     ''' adds the views (see below) and static directories to pyramid's config
-        TODO: is there a better way to dot this (maybe via an .ini file)
     '''
 
     # routes setup
@@ -124,6 +123,8 @@ def planner_geocode(request):
         geo_place = html_utils.get_first_param(request, 'to')
 
     ret_val = geocode_utils.call_geocoder(request, geo_place, geo_type)
+    adverts = request.model.get_adverts(request,  **request.params)
+    ret_val['adverts'] = adverts
     return ret_val
 
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')
