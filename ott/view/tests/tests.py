@@ -35,6 +35,12 @@ class TestMyView(unittest.TestCase):
             s = call_url(url)
             self.assertRegexpMatches(s,"Lake Oswego")
 
+    def test_localization(self):
+        for m in ['', 'm/']:
+            url = get_url(m + 'stop.html', 'stop_id=2&_LOCALE_=es')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"Lake Oswego")
+
     def test_stops_near(self):
         for m in ['', 'm/']:
             url = get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
@@ -46,6 +52,10 @@ class TestMyView(unittest.TestCase):
         for m in ['', 'm/']:
             for t in ['&sort=destination', '&sort=time']:
                 url = get_url(m + 'stop_schedule.html', 'stop_id=2' + t)
+                s = call_url(url)
+                self.assertRegexpMatches(s,"Lake Oswego")
+
+                url = get_url(m + 'stop_schedule.html', 'stop_id=2&more' + t)
                 s = call_url(url)
                 self.assertRegexpMatches(s,"Lake Oswego")
 

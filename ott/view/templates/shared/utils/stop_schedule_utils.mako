@@ -36,7 +36,7 @@
 ##
 ## the crazy Today, 10/25, 10/26, more stuff from stop schedule pages
 ##
-<%def name="svc_key_tabs(tabs, extra_params)">
+<%def name="svc_key_tabs(stop, tabs, extra_params)">
     <ul id="contenttabs">
         %for t in tabs:
           %if 'url' in t:
