@@ -5,13 +5,6 @@ import datetime
 import time
 from calendar import monthrange
 
-def ret_me(s):
-    return s
-_ = ret_me
-
-MORE=_('more')
-TODAY=_('Today')
-
 def get_local_time():
     return time.localtime()
 
@@ -90,50 +83,6 @@ def make_tab_obj(name, uri=None, date=None, append=None):
         ret_val["url"] = "{0}{1}{2}".format(uri, month, day)
         if append:
             ret_val["url"] = "{0}&{1}".format(ret_val["url"], append)
-
-    return ret_val
-
-def get_svc_date_tabs(dt, uri, more_tab=True, translate=ret_me, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
-    ''' return 3 date strings representing the next WEEKDAY, SAT, SUN 
-    '''
-    ret_val = []
-
-    #import pdb; pdb.set_trace()
-
-    # step 1: is 'today' the active tab, or is target date in future, so that's active, and we have a 'today' tab to left
-    if datetime.date.today() == dt:
-        ret_val.append(make_tab_obj(translate(TODAY)))
-    else:
-        ret_val.append(make_tab_obj(translate(TODAY), uri, datetime.date.today()))
-        ret_val.append(make_tab_obj(dt.strftime(smfmt)))
-
-    # step 2: figure out how many days from target is next sat, sunday and/or monday (next two service days different from today)
-    delta1 = 1
-    delta2 = 2
-    if dt.weekday() < 5:
-        # date is a m-f, so we're looking for next sat (delta1) and sun (delta 2)
-        delta1 = 5 - dt.weekday()
-        delta2 = delta1 + 1
-    elif dt.weekday() == 6:
-        # date is a sunday, so we're looking for monday (delta1), which is = 1 day off, and next sat (delta2) which is +6 days off 
-        delta2 = 6
-
-    d1 = dt + datetime.timedelta(days=delta1)
-    d2 = dt + datetime.timedelta(days=delta2)
-    #print "{0} {1} {2}={3} {4}={5}".format(dt, dt.weekday(), delta1, d1, delta2, d2)
-
-    # step 3: add the next to service day tabs to our return array
-    ret_val.append(make_tab_obj(d1.strftime(smfmt), uri, d1))
-    ret_val.append(make_tab_obj(d2.strftime(smfmt), uri, d2))
-    #ret_val.append({"name":d2.strftime(smfmt).lstrip('0').replace('/0','/'), "url": uri + "&date=" + d2.strftime(fmt)})
-
-    # TODO put the ret_val appen stuff in a separte method that builds up the dict...
-    #      and add a pretty_date to that dict, so that we can create a css TOOLTIP that shows what weekday / date the 2/1, 2/5, 2/6 dates represent...
-    #, "pretty_date": pretty_date(d1, pttyfmt)})
-
-    # step 4: if we are not showing the date form, give the 'more' option which will show that form
-    if more_tab:
-        ret_val.append(make_tab_obj(translate(MORE), uri, dt, MORE))
 
     return ret_val
 

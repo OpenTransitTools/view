@@ -6,25 +6,6 @@ import date_utils
 import num_utils
 import transit_utils
 
-from ott.view.locale.subscribers import get_translator
-
-
-def service_tabs(request, url):
-    '''
-    '''
-    date  = get_first_param_as_date(request)
-    month = get_first_param_as_int(request, 'month')
-    day   = get_first_param_as_int(request, 'day')
-    date  = date_utils.set_date(date, month, day)
-    more  = get_first_param(request, 'more')
-
-    ret_val = {}
-    ret_val['more_form']   = date_utils.get_day_info(date)
-    ret_val['pretty_date'] = date_utils.pretty_date(date)
-    ret_val['tabs'] = date_utils.get_svc_date_tabs(date, url, more is None, get_translator(request)) 
-
-    return ret_val
-
 
 def planner_form_params(request):
     '''

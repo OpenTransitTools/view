@@ -18,6 +18,10 @@ from pyramid.events import subscriber
 from ott.view.model.model import Model
 from ott.view.model.mock import Mock
 
+
+from ott.view.utils import schedule_tabs
+
+# TODO transition to ott.utils.* 
 from ott.view.utils.spark import sparkline_smooth
 from ott.view.utils.qr import qr_to_stream
 from ott.view.utils import html_utils
@@ -178,7 +182,7 @@ def stop_schedule(request):
     route   = html_utils.get_first_param(request, 'route')
     url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
 
-    ret_val = html_utils.service_tabs(request, url)
+    ret_val = schedule_tabs.get_tabs(request, url)
     ret_val['ss'] = request.model.get_stop_schedule(request.query_string, **request.params)
     return ret_val
 
