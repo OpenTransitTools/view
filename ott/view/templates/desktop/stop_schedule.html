@@ -24,7 +24,7 @@ ${page.stop_schedule(name, extra_params, stop_params, stop, stop['has_alerts'])}
 
 <h2>${util.name_city_str_from_struct(stop)}</h2>
 
-${ssu.svc_key_tabs(stop, tabs, extra_params)}
+${ssu.svc_key_tabs(stop, tabs, extra_params + '#triptool')}
 ${ssu.schedule_all_routes_link(stop, extra_params)}
 ${ssu.schedule_sort_by_links(stop, extra_params)}
 ${ssu.schedule_render(ss, pretty_date, extra_params)}

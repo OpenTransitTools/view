@@ -42,14 +42,12 @@
 <%def name="url_for(controller='main', action='route_stops_list')"></%def>
 <%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def>
 
-<%def name="get_ele(struct, name, def_val=None)">
-<%
+<%def name="get_ele(struct, name, def_val=None)"><%
     ret_val = def_val
     if name in struct and struct[name]:
         ret_val = struct[name]
     return ret_val
-%>
-</%def>
+%></%def>
 
 <%def name="get_val(val, def_val=None)">
 <%
@@ -60,8 +58,7 @@
 %>
 </%def>
 
-<%def name="localize_str(s, def_val=None)">
-<%
+<%def name="localize_str(s, def_val=None)"><%
     ret_val = def_val
     try:
         if s == "None":
@@ -73,11 +70,9 @@
     except:
         ret_val = def_val
     return ret_val
-%>
-</%def>
+%></%def>
 
-<%def name="unicode_to_str(s, def_val=None)">
-<%
+<%def name="unicode_to_str(s, def_val=None)"><%
     ret_val = def_val
     try:
         if s:
@@ -85,12 +80,10 @@
     except:
         ret_val = def_val
     return ret_val
-%>
-</%def>
+%></%def>
 
 
-<%def name="name_city_stopid(name, city, type=None, id=None)">
-<%
+<%def name="name_city_stopid(name, city, type=None, id=None)"><%
     ret_val = _(u'Undefined')
     try:
         stop = ''
@@ -100,16 +93,14 @@
             city = ', ' + city
         else:
             city = ''
-        ret_val = name.replace('%26', '&') + city + stop;
+        ret_val = name.replace('%26', '&') + city + stop
     except:
         pass
     return ret_val
-%>
-</%def>
+%></%def>
 
 
-<%def name="name_city_str(name, city, type_name=None, stop_id='')">
-<%
+<%def name="name_city_str(name, city, type_name=None, stop_id='')"><%
     ret_val = _(u'Undefined')
     if name and len(name) > 0:
         ret_val = name.replace('%26', '&')
@@ -133,30 +124,25 @@
         pass
 
     return ret_val
-%>
-</%def>
+%></%def>
 
 
-<%def name="name_city_str_from_struct(struct)">
-<%
+<%def name="name_city_str_from_struct(struct)"><%
     name = get_ele(struct, 'name')
     city = get_ele(struct, 'city')
     name_city = name_city_str(name, city) 
     return name_city
-%>
-</%def>
+%></%def>
 
 ## 
 ## 
 ## 
-<%def name="map_place_link(place, path_prefix='')">
-<%
+<%def name="map_place_link(place, path_prefix='')"><%
     extra_params = get_extra_params()
     name = get_ele(place, 'name', _(u'Undefined'))
     city = get_ele(place, 'city', '')
     name_city = name_city_str_from_struct(place)
-%>
-<a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
+%><a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
 </%def>
 
 ##
