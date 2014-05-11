@@ -40,9 +40,9 @@
     <ul id="contenttabs">
         %for t in tabs:
           %if 'url' in t:
-            <li class="normal"><a href="${t['url']}&sort=${sort_val()}${extra_params}"><span>${t['name']}</span></a></li>
+            <li class="normal"   title="${t['tooltip']}"><a href="${t['url']}&sort=${sort_val()}${extra_params}"><span>${t['name']}</span></a></li>
           %else:
-            <li class="selected"><span>${t['name']}</span></li>
+            <li class="selected" title="${t['tooltip']}"><span>${t['name']}</span></li>
           %endif
         %endfor
     </ul>

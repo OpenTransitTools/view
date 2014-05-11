@@ -41,7 +41,8 @@ def make_tab_obj(name, date=None, uri=None, append=None):
 
     # put the name of the tab first (and strip off any leading / trailing ZEROs if the name is a date)
     ret_val['name'] = name.lstrip('0').replace('/0','/')
-    ret_val['date'] = ''
+    ret_val['date'] = date
+    ret_val['tooltip'] = date_utils.pretty_date(date)
 
     # next give the tab object a URL ... date is broken up into month and day parts 
     if uri:
@@ -145,14 +146,14 @@ def get_svc_date_tabs(dt, uri, highlight_more_tab=False, translate=ret_me, fmt='
     ret_val.extend(tabs)
 
     # step 6: show the 'more' tab ... either highlighted or not
+    more_tab = None
+    more_title = translate(MORE)
     if highlight_more_tab:
-        ret_val.append(make_tab_obj(translate(MORE)))  # the more tab is highlighted
+        more_tab = make_tab_obj(more_title)  # the more tab is highlighted
     else:
-        ret_val.append(make_tab_obj(translate(MORE), more_date, uri, MORE))
-
-    # TODO put the ret_val appen stuff in a separte method that builds up the dict...
-    #      and add a pretty_date to that dict, so that we can create a css TOOLTIP that shows what weekday / date the 2/1, 2/5, 2/6 dates represent...
-    #, "pretty_date": pretty_date(d1, pttyfmt)})
+        more_tab = make_tab_obj(more_title, more_date, uri, MORE)
+    more_tab['tooltip'] = more_title
+    ret_val.append(more_tab)
 
     return ret_val
 
