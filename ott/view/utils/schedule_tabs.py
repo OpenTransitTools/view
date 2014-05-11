@@ -33,14 +33,15 @@ def get_tabs(request, url):
     return ret_val
 
 
-def make_tab_obj(name, uri=None, date=None, append=None):
+def make_tab_obj(name, date=None, uri=None, append=None):
     ''' for the date tab on the stop schedule page, we expect an object that has a name and a url
         this method builds that structure, and most importantly, the url for those tabs
     '''
     ret_val = {}
 
     # put the name of the tab first (and strip off any leading / trailing ZEROs if the name is a date)
-    ret_val["name"] = name.lstrip('0').replace('/0','/')
+    ret_val['name'] = name.lstrip('0').replace('/0','/')
+    ret_val['date'] = ''
 
     # next give the tab object a URL ... date is broken up into month and day parts 
     if uri:
@@ -61,22 +62,29 @@ def get_svc_date_tabs(dt, uri, highlight_more_tab=False, translate=ret_me, fmt='
     '''
     ret_val = []
 
-    #import pdb; pdb.set_trace()
+    # step 0: save off today as well as some other calculations
     today = datetime.date.today() 
-    today = datetime.date(2014, 5, 11)
     is_today = today == dt
+    more_date = dt
 
-    
+    # step 1: if we're dealing with today, increment the date to show other dates in tabs to right 
     if is_today:
-        dt = dt + datetime.timedelta(days=1)
+        offset = 1
+        # step 1b: if this is a weekday, increment to following Monday
+        if dt.weekday() < 5:
+            offset = 7 - dt.weekday()
+        dt = dt + datetime.timedelta(days=offset)
 
-    # step 1: make the 'today' tab...
+    # step 2: make the 'today' tab...
     if is_today and not highlight_more_tab:
-        ret_val.append(make_tab_obj(translate(TODAY)))  # TODAY tab is highlighted
+        ret_val.append(make_tab_obj(translate(TODAY), today))  # TODAY tab is highlighted
     else:
-        ret_val.append(make_tab_obj(translate(TODAY), uri, today))
+        ret_val.append(make_tab_obj(translate(TODAY), today, uri, ))
 
-    dates = [None, None, None]
+    # step 3: we have to get three date tabs that sit between TODAY and MORE tabs
+    #         we'll create a WEEKDAY, SATURDAY and SUNDAY tabs ... 
+    #         the position of these relative date tabs is depentent upon TODAY's day of week...
+    dates = ['WEEKDAY', 'SATURDAY', 'SUNDAY']
     if today.weekday() == 5:     # TODAY is a Saturday
         if dt.weekday() == 5:    # DATE is also Saturday
             dates[0] = dt - datetime.timedelta(days=6)  # Last Sunday
@@ -113,40 +121,38 @@ def get_svc_date_tabs(dt, uri, highlight_more_tab=False, translate=ret_me, fmt='
             dates[1] = dt + datetime.timedelta(days=1)  # Next Sunday
             dates[2] = dt + datetime.timedelta(days=2)  # Next Monday
         elif dt.weekday() == 6:  # DATE is a Sunday
-            dates[0] = dt - datetime.timedelta(days=1)  # Prev Sunday
-            dates[1] = dt                               # Saturday
+            dates[0] = dt - datetime.timedelta(days=1)  # Prev Saturday
+            dates[1] = dt                               # Sunday
             dates[2] = dt + datetime.timedelta(days=1)  # Next Monday
         else: 
-            # TODO compare 
-            last_sat = 5 - dt.weekday()
-            last_sun = last_sat+1
-            dates[0] = dt - datetime.timedelta(days=last_sun)  # Last Sunday
-            dates[1] = dt - datetime.timedelta(days=last_sat)  # Last Saturday
+            last_sat = dt.weekday() + 2
+            last_sun = dt.weekday() + 1
+            dates[0] = dt - datetime.timedelta(days=last_sat)  # Last Saturday
+            dates[1] = dt - datetime.timedelta(days=last_sun)  # Last Sunday
             dates[2] = dt                                      # Weekday
 
 
-    # step 3: add the next to service day tabs to our return array
+    # step 4: create the WEEKDAY, SATURDAY, SUNDAY tabs 
+    do_highlight = not is_today and not highlight_more_tab
     tabs = []
-    do_highlight = True
-    if is_today or highlight_more_tab:
-        do_highlight = False
     for d in dates:
         if do_highlight and d == dt:
-            tabs.append(make_tab_obj(d.strftime(smfmt)))
+            tabs.append(make_tab_obj(d.strftime(smfmt), d))
         else:
-            tabs.append(make_tab_obj(d.strftime(smfmt), uri, d))
+            tabs.append(make_tab_obj(d.strftime(smfmt), d, uri))
 
+    # step 5: add the WEEKDAY, SATURDAY, SUNDAY tabs after the TODAY tab 
     ret_val.extend(tabs)
+
+    # step 6: show the 'more' tab ... either highlighted or not
+    if highlight_more_tab:
+        ret_val.append(make_tab_obj(translate(MORE)))  # the more tab is highlighted
+    else:
+        ret_val.append(make_tab_obj(translate(MORE), more_date, uri, MORE))
 
     # TODO put the ret_val appen stuff in a separte method that builds up the dict...
     #      and add a pretty_date to that dict, so that we can create a css TOOLTIP that shows what weekday / date the 2/1, 2/5, 2/6 dates represent...
     #, "pretty_date": pretty_date(d1, pttyfmt)})
-
-    # step 4: show the 'more' tab ... either highlighted or not
-    if highlight_more_tab:
-        ret_val.append(make_tab_obj(translate(MORE)))  # the more tab is highlighted
-    else:
-        ret_val.append(make_tab_obj(translate(MORE), uri, dt, MORE))
 
     return ret_val
 
