@@ -63,6 +63,7 @@ def get_svc_date_tabs(dt, uri, highlight_more_tab=False, translate=ret_me, fmt='
 
     #import pdb; pdb.set_trace()
     today = datetime.date.today() 
+    today = datetime.date(2014, 5, 11)
     is_today = today == dt
 
     
@@ -75,30 +76,65 @@ def get_svc_date_tabs(dt, uri, highlight_more_tab=False, translate=ret_me, fmt='
     else:
         ret_val.append(make_tab_obj(translate(TODAY), uri, today))
 
+    dates = [None, None, None]
+    if today.weekday() == 5:     # TODAY is a Saturday
+        if dt.weekday() == 5:    # DATE is also Saturday
+            dates[0] = dt - datetime.timedelta(days=6)  # Last Sunday
+            dates[1] = dt - datetime.timedelta(days=5)  # Last Monday
+            dates[2] = dt                               # Saturday
+        elif dt.weekday() == 6:  # DATE is a Sunday
+            dates[0] = dt                               # Sunday
+            dates[1] = dt + datetime.timedelta(days=1)  # Monday
+            dates[2] = dt + datetime.timedelta(days=6)  # Next Saturday
+        else:                    # DATE is Weekday
+            prev_sun = dt.weekday() + 1
+            next_sat = 5 - dt.weekday()
+            dates[0] = dt - datetime.timedelta(days=prev_sun)
+            dates[1] = dt
+            dates[2] = dt + datetime.timedelta(days=next_sat)
+    elif today.weekday() == 6:  # TODAY is a Sunday
+        if dt.weekday() == 6:   # DATE is also a Sunday
+            dates[0] = dt - datetime.timedelta(days=6)  # Last Monday
+            dates[1] = dt - datetime.timedelta(days=1)  # Last Saturday
+            dates[2] = dt                               # Sunday 
+        elif dt.weekday() == 5: # DATE is a Saturday
+            dates[0] = dt - datetime.timedelta(days=5)  # Last Monday
+            dates[1] = dt                               # Saturday
+            dates[2] = dt + datetime.timedelta(days=1)  # Next Sunday
+        else:                   # DATE is Weekday
+            next_sat = 5 - dt.weekday()
+            next_sun = next_sat+1
+            dates[0] = dt
+            dates[1] = dt + datetime.timedelta(days=next_sat)
+            dates[2] = dt + datetime.timedelta(days=next_sun)
+    else:                        # TODAY is a Weekday
+        if dt.weekday() == 5:    # DATE is a Saturday
+            dates[0] = dt                               # Saturday
+            dates[1] = dt + datetime.timedelta(days=1)  # Next Sunday
+            dates[2] = dt + datetime.timedelta(days=2)  # Next Monday
+        elif dt.weekday() == 6:  # DATE is a Sunday
+            dates[0] = dt - datetime.timedelta(days=1)  # Prev Sunday
+            dates[1] = dt                               # Saturday
+            dates[2] = dt + datetime.timedelta(days=1)  # Next Monday
+        else: 
+            # TODO compare 
+            last_sat = 5 - dt.weekday()
+            last_sun = last_sat+1
+            dates[0] = dt - datetime.timedelta(days=last_sun)  # Last Sunday
+            dates[1] = dt - datetime.timedelta(days=last_sat)  # Last Saturday
+            dates[2] = dt                                      # Weekday
 
-    # step 2: figure out how many days from target is next sat, sunday and/or monday (next two service days different from today)
-    delta1 = 1
-    delta2 = 2
-    if dt.weekday() < 5:
-        # date is a m-f, so we're looking for next sat (delta1) and sun (delta 2)
-        delta1 = 5 - dt.weekday()
-        delta2 = delta1 + 1
-    elif dt.weekday() == 6:
-        # date is a sunday, so we're looking for monday (delta1), which is = 1 day off, and next sat (delta2) which is +6 days off 
-        delta2 = 6
-
-    d1 = dt + datetime.timedelta(days=delta1)
-    d2 = dt + datetime.timedelta(days=delta2)
 
     # step 3: add the next to service day tabs to our return array
     tabs = []
-    if not is_today and not highlight_more_tab:
-        tabs.append(make_tab_obj(dt.strftime(smfmt)))
-    else:
-        tabs.append(make_tab_obj(dt.strftime(smfmt), uri, dt))
-
-    tabs.append(make_tab_obj(d1.strftime(smfmt), uri, d1))
-    tabs.append(make_tab_obj(d2.strftime(smfmt), uri, d2))
+    do_highlight = True
+    if is_today or highlight_more_tab:
+        do_highlight = False
+    for d in dates:
+        if do_highlight and d == dt:
+            tabs.append(make_tab_obj(d.strftime(smfmt)))
+        else:
+            tabs.append(make_tab_obj(d.strftime(smfmt), uri, d))
 
     ret_val.extend(tabs)
 
@@ -112,6 +148,5 @@ def get_svc_date_tabs(dt, uri, highlight_more_tab=False, translate=ret_me, fmt='
     else:
         ret_val.append(make_tab_obj(translate(MORE), uri, dt, MORE))
 
-    print ret_val
     return ret_val
 
