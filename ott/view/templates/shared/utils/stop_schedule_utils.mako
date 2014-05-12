@@ -22,13 +22,13 @@
 </%def>
 
 
-<%def name="make_stop_schedule_url(stop, sort, extra_params, all=False)">
+<%def name="make_stop_schedule_url(stop_id, sort, extra_params, all=False)">
 <%
     ## TODO: make the month/day/route variables more abstract, with better tests for None and '' values
     month  = '' if 'month' not in request.params else "&month={0}".format(request.params['month'])
     day    = '' if 'day'   not in request.params else "&day={0}".format(request.params['day'])
     route  = '' if all or 'route' not in request.params else "&route={0}".format(request.params['route'])
-    url = "stop_schedule.html?stop_id={0}&sort={1}{2}{3}{4}{5}".format(stop['stop_id'], sort, route, month, day, extra_params)
+    url = "stop_schedule.html?stop_id={0}&sort={1}{2}{3}{4}{5}".format(stop_id, sort, route, month, day, extra_params)
     return url
 %>
 </%def>
@@ -64,12 +64,12 @@
 ##
 ## switch to show all routes if we're just showing a single route stop times...
 ##
-<%def name="schedule_all_routes_link(stop, extra_params)">
+<%def name="schedule_all_routes_link(ss, extra_params)">
 <div class="contenttabs-bar group">
     <p class="singleroute">
-    %if 'single_route_name' in stop and stop['single_route_name'] != None:
-    <b>${_(u'Showing only')} ${stop['single_route_name']}</b>
-     &nbsp;|&nbsp; <a href="${make_stop_schedule_url(stop, sort_val(), extra_params, True)}">${_(u'Show all lines')}</a>
+    %if 'single_route_name' in ss and ss['single_route_name'] != None:
+    <b>${_(u'Showing only')} ${ss['single_route_name']}</b>
+     &nbsp;|&nbsp; <a href="${make_stop_schedule_url(ss['stop']['stop_id'], sort_val(), extra_params, True)}">${_(u'Show all lines')}</a>
     %endif
     </p>
 </%def>
@@ -80,9 +80,9 @@
 <%def name="schedule_sort_by_links(stop, extra_params)">
     <p class="sort">
         <b>${_(u'Sort')}:</b>
-        ${util.link_or_strong(_(u'By destination'), not sort_by_time(), make_stop_schedule_url(stop, 'destination', extra_params), _('sort'))}
+        ${util.link_or_strong(_(u'By destination'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params), _('sort'))}
          &nbsp;|&nbsp;
-        ${util.link_or_strong(_(u'By time'), sort_by_time(), make_stop_schedule_url(stop, 'time', extra_params), _('sort'))}
+        ${util.link_or_strong(_(u'By time'), sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'time', extra_params), _('sort'))}
     </p>
 </div><!-- end .contenttabs-bar -->
 </%def>
