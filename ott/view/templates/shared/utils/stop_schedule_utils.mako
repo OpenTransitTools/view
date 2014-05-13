@@ -6,32 +6,25 @@
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 
-<%def name="sort_val()">
-<%
+<%def name="sort_val()"><%
     sort_val = 'time' if 'sort' in request.params and request.params['sort'] == 'time' else 'destination'
     return sort_val
-%>
-</%def>
+%></%def>
 
-
-<%def name="sort_by_time()">
-<%
+<%def name="sort_by_time()"><%
     sort_by_time = True   if 'sort' in request.params and request.params['sort'] == 'time' else False
     return sort_by_time
-%>
-</%def>
+%></%def>
 
 
-<%def name="make_stop_schedule_url(stop_id, sort, extra_params, all=False)">
-<%
+<%def name="make_stop_schedule_url(stop_id, sort, extra_params, all=False)"><%
     ## TODO: make the month/day/route variables more abstract, with better tests for None and '' values
     month  = '' if 'month' not in request.params else "&month={0}".format(request.params['month'])
     day    = '' if 'day'   not in request.params else "&day={0}".format(request.params['day'])
     route  = '' if all or 'route' not in request.params else "&route={0}".format(request.params['route'])
     url = "stop_schedule.html?stop_id={0}&sort={1}{2}{3}{4}{5}".format(stop_id, sort, route, month, day, extra_params)
     return url
-%>
-</%def>
+%></%def>
 
 ##
 ## the crazy Today, 10/25, 10/26, more stuff from stop schedule pages

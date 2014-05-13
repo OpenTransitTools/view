@@ -108,3 +108,26 @@ def has_fare(itinerary):
                 ret_val = True
                 break
     return ret_val
+
+
+def get_stoptime_alerts(stoptime):
+    ''' return the alerts from a stoptime object...
+        @see http://localhost:44444/stop_schedule?id=3
+    '''
+    #import pdb; pdb.set_trace()
+    ret_val = []
+    try:
+        seen = []
+        routes = stoptime['stop']['routes']
+        for rid in stoptime['alerts']:
+            for rte in routes:
+                if rte['has_alerts'] and rte['route_id'] == rid:
+                    for a in rte['alerts']:
+                        if a['alert_id'] not in seen:
+                            seen.append(a['alert_id'])
+                            ret_val.append(a)
+    except Exception, e:
+        pass
+    return ret_val
+
+

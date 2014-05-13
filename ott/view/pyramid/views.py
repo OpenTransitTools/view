@@ -27,6 +27,7 @@ from ott.view.utils.qr import qr_to_stream
 from ott.view.utils import html_utils
 from ott.view.utils import object_utils
 from ott.view.utils import geocode_utils
+from ott.view.utils import transit_utils
 from ott.view.model.place import Place
 
 
@@ -183,7 +184,11 @@ def stop_schedule(request):
     url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
 
     ret_val = schedule_tabs.get_tabs(request, url)
-    ret_val['ss'] = request.model.get_stop_schedule(request.query_string, **request.params)
+    ss = request.model.get_stop_schedule(request.query_string, **request.params)
+    alerts = transit_utils.get_stoptime_alerts(ss)
+    ret_val['ss'] = ss
+    ret_val['alerts'] = alerts
+    print alerts
     return ret_val
 
 @view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')
