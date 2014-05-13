@@ -29,9 +29,9 @@
 ##
 ## the crazy Today, 10/25, 10/26, more stuff from stop schedule pages
 ##
-<%def name="svc_key_tabs(stop, tabs, extra_params)">
+<%def name="svc_key_tabs(stop, html_tabs, extra_params)">
     <ul id="contenttabs">
-        %for t in tabs:
+        %for t in html_tabs['tabs']:
           %if 'url' in t:
             <li class="normal"   title="${t['tooltip']}"><a href="${t['url']}&sort=${sort_val()}${extra_params}"><span>${t['name']}</span></a></li>
           %else:
@@ -45,8 +45,8 @@
             ${form.get_extra_params_hidden_inputs()}
             <input type="hidden" name="stop_id" value="${stop['stop_id']}" />
             <input type="hidden" name="sort"    value="${sort_val()}" />
-            %if more_form:
-            ${util.month_select(more_form['month'])} ${util.day_select(more_form['day'])}
+            %if html_tabs['more_form']:
+            ${util.month_select(html_tabs['more_form']['month'])} ${util.day_select(html_tabs['more_form']['day'])}
             <input name="submit" type="submit" value="${_(u'Select')}" class="submit" />
             %endif
         </form>

@@ -183,12 +183,13 @@ def stop_schedule(request):
     route   = html_utils.get_first_param(request, 'route')
     url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
 
-    ret_val = schedule_tabs.get_tabs(request, url)
-    ss = request.model.get_stop_schedule(request.query_string, **request.params)
-    alerts = transit_utils.get_stoptime_alerts(ss)
-    ret_val['ss'] = ss
+    ret_val = {}
+    html_tabs = schedule_tabs.get_tabs(request, url)
+    stop_sched = request.model.get_stop_schedule(request.query_string, **request.params)
+    alerts = transit_utils.get_stoptime_alerts(stop_sched)
+    ret_val['html_tabs'] = html_tabs
+    ret_val['stop_sched'] = stop_sched
     ret_val['alerts'] = alerts
-    print alerts
     return ret_val
 
 @view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')

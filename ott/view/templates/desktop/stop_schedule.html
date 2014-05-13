@@ -10,11 +10,11 @@
 <%
     extra_params = util.get_extra_params()
 
-    stop = ss['stop']
+    stop = stop_sched['stop']
     name = su.make_name_id(stop)
     stop_params = su.make_url_params(stop)
 %>
-<%def name="title()">${su.page_title(ss['stop'])}</%def>
+<%def name="title()">${su.page_title(stop_sched['stop'])}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
 <%def name="stations_selected()">class="selected"</%def>
@@ -22,11 +22,11 @@
 
 ${page.stop_schedule(name, extra_params, stop_params, stop, stop['has_alerts'])}
 
-<h2>${util.name_city_str_from_struct(stop)}</h2>
+<h2>${util.name_city_str_from_struct(stop_sched['stop'])}</h2>
 
-${ssu.svc_key_tabs(stop, tabs, extra_params + '#triptool')}
-${ssu.schedule_all_routes_link(ss, extra_params)}
+${ssu.svc_key_tabs(stop, html_tabs, extra_params + '#triptool')}
+${ssu.schedule_all_routes_link(stop_sched, extra_params)}
 ${ssu.schedule_sort_by_links(stop, extra_params)}
-${ssu.schedule_render(ss, pretty_date, extra_params)}
+${ssu.schedule_render(stop_sched, html_tabs['pretty_date'], extra_params)}
 ${util.alerts(alerts)}
 <p>&nbsp;</p>
