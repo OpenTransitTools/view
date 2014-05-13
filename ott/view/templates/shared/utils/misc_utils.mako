@@ -352,22 +352,18 @@
 <%def name="alerts(alert_list, img_url='/images/triptools/alert.png')">
     %if alert_list and len(alert_list) > 0:
     <div id="alerts" class="group">
-        <% alert_rendered=[] %>
         %for a in alert_list:
-            %if a['alert_id'] not in alert_rendered:
-            <% alert_rendered.append(a['alert_id']) %>
-            <p><img src="${url_domain()}${img_url}" />
-                <span class="alert-text">
-                    %if a['header_text']:
-                    <b>${a['header_text']}</b><br/>
-                    %endif
-                    <b>${list_to_str(a['route_short_names'])}: </b> ${a['description_text']}
-                </span>
-                %if a['pretty_start_date']:
-                <span class="alert-time">${_(u'As of')} ${a['pretty_start_date']} @ ${a['pretty_start_time']}</span>
+        <p><img src="${url_domain()}${img_url}" />
+            <span class="alert-text">
+                %if a['header_text']:
+                <b>${a['header_text']}</b><br/>
                 %endif
-            </p>
+                <b>${a['route_short_names']}: </b> ${a['description_text']}
+            </span>
+            %if a['pretty_start_date']:
+            <span class="alert-time">${_(u'As of')} ${a['pretty_start_date']} @ ${a['pretty_start_time']}</span>
             %endif
+        </p>
         %endfor
     </div>
     %endif
