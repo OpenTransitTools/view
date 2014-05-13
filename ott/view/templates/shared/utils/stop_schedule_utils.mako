@@ -119,6 +119,9 @@
     %for hs in hs_list:
     <h3 class="tight">
         ${hs['route_name']} ${_(u'to')} ${hs['headsign']}
+        %if hs['has_alerts']:
+        ${util.alerts_inline_icon_link()}
+        %endif
     </h3>
     <p class="tight">
         %for s in ss['stoptimes']:
@@ -133,8 +136,4 @@
     %endfor
     %endif
 </%def>
-
-        %if hs['has_alert']:
-        ${util.alerts_inline_icon_link()}
-        %endif
 
