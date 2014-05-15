@@ -64,14 +64,14 @@
 ##       @see utils.agency_template.py for more info...
 ##
 <%def name="route_abrv_list(stop, rte_url_tmpl)">
-%if stop and stop['short_names']:
     %for i, r in enumerate(stop['short_names']):
 ${', ' if (i > 0) else ''}<a target="#" href="${rte_url_tmpl(r['route_id'])}">${ r['route_short_name']}</a>
 %endfor
-%endif
 </%def>
 <%def name="routes_served(stop, rte_url_tmpl)">
+%if rte_url_tmpl and stop and 'short_names' in stop and stop['short_names']:
 ${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
+%endif
 </%def>
 
 <%def name="nearby_stops_link(stop, extra_params)">
