@@ -1,2 +1,2 @@
 include *.cfg
-include *.ini
+include config/*.ini
