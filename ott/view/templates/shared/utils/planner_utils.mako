@@ -39,7 +39,7 @@
 ##
 ## string page title ... for feedback / emailing (mostly)
 ##
-<%def name="str_title(plan)"><% from ott.view.utils import transit_utils; return transit_utils.plan_title(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])%></%def>
+<%def name="str_title(plan)"><% from ott.utils import transit_utils; return transit_utils.plan_title(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])%></%def>
 
 ##
 ## for feedback form ... briefly describe the trip request
@@ -48,7 +48,7 @@
     title = str_title(plan)
     arr = get_depart_arrive(plan['params']['is_arrive_by'])
     opt = get_optimize(plan['params']['optimize'])
-    from ott.view.utils import transit_utils;
+    from ott.utils import transit_utils;
     return transit_utils.plan_description(plan, title, arr, opt, _(u'using'), _(u'with a maximum walk of'))
 %>
 </%def> 
@@ -281,10 +281,10 @@
 <%def name="get_grade(elev)">${elev['up'] if elev['up'] > elev['down'] else elev['down']}%</%def>
 
 <%def name="get_route_name(route)"><% return route['name'] + " " + _(u'to') + " " + route['headsign'] if route['headsign'] else ''%></%def>
-<%def name="get_time(itinerary, is_arrive_by)"><% from ott.view.utils import transit_utils; return transit_utils.get_time(itinerary, is_arrive_by)%></%def>
+<%def name="get_time(itinerary, is_arrive_by)"><% from ott.utils import transit_utils; return transit_utils.get_time(itinerary, is_arrive_by)%></%def>
 
 <%def name="get_itinerary(plan)"><%
-    from ott.view.utils import transit_utils
+    from ott.utils import transit_utils
     ret_val = None
     try:
         ret_val = transit_utils.get_itinerary(plan)
@@ -292,8 +292,8 @@
         pass
     return ret_val
 %></%def>
-<%def name="has_transit(itinerary)"><% from ott.view.utils import transit_utils; return transit_utils.has_transit(itinerary)%></%def>
-<%def name="has_fare(itinerary)"><% from ott.view.utils import transit_utils; return transit_utils.has_fare(itinerary)%></%def>
+<%def name="has_transit(itinerary)"><% from ott.utils import transit_utils; return transit_utils.has_transit(itinerary)%></%def>
+<%def name="has_fare(itinerary)"><% from ott.utils import transit_utils; return transit_utils.has_fare(itinerary)%></%def>
 <%def name="get_route_link(name, url, mode)"><a href="${url}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
 <%def name="get_interline_note(interline)">
 %if interline != None:

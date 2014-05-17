@@ -251,14 +251,14 @@
 
 <%def name="get_first_param(param_name)">
 <%
-    from ott.view.utils import html_utils
+    from ott.utils import html_utils
     return html_utils.get_first_param(request, param_name)
 %>
 </%def>
 
 <%def name="has_url_param(param_name)">
 <%
-    from ott.view.utils import html_utils
+    from ott.utils import html_utils
     ret_val = False
     loc = html_utils.get_first_param(request, param_name)
     if loc:
@@ -270,7 +270,7 @@
 
 <%def name="get_locale(def_val='en')">
 <%
-    from ott.view.utils import html_utils
+    from ott.utils import html_utils
     ret_val = def_val
     try:
         loc = html_utils.get_first_param(request, '_LOCALE_')

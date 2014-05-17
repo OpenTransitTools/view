@@ -4,7 +4,7 @@ import logging
 log = logging.getLogger(__file__)
 
 from ott.view.model.base import Base
-from ott.view.utils import object_utils
+from ott.utils import object_utils
 
 
 class Model(Base):

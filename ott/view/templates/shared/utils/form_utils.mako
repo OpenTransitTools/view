@@ -180,7 +180,7 @@
 #
 <%def name="url_params_to_hidden_inputs(req, skips=[])">
 <%
-    from ott.view.utils import html_utils
+    from ott.utils import html_utils
     pdict = html_utils.params_to_dict(req)
 %>
     %for k,v in pdict.items():

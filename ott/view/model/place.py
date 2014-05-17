@@ -1,4 +1,4 @@
-from ott.view.utils import html_utils
+from ott.utils import html_utils
 from ott.view.utils import num_utils
 from ott.view.locale.subscribers import get_translator
 

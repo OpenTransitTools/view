@@ -6,7 +6,7 @@ import logging
 log = logging.getLogger(__file__)
 
 from ott.view.utils import config
-from ott.view.utils import object_utils
+from ott.utils import object_utils
 
 class Base(object):
     def __init__(self):

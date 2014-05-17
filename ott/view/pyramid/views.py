@@ -22,12 +22,12 @@ from ott.view.model.mock import Mock
 from ott.view.utils import schedule_tabs
 
 # TODO transition to ott.utils.* 
-from ott.view.utils.spark import sparkline_smooth
-from ott.view.utils.qr import qr_to_stream
-from ott.view.utils import html_utils
-from ott.view.utils import object_utils
-from ott.view.utils import geocode_utils
-from ott.view.utils import transit_utils
+from ott.utils.img.spark import sparkline_smooth
+from ott.utils.img.qr import qr_to_stream
+from ott.utils import html_utils
+from ott.utils import object_utils
+from ott.utils import geocode_utils
+from ott.utils import transit_utils
 from ott.view.model.place import Place
 
 

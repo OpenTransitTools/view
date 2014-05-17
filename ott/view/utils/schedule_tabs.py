@@ -5,8 +5,8 @@ import datetime
 import time
 from calendar import monthrange
 
-import date_utils
-import html_utils
+import ott.utils.date_utils
+import ott.utils.html_utils
 from ott.view.locale.subscribers import get_translator
 
 def ret_me(s):
