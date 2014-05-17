@@ -301,7 +301,7 @@
 
 
 <%def name="print_year()"><%
-    from ott.view.utils import date_utils
+    from ott.utils import date_utils
     dt = date_utils.get_day_info()
 %>${dt['year']}</%def>
 

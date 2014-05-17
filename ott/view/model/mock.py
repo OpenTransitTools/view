@@ -5,7 +5,7 @@ log = logging.getLogger(__file__)
 
 from ott.utils import html_utils
 from ott.utils import transit_utils
-from ott.view.utils.modes import Modes
+from ott.utils.modes import Modes
 
 from ott.view.model.base import Base
 
