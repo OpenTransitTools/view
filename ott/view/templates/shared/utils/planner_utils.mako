@@ -324,8 +324,43 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 
 ## They want 2-stage walk instructions, as per mock up...
 ## https://github.com/OpenTransitTools/view/blob/a5e80acff83277e593fb09b760ce94cf7311b454/ott/view/templates/desktop/planner.html
-## Walk 0.36 mile west on SE Water Ave., Turn left on SE Madison St., Walk a short distance west on SE Madison St.
+## <img src="images/directions/right.png"/>
 <%def name="render_steps(verb, frm, to, steps)">
+    <ol>
+        %for i, s in enumerate(steps):
+        <%
+            name = s['name']
+            conjunction = _(u'on')
+            if name == '' and i == 0:
+                name = frm
+                conjunction = _(u'from')
+            elif name == '' and i+1 == len(steps):
+                name = to
+                conjunction = _(u'to')
+
+            instruct_verb = verb
+            turn = None
+            dir = s['relative_direction']
+            if dir != None:
+                dir = dir.lower().replace('_', ' ').strip()
+                #print dir, _(dir), _(unicode(dir)), _('right'), _(u'right'), _('left'), _('slightly left')
+                if dir not in ('continue'):
+                    turn = _(u'Turn') + " " + _(dir) + " " + _(u'on') + " " + _(name)
+                else:
+                    instruct_verb = dir.title()
+
+            instruct = _(instruct_verb) + " " + pretty_distance(s['distance']) + " " + _(s['compass_direction']) + " " + conjunction + " " + _(name)
+        %>
+        %if turn != None:
+        <li>${turn}</li>
+        %endif
+        <li>${instruct}</li>
+        %endfor
+    </ol>
+</%def>
+
+## Walk 0.36 mile west on SE Water Ave., Turn left on SE Madison St., Walk a short distance west on SE Madison St.
+<%def name="OLD_NOT_USED___render_steps(verb, frm, to, steps)">
                 <ol>
                     %for i, s in enumerate(steps):
                     <%
@@ -358,6 +393,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                     %endfor
                 </ol>
 </%def>
+
 
 <%def name="render_bicycle_leg(leg, i, extra_params='', no_expand=False)">
     <li class="num${i}">
