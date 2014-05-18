@@ -1,5 +1,6 @@
 from ott.utils import html_utils
-from ott.utils import num_utils
+from ott.utils import geo_utils
+from ott.utils import object_utils
 from ott.view.locale.subscribers import get_translator
 
 class Place(object):
@@ -28,7 +29,7 @@ class Place(object):
     def set_values_via_coord_str(self, coord):
         ''' from 0.0,0.0 to self.lat and self.lon 
         '''
-        lat,lon = num_utils.ll_from_str(coord)
+        lat,lon = geo_utils.ll_from_str(coord)
         if lat: self.lat = lat
         if lon: self.lon = lon
 
@@ -37,17 +38,11 @@ class Place(object):
             ala PDX::45.5,-122.5::Portland will populate the Place object attributes
         '''
         try:
-            # import pdb; pdb.set_trace() 
-            p = place.split("::")
-            l = len(p)
-            if l > 0 and p[0] and len(p[0]) > 0:
-                self.name = p[0]
-            if l > 1 and p[1]:
-                self.set_values_via_coord_str(p[1])
-            if p[2] and len(p[2]) > 0:
-                self.city = p[2]
-            self.place = place
-        except:
+            if place:
+                #import pdb; pdb.set_trace() 
+                p = geo_utils.from_place_str(place)
+                object_utils.dict_update(p, self.__dict__)
+        except Exception, e:
             pass
 
 
