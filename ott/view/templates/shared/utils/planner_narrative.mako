@@ -4,7 +4,8 @@ steps = [
     'conjunction':None, # from, to, on
     'dir':{'name':None, 'compass':None, 'raw':None, 'img':None},
     'mode':None,        # Walk, Bike, Drive, Fly
-    'distance':None
+    'distance':None,
+    'elevation':{'start':None, 'end':None, 'trend':None},
     
 }
 ]
