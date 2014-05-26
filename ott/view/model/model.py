@@ -18,10 +18,10 @@ class Model(Base):
         return self.stream_json('stops_near', get_params)
 
     def get_stop(self, get_params, **kwargs):
-        return self.stream_json('stop', get_params)
+        return self.stream_json('stop', get_params, "detailed")
 
     def get_stop_schedule(self, get_params, **kwargs):
-        ret_val = self.stream_json('stop_schedule', get_params)
+        ret_val = self.stream_json('stop_schedule', get_params, "full")
         return ret_val
 
     def get_plan(self, get_params, **kwargs):

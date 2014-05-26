@@ -43,25 +43,15 @@ class Base(object):
         #import pdb; pdb.set_trace()
         url = self._cache_svc_url(svc)
         url = "{0}?{1}".format(url, object_utils.to_str(args))
-        '''
-            TODO : IDEA
-            
-            PROBLEM: we might want to CACHE the return from the service
-                     problem is, the url to the the service might contain params that
-                     defeat caching
-            
-            Since a lot of pages will send down 'all' their params (in
-            
-        '''
-
-
         return url
 
-    def stream_json(self, svc, args):
+    def stream_json(self, svc, args, extra=None):
         ''' utility class to stream .json
         '''
         ret_val={}
         url = self.get_service_url(svc, args)
+        if extra:
+            url = url + "&" + extra
         log.info("calling service: {0}".format(url))
         with contextlib.closing(urllib.urlopen(url)) as stream:
             otp = stream.read()
