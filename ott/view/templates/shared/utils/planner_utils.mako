@@ -206,15 +206,18 @@
             sel = it['selected']
             n   = it['transfers']
             dur = it['date_info']['duration_min']
-            tfer = _('${number} transfer', '${number} transfers', mapping={'number':n})
+            tfer = _('${number} transfer', '${number} transfers', mapping={'number':n}) + ","
             fare = it['fare']['adult']
             url  = it['url']
+            if n < 0:
+                tfer = ''
+                fare = _('walk only')
         %>
         <!-- ${_('transfer')} or ${_('transfers')} -->
         %if sel:
-        <li class="selected"><span class="selectedpadding"><b>${text}</b><br />${dur} ${_('mins')}, <span class="nobreak">${tfer},</span> ${fare}</span></li>
+        <li class="selected"><span class="selectedpadding"><b>${text}</b><br />${dur} ${_('mins')}, <span class="nobreak">${tfer}</span> ${fare}</span></li>
         %else:
-        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br/>${dur} ${_('mins')}, <span class="nobreak">${tfer},</span> ${fare}</span></a></li>
+        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br/>${dur} ${_('mins')}, <span class="nobreak">${tfer}</span> ${fare}</span></a></li>
         %endif
     %endif
 </%def>
