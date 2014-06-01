@@ -334,6 +334,8 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             if name == '' and i == 0:
                 name = frm
                 conjunction = _(u'from')
+            elif name.lower() == 'elevator':
+                continue
             elif name == '' and i+1 == len(steps):
                 name = to
                 conjunction = _(u'to')
@@ -343,18 +345,24 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             dir = s['relative_direction']
             if dir != None:
                 dir = dir.lower().replace('_', ' ').strip()
-                #print dir
-                if dir not in ('continue'):
+                if dir == ('elevator'):
+                    turn = _(u'Take the elevator to level ') + name
+                    instruct_verb = None
+                elif dir not in ('continue'):
                     turn = _(u'Turn') + " " + _(dir) + " " + _(u'on') + " " + _(name)
                 else:
                     instruct_verb = dir.title()
-
-            instruct = _(instruct_verb) + " " + pretty_distance(s['distance']) + " " + _(s['compass_direction']) + " " + conjunction + " " + _(name)
+            if instruct_verb:
+                instruct = _(instruct_verb) + " " + pretty_distance(s['distance']) + " " + _(s['compass_direction']) + " " + conjunction + " " + _(name)
+            else:
+                instruct = None
         %>
         %if turn != None:
         <li>${turn}</li>
         %endif
+        %if instruct != None:
         <li>${instruct}</li>
+        %endif
         %endfor
     </ol>
 </%def>
