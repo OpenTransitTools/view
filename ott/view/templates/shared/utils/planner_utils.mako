@@ -343,7 +343,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             dir = s['relative_direction']
             if dir != None:
                 dir = dir.lower().replace('_', ' ').strip()
-                #print dir, _(dir), _(unicode(dir)), _('right'), _(u'right'), _('left'), _('slightly left')
+                print dir
                 if dir not in ('continue'):
                     turn = _(u'Turn') + " " + _(dir) + " " + _(u'on') + " " + _(name)
                 else:
@@ -357,41 +357,6 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         <li>${instruct}</li>
         %endfor
     </ol>
-</%def>
-
-## Walk 0.36 mile west on SE Water Ave., Turn left on SE Madison St., Walk a short distance west on SE Madison St.
-<%def name="OLD_NOT_USED___render_steps(verb, frm, to, steps)">
-                <ol>
-                    %for i, s in enumerate(steps):
-                    <%
-                        name = s['name']
-                        conjunction = _(u'on')
-                        if name == '' and i == 0:
-                            name = frm
-                            conjunction = _(u'from')
-                        elif name == '' and i+1 == len(steps):
-                            name = to
-                            conjunction = _(u'to')
-
-                        instruct_verb = verb
-                        turn = None
-                        dir = s['relative_direction']
-                        if dir != None:
-                            dir = dir.lower().replace('_', ' ').strip()
-                            #print dir, _(dir), _(unicode(dir)), _('right'), _(u'right'), _('left'), _('slightly left')
-                            if dir not in ('continue'):
-                                turn = _(u'Turn') + " " + _(dir) + " " + _(u'on') + " " + _(name)
-                            else:
-                                instruct_verb = dir.title()
-
-                        instruct = _(instruct_verb) + " " + pretty_distance(s['distance']) + " " + _(s['compass_direction']) + " " + conjunction + " " + _(name)
-                    %>
-                    %if turn != None:
-                    <li>${turn}</li>
-                    %endif
-                    <li>${instruct}</li>
-                    %endfor
-                </ol>
 </%def>
 
 
