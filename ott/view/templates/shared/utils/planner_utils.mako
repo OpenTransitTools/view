@@ -307,8 +307,8 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 <%def name="render_elevation(elevation, no_expand=False)">
             %if elevation != None:
                 <p class="elevation"><span>
-                    ${_(u'Total elevation uphill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['rise_ft']})}<br/>
-                    ${_(u'Total elevation downhill')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br/>
+                    ${_(u'Elevation gain')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['rise_ft']})}<br/>
+                    ${_(u'Elevation loss')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br/>
                     ${_(u'Steepest grade')}: ${get_grade(elevation['grade'])}<br/>
                     %if elevation['points'] and len(elevation['points']) > 2:
                     <span class="elevation_txt">${_(u'Elevation chart')}</span><span class="elevation_chart">${util.dynamic_img("sparkline?points=" + elevation['points'], 100, 20, no_expand=no_expand)}</span>
