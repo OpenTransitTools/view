@@ -58,7 +58,7 @@
 ##
 ## search input form
 ##
-<%def name="search_input(name, place=None, clear=None, id='place', coord='', size='67', maxlength='100')">
+<%def name="search_input(name, place=None, clear=None, id='place', coord='', size='67', maxlength='100', clear_form=True)">
 <%
    if clear is None:
        clear = _(u'Address, intersection, landmark or Stop ID')
@@ -71,7 +71,11 @@
         <label for="geocode_form">${name}:</label>
         <input type="hidden" name="geo_type"   value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}" />
-        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>  
+        %if clear_form:
+        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
+        %else:
+        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular"/>
+        %endif
         <div class="form-help">
             ${help.form_help_right()}
         </div>

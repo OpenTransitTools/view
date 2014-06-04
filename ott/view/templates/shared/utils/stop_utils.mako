@@ -25,7 +25,7 @@
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Find stops and stations'), geo_place)}
+        ${form.search_input(_(u'Find stops and stations'), place=geo_place, clear_form=False)}
         ${form.search_submit(_(u'Continue'))}
     </form>
 </div>
