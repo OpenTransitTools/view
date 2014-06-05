@@ -33,7 +33,11 @@ ${form.clear_element_scriptlet()}
     %if type_img_url:
         <img src="${util.url_domain()}/${type_img_url}" />
     %endif
-    ${_(u'We cannot find')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'location')}: ${geo_place}
+    %if geocoder_results and len(geocoder_results) > 0:
+    ${_(u'We found multiple')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'locations')} ${_(u'for')} ${_(u'search term')}: ${geo_place}
+    %else:
+    ${_(u'We cannot find')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'location')} ${_(u'for')} ${_(u'search term')}: ${geo_place}
+    %endif
 </h2>
 ${pform.geocode_form(geocoder_results, geo_place, geo_type)}
 ${form.autocomplete_js_includes()}
