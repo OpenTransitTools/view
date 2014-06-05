@@ -72,9 +72,9 @@
         <input type="hidden" name="geo_type"   value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}" />
         %if clear_form:
-        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
+        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); this.setSelectionRange(0, this.value.length); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
         %else:
-        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular"/>
+        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="this.setSelectionRange(0, this.value.length); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
         %endif
         <div class="form-help">
             ${help.form_help_right()}
