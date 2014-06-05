@@ -18,11 +18,9 @@ from pyramid.events import subscriber
 from ott.view.model.model import Model
 from ott.view.model.mock import Mock
 
-
 from ott.view.utils import schedule_tabs
 from ott.view.utils import geocode_utils
 
-# TODO transition to ott.utils.* 
 from ott.utils.img.spark import sparkline_smooth
 from ott.utils.img.qr import qr_to_stream
 from ott.utils import html_utils
@@ -172,25 +170,43 @@ def planner_walk(request):
 @view_config(route_name='stop_mobile',       renderer='mobile/stop.html')
 @view_config(route_name='stop_desktop',      renderer='desktop/stop.html')
 def stop(request):
-    stop   = request.model.get_stop(request.query_string, **request.params)
-    ret_val = {}
-    ret_val['stop'] = stop
+    stop = None
+    try:
+        #import pdb; pdb.set_trace()
+        stop = request.model.get_stop(request.query_string, **request.params)
+    except Exception, e:
+        log.warning('{0} exception:{1}'.format(request.path, e))
+
+    if stop:
+        ret_val = {}
+        ret_val['stop'] = stop
+    else:
+        ret_val = make_subrequest(request, '/exception.html')
     return ret_val
+
 
 @view_config(route_name='stop_schedule_mobile', renderer='mobile/stop_schedule.html')
 @view_config(route_name='stop_schedule_desktop', renderer='desktop/stop_schedule.html')
 def stop_schedule(request):
+    html_tabs = stop_sched = alerts = None
+    
     stop_id = html_utils.get_first_param(request, 'stop_id')
     route   = html_utils.get_first_param(request, 'route')
-    url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
+    try:
+        url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
+        html_tabs = schedule_tabs.get_tabs(request, url)
+        stop_sched = request.model.get_stop_schedule(request.query_string, **request.params)
+        alerts = transit_utils.get_stoptime_alerts(stop_sched)
+    except Exception, e:
+        log.warning('{0} exception:{1}'.format(request.path, e))
 
-    ret_val = {}
-    html_tabs = schedule_tabs.get_tabs(request, url)
-    stop_sched = request.model.get_stop_schedule(request.query_string, **request.params)
-    alerts = transit_utils.get_stoptime_alerts(stop_sched)
-    ret_val['html_tabs'] = html_tabs
-    ret_val['stop_sched'] = stop_sched
-    ret_val['alerts'] = alerts
+    if html_tabs and stop_sched:
+        ret_val = {}
+        ret_val['html_tabs'] = html_tabs
+        ret_val['stop_sched'] = stop_sched
+        ret_val['alerts'] = alerts
+    else:
+        ret_val = make_subrequest(request, '/exception.html')
     return ret_val
 
 @view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')
