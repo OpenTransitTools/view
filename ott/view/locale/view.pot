@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2014-06-03 16:30-0700\n"
+"POT-Creation-Date: 2014-06-05 02:35-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -326,12 +326,28 @@ msgstr ""
 msgid "Trip Planner"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_geocode.html:36 ott/view/templates/desktop/stop_select_geocode.html:22
+#: ott/view/templates/desktop/planner_geocode.html:37
+msgid "We found multiple"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_geocode.html:37
+msgid "locations"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_geocode.html:37 ott/view/templates/desktop/planner_geocode.html:39
+msgid "for"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_geocode.html:37 ott/view/templates/desktop/planner_geocode.html:39
+msgid "search term"
+msgstr ""
+
+#: ott/view/templates/desktop/planner_geocode.html:39 ott/view/templates/desktop/stop_select_geocode.html:22
 #: ott/view/templates/mobile/planner_geocode.html:34 ott/view/templates/mobile/stop_select_geocode.html:22
 msgid "We cannot find"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_geocode.html:36 ott/view/templates/mobile/planner_geocode.html:34
+#: ott/view/templates/desktop/planner_geocode.html:39 ott/view/templates/mobile/planner_geocode.html:34
 msgid "location"
 msgstr ""
 
@@ -380,7 +396,7 @@ msgstr ""
 msgid "Click for more information about this stop"
 msgstr ""
 
-#: ott/view/templates/desktop/stops_near.html:30 ott/view/templates/mobile/stops_near.html:30 ott/view/templates/shared/utils/form_utils.mako:106
+#: ott/view/templates/desktop/stops_near.html:30 ott/view/templates/mobile/stops_near.html:30 ott/view/templates/shared/utils/form_utils.mako:110
 #: ott/view/templates/shared/utils/misc_utils.mako:91 ott/view/templates/shared/utils/planner_utils.mako:390
 #: ott/view/templates/shared/utils/planner_utils.mako:435 ott/view/templates/shared/utils/planner_utils.mako:509
 #: ott/view/templates/shared/utils/stop_utils.mako:9 ott/view/templates/shared/utils/stop_utils.mako:43
@@ -500,7 +516,7 @@ msgstr ""
 msgid "Address, intersection, landmark or Stop ID"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:148 ott/view/templates/shared/utils/route_select_utils.mako:19
+#: ott/view/templates/shared/utils/form_utils.mako:152 ott/view/templates/shared/utils/route_select_utils.mako:19
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:50
 msgid "Select"
 msgstr ""
