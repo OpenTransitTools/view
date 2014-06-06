@@ -5,8 +5,8 @@
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%
-    extra_params  = util.get_extra_params()
-    feedback_url  = 'http://trimet.org/mailforms/tripfeedback'
+    extra_params = util.get_extra_params()
+    feedback_url = 'http://trimet.org/mailforms/tripfeedback'
 %>
 <%def name="title()">TriMet: ${_(u'Exception')}</%def>
 <%def name="meta_data()">${meta.tripplanner()}</%def>
