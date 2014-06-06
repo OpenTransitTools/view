@@ -209,13 +209,13 @@ def stop_schedule(request):
     except Exception, e:
         log.warning('{0} exception:{1}'.format(request.path, e))
 
-    if html_tabs and stop_sched:
+    if html_tabs and stop_sched and stop_sched['has_errors'] is not True:
         ret_val = {}
         ret_val['html_tabs'] = html_tabs
         ret_val['stop_sched'] = stop_sched
         ret_val['alerts'] = alerts
     else:
-        ret_val = make_subrequest(request, '/exception.html')
+        ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Schedule page')
     return ret_val
 
 @view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')
