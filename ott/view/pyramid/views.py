@@ -119,17 +119,22 @@ def planner_form(request):
 def planner_geocode(request):
     ''' for the ambiguous geocode page
     '''
-    geo_place = None
-    geo_type = html_utils.get_first_param(request, 'geo_type', 'place')
-    if 'from' in geo_type:
-        geo_place = html_utils.get_first_param(request, 'from')
-    elif 'to' in geo_type:
-        geo_place = html_utils.get_first_param(request, 'to')
+    try:
+        geo_place = None
+        geo_type = html_utils.get_first_param(request, 'geo_type', 'place')
+        if 'from' in geo_type:
+            geo_place = html_utils.get_first_param(request, 'from')
+        elif 'to' in geo_type:
+            geo_place = html_utils.get_first_param(request, 'to')
 
-    ret_val = geocode_utils.call_geocoder(request, geo_place, geo_type)
-    adverts = request.model.get_adverts(request,  **request.params)
-    ret_val['adverts'] = adverts
+        ret_val = geocode_utils.call_geocoder(request, geo_place, geo_type)
+        adverts = request.model.get_adverts(request,  **request.params)
+        ret_val['adverts'] = adverts
+    except Exception, e:
+        log.warning('{0} exception:{1}'.format(request.path, e))
+        ret_val = make_subrequest(request, '/exception.html')
     return ret_val
+
 
 @view_config(route_name='planner_mobile', renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
@@ -137,20 +142,24 @@ def planner(request):
     ''' will either call the trip planner, or if we're missing params, redirect to the ambiguous geocode page
         basically, call the geocode checker, and then either call the ambiguous geocoder page, or plan the trip planner
     '''
-    ret_val = {}
-    #import pdb; pdb.set_trace()
-    query_string, geocode_param = geocode_utils.do_from_to_geocode_check(request)
-    if geocode_param:
-        ret_val = make_subrequest(request, '/planner_geocode.html', query_string, geocode_param)
-    else:
-        mapit = html_utils.get_first_param(request, 'mapit')
-        if mapit:
-            ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + query_string)
+    try:
+        ret_val = {}
+        #import pdb; pdb.set_trace()
+        query_string, geocode_param = geocode_utils.do_from_to_geocode_check(request)
+        if geocode_param:
+            ret_val = make_subrequest(request, '/planner_geocode.html', query_string, geocode_param)
         else:
-            ret_val = request.model.get_plan(query_string, **request.params)
-            if ret_val and 'error' in ret_val:
-                msg = object_utils.get_error_message(ret_val)
-                ret_val = make_subrequest(request, '/exception.html', 'error_message={0}'.format(msg))
+            mapit = html_utils.get_first_param(request, 'mapit')
+            if mapit:
+                ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + query_string)
+            else:
+                ret_val = request.model.get_plan(query_string, **request.params)
+                if ret_val and 'error' in ret_val:
+                    msg = object_utils.get_error_message(ret_val)
+                    ret_val = make_subrequest(request, '/exception.html', 'error_message={0}'.format(msg))
+    except Exception, e:
+        log.warning('{0} exception:{1}'.format(request.path, e))
+        ret_val = make_subrequest(request, '/exception.html')
 
     return ret_val
 
