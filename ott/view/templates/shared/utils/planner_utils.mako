@@ -282,6 +282,7 @@
 </%def>
 
 <%def name="get_grade(elev)">${elev['up'] if elev['up'] > elev['down'] else elev['down']}%</%def>
+<%def name="check_grade(elev)"><% False if elev is None or (elev['up'] == 0 and elev['down'] == 0) else True %></%def>
 
 <%def name="get_route_name(route)"><% return route['name'] + " " + _(u'to') + " " + route['headsign'] if route['headsign'] else ''%></%def>
 <%def name="get_time(itinerary, is_arrive_by)"><% from ott.utils import transit_utils; return transit_utils.get_time(itinerary, is_arrive_by)%></%def>
@@ -309,7 +310,9 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 <p class="elevation"><span>
                     ${_(u'Elevation gain')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['rise_ft']})}<br/>
                     ${_(u'Elevation loss')}: ${_(u'${number} foot', u'${number} feet', mapping={'number':elevation['fall_ft']})}<br/>
+                    %if check_grade(elevation['grade']):
                     ${_(u'Steepest grade')}: ${get_grade(elevation['grade'])}<br/>
+                    %endif
                     %if elevation['points'] and len(elevation['points']) > 2:
                     <span class="elevation_txt">${_(u'Elevation chart')}</span><span class="elevation_chart">${util.dynamic_img("sparkline?points=" + elevation['points'], 100, 20, no_expand=no_expand)}</span>
                     %endif
