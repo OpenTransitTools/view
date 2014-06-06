@@ -249,10 +249,10 @@
 </%def>
 
 
-<%def name="get_first_param(param_name)">
+<%def name="get_first_param(param_name, def_val=None)">
 <%
     from ott.utils import html_utils
-    return html_utils.get_first_param(request, param_name)
+    return html_utils.get_first_param(request, param_name, def_val)
 %>
 </%def>
 
