@@ -9,7 +9,24 @@
     return config.get('is_test')
 %>
 </%def>
+
+
+<%def name="error_msg(extra_params, feedback_url)">
+<%
+    error_message = get_first_param('error_message')
+    app_name      = get_first_param('app_name', 'Trip Planner')
+%>
+%if error_message and error_message != 'None':
+<h2 class="error">${_(error_message)}</h2>
+%else:
+<h2 class="error">${_(u'The')} ${_(app_name)} ${_(u'is not working...')}</h2>
+%endif
+<p align="center"><a href="${feedback_url}">${_(u'Contact us')}</a> ${_(u'let us know more')}.</p>
+</%def>
+
 <%def name="img_url()">${url_domain()}/images/triptools</%def>
+
+
 <%def name="planner_img_url()">${img_url()}/mode</%def>
 <%!
     ''' access these variables in other space via <namespace>.attr, ala util.attr, ala util.attr.WALK
