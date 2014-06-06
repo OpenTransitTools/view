@@ -186,11 +186,11 @@ def stop(request):
     except Exception, e:
         log.warning('{0} exception:{1}'.format(request.path, e))
 
-    if stop:
+    if stop and stop['has_errors'] is not True:
         ret_val = {}
         ret_val['stop'] = stop
     else:
-        ret_val = make_subrequest(request, '/exception.html')
+        ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Details page')
     return ret_val
 
 
