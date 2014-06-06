@@ -222,18 +222,37 @@ def stop_schedule(request):
 @view_config(route_name='stop_select_form_mobile',       renderer='mobile/stop_select_form.html')
 @view_config(route_name='stop_select_form_desktop',      renderer='desktop/stop_select_form.html')
 def stop_select_form(request):
-    ret_val = {}
-    ret_val['place']  = html_utils.get_first_param(request, 'place')
-    ret_val['routes'] = request.model.get_routes(request.query_string, **request.params)
+    routes = None
+    try:
+        routes = request.model.get_routes(request.query_string, **request.params)
+    except Exception, e:
+        log.warning('{0} exception:{1}'.format(request.path, e))
+
+    if routes and routes['has_errors'] is not True:
+        ret_val = {}
+        ret_val['place']  = html_utils.get_first_param(request, 'place')
+        ret_val['routes'] = routes
+    else:
+        ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Select page')
     return ret_val
 
 @view_config(route_name='stop_select_list_mobile', renderer='mobile/stop_select_list.html')
 @view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
 def stop_select_list(request):
-    ret_val = {}
-    route = html_utils.get_first_param(request, 'route')
-    ret_val['route_stops'] = request.model.get_route_stops(request.query_string, **request.params)
+    route_stops = None
+    try:
+        route_stops = request.model.get_route_stops(request.query_string, **request.params)
+    except Exception, e:
+        log.warning('{0} exception:{1}'.format(request.path, e))
+
+    if route_stops and route_stops['has_errors'] is not True:
+        ret_val = {}
+        route = html_utils.get_first_param(request, 'route')
+        ret_val['route_stops'] = route_stops
+    else:
+        ret_val = make_subrequest(request, '/exception.html', 'app_name=Route Stops page')
     return ret_val
+
 
 @view_config(route_name='stop_select_geocode_mobile', renderer='mobile/stop_select_geocode.html')
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
