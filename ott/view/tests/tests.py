@@ -61,20 +61,20 @@ class TestMyView(unittest.TestCase):
 
     def test_plan_form(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'planner_form.html', 'from=PDX&to=ZOO::45.495883,-122.501919')
+            url = get_url(m + 'planner_form.html', 'from=PDX::45.587546,-122.592925&to=ZOO')
             s = call_url(url)
             self.assertRegexpMatches(s, 'type="text"   id="from" name="from" value="PDX"')
             self.assertRegexpMatches(s, 'type="text"   id="going" name="to" value="ZOO"')
 
     def test_plan_trip(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'planner.html', 'to=pdx&from=zoo&Hour=9&Minute=0&AmPm=pm')
+            url = get_url(m + 'planner.html', 'to=pdx::45.587546,-122.592925&from=zoo&Hour=9&Minute=0&AmPm=pm')
             s = call_url(url)
             self.assertRegexpMatches(s,"MAX Red Line")
 
     def test_plan_walk(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'planner_walk.html', 'mode=WALK&from=pdx&to=zoo')
+            url = get_url(m + 'planner_walk.html', 'mode=WALK&from=pdx::45.587546,-122.592925&to=zoo')
             s = call_url(url)
             self.assertRegexpMatches(s,"Airport Way")
 
@@ -93,7 +93,7 @@ class TestMyView(unittest.TestCase):
             self.assertRegexpMatches(s, "834 SE LAMBERT")
 
     def test_homepage_form(self):
-        url = get_url('pform_standalone.html', 'from=PDX&to=ZOO')
+        url = get_url('pform_standalone.html', 'from=PDX::45.587546,-122.592925&to=ZOO')
         s = call_url(url)
         self.assertRegexpMatches(s, 'type="text"   id="from" name="from" value="PDX"')
         self.assertRegexpMatches(s, 'type="text"   id="going" name="to" value="ZOO"')
