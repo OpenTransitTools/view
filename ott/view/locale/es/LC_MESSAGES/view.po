@@ -539,7 +539,7 @@ msgstr "Consultar"
 
 #: ott/view/templates/shared/utils/form_utils.mako:169
 msgid "We found multiple"
-msgstr ""
+msgstr "Encontramos múltiples"
 
 #: ott/view/templates/shared/utils/form_utils.mako:169
 msgid "locations"
@@ -572,7 +572,7 @@ msgstr "Sitios de referencia"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:22
 msgid "The"
-msgstr ""
+msgstr "La"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:22
 msgid "is not working..."
