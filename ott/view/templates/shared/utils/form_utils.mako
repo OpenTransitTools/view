@@ -160,7 +160,6 @@
         </fieldset>
 </%def>
 
-
 #
 # If we can't find a place in the geocoder, or if we find multiple places, you'll see this msg...
 #
