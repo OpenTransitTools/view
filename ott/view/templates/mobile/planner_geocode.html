@@ -31,6 +31,7 @@ ${form.clear_element_scriptlet()}
     %if type_img_url:
         <img src="${util.url_domain()}/${type_img_url}" />
     %endif
+    ${form_utils.geocoder_msg(geocoder_results, geo_place, geo_type)}
     ${_(u'We cannot find')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'location')}: ${geo_place}
 </h2>
 ${pform.geocode_form(geocoder_results, geo_place, geo_type)}
