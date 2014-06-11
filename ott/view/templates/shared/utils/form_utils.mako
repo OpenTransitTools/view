@@ -168,7 +168,7 @@
     %if geocoder_results and len(geocoder_results) > 0:
     ${_(u'We found multiple')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'locations')} ${_(u'for')}: ${geo_place}
     %else:
-    ${_(u'We cannot find')} <i>${_(geo_type) if geo_type else _(u'a')}</i> ${_(u'location')} ${_(u'for')}: ${geo_place}
+    ${_(u'We cannot find a')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'location')} ${_(u'for')}: ${geo_place}
     %endif
 </%def>
 
