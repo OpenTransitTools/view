@@ -176,7 +176,7 @@
 
     # localized mailform app
     mailform_page="tripfeedback"
-    if "_LOCALE_=es" in url:
+    if request.locale_name == 'es':
         mailform_page="es_tripfeedback"
 
     url = prep_url_params(url, url_escape=True, spell_and=True)
