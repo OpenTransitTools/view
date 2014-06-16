@@ -33,7 +33,7 @@ ${form.clear_element_scriptlet()}
     %if type_img_url:
         <img src="${util.url_domain()}/${type_img_url}" />
     %endif
-    ${form_utils.geocoder_msg(geocoder_results, geo_place, geo_type)}
+    ${form.geocoder_msg(geocoder_results, geo_place, geo_type)}
 </h2>
 ${pform.geocode_form(geocoder_results, geo_place, geo_type)}
 ${form.autocomplete_js_includes()}
