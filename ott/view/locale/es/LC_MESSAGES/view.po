@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2014-06-11 14:12-0700\n"
+"POT-Creation-Date: 2014-06-17 15:21-0700\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: Frank Purcell <purcellf@trimet.org>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -481,15 +481,6 @@ msgstr "Muestre el mapa interactivo"
 msgid "Your Trip on TriMet"
 msgstr "Su viaje en TriMet"
 
-#: ott/view/templates/mobile/planner_geocode.html:35
-msgid "We cannot find"
-msgstr "No podemos encontrar a"
-
-#: ott/view/templates/mobile/planner_geocode.html:35
-#: ott/view/templates/shared/utils/form_utils.mako:171
-msgid "location"
-msgstr "ubicación"
-
 #: ott/view/templates/shared/app/stop.mako:31
 #: ott/view/templates/shared/app/stop.mako:40
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:127
@@ -537,22 +528,26 @@ msgstr "Dirección, intersección, lugar o Stop ID (número de la parada)"
 msgid "Select"
 msgstr "Consultar"
 
-#: ott/view/templates/shared/utils/form_utils.mako:169
+#: ott/view/templates/shared/utils/form_utils.mako:168
 msgid "We found multiple"
 msgstr "Encontramos múltiples"
 
-#: ott/view/templates/shared/utils/form_utils.mako:169
+#: ott/view/templates/shared/utils/form_utils.mako:168
 msgid "locations"
 msgstr "ubicación"
 
-#: ott/view/templates/shared/utils/form_utils.mako:169
-#: ott/view/templates/shared/utils/form_utils.mako:171
+#: ott/view/templates/shared/utils/form_utils.mako:168
+#: ott/view/templates/shared/utils/form_utils.mako:170
 msgid "for"
 msgstr "por"
 
-#: ott/view/templates/shared/utils/form_utils.mako:171
+#: ott/view/templates/shared/utils/form_utils.mako:170
 msgid "We cannot find a"
 msgstr "No podemos encontrar a"
+
+#: ott/view/templates/shared/utils/form_utils.mako:170
+msgid "location"
+msgstr "ubicación"
 
 #: ott/view/templates/shared/utils/help_utils.mako:78
 msgid "There are several ways to enter a location"
@@ -597,13 +592,13 @@ msgstr "Indefinido"
 msgid "in"
 msgstr "en"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:201
-#: ott/view/templates/shared/utils/misc_utils.mako:204
-#: ott/view/templates/shared/utils/misc_utils.mako:207
+#: ott/view/templates/shared/utils/misc_utils.mako:219
+#: ott/view/templates/shared/utils/misc_utils.mako:222
+#: ott/view/templates/shared/utils/misc_utils.mako:225
 msgid "Plan a trip"
 msgstr "Planee un viaje"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:204
+#: ott/view/templates/shared/utils/misc_utils.mako:222
 #: ott/view/templates/shared/utils/planner_narrative.mako:23
 #: ott/view/templates/shared/utils/planner_utils.mako:17
 #: ott/view/templates/shared/utils/planner_utils.mako:42
@@ -617,118 +612,118 @@ msgstr "Planee un viaje"
 msgid "to"
 msgstr "a"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:205
+#: ott/view/templates/shared/utils/misc_utils.mako:223
 msgid "To here"
 msgstr "Destino"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:207
+#: ott/view/templates/shared/utils/misc_utils.mako:225
 #: ott/view/templates/shared/utils/planner_narrative.mako:20
 #: ott/view/templates/shared/utils/planner_utils.mako:342
 msgid "from"
 msgstr "de"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:208
+#: ott/view/templates/shared/utils/misc_utils.mako:226
 msgid "From here"
 msgstr "Origen"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "January"
 msgstr "Enero"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "February"
 msgstr "Febrero"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "March"
 msgstr "Marzo"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "April"
 msgstr "Abril"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:345
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "May"
 msgstr "Mayo"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "June"
 msgstr "Junio"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "July"
 msgstr "Julio"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "August"
 msgstr "Agosto"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "September"
 msgstr "Septiembre"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "October"
 msgstr "Octubre"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "November"
 msgstr "Noviembre"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:327
+#: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "December"
 msgstr "Diciembre"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Jan"
 msgstr "Enero"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Feb"
 msgstr "Feb"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Mar"
 msgstr "Marzo"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Apr"
 msgstr "Abr"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Jun"
 msgstr "Jun"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Jul"
 msgstr "Jul"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Aug"
 msgstr "Agosto"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Sep"
 msgstr "Sept"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Oct"
 msgstr "Oct"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Nov"
 msgstr "Nov"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:337
+#: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Dec"
 msgstr "Dic"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:366
+#: ott/view/templates/shared/utils/misc_utils.mako:384
 msgid "Service alert at this stop"
 msgstr "Más información sobre esta parada"
 
-#: ott/view/templates/shared/utils/misc_utils.mako:381
+#: ott/view/templates/shared/utils/misc_utils.mako:399
 #: ott/view/templates/shared/utils/planner_utils.mako:130
 msgid "As of"
 msgstr "A partir de"
@@ -1393,4 +1388,7 @@ msgstr "Muestre el mapa interactivo"
 # | msgid "Depart after"
 #~ msgid "search term"
 #~ msgstr "Hora de salida"
+
+#~ msgid "We cannot find"
+#~ msgstr "No podemos encontrar a"
 
