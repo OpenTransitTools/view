@@ -1,6 +1,13 @@
+''' Agency Template is a set of urls specific to the agencies home website for other 
+    infomration webapps that the trip planner can link to (like alerts services, real-time 
+    vehicle predictions, maps, etc...)
+'''
+
 AGENCY_TEMPLATE = None
 
 def make_url_template():
+    ''' 
+    '''
     global AGENCY_TEMPLATE
     if AGENCY_TEMPLATE is None:
         AGENCY_TEMPLATE = AgencyTemplate()
@@ -9,8 +16,7 @@ def make_url_template():
 
 class AgencyTemplate(object):
     def __init__(self):
-        ''' 
-             TODO: read a config file, to populate this cache for different agencies
+        ''' TODO: read a config file, to populate this cache for different agencies
         '''
         self.template_cache = { 
                 'TriMet' : {

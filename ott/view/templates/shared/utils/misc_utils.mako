@@ -162,32 +162,50 @@
 %><a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
 </%def>
 
+<%def name="get_ini_param(request, name, def_val=None)"><%
+    ret_val = def_val
+    try:
+        ret_val = request.registry.settings[name]
+    except:
+        pass
+    return ret_val
+%></%def>
+
+<%def name="get_url(request, url=None)"><%
+    ret_val = url
+    if url is None:
+        ret_val = get_ini_param(request, 'host_name')
+        if ret_val is None:
+            ret_val = request.host_url
+    ret_val = prep_url_params(ret_val, url_escape=True, spell_and=True)
+    return ret_val
+%></%def>
+
+
 ##
 ## FEEDBACK URL: http://trimet.org/mailforms/tripfeedback?mailform[subject]=Stop X&mailform[url]=<a href='app url'>Blah</a>
 ##
 ## TODO: have a default feedback_url, and override this method for trimet...
 ## 
 <%def name="trimet_feedback_url(subject, message=None, url=None)"><% 
-    # default to url in request object
+    # default to url in request object 
     if url is None:
-        url = request.url
+        url = get_url(request, url)
     if message is None:
-        message = request.url
+        message = get_url(request, url)
 
     # localized mailform app
     mailform_page="tripfeedback"
     if request.locale_name == 'es':
         mailform_page="es_tripfeedback"
 
-    url = prep_url_params(url, url_escape=True, spell_and=True)
     subject = prep_url_params(subject, url_escape=True, spell_and=True)
     message = prep_url_params(message, url_escape=True, spell_and=True)
 %>http://trimet.org/mailforms/${mailform_page}?mailform[subject]=${subject}&mailform[url]=<a href='${url}'>${message}</a></%def>
 
 <%def name="mailto_url(subject='Link to TriMet', message='Check out this page on trimet.org', url=None)"><%
     if url is None:
-        url = request.url
-    url = prep_url_params(url, url_escape=True, spell_and=True)
+        url = get_url(request, url)
     subject = prep_url_params(subject, url_escape=True, spell_and=True)
     message = prep_url_params(message, url_escape=True, spell_and=True)
 %>mailto:?subject=${subject}&body=${message}%20:%20${url}</%def>
