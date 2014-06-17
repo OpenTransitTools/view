@@ -19,7 +19,7 @@ msgstr ""
 
 #: ott/view/locale/misc-strings.html:6
 msgid "Bench"
-msgstr "Banca cerca de la parada"
+msgstr "Banca"
 
 #: ott/view/locale/misc-strings.html:7
 msgid "Bike Locker"
