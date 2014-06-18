@@ -1093,8 +1093,8 @@ msgid ""
 "Times shown are estimates based on schedules and can be affected by "
 "traffic, road conditions, detours and other factors. Before you go, check"
 msgstr ""
-"Los tiempos de tránsito son estimaciones basadas en la velocidad promedio"
-" del vehículo y la distancia entre paradas principales. Antes de partir, "
+"Los tiempos a continuación son sólo estimados basados en los horarios y pueden ser afectados por"
+" el tráfico, condiciones de calles, desvíos, y otros factores. Verifique antes de salir."
 
 #: ott/view/templates/shared/utils/planner_utils.mako:260
 msgid ""
