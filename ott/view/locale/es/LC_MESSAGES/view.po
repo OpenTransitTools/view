@@ -284,7 +284,7 @@ msgstr "Consulte esta página en trimet.org"
 #: ott/view/templates/mobile/stop_select_geocode.html:12
 #: ott/view/templates/mobile/stop_select_geocode.html:20
 msgid "Uncertain location"
-msgstr "Localización indeterminada"
+msgstr "Lugar indefinido"
 
 #: ott/view/templates/desktop/exception.html:11
 #: ott/view/templates/mobile/exception.html:11
