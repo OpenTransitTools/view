@@ -893,7 +893,7 @@ msgstr "Primer viaje del día"
 #: ott/view/templates/shared/utils/planner_form_utils.mako:257
 #: ott/view/templates/shared/utils/planner_utils.mako:235
 msgid "Quickest trip"
-msgstr "Más rápido"
+msgstr "El viaje más rápido"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:261
 #: ott/view/templates/shared/utils/planner_utils.mako:233
