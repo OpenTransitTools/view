@@ -174,9 +174,8 @@
 <%def name="get_url(request, url=None)"><%
     ret_val = url
     if url is None:
-        ret_val = get_ini_param(request, 'host_name')
-        if ret_val is None:
-            ret_val = request.host_url
+        host = get_ini_param(request, 'host_name', request.host_url)
+        ret_val = "{0}{1}".format(host, request.path_qs)
     ret_val = prep_url_params(ret_val, url_escape=True, spell_and=True)
     return ret_val
 %></%def>
