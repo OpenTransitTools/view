@@ -534,20 +534,20 @@ msgstr "Encontramos múltiples"
 
 #: ott/view/templates/shared/utils/form_utils.mako:168
 msgid "locations"
-msgstr "ubicación"
+msgstr "lugares"
 
 #: ott/view/templates/shared/utils/form_utils.mako:168
 #: ott/view/templates/shared/utils/form_utils.mako:170
 msgid "for"
-msgstr "por"
+msgstr "para"
 
 #: ott/view/templates/shared/utils/form_utils.mako:170
 msgid "We cannot find a"
-msgstr "No podemos encontrar a"
+msgstr "No podemos encontrar"
 
 #: ott/view/templates/shared/utils/form_utils.mako:170
 msgid "location"
-msgstr "ubicación"
+msgstr "lugar"
 
 #: ott/view/templates/shared/utils/help_utils.mako:78
 msgid "There are several ways to enter a location"
