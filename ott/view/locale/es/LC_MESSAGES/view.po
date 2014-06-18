@@ -264,7 +264,7 @@ msgstr "más"
 
 #: ott/view/locale/misc-strings.html:81
 msgid "Stop related page"
-msgstr "Página web relacionada parada de tránsito"
+msgstr "Página relacionada con la parada"
 
 #: ott/view/locale/misc-strings.html:82
 msgid "Link to TriMet"
