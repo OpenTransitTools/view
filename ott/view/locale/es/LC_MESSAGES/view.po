@@ -579,7 +579,7 @@ msgstr "Contáctenos"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:24
 msgid "let us know more"
-msgstr "vamos a saber más"
+msgstr "Denos más información"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:104
 #: ott/view/templates/shared/utils/misc_utils.mako:121
