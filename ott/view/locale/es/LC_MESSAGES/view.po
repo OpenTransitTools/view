@@ -310,7 +310,7 @@ msgstr "TriMet: Ayuda del Planificador de Viajes"
 #: ott/view/templates/desktop/feedback.html:17
 #: ott/view/templates/mobile/feedback.html:17
 msgid "Trip Planner tips & help"
-msgstr "Sugerencias y ayuda"
+msgstr "Consejos y ayuda del Planificador de Viajes"
 
 #: ott/view/templates/desktop/planner.html:25
 msgid "Your trip on TriMet"
