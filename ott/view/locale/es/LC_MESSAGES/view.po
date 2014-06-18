@@ -300,7 +300,7 @@ msgstr "¡uy!"
 #: ott/view/templates/mobile/feedback.html:15
 #: ott/view/templates/shared/utils/sidebar_utils.mako:12
 msgid "Related"
-msgstr "Allegado"
+msgstr "Relacionado"
 
 #: ott/view/templates/desktop/feedback.html:17
 #: ott/view/templates/mobile/feedback.html:17
