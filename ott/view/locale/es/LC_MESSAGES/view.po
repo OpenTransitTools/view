@@ -99,7 +99,7 @@ msgstr "Acera"
 
 #: ott/view/locale/misc-strings.html:26
 msgid "Street Light"
-msgstr "Iluminación en la parada"
+msgstr "Luz de la calle"
 
 #: ott/view/locale/misc-strings.html:27
 msgid "Ticket Vending Machine"
