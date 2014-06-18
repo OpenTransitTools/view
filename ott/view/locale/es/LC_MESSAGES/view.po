@@ -950,11 +950,11 @@ msgstr "Sólo bus"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:333
 msgid "Bike to Transit"
-msgstr "Transporte público y bicicleta"
+msgstr "Tránsito y bicicleta"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:337
 msgid "Bike and Train only"
-msgstr "Bicicleta y tren onlyh"
+msgstr "Sólo bicicleta y tren"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:341
 msgid "Walk only"
