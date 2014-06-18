@@ -443,7 +443,7 @@ msgstr "Contáctenos"
 #: ott/view/templates/mobile/base.html:66
 #: ott/view/templates/mobile/feedback.html:4
 msgid "Feedback"
-msgstr ""
+msgstr "Comentarios"
 
 #: ott/view/templates/mobile/base.html:66
 msgid "App Center"
