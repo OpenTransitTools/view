@@ -1001,7 +1001,7 @@ msgstr "Editar"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:76
 msgid "Your best bet"
-msgstr "Su mejor apuesta"
+msgstr "Su mejor opción"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:77
 msgid "Option 2"
