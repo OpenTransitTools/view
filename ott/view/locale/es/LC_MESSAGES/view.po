@@ -447,11 +447,11 @@ msgstr "Comentarios"
 
 #: ott/view/templates/mobile/base.html:66
 msgid "App Center"
-msgstr "Aplicaciónes móvil"
+msgstr "Centro de Apps"
 
 #: ott/view/templates/mobile/base.html:66
 msgid "Standard site"
-msgstr "Página web estándar"
+msgstr "Sitio estándar"
 
 #: ott/view/templates/mobile/base.html:69
 msgid "Terms of Use"
