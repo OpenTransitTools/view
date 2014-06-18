@@ -31,7 +31,7 @@ msgstr "aparca bicicletas"
 
 #: ott/view/locale/misc-strings.html:9
 msgid "Bike Storage"
-msgstr "Almacenaje de bicicletas en la parada"
+msgstr "Almacenaje de bicicletas"
 
 #: ott/view/locale/misc-strings.html:10
 msgid "Crosswalk"
