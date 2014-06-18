@@ -167,7 +167,7 @@ msgstr "tomar la rotonda hacia la izquierda"
 
 #: ott/view/locale/misc-strings.html:49
 msgid "take roundabout clockwise"
-msgstr "tomar hacia la derecha rotonda"
+msgstr "tomar la rotonda hacia la derecha"
 
 #: ott/view/locale/misc-strings.html:51
 msgid "north"
