@@ -59,7 +59,7 @@ msgstr "Iluminación"
 
 #: ott/view/locale/misc-strings.html:16
 msgid "Paved Back Door Landing"
-msgstr "Pavimento en la puerta delantera del bus"
+msgstr "Salida pavimentada por la puerta trasera"
 
 #: ott/view/locale/misc-strings.html:17
 msgid "Paved Front Door Landing"
