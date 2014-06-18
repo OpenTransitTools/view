@@ -614,7 +614,7 @@ msgstr "a"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:223
 msgid "To here"
-msgstr "Destino"
+msgstr "Hasta aquí"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:225
 #: ott/view/templates/shared/utils/planner_narrative.mako:20
@@ -624,7 +624,7 @@ msgstr "de"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:226
 msgid "From here"
-msgstr "Origen"
+msgstr "Desde aquí"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:345
 msgid "January"
@@ -677,51 +677,51 @@ msgstr "Diciembre"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Jan"
-msgstr "Enero"
+msgstr "ENE"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Feb"
-msgstr "Feb"
+msgstr "FEB"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Mar"
-msgstr "Marzo"
+msgstr "MAR"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Apr"
-msgstr "Abr"
+msgstr "ABR"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Jun"
-msgstr "Jun"
+msgstr "JUN"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Jul"
-msgstr "Jul"
+msgstr "JUL"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Aug"
-msgstr "Agosto"
+msgstr "AGO"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Sep"
-msgstr "Sept"
+msgstr "SEP"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Oct"
-msgstr "Oct"
+msgstr "OCT"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Nov"
-msgstr "Nov"
+msgstr "NOV"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:355
 msgid "Dec"
-msgstr "Dic"
+msgstr "DIC"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:384
 msgid "Service alert at this stop"
-msgstr "Más información sobre esta parada"
+msgstr "Alertas de servicio en esta parada"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:399
 #: ott/view/templates/shared/utils/planner_utils.mako:130
