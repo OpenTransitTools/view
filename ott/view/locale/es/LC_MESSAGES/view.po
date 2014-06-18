@@ -39,7 +39,7 @@ msgstr "Cruce de peatones"
 
 #: ott/view/locale/misc-strings.html:11
 msgid "Curbcut"
-msgstr "Recorte de acera cerca de la parada"
+msgstr "rampa de la calle"
 
 #: ott/view/locale/misc-strings.html:12
 msgid "Electronic Schedule Display"
