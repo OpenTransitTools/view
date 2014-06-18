@@ -1029,7 +1029,7 @@ msgstr "Viaje de regreso"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:116
 msgid "Edit/Start over"
-msgstr "Ajustar"
+msgstr "Editar/Comenzar de nuevo"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:130
 msgid "(more...)"
