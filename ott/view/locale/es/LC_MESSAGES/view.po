@@ -23,7 +23,7 @@ msgstr "Banca"
 
 #: ott/view/locale/misc-strings.html:7
 msgid "Bike Locker"
-msgstr "Almacenaje de bicicletas en la parada"
+msgstr "Locker para bicicletas"
 
 #: ott/view/locale/misc-strings.html:8
 msgid "Bike Rack"
