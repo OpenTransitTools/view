@@ -1170,11 +1170,11 @@ msgstr "Tome el ascensor hasta el nivel "
 #: ott/view/templates/shared/utils/planner_utils.mako:383
 #: ott/view/templates/shared/utils/planner_utils.mako:401
 msgid "Bike"
-msgstr "Móvil"
+msgstr "Bicicleta"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:398
 msgid "Biking directions"
-msgstr "En otros planificadores de bicicletas"
+msgstr "Instrucciones para bicicletas"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:398
 #: ott/view/templates/shared/utils/planner_utils.mako:446
@@ -1184,7 +1184,7 @@ msgstr "Expandir"
 #: ott/view/templates/shared/utils/planner_utils.mako:423
 #: ott/view/templates/shared/utils/planner_utils.mako:451
 msgid "Walk"
-msgstr "Andar"
+msgstr "Camine"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:428
 msgid "Go to"
