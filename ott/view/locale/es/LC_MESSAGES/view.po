@@ -866,9 +866,7 @@ msgstr "Envíe la información para su viaje"
 #: ott/view/templates/shared/utils/planner_form_utils.mako:218
 #: ott/view/templates/shared/utils/planner_form_utils.mako:219
 msgid "Show trip on an interactive map (broadband/desktop only)"
-msgstr ""
-"Muestre el viaje en el mapa interactivo (se recomienda tener conexión de "
-"internet rápida)"
+msgstr "Muestre el viaje en el mapa interactivo (computadoras de escritorio con banda ancha)"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:219
 msgid "Use Interactive Map"
