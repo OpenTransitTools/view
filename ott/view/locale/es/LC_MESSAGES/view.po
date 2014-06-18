@@ -244,7 +244,7 @@ msgstr "Centro de Actividades"
 
 #: ott/view/locale/misc-strings.html:72
 msgid "Shopping"
-msgstr "Centro comercial"
+msgstr "De compras"
 
 #: ott/view/locale/misc-strings.html:73
 msgid "Parks"
