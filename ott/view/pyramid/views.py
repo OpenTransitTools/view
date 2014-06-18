@@ -278,6 +278,7 @@ def stops_near(request):
         params = "num={0}&".format(num) + params
         ret_val['nearest'] = request.model.get_stops_near(params, **request.params)
 
+    #import pdb; pdb.set_trace()
     has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
     has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
     if has_geocode or has_coord:
