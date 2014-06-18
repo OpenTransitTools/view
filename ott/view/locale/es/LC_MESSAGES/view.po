@@ -27,7 +27,7 @@ msgstr "Almacenaje de bicicletas en la parada"
 
 #: ott/view/locale/misc-strings.html:8
 msgid "Bike Rack"
-msgstr "Soporte para bicicletas en la parada"
+msgstr "aparca bicicletas"
 
 #: ott/view/locale/misc-strings.html:9
 msgid "Bike Storage"
