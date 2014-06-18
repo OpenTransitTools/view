@@ -506,7 +506,7 @@ msgstr "Información de ruta"
 
 #: ott/view/templates/shared/app/stop.mako:38
 msgid "All routes"
-msgstr "Aodas las rutas"
+msgstr "Todas las rutas"
 
 #: ott/view/templates/shared/app/stop.mako:46
 msgid "Amenities"
