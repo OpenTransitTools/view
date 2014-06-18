@@ -997,7 +997,7 @@ msgstr "con un recorrido a pie máximo de"
 #: ott/view/templates/shared/utils/planner_utils.mako:64
 #: ott/view/templates/shared/utils/planner_utils.mako:65
 msgid "Edit"
-msgstr "Ajustar"
+msgstr "Editar"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:76
 msgid "Your best bet"
