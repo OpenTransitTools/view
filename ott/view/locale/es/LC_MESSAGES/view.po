@@ -339,7 +339,7 @@ msgstr "Indicaciones para ir a pie"
 #: ott/view/templates/desktop/planner_walk.html:36
 #: ott/view/templates/mobile/planner_walk.html:36
 msgid "Uncertain planner problem"
-msgstr ""
+msgstr "problema indeterminado del panificador"
 
 #: ott/view/templates/desktop/stop_select_form.html:15
 #: ott/view/templates/mobile/stop_select_form.html:15
