@@ -813,10 +813,9 @@ msgid ""
 "and walking a short distance. You can choose 'fewest transfers' if you "
 "prefer not to transfer, but your trip will probably take longer."
 msgstr ""
-"Los viajes más rápidos por lo general implican la transferencia entre los"
-" autobuses y los trenes y caminar una distancia corta. Puede elegir "
-"'transferencias' menor número si prefiere no ceder, pero su viaje "
-"probablemente llevará más tiempo."
+"Por lo general, los viajes más rápidos tienen tranbordos entre trenes y autobuses"
+" y una corta caminata. Puede elegir 'menor número de transbordos'si "
+"prefiere no transborda solo que su viaje llevará más tiempo."
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:181
 msgid "Maximum walk"
