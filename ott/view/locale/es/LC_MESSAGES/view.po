@@ -272,7 +272,7 @@ msgstr "Enlace a TriMet"
 
 #: ott/view/locale/misc-strings.html:83
 msgid "Check out this page on trimet.org"
-msgstr "Echa un vistazo a esta web"
+msgstr "Consulte esta página en trimet.org"
 
 #: ott/view/model/place.py:60
 #: ott/view/templates/desktop/planner_geocode.html:15
