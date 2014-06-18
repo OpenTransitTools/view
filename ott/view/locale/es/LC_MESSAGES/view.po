@@ -268,7 +268,7 @@ msgstr "Página relacionada con la parada"
 
 #: ott/view/locale/misc-strings.html:82
 msgid "Link to TriMet"
-msgstr "a TriMet"
+msgstr "Enlace a TriMet"
 
 #: ott/view/locale/misc-strings.html:83
 msgid "Check out this page on trimet.org"
