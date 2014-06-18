@@ -20,10 +20,7 @@
 </%def>
 
 <%def name="autocomplete_trip_planner(fm_id='#from', to_id='#going')">
-<%
-    from ott.view.utils import config
-    solr_url = config.get('solr_url')
-%>
+    <%  solr_url = util.get_ini_param('ott.solr_url', '/solr/select') %>
     <script>
     // main entry 
     $(function(){

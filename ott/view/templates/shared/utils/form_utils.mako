@@ -121,7 +121,7 @@
 ## autocomplete: instance creation for the jQuery autocomplete...
 ##
 <%def name="autocomplete_search_input(id='#place')">
-    <% solr_url = util.get_ini_param('ott.solr_url') %>
+    <% solr_url = util.get_ini_param('ott.solr_url', '/solr/select') %>
     <script>
     // main entry 
     $(function(){
