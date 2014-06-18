@@ -1229,19 +1229,19 @@ msgstr "Seleccionar una parada"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:14
 msgid "Transit Centers"
-msgstr ""
+msgstr "Centros de Tránsito"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:15
 msgid "MAX Light Rail stations"
-msgstr "MAX Light Rail estaciones"
+msgstr "Estaciones de trenes MAX"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:16
 msgid "WES Commuter Rail stations"
-msgstr "WES Commuter Rail estaciones"
+msgstr "Estaciones de trenes WES"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:17
 msgid "Park & Ride lots"
-msgstr ""
+msgstr "Estacionamientos Park & Ride"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:18
 msgid "Portland Transit Mall"
@@ -1257,13 +1257,13 @@ msgstr "Formulario de asistencia técnica de Trip Planner"
 #: ott/view/templates/shared/utils/sidebar_utils.mako:48
 #: ott/view/templates/shared/utils/sidebar_utils.mako:59
 msgid "Help/tips"
-msgstr "Ayuda / consejos"
+msgstr "Ayuda/consejos"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:49
 #: ott/view/templates/shared/utils/stop_utils.mako:84
 #: ott/view/templates/shared/utils/stop_utils.mako:96
 msgid "View on Interactive Map"
-msgstr "Muestre el mapa interactivo"
+msgstr "Vea en el mapa interactivo"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:49
 #: ott/view/templates/shared/utils/stop_utils.mako:96
@@ -1276,7 +1276,7 @@ msgstr "Mostrar este viaje en el mapa interactivo"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:60
 msgid "Having trouble with trip planner pages, like the geocoder..."
-msgstr ""
+msgstr "Está teniendo problemas con paginas del planificador de viajes, como el geododer..."
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:71
 msgid "Stop landing page"
