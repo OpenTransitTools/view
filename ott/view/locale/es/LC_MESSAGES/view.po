@@ -857,11 +857,11 @@ msgstr "Menos opciones"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:216
 msgid "Get directions"
-msgstr "Obtener indicaciones"
+msgstr "Obtenga direcciones"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:216
 msgid "Submit your trip plan information"
-msgstr "Agregue la información para su viaje"
+msgstr "Envíe la información para su viaje"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:218
 #: ott/view/templates/shared/utils/planner_form_utils.mako:219
