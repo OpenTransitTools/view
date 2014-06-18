@@ -1102,9 +1102,9 @@ msgid ""
 "your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your "
 "Stop ID to 27299."
 msgstr ""
-" sobre llegadas en tiempo real de y actualizaciones sobre cualquier "
-"alerta del servicio. llame al 503-238-RIDE (7433) o visite trimet.org "
-"para obtener información"
+" para información en tiempo real y alertas de servicio que le pueden afectar"
+" su viaje: llame al 503-238-RIDE (7433), visite trimet.org, o textee "
+"su número de parada al 27299"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:277
 msgid "Arrive at"
