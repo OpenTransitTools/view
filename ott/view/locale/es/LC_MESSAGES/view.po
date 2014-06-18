@@ -248,11 +248,11 @@ msgstr "Centro comercial"
 
 #: ott/view/locale/misc-strings.html:73
 msgid "Parks"
-msgstr "Terreno"
+msgstr "Parques"
 
 #: ott/view/locale/misc-strings.html:74
 msgid "TriMet Facility"
-msgstr "TriMet fondo"
+msgstr "Intalación de TriMet"
 
 #: ott/view/locale/misc-strings.html:77 ott/view/utils/schedule_tabs.py:17
 msgid "Today"
