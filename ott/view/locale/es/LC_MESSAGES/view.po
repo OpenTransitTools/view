@@ -828,7 +828,7 @@ msgid ""
 "not be possible."
 msgstr ""
 "Aquí, puede especificar la distancia que está dispuesto a caminar desde/hacia "
-"desde la parada de autobús o estación de tren. Nota: Si escoge menos e una milla "
+"la parada de autobús o estación de tren. Nota: Si escoge menos de una milla "
 "algunos viajes no pueden ser posibles."
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:194
