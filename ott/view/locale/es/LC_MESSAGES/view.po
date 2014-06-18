@@ -79,7 +79,7 @@ msgstr "Indicador de horarios"
 
 #: ott/view/locale/misc-strings.html:21
 msgid "Real Time Arrival Display"
-msgstr "TransitTracker Sign"
+msgstr "Pantalla informativa llegadas en tiempo real"
 
 #: ott/view/locale/misc-strings.html:22
 msgid "Schedule Display"
