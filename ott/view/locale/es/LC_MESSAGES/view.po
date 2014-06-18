@@ -123,7 +123,7 @@ msgstr "ascensor"
 
 #: ott/view/locale/misc-strings.html:35
 msgid "Origin is within a trivial distance of the destination."
-msgstr "Origen está a una distancia trivial del destino."
+msgstr "La distancia del origen al destino es insignificante."
 
 #: ott/view/locale/misc-strings.html:39
 msgid "left"
