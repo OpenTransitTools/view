@@ -963,7 +963,7 @@ msgstr "Sólo a pie"
 #: ott/view/templates/shared/utils/planner_form_utils.mako:386
 msgid "Please make sure your GPS setting is turned on for this browser"
 msgstr ""
-"Por favor, asegúrese de que su configuración de GPS está activado para "
+"Por favor, asegúrese de que su configuración de GPS esté activada para "
 "este navegador"
 
 #: ott/view/templates/shared/utils/planner_narrative.mako:32
