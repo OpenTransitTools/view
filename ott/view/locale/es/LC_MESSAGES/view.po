@@ -67,7 +67,7 @@ msgstr "Salida pavimentada por la puerta delantera"
 
 #: ott/view/locale/misc-strings.html:18
 msgid "Paved Landing"
-msgstr "Pavimento en la puerta"
+msgstr "Salida pavimentada"
 
 #: ott/view/locale/misc-strings.html:19
 msgid "Phone"
