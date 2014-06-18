@@ -489,7 +489,7 @@ msgstr "Próximas llegadas"
 
 #: ott/view/templates/shared/app/stop.mako:32
 msgid "Show schedules for this stop"
-msgstr "Mostrar mapa y horarios para esta ruta"
+msgstr "Mostrar horarios para esta ruta"
 
 #: ott/view/templates/shared/app/stop.mako:32
 #: ott/view/templates/shared/app/stop.mako:41
