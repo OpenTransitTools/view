@@ -380,7 +380,7 @@ msgstr "Paradas cercanas a"
 #: ott/view/templates/desktop/stops_near.html:21
 #: ott/view/templates/mobile/stops_near.html:21
 msgid "Nearest Stops"
-msgstr "Servicio más cercano"
+msgstr "Paradas más cercanas"
 
 #: ott/view/templates/desktop/stops_near.html:29
 #: ott/view/templates/mobile/stops_near.html:29
