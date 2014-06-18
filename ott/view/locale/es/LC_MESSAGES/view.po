@@ -463,7 +463,7 @@ msgstr "Política de Privacidad"
 
 #: ott/view/templates/mobile/map_place.html:7
 msgid "Map location "
-msgstr "Muestre el mapa interactivo"
+msgstr "Mapa del lugar"
 
 #: ott/view/templates/mobile/map_place.html:16
 msgid "Maps & Schedules"
