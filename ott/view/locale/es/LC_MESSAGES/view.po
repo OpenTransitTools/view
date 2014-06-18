@@ -51,7 +51,7 @@ msgstr "Máquina Expendedora de Alimentos"
 
 #: ott/view/locale/misc-strings.html:14
 msgid "Information Display"
-msgstr "TransitTracker Sign"
+msgstr "Pantalla de información"
 
 #: ott/view/locale/misc-strings.html:15
 msgid "Lighting"
@@ -71,7 +71,7 @@ msgstr "Pavimento en la puerta"
 
 #: ott/view/locale/misc-strings.html:19
 msgid "Phone"
-msgstr "Teléfono cerca de la parada"
+msgstr "Teléfono"
 
 #: ott/view/locale/misc-strings.html:20
 msgid "Printed Schedule Display"
