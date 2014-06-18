@@ -1033,7 +1033,7 @@ msgstr "Editar/Comenzar de nuevo"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:130
 msgid "(more...)"
-msgstr "(más información...)"
+msgstr "(más...)"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:139
 msgid "Fare for this trip"
@@ -1124,11 +1124,11 @@ msgstr "que sigue como"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:304
 msgid "stay on board"
-msgstr "permanecer a bordo"
+msgstr "permanecer abordo"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:311
 msgid "Elevation gain"
-msgstr "Grado mayor pendiente"
+msgstr "Aumento en elevación"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:311
 #: ott/view/templates/shared/utils/planner_utils.mako:312
@@ -1137,11 +1137,11 @@ msgstr "${number} pies"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:312
 msgid "Elevation loss"
-msgstr "Elevación total cuesta abajo"
+msgstr "Perdida en elevación"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:314
 msgid "Steepest grade"
-msgstr "Grado mayor pendiente"
+msgstr "Terreno co más desnivel"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:317
 msgid "Elevation chart"
@@ -1149,7 +1149,7 @@ msgstr "Gráfico de Elevación"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:326
 msgid "Start"
-msgstr "Donde sale"
+msgstr "Inicie"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:326
 msgid "Map of starting point (300x288)"
@@ -1188,7 +1188,7 @@ msgstr "Camine"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:428
 msgid "Go to"
-msgstr "Empezar"
+msgstr "Vaya a"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:446
 msgid "Walking directions"
@@ -1201,15 +1201,15 @@ msgstr "Mostrar horarios para"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:503
 msgid "Board"
-msgstr "Súbase al"
+msgstr "Aborde"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:505
 msgid ""
 "There is an alert that applies to this transit leg.  See the \"alerts\" "
 "section below for details"
 msgstr ""
-"No es una alerta que se aplica a esta etapa de tránsito. Vea la sección "
-"\\ \"alertas \" para obtener detalles"
+"No es una alerta para este tramo del viaje. Vea la sección abajo titulada "
+"\"alerts\" "para obtener detalles"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:512
 msgid "Get off at"
