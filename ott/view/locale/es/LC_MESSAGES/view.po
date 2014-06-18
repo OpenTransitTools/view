@@ -87,7 +87,7 @@ msgstr "Indicador de horarios"
 
 #: ott/view/locale/misc-strings.html:23
 msgid "Shelter"
-msgstr "Parada sin techo"
+msgstr "Parada cubierta"
 
 #: ott/view/locale/misc-strings.html:24
 msgid "Shelter Light"
