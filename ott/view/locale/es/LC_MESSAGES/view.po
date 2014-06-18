@@ -814,8 +814,8 @@ msgid ""
 "prefer not to transfer, but your trip will probably take longer."
 msgstr ""
 "Por lo general, los viajes más rápidos tienen tranbordos entre trenes y autobuses"
-" y una corta caminata. Puede elegir 'menor número de transbordos'si "
-"prefiere no transborda solo que su viaje llevará más tiempo."
+" y una corta caminata. Puede elegir 'menor número de transbordos' si "
+"prefiere no transbordar sólo que su viaje llevará más tiempo."
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:181
 msgid "Maximum walk"
@@ -827,9 +827,9 @@ msgid ""
 " stop or rail station. Note: If set to less than 1 mile, some trips may "
 "not be possible."
 msgstr ""
-"Aquí, puede especificar hasta qué punto está dispuesto a caminar hacia y "
-"desde la parada de autobús o estación de tren. Nota: Si se establece en "
-"menos de 1 milla, algunos viajes no puede ser posible."
+"Aquí, puede especificar la distancia que está dispuesto a caminar desde/hacia "
+"desde la parada de autobús o estación de tren. Nota: Si escoge menos e una milla "
+"algunos viajes no pueden ser posibles."
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:194
 msgid "Travel by"
