@@ -151,15 +151,15 @@ msgstr "completamente a la derecha"
 
 #: ott/view/locale/misc-strings.html:45
 msgid "continue"
-msgstr "sigue recto por"
+msgstr "siga"
 
 #: ott/view/locale/misc-strings.html:46
 msgid "continue to"
-msgstr "para continuar en"
+msgstr "continúe a"
 
 #: ott/view/locale/misc-strings.html:47
 msgid "becomes"
-msgstr "se hace"
+msgstr "se convierte"
 
 #: ott/view/locale/misc-strings.html:48
 msgid "take roundabout counterclockwise"
@@ -187,7 +187,7 @@ msgstr "oeste"
 
 #: ott/view/locale/misc-strings.html:55
 msgid "northeast"
-msgstr "nordeste"
+msgstr "noreste"
 
 #: ott/view/locale/misc-strings.html:56
 msgid "northwest"
@@ -199,7 +199,7 @@ msgstr "sureste"
 
 #: ott/view/locale/misc-strings.html:58
 msgid "southwest"
-msgstr "sudoeste"
+msgstr "suroeste"
 
 #: ott/view/locale/misc-strings.html:60
 msgid "foot"
