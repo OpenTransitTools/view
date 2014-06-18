@@ -563,7 +563,7 @@ msgstr "(punto donde se cruzan dos calles)"
 
 #: ott/view/templates/shared/utils/help_utils.mako:81
 msgid "Landmarks"
-msgstr "Sitios de referencia"
+msgstr "Puntos de referencia"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:22
 msgid "The"
@@ -571,7 +571,7 @@ msgstr "La"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:22
 msgid "is not working..."
-msgstr "no está disponible por el momento"
+msgstr "no está funcionando..."
 
 #: ott/view/templates/shared/utils/misc_utils.mako:24
 msgid "Contact us"
