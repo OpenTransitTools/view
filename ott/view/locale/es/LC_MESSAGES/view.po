@@ -155,7 +155,7 @@ msgstr "siga"
 
 #: ott/view/locale/misc-strings.html:46
 msgid "continue to"
-msgstr "continúe a"
+msgstr "continúe al"
 
 #: ott/view/locale/misc-strings.html:47
 msgid "becomes"
@@ -520,7 +520,7 @@ msgstr "Seleccionar lugar"
 
 #: ott/view/templates/shared/utils/form_utils.mako:64
 msgid "Address, intersection, landmark or Stop ID"
-msgstr "Dirección, intersección, lugar o Stop ID (número de la parada)"
+msgstr "Dirección, intersección, punto de referencia o Stop ID (número de la parada)"
 
 #: ott/view/templates/shared/utils/form_utils.mako:152
 #: ott/view/templates/shared/utils/route_select_utils.mako:19
