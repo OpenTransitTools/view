@@ -294,7 +294,7 @@ msgstr "Excepción"
 #: ott/view/templates/desktop/exception.html:16
 #: ott/view/templates/mobile/exception.html:16
 msgid "Oops!"
-msgstr "Vaya"
+msgstr "¡uy!"
 
 #: ott/view/templates/desktop/feedback.html:15
 #: ott/view/templates/mobile/feedback.html:15
