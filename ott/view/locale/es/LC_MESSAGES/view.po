@@ -236,7 +236,7 @@ msgstr "Escuela"
 
 #: ott/view/locale/misc-strings.html:70
 msgid "Zipcode"
-msgstr "Sabias que"
+msgstr "Código postal"
 
 #: ott/view/locale/misc-strings.html:71
 msgid "Activity Center"
