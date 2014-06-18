@@ -43,8 +43,8 @@ msgstr "rampa de la calle"
 
 #: ott/view/locale/misc-strings.html:12
 msgid "Electronic Schedule Display"
-msgstr "TransitTracker Sign"
 
+msgstr "Pantalla electrónica de horarios"
 #: ott/view/locale/misc-strings.html:13
 msgid "Food Vending Machine"
 msgstr "Máquina Expendedora de Alimentos"
