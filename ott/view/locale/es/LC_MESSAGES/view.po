@@ -551,7 +551,7 @@ msgstr "lugar"
 
 #: ott/view/templates/shared/utils/help_utils.mako:78
 msgid "There are several ways to enter a location"
-msgstr "Existen varias maneras de ingresar una localización"
+msgstr "Existen varias maneras de escribir un lugar"
 
 #: ott/view/templates/shared/utils/help_utils.mako:80
 msgid "Intersection"
