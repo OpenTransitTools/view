@@ -746,10 +746,8 @@ msgid ""
 "You can type in an address, intersection, landmark or Stop ID here. For "
 "the best results, don't include a city, state or ZIP code."
 msgstr ""
-"El programa de Internet Trip Planner le muestra paso a paso cómo llegar a"
-" destino mediante autobuses, trenes MAX Light Rail y tranvías Portland "
-"Streetcar.  Sólo nos tiene que decir donde inicia el viaje y adónde se "
-"dirige, y nosotros hacemos el resto."
+"Usted puede escribir una dirección, punto de referencia, o número de la parada.  Para"
+"un mejor resultado, no incluya la ciudad, el estado o código postal."
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:102
 msgid "Plan your trip"
