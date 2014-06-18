@@ -805,7 +805,7 @@ msgstr "Preferencias de viaje (opcional)"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:168
 msgid "Show me the"
-msgstr "Muestra el viaje"
+msgstr "Muéstreme el"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:175
 msgid ""
