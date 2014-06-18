@@ -1252,7 +1252,7 @@ msgstr ""
 #: ott/view/templates/shared/utils/sidebar_utils.mako:60
 #: ott/view/templates/shared/utils/sidebar_utils.mako:71
 msgid "Having problems? Click here for technical support."
-msgstr "Formulario de asistencia técnica de Trip Planner"
+msgstr "¿Tiene algún problema? Haga clic aquí para asistencia técnica"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:48
 #: ott/view/templates/shared/utils/sidebar_utils.mako:59
@@ -1288,11 +1288,11 @@ msgstr "Mostrando sólo"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:65
 msgid "Show all lines"
-msgstr "Mostrar todas las líneas de autobuses"
+msgstr "Mostrar todas las líneas"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:75
 msgid "Sort"
-msgstr "por"
+msgstr "clasificar"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:76
 msgid "By destination"
@@ -1301,7 +1301,7 @@ msgstr "Por ruta"
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:76
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:78
 msgid "sort"
-msgstr "por"
+msgstr "clasificar"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:78
 msgid "By time"
@@ -1321,7 +1321,7 @@ msgstr "Encontrar paradas"
 
 #: ott/view/templates/shared/utils/stop_utils.mako:82
 msgid "Stop location on a map"
-msgstr "Muestre el mapa interactivo"
+msgstr "Muestre el lugar en el mapa"
 
 #~ msgid "Nearest Service"
 #~ msgstr "Servicio más cercano"
@@ -1330,7 +1330,7 @@ msgstr "Muestre el mapa interactivo"
 #~ msgstr "Servicio más cercano"
 
 #~ msgid "Find the nearest service to your location"
-#~ msgstr "Encuentre servicio más cercano a"
+#~ msgstr "Encuentre el servicio más cercano a su lugar"
 
 #~ msgid "Within"
 #~ msgstr "Dentro de"
@@ -1345,16 +1345,16 @@ msgstr "Muestre el mapa interactivo"
 #~ msgstr "Día"
 
 #~ msgid "Length of time"
-#~ msgstr "Cantidad de tiempo"
+#~ msgstr "Período de tiempo"
 
 #~ msgid "Find service"
-#~ msgstr "Buscar servicio"
+#~ msgstr "Busque servicio"
 
 #~ msgid "Feedback/report a problem"
-#~ msgstr "Formulario de comentarios"
+#~ msgstr "Comentarios/reporte un problema"
 
 #~ msgid "Plan your trip on TriMet"
-#~ msgstr "Planifique su viaje en TriMet"
+#~ msgstr "Planee su viaje en TriMet"
 
 #~ msgid "See footnote"
 #~ msgstr "Vea pie de nota"
