@@ -1362,10 +1362,10 @@ msgstr "Muestre el mapa interactivo"
 #~ msgstr "Planifique su viaje en TriMet"
 
 #~ msgid "See footnote"
-#~ msgstr "Véase la nota"
+#~ msgstr "Vea pie de nota"
 
 #~ msgid "Service Alerts"
-#~ msgstr "Desvíos"
+#~ msgstr "Alertas de servicio"
 
 #~ msgid "Email TriMet and let us know..."
 #~ msgstr "Email TriMet y háganos saber..."
@@ -1380,7 +1380,7 @@ msgstr "Muestre el mapa interactivo"
 #~ msgstr "todas las rutas"
 
 #~ msgid "Total elevation uphill"
-#~ msgstr "Altura total cuesta arriba"
+#~ msgstr "Elevación total cuesta arriba"
 
 #~ msgid "Total elevation downhill"
 #~ msgstr "Elevación total cuesta abajo"
