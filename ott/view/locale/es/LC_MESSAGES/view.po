@@ -870,7 +870,7 @@ msgstr "Muestre el viaje en el mapa interactivo (computadoras de escritorio con 
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:219
 msgid "Use Interactive Map"
-msgstr "Utilice el mapa interactivo"
+msgstr "Use el mapa interactivo"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:231
 #: ott/view/templates/shared/utils/planner_utils.mako:270
