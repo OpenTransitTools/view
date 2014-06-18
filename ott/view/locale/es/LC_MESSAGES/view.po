@@ -974,7 +974,7 @@ msgstr "Girar"
 #: ott/view/templates/shared/utils/planner_narrative.mako:36
 #: ott/view/templates/shared/utils/planner_utils.mako:362
 msgid "compass_direction"
-msgstr ""
+msgstr "dirección del compás"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:25
 msgid "msg"
