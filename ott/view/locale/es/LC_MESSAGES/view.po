@@ -305,7 +305,7 @@ msgstr "Relacionado"
 #: ott/view/templates/desktop/feedback.html:17
 #: ott/view/templates/mobile/feedback.html:17
 msgid "TriMet: Trip Planner Help"
-msgstr "TriMet: Planificador de Viajes Ayuda"
+msgstr "TriMet: Ayuda del Planificador de Viajes"
 
 #: ott/view/templates/desktop/feedback.html:17
 #: ott/view/templates/mobile/feedback.html:17
