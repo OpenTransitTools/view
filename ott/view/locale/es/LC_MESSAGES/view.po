@@ -471,7 +471,7 @@ msgstr "Mapas y Horarios"
 
 #: ott/view/templates/mobile/map_place.html:16
 msgid "Home"
-msgstr "Teléfono cerca de la parada"
+msgstr "Inicio"
 
 #: ott/view/templates/mobile/map_place.html:17
 msgid "Map location"
