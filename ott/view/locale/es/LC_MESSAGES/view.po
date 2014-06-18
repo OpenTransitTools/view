@@ -1021,7 +1021,7 @@ msgstr "Imprima"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:112
 msgid "View on mobile"
-msgstr "Ver en el móvil"
+msgstr "Vea en el móvil"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:115
 msgid "Return trip"
@@ -1041,15 +1041,15 @@ msgstr "Tarifas para este viaje"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:139
 msgid "Adult"
-msgstr "Pasaje regular"
+msgstr "Adulto"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:139
 msgid "Youth"
-msgstr "Pasaje para jóvenes"
+msgstr Jóvenes"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:139
 msgid "Honored Citizen"
-msgstr "Pasaje para personas mayores o personas con discapacidad"
+msgstr "Ciudadano Honorable"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:146
 msgid "measure"
@@ -1082,7 +1082,7 @@ msgstr "Viaje más seguro"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:248
 msgid "Interactive Map Trip Planner"
-msgstr "El mapa interactivo"
+msgstr Planificador de viaje mapa interactivo"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:248
 msgid "Get transit + biking directions in one itinerary"
