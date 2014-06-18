@@ -982,7 +982,7 @@ msgstr ""
 
 #: ott/view/templates/shared/utils/planner_utils.mako:35
 msgid "Uncertain planner problem."
-msgstr ""
+msgstr "Problema indefinido del planificador"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:52
 #: ott/view/templates/shared/utils/planner_utils.mako:64
