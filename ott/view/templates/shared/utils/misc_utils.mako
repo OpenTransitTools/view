@@ -1,15 +1,17 @@
 ## -*- coding: utf-8 -*-
-<%def name="url_domain()"><%
-    from ott.view.utils import config
-    return config.get('css_url')
-%>
-</%def>
-<%def name="is_test()"><%
-    from ott.view.utils import config
-    return config.get('is_test')
-%>
-</%def>
 
+<%def name="get_ini_param(name, def_val=None)"><%
+    ret_val = def_val
+    try:
+        ret_val = request.registry.settings[name]
+    except Exception, e:
+        #print e
+        pass
+    return ret_val
+%></%def>
+
+<%def name="url_domain()"><% return get_ini_param('ott.css_url', '/') %></%def>
+<%def name="is_test()"><% return get_ini_param('ott.is_test') %></%def>
 
 <%def name="error_msg(extra_params, feedback_url)">
 <%
@@ -162,19 +164,10 @@
 %><a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
 </%def>
 
-<%def name="get_ini_param(request, name, def_val=None)"><%
-    ret_val = def_val
-    try:
-        ret_val = request.registry.settings[name]
-    except:
-        pass
-    return ret_val
-%></%def>
-
-<%def name="get_url(request, url=None)"><%
+<%def name="get_url(url=None)"><%
     ret_val = url
     if url is None:
-        host = get_ini_param(request, 'ott.host_url', request.host_url)
+        host = get_ini_param('ott.host_url', request.host_url)
         ret_val = "{0}{1}".format(host, request.path_qs)
     ret_val = prep_url_params(ret_val, url_escape=True, spell_and=True)
     return ret_val
@@ -189,9 +182,9 @@
 <%def name="trimet_feedback_url(subject, message=None, url=None)"><% 
     # default to url in request object 
     if url is None:
-        url = get_url(request, url)
+        url = get_url(url)
     if message is None:
-        message = get_url(request, url)
+        message = get_url(url)
 
     # localized mailform app
     mailform_page="tripfeedback"
@@ -204,7 +197,7 @@
 
 <%def name="mailto_url(subject='Link to TriMet', message='Check out this page on trimet.org', url=None)"><%
     if url is None:
-        url = get_url(request, url)
+        url = get_url(url)
     subject = prep_url_params(subject, url_escape=True, spell_and=True)
     message = prep_url_params(message, url_escape=True, spell_and=True)
 %>mailto:?subject=${subject}&body=${message}%20:%20${url}</%def>

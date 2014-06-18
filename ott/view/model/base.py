@@ -5,12 +5,14 @@ import re
 import logging
 log = logging.getLogger(__file__)
 
-from ott.view.utils import config
 from ott.utils import object_utils
 
 class Base(object):
-    def __init__(self):
+    def __init__(self, services_domain=None):
         self.service_cache = {}
+        self.services_domain = 'http://localhost:44444' 
+        if services_domain:
+            self.services_domain = services_domain 
 
     def get_plan(self, get_params, **kwargs): pass
 
@@ -30,8 +32,7 @@ class Base(object):
         if svc in self.service_cache:
             ret_val = self.service_cache[svc]
         else:
-            domain = config.get('controller', 'http://127.0.0.1:44444')
-            url = "{0}/{1}".format(domain, svc)
+            url = "{0}/{1}".format(self.services_domain, svc)
             url = re.sub(r"/+", "/", url)     # get rid of extra /, ala http://x/y//z///b
             url = url.replace(":/", "://")    # fix http:// part from line above...
             url = urllib.quote_plus(url, safe="%/:=&?~#+!$,;'@()*[]")

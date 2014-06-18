@@ -121,10 +121,7 @@
 ## autocomplete: instance creation for the jQuery autocomplete...
 ##
 <%def name="autocomplete_search_input(id='#place')">
-<%
-    from ott.view.utils import config
-    solr_url = config.get('solr_url')
-%>
+    <% solr_url = util.get_ini_param('ott.solr_url') %>
     <script>
     // main entry 
     $(function(){
