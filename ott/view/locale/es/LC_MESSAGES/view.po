@@ -475,7 +475,7 @@ msgstr "Teléfono cerca de la parada"
 
 #: ott/view/templates/mobile/map_place.html:17
 msgid "Map location"
-msgstr "Muestre el mapa interactivo"
+msgstr "Mapa del lugar"
 
 #: ott/view/templates/mobile/planner.html:25
 msgid "Your Trip on TriMet"
