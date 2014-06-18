@@ -567,7 +567,7 @@ msgstr "Puntos de referencia"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:22
 msgid "The"
-msgstr "La"
+msgstr "El"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:22
 msgid "is not working..."
