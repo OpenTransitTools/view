@@ -10,10 +10,13 @@ class Place(object):
 
     def to_url_params(self, param_name='place'):
         ret_val = self.__dict__
+        #import pdb; pdb.set_trace() 
         #HOW TO USE NEW : ret_val = "name={name}&lon={lon}&lat={lat}&city={city}".format(self.__dict__)
         ret_val = "name=%(name)s&lon=%(lon)s&lat=%(lat)s&city=%(city)s" % self.__dict__
         if self.place:
-            ret_val = "{0}&{1}={2}".format(ret_val, param_name, self.place)
+            # kind of hacky string concat ... but gets around unicode exception thown by format() for 'numero'
+            s = "&{0}=".format(param_name)
+            ret_val = ret_val + s + self.place
         return ret_val
 
     def set_values(self, name=None, lat=None, lon=None, city=None):
@@ -39,7 +42,6 @@ class Place(object):
         '''
         try:
             if place:
-                #import pdb; pdb.set_trace() 
                 p = geo_utils.from_place_str(place)
                 object_utils.dict_update(p, self.__dict__)
         except Exception, e:
