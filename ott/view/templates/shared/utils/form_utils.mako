@@ -72,9 +72,9 @@
         <input type="hidden" name="geo_type"   value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}" />
         %if clear_form:
-        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); this.setSelectionRange(0, this.value.length); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
+        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
         %else:
-        <input type="text"   id="${id}"       name="${id}"      value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onFocus="this.setSelectionRange(0, this.value.length); doClassHighlight(this);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
+        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClassHighlight(this); this.setSelectionRange(0, this.value.length); return false;"/>
         %endif
         <div class="form-help">
             ${help.form_help_right()}
