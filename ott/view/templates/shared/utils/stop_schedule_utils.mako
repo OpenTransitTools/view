@@ -7,12 +7,12 @@
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 
 <%def name="sort_val()"><%
-    sort_val = 'time' if 'sort' in request.params and request.params['sort'] == 'time' else 'destination'
+    sort_val = 'destination' if 'sort' in request.params and request.params['sort'] ==  'destination' else 'time'
     return sort_val
 %></%def>
 
 <%def name="sort_by_time()"><%
-    sort_by_time = True   if 'sort' in request.params and request.params['sort'] == 'time' else False
+    sort_by_time = False if 'sort' in request.params and request.params['sort'] == 'destination' else True
     return sort_by_time
 %></%def>
 
