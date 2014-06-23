@@ -374,7 +374,7 @@ def new_request_subscriber(event):
     '''
     log.debug("new request called -- request is 'started'")
     request = event.request
-    request.model = get_model()
+    request.model = get_model(request)
     settings = request.registry.settings
     request.add_finished_callback(cleanup)
 
@@ -442,7 +442,7 @@ def make_subrequest(request, path, query_string=None, extra_params=None):
 
 
 MODEL_GLOBAL = None
-def get_model():
+def get_model(request):
     ''' @see make_views() below, which should have a model passed in to configure the model global 
     '''
     global MODEL_GLOBAL
@@ -451,6 +451,7 @@ def get_model():
         # TODO ... better way to attach this to view?
         # TODO ... multi-threading/
         # do something to create a model...
-        MODEL_GLOBAL = Model()
+        url = html_utils.get_ini_param(request, 'ott.controller')
+        MODEL_GLOBAL = Model(url)
     return MODEL_GLOBAL
 
