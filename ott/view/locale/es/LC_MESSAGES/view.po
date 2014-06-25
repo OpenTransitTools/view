@@ -1089,7 +1089,7 @@ msgstr "Viaje más seguro"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:248
 msgid "Interactive Map Trip Planner"
-msgstr "lanificador de viaje mapa interactivo"
+msgstr "Planificador de viaje mapa interactivo"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:248
 msgid "Get transit + biking directions in one itinerary"
