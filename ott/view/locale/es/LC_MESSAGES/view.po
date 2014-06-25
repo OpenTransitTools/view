@@ -749,7 +749,7 @@ msgid ""
 "the best results, don't include a city, state or ZIP code."
 msgstr ""
 "Usted puede escribir una dirección, punto de referencia, o número de la "
-"parada.  Paraun mejor resultado, no incluya la ciudad, el estado o código"
+"parada.  Para un mejor resultado, no incluya la ciudad, el estado o código"
 " postal."
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:99
