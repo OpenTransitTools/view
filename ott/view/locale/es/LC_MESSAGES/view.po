@@ -1178,7 +1178,7 @@ msgstr "Tome el ascensor hasta el nivel "
 #: ott/view/templates/shared/utils/planner_utils.mako:383
 #: ott/view/templates/shared/utils/planner_utils.mako:401
 msgid "Bike"
-msgstr "Bicicleta"
+msgstr "Bicicletee"
 
 #: ott/view/templates/shared/utils/planner_utils.mako:398
 msgid "Biking directions"
