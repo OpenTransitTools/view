@@ -20,14 +20,15 @@
     ${page.stop_css()}
     ${form.autocomplete_css_includes()}
 </%def>
+<%def name="js_onload()">javascript:checkgps();</%def>
 ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
+${form.gps_form_scriptlet()}
 
 <div id="findstop">
     <form action="stops_near.html" class="triptools-form" method="GET" name="ambig" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Find stops and stations'), place)}
-        <p id="loc-gps" class="instructions"><a href="#" onclick="getFromGPS();">${_(u'Use my current GPS location')}</a></p>
+        ${form.search_input(_(u'Find stops and stations'), place, is_mobile=True)}
         ${form.search_submit(_(u'Find stops'))}
     </form>
     <div class="or">

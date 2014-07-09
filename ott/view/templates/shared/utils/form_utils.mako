@@ -27,7 +27,7 @@
 # search list form
 # Scrolling List of Possible Locations
 #
-<%def name="search_list(name=None, list=None, show_or=True, show_submit=True, id='place', size=1)">
+<%def name="search_list(name=None, list=None, show_or=True, show_submit=True, id='place-list', size=1)">
     <%
         if name is None:
             name = _(u'Select a location')
@@ -35,9 +35,9 @@
     %if list and len(list) > 0:
         <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
         <fieldset>
-            <label for="$address-select">${name}:</label>
+            <label for="${id}">${name}:</label>
             <input type="hidden" name="geo_type" value="${id}"/>
-            <select size="${size}" id="$address-select" name="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular">
+            <select size="${size}" id="${id}" name="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular">
                 %for l in list:
                 <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_stopid(l['name'], l['city'], l['type'], l['stop_id'])}</option>
                 %endfor
@@ -58,7 +58,7 @@
 ##
 ## search input form
 ##
-<%def name="search_input(name, place=None, clear=None, id='place', coord='', size='67', maxlength='100', clear_form=True)">
+<%def name="search_input(name, place=None, clear=None, id='place', coord='', size='67', maxlength='100', clear_form=True, is_mobile=True)">
 <%
    if clear is None:
        clear = _(u'Address, intersection, landmark or Stop ID')
@@ -68,13 +68,17 @@
     ${clear_element_scriptlet()}
     <!-- Text box for re-geocoding a string -->
     <fieldset>
-        <label for="address-input">${name}:</label>
+        <label for="${id}">${name}:</label>
         <input type="hidden" name="geo_type"   value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}" />
         %if clear_form:
-        <input type="text" id="address-input" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
+        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
         %else:
-        <input type="text" id="address-input" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClassHighlight(this); this.setSelectionRange(0, this.value.length); return false;"/>
+        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClassHighlight(this); this.setSelectionRange(0, this.value.length); return false;"/>
+        %endif
+        %if is_mobile:
+        <p id="${id}-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
+        <p id="${id}-gps" style="display:none;" class="instructions"><a href="#" onclick="getGPS();">${_(u'Use my current GPS location')}</a></p>
         %endif
         <div class="form-help">
             ${help.form_help_right()}
@@ -200,4 +204,36 @@
         <input type="hidden" name="${k}" value="${v}"/>
     %endif
     %endfor
+</%def>
+
+
+##
+## GPS stuff
+<%def name="gps_form_scriptlet(id='place')">
+<script>
+    // for standard input form
+    function checkgps()
+    {
+        if(navigator.geolocation)
+        {
+            // if browser supports geolocation, hide instructions and show GPS link instead
+            document.getElementById('${id}-instructions').style.display = 'none';
+            document.getElementById('${id}-gps').style.display = 'block';
+        }
+    }
+    function getGPS()
+    {
+        // Get location no more than 1 minute old. 60000 ms = 1 minute.
+        navigator.geolocation.getCurrentPosition(showGPS, showError, {enableHighAccuracy:true,maximumAge:0});
+        _gaq.push(['_trackEvent', 'GPS', 'Submit', 'Mobile Trip Planner GPS submit']);
+    }
+    function showGPS(position)
+    {
+        document.forms['itin'].elements['${id}'].value = position.coords.latitude + ', ' + position.coords.longitude;
+    }
+    function showError(error)
+    {
+        alert('${_("Please make sure your GPS setting is turned on for this browser")} (' + error.code + ')' );
+    }
+</script>
 </%def>

@@ -106,7 +106,7 @@ ${form.clear_element_scriptlet()}
                 %if is_mobile:
                 <p id="from-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
                 <p id="from-gps" style="display:none;" class="instructions"><a href="#" onclick="getFromGPS();">${_(u'Use my current GPS location')}</a></p>
-                %endif 
+                %endif
             </fieldset>
 
             <fieldset class="normal">
