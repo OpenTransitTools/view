@@ -58,7 +58,7 @@
 ##
 ## search input form
 ##
-<%def name="search_input(name, place=None, clear=None, id='place', coord='', size='67', maxlength='100', clear_form=True, is_mobile=True)">
+<%def name="search_input(name, place=None, clear=None, id='place', coord='', size='67', maxlength='100', clear_form=True, is_mobile=False)">
 <%
    if clear is None:
        clear = _(u'Address, intersection, landmark or Stop ID')
@@ -209,7 +209,7 @@
 
 ##
 ## GPS stuff
-<%def name="gps_form_scriptlet(id='place')">
+<%def name="gps_form_scriptlet(id='place', form='')">
 <script>
     // for standard input form
     function checkgps()
@@ -217,19 +217,23 @@
         if(navigator.geolocation)
         {
             // if browser supports geolocation, hide instructions and show GPS link instead
+            try {
             document.getElementById('${id}-instructions').style.display = 'none';
+            } catch(e) {}
+            try {
             document.getElementById('${id}-gps').style.display = 'block';
+            } catch(e) {}
         }
     }
     function getGPS()
     {
         // Get location no more than 1 minute old. 60000 ms = 1 minute.
-        navigator.geolocation.getCurrentPosition(showGPS, showError, {enableHighAccuracy:true,maximumAge:0});
+        navigator.geolocation.getCurrentPosition(showGPS, showError, {'enableHighAccuracy':true, 'timeout':10000, 'maximumAge':180000});
         _gaq.push(['_trackEvent', 'GPS', 'Submit', 'Mobile Trip Planner GPS submit']);
     }
     function showGPS(position)
     {
-        document.forms['itin'].elements['${id}'].value = position.coords.latitude + ', ' + position.coords.longitude;
+        document.forms['${form}'].elements['${id}'].value = position.coords.latitude + ', ' + position.coords.longitude;
     }
     function showError(error)
     {

@@ -361,7 +361,7 @@ ${form.clear_element_scriptlet()}
     function getFromGPS()
     {
         // Get location no more than 1 minute old. 60000 ms = 1 minute.
-        navigator.geolocation.getCurrentPosition(showFromGPS, showError, {enableHighAccuracy:true,maximumAge:0});
+        navigator.geolocation.getCurrentPosition(showFromGPS, showError, {'enableHighAccuracy':true, 'timeout':10000, 'maximumAge':180000});
         _gaq.push(['_trackEvent', 'GPS', 'Submit', 'Mobile Trip Planner GPS submit']);
     }
     function showFromGPS(position)
@@ -371,7 +371,7 @@ ${form.clear_element_scriptlet()}
     function getToGPS()
     {
         // Get location no more than 1 minute old. 60000 ms = 1 minute.
-        navigator.geolocation.getCurrentPosition(showToGPS, showError, {enableHighAccuracy:true,maximumAge:0});
+        navigator.geolocation.getCurrentPosition(showToGPS, showError, {'enableHighAccuracy':true, 'timeout':10000, 'maximumAge':180000});
         _gaq.push(['_trackEvent', 'GPS', 'Submit', 'Mobile Trip Planner GPS submit']);
     }
     function showToGPS(position)
