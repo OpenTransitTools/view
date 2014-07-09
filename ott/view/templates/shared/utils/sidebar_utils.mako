@@ -45,9 +45,9 @@
 ##
 <%def name="planner(plan, help_url='/tripplanner/trip-help.htm')">
     <div id="sidebar-icons">
-        <p class="helptips"><a href="${util.url_domain()}${help_url}" target="#"><span>${_(u'Help/tips')}</span></a></p>
-        <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" target="#" title="${_(u'View on Interactive Map')} (${_(u'High-speed connection recommended')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
-        <p class="feedbackreport"><a target="_blank" href="${util.trimet_feedback_url(plib.str_title(plan), plib.str_description(plan))}">${_(u'Having problems? Click here for technical support.')}</a></p>
+        <p class="helptips"><a href="${util.url_domain()}${help_url}"><span>${_(u'Help/tips')}</span></a></p>
+        <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" title="${_(u'View on Interactive Map')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
+        <p class="feedbackreport"><a href="${util.trimet_feedback_url(plib.str_title(plan), plib.str_description(plan))}" target="_blank"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
     </div><!-- end #sidebar-icons -->
 </%def>
 
@@ -56,8 +56,8 @@
 ## 
 <%def name="planner_support_page(help_url='/tripplanner/trip-help.htm')">
     <div id="sidebar-icons">
-        <p class="helptips"><a href="${util.url_domain()}${help_url}" target="#"><span>${_(u'Help/tips')}</span></a></p>
-        <p class="feedbackreport"><a target="_blank" href="${util.trimet_feedback_url(_(u"Having trouble with trip planner pages, like the geocoder..."))}">${_(u'Having problems? Click here for technical support.')}</a></p>
+        <p class="helptips"><a href="${util.url_domain()}${help_url}"><span>${_(u'Help/tips')}</span></a></p>
+        <p class="feedbackreport"><a href="${util.trimet_feedback_url(_(u"Having trouble with trip planner pages, like the geocoder..."))}" target="_blank"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
     </div><!-- end #sidebar-icons -->
 </%def>
 
@@ -68,6 +68,6 @@
 <%def name="stop(stop, extra_params)">
     <aside id="aside" class="aside">
         <p>&nbsp;</p>
-        <p class="feedback"><a href="${util.trimet_feedback_url(su.str_title(stop), _(u'Stop landing page'))}">${_(u'Having problems? Click here for technical support.')}</a></p>
+        <p class="feedback"><a href="${util.trimet_feedback_url(su.str_title(stop), _(u'Stop landing page'))}"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
     </aside><!-- end #sidebar -->
 </%def>

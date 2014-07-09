@@ -93,7 +93,7 @@ ${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
 </p>
 <p>
     ${imap_a_link(name, lon, lat, extra_params, True)}
-       <span class="imap-text">${_(u'View on Interactive Map')}</span><br /><span class="secondary">${_(u'High-speed connection recommended')}</span>
+       <span class="imap-text">${_(u'View on Interactive Map')}</span>
     </a>
 </p>
 </%def>

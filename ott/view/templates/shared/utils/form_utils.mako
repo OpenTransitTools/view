@@ -35,9 +35,9 @@
     %if list and len(list) > 0:
         <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
         <fieldset>
-            <label>${name}:</label>
+            <label for="$address-select">${name}:</label>
             <input type="hidden" name="geo_type" value="${id}"/>
-            <select size="${size}" name="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular"/>
+            <select size="${size}" id="$address-select" name="${id}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular">
                 %for l in list:
                 <option value="${l['name']}::${l['lat']},${l['lon']}::${l['city']}">${util.name_city_stopid(l['name'], l['city'], l['type'], l['stop_id'])}</option>
                 %endfor
@@ -68,13 +68,13 @@
     ${clear_element_scriptlet()}
     <!-- Text box for re-geocoding a string -->
     <fieldset>
-        <label for="geocode_form">${name}:</label>
+        <label for="address-input">${name}:</label>
         <input type="hidden" name="geo_type"   value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}" />
         %if clear_form:
-        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
+        <input type="text" id="address-input" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
         %else:
-        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClassHighlight(this); this.setSelectionRange(0, this.value.length); return false;"/>
+        <input type="text" id="address-input" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClassHighlight(this); this.setSelectionRange(0, this.value.length); return false;"/>
         %endif
         <div class="form-help">
             ${help.form_help_right()}

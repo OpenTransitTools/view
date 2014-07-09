@@ -58,12 +58,14 @@
 ##
 <%def name="render_trip_details(plan, itinerary=None, extra_params='')">
     <div id="details" class="group">
-        <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'From')}</strong> ${plan['from']['name']}</p>
-        <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><strong>${_(u'To')}</strong> ${plan['to']['name']}</p>
+        <p class="origin"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><span><strong>${_(u'From')}</strong> ${plan['from']['name']}</span></p>
+        <p class="destination"><img src="${util.img_url()}/start-end.png" width="0" height="1" /><span><strong>${_(u'To')}</strong> ${plan['to']['name']}</span></p>
         %if itinerary:
-        <p class="tripinfo">${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
-        <p class="tripinfo">${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
-        %endif
+        <div class="tripinfo-wrap">
+			<p class="tripinfo">${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+			<p class="tripinfo">${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        </div>
+		%endif
     </div><!-- end #details -->
 </%def>
 
@@ -73,7 +75,7 @@
 <%def name="render_tabs(plan, extra_params)">
 %if len(plan['itineraries']) > 1:
     <ol id="plannertabs" class="group">
-        ${itin_tab(plan['itineraries'], 0, _(u'Your best bet'), extra_params)}
+        ${itin_tab(plan['itineraries'], 0, _(u'Best bet'), extra_params)}
         ${itin_tab(plan['itineraries'], 1, _(u'Option 2'), extra_params)}
         ${itin_tab(plan['itineraries'], 2, _(u'Option 3'), extra_params)}
     </ol><!-- end #tabs -->
@@ -206,7 +208,7 @@
             sel = it['selected']
             n   = it['transfers']
             dur = it['date_info']['duration_min']
-            tfer = _('${number} transfer', '${number} transfers', mapping={'number':n}) + ","
+            tfer = _('${number} transfer', '${number} transfers', mapping={'number':n})
             fare = it['fare']['adult']
             url  = it['url']
             if n < 0:
@@ -215,9 +217,9 @@
         %>
         <!-- ${_('transfer')} or ${_('transfers')} -->
         %if sel:
-        <li class="selected"><span class="selectedpadding"><b>${text}</b><br />${dur} ${_('mins')}, <span class="nobreak">${tfer}</span> ${fare}</span></li>
+        <li class="selected"><span class="selectedpadding"><b>${text}</b><br />${dur} ${_('mins')}, <span class="nobreak">${tfer}</span><!-- ${fare}--></span></li>
         %else:
-        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br/>${dur} ${_('mins')}, <span class="nobreak">${tfer}</span> ${fare}</span></a></li>
+        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br/>${dur} ${_('mins')}, <span class="nobreak">${tfer}</span><!-- ${fare}--></span></a></li>
         %endif
     %endif
 </%def>

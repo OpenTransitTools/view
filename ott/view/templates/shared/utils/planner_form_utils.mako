@@ -162,8 +162,8 @@ ${form.clear_element_scriptlet()}
         <div id="plantrip-right" class="basic">
             <p id="trippreferences">${_(u'Trip preferences (optional)')}</p>
             <fieldset class="preferences">
-                <label for="trip-options">${_(u'Show me the')}</label>
-                <select name="optimize" tabindex="9"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <label for="trip-transfers">${_(u'Show me the')}</label>
+                <select id="trip-transfers" name="optimize" tabindex="9"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     ${optimize_form_option(params['optimize'], is_mobile)}
                 </select>
                 %if not is_mobile:
@@ -175,8 +175,8 @@ ${form.clear_element_scriptlet()}
                 %endif
             </fieldset>
             <fieldset class="preferences">
-                <label for="trip-options">${_(u'Maximum walk')}</label>
-                <select name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <label for="trip-walkdistance">${_(u'Maximum walk')}</label>
+                <select id="trip-walkdistance" name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     ${walk_form_option(params['Walk'], is_mobile)}
                 </select>
                 %if not is_mobile:
@@ -188,8 +188,8 @@ ${form.clear_element_scriptlet()}
                 %endif
             </fieldset>
             <fieldset class="preferences">
-                <label for="trip-options">${_(u'Travel by')}</label>
-                <select name="mode" tabindex="11"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <label for="trip-modetype">${_(u'Travel by')}</label>
+                <select id="trip-modetype" name="mode" tabindex="11"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     ${mode_form_option(params['mode'], is_mobile)}
                 </select>
                 %if not is_mobile:
@@ -327,11 +327,11 @@ ${form.clear_element_scriptlet()}
         },
         {
             "k": "TRANSIT,BICYCLE",
-            "v": _(u'Bike to Transit')
+            "v": _(u'Bike to transit')
         },
         {
             "k": "TRAINISH,BICYCLE",
-            "v": _(u'Bike and Train only')
+            "v": _(u'Bike and train only')
         },
         {
             "k": "WALK",

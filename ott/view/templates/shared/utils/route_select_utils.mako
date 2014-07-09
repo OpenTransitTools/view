@@ -7,7 +7,7 @@
         <fieldset>
             ${form.get_extra_params_hidden_inputs()}
             <label for="route">${_(u"Select a line")}:</label>
-            <select id="route" name="route">
+            <select id="route" name="route" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular">
             %if route_list:
             %for r in route_list:
                 <option value="${r['route_id']}">${r['name']}</option>
