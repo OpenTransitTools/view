@@ -209,7 +209,7 @@
 
 ##
 ## GPS stuff
-<%def name="gps_form_scriptlet(id='place', form='')">
+<%def name="gps_form_scriptlet(id='place', form='geocode')">
 <script>
     // for standard input form
     function checkgps()

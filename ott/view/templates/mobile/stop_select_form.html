@@ -25,7 +25,7 @@ ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
 ${form.gps_form_scriptlet()}
 
 <div id="findstop">
-    <form action="stops_near.html" class="triptools-form" method="GET" name="ambig" class="triptools-form">
+    <form action="stops_near.html" class="triptools-form" method="GET" name="geocode">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
         ${form.search_input(_(u'Find stops and stations'), place, is_mobile=True)}
