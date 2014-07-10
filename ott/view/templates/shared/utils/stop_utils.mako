@@ -5,9 +5,30 @@
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
+<%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 
 <%def name="page_title(stop)">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 <%def name="str_title(stop)"><% return "Stop ID {0}".format(stop['stop_id']) %></%def>
+
+##
+## stop select form
+##
+<%def name="stop_select_form(geo_place='', geo_type='place', form_action='stops_near.html', is_mobile=False)">
+<div id="findstop">
+    <form action="${form_action}" method="GET" name="geocode" class="triptools-form">
+        ${form.has_geocode_hidden('false')}
+        ${form.get_extra_params_hidden_inputs()}
+        ${form.search_input(_(u'Find stops and stations'), geo_place, is_mobile=is_mobile)}
+        ${form.search_submit(_(u'Find stops'))}
+    </form>
+    <div class="or">
+        <div class="or-bar"></div>
+        <div class="or-text">${_(u'Or')}</div>
+    </div>
+    ${rs.route_select_form('stop_select_list.html', routes['routes'], "_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);")}
+</div>
+</%def>
+
 
 ##
 ## stop ambiguous geocode form(s) 
@@ -25,7 +46,7 @@
     <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Find stops and stations'), place=geo_place, clear_form=False)}
+        ${form.search_input(_(u'Find stops and stations'), place=geo_place, clear_form=False, is_mobile=is_mobile)}
         ${form.search_submit(_(u'Continue'))}
     </form>
 </div>
