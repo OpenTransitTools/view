@@ -9,6 +9,7 @@
 <%def name="tc_pr_lr_wes_mall(msg='Stop related page')">
     <!-- begin #sidebar -->
     <aside id="aside" class="aside">
+		<!--
         <h2>${_(u'Related')}</h2>
         <ul class="links">
             <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
@@ -18,6 +19,7 @@
             <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
         </ul>
         <p class="feedback"><a target="_blank" href="${util.trimet_feedback_url(_(msg))}">${_(u'Having problems? Click here for technical support.')}</a></p>
+		-->
     </aside>
     <!-- end #sidebar -->
 </%def>
@@ -45,7 +47,7 @@
 ##
 <%def name="planner(plan, help_url='/tripplanner/trip-help.htm')">
     <div id="sidebar-icons">
-        <p class="helptips"><a href="${util.url_domain()}${help_url}"><span>${_(u'Help/tips')}</span></a></p>
+        <!--<p class="helptips"><a href="${util.url_domain()}${help_url}"><span>${_(u'Help/tips')}</span></a></p>-->
         <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" title="${_(u'View on Interactive Map')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
         <p class="feedbackreport"><a href="${util.trimet_feedback_url(plib.str_title(plan), plib.str_description(plan))}" target="_blank"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
     </div><!-- end #sidebar-icons -->
@@ -55,10 +57,7 @@
 ## planner support pages ... no plan yet
 ## 
 <%def name="planner_support_page(help_url='/tripplanner/trip-help.htm')">
-    <div id="sidebar-icons">
-        <p class="helptips"><a href="${util.url_domain()}${help_url}"><span>${_(u'Help/tips')}</span></a></p>
-        <p class="feedbackreport"><a href="${util.trimet_feedback_url(_(u"Having trouble with trip planner pages, like the geocoder..."))}" target="_blank"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
-    </div><!-- end #sidebar-icons -->
+	<p class="feedback"><a href="${util.trimet_feedback_url(_(u"Having trouble with trip planner pages, like the geocoder..."))}" target="_blank"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
 </%def>
 
 
@@ -67,7 +66,9 @@
 ##
 <%def name="stop(stop, extra_params)">
     <aside id="aside" class="aside">
+	<!--
         <p>&nbsp;</p>
         <p class="feedback"><a href="${util.trimet_feedback_url(su.str_title(stop), _(u'Stop landing page'))}"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
-    </aside><!-- end #sidebar -->
+    -->
+	</aside><!-- end #sidebar -->
 </%def>

@@ -61,12 +61,23 @@
 
         <div id="triptools-wrap" class="group">
             <nav id="triptools">
+                <!-- linked trip tools
                 <ul id="triptools-tabs">
                     <li id="tripplanner"    ${self.planner_selected()}><a href="${util.url_domain()}/index.htm" title="Get step-by-step travel directions"><span>Trip Planner</span></a><div class="triptools-pointer"></div></li>
                     <li id="transittracker" ${self.tracker_selected()}><a href="${util.url_domain()}/arrivals/index.htm" title="Get real-time arrival information for buses and trains"><span>TransitTracker</span></a><div class="triptools-pointer"></div></li>
                     <li id="schedulesmap"   ${self.schedule_selected()}><a href="${util.url_domain()}/schedules/index.htm" title="View timetables, system maps and route maps"><span>Maps &amp; Schedules</span></a><div class="triptools-pointer"></div></li>
                     <li id="stopsstations"  ${self.stations_selected()}><a href="${util.url_domain()}/stopsandstations/index.htm" title="Find nearby stops, look up a Stop ID or get service info"><span>Stops &amp; Stations</span></a><div class="triptools-pointer"></div></li>
                     <li id="servicealerts"  ${self.alerts_selected()}><a href="${util.url_domain()}/alerts/index.htm" title="See current and future delays, detours and closures"><span>Service Alerts</span></a><div class="triptools-pointer"></div></li>
+                </ul>
+                
+                TODO bogus trip tools for testing
+                -->
+                <ul id="triptools-tabs">
+                    <li id="tripplanner"    ${self.planner_selected()}><a href="#" title="Get step-by-step travel directions"><span>Trip Planner</span></a><div class="triptools-pointer"></div></li>
+                    <li id="transittracker" ${self.tracker_selected()}><a href="#" title="Get real-time arrival information for buses and trains"><span>TransitTracker</span></a><div class="triptools-pointer"></div></li>
+                    <li id="schedulesmap"   ${self.schedule_selected()}><a href="#" title="View timetables, system maps and route maps"><span>Maps &amp; Schedules</span></a><div class="triptools-pointer"></div></li>
+                    <li id="stopsstations"  ${self.stations_selected()}><a href="#" title="Find nearby stops, look up a Stop ID or get service info"><span>Stops &amp; Stations</span></a><div class="triptools-pointer"></div></li>
+                    <li id="servicealerts"  ${self.alerts_selected()}><a href="#" title="See current and future delays, detours and closures"><span>Service Alerts</span></a><div class="triptools-pointer"></div></li>
                 </ul>
             </nav><!-- end #triptools -->
         </div><!-- end #triptools-wrap -->

@@ -72,10 +72,9 @@
 ##
 <%def name="schedule_sort_by_links(stop, extra_params)">
     <p class="sort">
-        <b>${_(u'Sort')}:</b>
-        ${util.link_or_strong(_(u'By destination'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params), _('sort'))}
+        ${util.link_or_strong(_(u'Sort by line'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params), _('sort'))}
          &nbsp;|&nbsp;
-        ${util.link_or_strong(_(u'By time'), sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'time', extra_params), _('sort'))}
+        ${util.link_or_strong(_(u'Sort by time'), sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'time', extra_params), _('sort'))}
     </p>
 </div><!-- end .contenttabs-bar -->
 </%def>
@@ -89,18 +88,20 @@
         url = agency_template.make_url_template()
     %>
     %if sort_by_time():
-    <p>
-    ###
-    ###  SHOW schedule as a list, with headsign to left of time...
-    ###
-    %for s in ss['stoptimes']:
-    <%
-        id = s['h']
-        hs = ss['headsigns'][id]
-    %> 
-    <b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}<br/>
-    %endfor
-    </p>
+    <div class="sortbyline">
+		###
+		###  SHOW schedule as a list, with headsign to left of time...
+		###
+		%for s in ss['stoptimes']:
+		<%
+			id = s['h']
+			hs = ss['headsigns'][id]
+		%> 
+		<p><b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}</p>
+		%endfor
+    </div>
+	
+	
     ###
     ###  SHOW schedule grouped under headsign
     ###
