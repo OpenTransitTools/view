@@ -5,6 +5,7 @@
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 <%
     #TODO - analyst
@@ -30,7 +31,11 @@ ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
 //-->
 </script>
 <div id="findstop">
+<<<<<<< HEAD
     <form action="stops_near.html" method="GET" id="ambig" name="ambig" class="triptools-form">
+=======
+    <form action="stops_near.html" method="GET" name="geocode" class="triptools-form">
+>>>>>>> 1b3358c77a2aa2b4991a0b1f6578d9cd5f93752e
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
         ${form.search_input(_(u'Enter an address, intersection, landmark or Stop ID'), place)}
@@ -43,6 +48,7 @@ ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
     ${rs.route_select_form('stop_select_list.html', routes['routes'], ga_select_route)}
 </div>
 
+## ${su.stop_select_form(place)}
 ${form.autocomplete_js_includes()}
 ${form.autocomplete_search_input()}
 
