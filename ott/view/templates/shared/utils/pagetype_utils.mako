@@ -47,26 +47,23 @@
 </%def>
 
 
-<%def name="trip_form_link(name, extra_params, base_params)">
-<!--TODO this needs to change from a div to an h1 if it is the trip planner form page -->
+<%def name="trip_planner(name='', extra_params='', base_params='me')">
 <div id="triptool" class="tripplanner-icon">
     <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
 </div>
-</%def>
-
-<%def name="trip_planner(name='', extra_params='', base_params='me')">
-${trip_form_link(name, extra_params, base_params)}
 <h1>
     ${name}
 </h1>
 </%def>
 
 <%def name="trip_planner_form(name='', extra_params='', base_params='me')">
-${trip_form_link(name, extra_params, base_params)}
-<!-- removing the subhead from the top of the form page
-<h2 class="top">
-    ${name}
-</h2>
--->
+<div id="triptool" class="tripplanner-icon">
+    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
+</div>
 </%def>
 
+<%def name="main_trip_planner_form(name='', extra_params='', base_params='me')">
+<h1 id="triptool" class="tripplanner-icon">
+    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
+</h1>
+</%def>
