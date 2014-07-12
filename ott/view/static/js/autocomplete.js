@@ -53,10 +53,11 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
                     dataType : "json",
                     url : THIS.solr_url,
                     data : {
-                        q : request.term,
+                        rows : THIS.num_results,
                         wt : "json",
                         qt : "dismax",
-                        rows : THIS.num_results
+                        fq : "(-type:26 AND -type:route)",
+                        q : request.term
                     },
                     cache : false,
 

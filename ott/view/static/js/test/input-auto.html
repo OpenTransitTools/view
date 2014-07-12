@@ -64,7 +64,7 @@ function auto_suggest(form, sug_list)
             sugList.listview("refresh");
         } else {
             //$.get("http://www.raymondcamden.com/demos/2012/mar/27/service.cfc?method=getSuggestions&callback=x", {search:text}, function(res,code) {
-            $.get("http://maps5.trimet.org/solr/select?start=0&limit=10&wt=json&qt=dismax&rows=10", {q:text}, function(res,code) {
+            $.get("http://maps.trimet.org/solr/select?start=0&rows=10&wt=json&qt=dismax&fq=(-type:26 AND -type:route)", {q:text}, function(res,code) {
                 var str = "";
 
                 docs = res.response.docs;
