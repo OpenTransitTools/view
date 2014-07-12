@@ -61,7 +61,7 @@
 <%def name="search_input(name, place=None, clear=None, id='place', coord='', size='67', maxlength='100', clear_form=True, is_mobile=False)">
 <%
    if clear is None:
-       clear = _(u'Address, intersection, landmark or Stop ID')
+       clear = ' '
    if place is None:
        place = clear
 %>

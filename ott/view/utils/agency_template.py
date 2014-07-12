@@ -84,7 +84,7 @@ class AgencyTemplate(object):
                 ret_val = url.format(**p)
         return ret_val
 
-    def get_stop_img_url(self, stop_id, w=275, h=275, z=6, agency=None, device='desktop', def_val=None):
+    def get_stop_img_url(self, stop_id, w=275, h=275, z=7, agency=None, device='desktop', def_val=None):
         ret_val = def_val
         agency = self.get_agency(agency)
         url = self.get_template('stop_img', agency, device, def_val)
