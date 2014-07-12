@@ -95,6 +95,7 @@
 <%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False)">
 ${form.clear_element_scriptlet()}
 <div id="plantrip" class="basic">
+    ## TODO : $Agency, not TriMet
     %if is_homepage:
     <h2><b>${_(u'Plan your trip')}</b> ${_(u'on')} TriMet</h2>
     %endif 
@@ -102,7 +103,7 @@ ${form.clear_element_scriptlet()}
         <div id="plantrip-left">
             <fieldset class="normal">
                 <label for="from" class="homepage-hide">${_(u'From')}</label>
-                ${input_form('from', 'from', 'Address, intersection, landmark or Stop ID', 1, params['fromPlace'], params['fromCoord'], is_mobile)}
+                ${input_form('from', 'from', ' ', 1, params['fromPlace'], params['fromCoord'], is_mobile)}
                 %if is_mobile:
                 <p id="from-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
                 <p id="from-gps" style="display:none;" class="instructions"><a href="#" onclick="getFromGPS();">${_(u'Use my current GPS location')}</a></p>
@@ -111,7 +112,7 @@ ${form.clear_element_scriptlet()}
 
             <fieldset class="normal">
                 <label for="going" class="homepage-hide">${_(u'To')}</label>
-                ${input_form('to', 'going', 'Address, intersection, landmark or Stop ID', 2, params['toPlace'], params['toCoord'], is_mobile)}
+                ${input_form('to', 'going', ' ', 2, params['toPlace'], params['toCoord'], is_mobile)}
                 %if is_mobile:
                 <p id="to-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
                 <p id="to-gps" style="display:none;" class="instructions"><a href="#" onclick="getToGPS();">${_(u'Use my current GPS location')}</a></p>
