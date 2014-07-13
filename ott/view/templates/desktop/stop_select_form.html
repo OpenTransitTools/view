@@ -6,11 +6,7 @@
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
-<%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 <%
-    #TODO - analyst
-    ga_select_route ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);"
-    ga_find_stop    ="_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Search submit']);"
     extra_params = util.get_extra_params()
 %>
 <%def name="title()">TriMet: ${_(u'Stops and Stations')}</%def>
@@ -22,28 +18,6 @@
     ${form.autocomplete_css_includes()}
 </%def>
 ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
-
-<script type="text/javascript">
-<!--
-	window.onload = function() {
-		var input = document.getElementById("place").focus();
-	}
-//-->
-</script>
-<div id="findstop">
-    <form action="stops_near.html" method="GET" name="geocode" class="triptools-form">
-        ${form.has_geocode_hidden('false')}
-        ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Enter an address, intersection, landmark or Stop ID'), place)}
-        ${form.search_submit(_(u'Find stops'))}
-    </form>
-    <div class="or">
-        <div class="or-bar"></div>
-        <div class="or-text">${_(u'Or')}</div>
-    </div>
-    ${rs.route_select_form('stop_select_list.html', routes['routes'], ga_select_route)}
-</div>
-
-## ${su.stop_select_form(place)}
+${su.stop_select_form(place)}
 ${form.autocomplete_js_includes()}
 ${form.autocomplete_search_input()}

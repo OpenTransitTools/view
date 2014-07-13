@@ -20,7 +20,6 @@
 <%def name="js_onload()">javascript:checkgps();</%def>
 ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
 ${form.gps_form_scriptlet()}
-
 ${su.stop_select_form(place, is_mobile=True)}
 ${form.autocomplete_js_includes()}
 ${form.autocomplete_search_input()}
