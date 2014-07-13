@@ -39,12 +39,7 @@
             <input type="submit" class="submit" value="${_(u'Select stop')}" id="select" />
         </fieldset>
     </form>
-    %if not loop.last:
-    <div class="or">
-        <div class="or-bar"></div>
-        <div class="or-text">${_(u'Or')}</div>
-    </div>
-    %endif
+    ${util.or_bar(not loop.last)}
     % endfor
 </div>
 </%def>
