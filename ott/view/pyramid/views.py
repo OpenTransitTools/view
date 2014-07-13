@@ -24,6 +24,7 @@ from ott.view.utils import geocode_utils
 from ott.utils.img.spark import sparkline_smooth
 from ott.utils.img.qr import qr_to_stream
 from ott.utils import html_utils
+from ott.utils import geo_utils
 from ott.utils import object_utils
 from ott.utils import transit_utils
 
