@@ -18,9 +18,9 @@
     ${form.autocomplete_css_includes()}
 </%def>
 <%def name="js_onload()">javascript:checkgps();</%def>
-${page.stop_select(_(u'Uncertain location'), extra_params, 'geo')}
 ${form.gps_form_scriptlet()}
 
+${page.stop_select(_(u'Uncertain location'), extra_params, 'geo')}
 <h2 class="error">${form.geocoder_msg(geocoder_results, geo_place)}</h2>
 ${su.geocode_form(geocoder_results, geo_place, is_mobile=True)}
 ${form.autocomplete_js_includes()}

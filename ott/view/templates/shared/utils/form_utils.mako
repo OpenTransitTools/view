@@ -69,7 +69,7 @@
    if clear is None:
        clear = ' '
    if place is None:
-       place = clear
+       place = ''
 %>
     ${clear_element_scriptlet()}
     <!-- Text box for re-geocoding a string -->
