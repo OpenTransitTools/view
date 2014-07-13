@@ -73,8 +73,10 @@ def do_from_to_geocode_check(request):
             if g and g['count'] == 1:
                 # step 3c: got our single result, so now add that to our query string...
                 has_from_coord = True
-                query_string = "fromCoord={0},{1}&{2}".format(g['geocoder_results'][0]['lat'], g['geocoder_results'][0]['lon'], query_string)
+                fp = geo_utils.solr_to_named_param(g['geocoder_results'][0], frm)
+                query_string = "from={0}&{1}".format(fp, query_string)
                 query_string = query_string.replace("&fromCoord=&", "&").replace("&fromCoord=None&", "&") # strip bogus stuff off...
+
                 geocode_param = None
 
     # step 4: check that we need to geocode the 'to' param 
@@ -90,7 +92,8 @@ def do_from_to_geocode_check(request):
             if g and g['count'] == 1:
                 # step 5c: got our single result, so now add that to our query string...
                 has_to_coord = True
-                query_string = "toCoord={0},{1}&{2}".format(g['geocoder_results'][0]['lat'], g['geocoder_results'][0]['lon'], query_string)
+                tp = geo_utils.solr_to_named_param(g['geocoder_results'][0], to)
+                query_string = "to={0}&{1}".format(tp, query_string)
                 query_string = query_string.replace("&toCoord=&", "&").replace("&toCoord=None&", "&") # strip bogus stuff off...
                 geocode_param = None
 
