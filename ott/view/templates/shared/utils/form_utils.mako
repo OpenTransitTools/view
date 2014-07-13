@@ -57,7 +57,6 @@
         %if show_or:
             ${search_submit()}
         %endif
-        ${util.or_bar(show_or)}
     %endif
 </%def>
 

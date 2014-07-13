@@ -38,6 +38,7 @@
         ${form.get_extra_params_hidden_inputs()}
         ${form.search_list(_(u'Select a location'), geocoder_results)}
     </form>
+    ${util.or_bar()}
     %endif
 
     <form action="${form_action}"  method="GET" name="geocode" class="triptools-form">
