@@ -46,12 +46,7 @@
         %if show_or:
             ${search_submit()}
         %endif
-        %if show_or:
-        <div class="or">
-            <div class="or-bar"></div>
-            <div class="or-text">${_(u'Or')}</div>
-        </div>
-        %endif
+        ${util.or_bar(show_or)}
     %endif
 </%def>
 

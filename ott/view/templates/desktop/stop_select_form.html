@@ -31,7 +31,6 @@ ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
 //-->
 </script>
 <div id="findstop">
-    <form action="stops_near.html" method="GET" id="ambig" name="ambig" class="triptools-form">
     <form action="stops_near.html" method="GET" name="geocode" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}

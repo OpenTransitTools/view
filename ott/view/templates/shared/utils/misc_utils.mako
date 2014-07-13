@@ -28,7 +28,6 @@
 
 <%def name="img_url()">${url_domain()}/images/triptools</%def>
 
-
 <%def name="planner_img_url()">${img_url()}/mode</%def>
 <%!
     ''' access these variables in other space via <namespace>.attr, ala util.attr, ala util.attr.WALK
@@ -407,3 +406,11 @@
 %>
 </%def>
 
+<%def name="or_bar(show_or=True)">
+    %if show_or:
+    <div class="or">
+        <div class="or-bar"></div>
+        <div class="or-text">${_(u'Or')}</div>
+    </div>
+    %endif
+</%def>

@@ -10,21 +10,23 @@
 <%def name="page_title(stop)">TriMet: ${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 <%def name="str_title(stop)"><% return "Stop ID {0}".format(stop['stop_id']) %></%def>
 
-##
-## stop select form
-##
-<%def name="stop_select_form(geo_place='', geo_type='place', form_action='stops_near.html', is_mobile=False)">
-<div id="findstop">
+<%def name="input_form(geo_place, geo_type, form_action, is_mobile)">
     <form action="${form_action}" method="GET" name="geocode" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
         ${form.search_input(_(u'Find stops and stations'), geo_place, is_mobile=is_mobile)}
         ${form.search_submit(_(u'Find stops'))}
     </form>
-    <div class="or">
-        <div class="or-bar"></div>
-        <div class="or-text">${_(u'Or')}</div>
-    </div>
+</%def>
+
+
+##
+## stop select form
+##
+<%def name="stop_select_form(geo_place='', geo_type='place', form_action='stops_near.html', is_mobile=False)">
+<div id="findstop">
+    ${input_form(geo_place, geo_type, form_action, is_mobile)}
+    ${util.or_bar()}
     ${rs.route_select_form('stop_select_list.html', routes['routes'], "_gaq.push(['_trackEvent', 'StopsStations', 'Submit', 'MainForm Select-a-line submit']);")}
 </div>
 </%def>
