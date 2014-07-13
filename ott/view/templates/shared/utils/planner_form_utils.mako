@@ -47,7 +47,7 @@
 <%def name="geocode_form(geocoder_results, geo_place='', geo_type='place', form_action='planner.html', is_mobile=False)">
 <div id="location">
     %if geocoder_results and len(geocoder_results) > 0:
-    <form action="${form_action}"  method="GET" name="ambig" class="triptools-form">
+    <form action="${form_action}"  method="GET" name="ambig-list" class="triptools-form">
         ${form.url_params_to_hidden_inputs(request, [geo_type, geo_type + 'Coord'])}
         ${form.has_geocode_hidden('true')}
         ${form.get_extra_params_hidden_inputs()}
@@ -59,7 +59,7 @@
         ${form.url_params_to_hidden_inputs(request, [geo_type, geo_type + 'Coord'])}
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Re-type location'), geo_place, id=geo_type, size="45", clear_form=False)}
+        ${form.search_input(_(u'Re-type location'), geo_place, id=geo_type, clear_form=False, is_mobile=is_mobile)}
         ${form.search_submit(_(u'Continue'), 4, analytics=an.trip_submit)}
         ## TODO: need to add analytic events when customer hit's "ENTER" button / submit
     </form>
@@ -73,13 +73,10 @@
 <%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
 <%
     if place is None:
-        if is_mobile is False:
-            place = _(clear)
-        else:
-            place = ''
+        place = ''
 %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text"   id="${id}" name="${name}" value="${place}" tabindex="${tab}" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}');" onBlur="doText(this,'${_(clear)}');" class="regular" size="45" maxlength="80" />
+    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" onFocus="clear_element('${id}_coord');" onBlur="doText(this,'${_(clear)}');" class="regular"/>
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">

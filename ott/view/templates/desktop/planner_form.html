@@ -17,6 +17,9 @@
     ${page.tripplanner_css()}
     ${form.autocomplete_css_includes()}
 </%def>
+<%def name="js_onload()">javascript:select_form();</%def>
+${form.select_form_scriptlet('from')}
+
 ${page.main_trip_planner_form(_(u'Plan Your Trip on TriMet'), extra_params, 'form')}
 
 ## override section ID to make this page full width
@@ -34,7 +37,6 @@ ${page.main_trip_planner_form(_(u'Plan Your Trip on TriMet'), extra_params, 'for
 </%def>
 <%def name="main_wrap_bottom()"></section><!-- end #main-fullwidth --></%def>
 <%def name="bottom()">${plib.bottom_imap_bar()}</%def>
-
 ##
 ## main content
 ##

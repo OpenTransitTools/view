@@ -20,8 +20,10 @@
     ${page.tripplanner_css()}
     ${form.autocomplete_css_includes()}
 </%def>
+<%def name="js_onload()">javascript:checkgps();</%def>
+${form.gps_form_scriptlet(id=geo_type, form='ambig')}
+
 ${page.trip_planner(_(u'Uncertain location'), extra_params, 'form')}
-${form.clear_element_scriptlet()}
 
 ## override section ID to make this page full width
 <%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"></%def>
@@ -33,7 +35,6 @@ ${form.clear_element_scriptlet()}
     %endif
     ${form.geocoder_msg(geocoder_results, geo_place, geo_type)}
 </h2>
-${pform.geocode_form(geocoder_results, geo_place, geo_type)}
+${pform.geocode_form(geocoder_results, geo_place, geo_type, is_mobile=True)}
 ${form.autocomplete_js_includes()}
 ${form.autocomplete_search_input('#' + geo_type)}
-## ${pform.autocomplete_trip_planner('#' + geo_type, '#' + geo_type)}

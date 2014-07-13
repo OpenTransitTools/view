@@ -17,9 +17,11 @@
     ${page.tripplanner_css()}
     ${form.autocomplete_css_includes()}
 </%def>
-<%def name="js_onload()">javascript:checkgps();</%def>
-${page.main_trip_planner_form(_(u'Trip Planner'), extra_params, 'form')}
+<%def name="js_onload()">javascript:checkgps(); javascript:select_form();</%def>
 ${pform.gps_form_scriptlet()}
+${form.select_form_scriptlet('from')}
+
+${page.main_trip_planner_form(_(u'Trip Planner'), extra_params, 'form')}
 
 ## override section ID to make this page full width
 <%def name="main_wrap_top()"><section id="main-fullwidth" ${self.mainContentStyle()} class="main"></%def>
