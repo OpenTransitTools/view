@@ -17,6 +17,9 @@
     ${page.stop_css()}
     ${form.autocomplete_css_includes()}
 </%def>
+<%def name="js_onload()">javascript:select_form();</%def>
+${form.select_form_scriptlet()}
+
 ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
 ${su.stop_select_form(place)}
 ${form.autocomplete_js_includes()}

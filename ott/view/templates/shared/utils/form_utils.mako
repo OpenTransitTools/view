@@ -12,7 +12,7 @@
 ## (used in GEO <input> form elements ... hidden geo data element e.g., placeCoord)
 ##
 <%def name="clear_element_scriptlet()">
-<script>
+    <script type="text/javascript">
     function clear_element(id) {
         try {
             var fm = document.getElementById(id)
@@ -20,7 +20,18 @@
         }
         catch(e) {}
     }
-</script>
+    </script>
+</%def>
+
+<%def name="select_form_scriptlet(id='place')">
+    <script type="text/javascript">
+    function select_form() {
+        try {
+            document.getElementById('${id}').focus();
+        }
+        catch(e) {}
+    }
+    </script>
 </%def>
 
 #
@@ -66,11 +77,7 @@
         <label for="${id}">${name}:</label>
         <input type="hidden" name="geo_type"   value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}" />
-        %if clear_form:
-        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClear(this,'${_(clear)}'); doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
-        %else:
-        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClassHighlight(this); this.setSelectionRange(0, this.value.length); return false;"/>
-        %endif
+        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
         %if is_mobile:
         <p id="${id}-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
         <p id="${id}-gps" style="display:none;" class="instructions"><a href="#" onclick="getGPS();">${_(u'Use my current GPS location')}</a></p>
@@ -204,6 +211,7 @@
 
 ##
 ## GPS stuff
+###
 <%def name="gps_form_scriptlet(id='place', form='geocode')">
 <script>
     // for standard input form
