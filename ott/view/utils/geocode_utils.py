@@ -27,7 +27,6 @@ def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Und
     '''  call the geocoder service
     '''
     ret_val = {}
-
     count = 0
     if geo_place:
         res = request.model.get_geocode(geo_place)
@@ -40,7 +39,6 @@ def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Und
         #from ott.view.locale.subscribers import get_translator  #_  = get_translator(request)
         #_  = get_translator(request)
         #geo_place = _(no_geocode_msg)
-
 
     ret_val['geo_type']  = geo_type
     ret_val['geo_place'] = geo_place

@@ -75,9 +75,9 @@
     <!-- Text box for re-geocoding a string -->
     <fieldset>
         <label for="${id}">${name}:</label>
-        <input type="hidden" name="geo_type"   value="${id}"/>
-        <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}" />
-        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
+        <input type="hidden" name="geo_type" value="${id}"/>
+        <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}"/>
+        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onFocus="clear_element('${id}_coord'); doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
         %if is_mobile:
         <p id="${id}-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
         <p id="${id}-gps" style="display:none;" class="instructions"><a href="#" onclick="getGPS();">${_(u'Use my current GPS location')}</a></p>
@@ -237,6 +237,9 @@
     function showGPS(position)
     {
         document.forms['${form}'].elements['${id}'].value = position.coords.latitude + ', ' + position.coords.longitude;
+        try {
+        document.forms['${form}'].elements['${id}Coord'].value = position.coords.latitude + ', ' + position.coords.longitude;
+        } catch(e) {}
     }
     function showError(error)
     {
