@@ -13,11 +13,16 @@
 ##
 <%def name="clear_element_scriptlet()">
     <script type="text/javascript">
+    var okay_clear_ele = true;
     function clear_element(id) {
         try {
-            var fm = document.getElementById(id)
-            console.log("NOTE: " + id + " value going from " + fm.value + " to ''");
-            fm.value = ""
+            if(okay_clear_ele) 
+            {
+                var fm = document.getElementById(id)
+                console.log("NOTE: " + id + " value going from " + fm.value + " to ''");
+                fm.value = ""
+            }
+            okay_clear_ele = true
         }
         catch(e) {}
     }
@@ -134,9 +139,11 @@
         stop = new SOLRAutoComplete('${id}', '${solr_url}');
         stop.enable_ajax();
 
-        function stop_geo_callback(sel)
+        function stop_geo_callback(sel, evt)
         {
             $(this.geo_div).val(sel.solr_doc.lat + ',' + sel.solr_doc.lon);
+            console.log("NOTE: setting coord to " + sel.solr_doc.lat + ',' + sel.solr_doc.lon);
+            okay_clear_ele = false;
         }
         stop.geo_div = "${id}_coord";
         stop.select_callback = stop_geo_callback;

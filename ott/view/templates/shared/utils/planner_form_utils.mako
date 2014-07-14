@@ -32,6 +32,8 @@
         function tp_geo_callback(sel)
         {
             $(this.geo_div).val(sel.solr_doc.lat + ',' + sel.solr_doc.lon);
+            console.log("NOTE: setting coord to " + sel.solr_doc.lat + ',' + sel.solr_doc.lon);
+            okay_clear_ele = false;
         }
         fm.geo_div = "${fm_id}_coord";
         to.geo_div   = "${to_id}_coord";
