@@ -47,6 +47,7 @@
         ${form.search_input(_(u'Find stops and stations'), place=geo_place, clear_form=False, is_mobile=is_mobile)}
         ${form.search_submit(_(u'Continue'))}
     </form>
+    ${util.geocoder_feedback(geo=geo_place)}
 </div>
 </%def>
 

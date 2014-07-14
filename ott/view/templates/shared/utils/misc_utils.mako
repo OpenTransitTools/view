@@ -194,6 +194,7 @@
     message = prep_url_params(message, url_escape=True, spell_and=True)
 %>http://trimet.org/mailforms/${mailform_page}?mailform[subject]=${subject}&mailform[url]=<a href='${url}'>${message}</a></%def>
 
+## TODO: localize???
 <%def name="mailto_url(subject='Link to TriMet', message='Check out this page on trimet.org', url=None)"><%
     if url is None:
         url = get_url(url)
@@ -201,6 +202,22 @@
     message = prep_url_params(message, url_escape=True, spell_and=True)
 %>mailto:?subject=${subject}&body=${message}%20:%20${url}</%def>
 
+
+<%def name="mailto_geocoder(place, svc, url='TripTech@trimet.org')"><%
+    subject='Error geocoding an address'
+    message='Having trouble finding this address search string'
+    subject = prep_url_params(subject, url_escape=True, spell_and=True)
+    message = prep_url_params(message, url_escape=True, spell_and=True)
+
+    place   = prep_url_params(place,   url_escape=True, spell_and=True)
+    geo = "\n\nhttp://trimet.org/ride/{0}{1}".format(svc, place)
+    geo = prep_url_params(geo, url_escape=True, spell_and=True)
+%>mailto:${url}?subject=${subject}&body=${message}:%20${place} ${geo}</%def>
+
+<%def name="geocoder_feedback(geo, svc='stop_select_geocode.html?place=')">
+<br/>
+<img src="images/feedback.jpeg"/>${_(u"Can't find your address?")} <a href="${mailto_geocoder(geo, svc)}" class="console-emailtext"><span>${_(u'Please let us know ')}</span></a> ${_(u'so we can improve the Trip Planner')}.</p>
+</%def>
 
 ##
 ## from / to links

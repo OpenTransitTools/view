@@ -66,6 +66,8 @@
         ${form.search_submit(_(u'Continue'), 4, analytics=an.trip_submit)}
         ## TODO: need to add analytic events when customer hit's "ENTER" button / submit
     </form>
+
+    ${util.geocoder_feedback(geo=geo_place, svc='planner_geocode.html?geo_type=from&from=')}
 </div>
 </%def>
 
