@@ -1,3 +1,7 @@
+if(window.console == undefined) window.console = {};
+if(window.console.log == undefined) window.console = function(el){};
+
+
 /**
  * SOLRAutoComplete class that will call SOLR, and return text data...
  * new SOLRAutoComplete('#input_div_id')

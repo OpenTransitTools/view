@@ -16,6 +16,7 @@
     function clear_element(id) {
         try {
             var fm = document.getElementById(id)
+            console.log("NOTE: " + id + " value going from " + fm.value + " to ''");
             fm.value = ""
         }
         catch(e) {}
