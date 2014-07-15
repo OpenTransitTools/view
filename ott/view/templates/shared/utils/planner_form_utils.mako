@@ -323,7 +323,7 @@ ${form.clear_element_scriptlet()}
             "v": _(u'Bus or train')
         },
         {
-            "k": "TRAINISH,BICYCLE",
+            "k": "TRAINISH,WALK",
             "v": _(u'Train only')
         },
         {
