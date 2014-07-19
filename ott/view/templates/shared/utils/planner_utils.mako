@@ -421,8 +421,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p class="directions">
             <% 
-                dir = leg['compass_direction'] if leg['compass_direction'] else ''
-                walk_title = _(u'Walk') + " " + _(dir) + " " + pretty_distance(leg['distance'])
+                walk_title = _(u'Walk') + " " + pretty_distance(leg['distance'])
             %>
             %if leg['steps']:
             ${walk_title} ${_(u'to')}
