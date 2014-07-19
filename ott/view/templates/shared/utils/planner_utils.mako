@@ -469,6 +469,27 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 %>
 </%def>
 
+##
+## Stop Leg is artificially created leg in order to show links to the stop
+## Used when the first leg of the itin is a transit leg...
+##
+<%def name="render_stop_leg(leg, i, extra_params='')">
+    <li class="num${i}">
+        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
+        <p class="directions">
+            ${_(u'Go to')}
+            <a href="${leg['from']['stop']['info']}${extra_params}" title="${_(u'Click for more information about this stop')}">${leg['from']['name']}</a>
+            <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['from']['stop']['id']}</span>
+        </p>
+        <div class="normal">
+            <div class="description"></div><!-- end .description -->
+        </div><!-- end .normal/hidden walking directions -->
+    </li>
+</%def>
+
+##
+## Meat of the transit narrative...
+##
 <%def name="render_transit_leg(leg_list, n, i, j, is_mobile, extra_params='')">
     <li class="num${i}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
@@ -531,6 +552,10 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
     if is_interline(leg_list, n):
         pass   # ignore interline legs (assume they're interline transit legs, which are handled below)
     elif leg['mode'] in util.attr.TRANSIT_MODES:
+        ## when the first leg is transit, show a go-to stop leg, so that we have a link to the stop...
+        if n == 0:
+            render_stop_leg(leg_list[n], leg_id, extra_params)
+            leg_id = leg_id + 1
         ret_val = render_transit_leg(leg_list, n, leg_id, leg_id+1, is_mobile, extra_params)
         leg_id = leg_id + 2 
     elif leg['mode'] == util.attr.WALK:
