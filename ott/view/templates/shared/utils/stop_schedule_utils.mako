@@ -6,6 +6,14 @@
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 
+<%def name="route_param(def_val='')"><%
+    ret_val = def_val
+    if 'route' in request.params:
+        ret_val = request.params['route']
+    return ret_val
+%></%def>
+
+
 <%def name="sort_val()"><%
     sort_val = 'destination' if 'sort' in request.params and request.params['sort'] ==  'destination' else 'time'
     return sort_val
@@ -43,6 +51,7 @@
     <div id="moreform" class="group">
         <form name="select_date" id="select_date_id" method="GET" action="stop_schedule.html" class="triptools-form">
             ${form.get_extra_params_hidden_inputs()}
+            <input type="hidden" name="route"   value="${route_param()}" />
             <input type="hidden" name="stop_id" value="${stop['stop_id']}" />
             <input type="hidden" name="sort"    value="${sort_val()}" />
             %if html_tabs['more_form']:
