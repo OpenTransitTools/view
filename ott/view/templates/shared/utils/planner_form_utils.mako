@@ -178,14 +178,14 @@ ${form.clear_element_scriptlet()}
                 %endif
             </fieldset>
             <fieldset class="preferences">
-                <label for="trip-walkdistance">${_(u'Maximum walk')}</label>
+                <label for="trip-walkdistance">${_(u'Maximum walk/bike')}</label>
                 <select id="trip-walkdistance" name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     ${walk_form_option(params['Walk'], is_mobile)}
                 </select>
                 %if not is_mobile:
                 <div class="form-help">
                     <div class="form-help-popup-onright">
-                        <p>${_(u"Here, you can specify how far you are willing to walk to and from the bus stop or rail station. Note: If set to less than 1 mile, some trips may not be possible.")}</p>
+                        <p>${_(u"Here, you can specify how far you are willing to walk or bike to and from the bus stop or rail station. Note: If set to less than 1 mile, some trips may not be possible.")}</p>
                     </div>
                 </div>
                 %endif
