@@ -19,6 +19,10 @@
 %>
 </%def>
 
+
+##
+## sets up autocomplete for the trip planner from & to form
+##
 <%def name="autocomplete_trip_planner(fm_id='#from', to_id='#going')">
     <%  solr_url = util.get_ini_param('ott.solr_url', '/solr/select') %>
     <script>
@@ -178,7 +182,7 @@ ${form.clear_element_scriptlet()}
                 %endif
             </fieldset>
             <fieldset class="preferences">
-                <label for="trip-walkdistance">${_(u'Maximum walk/bike')}</label>
+                <label for="trip-walkdistance">${_(u'Maximum walk')}</label>
                 <select id="trip-walkdistance" name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
                     ${walk_form_option(params['Walk'], is_mobile)}
                 </select>
@@ -215,11 +219,11 @@ ${form.clear_element_scriptlet()}
             ${form.get_extra_params_hidden_inputs()}
             <input name="submit" tabindex="13" type="submit" value="${_(u'Get directions')} &raquo;" id="submit" title="${_(u'Submit your trip plan information')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
             <!--TODO temporarily removing this so testers don't get distracted
-			<div id="mapcheckbox-wrap">
+            <div id="mapcheckbox-wrap">
                 <input type="checkbox" id="mapcheckbox" tabindex="12" title="${_(u'Show trip on an interactive map (broadband/desktop only)')}" name="mapit" value="A" onclick="doMap();">
                 <label for="mapcheckbox" class="mapcheckbox-label" title="${_(u'Show trip on an interactive map (broadband/desktop only)')}">${_(u'Use Interactive Map')}</label>
             </div>
-			-->
+            -->
         </fieldset>
     </form>
 </div><!-- end #plantrip -->
@@ -257,10 +261,16 @@ ${form.clear_element_scriptlet()}
         {
             "k": "QUICK",
             "v": _(u'Quickest trip')
-        },
+        }
+        ,
         {
             "k": "TRANSFERS",
             "v": _(u'Fewest transfers')
+        }
+        ,
+        {
+            "k": "SAFE",
+            "v": _(u'Bike friendly trip')
         }
     ]
     for o in opts:
@@ -337,6 +347,10 @@ ${form.clear_element_scriptlet()}
         {
             "k": "TRAINISH,BICYCLE",
             "v": _(u'Bike and train only')
+        },
+        {
+            "k": "BICYCLE",
+            "v": _(u'Bike only')
         },
         {
             "k": "WALK",

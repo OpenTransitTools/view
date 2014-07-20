@@ -58,7 +58,7 @@
 <%def name="select(name='route', stuff=[], options='')"></%def>
 <%def name="route_select_options()"></%def>
 <%def name="url_for(controller='main', action='route_stops_list')"></%def>
-<%def name="option(v, p, selected=False)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def>
+<%def name="option(v, p, selected=False, show=True)"><option ${'selected="selected"' if selected else '' | n} value="${v}">${p}</option></%def>
 
 <%def name="get_ele(struct, name, def_val=None)"><%
     ret_val = def_val

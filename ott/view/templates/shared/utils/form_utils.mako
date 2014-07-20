@@ -107,6 +107,12 @@
     <link href="${prefix}/autocomplete.css" rel="stylesheet"/>
 </%def>
 
+<%def name="dynamic_forms_js(prefix='js')">
+    <script src="${prefix}/dynamic_forms.js"></script>
+    <script>var DPT = new DynamicPlannerForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");</script>
+</%def>
+
+
 ##
 ## auto complete - localize name
 ## (TODO - this won't work, ala AJAX ... so what to do?)
