@@ -109,7 +109,14 @@
 
 <%def name="dynamic_forms_js(prefix='js')">
     <script src="${prefix}/dynamic_forms.js"></script>
-    <script>var DPT = new DynamicPlannerForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");</script>
+    <script>
+    try {
+        var DPT = new DynamicPlannerForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
+        DPT.switch_mode();
+    } catch(e) {
+        console.log(e);
+    }
+    </script>
 </%def>
 
 
