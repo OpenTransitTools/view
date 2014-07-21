@@ -1,0 +1,66 @@
+<html>
+  <head>
+
+  <script src="../jquery.js"></script>
+  <script src="../jquery-ui-autocomplete.js"></script>
+  <script src="./autocomplete_saved_searches.js"></script>
+
+
+  <link rel="stylesheet" href="../../css/jquery-ui-autocomplete.css">
+  <link rel="stylesheet" href="../../css/jquery-ui.css">
+  <link rel="stylesheet" href="../../css/autocomplete.css">
+
+  </head>
+
+  <body>
+
+    <label for="from">From</label>
+    <input id="from_coord" type="hidden" value="None" name="fromCoord">
+    <input id="from" type="text" tabindex="1" maxlength="80" size="45" name="from" autocomplete="off">
+
+    <br><br>
+
+    <label for="from">Going</label>
+    <input id="going_coord" type="hidden" value="None" name="goingCoord">
+    <input id="going" type="text" tabindex="1" maxlength="80" size="45" name="going" autocomplete="off">
+
+    <script>
+
+     // main entry
+      $(function(){
+            fm = new SOLRAutoComplete('#from', 'http://maps10.trimet.org/solr/select');
+            fm.enable_ajax();
+            to = new SOLRAutoComplete('#going', 'http://maps10.trimet.org/solr/select');
+            to.enable_ajax();
+            function tp_geo_callback(sel)
+            {
+
+                $(this.geo_div).val(sel.solr_doc.lat + ',' + sel.solr_doc.lon);
+                console.log("NOTE: setting coord to " + sel.solr_doc.lat + ',' + sel.solr_doc.lon);
+                okay_clear_ele = false;
+
+                //save search term and data in local storage if it doesn't exist
+                var label = sel.label;
+                var searchT = {};
+                var searchT_raw = localStorage.getItem('searchTerms');
+
+                if (searchT_raw !== null) {
+                    searchT = JSON.parse(searchT_raw);
+                }
+
+                sel["saved"] = true;
+                searchT[label] = sel;
+                localStorage.setItem('searchTerms', JSON.stringify(searchT));
+            }
+
+        fm.geo_div = "#from_coord";
+        to.geo_div = "#going_coord";
+        fm.select_callback = tp_geo_callback;
+        to.select_callback = tp_geo_callback;
+      }); 
+
+    </script>
+
+
+  </body>
+</html>
