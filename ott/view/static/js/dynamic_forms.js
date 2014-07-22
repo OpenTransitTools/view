@@ -11,8 +11,8 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
 
     function do_walk_only(change)
     {
-        $("#trip-transfers option[value=TRANSFERS]").hide();
-        $("#trip-transfers option[value=SAFE]").hide();
+        $("#trip-transfers option[value='TRANSFERS']").hide();
+        $("#trip-transfers option[value='SAFE']").hide();
         $('label[for=trip-walkdistance]').html(this.walk_label);
         if(change) {
             $('#trip-transfers').val('QUICK').change();
@@ -23,8 +23,8 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
 
     function do_bike_only(change)
     {
-        $("#trip-transfers option[value=TRANSFERS]").hide();
-        $("#trip-transfers option[value=SAFE]").show();
+        $("#trip-transfers option[value='TRANSFERS']").hide();
+        $("#trip-transfers option[value='SAFE']").show();
         $('label[for=trip-walkdistance]').html(this.bike_label);
         if(change) {
             $('#trip-transfers').val('SAFE').change();
@@ -35,8 +35,8 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
 
     function do_bike_transit(change)
     {
-        $("#trip-transfers option[value=TRANSFERS]").show();
-        $("#trip-transfers option[value=SAFE]").show();
+        $("#trip-transfers option[value='TRANSFERS']").show();
+        $("#trip-transfers option[value='SAFE']").show();
         $('label[for=trip-walkdistance]').html(this.bike_label);
         if(change) {
             $('#trip-transfers').val('SAFE').change();
@@ -47,8 +47,8 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
 
     function do_transit(change)
     {
-        $("#trip-transfers option[value=TRANSFERS]").show();
-        $("#trip-transfers option[value=SAFE]").hide();
+        $("#trip-transfers option[value='TRANSFERS']").show();
+        $("#trip-transfers option[value='SAFE']").hide();
         $('label[for=trip-walkdistance]').html(this.walk_label);
         if(change) {
             $('#trip-transfers').val('QUICK').change();
