@@ -17,6 +17,29 @@
 <link rel="stylesheet" href="http://code.jquery.com/mobile/latest/jquery.mobile.min.css" />
 <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/latest/jquery.mobile.min.js"></script>
+
+<style>
+span.remove {
+    border: 1px solid rgba(0, 0, 0, 0);
+    color: #0000FF;
+    font-size: 60%;
+    padding: 10px;
+    position: absolute;
+    right: 2px;
+    top: 3px;
+    margin-right: 3em;
+}
+
+
+span.remove:hover {
+    background: none repeat scroll 0 0 #F8F8F8;
+    border-color: #EEEEEE;
+}
+
+</style>
+
+
+
 </head>
 
 <body>
@@ -49,10 +72,65 @@
 
 </div>
 
+
+
+
 <script>
-function clickr(n) {
-    console.log(n);
+
+function get_saved_searches(term) {
+    var ret_val = [];
+    var searchT_raw = localStorage.getItem('searchTerms');
+    if (searchT_raw !== null) {
+        var searchT = JSON.parse(searchT_raw);
+     
+        //check that saved search terms match current search term
+        for (var key in searchT) {
+            if (searchT.hasOwnProperty(key) && 
+                    key.toUpperCase().substring(0, term.length) === term.toUpperCase()) {
+                ret_val.push(searchT[key]);
+            }
+        }
+    }
+    return ret_val;
 }
+
+function clickr(params) {
+    console.log("clicked: " + params.label);
+}
+
+
+function remove_saved(label) {
+    console.log("remove: " + label);
+    //TODO
+    //remove label from savedTerms localStorage
+}
+
+
+function create_li(label, remove) {
+    var click_param = {"label":label, "remove":remove};
+
+    var li = document.createElement("li");
+    var a = document.createElement("a");
+    a.setAttribute('target', '#');
+    a.onclick = function(e) {
+        clickr(click_param);
+    }
+    a.innerHTML = label;
+
+    if (remove) {
+        var span = document.createElement("span");
+        span.setAttribute('class', 'remove');
+        span.onclick = function(e) {
+            remove_saved(label);
+            e.stopPropagation();
+        }
+        span.innerHTML = 'remove';
+        a.appendChild(span);
+    }
+    li.appendChild(a); //add the text node to the newly created div. 
+    return li;
+}
+
 function auto_suggest(form, sug_list)
 {
     var sugList = $(sug_list);
@@ -65,19 +143,50 @@ function auto_suggest(form, sug_list)
         } else {
             //$.get("http://www.raymondcamden.com/demos/2012/mar/27/service.cfc?method=getSuggestions&callback=x", {search:text}, function(res,code) {
             $.get("http://maps.trimet.org/solr/select?start=0&rows=10&wt=json&qt=dismax&fq=(-type:26 AND -type:route)", {q:text}, function(res,code) {
-                var str = "";
 
+                //clear list 
+                sugList.html("");
+                    
+                //check if saved searchTerms match current input
+                //and add to listview if there is a match
+                var saved = get_saved_searches(text);                
+                 
+                
+                //TODO 
+                //save coordinates
+                for (var i = 0; i < saved.length; i++)
+                {
+                   sugList.append(create_li(saved[i].label, true));
+                }
+                
+                //add current results to listview
+                //TODO skip results if they were already added from searchTerms
+                
                 docs = res.response.docs;
                 len=docs.length;
+                
                 for(var i=0; i < len; i++)
                 {
-                    str += "<li><a target='#' onClick='clickr("+ i + ")'></a>" + docs[i].name + " (" + docs[i].city + ")</li>";
+                   sugList.append(create_li(docs[i].name, false));
                 }
-
-                sugList.html(str);
                 sugList.listview("refresh");
+
             },"json");
         }
+    });
+
+    sugList.on("click", "li a", function(e) {
+        //TODO
+        //check if label exists savedTerms localStorage
+        //and add if it does not
+
+        //set input value to selection and clear list
+        $(form).val($(this).clone()
+                       .children()
+                       .remove()
+                       .end()
+                       .text());
+        sugList.html("");
     });
 }
 
