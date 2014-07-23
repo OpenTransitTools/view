@@ -11,8 +11,9 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
 
     function do_walk_only(change)
     {
-        $("#trip-transfers option[value=TRANSFERS]").hide();
-        $("#trip-transfers option[value=SAFE]").hide();
+        $("#trip-transfers option[value='TRANSFERS']").hide();
+        $("#trip-transfers option[value='SAFE']").hide();
+        $("#trip-transfers option[value='SAFE']").css('display','none');
         $('label[for=trip-walkdistance]').html(this.walk_label);
         if(change) {
             $('#trip-transfers').val('QUICK').change();
@@ -23,8 +24,8 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
 
     function do_bike_only(change)
     {
-        $("#trip-transfers option[value=TRANSFERS]").hide();
-        $("#trip-transfers option[value=SAFE]").show();
+        $("#trip-transfers option[value='TRANSFERS']").hide();
+        $("#trip-transfers option[value='SAFE']").show();
         $('label[for=trip-walkdistance]').html(this.bike_label);
         if(change) {
             $('#trip-transfers').val('SAFE').change();
@@ -35,8 +36,8 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
 
     function do_bike_transit(change)
     {
-        $("#trip-transfers option[value=TRANSFERS]").show();
-        $("#trip-transfers option[value=SAFE]").show();
+        $("#trip-transfers option[value='TRANSFERS']").show();
+        $("#trip-transfers option[value='SAFE']").show();
         $('label[for=trip-walkdistance]').html(this.bike_label);
         if(change) {
             $('#trip-transfers').val('SAFE').change();
@@ -47,8 +48,11 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
 
     function do_transit(change)
     {
-        $("#trip-transfers option[value=TRANSFERS]").show();
-        $("#trip-transfers option[value=SAFE]").hide();
+        $("#trip-transfers option[value='TRANSFERS']").show();
+        $("#trip-transfers option[value='SAFE']").hide();
+        // THESE DIDN'T WORK EITHER ON Chrome
+        //$("#trip-transfers option[value='SAFE']").children(':visible').hide();
+        //$("#trip-transfers option[value='SAFE']").css('display','none');
         $('label[for=trip-walkdistance]').html(this.walk_label);
         if(change) {
             $('#trip-transfers').val('QUICK').change();
@@ -73,4 +77,17 @@ function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
             this.do_transit(change);
     }
     this.switch_mode = switch_mode;
+
+    /** 
+     * call me to setup the mode switcher method above...
+     */
+    function add_mode_callback(tgt)
+    {
+        var target = tgt || '#trip-modetype';
+        var THIS   = this;
+        $(target).change(function() {
+            THIS.switch_mode(null, true);
+        });
+    }
+    this.add_mode_callback = add_mode_callback;
 }

@@ -113,6 +113,7 @@
     try {
         var DPT = new DynamicPlannerForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
         DPT.switch_mode();
+        DPT.add_mode_callback();
     } catch(e) {
         console.log(e);
     }

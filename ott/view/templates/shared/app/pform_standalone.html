@@ -4,5 +4,6 @@
 <%namespace name="page"  file="/shared/utils/pagetype_utils.mako"/>
 ${form.autocomplete_css_includes('/ride/css')}
 ${form.autocomplete_js_includes('/ride/js')}
-${pform.autocomplete_trip_planner()}
 ${pform.planner_form(form_action='/ride/planner.html', is_homepage=True)}
+${pform.autocomplete_trip_planner()}
+${form.dynamic_forms_js('/ride/js')}
