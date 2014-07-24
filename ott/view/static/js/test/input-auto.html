@@ -55,12 +55,16 @@ span.remove:hover {
         <p>
         <input type="text" id="from_input" placeholder="From">
         <ul id="from_suggestions" data-role="listview" data-inset="true"></ul>
+        <input type="hidden" id="$from_coord" name="$fromCoord" value=""/>
+        
+        
         </p>
 
         <br/>
         <p>
         <input type="text" id="to_input" placeholder="To">
         <ul id="to_suggestions" data-role="listview" data-inset="true"></ul>
+        <input type="hidden" id="$to_coord" name="$toCoord" value=""/>
         </p>
 
 
@@ -80,33 +84,76 @@ span.remove:hover {
 function get_saved_searches(term) {
     var ret_val = [];
     var searchT_raw = localStorage.getItem('searchTerms');
+    
+    /* localStorage schema 
+       { 'NW 5th and Davis':{lat:'45', lon:'-122'},
+         'SW 17th and Center':{lat:'45', lon:'-122'}
+       }
+    */
+    
     if (searchT_raw !== null) {
         var searchT = JSON.parse(searchT_raw);
-     
+
         //check that saved search terms match current search term
         for (var key in searchT) {
-            if (searchT.hasOwnProperty(key) && 
-                    key.toUpperCase().substring(0, term.length) === term.toUpperCase()) {
-                ret_val.push(searchT[key]);
+            if ( (searchT.hasOwnProperty(key)) && 
+                 (key.toUpperCase().substring(0, term.length) === term.toUpperCase()) &&
+                 (searchT[key]['display'] == true) ) {
+               
+                var d = searchT[key]['display'];
+                 
+                var val = {'key':key, 'lat':searchT[key].lat, 'lon':searchT[key].lon}
+                console.log(val);
+
+                ret_val.push(val);
+                //ret_val.push(searchT[key]);
             }
         }
     }
+
+    // [ {key:'foo', lat:'45', lon:'-122'}, {key:'bar', lat:'45', lon:'-122'}]  
     return ret_val;
 }
+
+
+function save_search(term) {
+    
+    var searchT_raw = localStorage.getItem('searchTerms');
+    var searchT = {};
+
+    if (searchT_raw !== null) {
+        searchT = JSON.parse(searchT_raw);
+    
+        if ( !(term in searchT) ) {
+            searchT[term] = {'display':true, 'lat':'45', 'lon':'-122'};
+        }
+    
+    }
+    else {
+        searchT[term] = {'display':true, 'lat':'46', 'lon':'-123'};
+    }
+
+    localStorage.setItem('searchTerms', JSON.stringify(searchT));
+
+}
+
 
 function clickr(params) {
     console.log("clicked: " + params.label);
 }
 
 
-function remove_saved(label) {
-    console.log("remove: " + label);
-    //TODO
-    //remove label from savedTerms localStorage
+function remove_saved(e, term) {
+
+    var searchT_raw = localStorage.getItem('searchTerms');
+    var searchT = JSON.parse(searchT_raw);
+    
+    searchT[term]['display'] = false;
+    localStorage.setItem('searchTerms', JSON.stringify(searchT));
 }
 
 
-function create_li(label, remove) {
+function create_li(label, coord, remove) {
     var click_param = {"label":label, "remove":remove};
 
     var li = document.createElement("li");
@@ -115,18 +162,23 @@ function create_li(label, remove) {
     a.onclick = function(e) {
         clickr(click_param);
     }
-    a.innerHTML = label;
 
     if (remove) {
+        a.innerHTML = '<b>' + label + '</b>';       
+        
         var span = document.createElement("span");
         span.setAttribute('class', 'remove');
         span.onclick = function(e) {
-            remove_saved(label);
+            remove_saved(e, label);
             e.stopPropagation();
         }
         span.innerHTML = 'remove';
         a.appendChild(span);
     }
+    else {
+        a.innerHTML = label;
+    }
+    
     li.appendChild(a); //add the text node to the newly created div. 
     return li;
 }
@@ -156,7 +208,9 @@ function auto_suggest(form, sug_list)
                 //save coordinates
                 for (var i = 0; i < saved.length; i++)
                 {
-                   sugList.append(create_li(saved[i].label, true));
+                   
+                   sugList.append(create_li(saved[i].key, saved[i].lat + ', ' + saved[i].lon, true));
+                   //sugList.append(create_li(saved[i].key, true));
                 }
                 
                 //add current results to listview
@@ -167,7 +221,7 @@ function auto_suggest(form, sug_list)
                 
                 for(var i=0; i < len; i++)
                 {
-                   sugList.append(create_li(docs[i].name, false));
+                    sugList.append(create_li(docs[i].name, '', false));
                 }
                 sugList.listview("refresh");
 
@@ -176,16 +230,16 @@ function auto_suggest(form, sug_list)
     });
 
     sugList.on("click", "li a", function(e) {
-        //TODO
-        //check if label exists savedTerms localStorage
-        //and add if it does not
-
+        
+        var search = $(this).clone()
+                            .children()
+                            .remove()
+                            .end()
+                            .text();
+            
+        save_search(search); 
         //set input value to selection and clear list
-        $(form).val($(this).clone()
-                       .children()
-                       .remove()
-                       .end()
-                       .text());
+        $(form).val(search);
         sugList.html("");
     });
 }
