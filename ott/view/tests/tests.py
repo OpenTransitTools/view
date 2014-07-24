@@ -68,7 +68,7 @@ class TestMyView(unittest.TestCase):
 
     def test_plan_trip(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'planner.html', 'to=pdx::45.587546,-122.592925&from=zoo&Hour=9&Minute=0&AmPm=pm')
+            url = get_url(m + 'planner.html', 'to=pdx::45.587546,-122.592925&from=zoo::45.5092,-122.7133&Hour=9&Minute=0&AmPm=pm')
             s = call_url(url)
             self.assertRegexpMatches(s,"MAX Red Line")
 
