@@ -20,7 +20,6 @@
 <%def name="js_onload()">javascript:checkgps(); javascript:select_form();</%def>
 ${pform.gps_form_scriptlet()}
 ${form.select_form_scriptlet('from')}
-${pform.js_mode_pform_switcher()}
 
 ${page.main_trip_planner_form(_(u'Trip Planner'), extra_params, 'form')}
 
@@ -33,4 +32,5 @@ ${page.main_trip_planner_form(_(u'Trip Planner'), extra_params, 'form')}
 ##
 ${pform.planner_form(is_mobile=True)}
 ${form.autocomplete_js_includes()}
+${form.dynamic_forms_js()}
 ${pform.autocomplete_trip_planner()}
