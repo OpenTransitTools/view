@@ -10,6 +10,26 @@
   <link rel="stylesheet" href="../../css/jquery-ui.css">
   <link rel="stylesheet" href="../../css/autocomplete.css">
 
+
+  <style>
+
+
+  span.remove {
+     border: 0.5px solid rgba(0, 0, 0, 0);
+     color: #0000FF;
+     font-size: 60%;
+  }
+
+
+  span.remove:hover {
+     background: none repeat scroll 0 0 #F8F8F8;
+     border-color: #EEEEEE;
+  }
+  </style>
+
+
+
+
   </head>
 
   <body>
@@ -40,17 +60,19 @@
                 okay_clear_ele = false;
 
                 //save search term and data in local storage if it doesn't exist
-                var label = sel.label;
-                var searchT = {};
-                var searchT_raw = localStorage.getItem('searchTerms');
+                try
+                {
+                    var searchT = {};
+                    var searchT_raw = localStorage.getItem('searchTerms');
 
-                if (searchT_raw !== null) {
-                    searchT = JSON.parse(searchT_raw);
-                }
+                    if (searchT_raw !== null) {
+                        searchT = JSON.parse(searchT_raw);
+                    }
 
-                sel["saved"] = true;
-                searchT[label] = sel;
-                localStorage.setItem('searchTerms', JSON.stringify(searchT));
+                    sel["saved"] = true;
+                    searchT[sel.label] = sel;
+                    localStorage.setItem('searchTerms', JSON.stringify(searchT));
+                } catch(e) {}
             }
 
         fm.geo_div = "#from_coord";

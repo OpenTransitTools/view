@@ -47,19 +47,53 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
 
     function get_saved_searches(term) {
         var ret_val = [];
-        var searchT_raw = localStorage.getItem('searchTerms');
-        if (searchT_raw !== null) {
-            var searchT = JSON.parse(searchT_raw);
-         
-            //check that saved search terms match current search term
-            for (var key in searchT) {
-                if (searchT.hasOwnProperty(key) && 
-                        key.toUpperCase().substring(0, term.length) === term.toUpperCase()) {
-                    ret_val.push(searchT[key]);
+        try 
+        {
+            var searchT_raw = localStorage.getItem('searchTerms');
+            if (searchT_raw !== null) {
+                var searchT = JSON.parse(searchT_raw);
+             
+                //check that saved search terms match current search term
+                for (var key in searchT) {
+                    if (searchT.hasOwnProperty(key) && 
+                            key.toUpperCase().substring(0, term.length) === term.toUpperCase()) {
+                        ret_val.push(searchT[key]);
+                    }
                 }
             }
+        } catch(e) {}
+        return ret_val
+    }
+
+    function hide_and_remove(e, label) {
+        //hide list element with matching label with remove text
+        //and remove from localStorage
+        $("li:contains(" + label + ")").has('span:contains(remove)').hide();    
+        var searchT_raw = localStorage.getItem('searchTerms');
+        var searchT = JSON.parse(searchT_raw);
+        delete searchT[label];
+        localStorage.setItem('searchTerms', JSON.stringify(searchT));
+    }
+  
+    function build_list_item(item) {
+        var a = document.createElement("a");
+
+        if (item.saved) {
+            a.innerHTML = '<b>' + item.label + '</b>';       
+            var span = document.createElement("span");
+            span.setAttribute('class', 'remove');
+            span.onclick = function(e) {
+                hide_and_remove(e, item.label);
+                e.stopPropagation(); 
+            }
+            span.innerHTML = 'remove';
+            a.appendChild(span);
         }
-        return ret_val;
+        else {
+            a.innerHTML = item.label;
+        }
+        
+        return a;
     }
 
     function enable_ajax()
@@ -86,15 +120,14 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
 
                     success : function(resp, resp_code)  // jQuery ajax callback
                     {
-                        
-                        //var searchT = get_saved_searches();
-                      
+                        //push saved searchings 
+                        var data = get_saved_searches(request.term);
+
                         // step 0: SOLR elements...
                         docs = resp.response.docs;
                         len = docs.length;
 
                         // step 1: loop through SOLR results, and build data object required for jQ's autocomplete 
-                        var data = get_saved_searches(request.term);
 
                         for (var i = 0; i < len; i++)
                         {
@@ -140,23 +173,13 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
             }
         
         // set custom display for autocomplete results
-        // render saved search terms different than solr results
-        
-        // TODO: add 'remove' link for saved search terms
-
+        // render saved search terms with a 'remove' span
         }).data("ui-autocomplete")._renderItem = function(ul, item) {
-            
 
-            if(item.saved === true) {
-                return $("<li></li>")
-                    .data("item.autocomplete", item)
-                    .append("<a><b>" + item.label + "</b></a>")
-                    .appendTo(ul);
-            }
             return $("<li></li>")
-                .data("item.autocomplete", item)
-                .append("<a><i>" + item.label + "</i></a>")
-                .appendTo(ul);
+                    .data("item.autocomplete", item)
+                    .append(build_list_item(item))
+                    .appendTo(ul);               
         };
     }
     this.enable_ajax = enable_ajax;
