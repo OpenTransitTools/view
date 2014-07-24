@@ -58,6 +58,12 @@
 %>
 </%def>
 
+<%def name="stop_title(stop)"><%
+    dir_name = ''
+    if stop['direction'] and len(stop['direction']) > 0:
+        dir_name = _(stop['direction'])
+%>${util.name_city_str_from_struct(stop)} ${dir_name}</%def>
+
 <%def name="make_name_id(stop)">
 <%
     name = "{0} {1}".format(_(u'Stop ID').encode('utf-8'), stop['stop_id']).decode('utf-8')

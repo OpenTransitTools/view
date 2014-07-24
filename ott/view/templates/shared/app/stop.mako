@@ -17,7 +17,7 @@
 %>
 
 ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
-<h2>${util.name_city_str_from_struct(stop)}</h2>
+<h2>${su.stop_title(stop)}</h2>
 
 <div class="group">
     <div class="left-column">
