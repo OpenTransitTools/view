@@ -51,6 +51,7 @@ function SavedSearches()
             var span = document.createElement("span");
             span.setAttribute('class', 'remove');
             span.onclick = function(e) {
+
                 hide_and_remove(e, item.label);
                 e.stopPropagation(); 
             }
