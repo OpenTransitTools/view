@@ -15,11 +15,12 @@
 
 
   span.remove {
-     border: 0.5px solid rgba(0, 0, 0, 0);
+     border: 1px solid rgba(0, 0, 0, 0);
      color: #0000FF;
      font-size: 60%;
+     position: absolute;
+     right: 0px;
   }
-
 
   span.remove:hover {
      background: none repeat scroll 0 0 #F8F8F8;
@@ -58,21 +59,6 @@
                 $(this.geo_div).val(sel.solr_doc.lat + ',' + sel.solr_doc.lon);
                 console.log("NOTE: setting coord to " + sel.solr_doc.lat + ',' + sel.solr_doc.lon);
                 okay_clear_ele = false;
-
-                //save search term and data in local storage if it doesn't exist
-                try
-                {
-                    var searchT = {};
-                    var searchT_raw = localStorage.getItem('searchTerms');
-
-                    if (searchT_raw !== null) {
-                        searchT = JSON.parse(searchT_raw);
-                    }
-
-                    sel["saved"] = true;
-                    searchT[sel.label] = sel;
-                    localStorage.setItem('searchTerms', JSON.stringify(searchT));
-                } catch(e) {}
             }
 
         fm.geo_div = "#from_coord";

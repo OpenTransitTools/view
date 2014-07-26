@@ -6,6 +6,23 @@ if(window.console.log == undefined) window.console = function(el){};
  */
 function SavedSearches()
 {
+    function save_search(item) {
+       try
+	{
+	    var searchT = {};
+	    var searchT_raw = localStorage.getItem('searchTerms');
+
+	    if (searchT_raw !== null) {
+		searchT = JSON.parse(searchT_raw);
+	    }
+
+	    item["saved"] = true;
+	    searchT[item.label] = item;
+	    localStorage.setItem('searchTerms', JSON.stringify(searchT));
+	} catch(e) {}
+    }
+    this.save_search = save_search;
+
     function get_saved_searches(term)
     {
         var ret_val = [];
@@ -31,7 +48,7 @@ function SavedSearches()
     }
     this.get_saved_searches = get_saved_searches;
 
-    function hide_and_remove(e, label)
+    function hide_and_remove(label)
     {
         //hide list element with matching label with remove text
         //and remove from localStorage
@@ -45,14 +62,17 @@ function SavedSearches()
     function build_list_item(item)
     {
         var a = document.createElement("a");
+        a.onclick = function(e) {
+            save_search(item);
+        }
+
         if (item.saved)
         {
             a.innerHTML = '<b>' + item.label + '</b>';
             var span = document.createElement("span");
             span.setAttribute('class', 'remove');
             span.onclick = function(e) {
-
-                hide_and_remove(e, item.label);
+                hide_and_remove(item.label);
                 e.stopPropagation(); 
             }
             span.innerHTML = 'remove';
@@ -61,7 +81,6 @@ function SavedSearches()
         else {
             a.innerHTML = item.label;
         }
-
         return a;
     }
     this.build_list_item = build_list_item;
@@ -193,7 +212,7 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
         // render saved search terms with a 'remove' span
         }).data("ui-autocomplete")._renderItem = function(ul, item) {
 
-            return $("<li></li>")
+            return $("<li style='position:relative'></li>")
                     .data("item.autocomplete", item)
                     .append(THIS.saved.build_list_item(item))
                     .appendTo(ul);
