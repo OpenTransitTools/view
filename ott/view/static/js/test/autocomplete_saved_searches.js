@@ -4,31 +4,48 @@ if(window.console.log == undefined) window.console = function(el){};
 /** 
  * SavedSearch
  */
-function SavedSearches()
+function SavedSearches(removeTitle)
 {
-    function save_search(item)
+    this.DB_NAME = 'searchTerms';
+    this.removeTitle = removeTitle || 'remove';
+
+    function save(item)
     {
         try
         {
             var searchT = {};
-            var searchT_raw = localStorage.getItem('searchTerms');
+            var searchT_raw = localStorage.getItem(this.DB_NAME);
             if (searchT_raw !== null)
             {
                 searchT = JSON.parse(searchT_raw);
             }
             item["saved"] = true;
             searchT[item.label] = item;
-            localStorage.setItem('searchTerms', JSON.stringify(searchT));
+            localStorage.setItem(this.DB_NAME, JSON.stringify(searchT));
         } catch(e) {}
     }
-    this.save_search = save_search;
+    this.save = save;
+
+   /**
+    * hide list element with matching label with 'remove' text
+    * and remove the saved search from localStorage
+    */
+    function remove(label)
+    {
+        $("li:contains(" + label + ")").has('span:contains(' + this.removeTitle + ')').hide();
+        var searchT_raw = localStorage.getItem(this.DB_NAME);
+        var searchT = JSON.parse(searchT_raw);
+        delete searchT[label];
+        localStorage.setItem(this.DB_NAME, JSON.stringify(searchT));
+    }
+    this.remove = remove;
 
     function get_saved_searches(term)
     {
         var ret_val = [];
         try 
         {
-            var searchT_raw = localStorage.getItem('searchTerms');
+            var searchT_raw = localStorage.getItem(this.DB_NAME);
             if (searchT_raw !== null)
             {
                 var searchT = JSON.parse(searchT_raw);
@@ -48,22 +65,13 @@ function SavedSearches()
     }
     this.get_saved_searches = get_saved_searches;
 
-    function hide_and_remove(label)
-    {
-        //hide list element with matching label with remove text
-        //and remove from localStorage
-        $("li:contains(" + label + ")").has('span:contains(remove)').hide();    
-        var searchT_raw = localStorage.getItem('searchTerms');
-        var searchT = JSON.parse(searchT_raw);
-        delete searchT[label];
-        localStorage.setItem('searchTerms', JSON.stringify(searchT));
-    }
-
     function build_list_item(item)
     {
+        var THIS = this;
+
         var a = document.createElement("a");
         a.onclick = function(e) {
-            save_search(item);
+            THIS.save(item);
         }
 
         if (item.saved)
@@ -72,10 +80,10 @@ function SavedSearches()
             var span = document.createElement("span");
             span.setAttribute('class', 'remove');
             span.onclick = function(e) {
-                hide_and_remove(item.label);
+                THIS.remove(item.label);
                 e.stopPropagation(); 
             }
-            span.innerHTML = 'remove';
+            span.innerHTML = this.removeTitle;
             a.appendChild(span);
         }
         else {
@@ -100,7 +108,7 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
     this.input_div   = input_div   || "#input";
     this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "6";
-    this.saved       = new SavedSearches();
+    this.saved       = new SavedSearches('la áqui');
 
 
     /** callback (that you override) to get the resulting clicked SOLR document */
