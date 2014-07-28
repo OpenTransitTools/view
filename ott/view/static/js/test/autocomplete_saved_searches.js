@@ -6,10 +6,13 @@ if(window.console.log == undefined) window.console = function(el){};
  */
 function SavedSearches(removeTitle)
 {
-    this.DB_NAME = 'searchTerms';
     this.removeTitle = removeTitle || 'remove';
+    this.DB_NAME = 'searchTerms';
 
-    function save(item)
+    /** 
+     * add an item to our local store
+     */
+    function add(item)
     {
         try
         {
@@ -24,7 +27,7 @@ function SavedSearches(removeTitle)
             localStorage.setItem(this.DB_NAME, JSON.stringify(searchT));
         } catch(e) {}
     }
-    this.save = save;
+    this.add = add;
 
    /**
     * hide list element with matching label with 'remove' text
@@ -40,7 +43,10 @@ function SavedSearches(removeTitle)
     }
     this.remove = remove;
 
-    function get_saved_searches(term)
+    /**
+     * find all matching terms in local store, and return them... 
+     */
+    function find(term)
     {
         var ret_val = [];
         try 
@@ -49,12 +55,13 @@ function SavedSearches(removeTitle)
             if (searchT_raw !== null)
             {
                 var searchT = JSON.parse(searchT_raw);
+                term = term.trim().toUpperCase();
 
                 //check that saved search terms match current search term
                 for (var key in searchT)
                 {
                     if (searchT.hasOwnProperty(key) && 
-                        key.toUpperCase().substring(0, term.length) === term.toUpperCase())
+                        key.toUpperCase().indexOf(term) >= 0)
                     {
                         ret_val.push(searchT[key]);
                     }
@@ -63,7 +70,7 @@ function SavedSearches(removeTitle)
         } catch(e) {}
         return ret_val;
     }
-    this.get_saved_searches = get_saved_searches;
+    this.find = find;
 
     function make_list_item(item)
     {
@@ -71,7 +78,7 @@ function SavedSearches(removeTitle)
 
         var a = document.createElement("a");
         a.onclick = function(e) {
-            THIS.save(item);
+            THIS.add(item);
         }
 
         if (item.saved)
@@ -165,7 +172,11 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
                     success : function(resp, resp_code)  // jQuery ajax callback
                     {
                         //push saved searchings 
-                        var data = THIS.saved.get_saved_searches(request.term);
+                        var data = [];
+
+                        var save_list = THIS.saved.find(request.term);
+                        //data.concat(save_list);
+                        data = save_list;
 
                         // step 0: SOLR elements...
                         docs = resp.response.docs;
