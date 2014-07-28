@@ -65,7 +65,7 @@ function SavedSearches(removeTitle)
     }
     this.get_saved_searches = get_saved_searches;
 
-    function build_list_item(item)
+    function make_list_item(item)
     {
         var THIS = this;
 
@@ -81,7 +81,7 @@ function SavedSearches(removeTitle)
             span.setAttribute('class', 'remove');
             span.onclick = function(e) {
                 THIS.remove(item.label);
-                e.stopPropagation(); 
+                e.stopPropagation();  // prevent selection (and keep drop down open)
             }
             span.innerHTML = this.removeTitle;
             a.appendChild(span);
@@ -91,7 +91,7 @@ function SavedSearches(removeTitle)
         }
         return a;
     }
-    this.build_list_item = build_list_item;
+    this.make_list_item = make_list_item;
 }
 
 
@@ -222,7 +222,7 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
 
             return $("<li style='position:relative'></li>")
                     .data("item.autocomplete", item)
-                    .append(THIS.saved.build_list_item(item))
+                    .append(THIS.saved.make_list_item(item))
                     .appendTo(ul);
         };
     }
