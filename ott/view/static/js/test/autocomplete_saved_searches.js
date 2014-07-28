@@ -6,20 +6,20 @@ if(window.console.log == undefined) window.console = function(el){};
  */
 function SavedSearches()
 {
-    function save_search(item) {
-       try
-	{
-	    var searchT = {};
-	    var searchT_raw = localStorage.getItem('searchTerms');
-
-	    if (searchT_raw !== null) {
-		searchT = JSON.parse(searchT_raw);
-	    }
-
-	    item["saved"] = true;
-	    searchT[item.label] = item;
-	    localStorage.setItem('searchTerms', JSON.stringify(searchT));
-	} catch(e) {}
+    function save_search(item)
+    {
+        try
+        {
+            var searchT = {};
+            var searchT_raw = localStorage.getItem('searchTerms');
+            if (searchT_raw !== null)
+            {
+                searchT = JSON.parse(searchT_raw);
+            }
+            item["saved"] = true;
+            searchT[item.label] = item;
+            localStorage.setItem('searchTerms', JSON.stringify(searchT));
+        } catch(e) {}
     }
     this.save_search = save_search;
 
