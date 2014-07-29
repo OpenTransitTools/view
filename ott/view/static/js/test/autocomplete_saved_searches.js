@@ -56,12 +56,16 @@ function SolrPlaceDAO(doc, saved)
 SolrPlaceDAO.prototype = new PlaceDAO();
 
 
-/** 
- * SavedSearch
+/**
+ * SavedSearch is a local store caching system for PlaceDAO records...
+
+ * @param {Object} removeTitle is the 'name' of the remove (from store) link ... defaults to 'remove'  
+ * @param {Object} saveOnClick means that when a result from the auto-complete list is clicked, it will get saved into the cache
  */
-function SavedSearches(removeTitle)
+function SavedSearches(removeTitle, saveOnClick)
 {
     this.removeTitle = removeTitle || 'remove';
+    this.saveOnClick = saveOnClick;
     this.DB_NAME = 'searchTerms';
 
     /** 
@@ -154,24 +158,29 @@ function SavedSearches(removeTitle)
     {
         var THIS = this;
 
-        // step 1: add an onClick callback to add this item to our store
+        // step 0: we're gonna wrap elements in an a tag...
         var a = document.createElement("a");
-        a.onclick = function(e) {
-            if(item && item.saved === false)
-            {
-                THIS.add(item);
-            }
-        };
 
-        // step 2: add the 'remove' crap...
+        // step 1: add an onClick callback to add this item to our store
+        if(this.saveOnClick)
+        {
+            a.onclick = function(e) {
+                if(item && !item.saved)
+                {
+                    THIS.add(item);
+                }
+            };
+        }
+
+        // step 2: is this is a cached item, add a 'remove' link to get it out of our cache
         if(item.saved)
         {
             a.innerHTML = '<b>' + item.label + '</b>';
             var span = document.createElement("span");
             span.setAttribute('class', 'remove');
             span.onclick = function(e) {
-                THIS.remove(item.label);
-                e.stopPropagation();  // prevent selection (and keep drop down open)
+                THIS.remove(item.label);  // step 1: remove the cached item from our drop down
+                e.stopPropagation();      // step 2: prevent the deleted item from selection (and keep drop down open)
             };
             span.innerHTML = this.removeTitle;
             a.appendChild(span);
@@ -198,7 +207,7 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
     this.input_div   = input_div   || "#input";
     this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "6";
-    this.cache       = new SavedSearches('la áqui');
+    this.cache       = new SavedSearches('la áqui', true);
 
 
     /** callback (that you override) to get the resulting clicked SOLR document */
