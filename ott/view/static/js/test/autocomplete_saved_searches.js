@@ -273,19 +273,18 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
                     // call our custom callback with the SOLR document
                     THIS.select_callback(ui.item);
                 } catch(e) {
-                    try { console.log("SOLRAutoComplete - select callback: " + e); }
-                    catch(e) {}
+                    console.log("SOLRAutoComplete - select callback: " + e); 
                 }
             }
 
         // set custom display for autocomplete results
         // render saved search terms with a 'remove' span
         }).data("ui-autocomplete")._renderItem = function(ul, item) {
-
-            return $("<li style='position:relative'></li>")
+            var ret_val = $("<li style='position:relative'></li>")
                     .data("item.autocomplete", item)
                     .append(THIS.cache.make_list_item(item))
                     .appendTo(ul);
+            return ret_val;
         };
     };
 };
