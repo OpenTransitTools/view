@@ -127,8 +127,11 @@ function SavedSearches(removeTitle)
         // step 1: add an onClick callback to add this item to our store
         var a = document.createElement("a");
         a.onclick = function(e) {
-            var rec = new SolrPlaceDAO(item);
-            THIS.add(rec);
+            if(item && item.saved === false)
+            {
+                var rec = new SolrPlaceDAO(item);
+                THIS.add(rec);
+            }
         };
 
         // step 2: add the 'remove' crap...
@@ -166,15 +169,14 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
     this.input_div   = input_div   || "#input";
     this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "6";
-    this.saved       = new SavedSearches('la áqui');
+    this.cache       = new SavedSearches('la áqui');
 
 
     /** callback (that you override) to get the resulting clicked SOLR document */
-    function select_callback(sel)
+    this.select_callback = function(sel)
     {
         console.log('Selected:' + sel.value + ", id: " + sel.id + " " + this.solr_url);
-    }
-    this.select_callback = select_callback;
+    };
 
     /** 
      * function that controls the naming of the geo point
@@ -182,7 +184,7 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
      *
      * @return: formatted place name, ala 844 SE X Street, Portland -or- A Ave, Portalnd (Stop ID 2)  
      */
-    function place_name_format(name, city, type, id)
+    this.place_name_format = function(name, city, type, id)
     {
         var ret_val = name;
         try {
@@ -195,11 +197,10 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
             console.log(e);
         }
         return ret_val;
-    }
-    this.place_name_format = place_name_format;
+    };
 
 
-    function enable_ajax()
+    this.enable_ajax = function()
     {
         var THIS = this;  // make SOLRAutoComplete instance 'this' available to jQuery ajax stuff below 
 
@@ -226,7 +227,7 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
                         //push saved searchings 
                         var data = [];
 
-                        var save_list = THIS.saved.find(request.term);
+                        var save_list = THIS.cache.find(request.term);
                         //data.concat(save_list);
                         data = save_list;
 
@@ -285,10 +286,9 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
 
             return $("<li style='position:relative'></li>")
                     .data("item.autocomplete", item)
-                    .append(THIS.saved.make_list_item(item))
+                    .append(THIS.cache.make_list_item(item))
                     .appendTo(ul);
         };
-    }
-    this.enable_ajax = enable_ajax;
+    };
 };
 
