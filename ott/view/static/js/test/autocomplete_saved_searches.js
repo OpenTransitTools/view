@@ -1,6 +1,30 @@
 if(window.console == undefined) window.console = {};
 if(window.console.log == undefined) window.console = function(el){};
 
+/**
+ * data structs for storing place data... 
+ */
+function PlaceDAO(label, lat, lon, saved)
+{
+    this.set = function(label, lat, lon, saved)
+    {
+        this.label = label;
+        this.lat   = lat;
+        this.lon   = lon;
+        this.saved = saved;
+    };
+    this.set(label, lat, lon, saved);
+}
+
+function SolrPlaceDAO(solr_rec, saved)
+{
+    this.set(solr_rec.label, solr_rec.solr_doc.lat, solr_rec.solr_doc.lon, saved);
+    this.city  = solr_rec.solr_doc.city;
+    this.type  = solr_rec.solr_doc.type;
+}
+SolrPlaceDAO.prototype = new PlaceDAO();
+
+
 /** 
  * SavedSearch
  */
@@ -12,43 +36,32 @@ function SavedSearches(removeTitle)
     /** 
      * add an item to our local store
      */
-    function add(label, lat, lon)
+    this.add = function(rec)
     {
         try
         {
-            if(label)
+            if(rec && rec.label)
             {
                 var db  = this.get_store({});
-                var rec = this.make_record(label, lat, lon, true);
-                if(db && rec)
+                if(db)
                 {
-                    db[label] = rec;
+                    rec.saved = true;
+                    db[rec.label] = rec;
                     localStorage.setItem(this.DB_NAME, JSON.stringify(db));
                 }
             }
         } catch(e) {
             console.log(e);
         }
-    }
-    this.add = add;
+    };
 
-    function add_solr_rec(item)
-    {
-        try
-        {
-            this.add(item.label, item.solr_doc.lat, item.solr_doc.lon);
-        } catch(e) {
-            console.log(e);
-        }
-    }
-    this.add_solr_rec = add_solr_rec;
 
 
    /**
     * hide list element with matching label with 'remove' text
     * and remove the saved search from localStorage
     */
-    function remove(label)
+    this.remove = function(label)
     {
         $("li:contains(" + label + ")").has('span:contains(' + this.removeTitle + ')').hide();
         var db = this.get_store();
@@ -57,13 +70,13 @@ function SavedSearches(removeTitle)
             delete db[label];
             localStorage.setItem(this.DB_NAME, JSON.stringify(db));
         }
-    }
-    this.remove = remove;
+    };
+
 
     /**
      * find all matching terms in local store, and return them... 
      */
-    function find(term)
+    this.find = function(term)
     {
         var ret_val = [];
         try 
@@ -88,54 +101,35 @@ function SavedSearches(removeTitle)
             console.log(e);
         }
         return ret_val;
-    }
-    this.find = find;
+    };
 
     /**
      * returns either the existing store, or create a new store in localStorage
      */
-    function get_store(def_val)
+    this.get_store = function(def_val)
     {
         var ret_val = def_val;
         var existing_store = localStorage.getItem(this.DB_NAME);
         if (existing_store !== null)
             ret_val = JSON.parse(existing_store);
         return ret_val; 
-    }
-    this.get_store = get_store;
+    };
 
-    /**
-     * makes a new record for our store...
-     */
-    function make_record(label, lat, lon, saved)
-    {
-        var ret_val = null;
-        if(label)
-        {
-            var rec = {};
-            rec['label'] = label;
-            if(lat)   rec['lat'] = lat;
-            if(lon)   rec['lon'] = lon;
-            if(saved) rec['saved'] = true;
-            ret_val = rec;
-        }
-        return ret_val;
-    }
-    this.make_record = make_record;
 
     /** 
      * makes a list item for each solr record...
      * such records have callbacks to remove the item from the list (see onClick below)
      */
-    function make_list_item(item)
+    this.make_list_item = function(item)
     {
         var THIS = this;
 
         // step 1: add an onClick callback to add this item to our store
         var a = document.createElement("a");
         a.onclick = function(e) {
-            THIS.add_solr_rec(item);
-        }
+            var rec = new SolrPlaceDAO(item);
+            THIS.add(rec);
+        };
 
         // step 2: add the 'remove' crap...
         if(item.saved)
@@ -146,7 +140,7 @@ function SavedSearches(removeTitle)
             span.onclick = function(e) {
                 THIS.remove(item.label);
                 e.stopPropagation();  // prevent selection (and keep drop down open)
-            }
+            };
             span.innerHTML = this.removeTitle;
             a.appendChild(span);
         }
@@ -155,8 +149,7 @@ function SavedSearches(removeTitle)
             a.innerHTML = item.label;
         }
         return a;
-    }
-    this.make_list_item = make_list_item;
+    };
 }
 
 
