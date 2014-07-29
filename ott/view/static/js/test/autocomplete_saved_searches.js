@@ -6,14 +6,32 @@ if(window.console.log == undefined) window.console = function(el){};
  */
 function PlaceDAO(label, lat, lon, saved)
 {
-    this.set = function(label, lat, lon, saved)
+    this.label = null;
+    this.lat   = null;
+    this.lon   = null;
+    this.saved = false;
+    this.city  = null;
+    this.type  = null;
+
+    this.set = function(label, lat, lon, saved, city, type)
     {
         this.label = label;
         this.lat   = lat;
         this.lon   = lon;
         this.saved = saved;
+        this.city  = city;
+        this.type  = type;
     };
-    this.set(label, lat, lon, saved);
+
+    this.copy = function()
+    {
+        var ret_val = new PlaceDAO();
+        ret_val.set(this.label, this.lat, this.lon, this.saved, this.city, this.type);
+        return ret_val;
+    };
+
+    if(label)
+        this.set(label, lat, lon, saved);
 }
 
 /** extended data and functionality for SOLR*/
@@ -49,9 +67,7 @@ function SolrPlaceDAO(doc, saved)
     };
 
     var label = this.place_name_format(doc);
-    this.set(label, doc.lat, doc.lon, saved);
-    this.city = doc.city;
-    this.type = doc.type;
+    this.set(label, doc.lat, doc.lon, saved, doc.city, doc.type);
 }
 SolrPlaceDAO.prototype = new PlaceDAO();
 

@@ -46,8 +46,7 @@
             to.enable_ajax();
             function tp_geo_callback(sel)
             {
-                $(this.geo_div).val(sel.lat + ',' + sel.lon);
-                this.innerHTML = sel.label;
+                //$(this.geo_div).val(sel.lat + ',' + sel.lon);
                 console.log("NOTE: a friendly word from the callback in the .html file");
                 console.log("      setting form coords to " + sel.label + '::'  + sel.lat + ',' + sel.lon);
                 okay_clear_ele = false;
