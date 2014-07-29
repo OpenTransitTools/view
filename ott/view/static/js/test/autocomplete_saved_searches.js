@@ -12,22 +12,37 @@ function SavedSearches(removeTitle)
     /** 
      * add an item to our local store
      */
-    function add(item)
+    function add(label, lat, lon)
     {
         try
         {
-            var searchT = {};
-            var searchT_raw = localStorage.getItem(this.DB_NAME);
-            if (searchT_raw !== null)
+            if(label)
             {
-                searchT = JSON.parse(searchT_raw);
+                var db  = this.get_store({});
+                var rec = this.make_record(label, lat, lon, true);
+                if(db && rec)
+                {
+                    db[label] = rec;
+                    localStorage.setItem(this.DB_NAME, JSON.stringify(db));
+                }
             }
-            item["saved"] = true;
-            searchT[item.label] = item;
-            localStorage.setItem(this.DB_NAME, JSON.stringify(searchT));
-        } catch(e) {}
+        } catch(e) {
+            console.log(e);
+        }
     }
     this.add = add;
+
+    function add_solr_rec(item)
+    {
+        try
+        {
+            this.add(item.label, item.solr_doc.lat, item.solr_doc.lon);
+        } catch(e) {
+            console.log(e);
+        }
+    }
+    this.add_solr_rec = add_solr_rec;
+
 
    /**
     * hide list element with matching label with 'remove' text
@@ -36,10 +51,12 @@ function SavedSearches(removeTitle)
     function remove(label)
     {
         $("li:contains(" + label + ")").has('span:contains(' + this.removeTitle + ')').hide();
-        var searchT_raw = localStorage.getItem(this.DB_NAME);
-        var searchT = JSON.parse(searchT_raw);
-        delete searchT[label];
-        localStorage.setItem(this.DB_NAME, JSON.stringify(searchT));
+        var db = this.get_store();
+        if(db)
+        {
+            delete db[label];
+            localStorage.setItem(this.DB_NAME, JSON.stringify(db));
+        }
     }
     this.remove = remove;
 
@@ -51,37 +68,77 @@ function SavedSearches(removeTitle)
         var ret_val = [];
         try 
         {
-            var searchT_raw = localStorage.getItem(this.DB_NAME);
-            if (searchT_raw !== null)
+            var db = this.get_store();
+            if(db)
             {
-                var searchT = JSON.parse(searchT_raw);
-                term = term.trim().toUpperCase();
+                  term = term.trim().toUpperCase();
 
                 //check that saved search terms match current search term
-                for (var key in searchT)
+                for(var key in db)
                 {
-                    if (searchT.hasOwnProperty(key) && 
-                        key.toUpperCase().indexOf(term) >= 0)
+                    if(db.hasOwnProperty(key) && 
+                       key.toUpperCase().indexOf(term) >= 0)
                     {
-                        ret_val.push(searchT[key]);
+                        ret_val.push(db[key]);
                     }
                 }
             }
-        } catch(e) {}
+        }
+        catch(e) {
+            console.log(e);
+        }
         return ret_val;
     }
     this.find = find;
 
+    /**
+     * returns either the existing store, or create a new store in localStorage
+     */
+    function get_store(def_val)
+    {
+        var ret_val = def_val;
+        var existing_store = localStorage.getItem(this.DB_NAME);
+        if (existing_store !== null)
+            ret_val = JSON.parse(existing_store);
+        return ret_val; 
+    }
+    this.get_store = get_store;
+
+    /**
+     * makes a new record for our store...
+     */
+    function make_record(label, lat, lon, saved)
+    {
+        var ret_val = null;
+        if(label)
+        {
+            var rec = {};
+            rec['label'] = label;
+            if(lat)   rec['lat'] = lat;
+            if(lon)   rec['lon'] = lon;
+            if(saved) rec['saved'] = true;
+            ret_val = rec;
+        }
+        return ret_val;
+    }
+    this.make_record = make_record;
+
+    /** 
+     * makes a list item for each solr record...
+     * such records have callbacks to remove the item from the list (see onClick below)
+     */
     function make_list_item(item)
     {
         var THIS = this;
 
+        // step 1: add an onClick callback to add this item to our store
         var a = document.createElement("a");
         a.onclick = function(e) {
-            THIS.add(item);
+            THIS.add_solr_rec(item);
         }
 
-        if (item.saved)
+        // step 2: add the 'remove' crap...
+        if(item.saved)
         {
             a.innerHTML = '<b>' + item.label + '</b>';
             var span = document.createElement("span");
@@ -93,7 +150,8 @@ function SavedSearches(removeTitle)
             span.innerHTML = this.removeTitle;
             a.appendChild(span);
         }
-        else {
+        else
+        {
             a.innerHTML = item.label;
         }
         return a;
@@ -141,6 +199,7 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
             ret_val = name + city + stop;
         }
         catch(e) {
+            console.log(e);
         }
         return ret_val;
     }
