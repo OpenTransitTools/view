@@ -168,7 +168,9 @@ function SavedSearches(removeTitle, saveOnClick)
                 if(item && !item.saved)
                 {
                     THIS.add(item);
+                    
                 }
+                return true;
             };
         }
 
@@ -181,6 +183,8 @@ function SavedSearches(removeTitle, saveOnClick)
             span.onclick = function(e) {
                 THIS.remove(item.label);  // step 1: remove the cached item from our drop down
                 e.stopPropagation();      // step 2: prevent the deleted item from selection (and keep drop down open)
+                console.log("NOTE: stop propogation of select event...");
+                return true;
             };
             span.innerHTML = this.removeTitle;
             a.appendChild(span);
@@ -207,13 +211,14 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
     this.input_div   = input_div   || "#input";
     this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "6";
-    this.cache       = new SavedSearches('la áqui', true);
+    this.cache       = new SavedSearches('la áqui');
 
 
     /** callback (that you override) to get the resulting clicked SOLR document */
     this.select_callback = function(sel)
     {
-        console.log('Selected:' + sel.value + ", id: " + sel.id + " " + this.solr_url);
+        console.log('Selected:' + sel + " " + this.solr_url);
+        return true;
     };
 
 
@@ -273,8 +278,9 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
                     // call our custom callback with the SOLR document
                     THIS.select_callback(ui.item);
                 } catch(e) {
-                    console.log("SOLRAutoComplete - select callback: " + e); 
+                    console.log("ERROR: SOLRAutoComplete - select callback: " + e); 
                 }
+                return true;
             }
 
         // set custom display for autocomplete results
