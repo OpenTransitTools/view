@@ -10,10 +10,7 @@
   <link rel="stylesheet" href="../../css/jquery-ui.css">
   <link rel="stylesheet" href="../../css/autocomplete.css">
 
-
   <style>
-
-
   span.remove {
      border: 1px solid rgba(0, 0, 0, 0);
      color: #0000FF;
@@ -27,14 +24,9 @@
      border-color: #EEEEEE;
   }
   </style>
-
-
-
-
   </head>
 
   <body>
-
     <label for="from">From</label>
     <input id="from_coord" type="hidden" value="None" name="fromCoord">
     <input id="from" type="text" tabindex="1" maxlength="80" size="45" name="from" autocomplete="off">
@@ -46,7 +38,6 @@
     <input id="going" type="text" tabindex="1" maxlength="80" size="45" name="going" autocomplete="off">
 
     <script>
-
      // main entry
       $(function(){
             fm = new SOLRAutoComplete('#from', 'http://maps10.trimet.org/solr/select');
@@ -55,9 +46,9 @@
             to.enable_ajax();
             function tp_geo_callback(sel)
             {
-
-                $(this.geo_div).val(sel.solr_doc.lat + ',' + sel.solr_doc.lon);
-                console.log("NOTE: setting coord to " + sel.solr_doc.lat + ',' + sel.solr_doc.lon);
+                console.log("NOTE: a friendly word from the callback in the .html file");
+                console.log("      setting form coords to " + sel.lat + ',' + sel.lon);
+                $(this.geo_div).val(sel.lat + ',' + sel.lon);
                 okay_clear_ele = false;
             }
 
@@ -66,9 +57,6 @@
         fm.select_callback = tp_geo_callback;
         to.select_callback = tp_geo_callback;
       }); 
-
     </script>
-
-
-  </body>
+ </body>
 </html>
