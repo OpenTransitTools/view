@@ -218,12 +218,10 @@ ${form.clear_element_scriptlet()}
         <fieldset class="submit">
             ${form.get_extra_params_hidden_inputs()}
             <input name="submit" tabindex="13" type="submit" value="${_(u'Get directions')} &raquo;" id="submit" title="${_(u'Submit your trip plan information')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
-            <!--TODO temporarily removing this so testers don't get distracted
             <div id="mapcheckbox-wrap">
                 <input type="checkbox" id="mapcheckbox" tabindex="12" title="${_(u'Show trip on an interactive map (broadband/desktop only)')}" name="mapit" value="A" onclick="doMap();">
                 <label for="mapcheckbox" class="mapcheckbox-label" title="${_(u'Show trip on an interactive map (broadband/desktop only)')}">${_(u'Use Interactive Map')}</label>
             </div>
-            -->
         </fieldset>
     </form>
 </div><!-- end #plantrip -->
