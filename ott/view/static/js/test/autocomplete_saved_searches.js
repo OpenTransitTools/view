@@ -1,5 +1,5 @@
 if(window.console == undefined) window.console = {};
-if(window.console.log == undefined) window.console = function(el){};
+if(window.console.log == undefined) window.console.log = function(el){};
 
 /**
  * data structs for storing place data... 

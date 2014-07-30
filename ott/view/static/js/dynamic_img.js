@@ -6,7 +6,7 @@
 var DEF_IMG_WIDTH=100;
 var DEF_IMG_HEIGHT=100;
 if(window.console == undefined) window.console = {};
-if(window.console.log == undefined) window.console = function(el){};
+if(window.console.log == undefined) window.console.log = function(el){};
 
 
 /** load an img dynamically as opposed on page load time
