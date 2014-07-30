@@ -183,8 +183,8 @@ function SavedSearches(removeTitle, saveOnClick)
             a.onclick = function(e) {
                 if(item && !item.saved)
                 {
-                    THIS.add(item);
-                    
+                    var n = item.copy();
+                    THIS.add(n);
                 }
                 return true;
             };
