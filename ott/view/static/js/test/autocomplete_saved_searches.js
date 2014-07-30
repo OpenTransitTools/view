@@ -218,16 +218,18 @@ function SavedSearches(removeTitle, saveOnClick)
  * SOLRAutoComplete class that will call SOLR, and return text data...
  * new SOLRAutoComplete('#input_div_id')
  * 
- * @param {Object} input_div
- * @param {Object} solr_url
- * @param {Object} num_results
+ * @param {Object} input_div is the div id that we attach to autocorrect ('#input' is the default)
+ * @param {Object} solr_url is the path to solr's select service (localhost/solr/select by default)
+ * @param {Object} remove_title is the label on the 'remove' link in the drop-down list of cached results ('remove' by default)
+ * @param {Object} save_on_click will put any item that's clicked/selected from the drop-down into the cache (false by default)
+ * @param {Object} num_results is the number of solr results to return (6 by default) 
  */
-function SOLRAutoComplete(input_div, solr_url, num_results)
+function SOLRAutoComplete(input_div, solr_url, cache, num_results)
 {
     this.input_div   = input_div   || "#input";
     this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "6";
-    this.cache       = new SavedSearches('la áqui', true);
+    this.cache       = cache;
 
 
     /** callback (that you override) to get the resulting clicked SOLR document */

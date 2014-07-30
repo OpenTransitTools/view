@@ -40,9 +40,11 @@
     <script>
         // main entry
         $(function(){
-            fm = new SOLRAutoComplete('#from', 'http://maps10.trimet.org/solr/select');
+            var remove_title = 'la áqui';
+            var cache = new SavedSearches(remove_title, true);
+            fm = new SOLRAutoComplete('#from', 'http://maps10.trimet.org/solr/select', cache);
             fm.enable_ajax();
-            to = new SOLRAutoComplete('#going', 'http://maps10.trimet.org/solr/select');
+            to = new SOLRAutoComplete('#going', 'http://maps10.trimet.org/solr/select', cache);
             to.enable_ajax();
             function tp_geo_callback(sel)
             {
