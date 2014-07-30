@@ -84,7 +84,7 @@ function SavedSearches(removeTitle, saveOnClick)
     this.saveOnClick = saveOnClick;
     this.DB_NAME = 'searchTerms';
 
-    /** 
+    /**
      * add an item to our local store
      */
     this.add = function(rec)
@@ -227,7 +227,7 @@ function SOLRAutoComplete(input_div, solr_url, num_results)
     this.input_div   = input_div   || "#input";
     this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "6";
-    this.cache       = new SavedSearches('la áqui');
+    this.cache       = new SavedSearches('la áqui', true);
 
 
     /** callback (that you override) to get the resulting clicked SOLR document */

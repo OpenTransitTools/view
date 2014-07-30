@@ -33,30 +33,29 @@
 
     <br><br>
 
-    <label for="from">Going</label>
+    <label for="going">Going</label>
     <input id="going_coord" type="hidden" value="None" name="goingCoord">
     <input id="going" type="text" tabindex="1" maxlength="80" size="45" name="going" autocomplete="off">
 
     <script>
-     // main entry
-      $(function(){
+        // main entry
+        $(function(){
             fm = new SOLRAutoComplete('#from', 'http://maps10.trimet.org/solr/select');
             fm.enable_ajax();
             to = new SOLRAutoComplete('#going', 'http://maps10.trimet.org/solr/select');
             to.enable_ajax();
             function tp_geo_callback(sel)
             {
-                //$(this.geo_div).val(sel.lat + ',' + sel.lon);
+                $(this.geo_div).val(sel.lat + ',' + sel.lon);
                 console.log("NOTE: a friendly word from the callback in the .html file");
                 console.log("      setting form coords to " + sel.label + '::'  + sel.lat + ',' + sel.lon);
-                okay_clear_ele = false;
                 return true;
             }
 
-        fm.geo_div = "#from_coord";
-        to.geo_div = "#going_coord";
-        fm.select_callback = tp_geo_callback;
-        to.select_callback = tp_geo_callback;
+            fm.geo_div = "#from_coord";
+            to.geo_div = "#going_coord";
+            fm.select_callback = tp_geo_callback;
+            to.select_callback = tp_geo_callback;
       }); 
     </script>
  </body>
