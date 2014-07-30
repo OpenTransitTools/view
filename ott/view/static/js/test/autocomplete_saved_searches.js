@@ -306,24 +306,25 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
 
         // set custom display for autocomplete results
         // render saved search terms with a 'remove' span
-        }).data("ui-autocomplete")._renderItem = function(ul, item) {
+        }).data("ui-autocomplete")._renderItem = function(ul, rec) {
 
-            // step 1: either make a 'cache'-able list element, or just normal element
-            var elem;
+            // step 1: either make a 'cache' enabled list item, or just a normal item, 
+            //         based on whether we have a cache or not...
+            var item;
             if(THIS.cache)
             {
-                elem = THIS.cache.make_list_item(item);
+                item = THIS.cache.make_list_item(rec);
             }
             else
             {
-                elem = document.createElement("a");
-                elem.innerHTML = item.label;
+                item = document.createElement("a");
+                item.innerHTML = rec.label;
             }
 
             // step 2: add this element to the drop down list...
             var ret_val = $("<li style='position:relative'></li>")
-                        .data("item.autocomplete", item)
-                        .append(elem)
+                        .data("item.autocomplete", rec)
+                        .append(item)
                         .appendTo(ul);
 
             return ret_val;
