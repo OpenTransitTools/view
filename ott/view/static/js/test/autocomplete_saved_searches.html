@@ -41,7 +41,7 @@
         // main entry
         $(function(){
             var remove_title = 'la áqui';
-            var cache = new SavedSearches(remove_title, true);
+            var cache = new PlaceCache(remove_title, true);
             fm = new SOLRAutoComplete('#from', 'http://maps10.trimet.org/solr/select', cache);
             fm.enable_ajax();
             to = new SOLRAutoComplete('#going', 'http://maps10.trimet.org/solr/select', cache);

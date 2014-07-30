@@ -73,12 +73,12 @@ SolrPlaceDAO.prototype = new PlaceDAO();
 
 
 /**
- * SavedSearch is a local store caching system for PlaceDAO records...
+ * PlaceCache is a local store caching system for PlaceDAO records...
 
  * @param {Object} removeTitle is the 'name' of the remove (from store) link ... defaults to 'remove'  
  * @param {Object} saveOnClick means that when a result from the auto-complete list is clicked, it will get saved into the cache
  */
-function SavedSearches(removeTitle, saveOnClick)
+function PlaceCache(removeTitle, saveOnClick)
 {
     this.removeTitle = removeTitle || 'remove';
     this.saveOnClick = saveOnClick;
