@@ -153,11 +153,11 @@
         stop = new SOLRAutoComplete('${id}', '${solr_url}');
         stop.enable_ajax();
 
-        function stop_geo_callback(sel, evt)
+        function stop_geo_callback(rec, evt)
         {
-            $(this.geo_div).val(sel.solr_doc.lat + ',' + sel.solr_doc.lon);
-            console.log("NOTE: setting coord to " + sel.solr_doc.lat + ',' + sel.solr_doc.lon);
-            okay_clear_ele = false;
+            $(this.geo_div).val(rec.lat + ',' + rec.lon);
+            console.log("NOTE: forms_utils.mako (.html) setting coord to " + rec.lat + ',' + rec.lon);
+            okay_clear_ele = false; // note: global var see function clear_element() in form_utils.mako
         }
         stop.geo_div = "${id}_coord";
         stop.select_callback = stop_geo_callback;

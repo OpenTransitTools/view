@@ -33,11 +33,11 @@
         to = new SOLRAutoComplete('${to_id}', '${solr_url}');
         to.enable_ajax();
 
-        function tp_geo_callback(sel)
+        function tp_geo_callback(rec)
         {
-            $(this.geo_div).val(sel.solr_doc.lat + ',' + sel.solr_doc.lon);
-            console.log("NOTE: setting coord to " + sel.solr_doc.lat + ',' + sel.solr_doc.lon);
-            okay_clear_ele = false;
+            $(this.geo_div).val(rec.lat + ',' + rec.lon);
+            console.log("NOTE: planner_forms_utils.mako (.html) setting coord to " + rec.lat + ',' + rec.lon);
+            okay_clear_ele = false; // note: global var see function clear_element() in form_utils.mako
         }
         fm.geo_div = "${fm_id}_coord";
         to.geo_div   = "${to_id}_coord";

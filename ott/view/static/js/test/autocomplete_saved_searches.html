@@ -46,7 +46,8 @@
             fm.enable_ajax();
             to = new SOLRAutoComplete('#going', 'http://maps10.trimet.org/solr/select');
             to.enable_ajax();
-            function tp_geo_callback(sel)
+
+            function geo_callback(sel)
             {
                 $(this.geo_div).val(sel.lat + ',' + sel.lon);
                 console.log("NOTE: a friendly word from the callback in the .html file");
@@ -56,8 +57,8 @@
 
             fm.geo_div = "#from_coord";
             to.geo_div = "#going_coord";
-            fm.select_callback = tp_geo_callback;
-            to.select_callback = tp_geo_callback;
+            fm.select_callback = geo_callback;
+            to.select_callback = geo_callback;
       }); 
     </script>
  </body>
