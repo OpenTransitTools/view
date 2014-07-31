@@ -44,21 +44,12 @@
             var cache = new PlaceCache(remove_title, true);
             fm = new SOLRAutoComplete('#from', 'http://maps10.trimet.org/solr/select', cache);
             fm.enable_ajax();
+            fm.geo_div = "#from_coord";
+
+            // NOTE that going form doesn't have a cache, nor a geo div...testing
             to = new SOLRAutoComplete('#going', 'http://maps10.trimet.org/solr/select');
             to.enable_ajax();
-
-            function geo_callback(sel)
-            {
-                $(this.geo_div).val(sel.lat + ',' + sel.lon);
-                console.log("NOTE: a friendly word from the callback in the .html file");
-                console.log("      setting form coords to " + sel.label + '::'  + sel.lat + ',' + sel.lon);
-                return true;
-            }
-
-            fm.geo_div = "#from_coord";
-            to.geo_div = "#going_coord";
-            fm.select_callback = geo_callback;
-            to.select_callback = geo_callback;
+            //to.geo_div = "#going_coord";
       }); 
     </script>
  </body>

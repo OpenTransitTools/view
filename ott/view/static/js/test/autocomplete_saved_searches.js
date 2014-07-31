@@ -232,13 +232,28 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
     this.cache       = cache;
 
 
-    /** callback (that you override) to get the resulting clicked SOLR document */
-    this.select_callback = function(sel)
+    /** 
+     * AutoComplete custom callback item selection
+     * 
+     * NOTE: this callback can be overridden if need be...
+     *       this callback will set this.DIV's geo_div value to lat,lon if this.geo_div exists
+     *
+     * @see AutoComplete.enable_ajax.select() for the jQuery callback, which then calls this routine...
+     * @param {Object} rec is the PlaceDAO record for the item selected
+     */
+    this.select_callback = function(rec)
     {
-        console.log('Selected:' + sel + " " + this.solr_url);
+        if(this.geo_div)
+        {
+            console.log("AutoComplete select_callback() for item " + rec.label + " -- setting geo_div to " + rec.lat + ',' + rec.lon);
+            $(this.geo_div).val(rec.lat + ',' + rec.lon);
+        }
+        else
+        {
+            console.log("AutoComplete select_callback for item: " + rec.label + '::'  + rec.lat + ',' + rec.lon);
+        }
         return true;
-    };
-
+    }
 
     this.enable_ajax = function()
     {
