@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2014-07-24 14:14-0700\n"
+"POT-Creation-Date: 2014-07-30 18:31-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -323,7 +323,7 @@ msgstr ""
 msgid "Plan Your Trip on TriMet"
 msgstr ""
 
-#: ott/view/templates/desktop/planner_geocode.html:15 ott/view/templates/mobile/planner_form.html:12 ott/view/templates/mobile/planner_form.html:25
+#: ott/view/templates/desktop/planner_geocode.html:15 ott/view/templates/mobile/planner_form.html:12 ott/view/templates/mobile/planner_form.html:24
 #: ott/view/templates/mobile/planner_geocode.html:15 ott/view/templates/shared/utils/pagetype_utils.mako:52
 #: ott/view/templates/shared/utils/pagetype_utils.mako:61 ott/view/templates/shared/utils/pagetype_utils.mako:67
 #: ott/view/templates/shared/utils/planner_utils.mako:10 ott/view/templates/shared/utils/planner_utils.mako:42
@@ -474,22 +474,22 @@ msgstr ""
 msgid "Amenities"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:50 ott/view/templates/shared/utils/planner_form_utils.mako:60
+#: ott/view/templates/shared/utils/form_utils.mako:50 ott/view/templates/shared/utils/planner_form_utils.mako:55
 #: ott/view/templates/shared/utils/stop_utils.mako:39
 msgid "Select a location"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:87 ott/view/templates/shared/utils/planner_form_utils.mako:114
-#: ott/view/templates/shared/utils/planner_form_utils.mako:123
+#: ott/view/templates/shared/utils/form_utils.mako:87 ott/view/templates/shared/utils/planner_form_utils.mako:109
+#: ott/view/templates/shared/utils/planner_form_utils.mako:118
 msgid "Enter address, intersection, landmark or Stop ID"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:88 ott/view/templates/shared/utils/planner_form_utils.mako:115
-#: ott/view/templates/shared/utils/planner_form_utils.mako:124
+#: ott/view/templates/shared/utils/form_utils.mako:88 ott/view/templates/shared/utils/planner_form_utils.mako:110
+#: ott/view/templates/shared/utils/planner_form_utils.mako:119
 msgid "Use my current GPS location"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:114 ott/view/templates/shared/utils/planner_form_utils.mako:185
+#: ott/view/templates/shared/utils/form_utils.mako:114 ott/view/templates/shared/utils/planner_form_utils.mako:180
 msgid "Maximum walk"
 msgstr ""
 
@@ -497,32 +497,36 @@ msgstr ""
 msgid "Maximum bicycle"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:176 ott/view/templates/shared/utils/route_select_utils.mako:19
+#: ott/view/templates/shared/utils/form_utils.mako:153 ott/view/templates/shared/utils/planner_form_utils.mako:31
+msgid "remove"
+msgstr ""
+
+#: ott/view/templates/shared/utils/form_utils.mako:169 ott/view/templates/shared/utils/route_select_utils.mako:19
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:59
 msgid "Select"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:192
+#: ott/view/templates/shared/utils/form_utils.mako:185
 msgid "We found multiple"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:192
+#: ott/view/templates/shared/utils/form_utils.mako:185
 msgid "locations"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:192 ott/view/templates/shared/utils/form_utils.mako:194
+#: ott/view/templates/shared/utils/form_utils.mako:185 ott/view/templates/shared/utils/form_utils.mako:187
 msgid "for"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:194
+#: ott/view/templates/shared/utils/form_utils.mako:187
 msgid "We cannot find a"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:194
+#: ott/view/templates/shared/utils/form_utils.mako:187
 msgid "location"
 msgstr ""
 
-#: ott/view/templates/shared/utils/form_utils.mako:267 ott/view/templates/shared/utils/planner_form_utils.mako:402
+#: ott/view/templates/shared/utils/form_utils.mako:260 ott/view/templates/shared/utils/planner_form_utils.mako:395
 msgid "Please make sure your GPS setting is turned on for this browser"
 msgstr ""
 
@@ -714,196 +718,196 @@ msgstr ""
 msgid "Schedule for"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:69
+#: ott/view/templates/shared/utils/planner_form_utils.mako:64
 msgid "Re-type location"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:70 ott/view/templates/shared/utils/stop_utils.mako:48
+#: ott/view/templates/shared/utils/planner_form_utils.mako:65 ott/view/templates/shared/utils/stop_utils.mako:48
 msgid "Continue"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:92
+#: ott/view/templates/shared/utils/planner_form_utils.mako:87
 msgid "You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code."
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:106
+#: ott/view/templates/shared/utils/planner_form_utils.mako:101
 msgid "Plan your trip"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:106 ott/view/templates/shared/utils/planner_form_utils.mako:153
+#: ott/view/templates/shared/utils/planner_form_utils.mako:101 ott/view/templates/shared/utils/planner_form_utils.mako:148
 #: ott/view/templates/shared/utils/planner_narrative.mako:17 ott/view/templates/shared/utils/planner_narrative.mako:32
 #: ott/view/templates/shared/utils/planner_utils.mako:341 ott/view/templates/shared/utils/planner_utils.mako:360
 msgid "on"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:111 ott/view/templates/shared/utils/planner_utils.mako:17
+#: ott/view/templates/shared/utils/planner_form_utils.mako:106 ott/view/templates/shared/utils/planner_utils.mako:17
 #: ott/view/templates/shared/utils/planner_utils.mako:61
 msgid "From"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:120 ott/view/templates/shared/utils/planner_utils.mako:62
+#: ott/view/templates/shared/utils/planner_form_utils.mako:115 ott/view/templates/shared/utils/planner_utils.mako:62
 msgid "To"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:129
+#: ott/view/templates/shared/utils/planner_form_utils.mako:124
 msgid "When"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:148
+#: ott/view/templates/shared/utils/planner_form_utils.mako:143
 msgid "am"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:149
+#: ott/view/templates/shared/utils/planner_form_utils.mako:144
 msgid "pm"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:164
+#: ott/view/templates/shared/utils/planner_form_utils.mako:159
 msgid "More options"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:170
+#: ott/view/templates/shared/utils/planner_form_utils.mako:165
 msgid "Trip preferences (optional)"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:172
+#: ott/view/templates/shared/utils/planner_form_utils.mako:167
 msgid "Show me the"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:179
+#: ott/view/templates/shared/utils/planner_form_utils.mako:174
 msgid ""
 "The quickest trips usually involve transferring between buses and trains and walking a short distance. You can choose 'fewest transfers' if you "
 "prefer not to transfer, but your trip will probably take longer."
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:192
+#: ott/view/templates/shared/utils/planner_form_utils.mako:187
 msgid ""
 "Here, you can specify how far you are willing to walk or bike to and from the bus stop or rail station. Note: If set to less than 1 mile, some "
 "trips may not be possible."
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:198
+#: ott/view/templates/shared/utils/planner_form_utils.mako:193
 msgid "Travel by"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:205
+#: ott/view/templates/shared/utils/planner_form_utils.mako:200
 msgid ""
 "Most trips involve a combination of buses and trains. You can specify bus-only or train-only, but keep in mind that some trips may not be possible "
 "as a result. To plan a bike + transit trip, use the Map Trip Planner."
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:210
+#: ott/view/templates/shared/utils/planner_form_utils.mako:205
 msgid "Help"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:213
+#: ott/view/templates/shared/utils/planner_form_utils.mako:208
 msgid "Fewer options"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:220
+#: ott/view/templates/shared/utils/planner_form_utils.mako:215
 msgid "Get directions"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:220
+#: ott/view/templates/shared/utils/planner_form_utils.mako:215
 msgid "Submit your trip plan information"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:223 ott/view/templates/shared/utils/planner_form_utils.mako:224
+#: ott/view/templates/shared/utils/planner_form_utils.mako:217 ott/view/templates/shared/utils/planner_form_utils.mako:218
 msgid "Show trip on an interactive map (broadband/desktop only)"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:224
+#: ott/view/templates/shared/utils/planner_form_utils.mako:218
 msgid "Use Interactive Map"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:237 ott/view/templates/shared/utils/planner_utils.mako:272
+#: ott/view/templates/shared/utils/planner_form_utils.mako:230 ott/view/templates/shared/utils/planner_utils.mako:272
 msgid "Depart after"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:241 ott/view/templates/shared/utils/planner_utils.mako:270
+#: ott/view/templates/shared/utils/planner_form_utils.mako:234 ott/view/templates/shared/utils/planner_utils.mako:270
 msgid "Arrive by"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:245
+#: ott/view/templates/shared/utils/planner_form_utils.mako:238
 msgid "Late as possible"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:249
+#: ott/view/templates/shared/utils/planner_form_utils.mako:242
 msgid "Early as possible"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:263 ott/view/templates/shared/utils/planner_utils.mako:237
+#: ott/view/templates/shared/utils/planner_form_utils.mako:256 ott/view/templates/shared/utils/planner_utils.mako:237
 msgid "Quickest trip"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:268 ott/view/templates/shared/utils/planner_utils.mako:235
+#: ott/view/templates/shared/utils/planner_form_utils.mako:261 ott/view/templates/shared/utils/planner_utils.mako:235
 msgid "Fewest transfers"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:273
+#: ott/view/templates/shared/utils/planner_form_utils.mako:266
 msgid "Bike friendly trip"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:287
+#: ott/view/templates/shared/utils/planner_form_utils.mako:280
 msgid "1/10 mile"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:291
+#: ott/view/templates/shared/utils/planner_form_utils.mako:284
 msgid "1/4 mile"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:295
+#: ott/view/templates/shared/utils/planner_form_utils.mako:288
 msgid "1/2 mile"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:299
+#: ott/view/templates/shared/utils/planner_form_utils.mako:292
 msgid "3/4 mile"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:303
+#: ott/view/templates/shared/utils/planner_form_utils.mako:296
 msgid "1 mile"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:307
+#: ott/view/templates/shared/utils/planner_form_utils.mako:300
 msgid "2 miles"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:311
+#: ott/view/templates/shared/utils/planner_form_utils.mako:304
 msgid "3 miles"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:315
+#: ott/view/templates/shared/utils/planner_form_utils.mako:308
 msgid "5 miles"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:319
+#: ott/view/templates/shared/utils/planner_form_utils.mako:312
 msgid "10 miles"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:333
+#: ott/view/templates/shared/utils/planner_form_utils.mako:326
 msgid "Bus or train"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:337
+#: ott/view/templates/shared/utils/planner_form_utils.mako:330
 msgid "Train only"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:341
+#: ott/view/templates/shared/utils/planner_form_utils.mako:334
 msgid "Bus only"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:345
+#: ott/view/templates/shared/utils/planner_form_utils.mako:338
 msgid "Bike to transit"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:349
+#: ott/view/templates/shared/utils/planner_form_utils.mako:342
 msgid "Bike and train only"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:353
+#: ott/view/templates/shared/utils/planner_form_utils.mako:346
 msgid "Bike only"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:357
+#: ott/view/templates/shared/utils/planner_form_utils.mako:350
 msgid "Walk only"
 msgstr ""
 
