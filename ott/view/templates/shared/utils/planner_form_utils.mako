@@ -28,21 +28,16 @@
     <script>
     // main entry 
     $(function(){
-        fm = new SOLRAutoComplete('${fm_id}', '${solr_url}');
-        fm.enable_ajax();
-        to = new SOLRAutoComplete('${to_id}', '${solr_url}');
-        to.enable_ajax();
+        var remove_title = "${_(u'remove')}";
+        var cache = new PlaceCache(remove_title, true);
 
-        function tp_geo_callback(rec)
-        {
-            $(this.geo_div).val(rec.lat + ',' + rec.lon);
-            console.log("NOTE: planner_forms_utils.mako (.html) setting coord to " + rec.lat + ',' + rec.lon);
-            okay_clear_ele = false; // note: global var see function clear_element() in form_utils.mako
-        }
+        var fm = new SOLRAutoComplete('${fm_id}', '${solr_url}', cache);
+        fm.enable_ajax();
         fm.geo_div = "${fm_id}_coord";
+
+        var to = new SOLRAutoComplete('${to_id}', '${solr_url}', cache);
+        to.enable_ajax();
         to.geo_div   = "${to_id}_coord";
-        fm.select_callback = tp_geo_callback;
-        to.select_callback = tp_geo_callback;
     });
     </script>
 </%def>

@@ -150,18 +150,11 @@
     <script>
     // main entry 
     $(function(){
-        stop = new SOLRAutoComplete('${id}', '${solr_url}');
+        var remove_title = "${_(u'remove')}";
+        var cache = new PlaceCache(remove_title, true);
+        var stop = new SOLRAutoComplete('${id}', '${solr_url}', cache);
         stop.enable_ajax();
-
-        function stop_geo_callback(rec, evt)
-        {
-            $(this.geo_div).val(rec.lat + ',' + rec.lon);
-            console.log("NOTE: forms_utils.mako (.html) setting coord to " + rec.lat + ',' + rec.lon);
-            okay_clear_ele = false; // note: global var see function clear_element() in form_utils.mako
-        }
         stop.geo_div = "${id}_coord";
-        stop.select_callback = stop_geo_callback;
-
         ${autocomplete_localize_place_name()}
     });
     </script>

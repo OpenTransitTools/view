@@ -247,6 +247,7 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
         {
             console.log("AutoComplete select_callback() for item " + rec.label + " -- setting geo_div to " + rec.lat + ',' + rec.lon);
             $(this.geo_div).val(rec.lat + ',' + rec.lon);
+            okay_clear_ele = false; // note: global var see function clear_element() in form_utils.mako
         }
         else
         {
