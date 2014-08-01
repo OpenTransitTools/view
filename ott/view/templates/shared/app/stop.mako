@@ -46,7 +46,7 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
         <h4 class="tight">${_(u'Amenities')}</h4>
         <ul class="small">
             %for a in stop['amenities']:
-            <li>${_(a).capitalize()}</li>
+            <li>${_(a)}</li>
             %endfor
         </ul>
         %endif
