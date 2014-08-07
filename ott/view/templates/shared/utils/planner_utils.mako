@@ -12,11 +12,14 @@
 ##
 ## @returns From <orig> to <dest>
 ##
-<%def name="get_from_to(plan, def_val='')"><% 
-    if plan and 'from' in plan and 'to' in plan:
-        return "{0} {1} {2} {3}".format(_(u'From'), plan['from']['name'], _(u'to'), plan['to']['name'])
-    else:
-        return def_val
+<%def name="get_from_to(plan, def_val='')"><%
+    ret_val = def_val
+    try:
+        if plan and 'from' in plan and 'to' in plan:
+            ret_val = "{0} {1} {2} {3}".format(_(u'From'), plan['from']['name'], _(u'to'), plan['to']['name'])
+    except:
+        pass
+    return ret_val
 %></%def>
 
 ##
