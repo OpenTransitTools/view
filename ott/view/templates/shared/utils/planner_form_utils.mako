@@ -80,7 +80,7 @@
         place = ''
 %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onChange="clear_element('${id}_coord');" onFocus="doClassHighlight(this); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
+    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="doClassHighlight(this); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">
@@ -94,7 +94,6 @@
 ## large trip planner form on planner_form.html
 ##
 <%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False)">
-${form.clear_element_scriptlet()}
 <div id="plantrip" class="basic">
     ## TODO : $Agency, not TriMet
     %if is_homepage:
