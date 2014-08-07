@@ -247,10 +247,10 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
             // clear the geo coordinate if the input form string changes
             if(this.geo_div)
             {
-                var curr_value = $(this.input_div).val();
+                var curr_value = $(this.input_div).val().trim();
                 if(curr_value != this.last_value)
                 {
-                    console.log("NOTE: clearing value of " + this.geo_div + " from " + $(this.geo_div).val() + " to '" + c + "'");
+                    console.log("NOTE: clearing value of " + this.geo_div + "(" + curr_value + ") from " + $(this.geo_div).val() + " to '" + c + "'");
                     $(this.geo_div).val(c);
                 }
             }
@@ -276,7 +276,7 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
         {
             console.log("AutoComplete select_callback() for item " + rec.label + " -- setting geo_div to " + rec.lat + ',' + rec.lon);
             $(this.geo_div).val(rec.lat + ',' + rec.lon);
-            THIS.last_value = rec.label;
+            THIS.last_value = rec.label.trim();
         }
         else
         {
