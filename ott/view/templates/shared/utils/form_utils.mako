@@ -111,9 +111,9 @@
     <script src="${prefix}/dynamic_forms.js"></script>
     <script>
     try {
-        var DPT = new DynamicPlannerForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
-        DPT.switch_mode();
-        DPT.add_mode_callback();
+        var forms = new DynamicForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
+        forms.switch_mode();
+        forms.add_mode_callback();
     } catch(e) {
         console.log(e);
     }
