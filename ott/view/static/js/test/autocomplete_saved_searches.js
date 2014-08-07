@@ -238,15 +238,26 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
      * clear callback will clean up any
      * 
      */
-    this.clear_callback = function(div, curr_txt, clear_val)
+    this.clear_callback = function(clear_value)
     {
         try
         {
-            var c = clear_val || ''; 
-            console.log("NOTE: clearing value of " + div + " from " + div.val() + " to '" + c + "'");
-            div.val(c);
+            var c = clear_value || '';
+
+            // clear the geo coordinate if the input form string changes
+            if(this.geo_div)
+            {
+                var curr_value = $(this.input_div).val();
+                if(curr_value != this.last_value)
+                {
+                    console.log("NOTE: clearing value of " + this.geo_div + " from " + $(this.geo_div).val() + " to '" + c + "'");
+                    $(this.geo_div).val(c);
+                }
+            }
         }
-        catch(e){
+        catch(e)
+        {
+            console.log("ERROR: SOLRAutoComplete - clear callback: " + e); 
         }
     }
 
@@ -276,6 +287,13 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
 
     this.enable_ajax = function()
     {
+        /** jQuery blur callback calls our custom clear */
+        $(THIS.input_div).blur(function() {
+            THIS.clear_callback();
+            return true;
+        });
+
+        /** jQuery autocomplete selected value callback */
         $(THIS.input_div).autocomplete(
         {
             minLength : 1,
@@ -330,20 +348,6 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
                 try {
                     // call our custom callback with the SOLR document
                     THIS.select_callback(ui.item);
-                    THIS.clear_callback();
-                } catch(e) {
-                    console.log("ERROR: SOLRAutoComplete - select callback: " + e); 
-                }
-                return true;
-            },
-
-            /** jQuery autocomplete selected value callback */
-            blur : function(event, ui)
-            {
-                try {
-                    // call our custom callback with the SOLR document
-                    THIS.select_callback(ui.item);
-                    THIS.clear_callback();
                 } catch(e) {
                     console.log("ERROR: SOLRAutoComplete - select callback: " + e); 
                 }
