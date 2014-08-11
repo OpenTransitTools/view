@@ -230,7 +230,36 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
     this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "6";
     this.cache       = cache;
+    this.last_value  = $(this.input_div).val().trim();
 
+    var THIS = this;  // make SOLRAutoComplete instance 'this' available to jQuery ajax stuff below 
+
+    /** 
+     * clear callback will clean up any
+     * 
+     */
+    this.clear_callback = function(clear_value)
+    {
+        try
+        {
+            var c = clear_value || '';
+
+            // clear the geo coordinate if the input form string changes
+            if(this.geo_div)
+            {
+                var curr_value = $(this.input_div).val().trim();
+                if(curr_value != this.last_value)
+                {
+                    console.log("NOTE: clearing value of " + this.geo_div + "(" + curr_value + ") from " + $(this.geo_div).val() + " to '" + c + "'");
+                    $(this.geo_div).val(c);
+                }
+            }
+        }
+        catch(e)
+        {
+            console.log("ERROR: SOLRAutoComplete - clear callback: " + e); 
+        }
+    }
 
     /** 
      * AutoComplete custom callback item selection
@@ -247,7 +276,7 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
         {
             console.log("AutoComplete select_callback() for item " + rec.label + " -- setting geo_div to " + rec.lat + ',' + rec.lon);
             $(this.geo_div).val(rec.lat + ',' + rec.lon);
-            okay_clear_ele = false; // note: global var see function clear_element() in form_utils.mako
+            THIS.last_value = rec.label.trim();
         }
         else
         {
@@ -258,8 +287,13 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
 
     this.enable_ajax = function()
     {
-        var THIS = this;  // make SOLRAutoComplete instance 'this' available to jQuery ajax stuff below 
+        /** jQuery blur callback calls our custom clear */
+        $(THIS.input_div).blur(function() {
+            THIS.clear_callback();
+            return true;
+        });
 
+        /** jQuery autocomplete selected value callback */
         $(THIS.input_div).autocomplete(
         {
             minLength : 1,

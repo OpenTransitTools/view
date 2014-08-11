@@ -19,7 +19,13 @@
 
     <label for="going">Going</label>
     <input id="going_coord" type="hidden" value="None" name="goingCoord">
-    <input id="going" type="text" tabindex="1" maxlength="80" size="45" name="going" autocomplete="off">
+    <input id="going" type="text" tabindex="2" maxlength="80" size="45" name="going" autocomplete="off">
+
+    <br><br><br><br><br><br>
+
+    <label for="test">Test</label>
+    <input id="test_coord" type="hidden" value="None" name="testCoord">
+    <input id="test" type="text" tabindex="3" maxlength="80" size="45" name="test" autocomplete="off">
 
     <script>
         // main entry
@@ -34,6 +40,11 @@
             to = new SOLRAutoComplete('#going', 'http://maps10.trimet.org/solr/select');
             to.enable_ajax();
             //to.geo_div = "#going_coord";
+
+            // Test straight jQuery
+            $( "#test" ).blur(function() {
+               alert( "Handler for .blur() called." );
+            });
       }); 
     </script>
  </body>

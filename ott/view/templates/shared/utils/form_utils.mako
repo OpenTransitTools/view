@@ -7,28 +7,6 @@
 <%namespace name="help"  file="/shared/utils/help_utils.mako"/>
 <%namespace name="an"    file="/shared/utils/analytics_utils.mako"/>
 
-##
-## javascript for clearing out an html element field...
-## (used in GEO <input> form elements ... hidden geo data element e.g., placeCoord)
-##
-<%def name="clear_element_scriptlet()">
-    <script type="text/javascript">
-    var okay_clear_ele = true;
-    function clear_element(id) {
-        try {
-            if(okay_clear_ele) 
-            {
-                var fm = document.getElementById(id)
-                console.log("NOTE: " + id + " value going from " + fm.value + " to ''");
-                fm.value = ""
-            }
-            okay_clear_ele = true
-        }
-        catch(e) {}
-    }
-    </script>
-</%def>
-
 <%def name="select_form_scriptlet(id='place')">
     <script type="text/javascript">
     function select_form() {
@@ -76,13 +54,12 @@
    if place is None:
        place = ''
 %>
-    ${clear_element_scriptlet()}
     <!-- Text box for re-geocoding a string -->
     <fieldset>
         <label for="${id}">${name}:</label>
         <input type="hidden" name="geo_type" value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}"/>
-        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);" onChange="clear_element('${id}_coord');" onFocus="doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
+        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doClassRegular(this);" onFocus="doClassHighlight(this); this.setSelectionRange(0, this.value.length);"/>
         %if is_mobile:
         <p id="${id}-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
         <p id="${id}-gps" style="display:none;" class="instructions"><a href="#" onclick="getGPS();">${_(u'Use my current GPS location')}</a></p>
@@ -111,9 +88,9 @@
     <script src="${prefix}/dynamic_forms.js"></script>
     <script>
     try {
-        var DPT = new DynamicPlannerForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
-        DPT.switch_mode();
-        DPT.add_mode_callback();
+        var forms = new DynamicForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
+        forms.switch_mode();
+        forms.add_mode_callback();
     } catch(e) {
         console.log(e);
     }

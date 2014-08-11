@@ -1,7 +1,7 @@
 if(window.console == undefined) window.console = {};
 if(window.console.log == undefined) window.console = function(el){};
 
-function DynamicPlannerForms(walk_label, bike_label, short_dist, long_dist)
+function DynamicForms(walk_label, bike_label, short_dist, long_dist)
 {
     this.walk_label = walk_label || 'Walk distance';
     this.bike_label = bike_label || 'Bike distance';
