@@ -347,6 +347,10 @@
     dt = date_utils.get_day_info()
 %>${dt['year']}</%def>
 
+<%def name="time_stamp()"><%
+    from time import strftime as time
+%><!-- built: ${'%m/%d/%Y at %H:%M' | time} --></%def>
+
 
 <%def name="month_options(selected)">
     %for m in (_(u'January'), _(u'February'), _(u'March'), _(u'April'), _(u'May'), _(u'June'), _(u'July'), _(u'August'), _(u'September'), _(u'October'), _(u'November'), _(u'December')):
