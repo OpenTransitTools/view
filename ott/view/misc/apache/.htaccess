@@ -1,2 +1,3 @@
 RewriteEngine  on
-RewriteRule .*stop.*.pl /ride/stop.html [R]
+RewriteRule .*stop.* /ride/stop.html [R]
+RewriteRule .*plantrip.* /ride/planner_form.html [R]
