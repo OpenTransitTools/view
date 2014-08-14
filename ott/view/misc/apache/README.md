@@ -11,6 +11,7 @@ RewriteEngine On
 RedirectMatch ^/qr/(.*) http://dev.trimet.org/ride/stop.html?source=QR_code&stop_id=$1
 
 
+
 Redirected URLs:
 ================
 

@@ -1,0 +1,2 @@
+RewriteEngine  on
+RewriteRule .*stop.*.pl /ride/stop.html [R]
