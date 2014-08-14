@@ -8,7 +8,7 @@ RewriteEngine On
     AllowOverride All
 </Location>
 
-RedirectMatch ^/qr/(.*) http://dev.trimet.org/ride/stop.html?source=QR_code&stop_id=$1
+RedirectMatch ^/qr/(.*) http://dev.trimet.org/ride/stop.html?source=QR_code\&stop_id=$1
 
 
 
@@ -29,7 +29,7 @@ a) Stop page from support emails:
 http://trimet.org/go/cgi-bin/stop_info.pl?lang=en&y1=-122.575291&Id=902&date=06-29-2014&acode1=OR&locID=1068&x1=45.322748
 
 4) Stop schedule pages
-
+http://dev.trimet.org/got/cgi-bin/sched.pl?lang=en&line=037&loc1=2&y1=-122.675681&Id=1&acode1=LA&x1=45.420598
 
 
 5) Trip planner requests
