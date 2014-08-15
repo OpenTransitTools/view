@@ -29,7 +29,7 @@ ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
             <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a>
             <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span>
         </h3>
-        <p>${stop.planner_walk_link(place, s, extra_params)} &nbsp;&bull;&nbsp; ${stop.routes_served(s, rte_url_tmpl)}</p>
+        <p>${stop.planner_walk_link(place, s, extra_params)} <span class="bullet">&nbsp;&bull;&nbsp;</span> ${stop.routes_served(s, rte_url_tmpl)}</p>
     </li>
     %endfor
     %endif
