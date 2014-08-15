@@ -34,28 +34,27 @@ ${self.emergency_content()|n,decode.utf8}
     <div id="nav-wrap" class="group">
         <nav id="nav">
             <div id="logo"><a href="/m/index.htm"></a></div>
-            <!-- TODO hiding hamburger for testing
             <div id="tabs-wrap">
                 <a id="tabs-icon-open" href="#nav">NAV</a>
                 <a id="tabs-icon-close" href="#top">${_(u'Close')}</a>
                 <div id="tabs-ul-wrap">
                     <ul id="tabs" class="group">
-                        <li><a href="/arrivals/small/pickroute.html">${_(u'Arrival Times')} (TransitTracker)</a></li>
-                        <li><a href="/ride/m/planner_form.html?dd${extra_params}">${_(u'Plan a Trip')}</a></li>
-                        <li><a href="/m/alerts/index.htm">${_(u'Service Alerts')}</a></li>
-                        <li><a href="/ride/m/stop_select_form.html?dd${extra_params}">${_(u'Stops and Schedules')}</a></li>
-                        <li><a href="/m/maps.htm">${_(u'Maps')}</a></li>
-                        <li><a href="/m/contact.htm?dd${extra_params}">${_(u'Contact Us')}</a></li>
+                        <li><a href="/arrivals/small/pickroute.html" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - TransitTracker']);">${_(u'Arrival Times')} (TransitTracker)</a></li>
+                        <li><a href="/ride/m/planner_form.html?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Plan a Trip']);">${_(u'Plan a Trip')}</a></li>
+                        <li><a href="/m/alerts/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger Service Alerts']);">${_(u'Service Alerts')}</a></li>
+                        <li><a href="/ride/m/stop_select_form.html?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Stops and Schedules']);">${_(u'Stops and Schedules')}</a></li>
+                        <li><a href="/m/maps.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Maps']);">${_(u'Maps')}</a></li>
+                        <li><a href="https://public.govdelivery.com/accounts/ORTRIMET/subscriber/new?category_id=ORTRIMET_C2" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Email Updates']);">Get Updates by Email</a></li>
+                        <li><a href="/m/contact.htm?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Contact Us']);">${_(u'Contact Us')}</a></li>
                     </ul>
-                    end #tabs 
                 </div>
-            </div>-->
+            </div><!-- end #tabs-wrap -->
         </nav><!-- end #nav -->
     </div><!-- end #nav-wrap -->
 </header><!-- end #header-wrap -->
 
 <div id="content-body" class="main">
-    <!--<h1>${self.title()}</h1>-->
+    <h1>${self.title()}</h1>
     ${next.body()}
     <div id="bottom-wrap" class="group">
         ${self.bottom()}

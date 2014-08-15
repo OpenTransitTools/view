@@ -10,11 +10,12 @@
 <%def name="from_to_img_url(type=None, def_val=False)">
 <%
     ret_val = def_val
-    if type:
-        if 'from' in type:
-            ret_val = 'images/triptools/old/start.png'
-        elif 'to' in type:
-            ret_val = 'images/triptools/old/end.png'
+# removing icon from this error
+#    if type:
+#        if 'from' in type:
+#            ret_val = 'images/triptools/old/start.png'
+#        elif 'to' in type:
+#            ret_val = 'images/triptools/old/end.png'
     return ret_val
 %>
 </%def>
