@@ -13,7 +13,7 @@
     url = agency_template.make_url_template()
     rte_url_tmpl = url.mobile_route_url
 %>
-<%def name="title()">TriMet: ${_(u'Stops near') } ${place['name']}</%def>
+<%def name="title()">${_(u'Stops near') } ${place['name']}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
 <%def name="stations_selected()">class="selected"</%def>

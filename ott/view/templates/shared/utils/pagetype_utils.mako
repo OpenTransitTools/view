@@ -18,7 +18,7 @@
 <%def name="stop_select(name='', extra_params='', base_params='me')">
     ${h1_base_stop_stations(name, extra_params, base_params)}
     </div>
-    <h1><!--${name}-->Find a Stop or Station</h1>
+    <h1 class="mobilehidden"><!--${name}-->Find a Stop or Station</h1>
 </%def>
 
 #
