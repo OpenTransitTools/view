@@ -2,5 +2,6 @@ RewriteEngine  on
 RewriteRule .*stop.* /ride/stop.html [R]
 RewriteRule .*sched.* /ride/stop_schedule.html [R]
 RewriteRule .*plantrip.* /ride/planner_form.html [R]
+RewriteRule .*showmap.* /ride/map_place.html [R]
 
 RedirectMatch qr/(.*) http://dev.trimet.org/ride/stop.html?source=QR_code\&stop_id=$1
