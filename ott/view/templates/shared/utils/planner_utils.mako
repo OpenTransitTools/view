@@ -247,12 +247,11 @@
 ## a img bar for the imap, with link to the map
 ##
 <%def name="bottom_imap_bar()">
-## TODO temporarily removing this link so testers do not follow
-##    <div id="imap-wrap">
-##        <section id="imap" class="group">
-##            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
-##        </section><!-- end #imap -->
-##    </div><!-- end #promobar-wrap -->
+    <div id="imap-wrap">
+        <section id="imap" class="group">
+            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
+        </section><!-- end #imap -->
+    </div><!-- end #promobar-wrap -->
 </%def>
 
 ##
