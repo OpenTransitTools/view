@@ -5,7 +5,7 @@
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="stop" file="/shared/utils/stop_utils.mako"/>
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 
@@ -22,4 +22,4 @@
 ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
 
 <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
-${stop.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}
+${su.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}
