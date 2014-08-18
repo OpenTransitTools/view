@@ -83,10 +83,28 @@
 <a href="planner_walk.html?mode=WALK&from=${util.make_named_coord_from_obj(frm)}&to=${util.make_named_coord_from_obj(to)}${extra_params}">${text}</a>
 </%def>
 
-<%def name="stops_list(slist, rte_url_tmpl, more_link, params, extra_params)">
+##
+## NOTE: rte_url_tmpl is a closure method passed into routes_served.  
+##       @see utils.agency_template.py for more info...
+##
+<%def name="route_abrv_list(stop, rte_url_tmpl)">
+    %for i, r in enumerate(stop['short_names']):
+${', ' if (i > 0) else ''}<a target="#" href="${rte_url_tmpl(r['route_id'])}">${ r['route_short_name']}</a>
+%endfor
+</%def>
+<%def name="routes_served(stop, rte_url_tmpl)">
+%if rte_url_tmpl and stop and 'short_names' in stop and stop['short_names']:
+${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
+%endif
+</%def>
+
+##
+## show a list of stops (used by nearest_stops.html) 
+##
+<%def name="stops_list(list, rte_url_tmpl, more_link, params, extra_params)">
 <ul id="stopslist" class="group">
-    %if nearest and 'stops' in nearest:
-    %for s in nearest['stops']:
+    %if list and 'stops' in list:
+    %for s in list['stops']:
     <li>
         <h3 class="tight">
             <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a>
@@ -103,21 +121,6 @@
     </li>
     %endif
 </ul>
-</%def>
-
-##
-## NOTE: rte_url_tmpl is a closure method passed into routes_served.  
-##       @see utils.agency_template.py for more info...
-##
-<%def name="route_abrv_list(stop, rte_url_tmpl)">
-    %for i, r in enumerate(stop['short_names']):
-${', ' if (i > 0) else ''}<a target="#" href="${rte_url_tmpl(r['route_id'])}">${ r['route_short_name']}</a>
-%endfor
-</%def>
-<%def name="routes_served(stop, rte_url_tmpl)">
-%if rte_url_tmpl and stop and 'short_names' in stop and stop['short_names']:
-${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
-%endif
 </%def>
 
 <%def name="nearby_stops_link(stop, extra_params)">
@@ -161,8 +164,8 @@ ${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
     if is_mobile:
         w=300
         h=240
-    map_url = "http://ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/7/coord/{2},{3}/extraparams/f\
-ormat_options=layout:scale".format(w, h, lon, lat)
+    map_url = "http://ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/8/coord/{2},{3}/extraparams/f\
+ormat_options=layout:place".format(w, h, lon, lat)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
 %>
 </%def>
