@@ -381,11 +381,11 @@
     ${day_options(selected)}
     </select></%def>
 
-<%def name="link_or_strong(label, make_strong, url, label_prefix='', l_bracket='[', r_bracket=']')">
+<%def name="link_or_strong(strong_label, link_label, make_strong, url, l_bracket='[', r_bracket=']')">
     %if make_strong:
-        <strong>${label}</strong>
+        <strong>${strong_label}</strong>
     %else:
-        <a href="${url}"><!--${label_prefix}--> ${label}</a>
+        <a href="${url}">${link_label}</a>
     %endif
 </%def>
 

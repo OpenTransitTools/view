@@ -81,9 +81,9 @@
 ##
 <%def name="schedule_sort_by_links(stop, extra_params)">
     <p class="sort">
-        ${util.link_or_strong(_(u'Sort by line'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params), _('sort'))}
+        ${util.link_or_strong(_(u'Sorting by line'), _(u'Sort by line'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params))}
          &nbsp;|&nbsp;
-        ${util.link_or_strong(_(u'Sort by time'), sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'time', extra_params), _('sort'))}
+        ${util.link_or_strong(_(u'Sorting by time'), _(u'Sort by time'),  sort_by_time(),    make_stop_schedule_url(stop['stop_id'], 'time', extra_params))}
     </p>
 </div><!-- end .contenttabs-bar -->
 </%def>
