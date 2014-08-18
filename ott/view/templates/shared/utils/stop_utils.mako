@@ -110,7 +110,7 @@ ${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
             <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a>
             <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span>
         </h3>
-        <p>${round(s['distance'], 2)} ${_(u'miles away')} <span class="bullet">&bull;</span> ${routes_served(s, rte_url_tmpl)} <span class="bullet">&bull;</span> ${planner_walk_link(place, s, _('Walking directions'), extra_params)}</p>
+        <p>${round(s['distance'], 2)} ${_(u'miles away')} <span class="separator">&nbsp;&bull;&nbsp;</span> ${routes_served(s, rte_url_tmpl)} <span class="separator">&nbsp;&bull;&nbsp;</span> ${planner_walk_link(place, s, _('Walking directions'), extra_params)}</p>
     </li>
     %endfor
     %endif
