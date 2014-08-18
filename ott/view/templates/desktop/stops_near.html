@@ -12,6 +12,7 @@
     from ott.view.utils import agency_template
     url = agency_template.make_url_template()
     rte_url_tmpl = url.desktop_route_url
+    more_link = not util.has_url_param('show_more')
 %>
 <%def name="title()">TriMet: ${_(u'Stops near') } ${place['name']}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
@@ -21,23 +22,4 @@
 ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
 
 <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
-<ul id="stopslist" class="group">
-    %if nearest and 'stops' in nearest:
-    %for s in nearest['stops']:
-    <li>
-        <h3 class="tight">
-            <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a>
-            <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span>
-        </h3>
-        <p>${stop.planner_walk_link(place, s, extra_params)} <span class="bullet">&nbsp;&bull;&nbsp;</span> ${stop.routes_served(s, rte_url_tmpl)}</p>
-    </li>
-    %endfor
-    %endif
-
-    %if not util.has_url_param('show_more'):
-    <li>
-        <p align="center"><a href="stops_near.html?has_geocode=true&show_more=true&${util.prep_url_params(params)}${extra_params}">${_(u'Show more stops')}</a></p>
-    </li>
-    %endif
-</ul>
-
+${stop.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}

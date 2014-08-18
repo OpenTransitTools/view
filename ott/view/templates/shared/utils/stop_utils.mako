@@ -83,6 +83,28 @@
 <a href="planner_walk.html?mode=WALK&from=${util.make_named_coord_from_obj(frm)}&to=${util.make_named_coord_from_obj(to)}${extra_params}">${text}</a>
 </%def>
 
+<%def name="stops_list(slist, rte_url_tmpl, more_link, params, extra_params)">
+<ul id="stopslist" class="group">
+    %if nearest and 'stops' in nearest:
+    %for s in nearest['stops']:
+    <li>
+        <h3 class="tight">
+            <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Click for more information about this stop')}">${s['name']}</a>
+            <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span>
+        </h3>
+        <p>${round(s['distance'], 2)} ${_(u'miles away')} <span class="bullet">&bull;</span> ${routes_served(s, rte_url_tmpl)} <span class="bullet">&bull;</span> ${planner_walk_link(place, s, _('Walking directions'), extra_params)}</p>
+    </li>
+    %endfor
+    %endif
+
+    %if more_link:
+    <li>
+        <p align="center"><a href="stops_near.html?has_geocode=true&show_more=true&${util.prep_url_params(params)}${extra_params}">${_(u'Show more stops')}</a></p>
+    </li>
+    %endif
+</ul>
+</%def>
+
 ##
 ## NOTE: rte_url_tmpl is a closure method passed into routes_served.  
 ##       @see utils.agency_template.py for more info...
