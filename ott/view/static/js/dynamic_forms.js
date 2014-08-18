@@ -50,9 +50,6 @@ function DynamicForms(walk_label, bike_label, short_dist, long_dist)
     {
         $("#trip-transfers option[value='TRANSFERS']").show();
         $("#trip-transfers option[value='SAFE']").hide();
-        // THESE DIDN'T WORK EITHER ON Chrome
-        //$("#trip-transfers option[value='SAFE']").children(':visible').hide();
-        //$("#trip-transfers option[value='SAFE']").css('display','none');
         $('label[for=trip-walkdistance]').html(this.walk_label);
         if(change) {
             $('#trip-transfers').val('QUICK').change();

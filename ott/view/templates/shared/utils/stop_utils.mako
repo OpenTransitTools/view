@@ -79,11 +79,8 @@
 %>
 </%def>
 
-<%def name="planner_walk_link(frm, to, extra_params)">
-<%
-    dist = _('${number} mile', '${number} miles', mapping={'number':round(to['distance'], 2)})
-%>
-<a href="planner_walk.html?mode=WALK&from=${util.make_named_coord_from_obj(frm)}&to=${util.make_named_coord_from_obj(to)}${extra_params}">${dist}</a>
+<%def name="planner_walk_link(frm, to, text, extra_params)">
+<a href="planner_walk.html?mode=WALK&from=${util.make_named_coord_from_obj(frm)}&to=${util.make_named_coord_from_obj(to)}${extra_params}">${text}</a>
 </%def>
 
 ##
