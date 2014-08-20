@@ -27,6 +27,7 @@ from ott.utils import html_utils
 from ott.utils import geo_utils
 from ott.utils import object_utils
 from ott.utils import transit_utils
+from ott.utils.parse import TripParamParser
 
 from ott.view.model.place import Place
 
@@ -152,7 +153,9 @@ def planner(request):
         else:
             mapit = html_utils.get_first_param(request, 'mapit')
             if mapit:
-                ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + query_string)
+                params = TripParamParser(request)
+                map_params = params.map_url_params()
+                ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + map_params )
             else:
                 ret_val = request.model.get_plan(query_string, **request.params)
                 if ret_val and 'error' in ret_val:
