@@ -146,18 +146,19 @@ def planner(request):
     '''
     try:
         ret_val = {}
-        #import pdb; pdb.set_trace()
-        query_string, geocode_param = geocode_utils.do_from_to_geocode_check(request)
-        if geocode_param:
-            ret_val = make_subrequest(request, '/planner_geocode.html', query_string, geocode_param)
+        gc = geocode_utils.do_from_to_geocode_check(request)
+        if gc['geocode_param']:
+            ret_val = make_subrequest(request, '/planner_geocode.html', gc['query_string'], gc['geocode_param'])
         else:
             mapit = html_utils.get_first_param(request, 'mapit')
             if mapit:
                 params = TripParamParser(request)
+                params.set_from(gc['from']) 
+                params.set_to(gc['to']) 
                 map_params = params.map_url_params()
-                ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + map_params )
+                ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + map_params)
             else:
-                ret_val = request.model.get_plan(query_string, **request.params)
+                ret_val = request.model.get_plan(gc['query_string'], **request.params)
                 if ret_val and 'error' in ret_val:
                     msg = object_utils.get_error_message(ret_val)
                     ret_val = make_subrequest(request, '/exception.html', 'error_message={0}'.format(msg))

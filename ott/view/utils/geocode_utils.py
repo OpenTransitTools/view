@@ -53,16 +53,16 @@ def do_from_to_geocode_check(request):
 
         @return: a modified query string, and any extra params needed for the geocoder 
     '''
-    geocode_param = None
-    query_string = request.query_string
+    ret_val = {'query_string':None, 'geocode_param':None, 'frm':None, 'to':None}
 
     # step 1: check for from & to coord information in the url
     has_from_coord = has_coord(request, 'from')
     has_to_coord   = has_coord(request, 'to')
+    qs = request.query_string
 
     # step 2: check we need to geocode the 'from' param ...
     if has_from_coord is False:
-        geocode_param = 'geo_type=from'
+        ret_val['geocode_param'] = 'geo_type=from'
 
         # step 3a: does the 'from' param need geocoding help?  do we have a param to geocode?
         frm = html_utils.get_first_param(request, 'from')
@@ -74,14 +74,17 @@ def do_from_to_geocode_check(request):
                 # step 3c: got our single result, so now add that to our query string...
                 has_from_coord = True
                 fp = geo_utils.solr_to_named_param(g['geocoder_results'][0], frm)
-                query_string = "from={0}&{1}".format(fp, query_string)
-                query_string = query_string.replace("&fromCoord=&", "&").replace("&fromCoord=None&", "&") # strip bogus stuff off...
+                qs = "from={0}&{1}".format(fp, qs)
+                qs = qs.replace("&fromCoord=&", "&").replace("&fromCoord=None&", "&") # strip bogus stuff off...
 
-                geocode_param = None
+                ret_val['query_string']  = qs
+                ret_val['geocode_param'] = None
+                ret_val['from'] = fp
+
 
     # step 4: check that we need to geocode the 'to' param 
     if has_to_coord is False and has_from_coord is True:
-        geocode_param = 'geo_type=to'
+        ret_val['geocode_param'] = 'geo_type=to'
 
         # step 5a: does the 'to' param need geocoding help?  do we have a param to geocode?
         to = html_utils.get_first_param(request, 'to')
@@ -93,11 +96,15 @@ def do_from_to_geocode_check(request):
                 # step 5c: got our single result, so now add that to our query string...
                 has_to_coord = True
                 tp = geo_utils.solr_to_named_param(g['geocoder_results'][0], to)
-                query_string = "to={0}&{1}".format(tp, query_string)
-                query_string = query_string.replace("&toCoord=&", "&").replace("&toCoord=None&", "&") # strip bogus stuff off...
-                geocode_param = None
+                qs = "to={0}&{1}".format(tp, qs)
+                qs = qs.replace("&toCoord=&", "&").replace("&toCoord=None&", "&") # strip bogus stuff off...
 
-    return query_string, geocode_param
+                ret_val['query_string']  = qs
+                ret_val['geocode_param'] = None
+                ret_val['to'] = tp
+
+
+    return ret_val
 
 
 def do_stops_near(request):
