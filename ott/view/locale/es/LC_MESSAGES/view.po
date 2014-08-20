@@ -1289,11 +1289,11 @@ msgstr "Mostrar todas las líneas"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:84
 msgid "Sorting by line"
-msgstr ""
+msgstr "Por ruta"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:84
 msgid "Sort by line"
-msgstr ""
+msgstr "Por ruta"
 
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:86
 msgid "Sorting by time"
