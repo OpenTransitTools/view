@@ -53,7 +53,7 @@ def do_from_to_geocode_check(request):
 
         @return: a modified query string, and any extra params needed for the geocoder 
     '''
-    ret_val = {'query_string':None, 'geocode_param':None, 'frm':None, 'to':None}
+    ret_val = {'query_string':None, 'geocode_param':None, 'from':None, 'to':None}
 
     # step 1: check for from & to coord information in the url
     has_from_coord = has_coord(request, 'from')
@@ -77,7 +77,7 @@ def do_from_to_geocode_check(request):
                 qs = "from={0}&{1}".format(fp, qs)
                 qs = qs.replace("&fromCoord=&", "&").replace("&fromCoord=None&", "&") # strip bogus stuff off...
 
-                ret_val['query_string']  = qs
+                # step 3d: clear flag and set newly geocoded 'from' parameter
                 ret_val['geocode_param'] = None
                 ret_val['from'] = fp
 
@@ -86,25 +86,27 @@ def do_from_to_geocode_check(request):
     if has_to_coord is False and has_from_coord is True:
         ret_val['geocode_param'] = 'geo_type=to'
 
-        # step 5a: does the 'to' param need geocoding help?  do we have a param to geocode?
+        # step 4a: does the 'to' param need geocoding help?  do we have a param to geocode?
         to = html_utils.get_first_param(request, 'to')
         if to and len(to) > 0:
 
-            # step 5b: we have something to geocode, so call the geocoder hoping to hit on a single result
+            # step 4b: we have something to geocode, so call the geocoder hoping to hit on a single result
             g = call_geocoder(request, to, 'to')
             if g and g['count'] == 1:
-                # step 5c: got our single result, so now add that to our query string...
+                # step 4c: got our single result, so now add that to our query string...
                 has_to_coord = True
                 tp = geo_utils.solr_to_named_param(g['geocoder_results'][0], to)
                 qs = "to={0}&{1}".format(tp, qs)
                 qs = qs.replace("&toCoord=&", "&").replace("&toCoord=None&", "&") # strip bogus stuff off...
 
-                ret_val['query_string']  = qs
+                # step 4d: clear flag and set newly geocoded 'to' parameter
                 ret_val['geocode_param'] = None
                 ret_val['to'] = tp
 
-
+    # step 5: assign query string to return
+    ret_val['query_string'] = qs
     return ret_val
+
 
 
 def do_stops_near(request):
