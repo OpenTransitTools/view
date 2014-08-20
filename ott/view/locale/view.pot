@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2014-08-18 14:34-0700\n"
+"POT-Creation-Date: 2014-08-20 13:03-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -353,7 +353,7 @@ msgstr ""
 msgid "Mobile"
 msgstr ""
 
-#: ott/view/templates/mobile/base.html:39 ott/view/templates/shared/utils/planner_utils.mako:402 ott/view/templates/shared/utils/planner_utils.mako:449
+#: ott/view/templates/mobile/base.html:39 ott/view/templates/shared/utils/planner_utils.mako:405 ott/view/templates/shared/utils/planner_utils.mako:452
 msgid "Close"
 msgstr ""
 
@@ -426,15 +426,15 @@ msgid "Next arrivals"
 msgstr ""
 
 #: ott/view/templates/shared/app/stop.mako:32
-msgid "Show schedules for this stop"
+msgid "Show schedules for this stop/station"
 msgstr ""
 
 #: ott/view/templates/shared/app/stop.mako:32 ott/view/templates/shared/app/stop.mako:41
 msgid "Schedule"
 msgstr ""
 
-#: ott/view/templates/shared/app/stop.mako:33
-msgid "Show map and schedules for this line"
+#: ott/view/templates/shared/app/stop.mako:33 ott/view/templates/shared/utils/planner_utils.mako:308
+msgid "Show route map and schedules for this line"
 msgstr ""
 
 #: ott/view/templates/shared/app/stop.mako:33
@@ -473,8 +473,8 @@ msgid "Maximum bicycle"
 msgstr ""
 
 #: ott/view/templates/shared/utils/form_utils.mako:112 ott/view/templates/shared/utils/misc_utils.mako:109
-#: ott/view/templates/shared/utils/planner_utils.mako:397 ott/view/templates/shared/utils/planner_utils.mako:441
-#: ott/view/templates/shared/utils/planner_utils.mako:484 ott/view/templates/shared/utils/planner_utils.mako:536
+#: ott/view/templates/shared/utils/planner_utils.mako:400 ott/view/templates/shared/utils/planner_utils.mako:444
+#: ott/view/templates/shared/utils/planner_utils.mako:487 ott/view/templates/shared/utils/planner_utils.mako:539
 #: ott/view/templates/shared/utils/stop_utils.mako:11 ott/view/templates/shared/utils/stop_utils.mako:70
 #: ott/view/templates/shared/utils/stop_utils.mako:111
 msgid "Stop ID"
@@ -573,9 +573,9 @@ msgstr ""
 
 #: ott/view/templates/shared/utils/misc_utils.mako:229 ott/view/templates/shared/utils/planner_narrative.mako:23
 #: ott/view/templates/shared/utils/planner_utils.mako:19 ott/view/templates/shared/utils/planner_utils.mako:45
-#: ott/view/templates/shared/utils/planner_utils.mako:291 ott/view/templates/shared/utils/planner_utils.mako:351
-#: ott/view/templates/shared/utils/planner_utils.mako:389 ott/view/templates/shared/utils/planner_utils.mako:429
-#: ott/view/templates/shared/utils/planner_utils.mako:433 ott/view/templates/shared/utils/stop_schedule_utils.mako:109
+#: ott/view/templates/shared/utils/planner_utils.mako:294 ott/view/templates/shared/utils/planner_utils.mako:354
+#: ott/view/templates/shared/utils/planner_utils.mako:392 ott/view/templates/shared/utils/planner_utils.mako:432
+#: ott/view/templates/shared/utils/planner_utils.mako:436 ott/view/templates/shared/utils/stop_schedule_utils.mako:109
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:124
 msgid "to"
 msgstr ""
@@ -585,7 +585,7 @@ msgid "To here"
 msgstr ""
 
 #: ott/view/templates/shared/utils/misc_utils.mako:232 ott/view/templates/shared/utils/planner_narrative.mako:20
-#: ott/view/templates/shared/utils/planner_utils.mako:346
+#: ott/view/templates/shared/utils/planner_utils.mako:349
 msgid "from"
 msgstr ""
 
@@ -710,7 +710,7 @@ msgid "Continue"
 msgstr ""
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:88
-msgid "You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code."
+msgid "You can type in an address, intersection, landmark or Stop ID here."
 msgstr ""
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:101
@@ -719,7 +719,7 @@ msgstr ""
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:101 ott/view/templates/shared/utils/planner_form_utils.mako:148
 #: ott/view/templates/shared/utils/planner_narrative.mako:17 ott/view/templates/shared/utils/planner_narrative.mako:32
-#: ott/view/templates/shared/utils/planner_utils.mako:343 ott/view/templates/shared/utils/planner_utils.mako:362
+#: ott/view/templates/shared/utils/planner_utils.mako:346 ott/view/templates/shared/utils/planner_utils.mako:365
 msgid "on"
 msgstr ""
 
@@ -794,19 +794,15 @@ msgstr ""
 msgid "Submit your trip plan information"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:217 ott/view/templates/shared/utils/planner_form_utils.mako:218
-msgid "Show trip on an interactive map (broadband/desktop only)"
-msgstr ""
-
 #: ott/view/templates/shared/utils/planner_form_utils.mako:218
 msgid "Use Interactive Map"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:230 ott/view/templates/shared/utils/planner_utils.mako:274
+#: ott/view/templates/shared/utils/planner_form_utils.mako:230 ott/view/templates/shared/utils/planner_utils.mako:277
 msgid "Depart after"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:234 ott/view/templates/shared/utils/planner_utils.mako:272
+#: ott/view/templates/shared/utils/planner_form_utils.mako:234 ott/view/templates/shared/utils/planner_utils.mako:275
 msgid "Arrive by"
 msgstr ""
 
@@ -894,11 +890,11 @@ msgstr ""
 msgid "Walk only"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_narrative.mako:32 ott/view/templates/shared/utils/planner_utils.mako:362
+#: ott/view/templates/shared/utils/planner_narrative.mako:32 ott/view/templates/shared/utils/planner_utils.mako:365
 msgid "Turn"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_narrative.mako:36 ott/view/templates/shared/utils/planner_utils.mako:366
+#: ott/view/templates/shared/utils/planner_narrative.mako:36 ott/view/templates/shared/utils/planner_utils.mako:369
 msgid "compass_direction"
 msgstr ""
 
@@ -1006,127 +1002,121 @@ msgstr ""
 msgid "Interactive Map Trip Planner"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:252
-msgid "Get transit + biking directions in one itinerary"
-msgstr ""
-
 #: ott/view/templates/shared/utils/planner_utils.mako:262
 msgid "Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check"
 msgstr ""
 
 #: ott/view/templates/shared/utils/planner_utils.mako:264
-msgid ""
-"for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop"
-" ID to 27299."
+msgid "for real-time arrival information and any Service Alerts that may affect your trip."
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:281
+#: ott/view/templates/shared/utils/planner_utils.mako:266
+msgid "Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299."
+msgstr ""
+
+#: ott/view/templates/shared/utils/planner_utils.mako:284
 msgid "Arrive at"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:283
+#: ott/view/templates/shared/utils/planner_utils.mako:286
 msgid "Depart at"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:305
-msgid "Show map and schedules for this route."
-msgstr ""
-
-#: ott/view/templates/shared/utils/planner_utils.mako:308
+#: ott/view/templates/shared/utils/planner_utils.mako:311
 msgid "which continues as "
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:308
+#: ott/view/templates/shared/utils/planner_utils.mako:311
 msgid "stay on board"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:315
+#: ott/view/templates/shared/utils/planner_utils.mako:318
 msgid "Elevation gain"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:315 ott/view/templates/shared/utils/planner_utils.mako:316
+#: ott/view/templates/shared/utils/planner_utils.mako:318 ott/view/templates/shared/utils/planner_utils.mako:319
 msgid "${number} foot"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:316
+#: ott/view/templates/shared/utils/planner_utils.mako:319
 msgid "Elevation loss"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:318
+#: ott/view/templates/shared/utils/planner_utils.mako:321
 msgid "Steepest grade"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:321
+#: ott/view/templates/shared/utils/planner_utils.mako:324
 msgid "Elevation chart"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:330
+#: ott/view/templates/shared/utils/planner_utils.mako:333
 msgid "Start"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:330
+#: ott/view/templates/shared/utils/planner_utils.mako:333
 msgid "Map of starting point (300x288)"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:331
+#: ott/view/templates/shared/utils/planner_utils.mako:334
 msgid "End"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:331
+#: ott/view/templates/shared/utils/planner_utils.mako:334
 msgid "Map of ending point (300x288)"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:359
+#: ott/view/templates/shared/utils/planner_utils.mako:362
 msgid "Take the elevator to level "
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:387 ott/view/templates/shared/utils/planner_utils.mako:405
+#: ott/view/templates/shared/utils/planner_utils.mako:390 ott/view/templates/shared/utils/planner_utils.mako:408
 msgid "Bike"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:391 ott/view/templates/shared/utils/planner_utils.mako:436
-#: ott/view/templates/shared/utils/planner_utils.mako:483 ott/view/templates/shared/utils/stop_utils.mako:110
-msgid "Click for more information about this stop"
+#: ott/view/templates/shared/utils/planner_utils.mako:394 ott/view/templates/shared/utils/planner_utils.mako:439
+#: ott/view/templates/shared/utils/planner_utils.mako:486 ott/view/templates/shared/utils/stop_utils.mako:110
+msgid "Show more information about this stop/station"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:402
-msgid "Biking directions"
+#: ott/view/templates/shared/utils/planner_utils.mako:405
+msgid "Show biking directions"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:402 ott/view/templates/shared/utils/planner_utils.mako:449
+#: ott/view/templates/shared/utils/planner_utils.mako:405 ott/view/templates/shared/utils/planner_utils.mako:452
 msgid "Expand"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:426 ott/view/templates/shared/utils/planner_utils.mako:454
+#: ott/view/templates/shared/utils/planner_utils.mako:429 ott/view/templates/shared/utils/planner_utils.mako:457
 msgid "Walk"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:431 ott/view/templates/shared/utils/planner_utils.mako:482
+#: ott/view/templates/shared/utils/planner_utils.mako:434 ott/view/templates/shared/utils/planner_utils.mako:485
 msgid "Go to"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:449 ott/view/templates/shared/utils/stop_utils.mako:113
-msgid "Walking directions"
+#: ott/view/templates/shared/utils/planner_utils.mako:452
+msgid "Show walking directions"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:527 ott/view/templates/shared/utils/planner_utils.mako:536
+#: ott/view/templates/shared/utils/planner_utils.mako:530 ott/view/templates/shared/utils/planner_utils.mako:539
 msgid "Show schedule for"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:527
+#: ott/view/templates/shared/utils/planner_utils.mako:530
 msgid "Board"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:529
-msgid "There is an alert that applies to this transit leg.  See the \"alerts\" section below for details"
+#: ott/view/templates/shared/utils/planner_utils.mako:532
+msgid "A Service Alert is in effect that may affect this trip. Click for details."
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:536
+#: ott/view/templates/shared/utils/planner_utils.mako:539
 msgid "Get off at"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:536
-msgid "More information about this stop"
+#: ott/view/templates/shared/utils/planner_utils.mako:539
+msgid "Show more information about this stop"
 msgstr ""
 
 #: ott/view/templates/shared/utils/route_select_utils.mako:9
@@ -1164,11 +1154,6 @@ msgstr ""
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:50
 msgid "Help/tips"
-msgstr ""
-
-#: ott/view/templates/shared/utils/sidebar_utils.mako:51 ott/view/templates/shared/utils/stop_utils.mako:133
-#: ott/view/templates/shared/utils/stop_utils.mako:145
-msgid "View on Interactive Map"
 msgstr ""
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:51
@@ -1227,6 +1212,10 @@ msgstr ""
 msgid "miles away"
 msgstr ""
 
+#: ott/view/templates/shared/utils/stop_utils.mako:113
+msgid "Walking directions"
+msgstr ""
+
 #: ott/view/templates/shared/utils/stop_utils.mako:120
 msgid "Show more stops"
 msgstr ""
@@ -1237,5 +1226,9 @@ msgstr ""
 
 #: ott/view/templates/shared/utils/stop_utils.mako:131
 msgid "Stop location on a map"
+msgstr ""
+
+#: ott/view/templates/shared/utils/stop_utils.mako:133 ott/view/templates/shared/utils/stop_utils.mako:145
+msgid "View on Interactive Map"
 msgstr ""
 

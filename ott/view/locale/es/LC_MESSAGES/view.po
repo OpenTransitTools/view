@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ott.view 0.1.0\n"
 "Report-Msgid-Bugs-To: purcellf@trimet.org\n"
-"POT-Creation-Date: 2014-08-18 14:34-0700\n"
+"POT-Creation-Date: 2014-08-20 13:03-0700\n"
 "PO-Revision-Date: 2012-12-18 17:48-0800\n"
 "Last-Translator: Frank Purcell <purcellf@trimet.org>\n"
 "Language-Team: es <LL@li.org>\n"
@@ -38,7 +38,6 @@ msgid "Bench near stop"
 msgstr "Banca para paradas"
 
 #: ott/view/locale/misc-strings.html:13
-#| msgid "Select stop"
 msgid "Bike locker at stop"
 msgstr ""
 
@@ -377,8 +376,8 @@ msgid "Mobile"
 msgstr "Móvil"
 
 #: ott/view/templates/mobile/base.html:39
-#: ott/view/templates/shared/utils/planner_utils.mako:402
-#: ott/view/templates/shared/utils/planner_utils.mako:449
+#: ott/view/templates/shared/utils/planner_utils.mako:405
+#: ott/view/templates/shared/utils/planner_utils.mako:452
 msgid "Close"
 msgstr "Cerrar"
 
@@ -455,7 +454,9 @@ msgid "Next arrivals"
 msgstr "Próximas llegadas"
 
 #: ott/view/templates/shared/app/stop.mako:32
-msgid "Show schedules for this stop"
+#, fuzzy
+#| msgid "Show schedules for this stop"
+msgid "Show schedules for this stop/station"
 msgstr "Mostrar horarios para esta parada"
 
 #: ott/view/templates/shared/app/stop.mako:32
@@ -464,7 +465,10 @@ msgid "Schedule"
 msgstr "Horarios"
 
 #: ott/view/templates/shared/app/stop.mako:33
-msgid "Show map and schedules for this line"
+#: ott/view/templates/shared/utils/planner_utils.mako:308
+#, fuzzy
+#| msgid "Show map and schedules for this line"
+msgid "Show route map and schedules for this line"
 msgstr "Mostrar mapa y horarios para esta ruta"
 
 #: ott/view/templates/shared/app/stop.mako:33
@@ -508,10 +512,10 @@ msgstr ""
 
 #: ott/view/templates/shared/utils/form_utils.mako:112
 #: ott/view/templates/shared/utils/misc_utils.mako:109
-#: ott/view/templates/shared/utils/planner_utils.mako:397
-#: ott/view/templates/shared/utils/planner_utils.mako:441
-#: ott/view/templates/shared/utils/planner_utils.mako:484
-#: ott/view/templates/shared/utils/planner_utils.mako:536
+#: ott/view/templates/shared/utils/planner_utils.mako:400
+#: ott/view/templates/shared/utils/planner_utils.mako:444
+#: ott/view/templates/shared/utils/planner_utils.mako:487
+#: ott/view/templates/shared/utils/planner_utils.mako:539
 #: ott/view/templates/shared/utils/stop_utils.mako:11
 #: ott/view/templates/shared/utils/stop_utils.mako:70
 #: ott/view/templates/shared/utils/stop_utils.mako:111
@@ -622,11 +626,11 @@ msgstr "Planee un viaje"
 #: ott/view/templates/shared/utils/planner_narrative.mako:23
 #: ott/view/templates/shared/utils/planner_utils.mako:19
 #: ott/view/templates/shared/utils/planner_utils.mako:45
-#: ott/view/templates/shared/utils/planner_utils.mako:291
-#: ott/view/templates/shared/utils/planner_utils.mako:351
-#: ott/view/templates/shared/utils/planner_utils.mako:389
-#: ott/view/templates/shared/utils/planner_utils.mako:429
-#: ott/view/templates/shared/utils/planner_utils.mako:433
+#: ott/view/templates/shared/utils/planner_utils.mako:294
+#: ott/view/templates/shared/utils/planner_utils.mako:354
+#: ott/view/templates/shared/utils/planner_utils.mako:392
+#: ott/view/templates/shared/utils/planner_utils.mako:432
+#: ott/view/templates/shared/utils/planner_utils.mako:436
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:109
 #: ott/view/templates/shared/utils/stop_schedule_utils.mako:124
 msgid "to"
@@ -638,7 +642,7 @@ msgstr "Hasta aquí"
 
 #: ott/view/templates/shared/utils/misc_utils.mako:232
 #: ott/view/templates/shared/utils/planner_narrative.mako:20
-#: ott/view/templates/shared/utils/planner_utils.mako:346
+#: ott/view/templates/shared/utils/planner_utils.mako:349
 msgid "from"
 msgstr "de"
 
@@ -766,13 +770,10 @@ msgid "Continue"
 msgstr "Continuar"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:88
-msgid ""
-"You can type in an address, intersection, landmark or Stop ID here. For "
-"the best results, don't include a city, state or ZIP code."
-msgstr ""
-"Usted puede escribir una dirección, punto de referencia, o número de la "
-"parada.  Para un mejor resultado, no incluya la ciudad, el estado o "
-"código postal."
+#, fuzzy
+#| msgid "Enter address, intersection, landmark or Stop ID"
+msgid "You can type in an address, intersection, landmark or Stop ID here."
+msgstr "Dirección, intersección, lugar o Stop ID (número de la parada)"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:101
 msgid "Plan your trip"
@@ -782,8 +783,8 @@ msgstr "Planee un viaje"
 #: ott/view/templates/shared/utils/planner_form_utils.mako:148
 #: ott/view/templates/shared/utils/planner_narrative.mako:17
 #: ott/view/templates/shared/utils/planner_narrative.mako:32
-#: ott/view/templates/shared/utils/planner_utils.mako:343
-#: ott/view/templates/shared/utils/planner_utils.mako:362
+#: ott/view/templates/shared/utils/planner_utils.mako:346
+#: ott/view/templates/shared/utils/planner_utils.mako:365
 msgid "on"
 msgstr "en"
 
@@ -876,24 +877,17 @@ msgstr "Obtenga direcciones"
 msgid "Submit your trip plan information"
 msgstr "Envíe la información para su viaje"
 
-#: ott/view/templates/shared/utils/planner_form_utils.mako:217
-#: ott/view/templates/shared/utils/planner_form_utils.mako:218
-msgid "Show trip on an interactive map (broadband/desktop only)"
-msgstr ""
-"Muestre el viaje en el mapa interactivo (computadoras de escritorio con "
-"banda ancha)"
-
 #: ott/view/templates/shared/utils/planner_form_utils.mako:218
 msgid "Use Interactive Map"
 msgstr "Use el mapa interactivo"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:230
-#: ott/view/templates/shared/utils/planner_utils.mako:274
+#: ott/view/templates/shared/utils/planner_utils.mako:277
 msgid "Depart after"
 msgstr "Hora de salida"
 
 #: ott/view/templates/shared/utils/planner_form_utils.mako:234
-#: ott/view/templates/shared/utils/planner_utils.mako:272
+#: ott/view/templates/shared/utils/planner_utils.mako:275
 msgid "Arrive by"
 msgstr "Hora de llegada"
 
@@ -984,12 +978,12 @@ msgid "Walk only"
 msgstr "Sólo a pie"
 
 #: ott/view/templates/shared/utils/planner_narrative.mako:32
-#: ott/view/templates/shared/utils/planner_utils.mako:362
+#: ott/view/templates/shared/utils/planner_utils.mako:365
 msgid "Turn"
 msgstr "Girar"
 
 #: ott/view/templates/shared/utils/planner_narrative.mako:36
-#: ott/view/templates/shared/utils/planner_utils.mako:366
+#: ott/view/templates/shared/utils/planner_utils.mako:369
 msgid "compass_direction"
 msgstr "dirección del compás"
 
@@ -1101,10 +1095,6 @@ msgstr "Viaje más seguro"
 msgid "Interactive Map Trip Planner"
 msgstr ""
 
-#: ott/view/templates/shared/utils/planner_utils.mako:252
-msgid "Get transit + biking directions in one itinerary"
-msgstr ""
-
 #: ott/view/templates/shared/utils/planner_utils.mako:262
 msgid ""
 "Times shown are estimates based on schedules and can be affected by "
@@ -1115,135 +1105,143 @@ msgstr ""
 "otros factores. Verifique antes de salir."
 
 #: ott/view/templates/shared/utils/planner_utils.mako:264
+#, fuzzy
+#| msgid "" "for real-time arrival information and any Service Alerts that may
+#| affect " "your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text
+#| your " "Stop ID to 27299."
 msgid ""
 "for real-time arrival information and any Service Alerts that may affect "
-"your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your "
-"Stop ID to 27299."
+"your trip."
 msgstr ""
 " para información en tiempo real y alertas de servicio que le pueden "
 "afectar su viaje: llame al 503-238-RIDE (7433), visite trimet.org, o "
 "textee su número de parada al 27299"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:281
+#: ott/view/templates/shared/utils/planner_utils.mako:266
+msgid ""
+"Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to "
+"27299."
+msgstr ""
+
+#: ott/view/templates/shared/utils/planner_utils.mako:284
 msgid "Arrive at"
 msgstr "Hora de llegada"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:283
+#: ott/view/templates/shared/utils/planner_utils.mako:286
 msgid "Depart at"
 msgstr "Hora de salida"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:305
-msgid "Show map and schedules for this route."
-msgstr "Mostrar mapa y horarios para esta ruta."
-
-#: ott/view/templates/shared/utils/planner_utils.mako:308
+#: ott/view/templates/shared/utils/planner_utils.mako:311
 msgid "which continues as "
 msgstr "que sigue como"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:308
+#: ott/view/templates/shared/utils/planner_utils.mako:311
 msgid "stay on board"
 msgstr "permanecer abordo"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:315
+#: ott/view/templates/shared/utils/planner_utils.mako:318
 msgid "Elevation gain"
 msgstr "Aumento en elevación"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:315
-#: ott/view/templates/shared/utils/planner_utils.mako:316
+#: ott/view/templates/shared/utils/planner_utils.mako:318
+#: ott/view/templates/shared/utils/planner_utils.mako:319
 msgid "${number} foot"
 msgstr "${number} pies"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:316
+#: ott/view/templates/shared/utils/planner_utils.mako:319
 msgid "Elevation loss"
 msgstr "Perdida en elevación"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:318
+#: ott/view/templates/shared/utils/planner_utils.mako:321
 msgid "Steepest grade"
 msgstr "Terreno co más desnivel"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:321
+#: ott/view/templates/shared/utils/planner_utils.mako:324
 msgid "Elevation chart"
 msgstr "Gráfico de Elevación"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:330
+#: ott/view/templates/shared/utils/planner_utils.mako:333
 msgid "Start"
 msgstr "Inicie"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:330
+#: ott/view/templates/shared/utils/planner_utils.mako:333
 msgid "Map of starting point (300x288)"
 msgstr "Mapa del punto de partida (300x288)"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:331
+#: ott/view/templates/shared/utils/planner_utils.mako:334
 msgid "End"
 msgstr "Termine en"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:331
+#: ott/view/templates/shared/utils/planner_utils.mako:334
 msgid "Map of ending point (300x288)"
 msgstr "Mapa del punto final (300x288)"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:359
+#: ott/view/templates/shared/utils/planner_utils.mako:362
 msgid "Take the elevator to level "
 msgstr "Tome el ascensor hasta el nivel "
 
-#: ott/view/templates/shared/utils/planner_utils.mako:387
-#: ott/view/templates/shared/utils/planner_utils.mako:405
+#: ott/view/templates/shared/utils/planner_utils.mako:390
+#: ott/view/templates/shared/utils/planner_utils.mako:408
 msgid "Bike"
 msgstr "Bicicletee"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:391
-#: ott/view/templates/shared/utils/planner_utils.mako:436
-#: ott/view/templates/shared/utils/planner_utils.mako:483
+#: ott/view/templates/shared/utils/planner_utils.mako:394
+#: ott/view/templates/shared/utils/planner_utils.mako:439
+#: ott/view/templates/shared/utils/planner_utils.mako:486
 #: ott/view/templates/shared/utils/stop_utils.mako:110
-msgid "Click for more information about this stop"
-msgstr "Haga clic para obtener más información sobre esta parada"
+#, fuzzy
+#| msgid "More information about this stop"
+msgid "Show more information about this stop/station"
+msgstr "Más información sobre esta parada"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:402
-msgid "Biking directions"
+#: ott/view/templates/shared/utils/planner_utils.mako:405
+#, fuzzy
+#| msgid "Biking directions"
+msgid "Show biking directions"
 msgstr "Instrucciones para bicicletas"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:402
-#: ott/view/templates/shared/utils/planner_utils.mako:449
+#: ott/view/templates/shared/utils/planner_utils.mako:405
+#: ott/view/templates/shared/utils/planner_utils.mako:452
 msgid "Expand"
 msgstr "Expandir"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:426
-#: ott/view/templates/shared/utils/planner_utils.mako:454
+#: ott/view/templates/shared/utils/planner_utils.mako:429
+#: ott/view/templates/shared/utils/planner_utils.mako:457
 msgid "Walk"
 msgstr "Camine"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:431
-#: ott/view/templates/shared/utils/planner_utils.mako:482
+#: ott/view/templates/shared/utils/planner_utils.mako:434
+#: ott/view/templates/shared/utils/planner_utils.mako:485
 msgid "Go to"
 msgstr "Vaya a"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:449
-#: ott/view/templates/shared/utils/stop_utils.mako:113
-msgid "Walking directions"
+#: ott/view/templates/shared/utils/planner_utils.mako:452
+#, fuzzy
+#| msgid "Walking directions"
+msgid "Show walking directions"
 msgstr "Indicaciones para ir a pie"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:527
-#: ott/view/templates/shared/utils/planner_utils.mako:536
+#: ott/view/templates/shared/utils/planner_utils.mako:530
+#: ott/view/templates/shared/utils/planner_utils.mako:539
 msgid "Show schedule for"
 msgstr "Mostrar horarios para"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:527
+#: ott/view/templates/shared/utils/planner_utils.mako:530
 msgid "Board"
 msgstr "Aborde"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:529
-msgid ""
-"There is an alert that applies to this transit leg.  See the \"alerts\" "
-"section below for details"
+#: ott/view/templates/shared/utils/planner_utils.mako:532
+msgid "A Service Alert is in effect that may affect this trip. Click for details."
 msgstr ""
-"No es una alerta para este tramo del viaje. Vea la sección abajo titulada"
-" \"alerts\" \"para obtener detalles"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:536
+#: ott/view/templates/shared/utils/planner_utils.mako:539
 msgid "Get off at"
 msgstr "Bájese en"
 
-#: ott/view/templates/shared/utils/planner_utils.mako:536
-msgid "More information about this stop"
+#: ott/view/templates/shared/utils/planner_utils.mako:539
+#, fuzzy
+#| msgid "More information about this stop"
+msgid "Show more information about this stop"
 msgstr "Más información sobre esta parada"
 
 #: ott/view/templates/shared/utils/route_select_utils.mako:9
@@ -1284,12 +1282,6 @@ msgstr "¿Tiene algún problema? Haga clic aquí para asistencia técnica"
 #: ott/view/templates/shared/utils/sidebar_utils.mako:50
 msgid "Help/tips"
 msgstr "Ayuda/consejos"
-
-#: ott/view/templates/shared/utils/sidebar_utils.mako:51
-#: ott/view/templates/shared/utils/stop_utils.mako:133
-#: ott/view/templates/shared/utils/stop_utils.mako:145
-msgid "View on Interactive Map"
-msgstr "Vea en el mapa interactivo"
 
 #: ott/view/templates/shared/utils/sidebar_utils.mako:51
 msgid "Show this trip on Interactive Map"
@@ -1350,6 +1342,10 @@ msgstr "Da servicio"
 msgid "miles away"
 msgstr "millas"
 
+#: ott/view/templates/shared/utils/stop_utils.mako:113
+msgid "Walking directions"
+msgstr "Indicaciones para ir a pie"
+
 #: ott/view/templates/shared/utils/stop_utils.mako:120
 msgid "Show more stops"
 msgstr "Muestre más paradas"
@@ -1361,6 +1357,11 @@ msgstr "Encontrar paradas"
 #: ott/view/templates/shared/utils/stop_utils.mako:131
 msgid "Stop location on a map"
 msgstr "Muestre el lugar en el mapa"
+
+#: ott/view/templates/shared/utils/stop_utils.mako:133
+#: ott/view/templates/shared/utils/stop_utils.mako:145
+msgid "View on Interactive Map"
+msgstr "Vea en el mapa interactivo"
 
 #~ msgid "Nearest Service"
 #~ msgstr "Servicio más cercano"
@@ -1436,7 +1437,7 @@ msgstr "Muestre el lugar en el mapa"
 #~ msgstr "Planificador de viaje mapa interactivo"
 
 #~ msgid "Get transit + biking directions in one itinerary"
-#~ msgstr "Obtenga tránsito + direcciones en bicicleta en un itinerario"
+#~ msgstr ""
 
 #~ msgid "High-speed connection recommended"
 #~ msgstr "Se recomienda tener conexión de internet rápida"
@@ -1515,4 +1516,37 @@ msgstr "Muestre el lugar en el mapa"
 
 #~ msgid "${number} mile"
 #~ msgstr "${number} pies"
+
+#~ msgid ""
+#~ "You can type in an address, "
+#~ "intersection, landmark or Stop ID here."
+#~ " For the best results, don't include"
+#~ " a city, state or ZIP code."
+#~ msgstr ""
+#~ "Usted puede escribir una dirección, "
+#~ "punto de referencia, o número de "
+#~ "la parada.  Para un mejor resultado, "
+#~ "no incluya la ciudad, el estado o"
+#~ " código postal."
+
+#~ msgid "Show trip on an interactive map (broadband/desktop only)"
+#~ msgstr ""
+#~ "Muestre el viaje en el mapa "
+#~ "interactivo (computadoras de escritorio con"
+#~ " banda ancha)"
+
+#~ msgid "Show map and schedules for this route."
+#~ msgstr "Mostrar mapa y horarios para esta ruta."
+
+#~ msgid "Click for more information about this stop"
+#~ msgstr "Haga clic para obtener más información sobre esta parada"
+
+#~ msgid ""
+#~ "There is an alert that applies to"
+#~ " this transit leg.  See the "
+#~ "\"alerts\" section below for details"
+#~ msgstr ""
+#~ "No es una alerta para este tramo"
+#~ " del viaje. Vea la sección abajo "
+#~ "titulada \"alerts\" \"para obtener detalles"
 

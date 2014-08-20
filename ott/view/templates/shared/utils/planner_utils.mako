@@ -257,11 +257,14 @@
 ##
 ## footer with the trip plan disclaimer
 ##
-<%def name="bottom_disclaimer()">
+<%def name="bottom_disclaimer(is_mobile=False)">
     <div id="disclaimer">
         <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
             <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
-            ${_(u'for real-time arrival information and any Service Alerts that may affect your trip: Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
+            ${_(u'for real-time arrival information and any Service Alerts that may affect your trip.')}
+            %if not is_mobile:
+            ${_(u'Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
+            %endif
         </p>
     </div>
 </%def>
