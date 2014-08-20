@@ -227,7 +227,7 @@
 <p>
   <a href="planner_form.html?to=${make_named_coord(name, lat, lon)}${extra_params}"
     title="${_(u'Plan a trip')} ${_(u'to')} ${name}"
-    >${_(u'To here')}</a> &nbsp;&bull;&nbsp; <a 
+    >${_(u'To here')}</a> <span class="separator">&nbsp;&bull;&nbsp;</span> <a 
     href="planner_form.html?from=${make_named_coord(name, lat, lon)}${extra_params}"
     title="${_(u'Plan a trip')} ${_(u'from')} ${name}"
     >${_(u'From here')}</a>

@@ -29,8 +29,8 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
             ${r['direction']}<br/>
             %endif
             <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], route_id=r['route_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
-                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedules for this stop')}.">${_(u'Schedule')}</a> 
-                &nbsp;&bull;&nbsp; <a href="${url.get_route_url(route_id=r['route_id'], device=is_mobile)}" title="${_(u'Show map and schedules for this line')}.">${_(u'Route info')}</a>
+                <span class="separator">&nbsp;&bull;&nbsp;</span> <a href="stop_schedule.html?stop_id=${stop['stop_id']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedules for this stop/station')}">${_(u'Schedule')}</a> 
+                <span class="separator">&nbsp;&bull;&nbsp;</span> <a href="${url.get_route_url(route_id=r['route_id'], device=is_mobile)}" title="${_(u'Show route map and schedules for this line')}">${_(u'Route info')}</a>
         </p>
         %endfor
 
@@ -38,7 +38,7 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
         <h3 class="tight">${_(u'All routes')}</h3>
         <p>
             <a class="hide" href="${url.get_arrivals_url(stop_id=stop['stop_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
-                &nbsp;&bull;&nbsp; <a href="stop_schedule.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Schedule')}</a>
+                <span class="separator">&nbsp;&bull;&nbsp;</span> <a href="stop_schedule.html?stop_id=${stop['stop_id']}${extra_params}">${_(u'Schedule')}</a>
         </p>
         %endif
 

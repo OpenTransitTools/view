@@ -48,7 +48,7 @@
 <%def name="planner(plan, help_url='/tripplanner/trip-help.htm')">
     <div id="sidebar-icons">
         <!--<p class="helptips"><a href="${util.url_domain()}${help_url}"><span>${_(u'Help/tips')}</span></a></p>-->
-        <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}" title="${_(u'View on Interactive Map')})"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
+        <p class="showonmap"><a href="http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}"><span>${_(u'Show this trip on Interactive Map')}</span></a></p>
         <p class="feedbackreport"><a href="${util.trimet_feedback_url(plib.str_title(plan), plib.str_description(plan))}" target="_blank"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
     </div><!-- end #sidebar-icons -->
 </%def>

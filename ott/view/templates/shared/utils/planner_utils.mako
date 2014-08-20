@@ -249,7 +249,7 @@
 <%def name="bottom_imap_bar()">
     <div id="imap-wrap">
         <section id="imap" class="group">
-            <h3><a href="${util.url_domain()}/maptripplanner/index.htm"><strong>${_(u'Interactive Map Trip Planner')}</strong>: ${_(u'Get transit + biking directions in one itinerary')} &raquo;</a></h3>
+            <h3><a href="${util.url_domain()}/maptripplanner/index.htm" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'InteractiveMapLink', 'Text planner form link']);"><strong>${_(u'Interactive Map Trip Planner')}</strong> &raquo;</a></h3>
         </section><!-- end #imap -->
     </div><!-- end #promobar-wrap -->
 </%def>
@@ -302,7 +302,7 @@
 %></%def>
 <%def name="has_transit(itinerary)"><% from ott.utils import transit_utils; return transit_utils.has_transit(itinerary)%></%def>
 <%def name="has_fare(itinerary)"><% from ott.utils import transit_utils; return transit_utils.has_fare(itinerary)%></%def>
-<%def name="get_route_link(name, url, mode)"><a href="${url}" title="${_(u'Show map and schedules for this route.')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
+<%def name="get_route_link(name, url, mode)"><a href="${url}" title="${_(u'Show route map and schedules for this line')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
 <%def name="get_interline_note(interline)">
 %if interline != None:
 ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
@@ -388,7 +388,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %>
             ${bike_title} ${_(u'to')}
             %if leg['to']['stop']:
-            <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
+            <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${leg['to']['name']}</a>
             %else:
             ${leg['to']['name']}
             %endif
@@ -398,8 +398,8 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %endif
         </p>
 
-        <div class="normal"><!-- hidden walking directions and map -->
-            <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Biking directions')}" class="open"><span class="open-text">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
+        <div class="normal"><!-- hidden biking directions and map -->
+            <a href="#leg_${i}" onClick="expandMe(this);" class="open"><span class="open-text" title="${_(u'Show biking directions')}">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
             <div class="description">
                 ${render_elevation(leg['elevation'], no_expand)}
                 ${render_steps(_(u'Bike'), leg['from']['name'], leg['to']['name'], leg['steps'])}
@@ -433,7 +433,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             ${walk_title} ${_(u'to')}
             %endif
             %if leg['to']['stop']:
-            <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Click for more information about this stop')}">${leg['to']['name']}</a>
+            <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${leg['to']['name']}</a>
             %else:
             ${leg['to']['name']}
             %endif
@@ -446,7 +446,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %if no_expand:
             <div class="description">
             %else:
-            <a href="#leg_${i}" onClick="expandMe(this);" title="${_(u'Walking directions')}" class="open"><span class="open-text">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
+            <a href="#leg_${i}" onClick="expandMe(this);" class="open"><span class="open-text" title="${_(u'Show walking directions')}">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
             <div class="description">
             %endif
             %if leg['steps']:
@@ -480,7 +480,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
         <p class="directions">
             ${_(u'Go to')}
-            <a href="${leg['from']['stop']['info']}${extra_params}" title="${_(u'Click for more information about this stop')}">${leg['from']['name']}</a>
+            <a href="${leg['from']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${leg['from']['name']}</a>
             <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['from']['stop']['id']}</span>
         </p>
         <div class="normal">
@@ -533,7 +533,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 
     <li class="num${j}">
         <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
-        <p><a href="${to_sched}${extra_params}" title="${_(u'Show schedule for')} ${to_name}" class="step-time"><span>${end_time}</span></a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'More information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
+        <p><a href="${to_sched}${extra_params}" title="${_(u'Show schedule for')} ${to_name}" class="step-time"><span>${end_time}</span></a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
     </li>
 </%def>
 
