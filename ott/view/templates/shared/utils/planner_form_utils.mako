@@ -85,7 +85,7 @@
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">
-            <p>${_(u"You can type in an address, intersection, landmark or Stop ID here. For the best results, don't include a city, state or ZIP code.")}</p>
+            <p>${_(u"You can type in an address, intersection, landmark or Stop ID here.")}</p>
         </div>
     </div>
     %endif

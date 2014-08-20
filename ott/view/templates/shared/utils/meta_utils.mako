@@ -12,6 +12,6 @@
 ##
 <%def name="tripplanner()">
     <meta name="Keywords"    content="triplanner, trip planner, open trip planner, OTP, route planner, planner, transit planner"/>
-    <meta name="Description" content="text interface for trimet trip planner"/>
+    <meta name="Description" content="Step-by-step directions for getting there on TriMet buses and trains."/>
 </%def>
 

@@ -526,7 +526,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %>
             <a href="${from_sched}${extra_params}" title="${_(u'Show schedule for')} ${from_name}" class="step-time"><span>${start_time}</span></a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)}${get_interline_note(interline)}
             %if leg['alerts']:
-            <a href="#alerts" title="${_(u'There is an alert that applies to this transit leg.  See the "alerts" section below for details')}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>
+            <a href="#alerts" title="${_(u'A Service Alert is in effect that may affect this trip. Click for details.')}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>
             %endif
         </p>
     </li>
