@@ -130,7 +130,7 @@ ${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
 ## static map block
 <%def name="static_map_img(map_url)"><img src="${map_url}" alt="${_(u'Stop location on a map')}"/></%def>
 
-<%def name="imap_a_link(name, lon, lat, extra_params, imap_cls=False)"><a ${'class="imap"' if imap_cls else '' | n} target="#" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" title="${_(u'View on Interactive Map')}"></%def>
+<%def name="imap_a_link(name, lon, lat, extra_params, imap_cls=False)"><a ${'class="interactivemap"' if imap_cls else '' | n} target="#" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'InteractiveMapLink', 'Stop page link']);"></%def>
 <%def name="imap_a_link_via_stop(stop, extra_params, imap_cls=False)">${imap_a_link(stop['name'], stop['lon'], stop['lat'], extra_params, imap_cls)}</%def>
 
 
@@ -173,8 +173,8 @@ ormat_options=layout:place".format(w, h, lon, lat)
 ## stops map with lat/lon
 <%def name="stop_map(name, stop_id, lon, lat, extra_params='', is_mobile=False)">
 <%
-    w=305
-    h=290
+    w=340
+    h=300
     if is_mobile:
         w=300
         h=240

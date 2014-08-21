@@ -197,7 +197,7 @@
                 %if not is_mobile:
                 <div class="form-help">
                     <div class="form-help-popup-onright">
-                        <p>${_(u"Most trips involve a combination of buses and trains. You can specify bus-only or train-only, but keep in mind that some trips may not be possible as a result. To plan a bike + transit trip, use the Map Trip Planner.")}</p>
+                        <p>${_(u"Most trips involve a combination of buses and trains. You can specify bus-only or train-only, but keep in mind that some trips may not be possible as a result.")}</p>
                     </div>
                 </div>
                 %endif

@@ -75,10 +75,7 @@
 <%def name="form_help_right()">
                     <div class="form-help-popup-onright">
                         <p>
-                            ${_(u'There are several ways to enter a location')}:<br/>
-                            <b>${_(u'Address')}</b><br /><kbd>4012 SE 17</kbd><br />
-                            <b>${_(u'Intersection')}</b> ${_(u'(where two streets cross each other)')}<br /><kbd>SE 17 &amp; Center</kbd>.<br />
-                            <b>${_(u'Landmarks')}</b><br /><kbd>PDX</kbd><br /><kbd>Rose Quarter Arena</kbd><br /><kbd>Clackamas Town Center</kbd>.
+                            ${_(u'You can type in an address, intersection, landmark or Stop ID here.')}
                         </p>
                     </div>
 </%def>

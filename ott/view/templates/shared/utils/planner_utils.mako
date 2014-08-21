@@ -249,7 +249,7 @@
 <%def name="bottom_imap_bar()">
     <div id="imap-wrap">
         <section id="imap" class="group">
-            <h3><a href="${util.url_domain()}/maptripplanner/index.htm" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'InteractiveMapLink', 'Text planner form link']);"><strong>${_(u'Interactive Map Trip Planner')}</strong> &raquo;</a></h3>
+            <h3><a href="http://ride.trimet.org" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'InteractiveMapLink', 'Text planner form link']);"><strong>${_(u'Interactive Map Trip Planner')}</strong> &raquo;</a></h3>
         </section><!-- end #imap -->
     </div><!-- end #promobar-wrap -->
 </%def>
