@@ -81,7 +81,7 @@
         place = clear
 %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="doClassHighlight(this); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${clear}'); doClassRegular(this);"/>
+    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="doClassHighlight(this); doClear(this, '${clear}'); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${clear}'); doClassRegular(this);"/>
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">
