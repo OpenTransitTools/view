@@ -78,10 +78,10 @@
 <%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
 <%
     if place is None:
-        place = ''
+        place = clear
 %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="doClassHighlight(this); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${_(clear)}'); doClassRegular(this);"/>
+    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="doClassHighlight(this); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${clear}'); doClassRegular(this);"/>
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">
@@ -95,6 +95,13 @@
 ## large trip planner form on planner_form.html
 ##
 <%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False)">
+<%
+    from_form_def = ' '
+    to_form_def  = ' '
+    if is_homepage:
+        from_form_def = _(u'From')
+        to_form_def   = _(u'To')
+%>
 <div id="plantrip" class="basic">
     ## TODO : $Agency, not TriMet
     %if is_homepage:
@@ -104,7 +111,7 @@
         <div id="plantrip-left">
             <fieldset class="normal">
                 <label for="from" class="homepage-hide">${_(u'From')}</label>
-                ${input_form('from', 'from', ' ', 1, params['fromPlace'], params['fromCoord'], is_mobile)}
+                ${input_form('from', 'from', from_form_def, 1, params['fromPlace'], params['fromCoord'], is_mobile)}
                 %if is_mobile:
                 <p id="from-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
                 <p id="from-gps" style="display:none;" class="instructions"><a href="#" onclick="getFromGPS();">${_(u'Use my current GPS location')}</a></p>
@@ -113,7 +120,7 @@
 
             <fieldset class="normal">
                 <label for="going" class="homepage-hide">${_(u'To')}</label>
-                ${input_form('to', 'going', ' ', 2, params['toPlace'], params['toCoord'], is_mobile)}
+                ${input_form('to', 'going', to_form_def, 2, params['toPlace'], params['toCoord'], is_mobile)}
                 %if is_mobile:
                 <p id="to-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
                 <p id="to-gps" style="display:none;" class="instructions"><a href="#" onclick="getToGPS();">${_(u'Use my current GPS location')}</a></p>
