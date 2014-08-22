@@ -38,7 +38,7 @@
 ## the crazy Today, 10/25, 10/26, more stuff from stop schedule pages
 ##
 <%def name="svc_key_tabs(stop, html_tabs, extra_params)">
-    <ul id="contenttabs">
+    <ul id="contenttabs" class="group">
         %for t in html_tabs['tabs']:
           %if 'url' in t:
             <li class="normal"   title="${t['tooltip']}"><a href="${t['url']}&sort=${sort_val()}${extra_params}"><span>${t['name']}</span></a></li>
