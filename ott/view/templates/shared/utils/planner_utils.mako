@@ -269,6 +269,22 @@
     </div>
 </%def>
 
+<%def name="set_planner_text_cookie()">
+<script>
+try
+{
+    /** borrowed from http://www.w3schools.com/js/js_cookies.asp */
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+    setCookie('tripplanner', 'text', 365);
+} catch(e) {}
+</script>
+</%def>
+
 <%def name="get_depart_arrive(is_arrive_by=False)">
 <%
     if is_arrive_by:
