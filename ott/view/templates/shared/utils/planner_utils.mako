@@ -277,8 +277,9 @@ try
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var expires = "expires="+d.toGMTString();
-        document.cookie = cname + "=" + cvalue + "; " + expires;
+        var domain  = "domain="  + document.domain.substring(document.domain.indexOf('.'));
+        var expires = "expires=" + d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires + "; " + domain + "; path=/;";
     }
     setCookie('tripplanner', 'text', 365);
 } catch(e) {}
