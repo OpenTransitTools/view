@@ -277,7 +277,13 @@ try
     function setCookie(cname, cvalue, exdays) {
         var d = new Date();
         d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        var domain  = "domain="  + document.domain.substring(document.domain.indexOf('.'));
+        var dm = document.domain;
+        // want .trimet.org ... so try to strip off any subdomain
+        if(dm.indexOf('.') != dm.lastIndexOf('.'))
+            dm = dm.substring(dm.indexOf('.'));
+        else
+            dm = "." + dm
+        var domain  = "domain="  + dm; 
         var expires = "expires=" + d.toGMTString();
         document.cookie = cname + "=" + cvalue + "; " + expires + "; " + domain + "; path=/;";
     }
