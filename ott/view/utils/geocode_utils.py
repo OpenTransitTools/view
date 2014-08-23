@@ -9,20 +9,6 @@ from ott.utils import geo_utils
 ##       would be better 
 ##
 
-def has_coord(request, type='place'):
-    ''' determine if the url has either a typeCoord url parameter, or a type::45.5,-122.5 param
-    '''
-    ret_val = False
-    coord = html_utils.get_first_param_is_a_coord(request, type + 'Coord')
-    if coord:
-        ret_val = True
-    else:
-        place = html_utils.get_first_param(request, type)
-        if geo_utils.has_coord(place):
-            ret_val = True
-    return ret_val
-
-
 def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
     '''  call the geocoder service
     '''
@@ -56,8 +42,8 @@ def do_from_to_geocode_check(request):
     ret_val = {'query_string':None, 'geocode_param':None, 'from':None, 'to':None}
 
     # step 1: check for from & to coord information in the url
-    has_from_coord = has_coord(request, 'from')
-    has_to_coord   = has_coord(request, 'to')
+    has_from_coord = geo_utils.is_param_a_coord(request, 'from')
+    has_to_coord   = geo_utils.is_param_a_coord(request, 'to')
     qs = request.query_string
 
     # step 2: check we need to geocode the 'from' param ...
