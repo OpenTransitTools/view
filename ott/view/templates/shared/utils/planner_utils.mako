@@ -273,21 +273,24 @@
 <script>
 try
 {
-    /** borrowed from http://www.w3schools.com/js/js_cookies.asp */
-    function setCookie(cname, cvalue, exdays) {
-        var d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    /** triplanner text cookie ... tripplanner can be used to set / unset form elements, like map button */
+    function setCookie(k, v) {
+        // want domain to be '.trimet.org'
+        // so try to strip off any subdomain
         var dm = document.domain;
-        // want .trimet.org ... so try to strip off any subdomain
         if(dm.indexOf('.') != dm.lastIndexOf('.'))
             dm = dm.substring(dm.indexOf('.'));
         else
             dm = "." + dm
-        var domain  = "domain="  + dm; 
-        var expires = "expires=" + d.toGMTString();
-        document.cookie = cname + "=" + cvalue + "; " + expires + "; " + domain + "; path=/;";
+        var domain  = "domain="  + dm;
+
+        var dt = new Date();
+        dt.setTime(dt.getTime() + (365*24*60*60*1000));
+        var expires = "expires=" + dt.toGMTString();
+
+        document.cookie = k + "=" + v + "; " + expires + "; " + domain + "; path=/;";
     }
-    setCookie('tripplanner', 'text', 365);
+    setCookie('tripplanner', 'text');
 } catch(e) {}
 </script>
 </%def>
