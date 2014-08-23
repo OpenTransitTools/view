@@ -297,7 +297,7 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
         $(THIS.input_div).autocomplete(
         {
             minLength : 1,
-            delay     : 500,
+            delay     : 200,
             source : function(request, response) {
                 $.ajax({
                     type : "GET",
