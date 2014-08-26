@@ -77,10 +77,14 @@
 <%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
 <%
     if place is None:
-        place = clear
+        place = ''
+        clear_js = "doClear(this, '${clear}');"
+    else:
+        clear_js = ""
+    
 %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="doClassHighlight(this); doClear(this, '${clear}'); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${clear}'); doClassRegular(this);"/>
+    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="${clear_js} doClassHighlight(this); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${clear}'); doClassRegular(this);"/>
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">
