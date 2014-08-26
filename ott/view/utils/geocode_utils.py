@@ -18,6 +18,8 @@ def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Und
         res = request.model.get_geocode(geo_place)
         if res and 'results' in res:
             ret_val['geocoder_results'] = res['results']
+            #import pdb; pdb.set_trace()
+            ret_val['place1'] = None
             count = len(ret_val['geocoder_results'])
     else:
         geo_place = no_geocode_msg
@@ -121,4 +123,11 @@ def do_stops_near(request):
             ret_val = make_subrequest(request, '/stop_select_geocode.html')
 
     return ret_val
+
+
+def make_place_from_stop_request(request, stop):
+    place = html_utils.get_first_param(request, 'place')
+    name = name_from_named_place(place, place)
+    ret_val = geo_utils.make_place(name, lat, lon)
+    
 

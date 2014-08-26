@@ -187,7 +187,6 @@ def planner_walk(request):
 def stop(request):
     stop = None
     try:
-        #import pdb; pdb.set_trace()
         stop = request.model.get_stop(request.query_string, **request.params)
     except Exception, e:
         log.warning('{0} exception:{1}'.format(request.path, e))

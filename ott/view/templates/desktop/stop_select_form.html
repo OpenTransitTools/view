@@ -20,7 +20,7 @@
 <%def name="js_onload()">javascript:select_form();</%def>
 ${form.select_form_scriptlet()}
 
-${page.stop_select(_(u'Stops & Stations'), extra_params, 'me')}
+${page.stop_select(_(u'Stops & Stations'), extra_params, 'me', 'h1')}
 ${su.stop_select_form(place)}
 ${form.autocomplete_js_includes()}
 ${form.autocomplete_search_input()}
