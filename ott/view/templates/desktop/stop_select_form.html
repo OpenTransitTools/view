@@ -17,6 +17,17 @@
     ${page.stop_css()}
     ${form.autocomplete_css_includes()}
 </%def>
+<style type="text/css">
+<!--
+#main {	/* give the colored bar a bit of breathing room */
+	margin-top: 3.75em;
+}
+h1.pagetitle {	/* hiding the extra h1 */
+	display: none;
+}
+-->
+</style>
+
 <%def name="js_onload()">javascript:select_form();</%def>
 ${form.select_form_scriptlet()}
 
