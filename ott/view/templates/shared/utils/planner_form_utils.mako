@@ -10,12 +10,11 @@
 <%def name="from_to_img_url(type=None, def_val=False)">
 <%
     ret_val = def_val
-# removing icon from this error
-#    if type:
-#        if 'from' in type:
-#            ret_val = 'images/triptools/old/start.png'
-#        elif 'to' in type:
-#            ret_val = 'images/triptools/old/end.png'
+    if type:
+        if 'from' in type:
+            ret_val = 'images/triptools/old/start.png'
+        elif 'to' in type:
+            ret_val = 'images/triptools/old/end.png'
     return ret_val
 %>
 </%def>
@@ -78,10 +77,14 @@
 <%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
 <%
     if place is None:
-        place = clear
+        place = ''
+        clear_js = "doClear(this, '${clear}');"
+    else:
+        clear_js = ""
+    
 %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="doClassHighlight(this); doClear(this, '${clear}'); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${clear}'); doClassRegular(this);"/>
+    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="${clear_js} doClassHighlight(this); this.setSelectionRange(0, this.value.length);" onBlur="doText(this,'${clear}'); doClassRegular(this);"/>
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">
@@ -94,7 +97,7 @@
 ##
 ## large trip planner form on planner_form.html
 ##
-<%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False)">
+<%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False, agency='TriMet')">
 <%
     from_form_def = ' '
     to_form_def  = ' '
@@ -103,9 +106,8 @@
         to_form_def   = _(u'To')
 %>
 <div id="plantrip" class="basic">
-    ## TODO : $Agency, not TriMet
     %if is_homepage:
-    <h2><b>${_(u'Plan your trip')}</b> ${_(u'on')} TriMet</h2>
+    <h2><b>${_(u'Plan your trip')}</b> ${_(u'on')} ${agency}</h2>
     %endif 
     <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style"/>
         <div id="plantrip-left">
