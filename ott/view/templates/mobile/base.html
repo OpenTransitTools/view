@@ -66,7 +66,7 @@ ${self.emergency_content()|n,decode.utf8}
         <a href="mailto:mobile@trimet.org">${_(u'Feedback')}</a> &nbsp;|&nbsp; <a href="/m/apps/index.htm">${_(u'App Center')}</a> &nbsp;|&nbsp; <a href="/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'Footer - Standard site']);">${_(u'Standard site')}</a>
     </p>
     <p class="footer-links" align="center">
-        <a href="/m/terms.htm">${_(u'Terms of Use')}</a> &nbsp;|&nbsp; <a href="/m/privacy.htm">${_(u'Privacy Policy')}</a> &nbsp;|&nbsp; &copy; <!--#echo var="DATE_LOCAL" --> TriMet
+        <a href="/m/terms.htm">${_(u'Terms of Use')}</a> &nbsp;|&nbsp; <a href="/m/privacy.htm">${_(u'Privacy Policy')}</a> &nbsp;|&nbsp; &copy; ${util.print_year()} TriMet
     </p>
 </div>
 <script type="text/javascript" src="${util.url_domain()}/scripts/basic.js"></script><!-- basic global scripts -->

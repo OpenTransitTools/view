@@ -177,7 +177,7 @@
                 </select>
                 %if not is_mobile:
                 <div class="form-help">
-                    <div class="form-help-popup-onright">
+                    <div class="form-help-popup-onleft">
                         <p>${_(u"The quickest trips usually involve transferring between buses and trains and walking a short distance. You can choose 'fewest transfers' if you prefer not to transfer, but your trip will probably take longer.")}</p>
                     </div>
                 </div>
@@ -190,7 +190,7 @@
                 </select>
                 %if not is_mobile:
                 <div class="form-help">
-                    <div class="form-help-popup-onright">
+                    <div class="form-help-popup-onleft">
                         <p>${_(u"Here, you can specify how far you are willing to walk or bike to and from the bus stop or rail station. Note: If set to less than 1 mile, some trips may not be possible.")}</p>
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                 </select>
                 %if not is_mobile:
                 <div class="form-help">
-                    <div class="form-help-popup-onright">
+                    <div class="form-help-popup-onleft">
                         <p>${_(u"Most trips involve a combination of buses and trains. You can specify bus-only or train-only, but keep in mind that some trips may not be possible as a result.")}</p>
                     </div>
                 </div>
