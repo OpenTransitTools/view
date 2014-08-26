@@ -261,6 +261,20 @@
 </%def>
 
 
+<%def name="cache_geocode_in_browser(label1, lat1, lon1, label2=None, lat2=None, lon2=None, prefix='js')">
+<script src="${prefix}/autocomplete.js"></script>
+<script>
+var cache = PlaceCache();
+
+var p1 = PlaceDAO('${label1}', '${lat1}', '${lon1}', true);
+cache.add(p1);
+
+%if label2 and lat2 and lon2:
+var p2 = PlaceDAO('${label1}', '${lat1}', '${lon1}', true);
+cache.add(p2);
+%endif
+</script>
+</%def>
 
 ##
 ## do things like escape & in intersection names, etc...

@@ -41,7 +41,7 @@ function SolrPlaceDAO(doc, saved)
      * function that controls the naming of the geo point
      * NOTE: this isn't localized (e.g., type name and city conjunction), so override in .mako
      *
-     * @return: formatted place name, ala 844 SE X Street, Portland -or- A Ave, Portalnd (Stop ID 2)  
+     * @return: formatted place name, ala 844 SE X Street, Portland -or- A Ave, Portland (Stop ID 2)  
      */
     this.place_name_format = function(doc)
     {
@@ -87,17 +87,17 @@ function PlaceCache(removeTitle, saveOnClick)
     /**
      * add an item to our local store
      */
-    this.add = function(rec)
+    this.add = function(dao)
     {
         try
         {
-            if(rec && rec.label)
+            if(dao && dao.label)
             {
                 var db  = this.get_store({});
                 if(db)
                 {
-                    rec.saved = true;
-                    db[rec.label] = rec;
+                    dao.saved = true;
+                    db[dao.label] = dao;
                     localStorage.setItem(this.DB_NAME, JSON.stringify(db));
                 }
             }
@@ -297,7 +297,7 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
         $(THIS.input_div).autocomplete(
         {
             minLength : 1,
-            delay     : 500,
+            delay     : 200,
             source : function(request, response) {
                 $.ajax({
                     type : "GET",
