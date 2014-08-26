@@ -93,7 +93,7 @@
 ##
 ## large trip planner form on planner_form.html
 ##
-<%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False)">
+<%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False, agency='TriMet')">
 <%
     from_form_def = ' '
     to_form_def  = ' '
@@ -102,9 +102,8 @@
         to_form_def   = _(u'To')
 %>
 <div id="plantrip" class="basic">
-    ## TODO : $Agency, not TriMet
     %if is_homepage:
-    <h2><b>${_(u'Plan your trip')}</b> ${_(u'on')} TriMet</h2>
+    <h2><b>${_(u'Plan your trip')}</b> ${_(u'on')} ${agency}</h2>
     %endif 
     <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style"/>
         <div id="plantrip-left">
