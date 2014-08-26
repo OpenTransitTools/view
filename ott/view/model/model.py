@@ -28,7 +28,7 @@ class Model(Base):
         return self.stream_json('plan_trip', get_params)
 
     def get_geocode(self, search):
-        val = object_utils.to_str(search)
+        val = object_utils.to_url_param_val(search)
         return self.stream_json('geocode', "place={0}".format(val))
 
     def get_adverts(self, get_params, **kwargs):
