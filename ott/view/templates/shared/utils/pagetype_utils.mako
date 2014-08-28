@@ -59,12 +59,12 @@
 
 <%def name="trip_planner_form(name='', extra_params='', base_params='me')">
 <div id="triptool" class="tripplanner-icon">
-    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
+    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')} <span class="secondary" style="font-size:.5em;">BETA</span></a>
 </div>
 </%def>
 
 <%def name="main_trip_planner_form(name='', extra_params='', base_params='me')">
 <h1 id="triptool" class="tripplanner-icon">
-    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
+    <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')} <span class="secondary" style="font-size:.5em;">BETA</span></a>
 </h1>
 </%def>
