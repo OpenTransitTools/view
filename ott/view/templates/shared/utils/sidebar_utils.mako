@@ -9,8 +9,8 @@
 <%def name="tc_pr_lr_wes_mall(msg='Stop related page')">
     <!-- begin #sidebar -->
     <aside id="aside" class="aside">
-		<!--
-        <h2>${_(u'Related')}</h2>
+        <!--<h2>${_(u'Related')}</h2>-->
+        <p>&nbsp;</p>
         <ul class="links">
             <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
             <li><a href="${util.url_domain()}/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
@@ -18,6 +18,7 @@
             <li><a href="${util.url_domain()}/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
             <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
         </ul>
+		<!--
         <p class="feedback"><a target="_blank" href="${util.trimet_feedback_url(_(msg))}">${_(u'Having problems? Click here for technical support.')}</a></p>
 		-->
     </aside>
