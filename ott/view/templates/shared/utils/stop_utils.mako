@@ -88,8 +88,8 @@
 ##       @see utils.agency_template.py for more info...
 ##
 <%def name="route_abrv_list(stop, rte_url_tmpl)">
-    %for i, r in enumerate(stop['short_names']):
-${', ' if (i > 0) else ''}<a target="#" href="${rte_url_tmpl(r['route_id'])}">${ r['route_short_name']}</a>
+%for i, r in enumerate(stop['short_names']):
+${', ' if (i > 0) else ''}<a target="#" href="${rte_url_tmpl(r['route_id'])}">${r['route_short_name']}</a>
 %endfor
 </%def>
 <%def name="routes_served(stop, rte_url_tmpl)">
@@ -107,7 +107,7 @@ ${_(u'Served by')}: ${route_abrv_list(stop, rte_url_tmpl)}
     %for s in list['stops']:
     <li>
         <h3 class="tight">
-            <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${s['name']} &bull; ${s['direction']}</a>
+            <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${s['name']} ${s['direction']}</a>
             <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span>
         </h3>
         <p>${round(s['distance'], 2)} ${_(u'miles away')} <span class="separator">&nbsp;&bull;&nbsp;</span> ${routes_served(s, rte_url_tmpl)} <span class="separator">&nbsp;&bull;&nbsp;</span> ${planner_walk_link(place, s, _('Walking directions'), extra_params)}</p>
