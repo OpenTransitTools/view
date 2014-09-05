@@ -361,6 +361,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         </div><!-- end maps -->
 </%def>
 
+
 ## They want 2-stage walk instructions, as per mock up...
 ## https://github.com/OpenTransitTools/view/blob/a5e80acff83277e593fb09b760ce94cf7311b454/ott/view/templates/desktop/planner.html
 ## <img src="images/directions/right.png"/>
