@@ -369,15 +369,26 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         %for i, s in enumerate(steps):
         <%
             name = s['name']
-            conjunction = _(u'on')
-            if name == '' and i == 0:
-                name = frm
-                conjunction = _(u'from')
-            elif name.lower() == 'elevator':
+            preposition = _(u'on')
+            if i == 0:
+                preposition = _(u'from')
+
+            if name and name.lower() == 'elevator':
                 continue
-            elif name == '' and i+1 == len(steps):
-                name = to
-                conjunction = _(u'to')
+
+            # find default names when name info doesn't exist (common for first/last step) 
+            if name == None or name == '':
+                # first step, name == from place
+                if i == 0:
+                    name = frm
+                    preposition = _(u'from')
+                # last step, name == to place
+                elif i+1 == len(steps):
+                    name = to
+                    preposition = _(u'to')
+                # if we have no name, then do what???
+                else:
+                    name = ''
 
             instruct_verb = verb
             turn = None
@@ -392,7 +403,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 else:
                     instruct_verb = dir.title()
             if instruct_verb:
-                instruct = _(instruct_verb) + " " + pretty_distance(s['distance']) + " " + _(s['compass_direction']) + " " + conjunction + " " + _(name)
+                instruct = _(instruct_verb) + " " + pretty_distance(s['distance']) + " " + _(s['compass_direction']) + " " + preposition + " " + _(name)
             else:
                 instruct = None
         %>
