@@ -215,7 +215,7 @@
 %>mailto:${url}?subject=${subject}&body=${message}:%20${place} ${geo}</%def>
 
 <%def name="geocoder_feedback(geo, svc='stop_select_geocode.html?place=')">
-<p class="qmark">${_(u"Can't find your address?")} <a href="${mailto_geocoder(geo, svc)}" class="console-emailtext"><span>${_(u'Please let us know ')}</span></a> ${_(u'so we can improve the Trip Planner')}.</p>
+<p class="qmark">${_(u"Can't find your address?")} <a href="${mailto_geocoder(geo, svc)}" class="console-emailtext"><span>${_(u'Please let us know')}</span></a> ${_(u'so we can improve the Trip Planner')}.</p>
 </%def>
 
 ##

@@ -428,7 +428,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         </p>
 
         <div class="normal"><!-- hidden biking directions and map -->
-            <a href="#leg_${i}" onClick="expandMe(this);" class="open"><span class="open-text" title="${_(u'Show biking directions')}">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
+            <a href="#leg_${i}" onClick="expandMe(this);" class="open"><span class="open-text" title="${_(u'Show biking directions')}">${_(u'Details')}</span><span class="close-text">${_(u'Close')}</span></a>
             <div class="description">
                 ${render_elevation(leg['elevation'], no_expand)}
                 ${render_steps(_(u'Bike'), leg['from']['name'], leg['to']['name'], leg['steps'])}
@@ -475,7 +475,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %if no_expand:
             <div class="description">
             %else:
-            <a href="#leg_${i}" onClick="expandMe(this);" class="open"><span class="open-text" title="${_(u'Show walking directions')}">${_(u'Expand')}</span><span class="close-text">${_(u'Close')}</span></a>
+            <a href="#leg_${i}" onClick="expandMe(this);" class="open"><span class="open-text" title="${_(u'Show walking directions')}">${_(u'Details')}</span><span class="close-text">${_(u'Close')}</span></a>
             <div class="description">
             %endif
             %if leg['steps']:
