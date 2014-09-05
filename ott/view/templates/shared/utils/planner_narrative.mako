@@ -1,3 +1,8 @@
+###
+### IMPORTANT !!!!!!!!!!!!!!!
+### TODO ... not sure this is used 
+### 
+
 steps = [
 {
     'name':None,        # from place / to place / step name / elevator
@@ -9,7 +14,12 @@ steps = [
     
 }
 ]
+
+#### NOTE ... not used?
 <%def name="render_steps(verb, frm, to, steps)">
+</%def>
+
+<%def name="Xrender_steps(verb, frm, to, steps)">
     <ol>
         %for i, s in enumerate(steps):
         <%
