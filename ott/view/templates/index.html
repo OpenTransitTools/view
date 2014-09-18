@@ -10,5 +10,8 @@
 <%def name="side_bar()"></%def>
 <%def name="app_css()"></%def>
 <%def name="stations_selected()">class="selected"</%def>
+%if util.is_test() or util.has_url_param('debug'):
 <%include file="/shared/app/test.mako"/>
-
+%else:
+<meta http-equiv="refresh" content="0; url=http://trimet.org" />
+%endif
