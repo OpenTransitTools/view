@@ -10,7 +10,7 @@
 
 <%def name="base_stop_stations(name, extra_params, base_params, ele_type='div')">
     <${ele_type} id="triptool" class="stopsstations-icon">
-        <a href="stop_select_form.html?${base_params}${extra_params}">${_(u'Stops & Stations')}</a>
+        <a href="stop_select_form.html?${base_params}${extra_params}">${_(u'Stops & Schedules')}</a>
 </%def>
 
 #
