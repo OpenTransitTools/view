@@ -63,14 +63,12 @@
     <div id="details" class="group">
         <p class="details-trip"><span><strong>${_(u'From')}</strong> ${plan['from']['name']}</span></p>
         <p class="details-trip"><span><strong>${_(u'To')}</strong> ${plan['to']['name']}</span></p>
-        <p class="details-trip"><span><strong>${_(u'When')}</strong> ${itinerary['date_info']['pretty_date']}</span></p>
         %if itinerary:
-        <!--
+        <p class="details-trip"><span><strong>${_(u'When')}</strong> ${itinerary['date_info']['pretty_date']}</span></p>
         <div class="tripinfo-wrap">
             <p class="tripinfo">${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
             <p class="tripinfo">${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
         </div>
-        -->
         %endif
     </div><!-- end #details -->
 </%def>
