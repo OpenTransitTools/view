@@ -33,6 +33,11 @@ def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Und
     ret_val['count'] = count
     return ret_val
 
+def make_autocomplete_cache(frm, doc):
+    ''' take a SOLR doc, and make an entry for the autocomplete cache
+    '''
+    ret_val = {'label':frm, 'lat':doc['lat'], 'lon':doc['lon']}
+    return ret_val
 
 def do_from_to_geocode_check(request):
     ''' checks whether we have proper coordinates for the from & to params
@@ -41,7 +46,7 @@ def do_from_to_geocode_check(request):
 
         @return: a modified query string, and any extra params needed for the geocoder 
     '''
-    ret_val = {'query_string':None, 'geocode_param':None, 'from':None, 'to':None}
+    ret_val = {'query_string':None, 'geocode_param':None, 'from':None, 'to':None, 'cache':[]}
 
     # step 1: check for from & to coord information in the url
     has_from_coord = geo_utils.is_param_a_coord(request, 'from')
@@ -61,13 +66,15 @@ def do_from_to_geocode_check(request):
             if g and g['count'] == 1:
                 # step 3c: got our single result, so now add that to our query string...
                 has_from_coord = True
-                fp = geo_utils.solr_to_named_param(g['geocoder_results'][0], frm)
+                doc = g['geocoder_results'][0]
+                fp = geo_utils.solr_to_named_param(doc, frm)
                 qs = "from={0}&{1}".format(fp, qs)
                 qs = qs.replace("&fromCoord=&", "&").replace("&fromCoord=None&", "&") # strip bogus stuff off...
 
                 # step 3d: clear flag and set newly geocoded 'from' parameter
                 ret_val['geocode_param'] = None
                 ret_val['from'] = fp
+                ret_val['cache'].append(make_autocomplete_cache(frm, doc))
 
 
     # step 4: check that we need to geocode the 'to' param 
@@ -83,13 +90,15 @@ def do_from_to_geocode_check(request):
             if g and g['count'] == 1:
                 # step 4c: got our single result, so now add that to our query string...
                 has_to_coord = True
-                tp = geo_utils.solr_to_named_param(g['geocoder_results'][0], to)
+                doc = g['geocoder_results'][0]
+                tp = geo_utils.solr_to_named_param(doc, to)
                 qs = "to={0}&{1}".format(tp, qs)
                 qs = qs.replace("&toCoord=&", "&").replace("&toCoord=None&", "&") # strip bogus stuff off...
 
                 # step 4d: clear flag and set newly geocoded 'to' parameter
                 ret_val['geocode_param'] = None
                 ret_val['to'] = tp
+                ret_val['cache'].append(make_autocomplete_cache(to, doc))
 
     # step 5: assign query string to return
     ret_val['query_string'] = qs

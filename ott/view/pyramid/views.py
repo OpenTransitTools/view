@@ -159,6 +159,7 @@ def planner(request):
                 ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + map_params)
             else:
                 ret_val = request.model.get_plan(gc['query_string'], **request.params)
+                ret_val['cache'] = gc['cache']
                 if ret_val and 'error' in ret_val:
                     msg = object_utils.get_error_message(ret_val)
                     ret_val = make_subrequest(request, '/exception.html', 'error_message={0}'.format(msg))

@@ -261,18 +261,16 @@
 </%def>
 
 
-<%def name="cache_geocode_in_browser(label1, lat1, lon1, label2=None, lat2=None, lon2=None, prefix='js')">
+##
+## if we geocoded stuff on some other pages, we'll cache them here via .js 
+##
+<%def name="cache_geocodes_in_browser(cache, prefix='js')">
 <script src="${prefix}/autocomplete.js"></script>
 <script>
-var cache = PlaceCache();
-
-var p1 = PlaceDAO('${label1}', '${lat1}', '${lon1}', true);
-cache.add(p1);
-
-%if label2 and lat2 and lon2:
-var p2 = PlaceDAO('${label1}', '${lat1}', '${lon1}', true);
-cache.add(p2);
-%endif
+    var pc = new PlaceCache();
+    %for c in cache:
+    pc.add(new PlaceDAO("${c['label']}", "${c['lat']}", "${c['lon']}", true));
+    %endfor
 </script>
 </%def>
 
