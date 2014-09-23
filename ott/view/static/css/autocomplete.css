@@ -6,20 +6,90 @@
     overflow-y: auto;
     overflow-x: hidden; /* prevent horizontal scrollbar */
 }
-/* IE 6 doesn't support max-height we use height instead, but this forces the menu to always be this tall */
-* html .ui-autocomplete {
-    height: 100px;
-}
+	/* IE 6 doesn't support max-height we use height instead, but this forces the menu to always be this tall */
+	* html .ui-autocomplete {
+		height: 100px;
+	}
 
 span.remove {
-    border: 1px solid rgba(0, 0, 0, 0);
-    color: #0000FF;
-    font-size: 60%;
+    color: #666;
+    font-size: .75em;
+	padding: .4em;
     position: absolute;
-    right: 0px;
+    right: 0;
+	top: 0;
+	cursor: pointer;
 }
-span.remove:hover {
-    background: none repeat scroll 0 0 #F8F8F8;
-    border-color: #EEEEEE;
+	span.remove:hover {
+		color: #084c8d;
+		border: none;
+	}
+
+
+
+
+
+/*
+overrides
+from http://trimet.org/ride/css/jquery-ui-autocomplete.css
+*/
+
+.ui-menu .ui-menu-item a {
+	padding: .125em .4em;
+	line-height: 1.5;
+	border: none;
+	border-radius: 0;
+	color: #666;
+	cursor: pointer;
 }
+	.ui-menu .ui-menu-item a b {
+		font-weight: normal;
+		color: #000;
+	}
+		.ui-menu .ui-menu-item a:hover b {
+			color: #084c8d;
+		}
+	.ui-menu .ui-menu-item a.ui-state-focus, .ui-menu .ui-menu-item a.ui-state-active {
+		font-weight: normal;
+		margin: 0;
+		color: #084c8d;
+		background-color: #ffc;
+		
+	}
+	.ui-menu .ui-state-disabled {
+		font-weight: normal;
+		margin: .4em 0 .2em;
+		line-height: 1.5;
+		
+	}
+		.ui-menu .ui-state-disabled a {
+			cursor: default;
+			
+		}
+			
+ul#ui-id-1 {
+	padding: 0;
+	font-family: Arial, Helvetica, sans-serif;
+	line-height: 1;
+	background-color: #fafafa;
+	border: .0625em solid #aaa;
+	border-top: none;
+}
+	ul#ui-id-1 li {
+		border-bottom: .0625em solid #dcdcdc;
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 

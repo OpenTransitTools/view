@@ -378,7 +378,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             if name and name.lower() == 'elevator':
                 continue
 
-            # find default names when name info doesn't exist (common for first/last step) 
+            # find default names when name info does not exist (common for first/last step) 
             if name == None or name == '':
                 # first step, name == from place
                 if i == 0:
