@@ -421,8 +421,8 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 
 
 <%def name="render_bicycle_leg(leg, i, extra_params='', no_expand=False)">
-    <li class="num${i}">
-        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
+    <li>
+        <div class="step-number"><span>${i}</span></div>
         <p class="directions">
             <%
                 dir = leg['compass_direction'] if leg['compass_direction'] else ''
@@ -461,8 +461,8 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 </%def>
 
 <%def name="render_walk_leg(leg, i, extra_params='', no_expand=False)">
-    <li class="num${i}">
-        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
+    <li>
+        <div class="step-number"><span>${i}</span></div>
         <p class="directions">
             <% 
                 walk_title = _(u'Walk') + " " + pretty_distance(leg['distance'])
@@ -518,8 +518,8 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 ## Used when the first leg of the itin is a transit leg...
 ##
 <%def name="render_stop_leg(leg, i, extra_params='')">
-    <li class="num${i}">
-        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
+    <li>
+        <div class="step-number"><span>${i}</span></div>
         <p class="directions">
             ${_(u'Go to')}
             <a href="${leg['from']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${leg['from']['name']}</a>
@@ -535,8 +535,8 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 ## Meat of the transit narrative...
 ##
 <%def name="render_transit_leg(leg_list, n, i, j, is_mobile, extra_params='')">
-    <li class="num${i}">
-        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
+    <li>
+        <div class="step-number"><span>${i}</span></div>
         <p class="directions">
             <%
                 leg = leg_list[n] 
@@ -573,8 +573,8 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         </p>
     </li>
 
-    <li class="num${j}">
-        <div class="step-number"><img src="${util.img_url()}/numbers.png" width="0" height="1" /></div>
+    <li>
+        <div class="step-number"><span>${j}</span></div>
         <p><a href="${to_sched}${extra_params}" title="${_(u'Show schedule for')} ${to_name}" class="step-time"><span>${end_time}</span></a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
     </li>
 </%def>
