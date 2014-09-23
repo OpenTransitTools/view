@@ -80,7 +80,6 @@
 </%def>
 
 <%def name="autocomplete_css_includes(prefix='css')">
-    <link href="${prefix}/jquery-ui-autocomplete.css" rel="stylesheet"/>
     <link href="${prefix}/autocomplete.css" rel="stylesheet"/>
 </%def>
 
