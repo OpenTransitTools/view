@@ -43,6 +43,8 @@ def make_tab_obj(name, date=None, uri=None, append=None):
     ret_val['name'] = name.lstrip('0').replace('/0','/')
     ret_val['date'] = date
     ret_val['tooltip'] = date_utils.pretty_date(date)
+    ret_val['dow'] = date_utils.dow(date)
+    ret_val['dow_abbrv'] = date_utils.dow_abbrv(date)
 
     # next give the tab object a URL ... date is broken up into month and day parts 
     if uri:
