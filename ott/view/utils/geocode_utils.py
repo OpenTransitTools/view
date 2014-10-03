@@ -5,39 +5,38 @@ from ott.utils import html_utils
 from ott.utils import geo_utils
 
 ##
-## TODO: I know the routines below are used by view ... just wondering if ott.utils.parse
-##       would be better 
+## TODO: the routines below are used by the view project... 
+##       would they be better placed / refactored into  ott.utils.parse 
 ##
+
 
 def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
     '''  call the geocoder service
     '''
     ret_val = {}
     count = 0
+    #import pdb; pdb.set_trace()
     if geo_place:
         res = request.model.get_geocode(geo_place)
-        if res and 'results' in res:
+        if has_content(res, 'results'):
             ret_val['geocoder_results'] = res['results']
-            #import pdb; pdb.set_trace()
             ret_val['place1'] = None
             count = len(ret_val['geocoder_results'])
     else:
         geo_place = no_geocode_msg
-        #import pdb; pdb.set_trace()
-        #from ott.view.locale.subscribers import get_translator  #_  = get_translator(request)
-        #_  = get_translator(request)
-        #geo_place = _(no_geocode_msg)
 
     ret_val['geo_type']  = geo_type
     ret_val['geo_place'] = geo_place
     ret_val['count'] = count
     return ret_val
 
+
 def make_autocomplete_cache(frm, doc):
     ''' take a SOLR doc, and make an entry for the autocomplete cache
     '''
     ret_val = {'label':frm, 'lat':doc['lat'], 'lon':doc['lon']}
     return ret_val
+
 
 def do_from_to_geocode_check(request):
     ''' checks whether we have proper coordinates for the from & to params
@@ -113,6 +112,8 @@ def do_stops_near(request):
     Needs work....
      
     '''
+    pass
+    '''
     has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
     has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
     if has_geocode or has_coord:
@@ -132,6 +133,7 @@ def do_stops_near(request):
             ret_val = make_subrequest(request, '/stop_select_geocode.html')
 
     return ret_val
+    '''
 
 
 def make_place_from_stop_request(request, stop):
@@ -139,4 +141,17 @@ def make_place_from_stop_request(request, stop):
     name = name_from_named_place(place, place)
     ret_val = geo_utils.make_place(name, lat, lon)
     
+
+
+def has_content(geo, el='geocoder_results'):
+    ret_val = False
+    try:
+        if geo and el in geo and geo[el][0] and len(geo[el][0]) > 0:
+            ret_val = True
+    except Exception, e:
+        log.warning('exception:{0}'.format(e))
+        ret_val = False
+    return ret_val
+
+
 

@@ -282,6 +282,7 @@ def stops_near(request):
             num = 30
         params = "num={0}&".format(num) + params
         ret_val['nearest'] = request.model.get_stops_near(params, **request.params)
+        ret_val['cache'] = []
 
     #import pdb; pdb.set_trace()
     has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
@@ -292,13 +293,15 @@ def stops_near(request):
         place = html_utils.get_first_param(request, 'place')
         geo = geocode_utils.call_geocoder(request, place)
 
-        if geo['count'] == 1:
+        if geocode_utils.has_content(geo):
             single_geo = geo['geocoder_results'][0]
             if single_geo['type'] == 'stop':
                 query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
                 ret_val = make_subrequest(request, '/stop.html', query_string)
+                # NOTE can't add 'cache' here, since this is a subrequest http call...
             else:
                 call_near_ws(single_geo)
+                ret_val['cache'].append(geocode_utils.make_autocomplete_cache(place, single_geo))
         else:
             ret_val = make_subrequest(request, '/stop_select_geocode.html')
 
