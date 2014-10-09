@@ -10,49 +10,53 @@ from ott.utils import geo_utils
 ##
 
 
-def call_solr_geocoder(request, geo_place, geo_type, no_geocode_msg):
+def call_solr_geocoder(request, place):
     '''  call the geocoder service
     '''
-    ret_val = {}
-    count = 0
-    if geo_place:
-        res = request.model.get_geocode(geo_place)
+    ret_val = None
+    if place:
+        res = request.model.get_geocode(place)
         if has_content(res, 'results'):
-            ret_val['geocoder_results'] = res['results']
-            ret_val['place1'] = None
-            count = len(ret_val['geocoder_results'])
-    else:
-        geo_place = no_geocode_msg
-
-    ret_val['geo_type']  = geo_type
-    ret_val['geo_place'] = geo_place
-    ret_val['count'] = count
+            ret_val = res['results']
     return ret_val
 
 
-def call_atis_geocoder(request, geo_place, geo_type, no_geocode_msg):
+def call_atis_geocoder(request, place):
     '''  call the geocoder service
     '''
-    ret_val = {}
-    count = 0
-    if geo_place:
-        res = request.model.get_geocode(geo_place)
+    ret_val = None
+    if place:
+        res = request.model.get_geocode(place)
         if has_content(res, 'results'):
-            ret_val['geocoder_results'] = res['results']
-            ret_val['place1'] = None
-            count = len(ret_val['geocoder_results'])
-    else:
-        geo_place = no_geocode_msg
-
-    ret_val['geo_type']  = geo_type
-    ret_val['geo_place'] = geo_place
-    ret_val['count'] = count
+            ret_val = res['results']
     return ret_val
 
 
 def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
+    ''' hybrid ATIS / SOLR geocoder
+    '''
+    ret_val = {
+        "count" : 0,
+        "geo_type" : geo_type,
+        "geo_place" : geo_place,
+        "geocoder_results" : None
+    }
+
     #import pdb; pdb.set_trace()
-    return call_atis_geocoder(request, geo_place, geo_type, no_geocode_msg)
+    res = call_atis_geocoder(request, geo_place)
+    if res and len(res) > 0:
+        ret_val['count'] = len(res)
+        ret_val['geocoder_results'] = res
+    else:
+        res = call_solr_geocoder(request, geo_place)
+        if res and len(res) > 0:
+            res['count'] = len(res)
+            res['geocoder_results'] = res
+        else:
+            # when no results, we add the no geocode msg (e.g., 'Undefined') as the place name...
+            ret_val['geo_place'] = no_geocode_msg
+
+    return ret_val
 
 
 def do_from_to_geocode_check(request):
