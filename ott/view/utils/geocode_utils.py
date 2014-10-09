@@ -10,7 +10,7 @@ from ott.utils import geo_utils
 ##
 
 
-def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
+def call_solr_geocoder(request, geo_place, geo_type, no_geocode_msg):
     '''  call the geocoder service
     '''
     ret_val = {}
@@ -31,11 +31,29 @@ def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Und
     return ret_val
 
 
-def make_autocomplete_cache(frm, doc):
-    ''' take a SOLR doc, and make an entry for the autocomplete cache
+def call_atis_geocoder(request, geo_place, geo_type, no_geocode_msg):
+    '''  call the geocoder service
     '''
-    ret_val = {'label':frm, 'lat':doc['lat'], 'lon':doc['lon']}
+    ret_val = {}
+    count = 0
+    #import pdb; pdb.set_trace()
+    if geo_place:
+        res = request.model.get_geocode(geo_place)
+        if has_content(res, 'results'):
+            ret_val['geocoder_results'] = res['results']
+            ret_val['place1'] = None
+            count = len(ret_val['geocoder_results'])
+    else:
+        geo_place = no_geocode_msg
+
+    ret_val['geo_type']  = geo_type
+    ret_val['geo_place'] = geo_place
+    ret_val['count'] = count
     return ret_val
+
+
+def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
+    return call_atis_geocoder(request, geo_place, geo_type, no_geocode_msg)
 
 
 def do_from_to_geocode_check(request):
@@ -104,16 +122,36 @@ def do_from_to_geocode_check(request):
     return ret_val
 
 
+def make_place_from_stop_request(request, stop):
+    place = html_utils.get_first_param(request, 'place')
+    name = name_from_named_place(place, place)
+    ret_val = geo_utils.make_place(name, lat, lon)
 
-def do_stops_near(request):
-    ''' will either return the nearest list of stops, or geocode redirects
-    
+
+def has_content(geo, el='geocoder_results'):
+    ret_val = False
+    try:
+        if geo and el in geo and geo[el][0] and len(geo[el][0]) > 0:
+            ret_val = True
+    except Exception, e:
+        log.warning('exception:{0}'.format(e))
+        ret_val = False
+    return ret_val
+
+
+def make_autocomplete_cache(frm, doc):
+    ''' take a SOLR doc, and make an entry for the autocomplete cache
+    '''
+    ret_val = {'label':frm, 'lat':doc['lat'], 'lon':doc['lon']}
+    return ret_val
+
+
+'''
     TODO TODO TODO
     Needs work....
-     
-    '''
-    pass
-    '''
+def do_stops_near(request):
+    #will either return the nearest list of stops, or geocode redirects
+
     has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
     has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
     if has_geocode or has_coord:
@@ -134,24 +172,3 @@ def do_stops_near(request):
 
     return ret_val
     '''
-
-
-def make_place_from_stop_request(request, stop):
-    place = html_utils.get_first_param(request, 'place')
-    name = name_from_named_place(place, place)
-    ret_val = geo_utils.make_place(name, lat, lon)
-    
-
-
-def has_content(geo, el='geocoder_results'):
-    ret_val = False
-    try:
-        if geo and el in geo and geo[el][0] and len(geo[el][0]) > 0:
-            ret_val = True
-    except Exception, e:
-        log.warning('exception:{0}'.format(e))
-        ret_val = False
-    return ret_val
-
-
-

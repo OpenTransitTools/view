@@ -46,6 +46,9 @@ ${t['name']}<br/>${_(t['dow_abbrv'])}
 %endif
 </%def>
 
+# TODO ... remove me once JH fixes the .css for month abbreviations 
+<%def name="make_tab_name(i, t)">${t['name']}</%def>
+
 ##
 ## the crazy Today, 10/25, 10/26, more stuff from stop schedule pages
 ##
