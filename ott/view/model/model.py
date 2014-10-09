@@ -28,8 +28,22 @@ class Model(Base):
         return self.stream_json('plan_trip', get_params)
 
     def get_geocode(self, search):
-        val = object_utils.to_url_param_val(search)
-        return self.stream_json('geocode', "place={0}".format(val))
+        ret_val = None
+        try:
+            val = object_utils.to_url_param_val(search)
+            ret_val = self.stream_json('geocode', "place={0}".format(val))
+        except Exception, e:
+            log.warning(e)
+        return ret_val
+
+    def get_atis_geocode(self, search):
+        ret_val = None
+        try:
+            val = object_utils.to_url_param_val(search)
+            ret_val = self.stream_json('atis_geocode', "place={0}".format(val))
+        except Exception, e:
+            log.warning(e)
+        return ret_val
 
     def get_adverts(self, get_params, **kwargs):
         ret_val = self.stream_json('adverts', get_params)

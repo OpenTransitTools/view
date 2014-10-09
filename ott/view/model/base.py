@@ -17,6 +17,7 @@ class Base(object):
     def get_plan(self, get_params, **kwargs): pass
 
     def get_geocode(self, get_params, **kwargs): pass
+    def get_atis_geocode(self, get_params, **kwargs): pass
 
     def get_stop(self, get_params, **kwargs): pass
     def get_stop_schedule(self, get_params, **kwargs): pass

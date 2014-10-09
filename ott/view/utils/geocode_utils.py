@@ -20,13 +20,12 @@ def call_solr_geocoder(request, place):
             ret_val = res['results']
     return ret_val
 
-
 def call_atis_geocoder(request, place):
     '''  call the geocoder service
     '''
     ret_val = None
     if place:
-        res = request.model.get_geocode(place)
+        res = request.model.get_atis_geocode(place)
         if has_content(res, 'results'):
             ret_val = res['results']
     return ret_val
@@ -50,8 +49,8 @@ def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Und
     else:
         res = call_solr_geocoder(request, geo_place)
         if res and len(res) > 0:
-            res['count'] = len(res)
-            res['geocoder_results'] = res
+            ret_val['count'] = len(res)
+            ret_val['geocoder_results'] = res
         else:
             # when no results, we add the no geocode msg (e.g., 'Undefined') as the place name...
             ret_val['geo_place'] = no_geocode_msg
