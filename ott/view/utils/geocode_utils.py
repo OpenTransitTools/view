@@ -15,7 +15,6 @@ def call_solr_geocoder(request, geo_place, geo_type, no_geocode_msg):
     '''
     ret_val = {}
     count = 0
-    #import pdb; pdb.set_trace()
     if geo_place:
         res = request.model.get_geocode(geo_place)
         if has_content(res, 'results'):
@@ -36,7 +35,6 @@ def call_atis_geocoder(request, geo_place, geo_type, no_geocode_msg):
     '''
     ret_val = {}
     count = 0
-    #import pdb; pdb.set_trace()
     if geo_place:
         res = request.model.get_geocode(geo_place)
         if has_content(res, 'results'):
@@ -53,6 +51,7 @@ def call_atis_geocoder(request, geo_place, geo_type, no_geocode_msg):
 
 
 def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
+    #import pdb; pdb.set_trace()
     return call_atis_geocoder(request, geo_place, geo_type, no_geocode_msg)
 
 
