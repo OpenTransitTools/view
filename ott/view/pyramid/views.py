@@ -293,7 +293,7 @@ def stops_near(request):
         place = html_utils.get_first_param(request, 'place')
         geo = geocode_utils.call_geocoder(request, place)
 
-        if geocode_utils.has_content(geo):
+        if geo and geo['count'] == 1:
             single_geo = geo['geocoder_results'][0]
             if single_geo['type'] == 'stop':
                 query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
