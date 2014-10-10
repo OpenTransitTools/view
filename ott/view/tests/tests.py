@@ -33,7 +33,7 @@ def call_url(url):
 
 class GeoCoderTests(MyTestCase):
     stops = [
-            ['834',   '834 SE Lambert'],
+            ['834',   '834 SE LAMBERT ST'],
             ['2',     'A Ave &amp; Chandler Eastbound'],
             ['10093', 'NW Bethany &amp; Laidlaw Northbound'],
             ['10092', '4700 Block NW Bethany Northbound'],
@@ -49,7 +49,7 @@ class GeoCoderTests(MyTestCase):
     ]
 
     route_stops = [
-            ['929',  ['44-Capitol', '54-Beaverton', '56-Scholls'] ],
+            ['929',  ['r044.htm', 'r054.htm', 'r056.htm'] ],
     ]
 
     def setUp(self):
