@@ -50,7 +50,7 @@ class GeoCoderTests(MyTestCase):
     ]
 
     route_stops = [
-            ['929',  ['044....">44</a>', '054....">54</a>', '056....">56</a>'] ],
+            ['929',  ['044', '054', '056'] ],
     ]
 
     def setUp(self):
