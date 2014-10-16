@@ -131,13 +131,19 @@
     %if itinerary['has_alerts']:
     <div id="alerts" class="group">
         %for alert in itinerary['alerts']:
-        <p><img src="${util.img_url()}/alert.png" />
-            <span class="alert-text">${alert['text']}</span>
-            <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
-        </p>
+        ## TODO issue #5599
+        ## ${util.alert_content(alert)}
+        ${plan_alert_content(alert)}
         %endfor
     </div><!-- end #alerts -->
     %endif
+</%def>
+
+<%def name="plan_alert_content(alert)">
+    <p><img src="${util.img_url()}/alert.png" />
+        <span class="alert-text">${alert['text']}</span>
+        <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
+    </p>
 </%def>
 
 <%def name="render_fares(itinerary, fares_url)">

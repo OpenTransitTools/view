@@ -408,25 +408,33 @@
     <a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="${_(u'Service alert at this stop')}" title="${_(u'Service alert at this stop')}" /></a>
 </%def>
 
+
 <%def name="alerts(alert_list, img_url='/images/triptools/alert.png')">
     %if alert_list and len(alert_list) > 0:
     <div id="alerts" class="group">
         %for a in alert_list:
-        <p><img src="${url_domain()}${img_url}" />
-            <span class="alert-text">
-                %if a['header_text']:
-                <b>${a['header_text']}</b><br/>
-                %endif
-                <b>${a['route_short_names']}: </b> ${a['description_text']}
-            </span>
-            %if a['pretty_start_date']:
-            <span class="alert-time">${_(u'As of')} ${a['pretty_start_date']} @ ${a['pretty_start_time']}</span>
-            %endif
-        </p>
+        ${alert_content(a, img_url)}
         %endfor
     </div>
     %endif
 </%def>
+
+<%def name="alert_content(alert, img_url='/images/triptools/alert.png')">
+    <p><img src="${url_domain()}${img_url}"/>
+        <span class="alert-text">
+            %if header_text in alert and alert['header_text']:
+            <b>${alert['header_text']}</b><br/>
+            %endif
+            <b>${alert['route_short_names']}: </b> ${alert['description_text']}
+        </span>
+        %if alert['pretty_start_date']:
+        <span class="alert-time">${_(u'As of')} ${alert['pretty_start_date']} @ ${alert['pretty_start_time']}</span>
+        %endif
+        <span class="alert-time"><a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
+    </p>
+</%def>
+
+
 
 <%def name="compare_values(a, b)">
 <%
