@@ -113,19 +113,17 @@ ${t['name']}<br/>${_(t['dow_abbrv'])}
     %>
     %if sort_by_time():
     <div class="sortbyline">
-		###
-		###  SHOW schedule as a list, with headsign to left of time...
-		###
-		%for s in ss['stoptimes']:
-		<%
-			id = s['h']
-			hs = ss['headsigns'][id]
-		%> 
-		<p><b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}</p>
-		%endfor
+        ###
+        ###  SHOW schedule as a list, with headsign to left of time...
+        ###
+        %for s in ss['stoptimes']:
+        <%
+            id = s['h']
+            hs = ss['headsigns'][id]
+        %> 
+        <p><b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}</p>
+        %endfor
     </div>
-	
-	
     ###
     ###  SHOW schedule grouped under headsign
     ###
