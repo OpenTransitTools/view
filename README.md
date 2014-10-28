@@ -4,7 +4,7 @@ Web UI atop controller (gtfs / trasnit web service)
 @see http://opentransittools.com/controller
 
 build:
-  0. install python 2.7, along with zc.buildout and easy_install, git
+  0. install python 2.7, along easy_install, zc.buildout ("zc.buildout==1.5.2") and git
   1. install and pserve http://opentransittools.com/controller
   2. git clone https://github.com/OpenTransitTools/view.git
   2. cd view
