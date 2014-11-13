@@ -285,25 +285,29 @@ def stops_near(request):
         ret_val['cache'] = []
 
     #import pdb; pdb.set_trace()
-    has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
-    has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
-    if has_geocode or has_coord:
-        call_near_ws()
+    stop_id = html_utils.get_first_param_as_str(request, 'stop_id')
+    if stop_id:
+        ret_val = make_subrequest(request, '/stop.html', request.query_string)
     else:
-        place = html_utils.get_first_param(request, 'place')
-        geo = geocode_utils.call_geocoder(request, place)
-
-        if geo and geo['count'] == 1:
-            single_geo = geo['geocoder_results'][0]
-            if single_geo['type'] == 'stop':
-                query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
-                ret_val = make_subrequest(request, '/stop.html', query_string)
-                # NOTE can't add 'cache' here, since this is a subrequest http call...
-            else:
-                call_near_ws(single_geo)
-                ret_val['cache'].append(geocode_utils.make_autocomplete_cache(place, single_geo))
+        has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
+        has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
+        if has_geocode or has_coord:
+            call_near_ws()
         else:
-            ret_val = make_subrequest(request, '/stop_select_geocode.html')
+            place = html_utils.get_first_param(request, 'place')
+            geo = geocode_utils.call_geocoder(request, place)
+
+            if geo and geo['count'] == 1:
+                single_geo = geo['geocoder_results'][0]
+                if single_geo['type'] == 'stop':
+                    query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
+                    ret_val = make_subrequest(request, '/stop.html', query_string)
+                    # NOTE can't add 'cache' here, since this is a subrequest http call...
+                else:
+                    call_near_ws(single_geo)
+                    ret_val['cache'].append(geocode_utils.make_autocomplete_cache(place, single_geo))
+            else:
+                ret_val = make_subrequest(request, '/stop_select_geocode.html')
 
     return ret_val
 

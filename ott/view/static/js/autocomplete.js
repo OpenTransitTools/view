@@ -276,6 +276,11 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
         {
             console.log("AutoComplete select_callback() for item " + rec.label + " -- setting geo_div to " + rec.lat + ',' + rec.lon);
             $(this.geo_div).val(rec.lat + ',' + rec.lon);
+            console.log("OKAY" + rec.stop_id);
+            if(rec.stop_id) {
+                console.log("hi thre");
+            }
+            console.log("OKAY" + rec);
             THIS.last_value = rec.label.trim();
         }
         else
