@@ -74,9 +74,9 @@
 # autocomplete: CSS and JS includes...
 #
 <%def name="autocomplete_js_includes(prefix='js')">
-    <script src="${prefix}/jquery.js"></script>
-    <script src="${prefix}/jquery-ui-autocomplete.js"></script>
-    <script src="${prefix}/autocomplete.js"></script>
+    <script type="text/javascript" src="${prefix}/jquery.js"></script>
+    <script type="text/javascript" src="${prefix}/jquery-ui-autocomplete.js"></script>
+    <script type="text/javascript" src="${prefix}/autocomplete.js"></script>
 </%def>
 
 <%def name="autocomplete_css_includes(prefix='css')">
@@ -84,8 +84,8 @@
 </%def>
 
 <%def name="dynamic_forms_js(prefix='js')">
-    <script src="${prefix}/dynamic_forms.js"></script>
-    <script>
+    <script type="text/javascript" src="${prefix}/dynamic_forms.js"></script>
+    <script type="text/javascript">
     try {
         var forms = new DynamicForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
         forms.switch_mode();
@@ -123,7 +123,7 @@
 ##
 <%def name="autocomplete_search_input(id='#place')">
     <% solr_url = util.get_ini_param('ott.solr_url', '/solr/select') %>
-    <script>
+    <script type="text/javascript">
     // main entry 
     $(function(){
         var remove_title = "${_(u'remove')}";
@@ -203,7 +203,7 @@
 ## GPS stuff
 ###
 <%def name="gps_form_scriptlet(id='place', form='geocode')">
-<script>
+<script type="text/javascript" >
     // for standard input form
     function checkgps()
     {
