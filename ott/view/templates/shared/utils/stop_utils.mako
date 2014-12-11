@@ -19,7 +19,7 @@
     <form action="${form_action}" method="GET" name="geocode" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Find stops and stations'), geo_place, is_mobile=is_mobile)}
+        ${form.search_input(_(u'Find stops and stations near'), geo_place, is_mobile=is_mobile)}
         ${form.search_submit(_(u'Find stops'))}
     </form>
     ${util.or_bar()}
@@ -45,7 +45,7 @@
     <form action="${form_action}"  method="GET" name="geocode" class="triptools-form">
         ${form.has_geocode_hidden('false')}
         ${form.get_extra_params_hidden_inputs()}
-        ${form.search_input(_(u'Find stops and stations'), place=geo_place, clear_form=False, is_mobile=is_mobile)}
+        ${form.search_input(_(u'Find stops and stations near'), place=geo_place, clear_form=False, is_mobile=is_mobile)}
         ${form.search_submit(_(u'Continue'))}
     </form>
     ${util.geocoder_feedback(geo=geo_place)}
