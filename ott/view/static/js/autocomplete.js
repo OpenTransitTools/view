@@ -12,8 +12,9 @@ function PlaceDAO(label, lat, lon, saved)
     this.saved = false;
     this.city  = null;
     this.type  = null;
+    this.stop_id = null;
 
-    this.set = function(label, lat, lon, saved, city, type)
+    this.set = function(label, lat, lon, saved, city, type, stop_id)
     {
         this.label = label;
         this.lat   = lat;
@@ -21,12 +22,13 @@ function PlaceDAO(label, lat, lon, saved)
         this.saved = saved;
         this.city  = city;
         this.type  = type;
+        this.stop_id = stop_id;
     };
 
     this.copy = function()
     {
         var ret_val = new PlaceDAO();
-        ret_val.set(this.label, this.lat, this.lon, this.saved, this.city, this.type);
+        ret_val.set(this.label, this.lat, this.lon, this.saved, this.city, this.type, this.stop_id);
         return ret_val;
     };
 
@@ -51,13 +53,10 @@ function SolrPlaceDAO(doc, saved)
             if (doc.city && doc.city.length > 0)
                city = ", " + doc.city;
 
-            var id = doc.id;
-            if (doc.type == 'stop')
-                id = doc.stop_id;
-
             var stop = '';
-            if(doc.type == 'stop')
-                stop = " (Stop ID " + id + ")";
+            if(doc.type == 'stop' && doc.stop_id)
+                stop = " (Stop ID " + doc.stop_id + ")";
+
             ret_val = doc.name + city + stop;
         }
         catch(e) {
@@ -67,7 +66,7 @@ function SolrPlaceDAO(doc, saved)
     };
 
     var label = this.place_name_format(doc);
-    this.set(label, doc.lat, doc.lon, saved, doc.city, doc.type);
+    this.set(label, doc.lat, doc.lon, saved, doc.city, doc.type, doc.stop_id);
 }
 SolrPlaceDAO.prototype = new PlaceDAO();
 
@@ -272,6 +271,9 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
      */
     this.select_callback = function(rec)
     {
+        if(this.stop_id && rec.type == 'stop' && rec.stop_id)
+            $(this.stop_id).val(rec.stop_id);
+
         if(this.geo_div)
         {
             console.log("AutoComplete select_callback() for item " + rec.label + " -- setting geo_div to " + rec.lat + ',' + rec.lon);
@@ -280,8 +282,9 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
         }
         else
         {
-            console.log("AutoComplete select_callback for item: " + rec.label + '::'  + rec.lat + ',' + rec.lon);
+            console.log("TODO ??? AutoComplete select_callback for item: " + rec.label + '::'  + rec.lat + ',' + rec.lon);
         }
+
         return true;
     }
 
