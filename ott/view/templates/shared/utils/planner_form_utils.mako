@@ -76,9 +76,12 @@
 ##
 <%def name="input_form(name, id, clear, tab, place, coord, is_mobile=False)">
 <%
+    ## some whacked code for clearing form data and setting default from / to value, etc... could be improved
     if place is None:
-        place = ''
-        clear_js = "doClear(this, '${clear}');"
+        if clear is None:
+        	clear = ''
+        place = clear.strip()
+        clear_js = "doClear(this, '" + place + "');"
     else:
         clear_js = ""
     
