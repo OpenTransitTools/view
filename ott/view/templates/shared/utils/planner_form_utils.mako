@@ -111,10 +111,6 @@
 <div id="plantrip" class="basic">
     %if is_homepage:
     <h2><b>${_(u'Plan your trip')}</b> ${_(u'on')} ${agency} <span class="secondary" style="font-size:.5em; color:#ccc;">BETA</span></h2>
-    <!--<div style="position:absolute; top:1.875em; right:1.5em; width:8em; height:2em; text-align:right;"><a href="/go/cgi-bin/plantrip.cgi" style="font-size:.75em; color:#ccc; border-color:#666;">Use old trip planner</a></div>-->
-    %endif 
-    %if not is_homepage:
-    <!--<div style="position:absolute; top:-1.875em; right:1.5em; width:12em; height:2em; text-align:right;"><a href="/go/cgi-bin/plantrip.cgi" style="color:#fff;">Use old trip planner</a></div>-->
     %endif 
     <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style"/>
         <div id="plantrip-left">
