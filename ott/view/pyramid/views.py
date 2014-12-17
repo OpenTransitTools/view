@@ -2,6 +2,7 @@ import logging
 log = logging.getLogger(__file__)
 
 import StringIO
+import re
 
 from pyramid.request import Request
 from pyramid.response import Response
@@ -269,6 +270,16 @@ def stop_select_geocode(request):
 @view_config(route_name='stops_near_mobile', renderer='mobile/stops_near.html')
 @view_config(route_name='stops_near_desktop', renderer='desktop/stops_near.html')
 def stops_near(request):
+    ''' this routine is called by the stop lookup form.  we branch to either call the
+        nearest stop routine (based on lat,lon coordiantes), or call stop.html directly
+
+        this routine feels overly complex ... part of the problem is that we might see
+        the stop id passed in via a string (place param gotten by SOLR / ajax), or the 
+        stop might come in the string name from a geocoder, etc...
+
+        Note that a log of logic is broken into 4 sub methods of stops_near ... these routiens
+        will use (and possibly set) both request and ret_val variables in the parent scope
+    '''
     ret_val = {}
 
     def call_near_ws(geo=None):
@@ -284,30 +295,73 @@ def stops_near(request):
         ret_val['nearest'] = request.model.get_stops_near(params, **request.params)
         ret_val['cache'] = []
 
+    def check_place_for_stopid(place):
+        ''' return what looks like a stop id in a string
+        '''
+        stop = None
+        if place and "Stop ID" in place:
+            s = place.split("Stop ID")
+            if s and len(s) >= 2:
+                stop = s[1].strip()
+                stop = re.sub('[\p\s]+.*', '', stop)
+        return stop
+
+    def geo_has_stopid(geo):
+        ''' look for a stop id in the geocoder result
+        '''
+        stop = None
+        try:
+            if 'stop_id' in geo and geo['stop_id']:
+                stop = geo['stop_id']
+            elif 'name' in geo:
+                stop = check_place_for_stopid(geo['name'])
+        except:
+            pass
+        return stop
+
+    def make_qs_with_stop_id(stop_id):
+        query_string = None
+        if stop_id:
+            query_string = "stop_id={0}&{1}".format(stop_id, request.query_string)
+        return query_string
+
     #import pdb; pdb.set_trace()
+
+    # step 1: query has stop_id param ... call stop.html
     stop_id = html_utils.get_first_param_as_str(request, 'stop_id')
     if stop_id:
         ret_val = make_subrequest(request, '/stop.html', request.query_string)
     else:
-        has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
-        has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
-        if has_geocode or has_coord:
-            call_near_ws()
+        # step 2: place param has name with stop_id in it ... call stop.html
+        place = html_utils.get_first_param_as_str(request, 'place')
+        stop_id = check_place_for_stopid(place)
+        if stop_id:
+            qs = make_qs_with_stop_id(stop_id)
+            ret_val = make_subrequest(request, '/stop.html', qs)
         else:
-            place = html_utils.get_first_param(request, 'place')
-            geo = geocode_utils.call_geocoder(request, place)
-
-            if geo and geo['count'] == 1:
-                single_geo = geo['geocoder_results'][0]
-                if single_geo['type'] == 'stop':
-                    query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
-                    ret_val = make_subrequest(request, '/stop.html', query_string)
-                    # NOTE can't add 'cache' here, since this is a subrequest http call...
-                else:
-                    call_near_ws(single_geo)
-                    ret_val['cache'].append(geocode_utils.make_autocomplete_cache(place, single_geo))
+            # step 3: params have geocode information, call nearest with that information
+            has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
+            has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
+            if has_geocode or has_coord:
+                call_near_ws()
             else:
-                ret_val = make_subrequest(request, '/stop_select_geocode.html')
+                # step 4: geocode the place param and if we get a direct hit, call either stop or nearest
+                geo = geocode_utils.call_geocoder(request, place)
+                if geo and geo['count'] == 1:
+                    single_geo = geo['geocoder_results'][0]
+                    # step 4a: looking for stop id in geo result ... if there we'll call stop.html directly
+                    stop_id = geo_has_stopid(single_geo)
+                    if stop_id:
+                        qs = make_qs_with_stop_id(stop_id)
+                        ret_val = make_subrequest(request, '/stop.html', qs)
+                        # NOTE can't add 'cache' here, since this is a subrequest http call...
+
+                    # step 4b: we're going to call nearest based on the geocode coordinates 
+                    else:
+                        call_near_ws(single_geo)
+                        ret_val['cache'].append(geocode_utils.make_autocomplete_cache(place, single_geo))
+                else:
+                    ret_val = make_subrequest(request, '/stop_select_geocode.html')
 
     return ret_val
 
