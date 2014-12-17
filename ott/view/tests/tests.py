@@ -59,6 +59,19 @@ class GeoCoderTests(MyTestCase):
     def tearDown(self):
         pass
 
+    def test_stops_near_stop_id(self):
+        ''' check that the following place queries hit a stop page (via the stop image url)
+        '''
+        places = [
+            "2",
+            "A+Ave+Chandler+Lake+Oswego+%28Stop+ID+2%29",
+            "Stop ID 8",
+        ]
+        for m in ['', 'm/']:
+            for p in places:
+                url = get_url(m + 'stops_near.html', 'place=' + p)
+                self.call_url_match_list(url, "stopimage/format/png/width/340/height/300/zoom/6")
+
     def test_stops_near_geocode_route_stops(self):
         for m in ['', 'm/']:
             for s in self.route_stops:
