@@ -64,7 +64,7 @@ class GeoCoderTests(MyTestCase):
         '''
         places = [
             "2",
-            "A+Ave+Chandler+Lake+Oswego+%28Stop+ID+2%29",
+            "A+Ave+Chandler+Lake+Oswego+(Stop+ID+2)",
             "Stop ID 8",
         ]
         for m in ['', 'm/']:
