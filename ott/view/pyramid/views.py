@@ -303,7 +303,7 @@ def stops_near(request):
             s = place.split("Stop ID")
             if s and len(s) >= 2:
                 stop = s[1].strip()
-                stop = re.sub('[\p\s]+.*', '', stop)
+                stop = re.sub('[\W+\s]+.*', '', stop)
         return stop
 
     def geo_has_stopid(geo):
