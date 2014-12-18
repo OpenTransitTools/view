@@ -18,6 +18,9 @@ nohup.out
 *.bak
 x
 
+*.properties
+*.classpath
+
 # C extensions
 *.so
 
