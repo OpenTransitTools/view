@@ -6,7 +6,7 @@ from ott.utils import geo_utils
 
 ##
 ## TODO: the routines below are used by the view project... 
-##       would they be better placed / refactored into  ott.utils.parse 
+##       they could be better placed / refactored into  ott.utils.parse 
 ##
 
 
@@ -29,7 +29,6 @@ def call_atis_geocoder(request, place):
         if has_content(res, 'results'):
             ret_val = res['results']
     return ret_val
-
 
 def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
     ''' hybrid ATIS / SOLR geocoder
@@ -56,7 +55,6 @@ def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Und
             ret_val['geo_place'] = no_geocode_msg
 
     return ret_val
-
 
 def do_from_to_geocode_check(request):
     ''' checks whether we have proper coordinates for the from & to params
@@ -123,12 +121,10 @@ def do_from_to_geocode_check(request):
     ret_val['query_string'] = qs
     return ret_val
 
-
 def make_place_from_stop_request(request, stop):
     place = html_utils.get_first_param(request, 'place')
     name = name_from_named_place(place, place)
     ret_val = geo_utils.make_place(name, lat, lon)
-
 
 def has_content(geo, el='geocoder_results'):
     ret_val = False
@@ -140,37 +136,8 @@ def has_content(geo, el='geocoder_results'):
         ret_val = False
     return ret_val
 
-
 def make_autocomplete_cache(frm, doc):
     ''' take a SOLR doc, and make an entry for the autocomplete cache
     '''
     ret_val = {'label':frm, 'lat':doc['lat'], 'lon':doc['lon']}
     return ret_val
-
-
-'''
-    TODO TODO TODO
-    Needs work....
-def do_stops_near(request):
-    #will either return the nearest list of stops, or geocode redirects
-
-    has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
-    has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
-    if has_geocode or has_coord:
-        call_near_ws()
-    else:
-        place = html_utils.get_first_param(request, 'place')
-        geo = call_geocoder(request, place)
-
-        if geo['count'] == 1:
-            single_geo = geo['geocoder_results'][0]
-            if single_geo['type'] == 'stop':
-                query_string = "{0}&stop_id={1}".format(request.query_string, single_geo['stop_id'])
-                ret_val = make_subrequest(request, '/stop.html', query_string)
-            else:
-                call_near_ws(single_geo)
-        else:
-            ret_val = make_subrequest(request, '/stop_select_geocode.html')
-
-    return ret_val
-    '''

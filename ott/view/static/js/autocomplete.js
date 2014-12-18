@@ -241,16 +241,20 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
     {
         try
         {
-            var c = clear_value || '';
-
             // clear the geo coordinate if the input form string changes
             if(this.geo_div)
             {
-                var curr_value = $(this.input_div).val().trim();
-                if(curr_value != this.last_value)
+                var c = clear_value || '';
+                var geo_value = $(this.geo_div).val().trim();
+
+                if(geo_value != c)
                 {
-                    console.log("NOTE: clearing value of " + this.geo_div + "(" + curr_value + ") from " + $(this.geo_div).val() + " to '" + c + "'");
-                    $(this.geo_div).val(c);
+                    var form_value = $(this.input_div).val().trim();
+                    if(form_value != this.last_value)
+                    {
+                        console.log("NOTE: clearing value of " + this.geo_div + "(" + form_value + ") from " + geo_value + " to '" + c + "'");
+                        $(this.geo_div).val(c);
+                    }
                 }
             }
         }
@@ -339,7 +343,10 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
                             data.push(dao);
                         }
 
-                        // step 4: jQuery UI autocomplete (required) callback
+                        // step 4: clear cached stuff ...
+                        THIS.clear_callback();
+
+                        // step 5: jQuery UI autocomplete (required) callback
                         response(data);
                     }
                 });
