@@ -10,6 +10,8 @@
     ret_val = def_val
     if 'route' in request.params:
         ret_val = request.params['route']
+    if ret_val is None or ret_val == 'None':
+        ret_val = def_val
     return ret_val
 %></%def>
 
@@ -107,49 +109,60 @@ ${t['name']}<br/>${_(t['dow_abbrv'])}
 ## sort schedule by either route (blocky view) or time (list view)
 ##
 <%def name="schedule_render(ss, pretty_date, extra_params, is_mobile=False)">
-    <%
-        from ott.view.utils import agency_template
-        url = agency_template.make_url_template()
-    %>
-    %if sort_by_time():
-    <div class="sortbyline">
+    %if len(ss['stoptimes']) > 0:
         ###
         ###  SHOW schedule as a list, with headsign to left of time...
         ###
-        %for s in ss['stoptimes']:
+        %if sort_by_time():
+        <div class="sortbyline">
+            %for s in ss['stoptimes']:
+            <%
+                id = s['h']
+                hs = ss['headsigns'][id]
+            %> 
+            <p><b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}</p>
+            %endfor
+        </div>
+
+        ###
+        ###  SHOW schedule grouped under headsign
+        ###
+        %else:
         <%
-            id = s['h']
-            hs = ss['headsigns'][id]
-        %> 
-        <p><b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}</p>
-        %endfor
-    </div>
-    ###
-    ###  SHOW schedule grouped under headsign
-    ###
-    %else:
-    <%
-        hs_list = ss['headsigns'].values()
-        hs_list.sort(key=lambda hs: hs['sort_order'], reverse=False)
-    %>
-    %for hs in hs_list:
-    <h3 class="tight">
-        ${hs['route_name']} ${_(u'to')} ${hs['headsign']}
-        %if hs['has_alerts']:
-        ${util.alerts_inline_icon_link()}
-        %endif
-    </h3>
-    <p class="tight">
-        %for s in ss['stoptimes']:
-            %if s['h'] == hs['id']:
-            ${s['t']}&nbsp; 
+            hs_list = ss['headsigns'].values()
+            hs_list.sort(key=lambda hs: hs['sort_order'], reverse=False)
+        %>
+        %for hs in hs_list:
+        <h3 class="tight">
+            ${hs['route_name']} ${_(u'to')} ${hs['headsign']}
+            %if hs['has_alerts']:
+            ${util.alerts_inline_icon_link()}
             %endif
+        </h3>
+        <p class="tight">
+            %for s in ss['stoptimes']:
+                %if s['h'] == hs['id']:
+                ${s['t']}&nbsp; 
+                %endif
+            %endfor
+        </p>
+        <p>
+            <%
+               from ott.view.utils import agency_template
+               url = agency_template.make_url_template()
+            %>
+            <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
+        </p>
         %endfor
-    </p>
-    <p>
-        <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
-    </p>
-    %endfor
+        %endif
+    %else:
+        ###
+        ###  SHOW the No service message, since we don't have any stop times...
+        ###
+        <strong>${_(u'No service')}</strong> ${_(u'at this stop')} ${_(u'on')} ${pretty_date} 
+        %if route_param(None):
+            ${_(u'for')} ${_(u'line')} #${route_param()}
+        %endif
     %endif
 </%def>
 
