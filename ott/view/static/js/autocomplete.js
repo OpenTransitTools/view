@@ -212,6 +212,18 @@ function PlaceCache(removeTitle, saveOnClick)
     };
 }
 
+function get_el_val(el, def_val)
+{
+    var ret_val = def_val;
+    try
+    {
+        ret_val = $(el).val().trim();
+    }
+    catch(e)
+    {}
+    return ret_val;
+}
+    
 
 /**
  * SOLRAutoComplete class that will call SOLR, and return text data...
@@ -229,10 +241,11 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
     this.solr_url    = solr_url    || "http://127.0.0.1/solr/select";
     this.num_results = num_results || "6";
     this.cache       = cache;
-    this.last_value  = $(this.input_div).val().trim();
+    this.last_value  = get_el_val(this.input_div);
 
     var THIS = this;  // make SOLRAutoComplete instance 'this' available to jQuery ajax stuff below 
 
+    
     /** 
      * clear callback will clean up any
      * 
@@ -245,11 +258,11 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
             if(this.geo_div)
             {
                 var c = clear_value || '';
-                var geo_value = $(this.geo_div).val().trim();
+                var geo_value = get_el_val(this.geo_div);
 
                 if(geo_value != c)
                 {
-                    var form_value = $(this.input_div).val().trim();
+                    var form_value = get_el_val(this.input_div);
                     if(form_value != this.last_value)
                     {
                         console.log("NOTE: clearing value of " + this.geo_div + "(" + form_value + ") from " + geo_value + " to '" + c + "'");
