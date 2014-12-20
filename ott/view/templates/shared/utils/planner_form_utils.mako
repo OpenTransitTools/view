@@ -112,7 +112,7 @@
     %if is_homepage:
     <h2><b>${_(u'Plan your trip')}</b> ${_(u'on')} ${agency} <span class="secondary" style="font-size:.5em; color:#ccc;">BETA</span></h2>
     %endif 
-    <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style"/>
+    <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style">
         <div id="plantrip-left">
             <fieldset class="normal">
                 <label for="from" class="homepage-hide">${_(u'From')}</label>
