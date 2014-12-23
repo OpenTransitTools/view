@@ -13,6 +13,6 @@
 
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">${page.tripplanner_css()}</%def>
-${page.trip_planner(_(u'Oops!'), extra_params, 'exception')}
+${page.trip_planner(_(u'Oops!'), extra_params, 'exception', True)}
 ${util.error_msg(extra_params, feedback_url)}
 <p>&nbsp;</p>

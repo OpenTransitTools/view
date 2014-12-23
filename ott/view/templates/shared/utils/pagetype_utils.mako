@@ -48,10 +48,12 @@
 </%def>
 
 
-<%def name="trip_planner(name='', extra_params='', base_params='me')">
+<%def name="trip_planner(name='', extra_params='', base_params='me', is_mobile=False)">
+%if not is_mobile:
 <div id="triptool" class="tripplanner-icon">
     <a href="planner_form.html?${base_params}${extra_params}">${_(u'Trip Planner')}</a>
 </div>
+%endif
 <h1>
     ${name}
 </h1>

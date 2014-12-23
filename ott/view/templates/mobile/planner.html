@@ -22,7 +22,7 @@
 <%def name="app_css()">${page.tripplanner_css()}</%def>
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
 <%def name="bottom()">${plib.bottom_imap_bar()} ${plib.bottom_disclaimer(True)}</%def>
-${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner')}
+${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner', True)}
 
 ##
 ## main content
