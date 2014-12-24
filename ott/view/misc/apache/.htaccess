@@ -1,7 +1,17 @@
 RewriteEngine  on
-RewriteRule .*stop.* /ride/stop.html [R]
-RewriteRule .*sched.* /ride/stop_schedule.html [R]
-RewriteRule .*plantrip.* /ride/planner_form.html [R]
-RewriteRule .*showmap.* /ride/map_place.html [R]
 
-RedirectMatch qr/(.*) http://dev.trimet.org/ride/stop.html?source=QR_code\&stop_id=$1
+RewriteCond %{QUERY_STRING} ^.*lang=pda.*$    [NC]
+RewriteRule .*stop.* /ride/m/stop.html [R,S=1]
+RewriteRule .*stop.* /ride/stop.html [R]
+
+RewriteCond %{QUERY_STRING} ^.*lang=pda.*$    [NC]
+RewriteRule .*sched.* /ride/m/stop_schedule.html [R,S=1]
+RewriteRule .*sched.* /ride/stop_schedule.html [R]
+
+RewriteCond %{QUERY_STRING} ^.*lang=pda.*$    [NC]
+RewriteRule .*plantrip.* /ride/m/planner_form.html [R,S=1]
+RewriteRule .*plantrip.* /ride/planner_form.html [R]
+
+RedirectMatch qr/(.*) /ride/stop.html?source=QR_code\&stop_id=$1
+
+RedirectMatch /go/cgi-bin/atisExec.pl /got/cgi-bin/atisExec.pl
