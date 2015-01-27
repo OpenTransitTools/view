@@ -134,7 +134,7 @@
 
             <fieldset class="departwhen">
                 <label for="when" class="hide">${_(u'When')}:</label>
-                <select name="Arr" id="depart" tabindex="3"  onchange="showTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <select name="Arr" id="depart" tabindex="3"  class="regular" onchange="showTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);">
                     ${arrive_depart_form_option(params['Arr'], is_mobile)}
                 </select>
             </fieldset>
@@ -214,7 +214,6 @@
                 </div>
                 %endif
             </fieldset>
-            <!--<div><a href="${util.url_domain()}/tripplanner/trip-help.htm" onclick="_gaq.push(['_trackEvent', 'Trip Planner Ads', 'ClickTo', '/tripplanner/trip-help.htm']);" class="trip-help">${_(u'Help')}</a></div>-->
             %if is_homepage:
             <span id="less-options">
                 <a href="javascript:showTripPlannerAdvanced();"><span>&laquo; ${_(u'Fewer options')}</span></a>
@@ -224,7 +223,7 @@
 
         <fieldset class="submit">
             ${form.get_extra_params_hidden_inputs()}
-            <input name="submit" tabindex="13" type="submit" value="${_(u'Get directions')} &raquo;" id="submit" title="${_(u'Submit your trip plan information')}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
+            <input name="submit" tabindex="13" type="submit" value="${_(u'Get directions')} &raquo;" id="submit" title="${_(u'Submit your trip plan information')}" onclick="tpGoogleAnalytics(_gaq, ['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
             <div id="mapcheckbox-wrap">
                 <input type="checkbox" id="mapcheckbox" tabindex="12" name="mapit" value="A"/>
                 <label for="mapcheckbox" class="mapcheckbox-label">${_(u'Use Interactive Map')}</label>
