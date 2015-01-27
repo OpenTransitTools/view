@@ -70,6 +70,7 @@
     </fieldset>
 </%def>
 
+
 #
 # autocomplete: CSS and JS includes...
 #
@@ -79,26 +80,15 @@
     <script type="text/javascript" src="${prefix}/autocomplete.js"></script>
 </%def>
 
+<%def name="planner_form_js_includes(prefix='js')">
+    <script type="text/javascript" src="${prefix}/text_planner.js"></script>
+    <script type="text/javascript" src="${prefix}/dynamic_forms.js"></script>
+</%def>
+
 <%def name="autocomplete_css_includes(prefix='css')">
     <link href="${prefix}/autocomplete.css" rel="stylesheet"/>
 </%def>
 
-<%def name="dynamic_forms_js(prefix='js')">
-    <script type="text/javascript" src="${prefix}/dynamic_forms.js"></script>
-    <script type="text/javascript">
-    try {
-        var forms = new DynamicForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
-        forms.switch_mode();
-        forms.add_mode_callback();
-    } catch(e) {
-        console.log(e);
-    }
-    </script>
-</%def>
-
-<%def name="planner_form_js_includes(prefix='js')">
-    <script type="text/javascript" src="${prefix}/text_planner.js"></script>
-</%def>
 
 ##
 ## auto complete - localize name

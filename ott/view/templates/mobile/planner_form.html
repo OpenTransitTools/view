@@ -16,8 +16,9 @@
 <%def name="app_css()">
     ${page.tripplanner_css()}
     ${form.autocomplete_css_includes()}
+    ${form.autocomplete_js_includes()}
+    ${form.planner_form_js_includes()}
 </%def>
-${form.planner_form_js_includes()}
 <%def name="js_onload()">javascript:checkgps(); javascript:select_form();</%def>
 ${pform.gps_form_scriptlet()}
 ${form.select_form_scriptlet('from')}
@@ -32,6 +33,5 @@ ${page.main_trip_planner_form(_(u'Trip Planner'), extra_params, 'form')}
 ## main content
 ##
 ${pform.planner_form(is_mobile=True)}
-${form.autocomplete_js_includes()}
-${form.dynamic_forms_js()}
 ${pform.autocomplete_trip_planner()}
+${pform.dynamic_forms_js()}

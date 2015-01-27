@@ -98,6 +98,21 @@
 </%def>
 
 ##
+## adds callbacks to trip forms
+##
+<%def name="dynamic_forms_js()">
+    <script type="text/javascript">
+    try {
+        var forms = new DynamicForms("${_(u'Maximum walk')}", "${_(u'Maximum bicycle')}");
+        forms.switch_mode();
+        forms.add_mode_callback();
+    } catch(e) {
+        console.log(e);
+    }
+    </script>
+</%def>
+
+##
 ## large trip planner form on planner_form.html
 ##
 <%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False, agency='TriMet')">
