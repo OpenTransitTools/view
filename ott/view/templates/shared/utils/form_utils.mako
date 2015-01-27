@@ -96,6 +96,9 @@
     </script>
 </%def>
 
+<%def name="planner_form_js_includes(prefix='js')">
+    <script type="text/javascript" src="${prefix}/text_planner.js"></script>
+</%def>
 
 ##
 ## auto complete - localize name

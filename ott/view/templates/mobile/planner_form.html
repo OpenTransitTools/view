@@ -17,6 +17,7 @@
     ${page.tripplanner_css()}
     ${form.autocomplete_css_includes()}
 </%def>
+${form.planner_form_js_includes()}
 <%def name="js_onload()">javascript:checkgps(); javascript:select_form();</%def>
 ${pform.gps_form_scriptlet()}
 ${form.select_form_scriptlet('from')}
