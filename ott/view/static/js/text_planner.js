@@ -11,6 +11,15 @@ function tpShowTimeControls(form) {
     }
 }
 
+function tpDoText(form, content) {
+    try {
+        doText(form, content);
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+
 function tpDoClassRegular(form) {
     try {
         doClassRegular(form);

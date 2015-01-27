@@ -87,7 +87,7 @@
     
 %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
-    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="${clear_js} doClassHighlight(this);" onBlur="doText(this,'${clear}'); doClassRegular(this);"/>
+    <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="${clear_js} doClassHighlight(this);" onBlur="tpDoText(this,'${clear}'); tpDoClassRegular(this);"/>
     %if not is_mobile:
     <div class="form-help">
         <div class="form-help-popup-onright">
@@ -134,34 +134,34 @@
 
             <fieldset class="departwhen">
                 <label for="when" class="hide">${_(u'When')}:</label>
-                <select name="Arr" id="depart" tabindex="3"  class="regular" onchange="showTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);">
+                <select name="Arr" id="depart" tabindex="3"  class="regular" onchange="tpShowTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" onblur="tpDoClassRegular(this);">
                     ${arrive_depart_form_option(params['Arr'], is_mobile)}
                 </select>
             </fieldset>
             <fieldset class="departwhen-units">
                 <div id="departwhen-time">
-                    <select name="Hour" id="Hour" tabindex="4"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <select name="Hour" id="Hour" tabindex="4"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
                     %for i in range(1, 13):
                         ${util.option(i, i, util.compare_values(params['Hour'], i))}
                     % endfor
                     </select>
                     <b>:</b>
-                    <select name="Minute" id="Minute" tabindex="5" onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <select name="Minute" id="Minute" tabindex="5" onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
                     %for i in range(60):
                         ${util.option(i, str(i).rjust(2,'0'), util.compare_values(params['Minute'], i))}
                     % endfor
                     </select>
-                    <select name="AmPm" id="AmPm" tabindex="6"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <select name="AmPm" id="AmPm" tabindex="6"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
                         ${util.option('am', _(u'am'), params['is_am'])}
                         ${util.option('pm', _(u'pm'), not params['is_am'])}
                     </select>
                 </div>
                 <div id="departwhen-date">
                     <span class="homepage-hide">${_(u'on')}</span>
-                    <select name="month" id="Month" tabindex="7"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <select name="month" id="Month" tabindex="7"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
                         ${util.month_abbv_options(params['month'])}
                     </select>
-                    <select name="day" id="Day" tabindex="8"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                    <select name="day" id="Day" tabindex="8"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
                         ${util.day_options(params['day'])}
                     </select>
                 </div>
@@ -177,7 +177,7 @@
             <p id="trippreferences">${_(u'Trip preferences (optional)')}</p>
             <fieldset class="preferences">
                 <label for="trip-transfers">${_(u'Show me the')}</label>
-                <select id="trip-transfers" name="optimize" tabindex="9"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <select id="trip-transfers" name="optimize" tabindex="9"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
                     ${optimize_form_option(params['optimize'], is_mobile)}
                 </select>
                 %if not is_mobile:
@@ -190,7 +190,7 @@
             </fieldset>
             <fieldset class="preferences">
                 <label for="trip-walkdistance">${_(u'Maximum walk')}</label>
-                <select id="trip-walkdistance" name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <select id="trip-walkdistance" name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
                     ${walk_form_option(params['Walk'], is_mobile)}
                 </select>
                 %if not is_mobile:
@@ -203,7 +203,7 @@
             </fieldset>
             <fieldset class="preferences">
                 <label for="trip-modetype">${_(u'Travel by')}</label>
-                <select id="trip-modetype" name="mode" tabindex="11"  onfocus="doClassHighlight(this);" class="regular" onblur="doClassRegular(this);">
+                <select id="trip-modetype" name="mode" tabindex="11"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
                     ${mode_form_option(params['mode'], is_mobile)}
                 </select>
                 %if not is_mobile:
