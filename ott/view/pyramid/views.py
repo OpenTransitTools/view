@@ -53,6 +53,7 @@ def do_view_config(config):
     config.add_route('feedback_desktop',                        '/feedback.html')
 
     config.add_route('pform_standalone',                        '/pform_standalone.html')
+    config.add_route('pform_no_includes',                       '/pform_no_includes.html')
     config.add_route('pform_example',                           '/pform_example.html')
     config.add_route('planner_form_desktop',                    '/planner_form.html')
     config.add_route('planner_geocode_desktop',                 '/planner_geocode.html')
@@ -106,10 +107,11 @@ def feedback(request):
     ret_val['stop'] = None
     return ret_val
 
-@view_config(route_name='planner_form_mobile', renderer='mobile/planner_form.html')
+@view_config(route_name='planner_form_mobile',  renderer='mobile/planner_form.html')
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
-@view_config(route_name='pform_example',    renderer='shared/app/pform_example.html')
-@view_config(route_name='pform_standalone', renderer='shared/app/pform_standalone.html')
+@view_config(route_name='pform_example',     renderer='shared/app/pform_example.html')
+@view_config(route_name='pform_standalone',  renderer='shared/app/pform_standalone.html')
+@view_config(route_name='pform_no_includes', renderer='shared/app/pform_no_includes.html')
 def planner_form(request):
     ret_val = {}
     params = html_utils.planner_form_params(request)
