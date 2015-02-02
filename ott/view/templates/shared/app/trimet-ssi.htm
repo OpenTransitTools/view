@@ -1,9 +1,8 @@
 <!doctype html>
-<html lang="en">
-<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"><![endif]-->
-<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en"><![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8 | !(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -26,7 +25,15 @@
     <link rel="stylesheet" href="/css/triptools.css" type="text/css" media="all" />
     <link rel="stylesheet" href="/css/triptools/triptools-home.css" type="text/css" media="all" />
 
-    <!--#include virtual="/includes/structure/jquery-init.htm" --><!-- jquery for time/date and orbit slider -->
+    <!-- jquery for trip planner, time/date and orbit slider -->
+    <!--#include virtual="/includes/structure/jquery-init.htm" -->
+    <link rel="stylesheet" type="text/css" href="/maps/text/css/autocomplete.css" media="all" />
+    <script type="text/javascript" src="/maps/text/js/jquery-ui-autocomplete.js"></script>
+    <script type="text/javascript" src="/maps/text/js/autocomplete.js"></script>
+    <script type="text/javascript" src="/maps/text/js/text_planner.js"></script>
+    <script type="text/javascript" src="/maps/text/js/dynamic_forms.js"></script>
+    <script type="text/javascript" src="/scripts/tripplanner.js"></script>
+
     <!--#include virtual="/includes/structure/head-bottom.htm" -->
 </head>
 
@@ -34,7 +41,7 @@
 	
     <h1 class="visuallyhidden">TriMet: Public Transit in the Portland Area</h1>
 
-    <!--#include virtual="/includes/structure/topnav.htm" -->
+    <!--#include virtual="/includes/structure/topnav-home.htm" -->
     <!--#include virtual="/emergency.htm" -->
 
     <header id="header-wrap" class="group">
@@ -57,7 +64,7 @@
 
         <div id="branding-wrap" class="group">
             <section id="branding">
-                <!--#include virtual="/ride/pform_standalone.html?$QUERY_STRING" -->
+            	<!--#include virtual="/ride/pform_no_includes.html?$QUERY_STRING" -->
             </section><!-- end #branding -->
         </div><!-- end #branding-wrap -->
 
@@ -106,7 +113,7 @@
 
     <div id="accountability-wrap">
         <article id="accountability">
-            <h3><a href="/about/accountability.htm"><span><b>Accountability Center:</b> Our financials, performance, meetings &amp; more &raquo;</span></a></h3>
+            <h3><a href="/about/accountability.htm" onClick="_gaq.push(['_trackEvent', 'Accountability Center', 'ClickTo', 'Home Page Entry']);"><span><b>Transparency &amp; Accountability:</b> Our leadership, performance, meetings, financials &amp; more &raquo;</span></a></h3>
         </article>
     </div>
 
@@ -163,7 +170,6 @@
 	<!--#include virtual="/includes/fanmail.htm" -->
     
 	<!--#include virtual="/includes/structure/footer.htm" -->
-	<!--#include virtual="/includes/structure/tripplanner-assets.htm" -->
 
     <script type="text/javascript" src="/scripts/orbit-jquery-min.js"></script><!-- orbit slideshow script -->
     <script type="text/javascript">
@@ -174,5 +180,7 @@
     //-->
     </script>
 
+    <div id="fb-root"></div><!-- for facebook  -->
+    
 </body>
 </html>
