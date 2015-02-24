@@ -39,12 +39,16 @@ def do_view_config(config):
     # routes setup
     config.add_route('index_desktop',                           '/')
     config.add_route('index_mobile',                            '/m')
+    config.add_route('index_ws',                                '/ws')
     config.add_route('sparkline_desktop',                       '/sparkline')
     config.add_route('sparkline_mobile',                        '/m/sparkline')
+    config.add_route('sparkline_ws',                            '/ws/sparkline')
     config.add_route('qrcode_desktop',                          '/qrcode')
     config.add_route('qrcode_mobile',                           '/m/qrcode')
+    config.add_route('qrcode_ws',                               '/ws/qrcode')
     config.add_route('adverts_desktop',                         '/adverts.html')
     config.add_route('adverts_mobile',                          '/m/adverts.html')
+    config.add_route('adverts_ws',                              '/ws/adverts.html')
 
     ###
     ### DESKTOP PAGES
@@ -93,15 +97,38 @@ def do_view_config(config):
 
     config.add_route('map_place_mobile',                        '/m/map_place.html')
 
+    ###
+    ### WS PAGES
+    ###
+    config.add_route('exception_ws',                        '/ws/exception.html')
+    config.add_route('feedback_ws',                         '/ws/feedback.html')
+
+    config.add_route('planner_form_ws',                     '/ws/planner_form.html')
+    config.add_route('planner_geocode_ws',                  '/ws/planner_geocode.html')
+    config.add_route('planner_ws',                          '/ws/planner.html')
+    config.add_route('planner_walk_ws',                     '/ws/planner_walk.html')
+
+    config.add_route('stop_select_form_ws',                 '/ws/stop_select_form.html')
+    config.add_route('stop_select_list_ws',                 '/ws/stop_select_list.html')
+    config.add_route('stop_select_geocode_ws',              '/ws/stop_select_geocode.html')
+
+    config.add_route('stop_ws',                             '/ws/stop.html')
+    config.add_route('stops_near_ws',                       '/ws/stops_near.html')
+    config.add_route('stop_schedule_ws',                    '/ws/stop_schedule.html')
+
+    config.add_route('map_place_ws',                        '/ws/map_place.html')
+
 
 @view_config(route_name='exception_mobile',  renderer='mobile/exception.html')
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
+@view_config(route_name='exception_ws',      renderer='ws/exception.html')
 def handle_exception(request):
     ret_val = {}
     return ret_val
 
-@view_config(route_name='feedback_mobile', renderer='mobile/feedback.html')
+@view_config(route_name='feedback_mobile',  renderer='mobile/feedback.html')
 @view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
+@view_config(route_name='feedback_ws',      renderer='ws/feedback.html')
 def feedback(request):
     ret_val = {}
     ret_val['stop'] = None
@@ -109,6 +136,7 @@ def feedback(request):
 
 @view_config(route_name='planner_form_mobile',  renderer='mobile/planner_form.html')
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
+@view_config(route_name='planner_form_ws',      renderer='ws/planner_form.html')
 @view_config(route_name='pform_example',     renderer='shared/app/pform_example.html')
 @view_config(route_name='pform_standalone',  renderer='shared/app/pform_standalone.html')
 @view_config(route_name='pform_no_includes', renderer='shared/app/pform_no_includes.html')
@@ -118,8 +146,9 @@ def planner_form(request):
     ret_val['params'] = params
     return ret_val
 
-@view_config(route_name='planner_geocode_mobile', renderer='mobile/planner_geocode.html')
+@view_config(route_name='planner_geocode_mobile',  renderer='mobile/planner_geocode.html')
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
+@view_config(route_name='planner_geocode_ws',      renderer='ws/planner_geocode.html')
 def planner_geocode(request):
     ''' for the ambiguous geocode page
     '''
@@ -139,9 +168,9 @@ def planner_geocode(request):
         ret_val = make_subrequest(request, '/exception.html')
     return ret_val
 
-
-@view_config(route_name='planner_mobile', renderer='mobile/planner.html')
+@view_config(route_name='planner_mobile',  renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
+@view_config(route_name='planner_ws',      renderer='ws/planner.html')
 def planner(request):
     ''' will either call the trip planner, or if we're missing params, redirect to the ambiguous geocode page
         basically, call the geocode checker, and then either call the ambiguous geocoder page, or plan the trip planner
@@ -173,8 +202,9 @@ def planner(request):
     return ret_val
 
 
-@view_config(route_name='planner_walk_mobile', renderer='mobile/planner_walk.html')
+@view_config(route_name='planner_walk_mobile',  renderer='mobile/planner_walk.html')
 @view_config(route_name='planner_walk_desktop', renderer='desktop/planner_walk.html')
+@view_config(route_name='planner_walk_ws',      renderer='ws/planner_walk.html')
 def planner_walk(request):
     ret_val = None
     try:
@@ -187,6 +217,7 @@ def planner_walk(request):
 @view_config(route_name='stop_mobile_short', renderer='mobile/stop.html')
 @view_config(route_name='stop_mobile',       renderer='mobile/stop.html')
 @view_config(route_name='stop_desktop',      renderer='desktop/stop.html')
+@view_config(route_name='stop_ws',           renderer='ws/stop.html')
 def stop(request):
     stop = None
     try:
@@ -202,8 +233,9 @@ def stop(request):
     return ret_val
 
 
-@view_config(route_name='stop_schedule_mobile', renderer='mobile/stop_schedule.html')
+@view_config(route_name='stop_schedule_mobile',  renderer='mobile/stop_schedule.html')
 @view_config(route_name='stop_schedule_desktop', renderer='desktop/stop_schedule.html')
+@view_config(route_name='stop_schedule_ws',      renderer='ws/stop_schedule.html')
 def stop_schedule(request):
     html_tabs = stop_sched = alerts = None
     
@@ -229,6 +261,7 @@ def stop_schedule(request):
 @view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')
 @view_config(route_name='stop_select_form_mobile',       renderer='mobile/stop_select_form.html')
 @view_config(route_name='stop_select_form_desktop',      renderer='desktop/stop_select_form.html')
+@view_config(route_name='stop_select_form_ws',           renderer='ws/stop_select_form.html')
 def stop_select_form(request):
     routes = None
     try:
@@ -244,8 +277,9 @@ def stop_select_form(request):
         ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Select page')
     return ret_val
 
-@view_config(route_name='stop_select_list_mobile', renderer='mobile/stop_select_list.html')
+@view_config(route_name='stop_select_list_mobile',  renderer='mobile/stop_select_list.html')
 @view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
+@view_config(route_name='stop_select_list_ws',      renderer='ws/stop_select_list.html')
 def stop_select_list(request):
     route_stops = None
     try:
@@ -262,15 +296,18 @@ def stop_select_list(request):
     return ret_val
 
 
-@view_config(route_name='stop_select_geocode_mobile', renderer='mobile/stop_select_geocode.html')
+@view_config(route_name='stop_select_geocode_mobile',  renderer='mobile/stop_select_geocode.html')
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
+@view_config(route_name='stop_select_geocode_ws',      renderer='ws/stop_select_geocode.html')
 def stop_select_geocode(request):
     place = html_utils.get_first_param(request, 'place')
     ret_val = geocode_utils.call_geocoder(request, place)
     return ret_val
 
-@view_config(route_name='stops_near_mobile', renderer='mobile/stops_near.html')
+
+@view_config(route_name='stops_near_mobile',  renderer='mobile/stops_near.html')
 @view_config(route_name='stops_near_desktop', renderer='desktop/stops_near.html')
+@view_config(route_name='stops_near_ws',      renderer='ws/stops_near.html')
 def stops_near(request):
     ''' this routine is called by the stop lookup form.  we branch to either call the
         nearest stop routine (based on lat,lon coordiantes), or call stop.html directly
@@ -368,8 +405,9 @@ def stops_near(request):
     return ret_val
 
 
-@view_config(route_name='map_place_mobile', renderer='mobile/map_place.html')
+@view_config(route_name='map_place_mobile',  renderer='mobile/map_place.html')
 @view_config(route_name='map_place_desktop', renderer='desktop/map_place.html')
+@view_config(route_name='map_place_ws',      renderer='ws/map_place.html')
 def map_place(request):
     ret_val = {}
     p = Place.make_from_request(request)
@@ -379,6 +417,7 @@ def map_place(request):
 
 @view_config(route_name='sparkline_desktop')
 @view_config(route_name='sparkline_mobile')
+@view_config(route_name='sparkline_ws')
 def sparkline(request):
     ''' returns a sparkline image in png format...
     '''
@@ -394,6 +433,7 @@ def sparkline(request):
 
 @view_config(route_name='qrcode_desktop')
 @view_config(route_name='qrcode_mobile')
+@view_config(route_name='qrcode_ws')
 def qrcode(request):
     ''' streams a qrcode image for the param 'content' (defaults to http://trimet.org)
     '''
@@ -406,6 +446,7 @@ def qrcode(request):
 
 @view_config(route_name='adverts_desktop', renderer='adverts.html')
 @view_config(route_name='adverts_mobile',  renderer='adverts.html')
+@view_config(route_name='adverts_ws',      renderer='adverts.html')
 def adverts(request):
     ret_val = {}
     ret_val['bus_adverts']     = request.model.get_adverts("mode=bus&_LOCALE_=en",  **request.params)
@@ -417,6 +458,7 @@ def adverts(request):
 
 @view_config(route_name='index_desktop', renderer='index.html')
 @view_config(route_name='index_mobile',  renderer='index.html')
+@view_config(route_name='index_ws',      renderer='index.html')
 def index_view(request):
     return {}
 
@@ -473,11 +515,18 @@ def cleanup(request):
 def is_mobile(request):
     return '/m/' in request.path_url
 
+def is_ws(request):
+    return '/ws/' in request.path_url
+
+
 def get_path(request, path):
     ret_val = path
     if is_mobile(request):
         ret_val = '/m' + path
+    if is_ws(request):
+        ret_val = '/ws' + path
     return ret_val
+
 
 def forward_request(request, path, query_string=None, extra_params=None):
     # http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}

@@ -33,11 +33,14 @@ def do_static_config(config):
     config.add_static_view('html',     'ott.view:static',          cache_max_age=cache_age)
     config.add_static_view('js',       'ott.view:static/js',       cache_max_age=cache_age)
     config.add_static_view('m/js',     'ott.view:static/js',       cache_max_age=cache_age)
+    config.add_static_view('ws/js',    'ott.view:static/js',       cache_max_age=cache_age)
     config.add_static_view('css',      'ott.view:static/css',      cache_max_age=cache_age)
     config.add_static_view('m/css',    'ott.view:static/css',      cache_max_age=cache_age)
+    config.add_static_view('ws/css',   'ott.view:static/css',      cache_max_age=cache_age)
     config.add_static_view('images',   'ott.view:static/images',   cache_max_age=cache_age)
     config.add_static_view('m/images', 'ott.view:static/images',   cache_max_age=cache_age)
-    config.add_static_view('mock',   '  ott.view:static/mock',     cache_max_age=cache_age)
+    config.add_static_view('ws/images','ott.view:static/images',   cache_max_age=cache_age)
+    config.add_static_view('mock',     ' ott.view:static/mock',    cache_max_age=cache_age)
 
     # important ... allow .html extension on mako templates
     config.include('pyramid_mako')
