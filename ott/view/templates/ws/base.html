@@ -1,5 +1,4 @@
 ## -*- coding: utf-8 -*-
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
 ##
 ## BELOW ARE THE ABSTRACT METHODS (to be overridden by sub-classed templates) that populate this base page
 ##
@@ -15,60 +14,9 @@
 <%
     extra_params = util.get_extra_params()
 %>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>${self.title()}</title>
-<meta name="viewport" content="width=device-width" />
-<link href="${util.url_domain()}/images/favicon.ico" rel="shortcut icon" />
-<link href="${util.url_domain()}/images/m/trimet-logo-iphone.png" rel="apple-touch-icon" />
-${self.app_css()}
-${self.header()}
-<link href="${util.url_domain()}/css/triptools/global.css" rel="stylesheet" type="text/css" />
-<link href="${util.url_domain()}/css/triptools/triptools-mobile.css" rel="stylesheet" type="text/css" />
-</head>
-<body class="standard" onLoad="${self.js_onload()}">
-${self.emergency_content()|n,decode.utf8}
-
-<header id="header-wrap" class="group">
-    <div id="nav-wrap" class="group">
-        <nav id="nav">
-            <div id="logo"><a href="/m/index.htm"></a></div>
-            <div id="tabs-wrap">
-                <a id="tabs-icon-open" href="#nav">NAV</a>
-                <a id="tabs-icon-close" href="#top">${_(u'Close')}</a>
-                <div id="tabs-ul-wrap">
-                    <ul id="tabs" class="group">
-                        <li><a href="/arrivals/small/pickroute.html" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - TransitTracker']);">${_(u'Arrival Times')} (TransitTracker)</a></li>
-                        <li><a href="/ride/m/planner_form.html?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Plan a Trip']);">${_(u'Plan a Trip')}</a></li>
-                        <li><a href="/m/alerts/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger Service Alerts']);">${_(u'Service Alerts')}</a></li>
-                        <li><a href="/ride/m/stop_select_form.html?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Stops and Schedules']);">${_(u'Stops and Schedules')}</a></li>
-                        <li><a href="/m/maps.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Maps']);">${_(u'Maps')}</a></li>
-                        <li><a href="https://public.govdelivery.com/accounts/ORTRIMET/subscriber/new?category_id=ORTRIMET_C2" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Email Updates']);">Get Updates by Email</a></li>
-                        <li><a href="/m/contact.htm?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Contact Us']);">${_(u'Contact Us')}</a></li>
-                    </ul>
-                </div>
-            </div><!-- end #tabs-wrap -->
-        </nav><!-- end #nav -->
-    </div><!-- end #nav-wrap -->
-</header><!-- end #header-wrap -->
-
 <div id="content-body" class="main">
     ${next.body()}
     <div id="bottom-wrap" class="group">
         ${self.bottom()}
     </div>
 </div>
-
-
-<div id="footer">
-    <p class="footer" align="center">
-        <a href="mailto:mobile@trimet.org">${_(u'Feedback')}</a> &nbsp;|&nbsp; <a href="/m/apps/index.htm">${_(u'App Center')}</a> &nbsp;|&nbsp; <a href="/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'Footer - Standard site']);">${_(u'Standard site')}</a>
-    </p>
-    <p class="footer-links" align="center">
-        <a href="/m/terms.htm">${_(u'Terms of Use')}</a> &nbsp;|&nbsp; <a href="/m/privacy.htm">${_(u'Privacy Policy')}</a> &nbsp;|&nbsp; &copy; ${util.print_year()} TriMet
-    </p>
-</div>
-<script type="text/javascript" src="${util.url_domain()}/scripts/basic.js"></script><!-- basic global scripts -->
-</body>
-</html>
