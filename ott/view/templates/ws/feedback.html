@@ -1,0 +1,26 @@
+<%inherit file="/mobile/base.html"/>
+
+<%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
+<%def name="title()">${_(u'Feedback')}</%def>
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/triptools/triptools-ss.css" type="text/css" media="all" />
+</%def>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Feedback"/>
+    <meta name="Description" content="Feedback."/>
+</%def>
+<%def name="side_bar()">
+    <!-- begin #sidebar -->
+    <aside id="aside" class="aside">
+        <h2>${_(u'Related')}</h2>
+        <ul class="links">
+          <li><a href="/tripplanner/help.htm" title="${_(u'TriMet: Trip Planner Help')}" onclick="openPopup(this,'TripPlannerHelp','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=550,height=500,left=10,top=10'); return false;" target="TripPlannerHelp">${_(u'Trip Planner tips & help')}</a></li>
+        </ul>
+    </aside>
+    <!-- end #sidebar -->
+</%def>
+
+<%def name="stations_selected()">class="selected"</%def>
+
+<h1 class="stopsstations-icon">FEEDBACK <i>todo</i></h1>
+

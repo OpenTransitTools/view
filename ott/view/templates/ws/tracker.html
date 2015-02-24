@@ -1,0 +1,128 @@
+<%inherit file="/base/small_index.html"/>
+<%def name="h1_title()">TransitTracker</%def>
+<%def name="title()"><% first_loc = c.arrivalsDoc.first_location() %>TriMet Mobile: TransitTracker - Stop ID ${first_loc.locid} - ${first_loc.desc} ${first_loc.dir}</%def>
+<%def name="header()">
+<%include file="/shared/tracker_header.html"/>
+</%def>
+<%def name="arrival_row(arrival)">
+<tr>
+	<td class="table-rule">
+    	<p>
+	    <strong>${arrival.fullSign}</strong><br />
+% if not arrival.is_next_bus_arrival():
+	    <span class="sub">Scheduled at ${h.get_time_format(arrival.scheduled)}</span>\
+% endif
+        </p>
+    </td>
+    
+    <td align="right" class="table-rule" width="35%">
+    	<p>
+            <span id="a${arrival.arrival_identifier}">${h.arrival_time(arrival)|n}</span>
+% if arrival.is_detoured():
+<a href="#alerts"><img src="/images/m/alert.gif" alt="Alert in effect for this line" border="0" align="right" style="margin-left:5px;" /></a>
+% endif
+        </p>
+    </td>
+</tr>
+</%def>
+
+<% first_loc = c.arrivalsDoc.first_location() %>
+
+<h2>Stop ID ${first_loc.locid}<form style="float:right; padding-top:5px;"><input type="button" value="Reload" onclick="window.location.reload()"></form></h2>
+<p class="stopid">${first_loc.desc} ${first_loc.dir}
+	% if h.has_passenger_access_message(first_loc):
+	<br>${h.passenger_access_message(first_loc)}
+	% endif
+</p>
+
+<!--Begin arrivals section-->
+<table width="100%" cellpadding="10" cellspacing="0" border="0" class="table-rule">
+% if c.arrivalsDoc.is_snow_and_ice():
+<tr>
+	<td class="table-rule" colspan="2">
+        <div class="winter-message">
+            <p>Note: TransitTracker can't make accurate arrival predictions when road conditions cause vehicles to go off schedule or off route. Please read the Service Alert footnotes for updates. <a href="/transittracker/about.htm">How TransitTracker works</a></p>
+        </div>
+    </td>
+</tr>
+% endif
+
+% for turned_off_route_name in c.arrivalsDoc.turned_off_route_names():
+<tr>
+	<td class="table-rule">
+    	<p>
+            <a name="alerts"></a><img src="/images/m/alert.gif" alt="Alert in effect for this line" align="left" border="0" /> <strong>${turned_off_route_name}</strong><br />
+            <span class="sub">In service, but arrival information is not available</span>
+        </p>
+    </td>
+    <td align="right" class="table-rule" width="35%">
+    	<p><span>not available</span></p>
+    </td>
+</tr>
+% endfor
+% for cancelled_route_name in c.arrivalsDoc.cancelled_route_names():
+<tr>
+	<td class="table-rule">
+    	<p>
+            <a name="alerts"></a><img src="/images/m/alert.gif" alt="Alert in effect for this line" align="left" border="0" /> <strong>${cancelled_route_name}</strong><br />
+            <span class="sub">Not in service due to road conditions</span>
+        </p>
+    </td>
+    <td align="right" class="table-rule" width="35%">
+    	<p><span>canceled</span></p>
+    </td>
+</tr>
+% endfor
+
+% if c.arrivalsDoc.has_arrivals_explicitly_requested(): 
+    % for arrival in c.arrivalsDoc.get_arrivals_explicitly_requested():
+    ${arrival_row(arrival)}
+    % endfor
+    
+% elif h.has_passenger_access_message(first_loc) == False and c.arrivalsDoc.request_has_no_relavant_arrivals():
+    <tr>
+	<td class="table-rule" colspan="2">
+	    <p class="error">Sorry, there are no arrivals for the requested line at this time.</p>
+	</td>
+    </tr>
+% endif
+% if c.arrivalsDoc.has_extra_arrivals_requested():
+    <tr>
+        <td class="table-rule" colspan="2">
+            <h3>Other arrivals:</h3>
+        </td>
+    </tr>
+    % for arrival in c.arrivalsDoc.get_other_arrivals():
+    ${arrival_row(arrival)}
+    % endfor
+% endif
+
+% if c.arrivalsDoc.has_extra_arrivals_not_displayed():
+    <tr>
+        <td colspan="2">
+            <p class="note"><a href="${h.link_to_tracker('tracker', True, 'small')|n}">Show other arrivals</a></p>
+        </td>
+    </tr>
+% endif
+
+</table>
+<!--End arrivals section-->
+% if c.arrivalsDoc.has_estimated_only_routes_displayed():
+    <% estimated_only_routes = c.arrivalsDoc.estimated_only_line_names() %>
+    <p class="note" style="padding-left:30px;"><a name="alerts"></a><img src="/images/m/alert.gif" style="margin-left:-20px;" alt="Alert in effect for this line" align="left" border="0" /><strong>${', '.join(estimated_only_routes)}:</strong> In service, but arrival countdown is not available. Also, there may be other vehicles in service that are not being tracked.</p>
+% endif
+
+% for detour in c.arrivalsDoc.get_detours_applicable_for_display():
+    <% route_numbers = ', '.join(detour.get_route_line_names()) %> \
+    <p class="note" style="padding-left:30px;"><a name="alerts"></a><img src="/images/m/alert.gif" style="margin-left:-20px;" alt="Alert in effect for this line" align="left" border="0" /><strong>${route_numbers}:</strong> ${detour.desc} </p>
+% endfor
+
+% if c.arrivalsDoc.scheduled_result_shown():
+    <p class="note">* Vehicle location data is unavailable. Scheduled time is shown instead.</p>
+% endif            
+% if c.arrivalsDoc.nextBusFeed_shown_in_display():
+    <p class="note">Streetcar arrivals provided by Portland Streetcar Inc.</p>
+% endif
+
+<p class="note" align="center">Predictions as of ${h.current_time_string()}<br />Page reloads every 30 seconds</p>
+
