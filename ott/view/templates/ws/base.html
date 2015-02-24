@@ -2,14 +2,7 @@
 ##
 ## BELOW ARE THE ABSTRACT METHODS (to be overridden by sub-classed templates) that populate this base page
 ##
-<%def name="title()">ABSTRACT title()</%def>
-<%def name="app_css()"><!-- ABSTRACT app_css() --></%def>
-<%def name="meta_data()"><!-- ABSTRACT meta_data() --></%def>
-<%def name="header()"><!-- ABSTRACT header() --></%def>
-<%def name="js_onload()">/** ABSTRACT js_onload() **/</%def>
-<%def name="emergency_content()"><!-- ABSTRACT emergency_content() --></%def>
-<%def name="side_bar()"><!-- ABSTRACT side_bar() --></%def>
-<%def name="bottom()"><!-- ABSTRACT bottom() --></%def>
+<%def name="bottom()"></%def>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
