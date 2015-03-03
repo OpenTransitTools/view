@@ -12,12 +12,11 @@ build:
   4. git update-index --assume-unchanged .pydevproject
 
 run:
-  1. rm nohup.out; nohup bin/pserve config/pyramid.ini --reload VIEW=1 &
+  1. rm nohup.out; nohup bin/pserve config/development.ini --reload VIEW=1 &
   2. http://localhost:33333/stop.html?stop_id=2
 
 test:
-  1. bin/nosetests --exe -v
+  1. bin/test
   2. Selenium Test: ott/view/test/pages.html
   3. Selenium Test: ott/view/test/services.html 
      @see Selenium IDE (Firefox Mac/Win) at http://docs.seleniumhq.org/projects/ide/ 
-
