@@ -31,7 +31,7 @@ class AgencyTemplate(object):
                         'arrivals'   : 'http://trimet.org/arrivals/small/tracker?stopID={stop_id}',
                         'alerts'     : 'http://trimet.org/m/alerts',
                         'stop_img'   : 'http://ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/{w}/height/{h}/zoom/{z}/excparams/format_options=layout:scale/id/{stop_id}',
-                        'route'      : 'http://trimet.org/images/schedulemaps/{route_id:0>3}.gif',
+                        'route'      : 'http://trimet.org/schedules/img/{route_id:0>3}.png',
                     },
                 }
         }
