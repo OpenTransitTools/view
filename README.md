@@ -1,11 +1,11 @@
 view
 ====
-Web UI atop controller (gtfs / trasnit web service)
-@see http://opentransittools.com/controller
+Web UI atop services (gtfs / trasnit web service)
+@see http://opentransittools.com/services
 
 build:
   0. install python 2.7, along easy_install, zc.buildout ("zc.buildout==1.5.2") and git
-  1. install and pserve http://opentransittools.com/controller
+  1. install and pserve http://opentransittools.com/services
   2. git clone https://github.com/OpenTransitTools/view.git
   2. cd view
   3. buildout
@@ -18,5 +18,5 @@ run:
 test:
   1. bin/test
   2. Selenium Test: ott/view/test/pages.html
-  3. Selenium Test: ott/view/test/services.html 
-     @see Selenium IDE (Firefox Mac/Win) at http://docs.seleniumhq.org/projects/ide/ 
+  3. Selenium Test: ott/view/test/services.html
+     @see Selenium IDE (Firefox Mac/Win) at http://docs.seleniumhq.org/projects/ide/
