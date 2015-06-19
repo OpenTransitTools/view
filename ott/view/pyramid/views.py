@@ -238,14 +238,12 @@ def use_previous_day(request):
     ''' rules to show previous date vs. today's date.  the problem is that 2am is yesterday
         in transit data terms, so show customer yesterday's data for early morning queries
     '''
+    import pdb; pdb.set_trace()
     ret_val = False
-
     month = html_utils.get_first_param_as_int(request, 'month')
     day   = html_utils.get_first_param_as_int(request, 'day')
-
-    if month
-
-    if date_utils.get_hours() < 5:
+    is_today = date_utils.is_today(month, day, def_val=True)
+    if is_today and date_utils.get_hour() < 5:
         ret_val = True
     return ret_val
 
