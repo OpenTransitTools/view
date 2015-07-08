@@ -244,7 +244,7 @@ def use_previous_day(request):
     month = html_utils.get_first_param_as_int(request, 'month')
     day   = html_utils.get_first_param_as_int(request, 'day')
     is_today = date_utils.is_today(month, day, def_val=True)
-    import pdb; pdb.set_trace()
+    #import pdb; pdb.set_trace()
     z = date_utils.get_day_before()
     if is_today and date_utils.get_hour() < 5:
         ret_val = True
