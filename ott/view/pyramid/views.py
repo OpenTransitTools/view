@@ -244,9 +244,7 @@ def use_previous_day(request):
     month = html_utils.get_first_param_as_int(request, 'month')
     day   = html_utils.get_first_param_as_int(request, 'day')
     is_today = date_utils.is_today(month, day, def_val=True)
-    #import pdb; pdb.set_trace()
-    z = date_utils.get_day_before()
-    if is_today and date_utils.get_hour() < 5:
+    if is_today and date_utils.get_hour() <= 39:
         ret_val = True
     return ret_val
 
@@ -262,9 +260,7 @@ def stop_schedule(request):
     route   = html_utils.get_first_param(request, 'route')
     try:
         url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
-        if use_previous_day(request):
-            print "yo"
-        html_tabs = schedule_tabs.get_tabs(request, url)
+        html_tabs = schedule_tabs.get_tabs(request, url, use_previous_day(request))
         stop_sched = request.model.get_stop_schedule(request.query_string, **request.params)
         alerts = transit_utils.get_stoptime_alerts(stop_sched)
     except Exception, e:

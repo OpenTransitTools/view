@@ -16,19 +16,27 @@ _ = ret_me
 MORE=_('more')
 TODAY=_('Today')
 
-def get_tabs(request, url):
+def get_tabs(request, url, show_yesterday):
     '''
     '''
-    date  = html_utils.get_first_param_as_date(request)
-    month = html_utils.get_first_param_as_int(request, 'month')
-    day   = html_utils.get_first_param_as_int(request, 'day')
-    date  = date_utils.set_date(date, month, day)
-    more  = html_utils.get_first_param(request, 'more')
+    #import pdb; pdb.set_trace()
+    if show_yesterday:
+        date = date_utils.get_day_before()
+    else:
+        date  = html_utils.get_first_param_as_date(request)
+        month = html_utils.get_first_param_as_int(request, 'month')
+        day   = html_utils.get_first_param_as_int(request, 'day')
+        date  = date_utils.set_date(date, month, day)
+
+    # get the more button value
+    more = html_utils.get_first_param(request, 'more')
+    if more is None:
+        more = False
 
     ret_val = {}
     ret_val['more_form']   = date_utils.get_day_info(date)
     ret_val['pretty_date'] = date_utils.pretty_date(date)
-    ret_val['tabs'] = get_svc_date_tabs(date, url, more is not None, get_translator(request)) 
+    ret_val['tabs'] = get_svc_date_tabs(date, url, more, get_translator(request))
 
     return ret_val
 
