@@ -40,7 +40,7 @@ def get_tabs(request, url):
         date  = date_utils.set_date(date, month, day)
 
     more   = html_utils.get_first_param(request, 'more')
-    tab_id = html_utils.get_first_param_as_int(request, 'tab_id', 1)
+    tab_id = html_utils.get_first_param_as_int(request, 'tab_id', 0)
 
 
     ret_val = {}
@@ -50,7 +50,7 @@ def get_tabs(request, url):
 
     return ret_val
 
-def make_tab_obj(name, date=None, uri=None, append=None):
+def make_tab_obj(name, id, date=None, uri=None, append=None):
     ''' for the date tab on the stop schedule page, we expect an object that has a name and a url
         this method builds that structure, and most importantly, the url for those tabs
     '''
@@ -67,10 +67,14 @@ def make_tab_obj(name, date=None, uri=None, append=None):
     if uri:
         month = ""
         day = ""
+        tab_id = ""
         if date:
             month = "&month={0}".format(date.month)
             day = "&day={0}".format(date.day)
-        ret_val["url"] = "{0}{1}{2}".format(uri, month, day)
+        if id:
+            tab_id = "&tab_id={0}".format(id)
+
+        ret_val["url"] = "{0}{1}{2}{3}".format(uri, month, day, tab_id)
         if append:
             ret_val["url"] = "{0}&{1}".format(ret_val["url"], append)
 
@@ -83,30 +87,34 @@ def get_svc_date_tabs(dt, uri, is_prev_day, tab_id, highlight_more_tab=False, tr
 
     # step 0: save off today as well as some other calculations
     today = datetime.date.today()
-    is_today = (today == dt)
     more_date = today
+    if tab_id < 0 or tab_id is None:
+        tab_id = 0
+    if tab_id > 3:
+        tab_id = 3
+
 
     # step 3: we have to get three date tabs that sit between TODAY and MORE tabs
-    dates = ['m','n','o','p']
-    offset = 1
-    dates[0] = dt
-    dates[1] = dt + datetime.timedelta(days=offset)
-    dates[2] = dt + datetime.timedelta(days=offset + 1)
-    dates[3] = dt + datetime.timedelta(days=offset + 2)
+    dates = ['j','u','n','k']
+    dates[tab_id] = dt
+    for i, d in enumerate(dates):
+        if i == tab_id:
+            continue
+        dates[i] = dt + datetime.timedelta(days=i - tab_id)
 
     # step 4: create the date tabs
     do_highlight = not highlight_more_tab
     tabs = []
-    for d in dates:
+    for i, d in enumerate(dates):
         if d == today and not is_prev_day:
             name = translate(TODAY)
         else:
             name = d.strftime(smfmt)
 
         if do_highlight and d == dt:
-            tabs.append(make_tab_obj(name, d))
+            tabs.append(make_tab_obj(name, i, d))
         else:
-            tabs.append(make_tab_obj(name, d, uri))
+            tabs.append(make_tab_obj(name, i, d, uri))
 
     # step 5: add the WEEKDAY, SATURDAY, SUNDAY tabs after the TODAY tab
     ret_val.extend(tabs)
@@ -115,9 +123,9 @@ def get_svc_date_tabs(dt, uri, is_prev_day, tab_id, highlight_more_tab=False, tr
     more_tab = None
     more_title = translate(MORE)
     if highlight_more_tab:
-        more_tab = make_tab_obj(more_title)  # the more tab is highlighted
+        more_tab = make_tab_obj(more_title, tab_id)  # the more tab is highlighted
     else:
-        more_tab = make_tab_obj(more_title, more_date, uri, MORE)
+        more_tab = make_tab_obj(more_title, tab_id, more_date, uri, MORE)
     more_tab['tooltip'] = more_title
     ret_val.append(more_tab)
 
