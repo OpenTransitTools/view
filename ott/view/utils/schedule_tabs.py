@@ -30,7 +30,8 @@ def get_tabs(request, url):
     '''
     '''
     #import pdb; pdb.set_trace()
-    if use_previous_day(request):
+    is_prev_day = use_previous_day(request)
+    if is_prev_day:
         date = date_utils.get_day_before()
     else:
         date  = html_utils.get_first_param_as_date(request)
@@ -38,12 +39,14 @@ def get_tabs(request, url):
         day   = html_utils.get_first_param_as_int(request, 'day')
         date  = date_utils.set_date(date, month, day)
 
-    more = html_utils.get_first_param(request, 'more')
+    more   = html_utils.get_first_param(request, 'more')
+    tab_id = html_utils.get_first_param_as_int(request, 'tab_id', 1)
+
 
     ret_val = {}
     ret_val['more_form']   = date_utils.get_day_info(date)
     ret_val['pretty_date'] = date_utils.pretty_date(date)
-    ret_val['tabs'] = get_svc_date_tabs(date, url, more is not None, get_translator(request))
+    ret_val['tabs'] = get_svc_date_tabs(date, url, is_prev_day, tab_id, more is not None, get_translator(request))
 
     return ret_val
 
@@ -73,7 +76,7 @@ def make_tab_obj(name, date=None, uri=None, append=None):
 
     return ret_val
 
-def get_svc_date_tabs(dt, uri, highlight_more_tab=False, translate=ret_me, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
+def get_svc_date_tabs(dt, uri, is_prev_day, tab_id, highlight_more_tab=False, translate=ret_me, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
     ''' return 3 date strings representing the next WEEKDAY, SAT, SUN
     '''
     ret_val = []
@@ -81,29 +84,29 @@ def get_svc_date_tabs(dt, uri, highlight_more_tab=False, translate=ret_me, fmt='
     # step 0: save off today as well as some other calculations
     today = datetime.date.today()
     is_today = (today == dt)
-    more_date = dt
-
-    # step 2: make the 'today' tab...
-    if is_today and not highlight_more_tab:
-        ret_val.append(make_tab_obj(translate(TODAY), today))  # TODAY tab is highlighted
-    else:
-        ret_val.append(make_tab_obj(translate(TODAY), today, uri))
+    more_date = today
 
     # step 3: we have to get three date tabs that sit between TODAY and MORE tabs
-    dates = ['WEEKDAY', 'SATURDAY', 'SUNDAY']
+    dates = ['m','n','o','p']
     offset = 1
     dates[0] = dt
     dates[1] = dt + datetime.timedelta(days=offset)
     dates[2] = dt + datetime.timedelta(days=offset + 1)
+    dates[3] = dt + datetime.timedelta(days=offset + 2)
 
-    # step 4: create the WEEKDAY, SATURDAY, SUNDAY tabs
-    do_highlight = not is_today and not highlight_more_tab
+    # step 4: create the date tabs
+    do_highlight = not highlight_more_tab
     tabs = []
     for d in dates:
-        if do_highlight and d == dt:
-            tabs.append(make_tab_obj(d.strftime(smfmt), d))
+        if d == today and not is_prev_day:
+            name = translate(TODAY)
         else:
-            tabs.append(make_tab_obj(d.strftime(smfmt), d, uri))
+            name = d.strftime(smfmt)
+
+        if do_highlight and d == dt:
+            tabs.append(make_tab_obj(name, d))
+        else:
+            tabs.append(make_tab_obj(name, d, uri))
 
     # step 5: add the WEEKDAY, SATURDAY, SUNDAY tabs after the TODAY tab
     ret_val.extend(tabs)
