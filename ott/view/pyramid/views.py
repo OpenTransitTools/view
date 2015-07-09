@@ -234,22 +234,6 @@ def stop(request):
     return ret_val
 
 
-
-
-def use_previous_day(request):
-    ''' rules to show previous date vs. today's date.  the problem is that 2am is yesterday
-        in transit data terms, so show customer yesterday's data for early morning queries
-    '''
-    ret_val = False
-    month = html_utils.get_first_param_as_int(request, 'month')
-    day   = html_utils.get_first_param_as_int(request, 'day')
-    is_today = date_utils.is_today(month, day, def_val=True)
-    if is_today and date_utils.get_hour() <= 39:
-        ret_val = True
-    return ret_val
-
-
-
 @view_config(route_name='stop_schedule_mobile',  renderer='mobile/stop_schedule.html')
 @view_config(route_name='stop_schedule_desktop', renderer='desktop/stop_schedule.html')
 @view_config(route_name='stop_schedule_ws',      renderer='ws/stop_schedule.html')
@@ -260,7 +244,7 @@ def stop_schedule(request):
     route   = html_utils.get_first_param(request, 'route')
     try:
         url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
-        html_tabs = schedule_tabs.get_tabs(request, url, use_previous_day(request))
+        html_tabs = schedule_tabs.get_tabs(request, url)
         stop_sched = request.model.get_stop_schedule(request.query_string, **request.params)
         alerts = transit_utils.get_stoptime_alerts(stop_sched)
     except Exception, e:

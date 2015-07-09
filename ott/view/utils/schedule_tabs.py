@@ -2,8 +2,6 @@ import logging
 log = logging.getLogger(__file__)
 
 import datetime
-import time
-from calendar import monthrange
 
 from ott.utils import date_utils
 from ott.utils import html_utils
@@ -16,11 +14,24 @@ _ = ret_me
 MORE=_('more')
 TODAY=_('Today')
 
-def get_tabs(request, url, show_yesterday):
+
+def use_previous_day(request):
+    ''' rules to show previous date vs. today's date.  the problem is that 2am is yesterday
+        in transit data terms, so show customer yesterday's data for early morning queries
+    '''
+    ret_val = False
+    month = html_utils.get_first_param_as_int(request, 'month')
+    day   = html_utils.get_first_param_as_int(request, 'day')
+    is_today = date_utils.is_today(month, day, def_val=True)
+    if is_today and date_utils.get_hour() < 3:
+        ret_val = True
+    return ret_val
+
+def get_tabs(request, url):
     '''
     '''
     #import pdb; pdb.set_trace()
-    if show_yesterday:
+    if use_previous_day(request):
         date = date_utils.get_day_before()
     else:
         date  = html_utils.get_first_param_as_date(request)
@@ -36,7 +47,6 @@ def get_tabs(request, url, show_yesterday):
     ret_val['tabs'] = get_svc_date_tabs(date, url, more is not None, get_translator(request))
 
     return ret_val
-
 
 def make_tab_obj(name, date=None, uri=None, append=None):
     ''' for the date tab on the stop schedule page, we expect an object that has a name and a url
