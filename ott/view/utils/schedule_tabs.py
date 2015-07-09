@@ -20,11 +20,10 @@ def use_previous_day(request):
         in transit data terms, so show customer yesterday's data for early morning queries
     '''
     ret_val = False
-    month = html_utils.get_first_param_as_int(request, 'month')
-    day   = html_utils.get_first_param_as_int(request, 'day')
-    is_today = date_utils.is_today(month, day, def_val=True)
-    if is_today and date_utils.get_hour() < 33:
-        ret_val = True
+    if date_utils.get_hour() < 33:
+        day = html_utils.get_first_param_as_int(request, 'day')
+        if day is None:
+            ret_val = True
     return ret_val
 
 def get_tabs(request, url):
