@@ -32,7 +32,8 @@
     month  = '' if 'month' not in request.params else "&month={0}".format(request.params['month'])
     day    = '' if 'day'   not in request.params else "&day={0}".format(request.params['day'])
     route  = '' if all or 'route' not in request.params else "&route={0}".format(request.params['route'])
-    url = "stop_schedule.html?stop_id={0}&sort={1}{2}{3}{4}{5}".format(stop_id, sort, route, month, day, extra_params)
+    tab_id = '' if 'tab_id' not in request.params else "&tab_id={0}".format(request.params['tab_id'])
+    url = "stop_schedule.html?stop_id={0}&sort={1}{2}{3}{4}{5}{6}".format(stop_id, sort, route, month, day, tab_id, extra_params)
     return url
 %></%def>
 
@@ -48,7 +49,7 @@ ${t['name']}<br/>${_(t['dow_abbrv'])}
 %endif
 </%def>
 
-# TODO ... remove me once JH fixes the .css for month abbreviations 
+# TODO ... remove me once JH fixes the .css for month abbreviations
 <%def name="make_tab_name(i, t)">${t['name']}</%def>
 
 ##
