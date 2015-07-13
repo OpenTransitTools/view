@@ -161,8 +161,8 @@ ${t['name']}<br/>${_(t['dow_abbrv'])}
         ###  SHOW the No service message, since we don't have any stop times...
         ###
         <strong>${_(u'No service')}</strong> ${_(u'at this stop')} ${_(u'on')} ${pretty_date} 
-        %if route_param(None):
-            ${_(u'for')} ${_(u'line')} #${route_param()}
+        %if ss['single_route_name']:
+            ${_(u'for')} ${_(u'line')} ${ss['single_route_name']}
         %endif
     %endif
 </%def>
