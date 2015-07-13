@@ -101,6 +101,8 @@
 %></%def>
 
 
+<%def name="clean_name(name)"><% return name.replace('%26', '&').replace('%27', "'") %></%def>
+
 <%def name="name_city_stopid(name, city, type=None, id=None)"><%
     ret_val = _(u'Undefined')
     try:
@@ -111,17 +113,16 @@
             city = ', ' + city
         else:
             city = ''
-        ret_val = name.replace('%26', '&').replace('%27', "'") + city + stop
+        ret_val = clean_name(name) + city + stop
     except:
         pass
     return ret_val
 %></%def>
 
-
 <%def name="name_city_str(name, city, type_name=None, stop_id='')"><%
     ret_val = _(u'Undefined')
     if name and len(name) > 0:
-        ret_val = name.replace('%26', '&')
+        ret_val = clean_name(name)
 
     city = localize_str(city)
     tn = localize_str(type_name, type_name)
@@ -143,7 +144,6 @@
 
     return ret_val
 %></%def>
-
 
 <%def name="name_city_str_from_struct(struct)"><%
     name = get_ele(struct, 'name')
