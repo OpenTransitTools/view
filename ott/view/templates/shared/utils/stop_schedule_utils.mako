@@ -166,4 +166,3 @@ ${t['name']}<br/>${_(t['dow_abbrv'])}
         %endif
     %endif
 </%def>
-
