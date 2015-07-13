@@ -111,7 +111,7 @@
             city = ', ' + city
         else:
             city = ''
-        ret_val = name.replace('%26', '&') + city + stop
+        ret_val = name.replace('%26', '&').replace('%27', "'") + city + stop
     except:
         pass
     return ret_val
