@@ -221,6 +221,8 @@ def planner_walk(request):
 @view_config(route_name='stop_ws',           renderer='ws/stop.html')
 def stop(request):
     stop = None
+    has_coord = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
+
     try:
         stop = request.model.get_stop(request.query_string, **request.params)
     except Exception, e:
@@ -229,6 +231,9 @@ def stop(request):
     if stop and stop['has_errors'] is not True:
         ret_val = {}
         ret_val['stop'] = stop
+    elif has_coord:
+        coord = html_utils.get_first_param(request, 'placeCoord')
+        ret_val = make_subrequest(request, '/stops_near.html', 'placeCoord={0}'.format(coord))
     else:
         ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Details page')
     return ret_val
@@ -239,7 +244,6 @@ def stop(request):
 @view_config(route_name='stop_schedule_ws',      renderer='ws/stop_schedule.html')
 def stop_schedule(request):
     html_tabs = stop_sched = alerts = None
-    
     stop_id = html_utils.get_first_param(request, 'stop_id')
     route   = html_utils.get_first_param(request, 'route')
     try:
@@ -359,10 +363,24 @@ def stops_near(request):
             pass
         return stop
 
-    def make_qs_with_stop_id(stop_id):
-        query_string = None
+    def add_string_to_querystr(qs, str):
+        ret_val = ''
+        sep = ''
+        if str:
+            ret_val = str
+            sep = '&'
+        if qs and len(qs) > 0:
+            ret_val = "{0}{1}{2}".format(ret_val, sep, qs)
+        return ret_val
+
+    def make_qs_with_stop_id(stop_id, rec=None):
+        query_string = ''
+        if rec and 'lat' in rec and 'lon' in rec:
+            query_string = add_string_to_querystr(query_string, "placeCoord={0},{1}".format(rec['lat'], rec['lon']))
         if stop_id:
-            query_string = "stop_id={0}&{1}".format(stop_id, request.query_string)
+            query_string = add_string_to_querystr(query_string, "stop_id={0}".format(stop_id))
+        if request.query_string:
+            query_string = add_string_to_querystr(query_string, request.query_string)
         return query_string
 
     #import pdb; pdb.set_trace()
@@ -392,7 +410,7 @@ def stops_near(request):
                     # step 4a: looking for stop id in geo result ... if there we'll call stop.html directly
                     stop_id = geo_has_stopid(single_geo)
                     if stop_id:
-                        qs = make_qs_with_stop_id(stop_id)
+                        qs = make_qs_with_stop_id(stop_id, single_geo)
                         ret_val = make_subrequest(request, '/stop.html', qs)
                         # NOTE can't add 'cache' here, since this is a subrequest http call...
 
