@@ -247,6 +247,7 @@ def stop_schedule(request):
     stop_id = html_utils.get_first_param(request, 'stop_id')
     route   = html_utils.get_first_param(request, 'route')
     try:
+        #import pdb; pdb.set_trace()
         url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
         html_tabs = schedule_tabs.get_tabs(request, url)
         stop_sched = request.model.get_stop_schedule(request.query_string, **request.params)
@@ -382,8 +383,6 @@ def stops_near(request):
         if request.query_string:
             query_string = add_string_to_querystr(query_string, request.query_string)
         return query_string
-
-    #import pdb; pdb.set_trace()
 
     # step 1: query has stop_id param ... call stop.html
     stop_id = html_utils.get_first_param_as_str(request, 'stop_id')
