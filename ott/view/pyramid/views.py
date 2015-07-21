@@ -247,7 +247,6 @@ def stop_schedule(request):
     stop_id = html_utils.get_first_param(request, 'stop_id')
     route   = html_utils.get_first_param(request, 'route')
     try:
-        #import pdb; pdb.set_trace()
         url = 'stop_schedule.html?stop_id={0}&route={1}'.format(stop_id, route)
         html_tabs = schedule_tabs.get_tabs(request, url)
         stop_sched = request.model.get_stop_schedule(request.query_string, **request.params)
@@ -384,6 +383,8 @@ def stops_near(request):
             query_string = add_string_to_querystr(query_string, request.query_string)
         return query_string
 
+    #import pdb; pdb.set_trace()
+
     # step 1: query has stop_id param ... call stop.html
     stop_id = html_utils.get_first_param_as_str(request, 'stop_id')
     if stop_id:
@@ -397,9 +398,7 @@ def stops_near(request):
             ret_val = make_subrequest(request, '/stop.html', qs)
         else:
             # step 3: params have geocode information, call nearest with that information
-            has_geocode = html_utils.get_first_param_as_boolean(request, 'has_geocode')
-            has_coord   = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
-            if has_geocode or has_coord:
+            if geocode_utils.has_valid_geocode(request):
                 call_near_ws()
             else:
                 # step 4: geocode the place param and if we get a direct hit, call either stop or nearest
