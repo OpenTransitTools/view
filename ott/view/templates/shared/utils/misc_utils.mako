@@ -430,7 +430,7 @@
         %if alert['pretty_start_date']:
         <span class="alert-time">${_(u'As of')} ${alert['pretty_start_date']} @ ${alert['pretty_start_time']}</span>
         %endif
-        <span class="alert-time"><a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
+        <span class="alert-time"><a href="${alert['url']}#${alert['route_id'].zfill(3)}" target="#">${_(u'(more...)')}</a></span>
     </p>
 </%def>
 
