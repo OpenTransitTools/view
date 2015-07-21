@@ -380,7 +380,7 @@ def stops_near(request):
         if stop_id:
             query_string = add_string_to_querystr(query_string, "stop_id={0}".format(stop_id))
         if request.query_string:
-            query_string = add_string_to_querystr(query_string, request.query_string)
+            query_string = add_string_to_querystr(request.query_string, query_string)
         return query_string
 
     #import pdb; pdb.set_trace()
