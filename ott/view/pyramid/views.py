@@ -221,6 +221,7 @@ def planner_walk(request):
 @view_config(route_name='stop_ws',           renderer='ws/stop.html')
 def stop(request):
     stop = None
+    #import pdb; pdb.set_trace()
     has_coord = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
 
     try:

@@ -2,6 +2,8 @@
     infomration webapps that the trip planner can link to (like alerts services, real-time 
     vehicle predictions, maps, etc...)
 '''
+import re
+
 
 AGENCY_TEMPLATE = None
 
@@ -66,7 +68,7 @@ class AgencyTemplate(object):
         if url != def_val:
             p = {'stop_id':stop_id}
             if route_id and route_fmt:
-                p['route_id'] = route_id
+                p['route_id'] = re.sub('\D.*', '', route_id)
                 url += "&" + route_fmt
             ret_val = url.format(**p)
         return ret_val
@@ -79,7 +81,7 @@ class AgencyTemplate(object):
             ret_val = url
             if route_id and route_fmt:
                 p = {}
-                p['route_id'] = route_id
+                p['route_id'] = re.sub('\D.*', '', route_id)
                 url += "?" + route_fmt
                 ret_val = url.format(**p)
         return ret_val
@@ -108,9 +110,10 @@ class AgencyTemplate(object):
         agency = self.get_agency(agency)
         url = self.get_template('route', agency, device, def_val)
         if url != def_val:
-            p = {'route_id':route_id}
+            p = {'route_id':re.sub('\D.*', '', route_id)}
             ret_val = url.format(**p)
         return ret_val
+
     def mobile_route_url(self, route_id, agency=None, def_val=None):
         return self.get_route_url(route_id, agency, 'mobile', def_val)
     def desktop_route_url(self, route_id, agency=None, def_val=None):
