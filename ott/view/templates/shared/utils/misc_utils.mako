@@ -4,13 +4,14 @@
     ret_val = def_val
     try:
         ret_val = request.registry.settings[name]
+        ret_val.strip()
     except Exception, e:
         #print e
         pass
     return ret_val
 %></%def>
 
-<%def name="url_domain()"><% return get_ini_param('ott.css_url', '/') %></%def>
+<%def name="url_domain()"><% return get_ini_param('ott.css_url', '') %></%def>
 <%def name="is_test()"><% return get_ini_param('ott.is_test') %></%def>
 
 <%def name="error_msg(extra_params, feedback_url)">
