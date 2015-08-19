@@ -9,8 +9,6 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 
 from pyramid.view import view_config
-from pyramid.config import Configurator
-from pyramid.session import UnencryptedCookieSessionFactoryConfig
 
 from pyramid.events import NewRequest
 from pyramid.events import ApplicationCreated
@@ -27,7 +25,6 @@ from ott.utils.img.qr import qr_to_stream
 from ott.utils import html_utils
 from ott.utils import object_utils
 from ott.utils import transit_utils
-from ott.utils import date_utils
 from ott.utils.parse import TripParamParser
 
 from ott.view.model.place import Place
@@ -327,11 +324,12 @@ def stops_near(request):
     '''
     ret_val = {}
 
-    def call_near_ws(geo=None):
-        p = Place.make_from_request(request)
-        p.update_values_via_dict(geo)
-        params = p.to_url_params()
-        ret_val['place']   = p.__dict__
+    def call_near_ws(geo=None, place=None):
+        if place is None:
+            place = Place.make_from_request(request)
+        place.update_values_via_dict(geo)
+        params = place.to_url_params()
+        ret_val['place']   = place.__dict__
         ret_val['params']  = params
         num = 5
         if html_utils.get_first_param(request, 'show_more', None):
@@ -384,8 +382,6 @@ def stops_near(request):
             query_string = add_string_to_querystr(request.query_string, query_string)
         return query_string
 
-    #import pdb; pdb.set_trace()
-
     # step 1: query has stop_id param ... call stop.html
     stop_id = html_utils.get_first_param_as_str(request, 'stop_id')
     if stop_id:
@@ -399,8 +395,9 @@ def stops_near(request):
             ret_val = make_subrequest(request, '/stop.html', qs)
         else:
             # step 3: params have geocode information, call nearest with that information
-            if geocode_utils.has_valid_geocode(request):
-                call_near_ws()
+            place = Place.make_from_request(request)
+            if place.is_valid_coord():
+                call_near_ws(place=place)
             else:
                 # step 4: geocode the place param and if we get a direct hit, call either stop or nearest
                 geo = geocode_utils.call_geocoder(request, place)

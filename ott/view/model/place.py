@@ -47,6 +47,11 @@ class Place(object):
         except Exception, e:
             pass
 
+    def is_valid_coord(self):
+        ret_val = False
+        if self.lat and self.lon:
+            ret_val = True
+        return ret_val
 
 #TODO: REFACTOR NEEDED for Place(), GeoResponse(), etc...
 #  We have both Place and GeoResponse...(plus other assorted geo classes

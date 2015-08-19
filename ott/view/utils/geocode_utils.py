@@ -10,17 +10,25 @@ from ott.utils import geo_utils
 ##
 
 def has_valid_geocode(request):
-    ret_val = False
+    # try 1: placeCoord parameter?
     coord = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
     if coord:
-        ret_val = True
-    else:
-        lat = html_utils.get_first_param(request, 'lat')
-        lon = html_utils.get_first_param(request, 'lon')
-        if lat and lon:
-            ret_val = True
+        return True
 
-    return ret_val
+
+    # try 2: place parameter?
+    coord = html_utils.get_first_param_is_a_coord(request, 'place')
+    if coord:
+        return True
+
+    # try 3: lat/lon parameters
+    lat = html_utils.get_first_param(request, 'lat')
+    lon = html_utils.get_first_param(request, 'lon')
+    if lat and lon:
+        return True
+
+    # no valid geocode in request, so fail
+    return False
 
 def call_solr_geocoder(request, place):
     '''  call the geocoder service

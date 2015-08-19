@@ -1,10 +1,7 @@
 import unittest
-from pyramid import testing
 
 import urllib
 import contextlib
-import json
-import re
 
 PORT="33333"
 
@@ -31,67 +28,40 @@ def call_url(url):
     return ret_json
 
 
-class GeoCoderTests(MyTestCase):
-    stops = [
-            ['834',   '834 SE LAMBERT ST'],
-            ['2',     'A Ave &amp; Chandler Eastbound'],
-            ['10093', 'NW Bethany &amp; Laidlaw Northbound'],
-            ['10092', '4700 Block NW Bethany Northbound'],
-            ['10108', '4700 Block NW Bethany Southbound'],
-            ['10107', 'NW Bethany &amp; Laidlaw Southbound'],
-            ['10114', 'NW Bethany &amp; Oak Hills Dr Southbound'],
-            ['8920',  'SW Walker &amp; Butner Westbound'],
-            ['5590',  'SW Tualatin Valley Hwy &amp; Market Centre Eastbound'],
-            ['10111', 'NW Bethany &amp; West Union Southbound'],
-            ['10089', 'NW Bethany &amp; West Union Northbound'],
-            ['13685', 'NW Laidlaw &amp; Bethany Eastbound'],
-            ['6830',  'SW 158th &amp; Jay Northbound'],
-            ['8444455  ddaxxxdfas asdfasfas', 'form-help-popup-onright'],
-    ]
-
-    route_stops = [
-            ['929',  ['044', '054', '056'] ],
-    ]
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def test_stops_near_stop_id(self):
-        ''' check that the following place queries hit a stop page (via the stop image url)
-        '''
-        places = [
-            "2",
-            "A+Ave+Chandler+Lake+Oswego+(Stop+ID+2)",
-            "Stop ID 8",
-        ]
-        for m in ['', 'm/']:
-            for p in places:
-                url = get_url(m + 'stops_near.html', 'place=' + p)
-                self.call_url_match_list(url, "stopimage/format/png/width/340/height/300/zoom/6")
-
-    def test_stops_near_geocode_route_stops(self):
-        for m in ['', 'm/']:
-            for s in self.route_stops:
-                url = get_url(m + 'stops_near.html', 'place=' + s[0])
-                self.call_url_match_list(url, s[1])
-
-    def test_stops_near_geocode(self):
-        for m in ['', 'm/']:
-            for s in self.stops:
-                url = get_url(m + 'stops_near.html', 'place=' + s[0])
-                self.call_url_match_string(url, s[1])
-
-    def test_geocode(self):
-        for m in ['', 'm/']:
-            url = get_url(m + 'planner.html', 'from=834 XX Portland')
-            self.call_url_match_list(url, ["834 SE MILL", "834 SE LAMBERT"])
-
-
-#class DontRunTests():
 class ViewTests(MyTestCase):
+
+    def test_stops_near(self):
+        for m in ['', 'm/']:
+            # test place and placeCoord
+            url = get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"miles away")
+            self.assertRegexpMatches(s,"SE Division")
+            self.assertRegexpMatches(s,"XTCvsAdamAnt")
+
+            # test named coord
+            url = get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627')
+            s = call_url(url)
+            self.assertRegexpMatches(s,"miles away")
+
+            # test named coord w/ city
+            url = get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627::Portland')
+            s = call_url(url)
+            self.assertRegexpMatches(s, "miles away")
+
+            # test place as just a coord
+            url = get_url(m + 'stops_near.html', 'place=45.468602,-122.65762')
+            s = call_url(url)
+            self.assertRegexpMatches(s, "miles away")
+
+            # test place as just a coord
+            url = get_url(m + 'stops_near.html', 'place=Stop ID 2')
+            s = call_url(url)
+            self.assertRegexpMatches(s, "A Ave &amp; Chandler Eastbound")
+
+
+
+class DontRunTests():
 
     def test_stop_select_form(self):
         ''' routes ws: list of route '''
@@ -119,13 +89,6 @@ class ViewTests(MyTestCase):
             url = get_url(m + 'stop.html', 'stop_id=2&_LOCALE_=es')
             s = call_url(url)
             self.assertRegexpMatches(s,"Lake Oswego")
-
-    def test_stops_near(self):
-        for m in ['', 'm/']:
-            url = get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
-            s = call_url(url)
-            self.assertRegexpMatches(s,"SE Division")
-            self.assertRegexpMatches(s,"XTCvsAdamAnt")
 
     def test_stop_schedule(self):
         for m in ['', 'm/']:
@@ -169,4 +132,63 @@ class ViewTests(MyTestCase):
         s = call_url(url)
         self.assertRegexpMatches(s, 'type="text" id="from" name="from" value="PDX"')
         self.assertRegexpMatches(s, 'type="text" id="going" name="to" value="ZOO"')
+
+class DontRunTests():
+#class GeoCoderTests(MyTestCase):
+    stops = [
+        ['834',   '834 SE LAMBERT ST'],
+        ['2',     'A Ave &amp; Chandler Eastbound'],
+        ['10093', 'NW Bethany &amp; Laidlaw Northbound'],
+        ['10092', '4700 Block NW Bethany Northbound'],
+        ['10108', '4700 Block NW Bethany Southbound'],
+        ['10107', 'NW Bethany &amp; Laidlaw Southbound'],
+        ['10114', 'NW Bethany &amp; Oak Hills Dr Southbound'],
+        ['8920',  'SW Walker &amp; Butner Westbound'],
+        ['5590',  'SW Tualatin Valley Hwy &amp; Market Centre Eastbound'],
+        ['10111', 'NW Bethany &amp; West Union Southbound'],
+        ['10089', 'NW Bethany &amp; West Union Northbound'],
+        ['13685', 'NW Laidlaw &amp; Bethany Eastbound'],
+        ['6830',  'SW 158th &amp; Jay Northbound'],
+        ['8444455  ddaxxxdfas asdfasfas', 'form-help-popup-onright'],
+        ]
+
+    route_stops = [
+        ['929',  ['044', '054', '056'] ],
+        ]
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_stops_near_stop_id(self):
+        ''' check that the following place queries hit a stop page (via the stop image url)
+        '''
+        places = [
+            "2",
+            "A+Ave+Chandler+Lake+Oswego+(Stop+ID+2)",
+            "Stop ID 8",
+            ]
+        for m in ['', 'm/']:
+            for p in places:
+                url = get_url(m + 'stops_near.html', 'place=' + p)
+                self.call_url_match_list(url, "stopimage/format/png/width/340/height/300/zoom/6")
+
+    def test_stops_near_geocode_route_stops(self):
+        for m in ['', 'm/']:
+            for s in self.route_stops:
+                url = get_url(m + 'stops_near.html', 'place=' + s[0])
+                self.call_url_match_list(url, s[1])
+
+    def test_stops_near_geocode(self):
+        for m in ['', 'm/']:
+            for s in self.stops:
+                url = get_url(m + 'stops_near.html', 'place=' + s[0])
+                self.call_url_match_string(url, s[1])
+
+    def test_geocode(self):
+        for m in ['', 'm/']:
+            url = get_url(m + 'planner.html', 'from=834 XX Portland')
+            self.call_url_match_list(url, ["834 SE MILL", "834 SE LAMBERT"])
 
