@@ -3,6 +3,19 @@ from ott.utils import geo_utils
 from ott.utils import object_utils
 from ott.view.locale.subscribers import get_translator
 
+''' !!!!!!!!!
+
+TODO: REFACTOR ME !!!!!!!!!
+
+ott.utils has this thing:
+class GeoParamParser(ParamParser)
+(*plus we might have other Geo classes & methods)
+
+Why do we have Place() as well?
+Let's refactor to put all this crap together
+
+!!!!!!!!!  '''
+
 class Place(object):
     def __init__(self, name=None, lat=None, lon=None, city=None):
         self.set_values(name, lat, lon, city)
@@ -52,10 +65,6 @@ class Place(object):
         if self.lat and self.lon:
             ret_val = True
         return ret_val
-
-#TODO: REFACTOR NEEDED for Place(), GeoResponse(), etc...
-#  We have both Place and GeoResponse...(plus other assorted geo classes
-#TODO
 
     @classmethod
     def make_from_request(cls, request, param_name='place'):
