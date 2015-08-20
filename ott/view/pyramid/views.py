@@ -394,12 +394,14 @@ def stops_near(request):
             qs = make_qs_with_stop_id(stop_id)
             ret_val = make_subrequest(request, '/stop.html', qs)
         else:
+            #import pdb; pdb.set_trace()
             # step 3: params have geocode information, call nearest with that information
-            place = Place.make_from_request(request)
-            if place.is_valid_coord():
-                call_near_ws(place=place)
+            p = Place.make_from_request(request)
+            if p.is_valid_coord():
+                call_near_ws(place=p)
             else:
                 # step 4: geocode the place param and if we get a direct hit, call either stop or nearest
+                place = html_utils.get_first_param_as_str(request, 'place')
                 geo = geocode_utils.call_geocoder(request, place)
                 if geo and geo['count'] == 1:
                     single_geo = geo['geocoder_results'][0]

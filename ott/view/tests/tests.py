@@ -27,11 +27,12 @@ def call_url(url):
         ret_json = f.read()
     return ret_json
 
-
+#class DontRunTests():
 class ViewTests(MyTestCase):
 
     def test_stops_near(self):
         for m in ['', 'm/']:
+            ''' '''
             # test place and placeCoord
             url = get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
             s = call_url(url)
@@ -59,9 +60,20 @@ class ViewTests(MyTestCase):
             s = call_url(url)
             self.assertRegexpMatches(s, "A Ave &amp; Chandler Eastbound")
 
+            # test interpolated address
+            url = get_url(m + 'stops_near.html', 'place=888 Lambert St&show_more=true')
+            s = call_url(url)
+            self.assertRegexpMatches(s, "Tacoma")
 
+            url = get_url(m + 'stops_near.html', 'place=834 Lambert St&show_more=true')
+            s = call_url(url)
+            self.assertRegexpMatches(s, "Tacoma")
 
-class DontRunTests():
+            url = get_url(m + 'stops_near.html', 'place=834 Lambert&show_more=true')
+            s = call_url(url)
+            self.assertRegexpMatches(s, "Uncertain location")
+            self.assertRegexpMatches(s, "834 SE LAMBERT CIRCLE")
+            self.assertRegexpMatches(s, "834 SE LAMBERT ST")
 
     def test_stop_select_form(self):
         ''' routes ws: list of route '''
@@ -133,8 +145,8 @@ class DontRunTests():
         self.assertRegexpMatches(s, 'type="text" id="from" name="from" value="PDX"')
         self.assertRegexpMatches(s, 'type="text" id="going" name="to" value="ZOO"')
 
-class DontRunTests():
-#class GeoCoderTests(MyTestCase):
+#class DontRunTests():
+class GeoCoderTests(MyTestCase):
     stops = [
         ['834',   '834 SE LAMBERT ST'],
         ['2',     'A Ave &amp; Chandler Eastbound'],
