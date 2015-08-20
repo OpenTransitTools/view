@@ -65,10 +65,12 @@ class ViewTests(MyTestCase):
             s = call_url(url)
             self.assertRegexpMatches(s, "Tacoma")
 
+            # test known address from MA file
             url = get_url(m + 'stops_near.html', 'place=834 Lambert St&show_more=true')
             s = call_url(url)
             self.assertRegexpMatches(s, "Tacoma")
 
+            # test ambiguous address from interpolated system...
             url = get_url(m + 'stops_near.html', 'place=834 Lambert&show_more=true')
             s = call_url(url)
             self.assertRegexpMatches(s, "Uncertain location")
