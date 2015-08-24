@@ -5,6 +5,9 @@
 .settings
 COMMIT_EDITMSG
 nohup.out
+*.log
+*.tar
+*.gz
 .git
 .git/*
 .git/FETCH_HEAD
