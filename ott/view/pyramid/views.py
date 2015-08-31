@@ -284,18 +284,18 @@ def stop_select_form(request):
 @view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
 @view_config(route_name='stop_select_list_ws',      renderer='ws/stop_select_list.html')
 def stop_select_list(request):
-    route_stops = None
+    #import pdb; pdb.set_trace()
     try:
         route_stops = request.model.get_route_stops(request.query_string, **request.params)
+        if route_stops['route'] and route_stops['has_errors'] is not True:
+            ret_val = {}
+            route = html_utils.get_first_param(request, 'route')
+            ret_val['route_stops'] = route_stops
+        else:
+            ret_val = make_subrequest(request, '/stop_select_form.html')
     except Exception, e:
         log.warning('{0} exception:{1}'.format(request.path, e))
-
-    if route_stops and route_stops['has_errors'] is not True:
-        ret_val = {}
-        route = html_utils.get_first_param(request, 'route')
-        ret_val['route_stops'] = route_stops
-    else:
-        ret_val = make_subrequest(request, '/exception.html', 'app_name=Route Stops page')
+        ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop select list')
     return ret_val
 
 
