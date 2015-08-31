@@ -295,7 +295,7 @@ def stop_select_list(request):
             ret_val = make_subrequest(request, '/stop_select_form.html')
     except Exception, e:
         log.warning('{0} exception:{1}'.format(request.path, e))
-        ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop select list')
+        ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Select List')
     return ret_val
 
 
