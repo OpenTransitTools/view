@@ -19,22 +19,22 @@
     <div class="contentcontainer">
         <div class="row">
             <div class="col-xs-12">
-				<h2>${util.name_city_str_from_struct(place)}</h2>
+                <h2>${util.name_city_str_from_struct(place)}</h2>
             </div><!-- .col -->
-      </div><!-- .row -->        
+        </div><!-- .row -->
         <div class="row">
             <div class="col-xs-12 col-md-8 col-lg-8">
 
-				%if place['lat'] and place['lon']:
-				    ${su.place_map(place['name'], place['lon'], place['lat'], extra_params)}
-				%endif
+                %if place['lat'] and place['lon']:
+                ${su.place_map(place['name'], place['lon'], place['lat'], extra_params)}
+                %endif
 
             </div><!-- .col -->
             <div class="col-xs-12 col-md-4 col-lg-4">
-				%if place['lat'] and place['lon']:
-				    ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
-				%endif
+                %if place['lat'] and place['lon']:
+                ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
+                %endif
             </div><!-- .col -->
-      </div><!-- .row -->        
+      </div><!-- .row -->
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->

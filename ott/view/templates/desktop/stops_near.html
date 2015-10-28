@@ -26,13 +26,11 @@
     <div class="contentcontainer">
         <div class="row">
             <div class="col-xs-12">
+                ## ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
 
-				## ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
-
-				<h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
-				${su.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}
-				${util.cache_geocodes_in_browser(cache)}
-
+                <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
+                ${su.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}
+                ${util.cache_geocodes_in_browser(cache)}
             </div><!-- .col -->
         </div><!-- .row -->        
     </div><!-- .contentcontainer -->

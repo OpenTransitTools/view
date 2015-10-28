@@ -19,7 +19,6 @@
 
 <%def name="js_onload()">javascript:select_form();</%def>
 ${form.select_form_scriptlet()}
-
 ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me', 'h1')}
 
 <style type="text/css">
@@ -29,7 +28,6 @@ h2 {
 }
 -->
 </style>
-
 
 <div class="standardheader">
     <h1><a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Stops & Stations')}</h1>
@@ -46,4 +44,3 @@ h2 {
         </div><!-- .row -->
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
-
