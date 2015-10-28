@@ -19,6 +19,9 @@
         ${side.planner_support_page()}
     </aside>
 </%def>
+<%def name="js_onload()">javascript:checkgps();</%def>
+${form.gps_form_scriptlet(id=geo_type, form='ambig')}
+
 <%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">
     ${page.tripplanner_css()}

@@ -19,8 +19,9 @@
     ${form.autocomplete_js_includes()}
     ${form.planner_form_js_includes()}
 </%def>
+<%def name="js_onload()">javascript:checkgps(); javascript:select_form();</%def>
+${pform.gps_form_scriptlet()}
 ${form.select_form_scriptlet('from')}
-<%def name="js_onload()">javascript:select_form();</%def>
 
 ${page.main_trip_planner_form(_(u'Plan Your Trip on TriMet'), extra_params, 'form')}
 
