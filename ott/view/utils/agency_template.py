@@ -23,8 +23,8 @@ class AgencyTemplate(object):
         self.template_cache = { 
                 'TriMet' : {
                     'desktop' : {
-                        'arrivals'   : 'http://trimet.org/arrivals/tracker?stopID={stop_id}',
-                        'alerts'     : 'http://trimet.org/alerts',
+                        'arrivals'   : 'http://trimet.org/#tracker/stop/{stop_id}/',
+                        'alerts'     : 'http://trimet.org/#alerts/',
                         'stop_img'   : 'http://ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/{w}/height/{h}/zoom/{z}/excparams/format_options=layout:scale/id/{stop_id}',
                         'imap'       : 'http://ride.trimet.org/?zoom=16&pLat={lat}&pLon={lon}&pText={name}',
                         'route'      : 'http://trimet.org/schedules/r{route_id:0>3}.htm',
