@@ -8,11 +8,23 @@
     extra_params = util.get_extra_params()
     feedback_url = 'http://trimet.org/mailforms/tripfeedback'
 %>
-<%def name="title()">TriMet: ${_(u'Exception')}</%def>
+<%def name="title()">${_(u'Exception')}</%def>
 <%def name="meta_data()">${meta.tripplanner()}</%def>
-
-<%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">${page.tripplanner_css()}</%def>
-${page.trip_planner(_(u'Oops!'), extra_params, 'exception')}
-${util.error_msg(extra_params, feedback_url)}
-<p>&nbsp;</p>
+
+
+
+
+<div class="standardheader">
+    <h1><a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Stops & Stations')}</h1>    
+</div><!-- .standardheader --> 
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+				${page.trip_planner(_(u'Oops!'), extra_params, 'exception')}
+				${util.error_msg(extra_params, feedback_url)}
+            </div><!-- .col -->
+        </div><!-- .row -->        
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->

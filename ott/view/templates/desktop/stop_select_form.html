@@ -9,29 +9,41 @@
 <%
     extra_params = util.get_extra_params()
 %>
-<%def name="title()">TriMet: ${_(u'Stops & Stations')}</%def>
+<%def name="title()">${_(u'Stops & Stations')}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
-<%def name="stations_selected()">class="selected"</%def>
 <%def name="app_css()">
     ${page.stop_css()}
     ${form.autocomplete_css_includes()}
 </%def>
-<style type="text/css">
-<!--
-#main {	/* give the colored bar a bit of breathing room */
-	margin-top: 3.75em;
-}
-h1.pagetitle {	/* hiding the extra h1 */
-	display: none;
-}
--->
-</style>
 
 <%def name="js_onload()">javascript:select_form();</%def>
 ${form.select_form_scriptlet()}
 
 ${page.stop_select(_(u'Stops & Stations'), extra_params, 'me', 'h1')}
-${su.stop_select_form(place)}
-${form.autocomplete_js_includes()}
-${form.autocomplete_search_input()}
+
+<style type="text/css">
+<!--
+h2 {
+    display: none;
+}
+-->
+</style>
+
+
+<div class="standardheader">
+    <h1><a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Stops & Stations')}</h1>
+</div><!-- .standardheader -->  
+
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+                ${su.stop_select_form(place)}
+                ${form.autocomplete_js_includes()}
+                ${form.autocomplete_search_input()} 
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->
+

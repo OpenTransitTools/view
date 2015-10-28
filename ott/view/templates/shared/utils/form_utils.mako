@@ -59,14 +59,8 @@
         <label for="${id}">${name}:</label>
         <input type="hidden" name="geo_type" value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}"/>
-        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" onBlur="doClassRegular(this);" onFocus="doClassHighlight(this);"/>
-        %if is_mobile:
-        <p id="${id}-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
-        <p id="${id}-gps" style="display:none;" class="instructions"><a href="#" onclick="getGPS();">${_(u'Use my current GPS location')}</a></p>
-        %endif
-        <div class="form-help">
-            ${help.form_help_right()}
-        </div>
+        <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" />
+        <p id="${id}-gps" class="help"><small><a href="#" onclick="getGPS();">${_(u'Use current location')}</a> ${_(u'or')} ${_(u'enter an address, intersection, landmark or Stop ID')}</small></p>
     </fieldset>
 </%def>
 

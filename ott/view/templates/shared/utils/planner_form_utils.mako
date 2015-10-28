@@ -89,11 +89,7 @@
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
     <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="${clear_js} doClassHighlight(this);" onBlur="tpDoText(this,'${clear}'); tpDoClassRegular(this);"/>
     %if not is_mobile:
-    <div class="form-help">
-        <div class="form-help-popup-onright">
-            <p>${_(u"You can type in an address, intersection, landmark or Stop ID here.")}</p>
-        </div>
-    </div>
+    <p class="help"><small>${_(u'Address, intersection, landmark or Stop ID')}</small></p>
     %endif
 </%def>
 
@@ -123,129 +119,122 @@
         from_form_def = _(u'From')
         to_form_def   = _(u'To')
 %>
-<div id="plantrip" class="basic">
-    %if is_homepage:
-    <h2><b>${_(u'Plan your trip')}</b> ${_(u'on')} ${agency} <span class="secondary" style="font-size:.5em; color:#ccc;">BETA</span></h2>
-    %endif 
-    <form name="itin" id="itin_id" method="GET" action="${form_action}" class="form-style">
-        <div id="plantrip-left">
+<div id="plantrip" class="row">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <form name="itin" id="itin_id" method="GET" action="${form_action}" class="triptools-form">
             <fieldset class="normal">
-                <label for="from" class="homepage-hide">${_(u'From')}</label>
+                <label for="from">${_(u'From')}</label>
                 ${input_form('from', 'from', from_form_def, 1, params['fromPlace'], params['fromCoord'], is_mobile)}
-                %if is_mobile:
-                <p id="from-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
-                <p id="from-gps" style="display:none;" class="instructions"><a href="#" onclick="getFromGPS();">${_(u'Use my current GPS location')}</a></p>
-                %endif
+                <p class="help" id="from-gps"><small><a href="#" onclick="getFromGPS();">${_(u'Use current location')}</a> ${_(u'or')} ${_(u'enter an address, intersection, landmark or Stop ID')}</small></p>
             </fieldset>
 
             <fieldset class="normal">
-                <label for="going" class="homepage-hide">${_(u'To')}</label>
+                <label for="going">${_(u'To')}</label>
                 ${input_form('to', 'going', to_form_def, 2, params['toPlace'], params['toCoord'], is_mobile)}
-                %if is_mobile:
-                <p id="to-instructions" style="display:block;" class="instructions">${_(u'Enter address, intersection, landmark or Stop ID')}</p>
-                <p id="to-gps" style="display:none;" class="instructions"><a href="#" onclick="getToGPS();">${_(u'Use my current GPS location')}</a></p>
-                %endif 
+                <p class="help" id="to-gps"><small><a href="#" onclick="getToGPS();">${_(u'Use current location')}</a> ${_(u'or')} ${_(u'enter an address, intersection, landmark or Stop ID')}</small></p>
             </fieldset>
 
             <fieldset class="departwhen">
-                <label for="when" class="hide">${_(u'When')}:</label>
-                <select name="Arr" id="depart" tabindex="3"  class="regular" onchange="tpShowTimeControls(this.selectedIndex);" onfocus="doClassHighlight(this);" onblur="tpDoClassRegular(this);">
+                <label for="when">${_(u'When')}</label>
+                <select name="Arr" id="depart" tabindex="3"  class="regular" onchange="tpShowTimeControls(this.selectedIndex);">
                     ${arrive_depart_form_option(params['Arr'], is_mobile)}
                 </select>
             </fieldset>
+
             <fieldset class="departwhen-units">
-                <div id="departwhen-time">
-                    <select name="Hour" id="Hour" tabindex="4"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
-                    %for i in range(1, 13):
-                        ${util.option(i, i, util.compare_values(params['Hour'], i))}
-                    % endfor
-                    </select>
-                    <b>:</b>
-                    <select name="Minute" id="Minute" tabindex="5" onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
-                    %for i in range(60):
-                        ${util.option(i, str(i).rjust(2,'0'), util.compare_values(params['Minute'], i))}
-                    % endfor
-                    </select>
-                    <select name="AmPm" id="AmPm" tabindex="6"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
-                        ${util.option('am', _(u'am'), params['is_am'])}
-                        ${util.option('pm', _(u'pm'), not params['is_am'])}
-                    </select>
-                </div>
-                <div id="departwhen-date">
-                    <span class="homepage-hide">${_(u'on')}</span>
-                    <select name="month" id="Month" tabindex="7"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
-                        ${util.month_abbv_options(params['month'])}
-                    </select>
-                    <select name="day" id="Day" tabindex="8"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
-                        ${util.day_options(params['day'])}
-                    </select>
-                </div>
-            </fieldset>
-            %if is_homepage:
-            <div id="more-options" class="basic">
-                <a href="javascript:showTripPlannerAdvanced();"><span>${_(u'More options')} &raquo;</span></a>
-            </div>
-            %endif
-        </div><!-- end #plantrip-left -->
+                <div class="row">
+                    <div class="col-xs-6">
+                        <select name="Hour" id="Hour" tabindex="4" class="regular">
+                            %for i in range(1, 13):
+                                ${util.option(i, i, util.compare_values(params['Hour'], i))}
+                            % endfor
+                        </select>
 
-        <div id="plantrip-right" class="basic">
-            <p id="trippreferences">${_(u'Trip preferences (optional)')}</p>
-            <fieldset class="preferences">
-                <label for="trip-transfers">${_(u'Show me the')}</label>
-                <select id="trip-transfers" name="optimize" tabindex="9"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
-                    ${optimize_form_option(params['optimize'], is_mobile)}
-                </select>
-                %if not is_mobile:
-                <div class="form-help">
-                    <div class="form-help-popup-onleft">
-                        <p>${_(u"The quickest trips usually involve transferring between buses and trains and walking a short distance. You can choose 'fewest transfers' if you prefer not to transfer, but your trip will probably take longer.")}</p>
-                    </div>
-                </div>
-                %endif
-            </fieldset>
-            <fieldset class="preferences">
-                <label for="trip-walkdistance">${_(u'Maximum walk')}</label>
-                <select id="trip-walkdistance" name="Walk" tabindex="10"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
-                    ${walk_form_option(params['Walk'], is_mobile)}
-                </select>
-                %if not is_mobile:
-                <div class="form-help">
-                    <div class="form-help-popup-onleft">
-                        <p>${_(u"Here, you can specify how far you are willing to walk or bike to and from the bus stop or rail station. Note: If set to less than 1 mile, some trips may not be possible.")}</p>
-                    </div>
-                </div>
-                %endif
-            </fieldset>
-            <fieldset class="preferences">
-                <label for="trip-modetype">${_(u'Travel by')}</label>
-                <select id="trip-modetype" name="mode" tabindex="11"  onfocus="doClassHighlight(this);" class="regular" onblur="tpDoClassRegular(this);">
-                    ${mode_form_option(params['mode'], is_mobile)}
-                </select>
-                %if not is_mobile:
-                <div class="form-help">
-                    <div class="form-help-popup-onleft">
-                        <p>${_(u"Most trips involve a combination of buses and trains. You can specify bus-only or train-only, but keep in mind that some trips may not be possible as a result.")}</p>
-                    </div>
-                </div>
-                %endif
-            </fieldset>
-            %if is_homepage:
-            <span id="less-options">
-                <a href="javascript:showTripPlannerAdvanced();"><span>&laquo; ${_(u'Fewer options')}</span></a>
-            </span>
-            %endif 
-        </div><!-- end #plantrip-right -->
+                        <b>:</b>
 
-        <fieldset class="submit">
-            ${form.get_extra_params_hidden_inputs()}
-            <input name="submit" tabindex="13" type="submit" value="${_(u'Get directions')} &raquo;" id="submit" title="${_(u'Submit your trip plan information')}" onclick="tpGoogleAnalytics(_gaq, ['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
-            <div id="mapcheckbox-wrap">
-                <input type="checkbox" id="mapcheckbox" tabindex="12" name="mapit" value="A"/>
-                <label for="mapcheckbox" class="mapcheckbox-label">${_(u'Use Interactive Map')}</label>
-            </div>
-        </fieldset>
-    </form>
-</div><!-- end #plantrip -->
+                        <select name="Minute" id="Minute" tabindex="5"class="regular">
+                            %for i in range(60):
+                                ${util.option(i, str(i).rjust(2,'0'), util.compare_values(params['Minute'], i))}
+                            % endfor
+                        </select>
+
+                        <select name="AmPm" id="AmPm" tabindex="6" class="regular">
+                            ${util.option('am', _(u'am'), params['is_am'])}
+                            ${util.option('pm', _(u'pm'), not params['is_am'])}
+                        </select>
+                    </div><!-- .col -->
+                    <div class="col-xs-6">
+                        <div id="departwhen-date">
+                            <b>${_(u'on')}</b>
+                            <select name="month" id="Month" tabindex="7" class="regular">
+                                ${util.month_abbv_options(params['month'])}
+                            </select>
+                            <select name="day" id="Day" tabindex="8" class="regular">
+                                ${util.day_options(params['day'])}
+                            </select>
+                        </div>
+                    </div><!-- .col -->
+                </div><!-- .row -->
+            </fieldset>
+
+
+            <h3>${_(u'Trip preferences (optional)')}</h3>
+            <div class="row">
+                <div class="col-xs-4">
+                    <fieldset class="preferences">
+                        <label for="trip-transfers">${_(u'Show me the')}</label>
+                        <select id="trip-transfers" name="optimize" tabindex="9" class="regular">
+                            ${optimize_form_option(params['optimize'], is_mobile)}
+                        </select>
+                        %if not is_mobile:
+                        <div class="form-help">
+                            <p><small>${_(u"Fewer transfers may result in a longer trip.")}</small></p>
+                        </div>
+                        %endif
+                    </fieldset>
+                </div><!-- .col -->
+                <div class="col-xs-4"> 
+                    <fieldset class="preferences">
+                        <label for="trip-walkdistance">${_(u'Maximum walk')}</label>
+                        <select id="trip-walkdistance" name="Walk" tabindex="10" class="regular">
+                            ${walk_form_option(params['Walk'], is_mobile)}
+                        </select>
+                        %if not is_mobile:
+                        <div class="form-help">
+                            <p><small>${_(u"How far are you willing to walk to/from your stop?")}</small></p>
+                        </div>
+                        %endif
+                    </fieldset>
+                </div><!-- .col -->
+                <div class="col-xs-4"> 
+                    <fieldset class="preferences">
+                        <label for="trip-modetype">${_(u'Travel by')}</label>
+                        <select id="trip-modetype" name="mode" tabindex="11" class="regular">
+                            ${mode_form_option(params['mode'], is_mobile)}
+                        </select>
+                        %if not is_mobile:
+                        <div class="form-help">
+                            <p><small>${_(u"Which travel methods do you prefer?")}</small></p>
+                        </div>
+                        %endif
+                    </fieldset> 
+                </div><!-- .col -->
+            </div><!-- .row -->                        
+
+        
+
+
+            <fieldset class="submit">
+                ${form.get_extra_params_hidden_inputs()}
+                <input name="submit" tabindex="13" type="submit" value="${_(u'Get directions')}" id="submit" class="submit" title="${_(u'Plan your trip')}" onclick="tpGoogleAnalytics(_gaq, ['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);" />
+                <div class="mapcheckbox-wrap">
+                    <input type="checkbox" id="mapcheckbox" tabindex="12" name="mapit" value="A"/>
+                    <label for="mapcheckbox" class="mapcheckbox-label">${_(u'Use interactive map')}</label>
+                </div>
+            </fieldset>
+        </form>
+    </div><!-- .col -->
+</div><!-- .row -->
 </%def>
 
 <%def name="arrive_depart_form_option(sel_key, is_mobile=False)">

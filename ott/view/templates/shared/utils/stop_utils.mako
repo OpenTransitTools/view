@@ -7,7 +7,6 @@
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 
-<!-- TODO allow desktop to have "TriMet: " in front of page title -->
 <%def name="page_title(stop)">${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 <%def name="str_title(stop)"><% return "Stop ID {0}".format(stop['stop_id']) %></%def>
 
@@ -98,17 +97,21 @@
     %endif
 </%def>
 
+
+
+
 ##
 ## show a list of stops (used by nearest_stops.html) 
+## stops_near.html
 ##
 <%def name="stops_list(list, rte_url_tmpl, more_link, params, extra_params)">
-<ul id="stopslist" class="group">
+<ul class="stoplist">
     %if list and 'stops' in list:
     %for s in list['stops']:
     <li>
-        <h3 class="tight">
-            <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${s['name']} ${s['direction']}</a>
-            <span class="stopid">${_(u'Stop ID')} ${s['stop_id']}</span>
+        <h3>
+            <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${s['name']} ${s['direction']}</a> 
+            <small>${_(u'Stop ID')} ${s['stop_id']}</small>
         </h3>
         <p>${round(s['distance'], 2)} ${_(u'miles away')} <span class="separator">&nbsp;&bull;&nbsp;</span> ${routes_served(s, rte_url_tmpl)} <span class="separator">&nbsp;&bull;&nbsp;</span> ${planner_walk_link(place, s, _('Walking directions'), extra_params)}</p>
     </li>
@@ -123,12 +126,15 @@
 </ul>
 </%def>
 
+
+
+
 <%def name="nearby_stops_link(stop, extra_params)">
     <p><a href="stops_near.html?has_geocode=true&place=${util.make_named_coord_from_obj(stop)}${extra_params}">${_(u'Find nearby stops')}</a></p>
 </%def>
 
 ## static map block
-<%def name="static_map_img(map_url)"><img src="${map_url}" alt="${_(u'Stop location on a map')}"/></%def>
+<%def name="static_map_img(map_url)"><img src="${map_url}" alt="${_(u'Stop location on a map')}" class="img" /></%def>
 
 <%def name="imap_a_link(name, lon, lat, extra_params, imap_cls=False)"><a ${'class="interactivemap"' if imap_cls else '' | n} target="#" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'InteractiveMapLink', 'Stop page link']);"></%def>
 <%def name="imap_a_link_via_stop(stop, extra_params, imap_cls=False)">${imap_a_link(stop['name'], stop['lon'], stop['lat'], extra_params, imap_cls)}</%def>
@@ -159,12 +165,12 @@
 ## places map with lat/lon
 <%def name="place_map(name, lon, lat, extra_params='', is_mobile=False)">
 <%
-    w=665
-    h=350
+    w=800
+    h=600
     if is_mobile:
         w=300
         h=240
-    map_url = "http://ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/8/coord/{2},{3}/extraparams/f\
+    map_url = "http://ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/9/coord/{2},{3}/extraparams/f\
 ormat_options=layout:place".format(w, h, lon, lat)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
 %>
@@ -173,8 +179,8 @@ ormat_options=layout:place".format(w, h, lon, lat)
 ## stops map with lat/lon
 <%def name="stop_map(name, stop_id, lon, lat, extra_params='', is_mobile=False)">
 <%
-    w=340
-    h=300
+    w=350
+    h=350
     if is_mobile:
         w=300
         h=240

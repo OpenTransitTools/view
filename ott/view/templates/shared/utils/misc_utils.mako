@@ -224,14 +224,10 @@
 ## TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc...\
 ##
 <%def name="plan_a_trip_links(name, lon, lat, extra_params='')">
-<h3 class="tight">${_(u'Plan a trip')}</h3>
-<p>
-  <a href="planner_form.html?to=${make_named_coord(name, lat, lon)}${extra_params}"
-    title="${_(u'Plan a trip')} ${_(u'to')} ${name}"
-    >${_(u'To here')}</a> <span class="separator">&nbsp;&bull;&nbsp;</span> <a 
-    href="planner_form.html?from=${make_named_coord(name, lat, lon)}${extra_params}"
-    title="${_(u'Plan a trip')} ${_(u'from')} ${name}"
-    >${_(u'From here')}</a>
+<h3>${_(u'Plan a trip')}</h3>
+<ul class="links">
+    <li><a href="planner_form.html?to=${make_named_coord(name, lat, lon)}${extra_params} title="${_(u'Plan a trip')} ${_(u'to')} ${name}">${_(u'To here')}</a></li>
+    <li><a href="planner_form.html?from=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'from')} ${name}">${_(u'From here')}</a></li>
 </p>
 </%def>
 

@@ -73,10 +73,6 @@
 </%def>
 
 <%def name="form_help_right()">
-                    <div class="form-help-popup-onright">
-                        <p>
-                            ${_(u'You can type in an address, intersection, landmark or Stop ID here.')}
-                        </p>
-                    </div>
+<p class="help"><small>${_(u'Address, intersection, landmark or Stop ID')}</small></p>
 </%def>
 

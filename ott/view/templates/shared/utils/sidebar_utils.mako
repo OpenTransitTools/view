@@ -7,22 +7,31 @@
 <%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 
 <%def name="tc_pr_lr_wes_mall(msg='Stop related page')">
-    <!-- begin #sidebar -->
-    <aside id="aside" class="aside">
-        <!--<h2>${_(u'Related')}</h2>-->
-        <p>&nbsp;</p>
-        <ul class="links">
-            <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
-            <li><a href="${util.url_domain()}/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
-            <li><a href="${util.url_domain()}/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
-            <li><a href="${util.url_domain()}/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
-            <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
-        </ul>
-		<!--
-        <p class="feedback"><a target="_blank" href="${util.trimet_feedback_url(_(msg))}">${_(u'Having problems? Click here for technical support.')}</a></p>
-		-->
-    </aside>
-    <!-- end #sidebar -->
+    <div class="fullwidth">
+        <div class="contentcontainer">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h3>${_(u'Related')}</h3>
+                    <!--
+                    <p class="feedback"><a target="_blank" href="${util.trimet_feedback_url(_(msg))}">${_(u'Having problems? Click here for technical support.')}</a></p>
+                    -->
+                </div><!-- .col -->
+                <div class="col-xs-12 col-sm-6">
+                   <ul class="links">
+                        <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
+                        <li><a href="${util.url_domain()}/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
+                        <li><a href="${util.url_domain()}/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
+                    </ul>
+                </div><!-- .col -->
+                <div class="col-xs-12 col-sm-6">
+                   <ul class="links">
+                        <li><a href="${util.url_domain()}/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
+                        <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
+                    </ul>
+                </div><!-- .col -->
+            </div><!-- .row -->
+        </div><!-- .contentcontainer -->
+    </div><!-- .fullwidth -->
 </%def>
 
 ##
@@ -66,10 +75,12 @@
 ## make the stop landing page (right) sidebar
 ##
 <%def name="stop(stop, extra_params)">
-    <aside id="aside" class="aside">
-	<!--
-        <p>&nbsp;</p>
-        <p class="feedback"><a href="${util.trimet_feedback_url(su.str_title(stop), _(u'Stop landing page'))}"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
-    -->
-	</aside><!-- end #sidebar -->
+    <div class="row">
+        <div class="col-xs-12">
+            <!--
+                <p>&nbsp;</p>
+                <p class="feedback"><a href="${util.trimet_feedback_url(su.str_title(stop), _(u'Stop landing page'))}"><span>${_(u'Having problems? Click here for technical support.')}</span></a></p>
+            -->
+        </div><!-- .col -->
+    </div><!-- .row -->
 </%def>

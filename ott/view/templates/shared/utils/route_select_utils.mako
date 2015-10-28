@@ -7,13 +7,22 @@
         <fieldset>
             ${form.get_extra_params_hidden_inputs()}
             <label for="route">${_(u"Select a line")}:</label>
-            <select id="route" name="route" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular">
-            %if route_list:
-            %for r in route_list:
-                <option value="${r['route_id']}">${r['name']}</option>
-            %endfor
-            %endif
-            </select>
+            
+            <div class="field">
+                <div class="field-control">
+                    <div class="input-select-wrapper">
+                        <select id="route" name="route" class="field-input field-select-input input-select">
+                        %if route_list:
+                        %for r in route_list:
+                            <option value="${r['route_id']}">${r['name']}</option>
+                        %endfor
+                        %endif
+                        </select>
+                    </div>
+                    <i class="icon icon-16 icon-select-icon input-select-icon"></i>
+                </div>
+            </div>
+
         </fieldset>
         <fieldset>
             <input type="submit" class="submit" value='${_(u"Select")}' onclick="${analytics}" />
@@ -29,11 +38,21 @@
         <fieldset>
             ${form.get_extra_params_hidden_inputs()}
             <label for="${d['direction_name']}">${d['direction_name']}</label>
-            <select name="stop_id" id="${d['direction_name']}" onfocus="doClassHighlight(this);" onblur="doClassRegular(this);" class="regular">
-                % for s in d['stop_list']['stops']:
-                <option value="${s['stop_id']}">${s['name']} (#${s['stop_id']})</option>
-                % endfor
-            </select>
+
+            <div class="field">
+                <div class="field-control">
+                    <div class="input-select-wrapper">
+                        <select name="stop_id" id="${d['direction_name']}" class="field-input field-select-input input-select">
+                            % for s in d['stop_list']['stops']:
+                            <option value="${s['stop_id']}">${s['name']} (#${s['stop_id']})</option>
+                            % endfor
+                        </select>
+                    </div>
+                    <i class="icon icon-16 icon-select-icon input-select-icon"></i>
+                </div>
+            </div>
+
+
         </fieldset>
         <fieldset>
             <input type="submit" class="submit" value="${_(u'Select stop')}" id="select" />

@@ -37,20 +37,16 @@
     return url
 %></%def>
 
-
 ##
 ## make name for the schedule tabs ... add dow (or abbrivated dow) to name the date named tabs (but not the 'Today' or 'more' tabs)
 ##
 <%def name="make_tab_name(i, t)">
-%if i==0 or i==4:
+%if i==4:
 ${t['name']}
 %else:
 ${t['name']}<br/>${_(t['dow_abbrv'])}
 %endif
 </%def>
-
-# TODO ... remove me once JH fixes the .css for month abbreviations
-<%def name="make_tab_name(i, t)">${t['name']}</%def>
 
 ##
 ## the crazy Today, 10/25, 10/26, more stuff from stop schedule pages
@@ -161,8 +157,9 @@ ${t['name']}<br/>${_(t['dow_abbrv'])}
         ###  SHOW the No service message, since we don't have any stop times...
         ###
         <strong>${_(u'No service')}</strong> ${_(u'at this stop')} ${_(u'on')} ${pretty_date} 
-        %if ss['single_route_name']:
-            ${_(u'for')} ${_(u'line')} ${ss['single_route_name']}
+        %if route_param(None):
+            ${_(u'for')} ${_(u'line')} #${route_param()}
         %endif
     %endif
 </%def>
+

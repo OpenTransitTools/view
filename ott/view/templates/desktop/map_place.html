@@ -5,24 +5,36 @@
 <%
     extra_params = util.get_extra_params()
 %>
-<%def name="title()">TriMet: ${util.name_city_str_from_struct(place)}</%def>
-<%def name="side_bar()">${side.tc_pr_lr_wes_mall('Map Location')}</%def>
-<%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/triptools/triptools-ms.css" type="text/css" media="all" />
-</%def>
-<%def name="schedule_selected()">class="selected"</%def>
+<%def name="title()">${util.name_city_str_from_struct(place)}</%def>
 ##
 ## main content
 ##
-<div id="triptool" class="schedulesmap-icon">
-    <a href="stop_select_form.html?${extra_params}">Maps &amp; Schedules</a></span>
-</div>
-<h1>${util.name_city_str_from_struct(place)}</h1>
-<p>&nbsp;</p>
 
-%if place['lat'] and place['lon']:
-    ${su.place_map(place['name'], place['lon'], place['lat'], extra_params)}
-    ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
-%endif
 
-<p>&nbsp;</p>
+
+<div class="standardheader">
+    <h1><a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Stops & Stations')}</h1>    
+</div><!-- .standardheader --> 
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+				<h2>${util.name_city_str_from_struct(place)}</h2>
+            </div><!-- .col -->
+      </div><!-- .row -->        
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-lg-8">
+
+				%if place['lat'] and place['lon']:
+				    ${su.place_map(place['name'], place['lon'], place['lat'], extra_params)}
+				%endif
+
+            </div><!-- .col -->
+            <div class="col-xs-12 col-md-4 col-lg-4">
+				%if place['lat'] and place['lon']:
+				    ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
+				%endif
+            </div><!-- .col -->
+      </div><!-- .row -->        
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->
