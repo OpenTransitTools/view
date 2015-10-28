@@ -88,9 +88,6 @@
 %>
     <input type="hidden" id="${id}_coord" name="${name}Coord" value="${coord}" />
     <input type="text" id="${id}" name="${name}" value="${place}" size="45" maxlength="80" tabindex="${tab}" class="regular" onFocus="${clear_js} doClassHighlight(this);" onBlur="tpDoText(this,'${clear}'); tpDoClassRegular(this);"/>
-    %if not is_mobile:
-    <p class="help"><small>${_(u'Address, intersection, landmark or Stop ID')}</small></p>
-    %endif
 </%def>
 
 ##
