@@ -38,12 +38,10 @@
 #
 <%def name="stop_schedule(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${base_stop_stations(name, extra_params, base_params)}
-    <h2>${_(u'Schedule for')}
-        ${name}
-        %if has_alerts is True:
-        ${util.alerts_inline_icon_link()}
-        %endif
-    </h2>
+    ${name}
+    %if has_alerts is True:
+    ${util.alerts_inline_icon_link()}
+    %endif
 </%def>
 
 
