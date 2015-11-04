@@ -401,7 +401,7 @@
 
 <%def name="list_to_str(list, sep=', ')">${sep.join(list)}</%def>
 
-<%def name="alerts_inline_icon_link(img_url='/images/triptools/alert-icon.png')">
+<%def name="alerts_inline_icon_link(img_url='/global/img/icon-alert.png')">
     <a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="${_(u'Service alert at this stop')}" title="${_(u'Service alert at this stop')}" /></a>
 </%def>
 

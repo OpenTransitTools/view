@@ -21,7 +21,7 @@
 
 
 <div class="standardheader">
-    <h1><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" />${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}</h1>
+    <h1><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" />${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}</h1>
      <div class="first">
         <p>${su.stop_title(stop)}</p>
     </div>
