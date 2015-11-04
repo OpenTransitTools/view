@@ -44,7 +44,7 @@
 %if i==4:
 ${t['name']}
 %else:
-${t['name']}<br/>${_(t['dow_abbrv'])}
+${_(t['dow'])}<br/><small>${t['name']}</small>
 %endif
 </%def>
 
@@ -52,10 +52,10 @@ ${t['name']}<br/>${_(t['dow_abbrv'])}
 ## the crazy Today, 10/25, 10/26, more stuff from stop schedule pages
 ##
 <%def name="svc_key_tabs(stop, html_tabs, extra_params)">
-    <ul id="contenttabs" class="group">
+    <ul id="contenttabs">
         %for i, t in enumerate(html_tabs['tabs']):
           %if 'url' in t:
-            <li class="normal"   title="${t['tooltip']}"><a href="${t['url']}&sort=${sort_val()}${extra_params}"><span>${make_tab_name(i, t)}</span></a></li>
+            <li title="${t['tooltip']}"><a href="${t['url']}&sort=${sort_val()}${extra_params}">${make_tab_name(i, t)}</a></li>
           %else:
             <li class="selected" title="${t['tooltip']}"><span>${make_tab_name(i, t)}</span></li>
           %endif

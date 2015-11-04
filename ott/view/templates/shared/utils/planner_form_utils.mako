@@ -140,7 +140,7 @@
 
             <fieldset class="departwhen-units">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-12 col-ms-6 col-sm-6">
                         <select name="Hour" id="Hour" tabindex="4" class="regular">
                             %for i in range(1, 13):
                                 ${util.option(i, i, util.compare_values(params['Hour'], i))}
@@ -160,7 +160,7 @@
                             ${util.option('pm', _(u'pm'), not params['is_am'])}
                         </select>
                     </div><!-- .col -->
-                    <div class="col-xs-6">
+                    <div class="col-xs-12 col-ms-6 col-sm-6">
                         <div id="departwhen-date">
                             <b>${_(u'on')}</b>
                             <select name="month" id="Month" tabindex="7" class="regular">
@@ -175,44 +175,38 @@
             </fieldset>
 
 
-            <h3>${_(u'Trip preferences (optional)')}</h3>
+            <h3>${_(u'Trip preferences')}</h3>
             <div class="row">
-                <div class="col-xs-4">
+                <div class="col-xs-12 col-sm-4">
                     <fieldset class="preferences">
                         <label for="trip-transfers">${_(u'Show me the')}</label>
                         <select id="trip-transfers" name="optimize" tabindex="9" class="regular">
                             ${optimize_form_option(params['optimize'], is_mobile)}
                         </select>
                         %if not is_mobile:
-                        <div class="form-help">
-                            <p><small>${_(u"Fewer transfers may result in a longer trip.")}</small></p>
-                        </div>
+                        <p class="help"><small>${_(u"Fewer transfers may result in a longer trip.")}</small></p>
                         %endif
                     </fieldset>
                 </div><!-- .col -->
-                <div class="col-xs-4"> 
+                <div class="col-xs-12 col-sm-4">
                     <fieldset class="preferences">
                         <label for="trip-walkdistance">${_(u'Maximum walk')}</label>
                         <select id="trip-walkdistance" name="Walk" tabindex="10" class="regular">
                             ${walk_form_option(params['Walk'], is_mobile)}
                         </select>
                         %if not is_mobile:
-                        <div class="form-help">
-                            <p><small>${_(u"How far are you willing to walk to/from your stop?")}</small></p>
-                        </div>
+                        <p class="help"><small>${_(u"How far are you willing to walk to/from your stop?")}</small></p>
                         %endif
                     </fieldset>
                 </div><!-- .col -->
-                <div class="col-xs-4"> 
+                <div class="col-xs-12 col-sm-4">
                     <fieldset class="preferences">
                         <label for="trip-modetype">${_(u'Travel by')}</label>
                         <select id="trip-modetype" name="mode" tabindex="11" class="regular">
                             ${mode_form_option(params['mode'], is_mobile)}
                         </select>
                         %if not is_mobile:
-                        <div class="form-help">
-                            <p><small>${_(u"Which travel methods do you prefer?")}</small></p>
-                        </div>
+                        <p class="help"><small>${_(u"Which travel methods would you like to use?")}</small></p>
                         %endif
                     </fieldset> 
                 </div><!-- .col -->
