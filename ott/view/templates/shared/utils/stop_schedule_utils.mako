@@ -78,28 +78,28 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
 </%def>
 
 ##
-## switch to show all routes if we're just showing a single route stop times...
-##
-<%def name="schedule_all_routes_link(ss, extra_params)">
-<div class="contenttabs-bar group">
-    <p class="singleroute">
-    %if 'single_route_name' in ss and ss['single_route_name'] != None:
-    <b>${_(u'Showing only')} ${ss['single_route_name']}</b>
-     &nbsp;|&nbsp; <a href="${make_stop_schedule_url(ss['stop']['stop_id'], sort_val(), extra_params, True)}">${_(u'Show all lines')}</a>
-    %endif
-    </p>
-</%def>
-
-##
 ## sort schedule by either route (blocky view) or time (list view)
 ##
 <%def name="schedule_sort_by_links(stop, extra_params)">
+<div class="contenttabs-bar">
     <p class="sort">
         ${util.link_or_strong(_(u'Sorting by line'), _(u'Sort by line'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params))}
          &nbsp;|&nbsp;
         ${util.link_or_strong(_(u'Sorting by time'), _(u'Sort by time'),  sort_by_time(),    make_stop_schedule_url(stop['stop_id'], 'time', extra_params))}
     </p>
 </div><!-- end .contenttabs-bar -->
+</%def>
+
+##
+## switch to show all routes if we're just showing a single route stop times...
+##
+<%def name="schedule_all_routes_link(ss, extra_params)">
+    <p class="single">
+    %if 'single_route_name' in ss and ss['single_route_name'] != None:
+        <b>${_(u'Showing only')} ${ss['single_route_name']}</b>
+     &nbsp;|&nbsp; <a href="${make_stop_schedule_url(ss['stop']['stop_id'], sort_val(), extra_params, True)}">${_(u'Show all lines')}</a>
+    %endif
+    </p>
 </%def>
 
 ##
@@ -111,16 +111,17 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
         ###  SHOW schedule as a list, with headsign to left of time...
         ###
         %if sort_by_time():
-        <div class="sortbyline">
-            %for s in ss['stoptimes']:
-            <%
-                id = s['h']
-                hs = ss['headsigns'][id]
-            %> 
-            <p><b>${s['t']}</b> ${hs['route_name']} ${_(u'to')} ${hs['headsign']}</p>
-            %endfor
+        <div class="scheduletimes">
+            <ul class="sortbytime">
+                %for s in ss['stoptimes']:
+                <%
+                    id = s['h']
+                    hs = ss['headsigns'][id]
+                %> 
+                <li><b>${s['t']}</b> <i>${hs['route_name']} ${_(u'to')} ${hs['headsign']}</i></li>
+                %endfor
+            </ul>
         </div>
-
         ###
         ###  SHOW schedule grouped under headsign
         ###
@@ -130,26 +131,28 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
             hs_list.sort(key=lambda hs: hs['sort_order'], reverse=False)
         %>
         %for hs in hs_list:
-        <h3 class="tight">
-            ${hs['route_name']} ${_(u'to')} ${hs['headsign']}
-            %if hs['has_alerts']:
-            ${util.alerts_inline_icon_link()}
-            %endif
-        </h3>
-        <p class="tight">
-            %for s in ss['stoptimes']:
-                %if s['h'] == hs['id']:
-                ${s['t']}&nbsp; 
+        <div class="scheduletimes">
+            <h3>
+                ${hs['route_name']} ${_(u'to')} ${hs['headsign']}
+                %if hs['has_alerts']:
+                ${util.alerts_inline_icon_link()}
                 %endif
-            %endfor
-        </p>
-        <p>
-            <%
-               from ott.view.utils import agency_template
-               url = agency_template.make_url_template()
-            %>
-            <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
-        </p>
+            </h3>
+            <ul class="sortbydestination">
+                %for s in ss['stoptimes']:
+                    %if s['h'] == hs['id']:
+                    <li><span>${s['t']}</span></li>
+                    %endif
+                %endfor
+            </ul>
+            <p>
+                <%
+                   from ott.view.utils import agency_template
+                   url = agency_template.make_url_template()
+                %>
+                <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
+            </p>
+        </div>
         %endfor
         %endif
     %else:

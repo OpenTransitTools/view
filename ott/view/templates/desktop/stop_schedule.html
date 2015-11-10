@@ -21,10 +21,7 @@
 
 
 <div class="standardheader">
-    <h1><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" />${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}</h1>
-     <div class="first">
-        <p>${su.stop_title(stop)}</p>
-    </div>
+    <h1><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" />${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}<br /><small>${su.stop_title(stop)}</small></h1>
 </div><!-- .standardheader -->
 
 
@@ -35,8 +32,8 @@
             <div class="col-xs-12">
                 <h2>${_(u'Schedule')}</h2>
                 ${ssu.svc_key_tabs(stop, html_tabs, extra_params + '#triptool')}
-                ${ssu.schedule_all_routes_link(stop_sched, extra_params)}
                 ${ssu.schedule_sort_by_links(stop, extra_params)}
+                ${ssu.schedule_all_routes_link(stop_sched, extra_params)}
                 ${ssu.schedule_render(stop_sched, html_tabs['pretty_date'], extra_params)}
                 ${util.alerts(alerts)}
                 <p>&nbsp;</p>
