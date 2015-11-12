@@ -62,7 +62,7 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
         %endfor
     </ul>
     %if 'more' in request.params:
-    <div id="moreform" class="group">
+    <div class="moreform">
         <form name="select_date" id="select_date_id" method="GET" action="stop_schedule.html" class="triptools-form">
             ${form.get_extra_params_hidden_inputs()}
             <input type="hidden" name="route"   value="${route_param()}" />
@@ -84,7 +84,6 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
 <div class="contenttabs-bar">
     <p class="sort">
         ${util.link_or_strong(_(u'Sorting by line'), _(u'Sort by line'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params))}
-         &nbsp;|&nbsp;
         ${util.link_or_strong(_(u'Sorting by time'), _(u'Sort by time'),  sort_by_time(),    make_stop_schedule_url(stop['stop_id'], 'time', extra_params))}
     </p>
 </div><!-- end .contenttabs-bar -->
@@ -96,8 +95,8 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
 <%def name="schedule_all_routes_link(ss, extra_params)">
     <p class="single">
     %if 'single_route_name' in ss and ss['single_route_name'] != None:
-        <b>${_(u'Showing only')} ${ss['single_route_name']}</b>
-     &nbsp;|&nbsp; <a href="${make_stop_schedule_url(ss['stop']['stop_id'], sort_val(), extra_params, True)}">${_(u'Show all lines')}</a>
+        <b>${_(u'Showing only')} ${ss['single_route_name']}</b> 
+        <a href="${make_stop_schedule_url(ss['stop']['stop_id'], sort_val(), extra_params, True)}" class="showalllines">${_(u'Show all lines')}</a>
     %endif
     </p>
 </%def>
@@ -137,6 +136,11 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
                 %if hs['has_alerts']:
                 ${util.alerts_inline_icon_link()}
                 %endif
+                <%
+                   from ott.view.utils import agency_template
+                   url = agency_template.make_url_template()
+                %>
+                <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="route-icons-inline">${_(u'Next arrivals')}</a>                
             </h3>
             <ul class="sortbydestination">
                 %for s in ss['stoptimes']:
@@ -145,13 +149,6 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
                     %endif
                 %endfor
             </ul>
-            <p>
-                <%
-                   from ott.view.utils import agency_template
-                   url = agency_template.make_url_template()
-                %>
-                <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}">${_(u'Next arrivals')}</a>
-            </p>
         </div>
         %endfor
         %endif
@@ -159,7 +156,7 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
         ###
         ###  SHOW the No service message, since we don't have any stop times...
         ###
-        <strong>${_(u'No service')}</strong> ${_(u'at this stop')} ${_(u'on')} ${pretty_date} 
+        <b>${_(u'No service')}</b> ${_(u'at this stop')} ${_(u'on')} ${pretty_date} 
         %if route_param(None):
             ${_(u'for')} ${_(u'line')} #${route_param()}
         %endif

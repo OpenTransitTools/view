@@ -161,7 +161,7 @@
     name = get_ele(place, 'name', _(u'Undefined'))
     city = get_ele(place, 'city', '')
     name_city = name_city_str_from_struct(place)
-%><a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}">${name_city}</a>
+%>${name_city} <a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}"><small>Map</small></a>
 </%def>
 
 <%def name="get_url(url=None)"><%
@@ -367,7 +367,7 @@
         <option value="${loop.index + 1}" ${'selected' if m == selected or str(loop.index+1) == str(selected) else ''} >${m}</option>
     %endfor
 </%def>
-<%def name="month_select(selected)"><select name="month" tabindex="7" id="month" class="regular" onblur="doClassRegular(this);" onfocus="doClassHighlight(this);">
+<%def name="month_select(selected)"><select name="month" tabindex="7" id="month" class="regular">
     ${month_options(selected)}
     </select></%def>
 
@@ -377,7 +377,7 @@
         <option value="${loop.index + 1}" ${'selected' if  m == selected or str(loop.index+1) == str(selected) else ''}>${m}</option>
     %endfor
 </%def>
-<%def name="month_abbv_select(selected)"><select name="month" tabindex="7" id="month" class="regular" onblur="doClassRegular(this);" onfocus="doClassHighlight(this);">
+<%def name="month_abbv_select(selected)"><select name="month" tabindex="7" id="month" class="regular">
     ${month_abbv_options(selected)}
 </select></%def>
 
@@ -387,15 +387,15 @@
         <option value="${d}" ${'selected' if d == selected else ''}>${d}</option>
     %endfor
 </%def>
-<%def name="day_select(selected=1)"><select name="day" tabindex="8" id="day" class="regular" onblur="doClassRegular(this);" onfocus="doClassHighlight(this);">
+<%def name="day_select(selected=1)"><select name="day" tabindex="8" id="day" class="regular">
     ${day_options(selected)}
     </select></%def>
 
 <%def name="link_or_strong(strong_label, link_label, make_strong, url, l_bracket='[', r_bracket=']')">
     %if make_strong:
-        <strong>${strong_label}</strong>
+        <span class="toggle">${strong_label}</span>
     %else:
-        <a href="${url}">${link_label}</a>
+        <a href="${url}" class="toggle">${link_label}</a>
     %endif
 </%def>
 
@@ -406,9 +406,9 @@
 </%def>
 
 
-<%def name="alerts(alert_list, img_url='/images/triptools/alert.png')">
+<%def name="alerts(alert_list, img_url='/global/img/icon-alert.png')">
     %if alert_list and len(alert_list) > 0:
-    <div id="alerts" class="group">
+    <div id="alerts">
         %for a in alert_list:
         ${alert_content(a, img_url)}
         %endfor
@@ -418,16 +418,15 @@
 
 <%def name="alert_content(alert, img_url='/images/triptools/alert.png')">
     <p><img src="${url_domain()}${img_url}"/>
-        <span class="alert-text">
-            %if header_text in alert and alert['header_text']:
-            <b>${alert['header_text']}</b><br/>
-            %endif
-            <b>${alert['route_short_names']}: </b> ${alert['description_text']}
-        </span>
-        %if alert['pretty_start_date']:
-        <span class="alert-time">${_(u'As of')} ${alert['pretty_start_date']} @ ${alert['pretty_start_time']}</span>
+        %if header_text in alert and alert['header_text']:
+        <b>${alert['header_text']}</b><br />
         %endif
-        <span class="alert-time"><a href="${alert['url']}#${alert['route_id'].zfill(3)}" target="#">${_(u'(more...)')}</a></span>
+        <b>${alert['route_short_names']}: </b> ${alert['description_text']} 
+        ##<a href="${alert['url']}#${alert['route_id'].zfill(3)}" target="#">${_(u'More...')}</a>
+        %if alert['pretty_start_date']:
+        <br />
+        <small>${_(u'As of')} ${alert['pretty_start_date']} @ ${alert['pretty_start_time']}</small>
+        %endif
     </p>
 </%def>
 

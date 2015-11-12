@@ -120,7 +120,7 @@
 
     %if more_link:
     <li>
-        <p align="center"><a href="stops_near.html?has_geocode=true&show_more=true&${util.prep_url_params(params)}${extra_params}">${_(u'Show more stops')}</a></p>
+        <p align="center"><a href="stops_near.html?has_geocode=true&show_more=true&${util.prep_url_params(params)}${extra_params}" class="showmorestops">${_(u'Show more stops')}</a></p>
     </li>
     %endif
 </ul>

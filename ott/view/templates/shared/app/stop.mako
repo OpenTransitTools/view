@@ -20,8 +20,10 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
 
 
 <div class="standardheader">
-    <h1><a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${name}</h1>
-    <div class="first"><p>${su.stop_title(stop)}</p></div>
+    <h1>
+        <a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${name}<br />
+        <small>${su.stop_title(stop)}</small>
+    </h1>
 </div><!-- .standardheader -->
 
 <div class="fullwidth">
