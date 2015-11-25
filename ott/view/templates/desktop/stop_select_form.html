@@ -2,7 +2,6 @@
 <%inherit file="/desktop/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
@@ -11,9 +10,7 @@
 %>
 <%def name="title()">${_(u'Stops & Stations')}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
-<%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
 <%def name="app_css()">
-    ${page.stop_css()}
     ${form.autocomplete_css_includes()}
 </%def>
 
@@ -40,7 +37,27 @@ h2 {
                 ${su.stop_select_form(place)}
                 ${form.autocomplete_js_includes()}
                 ${form.autocomplete_search_input()} 
+
+
+                <h3>${_(u'Related')}</h3>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                       <ul class="links">
+                            <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
+                            <li><a href="${util.url_domain()}/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
+                            <li><a href="${util.url_domain()}/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
+                        </ul>
+                    </div><!-- .col -->
+                    <div class="col-xs-12 col-sm-6">
+                       <ul class="links">
+                            <li><a href="${util.url_domain()}/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
+                            <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
+                        </ul>
+                    </div><!-- .col -->
+                </div><!-- .row -->
+
             </div><!-- .col -->
         </div><!-- .row -->
+
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->

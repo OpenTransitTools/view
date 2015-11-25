@@ -83,8 +83,8 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
 <%def name="schedule_sort_by_links(stop, extra_params)">
 <div class="contenttabs-bar">
     <p class="sort">
-        ${util.link_or_strong(_(u'Sorting by line'), _(u'Sort by line'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params))}
-        ${util.link_or_strong(_(u'Sorting by time'), _(u'Sort by time'),  sort_by_time(),    make_stop_schedule_url(stop['stop_id'], 'time', extra_params))}
+        ${util.link_or_strong(_(u'Viewing by line'), _(u'View by line'), not sort_by_time(), make_stop_schedule_url(stop['stop_id'], 'destination', extra_params))}
+        ${util.link_or_strong(_(u'Viewing by time'), _(u'View by time'),  sort_by_time(),    make_stop_schedule_url(stop['stop_id'], 'time', extra_params))}
     </p>
 </div><!-- end .contenttabs-bar -->
 </%def>

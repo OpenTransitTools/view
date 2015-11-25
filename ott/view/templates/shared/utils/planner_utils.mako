@@ -60,14 +60,14 @@
 ## header details w/ from & to details, plus optional trip details & edit links
 ##
 <%def name="render_trip_details(plan, itinerary=None, extra_params='')">
-    <div id="details" class="group">
-        <p class="details-trip"><span><strong>${_(u'From')}</strong> ${plan['from']['name']}</span></p>
-        <p class="details-trip"><span><strong>${_(u'To')}</strong> ${plan['to']['name']}</span></p>
+    <div class="details">
+        <p><b>${_(u'From')}</b> ${plan['from']['name']}</p>
+        <p><b>${_(u'To')}</b> ${plan['to']['name']}</p>
         %if itinerary:
-        <p class="details-trip"><span><strong>${_(u'When')}</strong> ${itinerary['date_info']['pretty_date']}</span></p>
-        <div class="tripinfo-wrap">
-            <p class="tripinfo">${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
-            <p class="tripinfo">${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+        <p><b>${_(u'When')}</b> ${itinerary['date_info']['pretty_date']}</p>
+        <div class="tripinfo">
+            <p>${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+            <p>${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
         </div>
         %endif
     </div><!-- end #details -->
@@ -78,12 +78,11 @@
 ##
 <%def name="render_tabs(plan, extra_params)">
 %if len(plan['itineraries']) > 1:
-    <ol id="plannertabs" class="group">
+    <ol id="contenttabs" class="group">
         ${itin_tab(plan['itineraries'], 0, _(u'Best bet'), extra_params)}
         ${itin_tab(plan['itineraries'], 1, _(u'Option 2'), extra_params)}
         ${itin_tab(plan['itineraries'], 2, _(u'Option 3'), extra_params)}
     </ol><!-- end #tabs -->
-    <div class="plannertabs-underline"></div>
 %endif
 </%def>
 
@@ -111,17 +110,31 @@
 ## bottom console buttons for email, feedback, print, etc...
 ##
 <%def name="render_console(plan, extra_params)">
-    <div id="console" class="group hide">
-        <p class="console-left">
-            <a href="${util.mailto_url(str_title(plan))}" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
-            <a href="javascript:window.print();" class="console-print" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);"><span>${_(u'Print')}</span></a>
-            <a href="m${request.path_qs}" class="console-mobile" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary view on mobile']);"><span>${_(u'View on mobile')}</span></a>
-        </p>
-        <p class="console-right">
-            <a href="planner_form.html?${plan['params']['return_trip']}${extra_params}" class="console-returntrip" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);"><span>${_(u'Return trip')}</span></a>
-            <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" class="console-edit" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
-        </p>
+    <div class="console">
+        <div class="row">
+
+            <div class="col-xs-12 col-sm-6 hcenter">
+                <a href="${util.mailto_url(str_title(plan))}" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
+                <a href="javascript:window.print();" class="console-print" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);"><span>${_(u'Print')}</span></a>
+                ##<a href="m${request.path_qs}" class="console-mobile" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary view on mobile']);"><span>${_(u'View on mobile')}</span></a>
+            </div><!-- .col -->
+
+            <div class="col-xs-12 col-sm-6 hcenter">
+                <a href="planner_form.html?${plan['params']['return_trip']}${extra_params}" class="showalllines" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);"><span>${_(u'Return trip')}</span></a>
+                <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" class="showalllines" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
+            </div><!-- .col -->
+        
+        </div><!-- .row -->
     </div><!-- end #console -->
+
+    <p><small>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
+        <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
+        ${_(u'for real-time arrival information and any Service Alerts that may affect your trip.')}
+        %if not is_mobile:
+        ${_(u'Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
+        %endif
+    </small></p>
+
 </%def>
 
 ##
@@ -129,7 +142,7 @@
 ##
 <%def name="render_alerts(itinerary)">
     %if itinerary['has_alerts']:
-    <div id="alerts" class="group">
+    <div id="alerts">
         %for alert in itinerary['alerts']:
         ## TODO issue #5599
         ## ${util.alert_content(alert)}
@@ -141,8 +154,7 @@
 
 <%def name="plan_alert_content(alert)">
     <p><img src="${util.img_url()}/alert.png" />
-        <span class="alert-text">${alert['text']}</span>
-        <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span>
+        <small>${alert['text']} <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span></small>
     </p>
 </%def>
 
@@ -227,9 +239,9 @@
         %>
         <!-- ${_('transfer')} or ${_('transfers')} -->
         %if sel:
-        <li class="selected"><span class="selectedpadding"><b>${text}</b><br />${dur} ${_('mins')}, <span class="nobreak">${tfer}</span><!-- ${fare}--></span></li>
+        <li class="selected"><span class="selectedpadding"><b>${text}</b><br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></span></li>
         %else:
-        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br />${dur} ${_('mins')}, <span class="nobreak">${tfer}</span><!-- ${fare}--></span></a></li>
+        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></span></a></li>
         %endif
     %endif
 </%def>
@@ -265,15 +277,7 @@
 ## footer with the trip plan disclaimer
 ##
 <%def name="bottom_disclaimer(is_mobile=False)">
-    <div id="disclaimer">
-        <p>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
-            <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
-            ${_(u'for real-time arrival information and any Service Alerts that may affect your trip.')}
-            %if not is_mobile:
-            ${_(u'Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
-            %endif
-        </p>
-    </div>
+   ## moved in with the console
 </%def>
 
 <%def name="set_planner_text_cookie()">

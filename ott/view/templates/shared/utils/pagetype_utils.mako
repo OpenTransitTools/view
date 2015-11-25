@@ -9,10 +9,9 @@
 <%def name="tripplanner_css()"></%def>
 
 <%def name="base_stop_stations(name, extra_params, base_params, ele_type='div')">
-<!--
-    <div class="standardheader">
-        <h1><a href="stop_select_form.html?${base_params}${extra_params}"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Stops & Stations')}</h1>
-    </div><!-- .standardheader -->  
+##    <div class="standardheader">
+##        <h1><a href="stop_select_form.html?${base_params}${extra_params}"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Stops & Stations')}</h1>
+##    </div><!-- .standardheader -->  
 </%def>
 
 #

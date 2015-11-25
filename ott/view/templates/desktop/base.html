@@ -65,9 +65,17 @@ ${util.time_stamp()}
         ${self.main_wrap_bottom()}
 
         % if skip_sidebar:
-            <!-- sidebar intentionally skipped via attribute 'skip_sidebar' -->
+            ## sidebar intentionally skipped via attribute 'skip_sidebar'
         % else:
-            ${self.side_bar()}
+           ## <div class="fullwidth">
+           ##     <div class="contentcontainer">
+           ##         <div class="row">
+           ##             <div class="col-xs-12">
+           ##                 ${self.side_bar()}
+           ##             </div>
+           ##         </div>
+           ##     </div>
+           ## </div>
         % endif
 
         ${self.bottom()}

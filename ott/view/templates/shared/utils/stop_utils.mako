@@ -130,7 +130,10 @@
 
 
 <%def name="nearby_stops_link(stop, extra_params)">
-    <p><a href="stops_near.html?has_geocode=true&place=${util.make_named_coord_from_obj(stop)}${extra_params}">${_(u'Find nearby stops')}</a></p>
+    <p>&nbsp;</p>
+    <ul class="links">
+        <li class="hcenter"><a href="stops_near.html?has_geocode=true&place=${util.make_named_coord_from_obj(stop)}${extra_params}">${_(u'Find nearby stops')}</a></li>
+    </ul>
 </%def>
 
 ## static map block

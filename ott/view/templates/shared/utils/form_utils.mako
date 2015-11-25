@@ -69,7 +69,8 @@
 # autocomplete: CSS and JS includes...
 #
 <%def name="autocomplete_js_includes(prefix='js')">
-    <script type="text/javascript" src="${prefix}/jquery.js"></script>
+    ## jquery already loaded on page
+    ##<script type="text/javascript" src="${prefix}/jquery.js"></script>
     <script type="text/javascript" src="${prefix}/jquery-ui-autocomplete.js"></script>
     <script type="text/javascript" src="${prefix}/autocomplete.js"></script>
 </%def>
