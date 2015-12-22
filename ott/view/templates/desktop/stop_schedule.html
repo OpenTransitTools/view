@@ -16,12 +16,12 @@
 <%def name="title()">${su.page_title(stop_sched['stop'])}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
 
-
 <div class="standardheader">
-    <h1><a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}<br /><small>${su.stop_title(stop)}</small></h1>
+    <h1>
+        <a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}<br/>
+        <small>${su.stop_title(stop)}</small>
+    </h1>
 </div><!-- .standardheader -->
-
-
 
 <div class="fullwidth">
     <div class="contentcontainer">

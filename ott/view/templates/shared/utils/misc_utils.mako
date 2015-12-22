@@ -52,7 +52,6 @@
     TRANSIT_MODES = (BUS, TRAM, RAIL, TRAIN, GONDOLA, FUNICULAR, FERRY, CABLE_CAR, SUBWAY, STREETCAR, BUSISH, TRAINISH, TRANSIT)
 %>
 
-
 ## misc methods (defined someplace in the shared space...needed for things to work.
 <%def name="form(url='', method='get', class_='form-style')"></%def>
 <%def name="end_form()"></%def>
@@ -100,7 +99,6 @@
         ret_val = def_val
     return ret_val
 %></%def>
-
 
 <%def name="clean_name(name)"><% return name.replace('%26', '&').replace('%27', "'") %></%def>
 
@@ -172,7 +170,6 @@
     ret_val = prep_url_params(ret_val, url_escape=True, spell_and=True)
     return ret_val
 %></%def>
-
 
 ##
 ## FEEDBACK URL: http://trimet.org/mailforms/tripfeedback?mailform[subject]=Stop X&mailform[url]=<a href='app url'>Blah</a>
@@ -257,7 +254,6 @@
 %>
 </%def>
 
-
 ##
 ## if we geocoded stuff on some other pages, we'll cache them here via .js 
 ##
@@ -270,7 +266,6 @@
     %endfor
 </script>
 </%def>
-
 
 ##
 ## do things like escape & in intersection names, etc...
@@ -300,7 +295,6 @@
 %>
 </%def>
 
-
 <%def name="get_first_param(param_name, def_val=None)">
 <%
     from ott.utils import html_utils
@@ -319,7 +313,6 @@
 %>
 </%def>
 
-
 <%def name="get_locale(def_val='en')">
 <%
     from ott.utils import html_utils
@@ -333,7 +326,6 @@
     return ret_val
 %>
 </%def>
-
 
 <%def name="get_extra_params(def_val='')">
 <%
@@ -351,7 +343,6 @@
 %>
 </%def>
 
-
 <%def name="print_year()"><%
     from ott.utils import date_utils
     dt = date_utils.get_day_info()
@@ -360,7 +351,6 @@
 <%def name="time_stamp()"><%
     from time import strftime as time
 %><!-- built: ${'%m/%d/%Y at %H:%M' | time} --></%def>
-
 
 <%def name="month_options(selected)">
     %for m in (_(u'January'), _(u'February'), _(u'March'), _(u'April'), _(u'May'), _(u'June'), _(u'July'), _(u'August'), _(u'September'), _(u'October'), _(u'November'), _(u'December')):
@@ -371,7 +361,6 @@
     ${month_options(selected)}
     </select></%def>
 
-
 <%def name="month_abbv_options(selected)">
     %for m in (_(u'Jan'), _(u'Feb'), _(u'Mar'), _(u'Apr'), _(u'May'), _(u'Jun'), _(u'Jul'), _(u'Aug'), _(u'Sep'), _(u'Oct'), _(u'Nov'), _(u'Dec')):
         <option value="${loop.index + 1}" ${'selected' if  m == selected or str(loop.index+1) == str(selected) else ''}>${m}</option>
@@ -380,7 +369,6 @@
 <%def name="month_abbv_select(selected)"><select name="month" tabindex="7" id="month" class="regular">
     ${month_abbv_options(selected)}
 </select></%def>
-
 
 <%def name="day_options(selected)">
     %for d in range(1, 32):
@@ -405,7 +393,6 @@
     <a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="${_(u'Service alert at this stop')}" title="${_(u'Service alert at this stop')}" /></a>
 </%def>
 
-
 <%def name="alerts(alert_list, img_url='/global/img/icon-alert.png')">
     %if alert_list and len(alert_list) > 0:
     <div id="alerts">
@@ -429,8 +416,6 @@
         %endif
     </p>
 </%def>
-
-
 
 <%def name="compare_values(a, b)">
 <%

@@ -11,20 +11,20 @@
 <%def name="base_stop_stations(name, extra_params, base_params, ele_type='div')">
 ##    <div class="standardheader">
 ##        <h1><a href="stop_select_form.html?${base_params}${extra_params}"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Stops & Stations')}</h1>
-##    </div><!-- .standardheader -->  
+##    </div><!-- .standardheader -->
 </%def>
 
-#
-# for stop & station pages that only show the basic header (no specific stop info / alerts / etc...)
-#
+##
+## for stop & station pages that only show the basic header (no specific stop info / alerts / etc...)
+##
 <%def name="stop_select(name='', extra_params='', base_params='me', ele_type='div')">
     ${base_stop_stations(name, extra_params, base_params, ele_type)}
     <h2>Select a ${name} stop</h2>    
 </%def>
 
-#
-# for stop & station pages that have specific stop info (ala alerts / stop landing page link / etc...)
-#
+##
+## for stop & station pages that have specific stop info (ala alerts / stop landing page link / etc...)
+##
 <%def name="stop(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${base_stop_stations(name, extra_params, base_params)} 
     <!--
@@ -37,13 +37,11 @@
 #
 <%def name="stop_schedule(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${base_stop_stations(name, extra_params, base_params)}
-    ${name}
+    <a href="stop.html?${request.query_string}">${name}</a>
     %if has_alerts is True:
     ${util.alerts_inline_icon_link()}
     %endif
 </%def>
-
-
 
 
 #
