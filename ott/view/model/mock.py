@@ -40,7 +40,7 @@ class Mock(Base):
         return self.stream_json('plan_trip', get_params)
 
 
-    def Xget_plan(self, get_params, **kwargs):
+    def TEST_get_plan(self, get_params, **kwargs):
         ''' @todo: MODE strings should come from gtfsdb code...
         '''
         #import pdb; pdb.set_trace()
