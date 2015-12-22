@@ -41,8 +41,8 @@
 ## make name for the schedule tabs ... add dow (or abbrivated dow) to name the date named tabs (but not the 'Today' or 'more' tabs)
 ##
 <%def name="make_tab_name(i, t)">
-%if i==4:
-${t['name']}
+%if i==4:  ## i == 4 == 'more tab'
+${t['name']} <br/><small>&nbsp;</small>
 %else:
 ${_(t['dow'])}<br/><small>${t['name']}</small>
 %endif
