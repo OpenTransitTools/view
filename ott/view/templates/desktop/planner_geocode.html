@@ -28,12 +28,21 @@ ${form.gps_form_scriptlet(id=geo_type, form='ambig')}
     ${form.autocomplete_css_includes()}
 </%def>
 
-${page.trip_planner(_(u'Uncertain Location'), extra_params, 'form')}
 
-<%def name="bottom()"></%def>
-<h2 class="error">
-    ${form.geocoder_msg(geocoder_results, geo_place, geo_type)}
-</h2>
-${pform.geocode_form(geocoder_results, geo_place, geo_type)}
-${form.autocomplete_js_includes()}
-${form.autocomplete_search_input('#' + geo_type)}
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+                ${page.trip_planner(_(u'Uncertain Location'), extra_params, 'form')}
+
+                <%def name="bottom()"></%def>
+                <h2 class="error">
+                    ${form.geocoder_msg(geocoder_results, geo_place, geo_type)}
+                </h2>
+                ${pform.geocode_form(geocoder_results, geo_place, geo_type)}
+                ${form.autocomplete_js_includes()}
+                ${form.autocomplete_search_input('#' + geo_type)}
+            </div><!-- .col -->
+        </div><!-- .row -->
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->
