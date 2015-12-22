@@ -69,8 +69,7 @@
 # autocomplete: CSS and JS includes...
 #
 <%def name="autocomplete_js_includes(prefix='js')">
-    ## jquery already loaded on page
-    ##<script type="text/javascript" src="${prefix}/jquery.js"></script>
+    <script type="text/javascript" src="${prefix}/jquery.js"></script>
     <script type="text/javascript" src="${prefix}/jquery-ui-autocomplete.js"></script>
     <script type="text/javascript" src="${prefix}/autocomplete.js"></script>
 </%def>
@@ -190,17 +189,16 @@
 ###
 <%def name="gps_form_scriptlet(id='place', form='geocode')">
 <script type="text/javascript" >
-    // for standard input form
     function checkgps()
     {
         if(navigator.geolocation)
         {
             // if browser supports geolocation, hide instructions and show GPS link instead
             try {
-            document.getElementById('${id}-instructions').style.display = 'none';
+                document.getElementById('${id}-instructions').style.display = 'none';
             } catch(e) {}
             try {
-            document.getElementById('${id}-gps').style.display = 'block';
+                document.getElementById('${id}-gps').style.display = 'block';
             } catch(e) {}
         }
     }

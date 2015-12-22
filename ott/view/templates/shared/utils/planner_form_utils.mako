@@ -364,16 +364,24 @@
 
 <%def name="gps_form_scriptlet()">
 <script>
+    function setel(el, val)
+    {
+        try {
+            document.getElementById(el).style.display = val;
+        } catch(e) {
+            console.log(e);
+        }
+    }
     // for trip planner page
     function checkgps()
     {
-        if (navigator.geolocation) 
+        if (navigator.geolocation)
         {  
             // if browser supports geolocation, hide instructions and show GPS link instead
-            document.getElementById('from-instructions').style.display = 'none';
-            document.getElementById('from-gps').style.display = 'block';
-            document.getElementById('to-instructions').style.display = 'none';
-            document.getElementById('to-gps').style.display = 'block';
+            setel('from-instructions', 'none');
+            setel('from-gps', 'block');
+            setel('to-instructions', 'none');
+            setel('to-gps', 'block');
         }
     }
     function getFromGPS()
