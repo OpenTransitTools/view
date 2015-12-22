@@ -142,7 +142,7 @@
 ##
 <%def name="render_alerts(itinerary)">
     %if itinerary['has_alerts']:
-    <div id="alerts">
+    <div class="box">
         %for alert in itinerary['alerts']:
         ## TODO issue #5599
         ## ${util.alert_content(alert)}
@@ -153,7 +153,7 @@
 </%def>
 
 <%def name="plan_alert_content(alert)">
-    <p><img src="${util.img_url()}/alert.png" />
+    <p><img src="${util.url_domain()}/global/img/icon-alert.png" width="12" />
         <small>${alert['text']} <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span></small>
     </p>
 </%def>
@@ -239,9 +239,9 @@
         %>
         <!-- ${_('transfer')} or ${_('transfers')} -->
         %if sel:
-        <li class="selected"><span class="selectedpadding"><b>${text}</b><br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></span></li>
+        <li class="selected"><span>${text}<br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></span></li>
         %else:
-        <li class="normal"><a href="${url}${extra_params}"><span><b>${text}</b><br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></span></a></li>
+        <li><a href="${url}${extra_params}">${text}<br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></a></li>
         %endif
     %endif
 </%def>
@@ -578,7 +578,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %>
             <a href="${from_sched}${extra_params}" title="${_(u'Show schedule for')} ${from_name}" class="step-time"><span>${start_time}</span></a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)}${get_interline_note(interline)}
             %if leg['alerts']:
-            <a href="#alerts" title="${_(u'A Service Alert is in effect that may affect this trip. Click for details.')}" class="step-alert"><img src="${util.img_url()}/alert.png" /></a>
+            <a href="#alerts" title="${_(u'A Service Alert is in effect that may affect this trip. Click for details.')}" class="step-alert"><img src="${util.url_domain()}/global/img/icon-alert.png" width="12" /></a>
             %endif
         </p>
     </li>

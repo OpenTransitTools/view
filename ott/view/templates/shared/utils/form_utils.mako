@@ -136,8 +136,6 @@
 %>
         <fieldset>
             <input name="submit" class="submit" type="submit" value="${name}" tabindex="${tab}" ${analytics()}/>
-            ## TODO: Jonathan -- what is geocode_highslide supposed to look like?
-            ## ${help.geocode_highslide()}
         </fieldset>
 </%def>
 

@@ -23,9 +23,9 @@
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
 <%def name="bottom()">${plib.bottom_disclaimer()} ${plib.set_planner_text_cookie()}</%def>
 
-    <div class="standardheader">
-        <h1><a href="planner_form.html"><img src="${util.url_domain()}/global/img/icon-tripplanner.png" class="mode-icon" alt="Trip Planner icon" /></a>${_(u'Your trip on TriMet')}</h1>
-    </div><!-- .standardheader --> 
+<div class="standardheader">
+    <h1><a href="planner_form.html"><img src="${util.url_domain()}/global/img/icon-tripplanner.png" class="mode-icon" alt="Trip Planner icon" /></a>${_(u'Your trip on TriMet')}</h1>
+</div><!-- .standardheader --> 
 
 ##${page.trip_planner(_(u'Your trip on TriMet'), extra_params, 'planner')}
 
