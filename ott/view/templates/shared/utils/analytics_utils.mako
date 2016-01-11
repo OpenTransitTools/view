@@ -5,7 +5,7 @@
 <%def name="ga_init(account='UA-688646-3')">
 <script type="text/javascript">
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', ${account}]);
+  _gaq.push(['_setAccount', '${account}']);
   _gaq.push(['_trackPageview']);
 
   (function() {
