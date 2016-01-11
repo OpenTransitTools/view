@@ -478,19 +478,19 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 walk_title = _(u'Walk') + " " + pretty_distance(leg['distance'])
             %>
             %if leg['steps']:
-            ${walk_title} ${_(u'to')}
+                ${walk_title} ${_(u'to')}
             %elif leg['to']['stop'] and leg['transfer']:
-            ${_(u'Go to')}
+                ${_(u'Go to')}
             %else:
-            ${walk_title} ${_(u'to')}
+                ${walk_title} ${_(u'to')}
             %endif
             %if leg['to']['stop']:
-            <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${leg['to']['name']}</a>
+                <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${leg['to']['name']}</a>
             %else:
-            ${leg['to']['name']}
+                ${leg['to']['name']}
             %endif
             %if leg['to']['stop']:
-            <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+                <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
             %endif
         </p>
 
