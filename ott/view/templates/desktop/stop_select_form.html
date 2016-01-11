@@ -12,6 +12,8 @@
 <%def name="meta_data()">${meta.stop()}</%def>
 <%def name="app_css()">
     ${form.autocomplete_css_includes()}
+    ${form.autocomplete_js_includes()}
+    ${form.gps_form_scriptlet()}
 </%def>
 
 <%def name="js_onload()">javascript:select_form();</%def>
@@ -34,10 +36,8 @@ h2 {
     <div class="contentcontainer">
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                ${su.stop_select_form(place)}
-                ${form.autocomplete_js_includes()}
-                ${form.autocomplete_search_input()} 
-
+                ${su.stop_select_form()}
+                ${form.autocomplete_search_input()}
 
                 <h3>${_(u'Related')}</h3>
                 <div class="row">
