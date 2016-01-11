@@ -19,7 +19,6 @@ function tpDoText(form, content) {
     }
 }
 
-
 function tpDoClassRegular(form) {
     try {
         doClassRegular(form);
@@ -36,3 +35,28 @@ function tpGoogleAnalytics(ga, content)
         console.log(e);
     }
 }
+
+// THESE doX functions are from old trimet.org/basic.js (removed in 2016)
+// form highlighting and text replacement
+function doClear(thisfield, defaulttext) {
+    thisfield.className='highlight';
+    if (thisfield.value == thisfield.defaultValue) {
+	thisfield.value = "";
+    }
+}
+function doText(thisfield, defaulttext) {
+    if (thisfield.value == "") {
+	thisfield.value = thisfield.defaultValue;
+	thisfield.className='regular';
+    }
+    else {
+	thisfield.className='regular-complete';
+    }
+}
+function doClassHighlight(thisfield) {
+    thisfield.className='highlight';
+}
+function doClassRegular(thisfield) {
+    thisfield.className='regular';
+}
+
