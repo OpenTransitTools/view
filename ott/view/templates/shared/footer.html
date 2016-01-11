@@ -1,6 +1,6 @@
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
-
+<%namespace name="ana"  file="/shared/utils/analytics_utils.mako"/>
 <section id="footer" class="content footer">
   <div class="contentcontainer-fluid" style="background-color: rgb(15, 15, 15); color: rgb(255, 255, 255); padding-bottom: 50px;">
     <div class="contentcontainer">
@@ -93,6 +93,7 @@
 ${form.autocomplete_js_includes()}
 <script src="${util.url_domain()}/global/js/menu.min.js"></script>
 
+${ana.ga_init()}
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
   google.load('search', '1');
