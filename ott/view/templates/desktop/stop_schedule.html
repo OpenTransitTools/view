@@ -18,7 +18,7 @@
 
 <div class="standardheader">
     <h1>
-        <a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}<br/>
+        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}<br/>
         <small>${su.stop_title(stop)}</small>
     </h1>
 </div><!-- .standardheader -->
@@ -33,7 +33,6 @@
                 ${ssu.schedule_all_routes_link(stop_sched, extra_params)}
                 ${ssu.schedule_render(stop_sched, html_tabs['pretty_date'], extra_params)}
                 ${util.alerts(alerts)}
-                <p>&nbsp;</p>
                 ${su.nearby_stops_link(stop, extra_params)}
 
             </div><!-- .col -->

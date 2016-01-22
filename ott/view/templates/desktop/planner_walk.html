@@ -21,17 +21,30 @@ ${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
 ##
 ## main content
 ##
+<div class="standardheader">
+    <h1><a href="planner_form.html"><i class="fa-tp-outline h1icon"></i></a> ${_(u'Your trip on TriMet')}</h1>
+</div><!-- .standardheader --> 
 
-## CSS customizations for walk directions
-<style>
-    ol.transit li.num1 .step-number img {display:none}
-    ol.transit li.num1 div {display: block}
-    ol.transit * * * {display: block}
-    #details { padding: 0}
-</style>
-%if itinerary:
-${plib.render_trip_details(plan)}
-${plib.render_itinerary(itinerary, extra_params, is_mobile, True)}
-%else:
-${plib.get_error_msg(error, _('Uncertain planner problem'))}
-%endif
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+				## CSS customizations for walk directions
+				<style>
+				    .content .step-number {
+				    	display: none;
+				    }
+				    .content ol.walkbike > li {
+				    	list-style: none;
+				    }
+				</style>
+				%if itinerary:
+				${plib.render_trip_details(plan)}
+				${plib.render_itinerary(itinerary, extra_params, is_mobile, True)}
+				%else:
+				${plib.get_error_msg(error, _('Uncertain planner problem'))}
+				%endif
+            </div><!-- .col -->
+        </div><!-- .row -->        
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->

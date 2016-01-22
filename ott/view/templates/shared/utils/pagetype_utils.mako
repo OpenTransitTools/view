@@ -10,7 +10,7 @@
 
 <%def name="base_stop_stations(name, extra_params, base_params, ele_type='div')">
 ##    <div class="standardheader">
-##        <h1><a href="stop_select_form.html?${base_params}${extra_params}"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${_(u'Stops & Stations')}</h1>
+##        <h1><a href="stop_select_form.html?${base_params}${extra_params}"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>
 ##    </div><!-- .standardheader -->
 </%def>
 
@@ -62,7 +62,7 @@
 
 <%def name="main_trip_planner_form(name='', extra_params='', base_params='me')">
     <div class="standardheader">
-        <h1><img src="${util.url_domain()}/global/img/icon-tripplanner.png" class="mode-icon" alt="Trip Planner icon" />${_(u'Plan your trip')}</h1>
+        <h1><i class="fa-tp-outline h1icon"></i> ${_(u'Plan your trip')}</h1>
     </div><!-- .standardheader -->  
 </%def>
 
