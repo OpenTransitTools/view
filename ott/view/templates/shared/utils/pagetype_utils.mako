@@ -10,7 +10,7 @@
 
 <%def name="base_stop_stations(name, extra_params, base_params, ele_type='div')">
 ##    <div class="standardheader">
-##        <h1><a href="stop_select_form.html?${base_params}${extra_params}"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>
+##        <h1 class="stopsstationsh1"><a href="stop_select_form.html?${base_params}${extra_params}"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>
 ##    </div><!-- .standardheader -->
 </%def>
 
@@ -27,9 +27,7 @@
 ##
 <%def name="stop(name='', extra_params='', base_params='me', stop=None, has_alerts=False)">
     ${base_stop_stations(name, extra_params, base_params)} 
-    <!--
-    <h2>${name}</h2>
-    -->
+   ## <h2>${name}</h2>
 </%def>
 
 #

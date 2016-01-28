@@ -116,7 +116,6 @@
             <div class="col-xs-12 col-sm-6 hcenter">
                 <a href="${util.mailto_url(str_title(plan))}" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
                 <a href="javascript:window.print();" class="console-print" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);"><span>${_(u'Print')}</span></a>
-                ##<a href="m${request.path_qs}" class="console-mobile" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary view on mobile']);"><span>${_(u'View on mobile')}</span></a>
             </div><!-- .col -->
 
             <div class="col-xs-12 col-sm-6 hcenter">
@@ -202,19 +201,19 @@
     '''
     ret_val = ''
     if mode == util.attr.BUS:
-        ret_val = 'step-bus-icon'
+        ret_val = 'fa-bus'
     if mode == util.attr.CAR:
-        ret_val = 'step-car-icon'
+        ret_val = 'fa-car'
     if mode == util.attr.BICYCLE:
-        ret_val = 'step-bike-icon'
+        ret_val = 'fa-bike'
     if mode == util.attr.WALK:
-        ret_val = 'step-walk-icon'
+        ret_val = 'fa-walk'
     if mode == util.attr.RAIL:
-        ret_val = 'step-wes-icon'
+        ret_val = 'fa-wes'
     if mode == util.attr.TRAM:
-        ret_val = 'step-max-icon'
+        ret_val = 'fa-max'
     if mode == util.attr.GONDOLA:
-        ret_val = 'step-aerialtram-icon'
+        ret_val = 'fa-aerialtram'
 
     return ret_val
 %>
@@ -342,7 +341,7 @@ try
 %></%def>
 <%def name="has_transit(itinerary)"><% from ott.utils import transit_utils; return transit_utils.has_transit(itinerary)%></%def>
 <%def name="has_fare(itinerary)"><% from ott.utils import transit_utils; return transit_utils.has_fare(itinerary)%></%def>
-<%def name="get_route_link(name, url, mode)"><a href="${url}" title="${_(u'Show route map and schedules for this line')}" class="step-mode"><img src="${util.img_url()}/modes.png" width="0" height="1" class="${get_mode_css_class(mode)}" />${name}</a></%def>
+<%def name="get_route_link(name, url, mode)"><a href="${url}" title="${_(u'Show route map and schedules for this line')}" class="step-mode"><i class="${get_mode_css_class(mode)}"></i> ${name}</a></%def>
 <%def name="get_interline_note(interline)">
 %if interline != None:
 ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})

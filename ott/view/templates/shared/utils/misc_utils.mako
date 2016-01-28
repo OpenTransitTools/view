@@ -222,10 +222,8 @@
 ##
 <%def name="plan_a_trip_links(name, lon, lat, extra_params='')">
 <h3>${_(u'Plan a trip')}</h3>
-<ul class="links">
-    <li><a href="planner_form.html?to=${make_named_coord(name, lat, lon)}${extra_params} title="${_(u'Plan a trip')} ${_(u'to')} ${name}">${_(u'To here')}</a></li>
-    <li><a href="planner_form.html?from=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'from')} ${name}">${_(u'From here')}</a></li>
-</p>
+<p><a href="planner_form.html?to=${make_named_coord(name, lat, lon)}${extra_params} title="${_(u'Plan a trip')} ${_(u'to')} ${name}" class="tripplanner"><i class="fa-tp-outline"></i> ${_(u'To here')}</a></p>
+<p><a href="planner_form.html?from=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'from')} ${name}" class="tripplanner"><i class="fa-tp-outline"></i> ${_(u'From here')}</a></p>
 </%def>
 
 ##
@@ -411,7 +409,7 @@
         <b>${alert['route_short_names']}: </b> ${alert['description_text']} 
         ##<a href="${alert['url']}#${alert['route_id'].zfill(3)}" target="#">${_(u'More...')}</a>
         %if alert['pretty_start_date']:
-        <br />
+        
         <small>${_(u'As of')} ${alert['pretty_start_date']} @ ${alert['pretty_start_time']}</small>
         %endif
     </p>

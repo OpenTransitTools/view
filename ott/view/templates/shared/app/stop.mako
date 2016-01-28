@@ -21,7 +21,7 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
 
 <div class="standardheader">
     <h1>
-        <a href="stop_select_form.html"><img src="${util.url_domain()}/global/img/icon-stopsstations.png" class="mode-icon" alt="Stops and Stations icon" /></a>${name}<br />
+        <a href="stop_select_form.html"<i class="fa-ss-outline h1icon"></i></a> ${name}<br />
         <small>${su.stop_title(stop)}</small>
     </h1>
 </div><!-- .standardheader -->
@@ -37,13 +37,13 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
                     %if 'direction' in r:
                     ${r['direction']}<br/>
                     %endif
-                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], route_id=r['route_id'], device=is_mobile)}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="route-icons"><img src="${util.url_domain()}/global/img/icon-transittracker.png" alt="${_(u'Next arrivals')}" /><br />
+                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], route_id=r['route_id'], device=is_mobile)}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="route-icons"><i class="fa-tt-outline"></i><br />
                         ${_(u'Next arrivals')}</a>
 
-                    <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedule for this stop/station')}" class="route-icons"><img src="${util.url_domain()}/global/img/icon-schedule.png" alt="${_(u'Schedule')}" /><br />
+                    <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedule for this stop/station')}" class="route-icons"><i class="fa-schedule"></i><br />
                         ${_(u'Schedule')}</a>
 
-                    <a href="${url.get_route_url(route_id=r['route_id'], device=is_mobile)}" title="${_(u'Show route map and schedules for this line')}" class="route-icons"><img src=${util.url_domain()}/global/img/icon-routeinfo.png alt="${_(u'Route info')}" /><br />
+                    <a href="${url.get_route_url(route_id=r['route_id'], device=is_mobile)}" title="${_(u'Show route map and schedules for this line')}" class="route-icons"><i class="fa-map"></i><br />
                         ${_(u'Route info')}</a>
                 </p>
                 %endfor
@@ -51,22 +51,13 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
                 %if len(stop['routes']) > 1:
                 <h2>${_(u'All routes')}</h2>
                 <p>
-                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], device=is_mobile)}" class="route-icons"><img src="${util.url_domain()}/global/img/icon-transittracker.png" alt="${_(u'Next arrivals')}" /><br />
+                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], device=is_mobile)}" class="route-icons"><i class="fa-tt-outline"></i><br />
                         ${_(u'Next arrivals')}</a>
-                    <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}${extra_params}" alt="${_(u'Schedule')}" class="route-icons"><img src="${util.url_domain()}/global/img/icon-schedule.png" alt="${_(u'Schedule')}" /><br />
+                    <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}${extra_params}" alt="${_(u'Schedule')}" class="route-icons"><i class="fa-schedule"></i><br />
                         ${_(u'Schedule')}</a>
                 </p>
                 %endif
 
-                %if len(stop['amenities']) > 1:
-                <p>&nbsp;</p>
-                <h4>${_(u'Amenities')}</h4>
-                <ul>
-                    %for a in stop['amenities']:
-                    <li>${_(a)}</li>
-                    %endfor
-                </ul>
-                %endif
 
                 %if has_alerts:
                     ${util.alerts(stop['alerts'])}
@@ -77,7 +68,21 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
                 ${su.stop_map(stop['name'], stop['stop_id'], stop['lon'], stop['lat'], extra_params, is_mobile)}
                 ${util.plan_a_trip_links(stop['name'], stop['lon'], stop['lat'], extra_params)}
             </div><!-- .col -->
-        </div><!-- .row -->        
+        </div><!-- .row -->  
+
+        <div class="row">
+            <div class="col-xs-12 col-lg-10">
+                %if len(stop['amenities']) > 1:
+                <p>&nbsp;</p>
+                <h4>${_(u'Amenities')}</h4>
+                <ul class="small inline">
+                    %for a in stop['amenities']:
+                    <li>${_(a)}</li>
+                    %endfor
+                </ul>
+                %endif
+            </div><!-- .col -->
+        </div><!-- .row -->  
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
 
