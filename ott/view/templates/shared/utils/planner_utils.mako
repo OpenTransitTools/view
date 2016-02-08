@@ -172,8 +172,7 @@
 %>
 </%def>
 
-<%def name="get_mode_img(mode)">
-<%
+<%def name="get_mode_img(mode)"><%
     ''' return 20x20px mode gif for leg list 
     '''
     ret_val = ''
@@ -192,11 +191,9 @@
         ret_val = path + "/gondola.png"
 
     return ret_val
-%>
-</%def>
+%></%def>
 
-<%def name="get_mode_css_class(mode)">
-<%
+<%def name="get_mode_css_class(mode)"><%
     ''' return css class names
     '''
     ret_val = ''
@@ -216,8 +213,7 @@
         ret_val = 'fa-aerialtram'
 
     return ret_val
-%>
-</%def>
+%></%def>
 
 ##
 ##
