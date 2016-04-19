@@ -20,12 +20,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>${self.title()}</title>
 <meta name="viewport" content="width=device-width" />
-<link href="${util.url_domain()}/images/favicon.ico" rel="shortcut icon" />
-<link href="${util.url_domain()}/images/m/trimet-logo-iphone.png" rel="apple-touch-icon" />
+<link href="${util.url_domain()}/m/css/styles.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${util.url_domain()}/global/css/tools.css" rel="stylesheet" type="text/css" media="all" />
+<link href="${util.url_domain()}/m/img/favicon.ico" rel="shortcut icon" />
+<link href="${util.url_domain()}/m/img/trimet-logo-iphone.png" rel="apple-touch-icon" />
 ${self.app_css()}
 ${self.header()}
-<link href="${util.url_domain()}/css/triptools/global.css" rel="stylesheet" type="text/css" />
-<link href="${util.url_domain()}/css/triptools/triptools-mobile.css" rel="stylesheet" type="text/css" />
 </head>
 <body class="standard" onLoad="${self.js_onload()}">
 ${self.emergency_content()|n,decode.utf8}
@@ -68,11 +68,8 @@ ${self.emergency_content()|n,decode.utf8}
 
 
 <div id="footer">
-    <p class="footer" align="center">
-        <a href="mailto:mobile@trimet.org">${_(u'Feedback')}</a> &nbsp;|&nbsp; <a href="/m/apps/index.htm">${_(u'App Center')}</a> &nbsp;|&nbsp; <a href="/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'Footer - Standard site']);">${_(u'Standard site')}</a>
-    </p>
     <p class="footer-links" align="center">
-        <a href="/m/terms.htm">${_(u'Terms of Use')}</a> &nbsp;|&nbsp; <a href="/m/privacy.htm">${_(u'Privacy Policy')}</a> &nbsp;|&nbsp; &copy; ${util.print_year()} TriMet
+        <a href="/legal/index.htm">${_(u'Terms of Use')}</a> &nbsp;|&nbsp; <a href="/legal/privacy.htm">${_(u'Privacy Policy')}</a> &nbsp;|&nbsp; &copy; ${util.print_year()} TriMet
     </p>
 </div>
 <script type="text/javascript" src="${util.url_domain()}/scripts/basic.js"></script><!-- basic global scripts -->
