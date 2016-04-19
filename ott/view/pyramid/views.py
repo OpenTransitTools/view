@@ -117,14 +117,14 @@ def do_view_config(config):
     config.add_route('map_place_ws',                        '/ws/map_place.html')
 
 
-@view_config(route_name='exception_mobile',  renderer='desktop/exception.html')
+@view_config(route_name='exception_mobile',  renderer='mobile/exception.html')
 @view_config(route_name='exception_desktop', renderer='desktop/exception.html')
 @view_config(route_name='exception_ws',      renderer='ws/exception.html')
 def handle_exception(request):
     ret_val = {}
     return ret_val
 
-@view_config(route_name='feedback_mobile',  renderer='desktop/feedback.html')
+@view_config(route_name='feedback_mobile',  renderer='mobile/feedback.html')
 @view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
 @view_config(route_name='feedback_ws',      renderer='ws/feedback.html')
 def feedback(request):
@@ -132,7 +132,7 @@ def feedback(request):
     ret_val['stop'] = None
     return ret_val
 
-@view_config(route_name='planner_form_mobile',  renderer='desktop/planner_form.html')
+@view_config(route_name='planner_form_mobile',  renderer='mobile/planner_form.html')
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
 @view_config(route_name='planner_form_ws',      renderer='ws/planner_form.html')
 @view_config(route_name='pform_example',     renderer='shared/app/pform_example.html')
@@ -144,7 +144,7 @@ def planner_form(request):
     ret_val['params'] = params
     return ret_val
 
-@view_config(route_name='planner_geocode_mobile',  renderer='desktop/planner_geocode.html')
+@view_config(route_name='planner_geocode_mobile',  renderer='mobile/planner_geocode.html')
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
 @view_config(route_name='planner_geocode_ws',      renderer='ws/planner_geocode.html')
 def planner_geocode(request):
@@ -166,7 +166,7 @@ def planner_geocode(request):
         ret_val = make_subrequest(request, '/exception.html')
     return ret_val
 
-@view_config(route_name='planner_mobile',  renderer='desktop/planner.html')
+@view_config(route_name='planner_mobile',  renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 @view_config(route_name='planner_ws',      renderer='ws/planner.html')
 def planner(request):
@@ -200,7 +200,7 @@ def planner(request):
     return ret_val
 
 
-@view_config(route_name='planner_walk_mobile',  renderer='desktop/planner_walk.html')
+@view_config(route_name='planner_walk_mobile',  renderer='mobile/planner_walk.html')
 @view_config(route_name='planner_walk_desktop', renderer='desktop/planner_walk.html')
 @view_config(route_name='planner_walk_ws',      renderer='ws/planner_walk.html')
 def planner_walk(request):
@@ -212,8 +212,8 @@ def planner_walk(request):
     return ret_val
 
 
-@view_config(route_name='stop_mobile_short', renderer='desktop/stop.html')
-@view_config(route_name='stop_mobile',       renderer='desktop/stop.html')
+@view_config(route_name='stop_mobile_short', renderer='mobile/stop.html')
+@view_config(route_name='stop_mobile',       renderer='mobile/stop.html')
 @view_config(route_name='stop_desktop',      renderer='desktop/stop.html')
 @view_config(route_name='stop_ws',           renderer='ws/stop.html')
 def stop(request):
@@ -237,7 +237,7 @@ def stop(request):
     return ret_val
 
 
-@view_config(route_name='stop_schedule_mobile',  renderer='desktop/stop_schedule.html')
+@view_config(route_name='stop_schedule_mobile',  renderer='mobile/stop_schedule.html')
 @view_config(route_name='stop_schedule_desktop', renderer='desktop/stop_schedule.html')
 @view_config(route_name='stop_schedule_ws',      renderer='ws/stop_schedule.html')
 def stop_schedule(request):
@@ -261,8 +261,8 @@ def stop_schedule(request):
         ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Schedule page')
     return ret_val
 
-@view_config(route_name='stop_select_form_mobile_short', renderer='desktop/stop_select_form.html')
-@view_config(route_name='stop_select_form_mobile',       renderer='desktop/stop_select_form.html')
+@view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')
+@view_config(route_name='stop_select_form_mobile',       renderer='mobile/stop_select_form.html')
 @view_config(route_name='stop_select_form_desktop',      renderer='desktop/stop_select_form.html')
 @view_config(route_name='stop_select_form_ws',           renderer='ws/stop_select_form.html')
 def stop_select_form(request):
@@ -280,7 +280,7 @@ def stop_select_form(request):
         ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Select page')
     return ret_val
 
-@view_config(route_name='stop_select_list_mobile',  renderer='desktop/stop_select_list.html')
+@view_config(route_name='stop_select_list_mobile',  renderer='mobile/stop_select_list.html')
 @view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
 @view_config(route_name='stop_select_list_ws',      renderer='ws/stop_select_list.html')
 def stop_select_list(request):
@@ -299,7 +299,7 @@ def stop_select_list(request):
     return ret_val
 
 
-@view_config(route_name='stop_select_geocode_mobile',  renderer='desktop/stop_select_geocode.html')
+@view_config(route_name='stop_select_geocode_mobile',  renderer='mobile/stop_select_geocode.html')
 @view_config(route_name='stop_select_geocode_desktop', renderer='desktop/stop_select_geocode.html')
 @view_config(route_name='stop_select_geocode_ws',      renderer='ws/stop_select_geocode.html')
 def stop_select_geocode(request):
@@ -308,7 +308,7 @@ def stop_select_geocode(request):
     return ret_val
 
 
-@view_config(route_name='stops_near_mobile',  renderer='desktop/stops_near.html')
+@view_config(route_name='stops_near_mobile',  renderer='mobile/stops_near.html')
 @view_config(route_name='stops_near_desktop', renderer='desktop/stops_near.html')
 @view_config(route_name='stops_near_ws',      renderer='ws/stops_near.html')
 def stops_near(request):
@@ -422,7 +422,7 @@ def stops_near(request):
     return ret_val
 
 
-@view_config(route_name='map_place_mobile',  renderer='desktop/map_place.html')
+@view_config(route_name='map_place_mobile',  renderer='mobile/map_place.html')
 @view_config(route_name='map_place_desktop', renderer='desktop/map_place.html')
 @view_config(route_name='map_place_ws',      renderer='ws/map_place.html')
 def map_place(request):
