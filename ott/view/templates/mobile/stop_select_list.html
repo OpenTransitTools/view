@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/mobile/base.html"/>
+<%inherit file="/desktop/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
@@ -11,8 +11,20 @@
 %>
 <%def name="title()">${route_stops['route']['name']}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
-<%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
-<%def name="stations_selected()">class="selected"</%def>
+<%def name="side_bar()"></%def>
 <%def name="app_css()">${page.stop_css()}</%def>
-${page.stop_select(route_stops['route']['name'], extra_params, 'list')}
-${rs.route_stop_dropdown(route_stops)}
+
+<div class="standardheader">
+    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>
+</div><!-- .standardheader -->
+
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+                ${page.stop_select(route_stops['route']['name'], extra_params, 'list')}
+                ${rs.route_stop_dropdown(route_stops)}
+            </div><!-- .col -->
+        </div><!-- .row -->        
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->

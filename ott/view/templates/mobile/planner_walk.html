@@ -1,14 +1,13 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/mobile/base.html"/>
+<%inherit file="/desktop/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="plib"  file="/shared/utils/planner_utils.mako"/>
+<%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 <%
-    is_mobile = True
-    itinerary = plib.get_itinerary(plan)
     extra_params = util.get_extra_params()
+    itinerary = plib.get_itinerary(plan)
 %>
 <%def name="title()">${plib.itin_page_title(plan)}</%def>
 <%def name="meta_data()">${meta.tripplanner()}</%def>
@@ -21,17 +20,30 @@ ${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
 ##
 ## main content
 ##
+<div class="standardheader">
+    <h1><a href="planner_form.html"><i class="fa-tp-outline h1icon"></i></a> ${_(u'Your trip on TriMet')}</h1>
+</div><!-- .standardheader --> 
 
-## CSS customizations for walk directions
-<style>
-    ol.transit li.num1 .step-number img {display:none}
-    ol.transit li.num1 div {display: block}
-    ol.transit * * * {display: block}
-    #details { padding: 0}
-</style>
-%if itinerary:
-${plib.render_trip_details(plan)}
-${plib.render_itinerary(itinerary, extra_params, is_mobile, True)}
-%else:
-${plib.get_error_msg(error, _('Uncertain planner problem'))}
-%endif
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+                ## CSS customizations for walk directions
+                <style>
+                    .content .step-number {
+                        display: none;
+                    }
+                    .content ol.walkbike > li {
+                        list-style: none;
+                    }
+                </style>
+                %if itinerary:
+                    ${plib.render_trip_details(plan)}
+                    ${plib.render_itinerary(itinerary, extra_params, True)}
+                %else:
+                    ${plib.get_error_msg(error, _('Uncertain planner problem'))}
+                %endif
+            </div><!-- .col -->
+        </div><!-- .row -->        
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->

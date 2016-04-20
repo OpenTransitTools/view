@@ -1,27 +1,40 @@
-<%inherit file="/mobile/base.html"/>
+<%inherit file="/desktop/base.html"/>
 <%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
 <%namespace name="su"    file="/shared/utils/stop_utils.mako"/>
+<%namespace name="side"  file="/shared/utils/sidebar_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
-<%def name="title()">${_(u'Map location ')} ${util.name_city_str_from_struct(place)}</%def>
-<%def name="app_css()">
-    <link rel="stylesheet" href="${util.url_domain()}/css/triptools/triptools-ms.css" type="text/css" media="all" />
-</%def>
-<%def name="schedule_selected()">class="selected"</%def>
+<%def name="title()">${util.name_city_str_from_struct(place)}</%def>
 ##
 ## main content
 ##
-<h1 class="schedulesmap-icon">
-    <a href="#" title="${_(u'Maps & Schedules')} ${_(u'Home')}" class="homelink"></a><span class="visuallyhidden">Maps &amp; Schedules</span>
-    ${_(u'Map location')}
-</h1>
-<h2 class="top">${util.name_city_str_from_struct(place)}</h2>
 
-%if place['lat'] and place['lon']:
-    <p>
-    ${su.place_map(place['name'], place['lon'], place['lat'], extra_params, is_mobile=True)}
-    ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
-    </p>
-%endif
 
+
+<div class="standardheader">
+    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>    
+</div><!-- .standardheader --> 
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>${util.name_city_str_from_struct(place)}</h2>
+            </div><!-- .col -->
+        </div><!-- .row -->
+        <div class="row">
+            <div class="col-xs-12 col-md-8 col-lg-8">
+
+                %if place['lat'] and place['lon']:
+                ${su.place_map(place['name'], place['lon'], place['lat'], extra_params)}
+                %endif
+
+            </div><!-- .col -->
+            <div class="col-xs-12 col-md-4 col-lg-4">
+                %if place['lat'] and place['lon']:
+                ${util.plan_a_trip_links(place['name'], place['lon'], place['lat'], extra_params)}
+                %endif
+            </div><!-- .col -->
+      </div><!-- .row -->
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->

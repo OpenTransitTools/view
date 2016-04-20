@@ -1,5 +1,5 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/mobile/base.html"/>
+<%inherit file="/desktop/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
@@ -10,9 +10,21 @@
 %>
 <%def name="title()">${_(u'Exception')}</%def>
 <%def name="meta_data()">${meta.tripplanner()}</%def>
-
-<%def name="planner_selected()">class="selected"</%def>
 <%def name="app_css()">${page.tripplanner_css()}</%def>
-${page.trip_planner(_(u'Oops!'), extra_params, 'exception', True)}
-${util.error_msg(extra_params, feedback_url)}
-<p>&nbsp;</p>
+
+
+
+
+<div class="standardheader">
+    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>    
+</div><!-- .standardheader --> 
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+                ${page.trip_planner(_(u'Oops!'), extra_params, 'exception')}
+                ${util.error_msg(extra_params, feedback_url)}
+            </div><!-- .col -->
+        </div><!-- .row -->        
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->

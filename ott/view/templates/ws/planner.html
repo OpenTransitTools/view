@@ -17,7 +17,7 @@ ${page.trip_planner(_(u'Your Trip on TriMet'), extra_params, 'planner', True)}
 ##
 ${plib.render_trip_details(plan, itinerary, extra_params)}
 ${plib.render_tabs(plan, extra_params)}
-${plib.render_itinerary(itinerary, extra_params, is_mobile)}
+${plib.render_itinerary(itinerary, extra_params, False, is_mobile)}
 ${plib.render_fares(itinerary, util.url_domain() + '/fares/index.htm')}
 ${plib.render_alerts(itinerary)}
 ${plib.render_console(plan, extra_params)}

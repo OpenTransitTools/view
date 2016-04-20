@@ -90,7 +90,7 @@
 ## main part of the renderer
 ## (loop over the legs, and render them
 ##
-<%def name="render_itinerary(itinerary, extra_params, is_mobile=False, no_expand=False)">
+<%def name="render_itinerary(itinerary, extra_params, no_expand=False, is_mobile=False)">
     %if has_transit(itinerary):
     <ol id="itinerary" class="transit">
     %else:

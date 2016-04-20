@@ -1,8 +1,7 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/mobile/base.html"/>
+<%inherit file="/desktop/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
@@ -11,16 +10,27 @@
 
     from ott.view.utils import agency_template
     url = agency_template.make_url_template()
-    rte_url_tmpl = url.mobile_route_url
+    rte_url_tmpl = url.desktop_route_url
     more_link = not util.has_url_param('show_more')
 %>
 <%def name="title()">${_(u'Stops near') } ${place['name']}</%def>
 <%def name="meta_data()">${meta.stop()}</%def>
-<%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
-<%def name="stations_selected()">class="selected"</%def>
-<%def name="app_css()">${page.stop_css()}</%def>
-${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
 
-<h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
-${su.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}
-${util.cache_geocodes_in_browser(cache)}
+
+
+<div class="standardheader">
+    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>    
+</div><!-- .standardheader --> 
+<div class="fullwidth">
+    <div class="contentcontainer">
+        <div class="row">
+            <div class="col-xs-12">
+                ## ${page.stop_select(_(u'Nearest Stops'), extra_params, 'list')}
+
+                <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
+                ${su.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}
+                ${util.cache_geocodes_in_browser(cache)}
+            </div><!-- .col -->
+        </div><!-- .row -->        
+    </div><!-- .contentcontainer -->
+</div><!-- .fullwidth -->

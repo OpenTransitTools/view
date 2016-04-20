@@ -1,128 +1,121 @@
-<%inherit file="/base/small_index.html"/>
-<%def name="h1_title()">TransitTracker</%def>
-<%def name="title()"><% first_loc = c.arrivalsDoc.first_location() %>TriMet Mobile: TransitTracker - Stop ID ${first_loc.locid} - ${first_loc.desc} ${first_loc.dir}</%def>
-<%def name="header()">
-<%include file="/shared/tracker_header.html"/>
+<%inherit file="base.html"/>
+
+<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
+<%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
+
+<%def name="title()">TriMet: TransitTracker - Real-time bus and MAX arrivals</%def>
+<%def name="app_css()">
+    <link rel="stylesheet" href="${util.url_domain()}/css/triptools/triptools-tt.css" type="text/css" />
 </%def>
-<%def name="arrival_row(arrival)">
-<tr>
-	<td class="table-rule">
-    	<p>
-	    <strong>${arrival.fullSign}</strong><br />
-% if not arrival.is_next_bus_arrival():
-	    <span class="sub">Scheduled at ${h.get_time_format(arrival.scheduled)}</span>\
-% endif
-        </p>
-    </td>
-    
-    <td align="right" class="table-rule" width="35%">
-    	<p>
-            <span id="a${arrival.arrival_identifier}">${h.arrival_time(arrival)|n}</span>
-% if arrival.is_detoured():
-<a href="#alerts"><img src="/images/m/alert.gif" alt="Alert in effect for this line" border="0" align="right" style="margin-left:5px;" /></a>
-% endif
-        </p>
-    </td>
-</tr>
+<%def name="meta_data()">
+    <meta name="Keywords"    content="Tracker arrivals"/>
+    <meta name="Description" content="Select a bus or MAX line or enter a Stop ID number to get real-time arrival information. TransitTracker monitors the actual location of your bus or train, so you know exactly when your ride is coming."/>
 </%def>
+<%def name="side_bar()">
+            <aside id="aside" class="aside">
+                <div id="icon" class="icon-transittracker">
+                    <p class="time"><span id="clock"><!--Current time: 12:34:56pm--></span></p>
 
-<% first_loc = c.arrivalsDoc.first_location() %>
+                    <p>TransitTracker&trade; estimates when your bus or train will arrive at your stop, based on the vehicle's last reported location.</p>
+                    <ul class="links" style="padding-top:0;">
+                        <li><a href="${util.url_domain()}/transittracker/about.htm">How it works</a></li>
+                    </ul>
 
-<h2>Stop ID ${first_loc.locid}<form style="float:right; padding-top:5px;"><input type="button" value="Reload" onclick="window.location.reload()"></form></h2>
-<p class="stopid">${first_loc.desc} ${first_loc.dir}
-	% if h.has_passenger_access_message(first_loc):
-	<br>${h.passenger_access_message(first_loc)}
-	% endif
-</p>
+                </div>
+                <p class="feedback">
+                    <a href="${util.url_domain()}/mailforms/ttfeedback">Got feedback?<br />Let us know.</a>
+                </p>
+            </aside><!-- end #sidebar -->
+</%def>
+<%def name="tracker_selected()">class="selected"</%def>
 
-<!--Begin arrivals section-->
-<table width="100%" cellpadding="10" cellspacing="0" border="0" class="table-rule">
-% if c.arrivalsDoc.is_snow_and_ice():
-<tr>
-	<td class="table-rule" colspan="2">
-        <div class="winter-message">
-            <p>Note: TransitTracker can't make accurate arrival predictions when road conditions cause vehicles to go off schedule or off route. Please read the Service Alert footnotes for updates. <a href="/transittracker/about.htm">How TransitTracker works</a></p>
+<style type="text/css">
+<!--
+/*stop id form overrides */
+form.stopid-form {
+    min-width: 400px;
+    max-width: 400px;
+    width: 400px;
+}
+form.stopid-form fieldset {
+    display:inline;
+}
+form.stopid-form input {
+    width: 255px;
+}
+-->
+</style>
+<p class="mobile"><a href="${util.url_domain()}/arrivals/small/pickroute.html"><span>${_(u"Mobile")}</span></a></p>
+
+<div class="transittracker-form">
+    <div id="transittracker-form-index" class="transittracker-form-top">
+
+        <div class="tt-icon">
+            <h1>TransitTracker</h1>
+            <div class="tagline"><p>Next arrivals in real time</p></div>
         </div>
-    </td>
-</tr>
+
+        <div style="width:600px;"><!--for IE6-->
+            <div style="width:240px; float:left; padding-left:20px; clear: both;">
+                <form action="${util.url_for(controller='main', action='tracker')}" name="stopidform">
+                    <fieldset>
+                        <label for="locationID">Enter a Stop ID number:</label>
+                        <input type="text" name="locationID" id="locationID" maxlength="5" style="float:left; margin-right:10px;" />
+                        <p style="padding-top:9px;"><a href="#" onclick="return hs.htmlExpand(this, { contentId: 'highslide-html' } )" class="highslide image">What's my Stop ID?</a></p>
+                    </fieldset>
+                    <fieldset class="submit">
+                        <input tabindex="9" type="submit" value="Get arrivals" id="submit" onclick="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm StopID submit']);" />
+                    </fieldset>
+                </form>
+% if hasattr(c, 'error_message'):
+                    <p class="error" style="margin-top:10px;">${c.error_message}</p>
 % endif
+            </div>
+            <div style="width:50px; float:left;">
+                <img src="${util.url_domain()}/images/structure/form-or.gif" />
+            </div>
+            <div style="width:290px; float:left;">
+                    <% ga_select_route="_gaq.push(['_trackEvent', 'TransitTracker', 'Submit', 'MainForm Select-a-line submit']);" %>
+                    ${rs.route_select_form('route_stops_list', routes, ga_select_route)}
+            </div>
+            <p class="clear">&nbsp;</p>
+        </div>
+        
+    </div>
+    <div class="transittracker-form-bottom"></div>
+</div>
 
-% for turned_off_route_name in c.arrivalsDoc.turned_off_route_names():
-<tr>
-	<td class="table-rule">
-    	<p>
-            <a name="alerts"></a><img src="/images/m/alert.gif" alt="Alert in effect for this line" align="left" border="0" /> <strong>${turned_off_route_name}</strong><br />
-            <span class="sub">In service, but arrival information is not available</span>
-        </p>
-    </td>
-    <td align="right" class="table-rule" width="35%">
-    	<p><span>not available</span></p>
-    </td>
-</tr>
-% endfor
-% for cancelled_route_name in c.arrivalsDoc.cancelled_route_names():
-<tr>
-	<td class="table-rule">
-    	<p>
-            <a name="alerts"></a><img src="/images/m/alert.gif" alt="Alert in effect for this line" align="left" border="0" /> <strong>${cancelled_route_name}</strong><br />
-            <span class="sub">Not in service due to road conditions</span>
-        </p>
-    </td>
-    <td align="right" class="table-rule" width="35%">
-    	<p><span>canceled</span></p>
-    </td>
-</tr>
-% endfor
+<%doc>
+    <p>During snow and ice, for some routes TransitTracker may have difficulty projecting how many minutes remain before the bus arrives at your stop. 
+    When this happens, TransitTracker will instead tell you how far away the bus is from your stop.</p> 
+</%doc>
 
-% if c.arrivalsDoc.has_arrivals_explicitly_requested(): 
-    % for arrival in c.arrivalsDoc.get_arrivals_explicitly_requested():
-    ${arrival_row(arrival)}
-    % endfor
-    
-% elif h.has_passenger_access_message(first_loc) == False and c.arrivalsDoc.request_has_no_relavant_arrivals():
-    <tr>
-	<td class="table-rule" colspan="2">
-	    <p class="error">Sorry, there are no arrivals for the requested line at this time.</p>
-	</td>
-    </tr>
-% endif
-% if c.arrivalsDoc.has_extra_arrivals_requested():
-    <tr>
-        <td class="table-rule" colspan="2">
-            <h3>Other arrivals:</h3>
-        </td>
-    </tr>
-    % for arrival in c.arrivalsDoc.get_other_arrivals():
-    ${arrival_row(arrival)}
-    % endfor
-% endif
 
-% if c.arrivalsDoc.has_extra_arrivals_not_displayed():
-    <tr>
-        <td colspan="2">
-            <p class="note"><a href="${h.link_to_tracker('tracker', True, 'small')|n}">Show other arrivals</a></p>
-        </td>
-    </tr>
-% endif
-
-</table>
-<!--End arrivals section-->
-% if c.arrivalsDoc.has_estimated_only_routes_displayed():
-    <% estimated_only_routes = c.arrivalsDoc.estimated_only_line_names() %>
-    <p class="note" style="padding-left:30px;"><a name="alerts"></a><img src="/images/m/alert.gif" style="margin-left:-20px;" alt="Alert in effect for this line" align="left" border="0" /><strong>${', '.join(estimated_only_routes)}:</strong> In service, but arrival countdown is not available. Also, there may be other vehicles in service that are not being tracked.</p>
-% endif
-
-% for detour in c.arrivalsDoc.get_detours_applicable_for_display():
-    <% route_numbers = ', '.join(detour.get_route_line_names()) %> \
-    <p class="note" style="padding-left:30px;"><a name="alerts"></a><img src="/images/m/alert.gif" style="margin-left:-20px;" alt="Alert in effect for this line" align="left" border="0" /><strong>${route_numbers}:</strong> ${detour.desc} </p>
-% endfor
-
-% if c.arrivalsDoc.scheduled_result_shown():
-    <p class="note">* Vehicle location data is unavailable. Scheduled time is shown instead.</p>
-% endif            
-% if c.arrivalsDoc.nextBusFeed_shown_in_display():
-    <p class="note">Streetcar arrivals provided by Portland Streetcar Inc.</p>
-% endif
-
-<p class="note" align="center">Predictions as of ${h.current_time_string()}<br />Page reloads every 30 seconds</p>
+<div class="highslide-html-content" id="highslide-html" style="width:500px;">
+    <div class="highslide-header">
+        <ul>
+            <li class="highslide-move"><a href="#" onclick="return false">Move</a></li>
+            <li class="highslide-close"><a href="#" onclick="return hs.close(this)">Close</a></li>
+        </ul>
+    </div>
+    <div class="highslide-body" style="text-align:left;">
+        <h3>What's a Stop ID?</h3>
+        <p>Every TriMet stop has a unique Stop ID number that is up to 5 digits long. You can use this number to get real-time arrival information from TransitTracker&trade; on the web, from a touch-tone phone or from a mobile device.</p>
+        <h3>Find your Stop ID number</h3>
+        <p>Enter an address, intersection or landmark to see nearby stops and their ID numbers.</p>
+        
+        <form method="post" action="/go/cgi-bin/cstops.pl" class="stopid-form" >
+            <input type="hidden" name="action" value="entry" />
+            <fieldset>
+                <input type="text" name="Loc" value="Address, intersection or landmark" onfocus="doClear(this); doClassHighlight(this);" onblur="doText(this); doClassRegular(this);" class="regular" />
+            </fieldset>
+            <fieldset>
+                 <input type="submit" id="submit" value="Get Stop ID" alt="Find your Stop ID number" />
+            </fieldset>
+        </form>
+        <p>&nbsp;</p>
+        <p>We've posted Stop ID numbers at about half of our stops, and we're adding more every month.</p>
+        <p><a href="#" onclick="return hs.close(this)" class="image"><img src="${util.url_domain()}/images/transittracker/stopids.jpg" alt="Stop ID locations" /></a></p>
+    </div>
+</div>
 

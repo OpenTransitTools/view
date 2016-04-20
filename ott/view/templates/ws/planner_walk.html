@@ -17,7 +17,7 @@ ${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
 ##
 %if itinerary:
 ${plib.render_trip_details(plan)}
-${plib.render_itinerary(itinerary, extra_params, is_mobile, True)}
+${plib.render_itinerary(itinerary, extra_params, True, is_mobile)}
 %else:
 ${plib.get_error_msg(error, _('Uncertain planner problem'))}
 %endif

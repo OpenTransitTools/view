@@ -1,5 +1,13 @@
 ## -*- coding: utf-8 -*-
-<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd">
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8 | !(IE)]><!--><html id="html" dir="ltr" lang="en-US" class="no-js"><!--<![endif]-->
+
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
+${util.time_stamp()}
 ##
 ## BELOW ARE THE ABSTRACT METHODS (to be overridden by sub-classed templates) that populate this base page
 ##
@@ -11,67 +19,76 @@
 <%def name="emergency_content()"><!-- ABSTRACT emergency_content() --></%def>
 <%def name="side_bar()"><!-- ABSTRACT side_bar() --></%def>
 <%def name="bottom()"><!-- ABSTRACT bottom() --></%def>
-<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%
-    extra_params = util.get_extra_params()
-%>
-<html>
+<%def name="mainContentStyle()"></%def>
+<%def name="planner_selected()"></%def>
+<%def name="tracker_selected()"></%def>
+<%def name="schedule_selected()"></%def>
+<%def name="stations_selected()"></%def>
+<%def name="alerts_selected()"></%def>
+##
+## customize the section that surrounds the page content by overriding main_wrap_top() and main_wrap_bottom()
+## 
+<%def name="main_wrap_top()">
+
+</%def>
+<%def name="main_wrap_bottom()">
+
+</%def>
+
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>${self.title()}</title>
-<meta name="viewport" content="width=device-width" />
-<link href="${util.url_domain()}/m/css/styles.css" rel="stylesheet" type="text/css" media="all" />
-<link href="${util.url_domain()}/global/css/tools.css" rel="stylesheet" type="text/css" media="all" />
-<link href="${util.url_domain()}/m/img/favicon.ico" rel="shortcut icon" />
-<link href="${util.url_domain()}/m/img/trimet-logo-iphone.png" rel="apple-touch-icon" />
-${self.app_css()}
-${self.header()}
+    <meta name="robots" content="all"/>
+    ${self.meta_data()}
+    <title>${self.title()}</title>
+    <%include file="/shared/header.html" />
+    ${self.app_css()}
+    ${self.header()}
 </head>
-<body class="standard" onLoad="${self.js_onload()}">
-${self.emergency_content()|n,decode.utf8}
-<div id="global-alert" class="show">
-    <div id="NoticeBox">
-        <div id="emergency">
-            <p><b>This site is being phased out.</b><br />Please update your bookmarks to our new mobile-friendly homepage, <a href="/index.htm">trimet.org</a>.</p>
-        </div>
-    </div>
-</div>
-<header id="header-wrap" class="group">
-    <div id="nav-wrap" class="group">
-        <nav id="nav">
-            <div id="logo"><a href="/m/index.htm"></a></div>
-            <div id="tabs-wrap">
-                <a id="tabs-icon-open" href="#nav">NAV</a>
-                <a id="tabs-icon-close" href="#top">${_(u'Close')}</a>
-                <div id="tabs-ul-wrap">
-                    <ul id="tabs" class="group">
-                        <li><a href="/arrivals/small/pickroute.html" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - TransitTracker']);">${_(u'Arrival Times')} (TransitTracker)</a></li>
-                        <li><a href="/ride/m/planner_form.html?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Plan a Trip']);">${_(u'Plan a Trip')}</a></li>
-                        <li><a href="/m/alerts/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger Service Alerts']);">${_(u'Service Alerts')}</a></li>
-                        <li><a href="/ride/m/stop_select_form.html?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Stops and Schedules']);">${_(u'Stops and Schedules')}</a></li>
-                        <li><a href="/m/maps.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Maps']);">${_(u'Maps')}</a></li>
-                        <li><a href="https://public.govdelivery.com/accounts/ORTRIMET/subscriber/new?category_id=ORTRIMET_C2" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Email Updates']);">Get Updates by Email</a></li>
-                        <li><a href="/m/contact.htm?dd${extra_params}" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Contact Us']);">${_(u'Contact Us')}</a></li>
-                    </ul>
-                </div>
-            </div><!-- end #tabs-wrap -->
-        </nav><!-- end #nav -->
-    </div><!-- end #nav-wrap -->
-</header><!-- end #header-wrap -->
 
-<div id="content-body" class="main">
-    ${next.body()}
-    <div id="bottom-wrap" class="group">
+
+<body class="env-develop" id="top" onLoad="${self.js_onload()}">
+    <div id="application">
+
+    ${self.emergency_content()|n,decode.utf8}
+
+    %if util.is_test():
+    <%include file="/shared/nav-unlinked.html" />
+    %else:
+    <%include file="/shared/nav.html" />
+    %endif
+
+
+    <section id="content" class="content">
+        <a name="content"></a>
+        ${next.body()}
+        ${self.main_wrap_top()}
+        ${self.main_wrap_bottom()}
+
+        % if skip_sidebar:
+            ## sidebar intentionally skipped via attribute 'skip_sidebar'
+        % else:
+           ## <div class="fullwidth">
+           ##     <div class="contentcontainer">
+           ##         <div class="row">
+           ##             <div class="col-xs-12">
+           ##                 ${self.side_bar()}
+           ##             </div>
+           ##         </div>
+           ##     </div>
+           ## </div>
+        % endif
+
         ${self.bottom()}
-    </div>
-</div>
+        <%include file="/shared/share.html"/>
+    </section><!-- #.content -->
 
 
-<div id="footer">
-    <p class="footer-links" align="center">
-        <a href="/legal/index.htm">${_(u'Terms of Use')}</a> &nbsp;|&nbsp; <a href="/legal/privacy.htm">${_(u'Privacy Policy')}</a> &nbsp;|&nbsp; &copy; ${util.print_year()} TriMet
-    </p>
-</div>
-<script type="text/javascript" src="${util.url_domain()}/scripts/basic.js"></script><!-- basic global scripts -->
+    %if util.is_test():
+    <%include file="/shared/footer-unlinked.html" />
+    %else:
+    <%include file="/shared/footer.html" />
+    %endif
+
+</div><!-- #application -->    
 </body>
 </html>
