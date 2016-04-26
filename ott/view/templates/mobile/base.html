@@ -17,7 +17,6 @@ ${util.time_stamp()}
 <%def name="header()"><!-- ABSTRACT header() --></%def>
 <%def name="js_onload()">/** ABSTRACT js_onload() **/</%def>
 <%def name="emergency_content()"><!-- ABSTRACT emergency_content() --></%def>
-<%def name="side_bar()"><!-- ABSTRACT side_bar() --></%def>
 <%def name="bottom()"><!-- ABSTRACT bottom() --></%def>
 <%def name="mainContentStyle()"></%def>
 <%def name="planner_selected()"></%def>
@@ -51,43 +50,45 @@ ${util.time_stamp()}
 
     ${self.emergency_content()|n,decode.utf8}
 
-    %if util.is_test():
-    <%include file="/shared/nav-unlinked.html" />
-    %else:
-    <%include file="/shared/nav.html" />
-    %endif
+  <header id="header-wrap" class="group">
+      <div id="nav-wrap" class="group">
+          <nav id="nav">
+              <div id="logo"><a href="/m/index.htm"></a></div>
+              <div id="tabs-wrap">
+                  <a id="tabs-icon-open" href="#nav">NAV</a>
+                  <a id="tabs-icon-close" href="#top">${_(u'Close')}</a>
+                  <div id="tabs-ul-wrap">
+                      <ul id="tabs" class="group">
+                          <li><a href="/arrivals/small/pickroute.html" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - TransitTracker']);">Arrival Times (TransitTracker)</a></li>
+                          <li><a href="/ride/m/planner_form.html" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Plan a Trip']);">Plan a Trip</a></li>
+                          <li><a href="/m/alerts/index.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger Service Alerts']);">Service Alerts</a></li>
+                          <li><a href="/ride/m/stop_select_form.html" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Stops and Schedules']);">Stops and Schedules</a></li>
+                          <li><a href="/m/maps.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Maps']);">Maps</a></li>
+                          <li><a href="https://public.govdelivery.com/accounts/ORTRIMET/subscriber/new?category_id=ORTRIMET_C2" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Email Updates']);">Get Updates by Email</a></li>
+                          <li><a href="/m/contact.htm" onclick="_gaq.push(['_trackEvent', 'Mobile', 'InternalClickTo', 'MainMenu - Hamburger - Contact Us']);">Contact Us</a></li>
+                      </ul>
+                  </div>
+              </div><!-- end #tabs-wrap -->
+          </nav><!-- end #nav -->
+      </div><!-- end #nav-wrap -->
+  </header><!-- end #header-wrap -->
 
 
-    <section id="content" class="content">
-        <a name="content"></a>
-        ${next.body()}
-        ${self.main_wrap_top()}
-        ${self.main_wrap_bottom()}
-
-        % if skip_sidebar:
-            ## sidebar intentionally skipped via attribute 'skip_sidebar'
-        % else:
-           ## <div class="fullwidth">
-           ##     <div class="contentcontainer">
-           ##         <div class="row">
-           ##             <div class="col-xs-12">
-           ##                 ${self.side_bar()}
-           ##             </div>
-           ##         </div>
-           ##     </div>
-           ## </div>
-        % endif
-
-        ${self.bottom()}
-        <%include file="/shared/share.html"/>
-    </section><!-- #.content -->
+  <section id="content" class="content">
+      <a name="content"></a>
+      ${next.body()}
+      ${self.main_wrap_top()}
+      ${self.main_wrap_bottom()}
+      ${self.bottom()}
+      <%include file="/shared/share.html"/>
+  </section><!-- #.content -->
 
 
-    %if util.is_test():
-    <%include file="/shared/footer-unlinked.html" />
-    %else:
-    <%include file="/shared/footer.html" />
-    %endif
+  <div id="footer">
+      <p class="footer-links" align="center">
+          <a href="/legal/index.htm">Terms of Use</a> &nbsp;|&nbsp; <a href="/legal/privacy.htm">Privacy Policy</a> &nbsp;|&nbsp; &copy; ${util.print_year()} TriMet
+      </p>
+  </div>
 
 </div><!-- #application -->    
 </body>
