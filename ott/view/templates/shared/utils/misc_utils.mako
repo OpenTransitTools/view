@@ -407,10 +407,8 @@
         <b>${alert['header_text']}</b><br />
         %endif
         <b>${alert['route_short_names']}: </b> ${alert['description_text']} 
-        ##<a href="${alert['url']}#${alert['route_id'].zfill(3)}" target="#">${_(u'More...')}</a>
         %if alert['pretty_start_date']:
-        
-        <small>${_(u'As of')} ${alert['pretty_start_date']} @ ${alert['pretty_start_time']}</small>
+        <small>${_(u'As of')} ${alert['pretty_start_date']} <a href="${alert['url']}" target="#">${_(u'More')}</a></small>
         %endif
     </p>
 </%def>

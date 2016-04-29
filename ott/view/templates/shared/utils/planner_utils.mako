@@ -153,7 +153,7 @@
 
 <%def name="plan_alert_content(alert)">
     <p><img src="${util.url_domain()}/global/img/icon-alert.png" width="12" />
-        <small>${alert['text']} <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#">${_(u'(more...)')}</a></span></small>
+        <small>${alert['text']} <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#"> ${_(u'More')}</a></span></small>
     </p>
 </%def>
 
