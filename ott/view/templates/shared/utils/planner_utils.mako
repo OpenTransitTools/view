@@ -120,7 +120,7 @@
 
             <div class="col-xs-12 col-sm-6 hcenter">
                 <a href="planner_form.html?${plan['params']['return_trip']}${extra_params}" class="showalllines" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);"><span>${_(u'Return trip')}</span></a>
-                <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" class="showalllines" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
+                <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" class="edit-console showalllines" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
             </div><!-- .col -->
         
         </div><!-- .row -->
@@ -130,7 +130,7 @@
         <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
         ${_(u'for real-time arrival information and any Service Alerts that may affect your trip.')}
         %if not is_mobile:
-        ${_(u'Call 503-238-RIDE (7433), visit m.trimet.org, or text your Stop ID to 27299.')}
+        ${_(u'Call 503-238-RIDE (7433) or text your Stop ID to 27299.')}
         %endif
     </small></p>
 
