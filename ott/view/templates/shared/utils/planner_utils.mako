@@ -61,11 +61,11 @@
 ##
 <%def name="render_trip_details(plan, itinerary=None, extra_params='')">
     <div class="details">
-        <p><b>${_(u'From')}</b> ${plan['from']['name']}</p>
-        <p><b>${_(u'To')}</b> ${plan['to']['name']}</p>
+        <p class="details-trip"><span><strong>${_(u'From')}</strong></span> ${plan['from']['name']}</p>
+        <p class="details-trip"><span><strong>${_(u'To')}</strong></span> ${plan['to']['name']}</p>
         %if itinerary:
-        <p><b>${_(u'When')}</b> ${itinerary['date_info']['pretty_date']}</p>
-        <div class="tripinfo">
+        <p class="details-trip"><span><strong>${_(u'When')}</strong></span> ${itinerary['date_info']['pretty_date']}</p>
+        <div class="tripinfo tripinfo-wrap">
             <p>${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
             <p>${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
         </div>
@@ -78,7 +78,7 @@
 ##
 <%def name="render_tabs(plan, extra_params)">
 %if len(plan['itineraries']) > 1:
-    <ol id="contenttabs" class="group">
+    <ol id="plannertabs" class="group">
         ${itin_tab(plan['itineraries'], 0, _(u'Best bet'), extra_params)}
         ${itin_tab(plan['itineraries'], 1, _(u'Option 2'), extra_params)}
         ${itin_tab(plan['itineraries'], 2, _(u'Option 3'), extra_params)}
@@ -120,7 +120,7 @@
 
             <div class="col-xs-12 col-sm-6 hcenter">
                 <a href="planner_form.html?${plan['params']['return_trip']}${extra_params}" class="showalllines" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary reverse']);"><span>${_(u'Return trip')}</span></a>
-                <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" class="edit-console showalllines" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
+                <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" class="console-edit showalllines" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit']);"><span>${_(u'Edit/Start over')}</span></a>
             </div><!-- .col -->
         
         </div><!-- .row -->
@@ -234,9 +234,9 @@
         %>
         <!-- ${_('transfer')} or ${_('transfers')} -->
         %if sel:
-        <li class="selected"><span>${text}<br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></span></li>
+        <li class="selected"><span class="selectedpadding"><b>${text}</b><br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></span></li>
         %else:
-        <li><a href="${url}${extra_params}">${text}<br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></a></li>
+        <li class="normal"><a href="${url}${extra_params}"><b>${text}</b><br /><small>${dur} ${_('mins')}, ${tfer}<!-- ${fare}--></small></a></li>
         %endif
     %endif
 </%def>
