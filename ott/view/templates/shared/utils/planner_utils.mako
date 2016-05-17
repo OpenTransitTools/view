@@ -141,7 +141,7 @@
 ##
 <%def name="render_alerts(itinerary)">
     %if itinerary['has_alerts']:
-    <div class="box">
+    <div class="box group" id="alerts">
         %for alert in itinerary['alerts']:
         ## TODO issue #5599
         ## ${util.alert_content(alert)}
@@ -153,7 +153,7 @@
 
 <%def name="plan_alert_content(alert)">
     <p><img src="${util.url_domain()}/global/img/icon-alert.png" width="12" />
-        <small>${alert['text']} <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#"> ${_(u'More')}</a></span></small>
+        <small><span class="alert-text">${alert['text']}</span> <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#"> ${_(u'More')}</a></span></small>
     </p>
 </%def>
 
