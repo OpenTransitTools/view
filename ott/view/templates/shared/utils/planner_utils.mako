@@ -60,7 +60,7 @@
 ## header details w/ from & to details, plus optional trip details & edit links
 ##
 <%def name="render_trip_details(plan, itinerary=None, extra_params='')">
-    <div class="details">
+    <div class="details group" id="details">
         <p class="details-trip"><span><strong>${_(u'From')}</strong></span> ${plan['from']['name']}</p>
         <p class="details-trip"><span><strong>${_(u'To')}</strong></span> ${plan['to']['name']}</p>
         %if itinerary:
