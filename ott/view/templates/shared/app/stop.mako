@@ -21,9 +21,9 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
 
 <div class="standardheader">
     <h1>
-        <a href="stop_select_form.html"<i class="fa-ss-outline h1icon"></i></a> ${name}<br />
-        <small>${su.stop_title(stop)}</small>
+        <a href="stop_select_form.html"<i class="fa-ss-outline h1icon"></i></a> ${name}
     </h1>
+    <p class="h1sub">${su.stop_title(stop)}</p>
 </div><!-- .standardheader -->
 
 <div class="fullwidth">
