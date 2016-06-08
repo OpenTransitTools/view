@@ -109,10 +109,9 @@
     %if list and 'stops' in list:
     %for s in list['stops']:
     <li>
-        <h3>
-            <a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${s['name']} ${s['direction']}</a> 
-            <small>${_(u'Stop ID')} ${s['stop_id']}</small>
-        </h3>
+        <h3><a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${s['name']} ${s['direction']}</a></h3>
+        <p class="h1sub">${_(u'Stop ID')} ${s['stop_id']}</p>
+        
         <p>${round(s['distance'], 2)} ${_(u'miles away')} <span class="separator">&nbsp;|&nbsp;</span> ${planner_walk_link(place, s, _('Walking directions'), extra_params)}<br />
             ${routes_served(s, rte_url_tmpl)}</p>
     </li>

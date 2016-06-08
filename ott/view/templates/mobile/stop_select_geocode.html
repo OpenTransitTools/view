@@ -21,7 +21,7 @@
 <div class="fullwidth">
     <div class="contentcontainer">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 ${page.stop_select(_(u'Uncertain location'), extra_params, 'geo')}
                 <h2 class="error">${form.geocoder_msg(geocoder_results, geo_place)}</h2>
                 ${su.geocode_form(geocoder_results, geo_place)}
