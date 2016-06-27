@@ -172,7 +172,7 @@
     if is_mobile:
         w=300
         h=240
-    map_url = "http://ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/9/coord/{2},{3}/extraparams/f\
+    map_url = "//ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/9/coord/{2},{3}/extraparams/f\
 ormat_options=layout:place".format(w, h, lon, lat)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
 %>
@@ -186,7 +186,7 @@ ormat_options=layout:place".format(w, h, lon, lat)
     if is_mobile:
         w=300
         h=240
-    map_url = "http://ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/{0}/height/{1}/zoom/6/extraparams/format_options\
+    map_url = "//ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/{0}/height/{1}/zoom/6/extraparams/format_options\
 =layout:scale/id/{2}".format(w, h, stop_id)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
 %>
