@@ -9,6 +9,7 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 
 from pyramid.view import view_config
+from pyramid.view import notfound_view_config
 
 from pyramid.events import NewRequest
 from pyramid.events import ApplicationCreated
@@ -505,14 +506,13 @@ def new_request_subscriber(event):
     settings = request.registry.settings
     request.add_finished_callback(cleanup)
 
-@view_config(context='pyramid.exceptions.NotFound', renderer='notfound.mako')
-def notfound_view(self):
+@notfound_view_config(renderer='notfound.mako')
+def notfound(request):
     '''
-        render the notfound.mako page anytime a request comes in that 
+        render the notfound.mako page anytime a request comes in that
         the app does't have mapped to a page or method
     '''
     return {}
-
 
 ##
 ## view utils
