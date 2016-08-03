@@ -163,7 +163,7 @@ class GeoCoderTests(MyTestCase):
         ['10089', 'NW Bethany &amp; West Union Northbound'],
         ['13685', 'NW Laidlaw &amp; Bethany Eastbound'],
         ['6830',  'SW 158th &amp; Jay Northbound'],
-        ['8444455  ddaxxxdfas asdfasfas', 'form-help-popup-onright'],
+        ['8444455  ddaxxxdfas asdfasfas', 'We cannot find'],
         ]
 
     route_stops = [
