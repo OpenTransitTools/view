@@ -164,11 +164,11 @@ class GeoCoderTests(MyTestCase):
         ['13685', 'NW Laidlaw &amp; Bethany Eastbound'],
         ['6830',  'SW 158th &amp; Jay Northbound'],
         ['8444455  ddaxxxdfas asdfasfas', 'We cannot find'],
-        ]
+    ]
 
     route_stops = [
         ['929',  ['044', '054', '056'] ],
-        ]
+    ]
 
     def setUp(self):
         pass
@@ -183,7 +183,7 @@ class GeoCoderTests(MyTestCase):
             "2",
             "A+Ave+Chandler+Lake+Oswego+(Stop+ID+2)",
             "Stop ID 8",
-            ]
+        ]
         for m in ['', 'm/']:
             for p in places:
                 url = get_url(m + 'stops_near.html', 'place=' + p)
