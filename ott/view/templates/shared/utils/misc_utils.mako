@@ -222,8 +222,8 @@
 ##
 <%def name="plan_a_trip_links(name, lon, lat, extra_params='')">
 <h3>${_(u'Plan a trip')}</h3>
-<p><a href="planner_form.html?to=${make_named_coord(name, lat, lon)}${extra_params} title="${_(u'Plan a trip')} ${_(u'to')} ${name}" class="tripplanner"><i class="fa-tp-outline"></i> ${_(u'To here')}</a></p>
-<p><a href="planner_form.html?from=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'from')} ${name}" class="tripplanner"><i class="fa-tp-outline"></i> ${_(u'From here')}</a></p>
+<p><a href="/#/planner/form/to=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'to')} ${name}" class="tripplanner"><i class="fa-tp-outline"></i> ${_(u'To here')}</a></p>
+<p><a href="/#/planner/form/from=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'from')} ${name}" class="tripplanner"><i class="fa-tp-outline"></i> ${_(u'From here')}</a></p>
 </%def>
 
 ##
