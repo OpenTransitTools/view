@@ -86,6 +86,11 @@
 
 <p class="print-footer">&copy; ${util.print_year()} TriMet</p>
 
+<!-- 
+  NOTE: on certain pages, this will double include jquery, jquery ui, etc...  
+        we could put this somewhere in the main page.  But putting in header
+        doesn't work (breaks drop down)
+-->
 ${form.autocomplete_js_includes()}
 <script src="${util.url_domain()}/global/js/menu.min.js"></script>
 
