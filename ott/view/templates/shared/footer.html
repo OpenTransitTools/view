@@ -1,4 +1,5 @@
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
+<%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="ana"  file="/shared/utils/analytics_utils.mako"/>
 <section id="footer" class="content footer">
   <div class="contentcontainer-fluid" style="background-color: rgb(15, 15, 15); color: rgb(255, 255, 255); padding-bottom: 50px;">
@@ -85,10 +86,7 @@
 
 <p class="print-footer">&copy; ${util.print_year()} TriMet</p>
 
-##
-## NOTE: jquery include screws up auto complete, so use local jquery / autocomplete stuff
-## <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-##
+${form.autocomplete_js_includes()}
 <script src="${util.url_domain()}/global/js/menu.min.js"></script>
 
 ${ana.ga_init()}
