@@ -332,11 +332,11 @@
             "v": _(u'Bus or train')
         },
         {
-            "k": "TRAINISH,WALK",
+            "k": "RAIL,TRAM,SUBWAY,FUNICULAR,GONDOLA,WALK",
             "v": _(u'Train only')
         },
         {
-            "k": "BUSISH,WALK",
+            "k": "BUS,WALK",
             "v": _(u'Bus only')
         },
         {
@@ -344,7 +344,7 @@
             "v": _(u'Bike to transit')
         },
         {
-            "k": "TRAINISH,BICYCLE",
+            "k": "RAIL,TRAM,SUBWAY,FUNICULAR,GONDOLA,BICYCLE",
             "v": _(u'Bike and train only')
         },
         {
