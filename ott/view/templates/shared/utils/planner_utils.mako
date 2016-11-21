@@ -114,7 +114,7 @@
         <div class="row">
 
             <div class="col-xs-12 col-sm-6 hcenter">
-                <a href="${util.mailto_url(str_title(plan))}" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email/Text')}</span></a>
+                <a href="${util.mailto_url(str_title(plan))}" class="console-emailtext" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary email-text']);"><span>${_(u'Email')}</span></a>
                 <a href="javascript:window.print();" class="console-print" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'PrintClickTo', 'Itinerary print']);"><span>${_(u'Print')}</span></a>
             </div><!-- .col -->
 
