@@ -175,7 +175,6 @@ def planner(request):
         basically, call the geocode checker, and then either call the ambiguous geocoder page, or plan the trip planner
     '''
     try:
-        #import pdb; pdb.set_trace()
         ret_val = {}
         gc = geocode_utils.do_from_to_geocode_check(request)
         if gc['geocode_param']:
@@ -185,7 +184,11 @@ def planner(request):
             if mapit:
                 params = TripParamParser(request)
                 params.set_from(gc['from']) 
-                params.set_to(gc['to']) 
+                params.set_to(gc['to'])
+
+                # when Arr(ive) flag is set to latest, we do an arrive by at 1:30am the next day
+                if params.is_latest():
+                    params.date_offset(day_offset=1)
                 map_params = params.map_url_params()
                 ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + map_params)
             else:
@@ -219,7 +222,6 @@ def planner_walk(request):
 @view_config(route_name='stop_ws',           renderer='ws/stop.html')
 def stop(request):
     stop = None
-    #import pdb; pdb.set_trace()
     has_coord = html_utils.get_first_param_is_a_coord(request, 'placeCoord')
 
     try:
@@ -395,7 +397,6 @@ def stops_near(request):
             qs = make_qs_with_stop_id(stop_id)
             ret_val = make_subrequest(request, '/stop.html', qs)
         else:
-            #import pdb; pdb.set_trace()
             # step 3: params have geocode information, call nearest with that information
             p = Place.make_from_request(request)
             if p.is_valid_coord():
