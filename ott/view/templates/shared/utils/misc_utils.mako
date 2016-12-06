@@ -341,6 +341,11 @@
 %>
 </%def>
 
+<%def name="pretty_date_from_ms(ms)"><%
+    from ott.utils import date_utils
+    pretty = date_utils.pretty_date_from_ms(ms)
+%>${pretty}</%def>
+
 <%def name="print_year()"><%
     from ott.utils import date_utils
     dt = date_utils.get_day_info()

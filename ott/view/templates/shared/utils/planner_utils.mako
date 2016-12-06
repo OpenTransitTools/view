@@ -64,9 +64,9 @@
         <p class="details-trip"><span><strong>${_(u'From')}</strong></span> ${plan['from']['name']}</p>
         <p class="details-trip"><span><strong>${_(u'To')}</strong></span> ${plan['to']['name']}</p>
         %if itinerary:
-        <p class="details-trip"><span><strong>${_(u'When')}</strong></span> ${itinerary['date_info']['pretty_date']}</p>
+        <p class="details-trip"><span><strong>${_(u'When')}</strong></span> ${util.pretty_date_from_ms(itinerary['date_info']['start_time_ms'])}</p>
         <div class="tripinfo tripinfo-wrap">
-            <p>${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${itinerary['date_info']['pretty_date']}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+            <p>${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${util.pretty_date_from_ms(itinerary['date_info']['end_time_ms'])}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
             <p>${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
         </div>
         %endif
