@@ -66,12 +66,14 @@
         %if itinerary:
         <p class="details-trip"><span><strong>${_(u'When')}</strong></span> ${util.pretty_date_from_ms(itinerary['date_info']['start_time_ms'])}</p>
         <div class="tripinfo tripinfo-wrap">
-            <p>${get_depart_arrive_at(plan['params']['is_arrive_by'])} ${get_time(itinerary, plan['params']['is_arrive_by'])} ${util.pretty_date_from_ms(itinerary['date_info']['end_time_ms'])}, ${_(u'using')} ${plan['params']['modes']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
+            <p>${get_arrive_time_date_str(plan, itinerary)} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
             <p>${get_optimize(plan['params']['optimize'])} ${_(u'with a maximum walk of')} ${plan['params']['walk']} <a href="planner_form.html?${plan['params']['edit_trip']}${extra_params}" onclick="_gaq.push(['_trackEvent', 'TripPlanner', 'ClickTo', 'Itinerary edit top']);" class="hide">${_(u'Edit')}</a></p>
         </div>
         %endif
     </div><!-- end #details -->
 </%def>
+
+
 
 ##
 ## option tabs
@@ -299,6 +301,20 @@ try
     setCookie('tripplanner', 'text');
 } catch(e) {}
 </script>
+</%def>
+
+##
+## Prints out the line: "Arrive at 12:45am Tuesday, December 6, 2016, using Transit"
+##                  or: "Depart at 11:45pm Monday,  December 5, 2016, using Transit"
+##
+## The date and time strings are dependant on whether this is an arrive or depart
+##
+<%def name="get_arrive_time_date_str(plan, itinerary)">
+%if plan['params']['is_arrive_by']:
+${get_depart_arrive_at(True)} ${get_time(itinerary, True)} ${util.pretty_date_from_ms(itinerary['date_info']['end_time_ms'])}, ${_(u'using')} ${plan['params']['modes']}
+%else:
+${get_depart_arrive_at(False)} ${get_time(itinerary, False)} ${util.pretty_date_from_ms(itinerary['date_info']['start_time_ms'])}, ${_(u'using')} ${plan['params']['modes']}
+%endif
 </%def>
 
 <%def name="get_depart_arrive(is_arrive_by=False)">
