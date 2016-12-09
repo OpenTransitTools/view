@@ -192,6 +192,7 @@ def planner(request):
                 map_params = params.map_url_params()
                 ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + map_params)
             else:
+                import pdb; pdb.set_trace()
                 ret_val = request.model.get_plan(gc['query_string'], **request.params)
                 ret_val['cache'] = gc['cache']
                 if ret_val and 'error' in ret_val:
@@ -287,7 +288,6 @@ def stop_select_form(request):
 @view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
 @view_config(route_name='stop_select_list_ws',      renderer='ws/stop_select_list.html')
 def stop_select_list(request):
-    #import pdb; pdb.set_trace()
     try:
         route_stops = request.model.get_route_stops(request.query_string, **request.params)
         if route_stops['route'] and route_stops['has_errors'] is not True:

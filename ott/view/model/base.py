@@ -29,6 +29,7 @@ class Base(object):
     def get_adverts(self, get_params, **kwargs): pass
 
     def _cache_svc_url(self, svc):
+        #import pdb; pdb.set_trace()
         ret_val = svc
         if svc in self.service_cache:
             ret_val = self.service_cache[svc]
@@ -36,13 +37,12 @@ class Base(object):
             url = "{0}/{1}".format(self.services_domain, svc)
             url = re.sub(r"/+", "/", url)     # get rid of extra /, ala http://x/y//z///b
             url = url.replace(":/", "://")    # fix http:// part from line above...
-            url = urllib.quote_plus(url, safe="%/:=&?~#+!$,;'@()*[]")
+            url = urllib.quote_plus(url, safe="%/:=?~#+!$,;'@()*[]")
             self.service_cache[svc] = url
             ret_val = url
         return ret_val
 
     def get_service_url(self, svc, args):
-        #import pdb; pdb.set_trace()
         url = self._cache_svc_url(svc)
         url = "{0}?{1}".format(url, object_utils.to_str(args))
         return url
