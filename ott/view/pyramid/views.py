@@ -192,7 +192,7 @@ def planner(request):
                 map_params = params.map_url_params()
                 ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + map_params)
             else:
-                import pdb; pdb.set_trace()
+                #import pdb; pdb.set_trace()
                 ret_val = request.model.get_plan(gc['query_string'], **request.params)
                 ret_val['cache'] = gc['cache']
                 if ret_val and 'error' in ret_val:

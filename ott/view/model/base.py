@@ -37,7 +37,7 @@ class Base(object):
             url = "{0}/{1}".format(self.services_domain, svc)
             url = re.sub(r"/+", "/", url)     # get rid of extra /, ala http://x/y//z///b
             url = url.replace(":/", "://")    # fix http:// part from line above...
-            url = urllib.quote_plus(url, safe="%/:=?~#+!$,;'@()*[]")
+            url = urllib.quote_plus(url, safe="%/:=?&~#+!$,;'@()*[]")
             self.service_cache[svc] = url
             ret_val = url
         return ret_val
