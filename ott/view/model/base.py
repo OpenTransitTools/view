@@ -29,7 +29,6 @@ class Base(object):
     def get_adverts(self, get_params, **kwargs): pass
 
     def _cache_svc_url(self, svc):
-        #import pdb; pdb.set_trace()
         ret_val = svc
         if svc in self.service_cache:
             ret_val = self.service_cache[svc]
@@ -50,6 +49,7 @@ class Base(object):
     def stream_json(self, svc, args, extra=None):
         ''' utility class to stream .json
         '''
+        #import pdb; pdb.set_trace()
         ret_val={}
         url = self.get_service_url(svc, args)
         if extra:
