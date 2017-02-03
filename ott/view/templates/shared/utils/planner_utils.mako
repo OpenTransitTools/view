@@ -574,6 +574,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 # (interline leg itself will be skipped ... see logic in render_leg(), which 'pass'es on interlines )
                 interline = None
                 if is_interline(leg_list, n+1):
+
                     leg = leg_list[n+1]
                     interline = leg['route']['name']
 
