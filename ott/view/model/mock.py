@@ -40,7 +40,7 @@ class Mock(Base):
         return self.stream_json('plan_trip', get_params)
 
 
-    def TEST_get_plan(self, get_params, **kwargs):
+    def get_plan(self, get_params, **kwargs):
         ''' @todo: MODE strings should come from gtfsdb code...
         '''
         #import pdb; pdb.set_trace()
@@ -55,7 +55,7 @@ class Mock(Base):
             elif  Modes.GONDOLA == kwargs['mode'] or  Modes.TRAM in kwargs['mode']: return self.get_json('plan_tram.json') 
             elif  Modes.TRANSIT in kwargs['mode'] and Modes.BIKE in kwargs['mode']: return self.get_json('plan_bike_transit.json') 
 
-        return self.get_json('plan_bike_transit.json')
+        return self.get_json('multiple_interlines.json')
         #return stream_json('http://127.0.0.1:34443/plan_trip', get_params)
 
 def main():

@@ -2,10 +2,13 @@ import simplejson as json
 import urllib
 import contextlib
 import re
+import os
+
+from ott.utils import object_utils
+
 import logging
 log = logging.getLogger(__file__)
 
-from ott.utils import object_utils
 
 class Base(object):
     def __init__(self, services_domain=None):
@@ -69,7 +72,7 @@ class Base(object):
                 ret_val = json.load(f)
         except:
             try:
-                path="{0}{1}".format(path, file)
+                path = os.path.join(path, file)
                 with open(path) as f:
                     ret_val = json.load(f)
             except:
