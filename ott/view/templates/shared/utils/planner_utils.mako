@@ -573,12 +573,13 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 # with interline trips, we use the next leg for the arrival time / stop / etc...
                 # (interline leg itself will be skipped ... see logic in render_leg(), which 'pass'es on interlines )
                 interline = None
-                if is_interline(leg_list, n+1):
-                    z = n+1
-                    if is_interline(leg_list, n+2):
-                        z = n+2
+                z = n+1
+                while z < 100:
+                    if not is_interline(leg_list, z):
+                        break
                     leg = leg_list[z]
                     interline = leg['route']['name']
+                    z += 1
 
                 to_sched   = leg['to']['stop']['schedule']
                 to_name    = leg['to']['name']
