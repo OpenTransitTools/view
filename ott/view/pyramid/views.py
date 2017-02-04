@@ -577,7 +577,7 @@ def make_subrequest(request, path, query_string=None, extra_params=None):
 
 
 MODEL_GLOBAL = None
-#MODEL_GLOBAL = Mock()
+MODEL_GLOBAL = Mock()
 def get_model(request):
     ''' @see make_views() below, which should have a model passed in to configure the model global 
     '''
