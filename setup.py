@@ -34,6 +34,7 @@ if sys.version_info[:2] < (2, 7):
 dev_extras = (
     'zc.buildout',
     'coverage>=3.5.2',
+    'paramiko == 1.14.2',
     'fabric>=1.4.3',
     'zest.releaser>=3.37',
 )
