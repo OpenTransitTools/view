@@ -13,7 +13,7 @@ requires = [
     'ott.utils',
     'Babel',
     'lingua',
-    'pyramid',
+    'pyramid < 1.8',
     'pyramid_mako',
     'mako',
     'waitress',
