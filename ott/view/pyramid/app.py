@@ -3,13 +3,14 @@ import logging
 log = logging.getLogger(__file__)
 
 from pyramid.config import Configurator
-from pyramid.decorator import reify
 from pyramid.events import subscriber
 from pyramid.events import ApplicationCreated
 from pyramid.events import NewRequest
 
 from ott.view.pyramid import views
 from wsgiref.simple_server import make_server
+
+from ott.view_header_footer.pyramid import views as views_header_footer
 
 
 def main(global_config, **settings):
@@ -20,6 +21,7 @@ def main(global_config, **settings):
 
     do_static_config(config)
     views.do_view_config(config)
+    views_header_footer.do_view_config(config)
 
     config.scan()
     return config.make_wsgi_app()
