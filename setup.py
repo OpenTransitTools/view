@@ -11,6 +11,7 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'ott.utils',
+    'ott.view_header_footer',
     'Babel',
     'lingua',
     'pyramid < 1.8',
@@ -19,7 +20,7 @@ requires = [
     'waitress',
     'pillow',
     'simplejson',
-    'qrcode',
+    'qrcode'
 ]
 
 #
@@ -67,7 +68,8 @@ setup(
     author="Open Transit Tools",
     author_email="info@opentransittools.org",
     dependency_links=[
-        'git+https://github.com/OpenTransitTools/utils.git#egg=ott.utils-0.1.0'
+        'git+https://github.com/OpenTransitTools/utils.git#egg=ott.utils-0.1.0',
+        'git+https://github.com/OpenTransitTools/view_header_footer.git#egg=ott.view_header_footer-0.1.0',
     ],
     license="Mozilla-derived (http://opentransittools.com)",
     url='http://opentransittools.com',
