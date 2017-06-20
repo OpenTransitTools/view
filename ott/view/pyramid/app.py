@@ -1,6 +1,4 @@
 import os
-import logging
-log = logging.getLogger(__file__)
 
 from pyramid.config import Configurator
 from pyramid.events import subscriber
@@ -12,10 +10,13 @@ from wsgiref.simple_server import make_server
 
 from ott.view_header_footer.pyramid import views as views_header_footer
 
+import logging
+log = logging.getLogger(__file__)
+
 
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
-        run with: bin/pserve pyramid.ini --reload
+        run with: bin/pserve --reload config/<blah>.ini
     """
     config = Configurator(settings=settings)
 
@@ -30,7 +31,7 @@ def main(global_config, **settings):
 def do_static_config(config):
     ''' config the static folders
     '''
-    cache_age=3600
+    cache_age = 3600
     config.add_static_view('static',    'ott.view:static',        cache_max_age=cache_age)
     config.add_static_view('html',      'ott.view:static',        cache_max_age=cache_age)
     config.add_static_view('js',        'ott.view:static/js',     cache_max_age=cache_age)
