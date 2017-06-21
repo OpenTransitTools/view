@@ -19,7 +19,8 @@ def main(global_config, **settings):
         run with: bin/pserve --reload config/<blah>.ini
     """
     config = Configurator(settings=settings)
-    do_static_config(config)
+    do_static_config(config, css='ott.view_header_footer', img='ott.view_header_footer'):
+    do_misc_config(config)
     config.include(views.do_view_config)
     config.include(views_header_footer.do_view_config)
     config.scan('ott.view_header_footer.pyramid')
@@ -28,23 +29,19 @@ def main(global_config, **settings):
     return config.make_wsgi_app()
 
 
-def do_static_config(config):
+def do_static_config(config, static='ott.view', css='ott.view', js='ott.view', img='ott.view'):
     ''' config the static folders
+        @TODO: move this to view_header_footer ...
     '''
     cache_age = 3600
-    config.add_static_view('static',    'ott.view:static',        cache_max_age=cache_age)
-    config.add_static_view('html',      'ott.view:static',        cache_max_age=cache_age)
-    config.add_static_view('js',        'ott.view:static/js',     cache_max_age=cache_age)
-    config.add_static_view('m/js',      'ott.view:static/js',     cache_max_age=cache_age)
-    config.add_static_view('ws/js',     'ott.view:static/js',     cache_max_age=cache_age)
-    config.add_static_view('css',       'ott.view:static/css',    cache_max_age=cache_age)
-    config.add_static_view('m/css',     'ott.view:static/css',    cache_max_age=cache_age)
-    config.add_static_view('ws/css',    'ott.view:static/css',    cache_max_age=cache_age)
-    config.add_static_view('images',    'ott.view:static/images', cache_max_age=cache_age)
-    config.add_static_view('m/images',  'ott.view:static/images', cache_max_age=cache_age)
-    config.add_static_view('ws/images', 'ott.view:static/images', cache_max_age=cache_age)
-    config.add_static_view('mock',      'ott.view:static/mock',   cache_max_age=cache_age)
+    config.add_static_view('static',    static + ':static',     cache_max_age=cache_age)
+    config.add_static_view('html',      static + ':static',     cache_max_age=cache_age)
+    config.add_static_view('js',        js  + ':static/js',      cache_max_age=cache_age)
+    config.add_static_view('css',       css + ':static/css',    cache_max_age=cache_age)
+    config.add_static_view('images',    img + ':static/images', cache_max_age=cache_age)
 
+
+def do_misc_config(config):
     # important ... allow .html extension on mako templates
     config.include('pyramid_mako')
     config.add_mako_renderer('.html', settings_prefix='mako.')
