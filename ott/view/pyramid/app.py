@@ -19,7 +19,7 @@ def main(global_config, **settings):
         run with: bin/pserve --reload config/<blah>.ini
     """
     config = Configurator(settings=settings)
-    do_static_config(config, css='ott.view_header_footer', img='ott.view_header_footer'):
+    do_static_config(config, css='ott.view_header_footer', img='ott.view_header_footer')
     do_misc_config(config)
     config.include(views.do_view_config)
     config.include(views_header_footer.do_view_config)
