@@ -19,12 +19,12 @@ def main(global_config, **settings):
         run with: bin/pserve --reload config/<blah>.ini
     """
     config = Configurator(settings=settings)
-
     do_static_config(config)
-    views.do_view_config(config)
-    views_header_footer.do_view_config(config)
+    config.include(views.do_view_config)
+    config.include(views_header_footer.do_view_config)
+    config.scan('ott.view_header_footer.pyramid')
+    config.scan('ott.view.pyramid')
 
-    config.scan()
     return config.make_wsgi_app()
 
 
@@ -102,4 +102,3 @@ def cmdline():
 
 if __name__ == '__main__':
     cmdline()
-
