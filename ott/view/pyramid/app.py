@@ -19,7 +19,7 @@ def main(global_config, **settings):
         run with: bin/pserve --reload config/<blah>.ini
     """
     config = Configurator(settings=settings)
-    do_static_config(config, css='ott.view_header_footer', img='ott.view_header_footer')
+    do_static_config(config)
     do_misc_config(config)
     config.include(views.do_view_config)
     config.include(views_header_footer.do_view_config)
@@ -34,11 +34,14 @@ def do_static_config(config, static='ott.view', css='ott.view', js='ott.view', i
         @TODO: move this to view_header_footer ...
     '''
     cache_age = 3600
+
     config.add_static_view('static',    static + ':static',     cache_max_age=cache_age)
     config.add_static_view('html',      static + ':static',     cache_max_age=cache_age)
     config.add_static_view('js',        js  + ':static/js',      cache_max_age=cache_age)
     config.add_static_view('css',       css + ':static/css',    cache_max_age=cache_age)
     config.add_static_view('images',    img + ':static/images', cache_max_age=cache_age)
+
+    config.add_static_view('xTODO',  'ott.view_header_footer:static/css/ott.css', cache_max_age=cache_age)
 
 
 def do_misc_config(config):
