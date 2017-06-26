@@ -18,6 +18,7 @@ def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
         run with: bin/pserve --reload config/<blah>.ini
     """
+    # import pdb; pdb.set_trace()
     config = Configurator(settings=settings)
     do_static_config(config)
     do_misc_config(config)
