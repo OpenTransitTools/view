@@ -9,6 +9,7 @@ from ott.view.pyramid import views
 from wsgiref.simple_server import make_server
 
 from ott.view_header_footer.pyramid import views as views_header_footer
+from ott.view_header_footer.pyramid import app as app_header_footer
 
 import logging
 log = logging.getLogger(__file__)
@@ -36,13 +37,12 @@ def do_static_config(config, static='ott.view', css='ott.view', js='ott.view', i
     '''
     cache_age = 3600
 
+    app_header_footer.do_static_config(config)
     config.add_static_view('static',    static + ':static',     cache_max_age=cache_age)
     config.add_static_view('html',      static + ':static',     cache_max_age=cache_age)
-    config.add_static_view('js',        js  + ':static/js',      cache_max_age=cache_age)
+    config.add_static_view('js',        js  + ':static/js',     cache_max_age=cache_age)
     config.add_static_view('css',       css + ':static/css',    cache_max_age=cache_age)
     config.add_static_view('images',    img + ':static/images', cache_max_age=cache_age)
-
-    config.add_static_view('xTODO',  'ott.view_header_footer:static/css/ott.css', cache_max_age=cache_age)
 
 
 def do_misc_config(config):
@@ -54,7 +54,6 @@ def do_misc_config(config):
     config.add_translation_dirs('ott.view:locale')
     config.add_subscriber('ott.view.locale.subscribers.add_renderer_globals', 'pyramid.events.BeforeRender')
     config.add_subscriber('ott.view.locale.subscribers.add_localizer', 'pyramid.events.NewRequest')
-
 
 
 @subscriber(ApplicationCreated)
