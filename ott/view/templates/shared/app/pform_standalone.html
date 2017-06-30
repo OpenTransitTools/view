@@ -1,9 +1,0 @@
-## -*- coding: utf-8 -*-
-<%namespace name="form"  file="/shared/utils/form_utils.mako"/>
-<%namespace name="pform" file="/shared/utils/planner_form_utils.mako"/>
-${form.autocomplete_css_includes('/ride/css')}
-${form.autocomplete_js_includes('/ride/js')}
-${form.planner_form_js_includes('/ride/js')}
-${pform.planner_form(form_action='/ride/planner.html', is_homepage=True)}
-${pform.autocomplete_trip_planner()}
-${pform.dynamic_forms_js()}
