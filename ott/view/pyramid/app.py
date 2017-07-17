@@ -32,9 +32,9 @@ def main(global_config, **settings):
 
 
 def do_static_config(config, static='ott.view', css='ott.view', js='ott.view', img='ott.view'):
-    ''' config the static folders
+    """ config the static folders
         @TODO: move this to view_header_footer ...
-    '''
+    """
     cache_age = 3600
 
     app_header_footer.do_static_config(config)
@@ -58,29 +58,28 @@ def do_misc_config(config):
 
 @subscriber(ApplicationCreated)
 def application_created_subscriber(event):
-    ''' what do i do?
+    """ what do i do?
         I'm called at startup of the Pyramid app.  
-    '''
+    """
     #log.info('Starting pyramid server -- visit me on http://127.0.0.1:8080')
     print event
 
 
 @subscriber(NewRequest)
 def new_request_subscriber(event):
-    ''' what do i do?
+    """ what do i do?
        1. entry point for a new server request
        2. configure the request context object (can insert new things like db connections or authorization to pass around in this given request context)
-    '''
+    """
     #log.debug("new request called -- request is 'started'")
     request = event.request
     request.BASE_DIR = os.path.dirname(os.path.realpath(__file__))
 
 
 def cmdline():
-    ''' as an alternate to pserve, you can run this via bin/python ott/view/pyramid_app 
+    """ as an alternate to pserve, you can run this via bin/python ott/view/pyramid_app 
         it should start the server on http://127.0.0.1:8080
-    '''
-    
+    """
 
     # configuration settings
     here = os.path.dirname(os.path.abspath(__file__))

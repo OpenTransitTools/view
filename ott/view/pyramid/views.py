@@ -9,7 +9,6 @@ from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 
 from pyramid.view import view_config
-from pyramid.view import notfound_view_config
 
 from pyramid.events import NewRequest
 from pyramid.events import ApplicationCreated
@@ -32,8 +31,8 @@ from ott.view.model.place import Place
 
 
 def do_view_config(config):
-    ''' adds the views (see below) and static directories to pyramid's config
-    '''
+    """ adds the views (see below) and static directories to pyramid's config
+    """
     # import pdb; pdb.set_trace()
 
     # routes setup
@@ -150,8 +149,8 @@ def planner_form(request):
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
 @view_config(route_name='planner_geocode_ws',      renderer='ws/planner_geocode.html')
 def planner_geocode(request):
-    ''' for the ambiguous geocode page
-    '''
+    """ for the ambiguous geocode page
+    """
     try:
         geo_place = None
         geo_type = html_utils.get_first_param(request, 'geo_type', 'place')
@@ -172,9 +171,9 @@ def planner_geocode(request):
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
 @view_config(route_name='planner_ws',      renderer='ws/planner.html')
 def planner(request):
-    ''' will either call the trip planner, or if we're missing params, redirect to the ambiguous geocode page
+    """ will either call the trip planner, or if we're missing params, redirect to the ambiguous geocode page
         basically, call the geocode checker, and then either call the ambiguous geocoder page, or plan the trip planner
-    '''
+    """
     try:
         ret_val = {}
         gc = geocode_utils.do_from_to_geocode_check(request)
@@ -315,7 +314,7 @@ def stop_select_geocode(request):
 @view_config(route_name='stops_near_desktop', renderer='desktop/stops_near.html')
 @view_config(route_name='stops_near_ws',      renderer='ws/stops_near.html')
 def stops_near(request):
-    ''' this routine is called by the stop lookup form.  we branch to either call the
+    """ this routine is called by the stop lookup form.  we branch to either call the
         nearest stop routine (based on lat,lon coordiantes), or call stop.html directly
 
         this routine feels overly complex ... part of the problem is that we might see
@@ -324,7 +323,7 @@ def stops_near(request):
 
         Note that a log of logic is broken into 4 sub methods of stops_near ... these routiens
         will use (and possibly set) both request and ret_val variables in the parent scope
-    '''
+    """
     ret_val = {}
 
     def call_near_ws(geo=None, place=None):
@@ -342,8 +341,8 @@ def stops_near(request):
         ret_val['cache'] = []
 
     def check_place_for_stopid(place):
-        ''' return what looks like a stop id in a string
-        '''
+        """ return what looks like a stop id in a string
+        """
         stop = None
         if place and "Stop ID" in place:
             s = place.split("Stop ID")
@@ -353,8 +352,8 @@ def stops_near(request):
         return stop
 
     def geo_has_stopid(geo):
-        ''' look for a stop id in the geocoder result
-        '''
+        """ look for a stop id in the geocoder result
+        """
         stop = None
         try:
             if 'stop_id' in geo and geo['stop_id']:
@@ -438,8 +437,8 @@ def map_place(request):
 @view_config(route_name='sparkline_mobile')
 @view_config(route_name='sparkline_ws')
 def sparkline(request):
-    ''' returns a sparkline image in png format...
-    '''
+    """ returns a sparkline image in png format...
+    """
     response = Response(content_type='image/png')
     points = html_utils.get_param_as_list(request, 'points', float)
     im = sparkline_smooth(results=points) #, bg_color='#FF0000', fill_color='#0000FF'
@@ -454,8 +453,8 @@ def sparkline(request):
 @view_config(route_name='qrcode_mobile')
 @view_config(route_name='qrcode_ws')
 def qrcode(request):
-    ''' streams a qrcode image for the param 'content' (defaults to http://trimet.org)
-    '''
+    """ streams a qrcode image for the param 'content' (defaults to http://trimet.org)
+    """
     response = Response(content_type='image/png')
     content = html_utils.get_first_param(request, 'content', 'http://trimet.org')
     img_io = qr_to_stream(content)
@@ -484,23 +483,23 @@ def index_view(request):
 
 @subscriber(ApplicationCreated)
 def application_created_subscriber(event):
-    '''
+    """
        what do i do?
 
        1. I'm called at startup of the Pyramid app.  
        2. I could be used to make db connection (pools), etc...
-    '''
+    """
     log.info('Starting pyramid server...')
 
 
 @subscriber(NewRequest)
 def new_request_subscriber(event):
-    '''
+    """
        what do i do?
 
        1. entry point for a new server request
        2. configure the request context object (can insert new things like db connections or authorization to pass around in this given request context)
-    '''
+    """
     log.debug("new request called -- request is 'started'")
     request = event.request
     request.model = get_model(request)
@@ -510,10 +509,10 @@ def new_request_subscriber(event):
 """
 @notfound_view_config(renderer='notfound.mako')
 def notfound(request):
-    '''
+    """
         render the notfound.mako page anytime a request comes in that
         the app does't have mapped to a page or method
-    '''
+    """
     return {}
 """
 
@@ -522,13 +521,13 @@ def notfound(request):
 ##
 
 def cleanup(request):
-    '''
+    """
        what do i do?
 
        1. I was configured via the new_request_subscriber(event) method
        2. I'm called via a server event (when a request is 'finished')
        3. I could do random cleanup tasks like close database connections, etc... 
-    '''
+    """
     log.debug("cleanup called -- request is 'finished'")
 
 
@@ -554,9 +553,9 @@ def forward_request(request, path, query_string=None, extra_params=None):
     return HTTPFound(location=path)
 
 def make_subrequest(request, path, query_string=None, extra_params=None):
-    ''' create a subrequest to call another page in the app...
+    """ create a subrequest to call another page in the app...
         http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/subrequest.html
-    '''
+    """
     # step 1: make a new request object...
     path = get_path(request, path)
     subreq = Request.blank(path)
@@ -581,8 +580,8 @@ def make_subrequest(request, path, query_string=None, extra_params=None):
 MODEL_GLOBAL = None
 #MODEL_GLOBAL = Mock()
 def get_model(request):
-    ''' @see make_views() below, which should have a model passed in to configure the model global 
-    '''
+    """ @see make_views() below, which should have a model passed in to configure the model global 
+    """
     global MODEL_GLOBAL
     if MODEL_GLOBAL is None:
         # TODO ... this right?
