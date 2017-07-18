@@ -506,7 +506,7 @@ def new_request_subscriber(event):
     settings = request.registry.settings
     request.add_finished_callback(cleanup)
 
-"""
+'''
 @notfound_view_config(renderer='notfound.mako')
 def notfound(request):
     """
@@ -514,7 +514,8 @@ def notfound(request):
         the app does't have mapped to a page or method
     """
     return {}
-"""
+'''
+
 
 ##
 ## view utils
