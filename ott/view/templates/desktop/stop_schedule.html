@@ -1,3 +1,9 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/desktop/base.html"/>
+<%namespace name="su" file="/shared/utils/stop_utils.mako"/>
+<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
+<%
+    title = su.page_title_str(stop_sched['stop'])
+    header, footer = util.get_header_footer(title, is_mobile=False)
+%>${header|n}
 <%include file="/shared/app/stop_schedule.mako"/>
+${footer|n}

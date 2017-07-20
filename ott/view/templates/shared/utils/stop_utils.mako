@@ -8,9 +8,9 @@
 <%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 
 ##
-## return header and footer for stop pages
+## return header and footer, with H1 element made for stop pages
 ##
-<%def name="get_stop_header_footer(is_mobile=False, url='stop_select_form.html')"><%
+<%def name="get_stop_header_footer(stop, is_mobile=False, url='stop_select_form.html')"><%
     name = make_name_id(stop)
     sub_name = stop_title_str(stop)
 
@@ -27,8 +27,20 @@
     return header, footer
 %></%def>
 
-<%def name="page_title(stop)">${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
-<%def name="str_title(stop)"><% return "Stop ID {0}".format(stop['stop_id']) %></%def>
+
+<%def name="page_title_str(stop)"><% return "{} {} - {}".format(_(u'Stop ID'), stop['stop_id'], stop['name'].replace(' & ', ' and ')) %></%def>
+<%def name="page_title(stop)">${page_title_str(stop)}</%def>
+
+<%def name="stop_title_str(stop)"><%
+    ret_val = util.name_city_str_from_struct(stop)
+    if stop['direction'] and len(stop['direction']) > 0:
+        ret_val = ret_val + ", " + stop['direction']
+    ret_val = ret_val.replace(' & ', ' and ')
+    return ret_val
+%></%def>
+
+<%def name="stop_title(stop)">${stop_title_str(stop)}</%def>
+<%def name="str_title(stop)"><% return "{} {}".format(_(u'Stop ID'), stop['stop_id']) %></%def>
 
 ##
 ## stop select form
@@ -75,16 +87,6 @@
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
     return has_alerts
 %></%def>
-
-<%def name="stop_title_str(stop)"><%
-    ret_val = util.name_city_str_from_struct(stop)
-    if stop['direction'] and len(stop['direction']) > 0:
-        ret_val = ret_val + ", " + stop['direction']
-    ret_val = ret_val.replace(' & ', ' and ')
-    return ret_val
-%></%def>
-
-<%def name="stop_title(stop)"><% title = stop_title_str(stop) %>${title}</%def>
 
 <%def name="make_name_id(stop)"> <%
     name = "{0} {1}".format(_(u'Stop ID').encode('utf-8'), stop['stop_id']).decode('utf-8')

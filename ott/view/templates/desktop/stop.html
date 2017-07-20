@@ -1,7 +1,7 @@
 ## -*- coding: utf-8 -*-
 <%namespace name="su" file="/shared/utils/stop_utils.mako"/>
 <%
-    header, footer = su.get_stop_header_footer(is_mobile=False)
+    header, footer = su.get_stop_header_footer(stop, is_mobile=False)
 %>${header|n}
 <%include file="/shared/app/stop.mako"/>
 ${footer|n}
