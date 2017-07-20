@@ -3,5 +3,5 @@
 <%
     header, footer = su.get_stop_header_footer(is_mobile=True)
 %>${header|n}
-<%include file="/shared/app/stop.mako"/>
+<%include file="/shared/app/stop.mako" args="is_mobile=True"/>
 ${footer|n}
