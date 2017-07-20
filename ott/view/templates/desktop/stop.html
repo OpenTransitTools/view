@@ -1,5 +1,7 @@
 ## -*- coding: utf-8 -*-
-<%def name="title()">XX I DONT WORK, SINCE I DONT INHERIT XX</%def>
-<%include file="header.html"/>
+<%namespace name="su" file="/shared/utils/stop_utils.mako"/>
+<%
+    header, footer = su.get_stop_header_footer(is_mobile=False)
+%>${header|n}
 <%include file="/shared/app/stop.mako"/>
-<%include file="footer.html"/>
+${footer|n}

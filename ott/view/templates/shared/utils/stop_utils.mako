@@ -7,6 +7,26 @@
 <%namespace name="form" file="/shared/utils/form_utils.mako"/>
 <%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 
+##
+## return header and footer for stop pages
+##
+<%def name="get_stop_header_footer(is_mobile=False, url='stop_select_form.html')"><%
+    name = make_name_id(stop)
+    sub_name = stop_title_str(stop)
+
+    from ott.view_header_footer.utils import client_utils
+    header = client_utils.wget_header(
+        port=request.server_port,
+        is_mobile=is_mobile,
+        header=name,
+        sub_header=sub_name,
+        icon_cls="fa-ss-outline h1icon",
+        icon_url=url
+    )
+    footer = client_utils.wget_footer(port=request.server_port, is_mobile=is_mobile)
+    return header, footer
+%></%def>
+
 <%def name="page_title(stop)">${_(u'Stop ID')} ${stop['stop_id']} - ${stop['name']}</%def>
 <%def name="str_title(stop)"><% return "Stop ID {0}".format(stop['stop_id']) %></%def>
 
@@ -51,32 +71,30 @@
 </div>
 </%def>
 
-<%def name="has_alerts(stop)">
-<%
+<%def name="has_alerts(stop)"><%
     has_alerts = True if 'alerts' in stop and len(stop['alerts']) > 0 else False
     return has_alerts
-%>
-</%def>
+%></%def>
 
-<%def name="stop_title(stop)"><%
-    dir_name = ''
+<%def name="stop_title_str(stop)"><%
+    ret_val = util.name_city_str_from_struct(stop)
     if stop['direction'] and len(stop['direction']) > 0:
-        dir_name = _(stop['direction'])
-%>${util.name_city_str_from_struct(stop)} ${dir_name}</%def>
+        ret_val = ret_val + ", " + stop['direction']
+    ret_val = ret_val.replace(' & ', ' and ')
+    return ret_val
+%></%def>
 
-<%def name="make_name_id(stop)">
-<%
+<%def name="stop_title(stop)"><% title = stop_title_str(stop) %>${title}</%def>
+
+<%def name="make_name_id(stop)"> <%
     name = "{0} {1}".format(_(u'Stop ID').encode('utf-8'), stop['stop_id']).decode('utf-8')
     return name
-%>
-</%def>
+%></%def>
 
-<%def name="make_url_params(stop)">
-<%
+<%def name="make_url_params(stop)"><%
     params = "stop&name={0}&lat={1}&lon={2}".format(stop['name'], stop['lat'], stop['lon'])
     return params
-%>
-</%def>
+%></%def>
 
 <%def name="planner_walk_link(frm, to, text, extra_params)">
 <a href="planner_walk.html?mode=WALK&from=${util.make_named_coord_from_obj(frm)}&to=${util.make_named_coord_from_obj(to)}${extra_params}">${text}</a>

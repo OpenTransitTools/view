@@ -1,10 +1,7 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/mobile/base.html"/>
-<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
-<%def name="title()">${su.page_title(stop)}</%def>
-<%def name="meta_data()">${meta.stop()}</%def>
+<%namespace name="su" file="/shared/utils/stop_utils.mako"/>
+<%
+    header, footer = su.get_stop_header_footer(is_mobile=True)
+%>${header|n}
 <%include file="/shared/app/stop.mako"/>
+${footer|n}
