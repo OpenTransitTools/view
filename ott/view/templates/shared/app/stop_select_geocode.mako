@@ -8,8 +8,6 @@
 <%
     extra_params = util.get_extra_params()
 %>
-${page.stop_css()}
-${form.autocomplete_css_includes()}
 
 <div class="standardheader">
     <h1>
@@ -23,9 +21,13 @@ ${form.autocomplete_css_includes()}
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
                 ${su.geocode_form(geocoder_results, geo_place)}
-                ${form.autocomplete_js_includes()}
                 ${form.autocomplete_search_input()}
             </div><!-- .col -->
         </div><!-- .row -->
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
+
+${form.select_form_scriptlet()}
+${form.autocomplete_css_includes()}
+${form.autocomplete_js_includes()}
+${form.gps_form_scriptlet()}
