@@ -3,9 +3,9 @@
 ##
 ## return generic header and footer
 ##
-<%def name="get_header_footer(title, is_mobile=False)"><%
+<%def name="get_header_footer(title, is_mobile=False, onload=None)"><%
     from ott.view_header_footer.utils import client_utils
-    header = client_utils.wget_header(title=title, port=request.server_port, is_mobile=is_mobile)
+    header = client_utils.wget_header(title=title, port=request.server_port, is_mobile=is_mobile, onload=onload)
     footer = client_utils.wget_footer(port=request.server_port, is_mobile=is_mobile)
     return header, footer
 %></%def>
