@@ -1,30 +1,8 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/desktop/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="form" file="/shared/utils/form_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 <%
-    extra_params = util.get_extra_params()
-%>
-<%def name="title()">${route_stops['route']['name']}</%def>
-<%def name="meta_data()">${meta.stop()}</%def>
-<%def name="side_bar()"></%def>
-<%def name="app_css()">${page.stop_css()}</%def>
-
-<div class="standardheader">
-    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>
-</div><!-- .standardheader -->
-
-<div class="fullwidth">
-    <div class="contentcontainer">
-        <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                ${page.stop_select(route_stops['route']['name'], extra_params, 'list')}
-                ${rs.route_stop_dropdown(route_stops)}
-            </div><!-- .col -->
-        </div><!-- .row -->        
-    </div><!-- .contentcontainer -->
-</div><!-- .fullwidth -->
+    title = _("Stops and Stations")
+    header, footer = util.get_header_footer(title, onload="select_form", is_mobile=False)
+%>${header|n}
+<%include file="/shared/app/stop_select_list.mako", args="is_mobile=False"/>
+${footer|n}
