@@ -88,7 +88,7 @@
     return has_alerts
 %></%def>
 
-<%def name="make_name_id(stop)"> <%
+<%def name="make_name_id(stop)"><%
     name = "{0} {1}".format(_(u'Stop ID').encode('utf-8'), stop['stop_id']).decode('utf-8')
     return name
 %></%def>
@@ -118,8 +118,6 @@
 </%def>
 
 
-
-
 ##
 ## show a list of stops (used by nearest_stops.html) 
 ## stops_near.html
@@ -145,8 +143,6 @@
     %endif
 </ul>
 </%def>
-
-
 
 
 <%def name="nearby_stops_link(stop, extra_params)">
@@ -175,18 +171,15 @@
 </p>
 </%def>
 
-<%def name="map_and_links(map_url, name, lon, lat, extra_params, is_mobile)">
-<%
+<%def name="map_and_links(map_url, name, lon, lat, extra_params, is_mobile)"><%
     if is_mobile:
         static_map_img(map_url)
     else:
         staticmap_imap_link(name, lon, lat, extra_params, map_url)
-%>
-</%def>
+%></%def>
 
 ## places map with lat/lon
-<%def name="place_map(name, lon, lat, extra_params='', is_mobile=False)">
-<%
+<%def name="place_map(name, lon, lat, extra_params='', is_mobile=False)"><%
     w=800
     h=600
     if is_mobile:
@@ -195,12 +188,10 @@
     map_url = "//ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/9/coord/{2},{3}/extraparams/f\
 ormat_options=layout:place".format(w, h, lon, lat)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
-%>
-</%def>
+%></%def>
 
 ## stops map with lat/lon
-<%def name="stop_map(name, stop_id, lon, lat, extra_params='', is_mobile=False)">
-<%
+<%def name="stop_map(name, stop_id, lon, lat, extra_params='', is_mobile=False)"><%
     w=350
     h=350
     if is_mobile:
@@ -209,5 +200,4 @@ ormat_options=layout:place".format(w, h, lon, lat)
     map_url = "//ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/{0}/height/{1}/zoom/6/extraparams/format_options\
 =layout:scale/id/{2}".format(w, h, stop_id)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
-%>
-</%def>
+%></%def>
