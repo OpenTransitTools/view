@@ -5,5 +5,5 @@
     title = su.page_title_str(stop_sched['stop'])
     header, footer = util.get_header_footer(title, is_mobile=False)
 %>${header|n}
-<%include file="/shared/app/stop_schedule.mako"/>
+<%include file="/shared/app/stop_schedule.mako", args="is_mobile=False"/>
 ${footer|n}

@@ -1,28 +1,2 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/mobile/base.html"/>
-<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="form" file="/shared/utils/form_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
-<%
-    extra_params = util.get_extra_params()
-%>
-<%def name="title()">${_(u'Stops & Schedules')}</%def>
-<%def name="meta_data()">${meta.stop()}</%def>
-<%def name="side_bar()">${side.tc_pr_lr_wes_mall()}</%def>
-<%def name="stations_selected()">class="selected"</%def>
-<%def name="app_css()">
-    ${page.stop_css()}
-    ${form.autocomplete_css_includes()}
-</%def>
-<%def name="js_onload()">javascript:checkgps(); javascript:select_form();</%def>
-${form.gps_form_scriptlet()}
-${form.select_form_scriptlet()}
-
-${page.stop_select(_(u'Stops & Schedules'), extra_params, 'me', 'h1')}
-${su.stop_select_form(place, is_mobile=True)}
-${form.autocomplete_js_includes()}
-${form.autocomplete_search_input()}
-
+<%include file="/shared/app/stop_select_form.mako", args="is_mobile=True"/>
