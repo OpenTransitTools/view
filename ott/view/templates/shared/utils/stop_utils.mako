@@ -35,7 +35,7 @@
     ret_val = util.name_city_str_from_struct(stop)
     if stop['direction'] and len(stop['direction']) > 0:
         ret_val = ret_val + ", " + stop['direction']
-    ret_val = ret_val.replace(' & ', ' and ')
+    ret_val = ret_val.replace(' & ', ' %26 ')
     return ret_val
 %></%def>
 
