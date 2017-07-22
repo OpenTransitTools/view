@@ -13,17 +13,18 @@
 <%def name="get_stop_header_footer(stop, is_mobile=False, url='stop_select_form.html')"><%
     name = make_name_id(stop)
     sub_name = stop_title_str(stop)
+    svr_port = util.get_ini_param('ott.svr_port', request.server_port)
 
     from ott.view_header_footer.utils import client_utils
     header = client_utils.wget_header(
-        port=request.server_port,
+        port=svr_port,
         is_mobile=is_mobile,
         header=name,
         sub_header=sub_name,
         icon_cls="fa-ss-outline h1icon",
         icon_url=url
     )
-    footer = client_utils.wget_footer(port=request.server_port, is_mobile=is_mobile)
+    footer = client_utils.wget_footer(port=svr_port, is_mobile=is_mobile)
     return header, footer
 %></%def>
 
