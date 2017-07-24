@@ -29,19 +29,20 @@
 %></%def>
 
 
-<%def name="page_title_str(stop)"><% return "{} {} - {}".format(_(u'Stop ID'), stop['stop_id'], stop['name'].replace(' & ', ' and ')) %></%def>
+<%def name="page_title_str(stop)"><% return "{} {} - {}".format(_(u'Stop ID'), stop['stop_id'], stop['name'].replace(' & ', ' %26 '))%></%def>
 <%def name="page_title(stop)">${page_title_str(stop)}</%def>
 
-<%def name="stop_title_str(stop)"><%
+<%def name="stop_title_str(stop, escape=True)"><%
     ret_val = util.name_city_str_from_struct(stop)
     if stop['direction'] and len(stop['direction']) > 0:
         ret_val = ret_val + ", " + stop['direction']
-    ret_val = ret_val.replace(' & ', ' %26 ')
+    if escape:
+        ret_val = ret_val.replace(' & ', ' %26 ')
     return ret_val
 %></%def>
 
-<%def name="stop_title(stop)">${stop_title_str(stop)}</%def>
-<%def name="str_title(stop)"><% return "{} {}".format(_(u'Stop ID'), stop['stop_id']) %></%def>
+<%def name="stop_title(stop)">${stop_title_str(stop, False)}</%def>
+<%def name="str_title(stop)"><% return page_title_str(stop) %></%def>
 
 ##
 ## stop select form

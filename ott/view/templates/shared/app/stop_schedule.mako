@@ -13,9 +13,6 @@
     name = su.make_name_id(stop)
     stop_params = su.make_url_params(stop)
 %>
-<%def name="title()">${su.page_title(stop_sched['stop'])}</%def>
-<%def name="meta_data()">${meta.stop()}</%def>
-
 <div class="standardheader">
     <h1>
         <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}<br/>
