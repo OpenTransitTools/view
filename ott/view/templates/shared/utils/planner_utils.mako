@@ -21,7 +21,7 @@
 ##
 <%def name="simple_header(title=None, sub_title=None)"> <%
     if title is None:
-        title = "{} {}".format(_(u'Your trip on'), util.get_agency_ini(plus_str=None))
+        title = "{} {}".format(_(u'Plan your trip on'), util.get_agency_ini(plus_str=None))
 %>
 <div class="standardheader">
     <h1>
@@ -296,12 +296,6 @@
     </div><!-- end #promobar-wrap -->
 </%def>
 
-##
-## footer with the trip plan disclaimer
-##
-<%def name="bottom_disclaimer(is_mobile=False)">
-   ## moved in with the console
-</%def>
 
 <%def name="set_planner_text_cookie()">
 <script>
@@ -343,24 +337,21 @@ ${get_depart_arrive_at(False)} ${get_time(itinerary, False)} ${util.pretty_date_
 %endif
 </%def>
 
-<%def name="get_depart_arrive(is_arrive_by=False)">
-<%
+
+<%def name="get_depart_arrive(is_arrive_by=False)"><%
     if is_arrive_by:
         ret_val = _(u'Arrive by')
     else:
         ret_val = _(u'Depart after') 
     return ret_val
-%>
-</%def>
-<%def name="get_depart_arrive_at(is_arrive_by=False)">
-<%
+%></%def>
+<%def name="get_depart_arrive_at(is_arrive_by=False)"><%
     if is_arrive_by:
         ret_val = _(u'Arrive at')
     else:
         ret_val = _(u'Depart at') 
     return ret_val
-%>
-</%def>
+%></%def>
 
 <%def name="get_grade(elev)">${elev['up'] if elev['up'] > elev['down'] else elev['down']}%</%def>
 <%def name="check_grade(elev)"><% False if elev is None or (elev['up'] == 0 and elev['down'] == 0) else True %></%def>

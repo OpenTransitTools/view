@@ -4,9 +4,10 @@
 <%
     itinerary = plib.get_itinerary(plan)
     extra_params = util.get_extra_params()
+    title = "{} {}".format(_(u'Your trip on'), util.get_agency_ini(plus_str=None))
 %>
 
-${plib.simple_header()}
+${plib.simple_header(title)}
 
 <div class="fullwidth">
     <div class="contentcontainer">
@@ -27,6 +28,5 @@ ${plib.simple_header()}
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
 
-${plib.bottom_disclaimer()}
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
 ${plib.set_planner_text_cookie()}
