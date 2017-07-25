@@ -79,8 +79,7 @@
     opt = get_optimize(plan['params']['optimize'])
     from ott.utils import transit_utils;
     return transit_utils.plan_description(plan, title, arr, opt, _(u'using'), _(u'with a maximum walk of'))
-%>
-</%def> 
+%></%def>
 
 ##
 ## header details w/ from & to details, plus optional trip details & edit links
@@ -98,7 +97,6 @@
         %endif
     </div><!-- end #details -->
 </%def>
-
 
 
 ##
@@ -161,7 +159,6 @@
         ${_(u'Call 503-238-RIDE (7433) or text your Stop ID to 27299.')}
         %endif
     </small></p>
-
 </%def>
 
 ##
@@ -191,14 +188,12 @@
 %endif
 </%def>
 
-<%def name="pretty_distance(dist)">
-<%
+<%def name="pretty_distance(dist)"><%
     try:
         return str(dist['distance']) + " " + _(dist['measure'])
     except:
         return dist
-%>
-</%def>
+%></%def>
 
 <%def name="get_mode_img(mode)"><%
     ''' return 20x20px mode gif for leg list 
@@ -272,8 +267,7 @@
 ##
 ##
 ##
-<%def name="get_optimize(optimize)">
-<%
+<%def name="get_optimize(optimize)"><%
     if optimize == 'SAFE':
         ret_val = _(u'Safest trip')
     elif optimize == 'TRANSFERS':
@@ -281,8 +275,7 @@
     else:
         ret_val = _(u'Quickest trip')
     return ret_val
-%>
-</%def>
+%></%def>
 
 ##
 ## footer of the trip planner form
@@ -539,8 +532,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
     </li>
 </%def>
 
-<%def name="is_interline(leg_list, n)">
-<%
+<%def name="is_interline(leg_list, n)"><%
     ret_val = False
     try:
         if leg_list[n]['interline']:
@@ -548,8 +540,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
     except:
         pass
     return ret_val
-%>
-</%def>
+%></%def>
 
 ##
 ## Stop Leg is artificially created leg in order to show links to the stop
@@ -622,8 +613,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 </%def>
 
 <% leg_id = 1 %>
-<%def name="_render_leg(itinerary, n, is_mobile, extra_params, no_expand)">
-<%
+<%def name="_render_leg(itinerary, n, is_mobile, extra_params, no_expand)"><%
     ''' call render stuff above...
     '''
     ret_val = ''
@@ -652,5 +642,4 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         leg_id = leg_id + 1
 
     return ret_val
-%>
-</%def>
+%></%def>

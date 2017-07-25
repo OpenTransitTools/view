@@ -2,8 +2,8 @@
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 <%
-    title = plib.itin_page_title_str(plan)
+    title = _(u'Plan your trip')
     header, footer = util.get_header_footer(title, onload="select_form", is_mobile=False)
 %>${header|n}
-<%include file="/shared/app/planner_form.mako", args="is_mobile=False"/>
+<%include file="/shared/app/planner_form.mako", args="is_mobile=False, title=title"/>
 ${footer|n}

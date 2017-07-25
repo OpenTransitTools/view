@@ -1,4 +1,5 @@
 ## -*- coding: utf-8 -*-
+<%page args="is_mobile=False, title='x'"/>
 <%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
 <%namespace name="page"  file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner_utils.mako"/>
@@ -6,8 +7,6 @@
 <%namespace name="form"  file="/shared/utils/form_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
-    #title = "{} on {}".format(_(u'Plan Your Trip'), util.get_agency_ini(plus_str=None))
-    title = 'x'
 %>
 
 ${page.tripplanner_css()}
@@ -17,7 +16,7 @@ ${form.planner_form_js_includes()}
 ${form.select_form_scriptlet('from')}
 ${pform.gps_form_scriptlet()}
 
-${page.main_trip_planner_form(title, extra_params, 'form')}
+${plib.simple_header(title)}
 
 <div class="fullwidth">
     <div class="contentcontainer">
