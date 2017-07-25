@@ -21,7 +21,7 @@
 ##
 <%def name="simple_header(title=None, sub_title=None)"> <%
     if title is None:
-        title = "{} {}".format(_(u'Your trip on'), util.get_agency_ini())
+        title = "{} {}".format(_(u'Your trip on'), util.get_agency_ini(plus_str=None))
 %>
 <div class="standardheader">
     <h1>

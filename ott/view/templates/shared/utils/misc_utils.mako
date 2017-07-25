@@ -13,6 +13,10 @@
 %></%def>
 
 
+##
+## return values from the .ini that pserve reads
+## the ini variables come from the [app:main] section
+##
 <%def name="get_ini_param(name, def_val=None)"><%
     ret_val = def_val
     try:
@@ -27,8 +31,12 @@
 
 <%def name="url_domain()"><% return get_ini_param('ott.url_domain', '') %></%def>
 <%def name="is_test()"><% return get_ini_param('ott.is_test') %></%def>
+<%def name="img_url()">${url_domain()}/images/triptools</%def>
 
 
+##
+## return a formatted error message for exception.html
+##
 <%def name="error_msg(extra_params, feedback_url)"><%
     error_message = get_first_param('error_message')
     app_name      = get_first_param('app_name', 'Trip Planner')
@@ -41,13 +49,18 @@
 <p align="center"><a href="${feedback_url}">${_(u'Contact us')}</a> ${_(u'let us know more')}.</p>
 </%def>
 
-<%def name="img_url()">${url_domain()}/images/triptools</%def>
 
+##
+## return agency string
+##
 <%def name="get_agency_ini(plus_str=': ', def_val='')"><%
     ret_val = def_val
     str = get_ini_param('ott.agency_name')
     if str:
-        ret_val = str + plus_str
+        if plus_str:
+            ret_val = str + plus_str
+        else:
+            ret_val = str
     return ret_val
 %></%def>
 
