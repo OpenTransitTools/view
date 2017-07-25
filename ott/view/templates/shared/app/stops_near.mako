@@ -15,9 +15,13 @@
 
 <div class="standardheader">
     <h1>
-        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')} <br/>
-        <small>${_(u'Stops near')} ${util.map_place_link(place)}</small>
+        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}
     </h1>
+        <div class="first">
+        <p class="h1sub">
+        ${_(u'Stops near')} <b>${util.map_place_link(place)}</b>
+        </p>
+        </div>
 </div><!-- .standardheader -->
 
 <div class="fullwidth">

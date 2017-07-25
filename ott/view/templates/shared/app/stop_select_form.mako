@@ -7,12 +7,9 @@
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
-    sns = _(u'Stops & Stations')
 %>
 
-<div class="standardheader">
-    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${sns}</h1>
-</div><!-- .standardheader -->  
+${su.simple_header()}
 
 <div class="fullwidth">
     <div class="contentcontainer">
@@ -23,7 +20,6 @@
                 <%include file="stop_related_links.mako"/>
             </div><!-- .col -->
         </div><!-- .row -->
-
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
 

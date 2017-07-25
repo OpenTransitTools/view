@@ -9,12 +9,7 @@
     extra_params = util.get_extra_params()
 %>
 
-<div class="standardheader">
-    <h1>
-        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Uncertain location')}<br/>
-        <small>${form.geocoder_msg(geocoder_results, geo_place)}</small>
-    </h1>
-</div><!-- .standardheader -->
+${su.simple_header(title=_(u'Uncertain location'), sub_title=form.geocoder_msg(geocoder_results, geo_place))}
 
 <div class="fullwidth">
     <div class="contentcontainer">

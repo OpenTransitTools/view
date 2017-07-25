@@ -5,9 +5,8 @@
 <%
     extra_params = util.get_extra_params()
 %>
-<div class="standardheader">
-    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>
-</div><!-- .standardheader -->
+
+${su.simple_header()}
 
 <div class="fullwidth">
     <div class="contentcontainer">
