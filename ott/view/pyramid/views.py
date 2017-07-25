@@ -53,7 +53,6 @@ def do_view_config(config):
     ### DESKTOP PAGES
     ###
     config.add_route('exception_desktop',                       '/exception.html')
-    config.add_route('feedback_desktop',                        '/feedback.html')
 
     config.add_route('pform_standalone',                        '/pform_standalone.html')
     config.add_route('pform_no_includes',                       '/pform_no_includes.html')
@@ -77,7 +76,6 @@ def do_view_config(config):
     ### MOBILE PAGES
     ###
     config.add_route('exception_mobile',                        '/m/exception.html')
-    config.add_route('feedback_mobile',                         '/m/feedback.html')
 
     config.add_route('planner_form_mobile',                     '/m/planner_form.html')
     config.add_route('planner_geocode_mobile',                  '/m/planner_geocode.html')
@@ -100,7 +98,6 @@ def do_view_config(config):
     ### WS PAGES
     ###
     config.add_route('exception_ws',                        '/ws/exception.html')
-    config.add_route('feedback_ws',                         '/ws/feedback.html')
 
     config.add_route('planner_form_ws',                     '/ws/planner_form.html')
     config.add_route('planner_geocode_ws',                  '/ws/planner_geocode.html')
@@ -125,13 +122,6 @@ def handle_exception(request):
     ret_val = {}
     return ret_val
 
-@view_config(route_name='feedback_mobile',  renderer='mobile/feedback.html')
-@view_config(route_name='feedback_desktop', renderer='desktop/feedback.html')
-@view_config(route_name='feedback_ws',      renderer='ws/feedback.html')
-def feedback(request):
-    ret_val = {}
-    ret_val['stop'] = None
-    return ret_val
 
 @view_config(route_name='planner_form_mobile',  renderer='mobile/planner_form.html')
 @view_config(route_name='planner_form_desktop', renderer='desktop/planner_form.html')
@@ -144,6 +134,7 @@ def planner_form(request):
     params = html_utils.planner_form_params(request)
     ret_val['params'] = params
     return ret_val
+
 
 @view_config(route_name='planner_geocode_mobile',  renderer='mobile/planner_geocode.html')
 @view_config(route_name='planner_geocode_desktop', renderer='desktop/planner_geocode.html')
@@ -166,6 +157,7 @@ def planner_geocode(request):
         log.warning('{0} exception:{1}'.format(request.path, e))
         ret_val = make_subrequest(request, '/exception.html')
     return ret_val
+
 
 @view_config(route_name='planner_mobile',  renderer='mobile/planner.html')
 @view_config(route_name='planner_desktop', renderer='desktop/planner.html')
@@ -264,6 +256,7 @@ def stop_schedule(request):
         ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Schedule page')
     return ret_val
 
+
 @view_config(route_name='stop_select_form_mobile_short', renderer='mobile/stop_select_form.html')
 @view_config(route_name='stop_select_form_mobile',       renderer='mobile/stop_select_form.html')
 @view_config(route_name='stop_select_form_desktop',      renderer='desktop/stop_select_form.html')
@@ -282,6 +275,7 @@ def stop_select_form(request):
     else:
         ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Select page')
     return ret_val
+
 
 @view_config(route_name='stop_select_list_mobile',  renderer='mobile/stop_select_list.html')
 @view_config(route_name='stop_select_list_desktop', renderer='desktop/stop_select_list.html')
@@ -419,7 +413,6 @@ def stops_near(request):
                         ret_val['cache'].append(geocode_utils.make_autocomplete_cache(place, single_geo))
                 else:
                     ret_val = make_subrequest(request, '/stop_select_geocode.html')
-
     return ret_val
 
 
@@ -506,16 +499,6 @@ def new_request_subscriber(event):
     settings = request.registry.settings
     request.add_finished_callback(cleanup)
 
-'''
-@notfound_view_config(renderer='notfound.mako')
-def notfound(request):
-    """
-        render the notfound.mako page anytime a request comes in that
-        the app does't have mapped to a page or method
-    """
-    return {}
-'''
-
 
 ##
 ## view utils
@@ -535,6 +518,7 @@ def cleanup(request):
 def is_mobile(request):
     return '/m/' in request.path_url
 
+
 def is_ws(request):
     return '/ws/' in request.path_url
 
@@ -552,6 +536,7 @@ def forward_request(request, path, query_string=None, extra_params=None):
     # http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}
     # def map_url_params(self, fmt="from={frm}&to={to}&time={time}&maxHours={max_hours}&date={month}/{day}/{year}&mode={mode}&optimize={optimize}&maxWalkDistance={walk_meters:.0f}&arriveBy={arrive_depart}"):
     return HTTPFound(location=path)
+
 
 def make_subrequest(request, path, query_string=None, extra_params=None):
     """ create a subrequest to call another page in the app...

@@ -14,14 +14,16 @@
 %>
 
 <div class="standardheader">
-    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>    
+    <h1>
+        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')} <br/>
+        <small>${_(u'Stops near')} ${util.map_place_link(place)}</small>
+    </h1>
 </div><!-- .standardheader -->
 
 <div class="fullwidth">
     <div class="contentcontainer">
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <h2>${_(u'Stops near')} ${util.map_place_link(place)}</h2>
                 ${su.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}
                 ${util.cache_geocodes_in_browser(cache)}
             </div><!-- .col -->
