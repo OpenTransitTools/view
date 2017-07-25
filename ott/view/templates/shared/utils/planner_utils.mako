@@ -7,7 +7,33 @@
 ##
 ## typical itinerary page title
 ##
-<%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${from_to_msg(plan)}</%def>
+<%def name="itin_page_title(plan)">${util.get_agency_ini()} ${itin_page_title_str(plan)}</%def>
+
+<%def name="itin_page_title_str(plan)"><%
+    msg = from_to_msg(plan).replace(' & ', ' %26 ')
+    ret_val = "{} - {}".format(_(u'Trip Planner'), msg)
+    return ret_val
+%></%def>
+
+
+##
+## simple trip planner page header
+##
+<%def name="simple_header(title=None, sub_title=None)"> <%
+    if title is None:
+        title = "{} {}".format(_(u'Your trip on'), util.get_agency_ini())
+%>
+<div class="standardheader">
+    <h1>
+        <a href="planner_form.html"><i class="fa-tp-outline h1icon"></i></a> ${title}
+        %if sub_title:
+        <br/>
+        <small>${sub_title}</small>
+        %endif
+    </h1>
+</div><!-- .standardheader -->
+</%def>
+
 
 ##
 ## @returns From <orig> to <dest>
@@ -16,7 +42,7 @@
     ret_val = def_val
     try:
         if plan and 'from' in plan and 'to' in plan:
-            ret_val = "{0} {1} {2} {3}".format(_(u'From'), plan['from']['name'], _(u'to'), plan['to']['name'])
+            ret_val = "{0} {1} {2} {3}".format(_(u'from'), plan['from']['name'], _(u'to'), plan['to']['name'])
     except:
         pass
     return ret_val

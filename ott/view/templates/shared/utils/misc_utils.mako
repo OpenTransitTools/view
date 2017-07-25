@@ -6,7 +6,7 @@
 <%def name="get_header_footer(title, is_mobile=False, onload=None)"><%
     from ott.view_header_footer.utils import client_utils
     title = get_agency_ini() + title
-    svr_port = get_ini_param('ott.svr_port')
+    svr_port = get_ini_param('ott.svr_port', request.server_port)
     header = client_utils.wget_header(title=title, port=svr_port, is_mobile=is_mobile, onload=onload)
     footer = client_utils.wget_footer(port=svr_port, is_mobile=is_mobile)
     return header, footer
@@ -182,6 +182,7 @@
     name_city = name_city_str_from_struct(place)
 %>${name_city} <a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}"><small>Map</small></a>
 </%def>
+
 
 <%def name="get_url(url=None)"><%
     ret_val = url
