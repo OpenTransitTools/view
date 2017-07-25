@@ -1,4 +1,5 @@
 ## -*- coding: utf-8 -*-
+<%page args="is_mobile=False, title=''"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
 <%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 <%
