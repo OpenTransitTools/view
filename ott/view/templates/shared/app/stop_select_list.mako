@@ -1,5 +1,6 @@
 ## -*- coding: utf-8 -*-
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
+<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 <%
