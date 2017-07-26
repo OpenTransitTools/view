@@ -7,16 +7,16 @@
 <%
     extra_params = util.get_extra_params()
     itinerary = plib.get_itinerary(plan)
+    title = _(u'Your trip instructions')
 %>
+
 ${page.tripplanner_css()}
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
-
-${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
 
 ##
 ## main content
 ##
-${plib.simple_header()}
+${plib.simple_header(title)}
 
 <div class="fullwidth">
     <div class="contentcontainer">
@@ -38,6 +38,6 @@ ${plib.simple_header()}
                     ${plib.get_error_msg(error, _('Uncertain planner problem'))}
                 %endif
             </div><!-- .col -->
-        </div><!-- .row -->        
+        </div><!-- .row -->
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
