@@ -7,7 +7,33 @@
 ##
 ## typical itinerary page title
 ##
-<%def name="itin_page_title(plan)">TriMet: ${_(u'Trip Planner')} - ${from_to_msg(plan)}</%def>
+<%def name="itin_page_title(plan)">${util.get_agency_ini()} ${itin_page_title_str(plan)}</%def>
+
+<%def name="itin_page_title_str(plan)"><%
+    msg = from_to_msg(plan).replace(' & ', ' %26 ')
+    ret_val = "{} - {}".format(_(u'Trip Planner'), msg)
+    return ret_val
+%></%def>
+
+
+##
+## simple trip planner page header
+##
+<%def name="simple_header(title=None, sub_title=None)"> <%
+    if title is None:
+        title = "{} {}".format(_(u'Plan your trip on'), util.get_agency_ini(plus_str=None))
+%>
+<div class="standardheader">
+    <h1>
+        <a href="planner_form.html"><i class="fa-tp-outline h1icon"></i></a> ${title}
+        %if sub_title:
+        <br/>
+        <small>${sub_title}</small>
+        %endif
+    </h1>
+</div><!-- .standardheader -->
+</%def>
+
 
 ##
 ## @returns From <orig> to <dest>
@@ -16,7 +42,7 @@
     ret_val = def_val
     try:
         if plan and 'from' in plan and 'to' in plan:
-            ret_val = "{0} {1} {2} {3}".format(_(u'From'), plan['from']['name'], _(u'to'), plan['to']['name'])
+            ret_val = "{0} {1} {2} {3}".format(_(u'from'), plan['from']['name'], _(u'to'), plan['to']['name'])
     except:
         pass
     return ret_val
@@ -53,8 +79,7 @@
     opt = get_optimize(plan['params']['optimize'])
     from ott.utils import transit_utils;
     return transit_utils.plan_description(plan, title, arr, opt, _(u'using'), _(u'with a maximum walk of'))
-%>
-</%def> 
+%></%def>
 
 ##
 ## header details w/ from & to details, plus optional trip details & edit links
@@ -72,7 +97,6 @@
         %endif
     </div><!-- end #details -->
 </%def>
-
 
 
 ##
@@ -135,7 +159,6 @@
         ${_(u'Call 503-238-RIDE (7433) or text your Stop ID to 27299.')}
         %endif
     </small></p>
-
 </%def>
 
 ##
@@ -165,14 +188,12 @@
 %endif
 </%def>
 
-<%def name="pretty_distance(dist)">
-<%
+<%def name="pretty_distance(dist)"><%
     try:
         return str(dist['distance']) + " " + _(dist['measure'])
     except:
         return dist
-%>
-</%def>
+%></%def>
 
 <%def name="get_mode_img(mode)"><%
     ''' return 20x20px mode gif for leg list 
@@ -246,8 +267,7 @@
 ##
 ##
 ##
-<%def name="get_optimize(optimize)">
-<%
+<%def name="get_optimize(optimize)"><%
     if optimize == 'SAFE':
         ret_val = _(u'Safest trip')
     elif optimize == 'TRANSFERS':
@@ -255,8 +275,7 @@
     else:
         ret_val = _(u'Quickest trip')
     return ret_val
-%>
-</%def>
+%></%def>
 
 ##
 ## footer of the trip planner form
@@ -270,12 +289,6 @@
     </div><!-- end #promobar-wrap -->
 </%def>
 
-##
-## footer with the trip plan disclaimer
-##
-<%def name="bottom_disclaimer(is_mobile=False)">
-   ## moved in with the console
-</%def>
 
 <%def name="set_planner_text_cookie()">
 <script>
@@ -317,24 +330,21 @@ ${get_depart_arrive_at(False)} ${get_time(itinerary, False)} ${util.pretty_date_
 %endif
 </%def>
 
-<%def name="get_depart_arrive(is_arrive_by=False)">
-<%
+
+<%def name="get_depart_arrive(is_arrive_by=False)"><%
     if is_arrive_by:
         ret_val = _(u'Arrive by')
     else:
         ret_val = _(u'Depart after') 
     return ret_val
-%>
-</%def>
-<%def name="get_depart_arrive_at(is_arrive_by=False)">
-<%
+%></%def>
+<%def name="get_depart_arrive_at(is_arrive_by=False)"><%
     if is_arrive_by:
         ret_val = _(u'Arrive at')
     else:
         ret_val = _(u'Depart at') 
     return ret_val
-%>
-</%def>
+%></%def>
 
 <%def name="get_grade(elev)">${elev['up'] if elev['up'] > elev['down'] else elev['down']}%</%def>
 <%def name="check_grade(elev)"><% False if elev is None or (elev['up'] == 0 and elev['down'] == 0) else True %></%def>
@@ -522,8 +532,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
     </li>
 </%def>
 
-<%def name="is_interline(leg_list, n)">
-<%
+<%def name="is_interline(leg_list, n)"><%
     ret_val = False
     try:
         if leg_list[n]['interline']:
@@ -531,8 +540,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
     except:
         pass
     return ret_val
-%>
-</%def>
+%></%def>
 
 ##
 ## Stop Leg is artificially created leg in order to show links to the stop
@@ -605,8 +613,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
 </%def>
 
 <% leg_id = 1 %>
-<%def name="_render_leg(itinerary, n, is_mobile, extra_params, no_expand)">
-<%
+<%def name="_render_leg(itinerary, n, is_mobile, extra_params, no_expand)"><%
     ''' call render stuff above...
     '''
     ret_val = ''
@@ -635,5 +642,4 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
         leg_id = leg_id + 1
 
     return ret_val
-%>
-</%def>
+%></%def>

@@ -1,2 +1,5 @@
 include *.cfg
-include config/*.ini
+recursive-include ott/view/config *
+recursive-include ott/view/templates *
+recursive-include ott/view/locale *
+recursive-include ott/view/static *

@@ -1,31 +1,13 @@
 ## -*- coding: utf-8 -*-
 <%page args="is_mobile=False"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="form" file="/shared/utils/form_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%
-    extra_params = util.get_extra_params()
-    name = su.make_name_id(stop)
-    stop_params = su.make_url_params(stop)
-    has_alerts = su.has_alerts(stop)
-
     from ott.view.utils import agency_template
     url = agency_template.make_url_template()
+    has_alerts = su.has_alerts(stop)
+    extra_params = util.get_extra_params()
 %>
-
-${page.stop(name, extra_params, stop_params, stop, has_alerts)}
-
-
-<div class="standardheader">
-    <h1>
-        <a href="stop_select_form.html"<i class="fa-ss-outline h1icon"></i></a> ${name}
-    </h1>
-    <p class="h1sub">${su.stop_title(stop)}</p>
-</div><!-- .standardheader -->
-
 <div class="fullwidth">
     <div class="contentcontainer">
         <div class="row">
@@ -85,6 +67,3 @@ ${page.stop(name, extra_params, stop_params, stop, has_alerts)}
         </div><!-- .row -->  
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
-
-
-

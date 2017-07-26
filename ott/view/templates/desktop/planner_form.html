@@ -1,41 +1,9 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/desktop/base.html"/>
-<%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
-<%namespace name="meta"  file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page"  file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="plib"  file="/shared/utils/planner_utils.mako"/>
-<%namespace name="pform" file="/shared/utils/planner_form_utils.mako"/>
-<%namespace name="form"  file="/shared/utils/form_utils.mako"/>
+<%namespace name="util" file="/shared/utils/misc_utils.mako"/>
+<%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 <%
-    extra_params = util.get_extra_params()
-%>
-<%def name="title()">${_(u'Plan your trip')}</%def>
-<%def name="meta_data()">${meta.tripplanner()}</%def>
-<%def name="side_bar()"></%def>
-<%def name="planner_selected()">class="selected"</%def>
-<%def name="app_css()">
-    ${page.tripplanner_css()}
-    ${form.autocomplete_css_includes()}
-    ${form.autocomplete_js_includes()}
-    ${form.planner_form_js_includes()}
-</%def>
-<%def name="js_onload()">javascript:checkgps(); javascript:select_form();</%def>
-${pform.gps_form_scriptlet()}
-${form.select_form_scriptlet('from')}
-
-${page.main_trip_planner_form(_(u'Plan Your Trip on TriMet'), extra_params, 'form')}
-
-<div class="fullwidth">
-    <div class="contentcontainer">
-        <div class="row">
-            <div class="col-xs-12">
-                ##
-                ## main content
-                ##
-                ${pform.planner_form()}
-                ${pform.autocomplete_trip_planner()}
-                ${pform.dynamic_forms_js()}
-            </div><!-- .col -->
-        </div><!-- .row -->
-    </div><!-- .contentcontainer -->
-</div><!-- .fullwidth -->
+    title = _(u'Plan your trip')
+    header, footer = util.get_header_footer(title, onload="select_form", is_mobile=False)
+%>${header|n}
+<%include file="/shared/app/planner_form.mako", args="is_mobile=False, title=title"/>
+${footer|n}

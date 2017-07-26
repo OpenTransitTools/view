@@ -1,5 +1,22 @@
 ## -*- coding: utf-8 -*-
 
+##
+## return generic header and footer
+##
+<%def name="get_header_footer(title, is_mobile=False, onload=None)"><%
+    from ott.view_header_footer.utils import client_utils
+    title = get_agency_ini() + title
+    svr_port = get_ini_param('ott.svr_port', request.server_port)
+    header = client_utils.wget_header(title=title, port=svr_port, is_mobile=is_mobile, onload=onload)
+    footer = client_utils.wget_footer(port=svr_port, is_mobile=is_mobile)
+    return header, footer
+%></%def>
+
+
+##
+## return values from the .ini that pserve reads
+## the ini variables come from the [app:main] section
+##
 <%def name="get_ini_param(name, def_val=None)"><%
     ret_val = def_val
     try:
@@ -11,11 +28,16 @@
     return ret_val
 %></%def>
 
-<%def name="url_domain()"><% return get_ini_param('ott.css_url', '') %></%def>
-<%def name="is_test()"><% return get_ini_param('ott.is_test') %></%def>
 
-<%def name="error_msg(extra_params, feedback_url)">
-<%
+<%def name="url_domain()"><% return get_ini_param('ott.url_domain', '') %></%def>
+<%def name="is_test()"><% return get_ini_param('ott.is_test') %></%def>
+<%def name="img_url()">${url_domain()}/images/triptools</%def>
+
+
+##
+## return a formatted error message for exception.html
+##
+<%def name="error_msg(extra_params, feedback_url)"><%
     error_message = get_first_param('error_message')
     app_name      = get_first_param('app_name', 'Trip Planner')
 %>
@@ -27,7 +49,21 @@
 <p align="center"><a href="${feedback_url}">${_(u'Contact us')}</a> ${_(u'let us know more')}.</p>
 </%def>
 
-<%def name="img_url()">${url_domain()}/images/triptools</%def>
+
+##
+## return agency string
+##
+<%def name="get_agency_ini(plus_str=': ', def_val='')"><%
+    ret_val = def_val
+    str = get_ini_param('ott.agency_name')
+    if str:
+        if plus_str:
+            ret_val = str + plus_str
+        else:
+            ret_val = str
+    return ret_val
+%></%def>
+
 
 <%def name="planner_img_url()">${img_url()}/mode</%def>
 <%!
@@ -39,14 +75,14 @@
     SUBWAY     = 'SUBWAY'
     STREETCAR  = 'STREETCAR'
     RAIL       = 'RAIL'
-    BUS        = 'BUS' 
-    CAR        = 'CAR' 
-    CABLE_CAR  = 'CABLE_CAR' 
+    BUS        = 'BUS'
+    CAR        = 'CAR'
+    CABLE_CAR  = 'CABLE_CAR'
     GONDOLA    = 'GONDOLA'
     FERRY      = 'FERRY'
     FUNICULAR  = 'FUNICULAR'
     TRANSIT    = 'TRANSIT'
-    TRAINISH   = 'TRAINISH' 
+    TRAINISH   = 'TRAINISH'
     BUSISH     = 'BUSISH'
     TRAIN      = 'TRAIN'
     TRANSIT_MODES = (BUS, TRAM, RAIL, TRAIN, GONDOLA, FUNICULAR, FERRY, CABLE_CAR, SUBWAY, STREETCAR, BUSISH, TRAINISH, TRANSIT)
@@ -67,14 +103,12 @@
     return ret_val
 %></%def>
 
-<%def name="get_val(val, def_val=None)">
-<%
+<%def name="get_val(val, def_val=None)"><%
     ret_val = def_val
     if val:
         ret_val = val
     return ret_val
-%>
-</%def>
+%></%def>
 
 <%def name="localize_str(s, def_val=None)"><%
     ret_val = def_val
@@ -162,6 +196,7 @@
 %>${name_city} <a href="${path_prefix}map_place.html?name=${prep_url_params(name, True)}&city=${prep_url_params(city)}&lon=${place['lon']}&lat=${place['lat']}${extra_params}"><small>Map</small></a>
 </%def>
 
+
 <%def name="get_url(url=None)"><%
     ret_val = url
     if url is None:
@@ -237,20 +272,16 @@
 %endif
 </%def>
 
-<%def name="make_named_coord(name, lat, lon)">
-<%
+<%def name="make_named_coord(name, lat, lon)"><%
     name = unicode(name)
     name = name.replace('&', '%26')
     ret_val = u"{0}::{1},{2}".format(name, lat, lon)
     return ret_val
-%>
-</%def>
+%></%def>
 
-<%def name="make_named_coord_from_obj(obj)">
-<%
+<%def name="make_named_coord_from_obj(obj)"><%
     return make_named_coord(obj['name'], obj['lat'] ,obj['lon']) 
-%>
-</%def>
+%></%def>
 
 ##
 ## if we geocoded stuff on some other pages, we'll cache them here via .js 
@@ -268,8 +299,7 @@
 ##
 ## do things like escape & in intersection names, etc...
 ##
-<%def name="prep_url_params(params, no_space=False, url_escape=False, spell_and=False)">
-<%
+<%def name="prep_url_params(params, no_space=False, url_escape=False, spell_and=False)"><%
     ret_val = params
     try:
         # step 1: convert & in intersection names, ala F Blvd & Z Ave to %26
@@ -290,29 +320,23 @@
     except:
         pass
     return ret_val
-%>
-</%def>
+%></%def>
 
-<%def name="get_first_param(param_name, def_val=None)">
-<%
+<%def name="get_first_param(param_name, def_val=None)"><%
     from ott.utils import html_utils
     return html_utils.get_first_param(request, param_name, def_val)
-%>
-</%def>
+%></%def>
 
-<%def name="has_url_param(param_name)">
-<%
+<%def name="has_url_param(param_name)"><%
     from ott.utils import html_utils
     ret_val = False
     loc = html_utils.get_first_param(request, param_name)
     if loc:
         ret_val = True
     return ret_val
-%>
-</%def>
+%></%def>
 
-<%def name="get_locale(def_val='en')">
-<%
+<%def name="get_locale(def_val='en')"><%
     from ott.utils import html_utils
     ret_val = def_val
     try:
@@ -322,11 +346,9 @@
     except:
         ret_val = def_val
     return ret_val
-%>
-</%def>
+%></%def>
 
-<%def name="get_extra_params(def_val='')">
-<%
+<%def name="get_extra_params(def_val='')"><%
     ''' extra_params: this variable is built here, and should be appended to all <a href> urls.  The string is pre-pended with
         an ampersand, so if there are no parameters on a given url, maybe add something bogus to the url prior to ${extra_parmas}
     '''
@@ -338,8 +360,7 @@
         extra_params = "{0}&_LOCALE_={1}".format(extra_params, loc)
 
     return extra_params
-%>
-</%def>
+%></%def>
 
 <%def name="pretty_date_from_ms(ms)"><%
     from ott.utils import date_utils
@@ -418,16 +439,14 @@
     </p>
 </%def>
 
-<%def name="compare_values(a, b)">
-<%
+<%def name="compare_values(a, b)"><%
     ret_val = False
     try:
         ret_val = float(a) == float(b)
     except:
         ret_val = a == b
     return ret_val
-%>
-</%def>
+%></%def>
 
 <%def name="or_bar(show_or=True)">
     %if show_or:

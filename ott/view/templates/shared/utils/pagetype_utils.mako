@@ -19,7 +19,7 @@
 ##
 <%def name="stop_select(name='', extra_params='', base_params='me', ele_type='div')">
     ${base_stop_stations(name, extra_params, base_params, ele_type)}
-    <h2>Select a ${name} stop</h2>    
+    <h2>Select a ${name} stop</h2>
 </%def>
 
 ##

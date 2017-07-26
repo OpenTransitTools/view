@@ -1,72 +1,8 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/mobile/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="form" file="/shared/utils/form_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%
-    extra_params = util.get_extra_params()
-%>
-<%def name="title()">${_(u'Stops & Stations')}</%def>
-<%def name="meta_data()">${meta.stop()}</%def>
-<%def name="app_css()">
-    ${form.autocomplete_css_includes()}
-    ${form.autocomplete_js_includes()}
-    ${form.gps_form_scriptlet()}
-</%def>
-
-<%def name="js_onload()">javascript:select_form();</%def>
-${form.select_form_scriptlet()}
-${page.stop_select(_(u'Stops & Stations'), extra_params, 'me', 'h1')}
-
-<style type="text/css">
-.content h2 { /* hide unhelpful heading */
-    display: none;
-}
-.content form.triptools-form fieldset label { /* match h2 */
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 1em;
-    color: #333;
-    padding: .5em 0;
-}
-@media only screen and (min-width: 768px) { /* sm screens and up */
-    .content form.triptools-form fieldset label {
-        font-size: 32px;
-    }
-}
-</style>
-
-<div class="standardheader">
-    <h1><a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}</h1>
-</div><!-- .standardheader -->  
-
-<div class="fullwidth">
-    <div class="contentcontainer">
-        <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                ${su.stop_select_form()}
-                ${form.autocomplete_search_input()}
-
-                <h3>${_(u'Related')}</h3>
-                <div class="row">
-                    <div class="col-xs-12 col-sm-6">
-                       <ul class="links">
-                            <li><a href="${util.url_domain()}/transitcenters/index.htm">${_(u'Transit Centers')}</a></li>
-                            <li><a href="${util.url_domain()}/max/stations/index.htm">${_(u'MAX Light Rail stations')}</a></li>
-                            <li><a href="${util.url_domain()}/wes/stations.htm">${_(u'WES Commuter Rail stations')}</a></li>
-                        </ul>
-                    </div><!-- .col -->
-                    <div class="col-xs-12 col-sm-6">
-                       <ul class="links">
-                            <li><a href="${util.url_domain()}/parkandride/index.htm">${_(u'Park & Ride lots')}</a></li>
-                            <li><a href="${util.url_domain()}/portlandmall/index.htm">${_(u'Portland Transit Mall')}</a></li>
-                        </ul>
-                    </div><!-- .col -->
-                </div><!-- .row -->
-            </div><!-- .col -->
-        </div><!-- .row -->
-
-    </div><!-- .contentcontainer -->
-</div><!-- .fullwidth -->
+    title = _("Stops %26 Stations")
+    header, footer = util.get_header_footer(title, onload="select_form", is_mobile=True)
+%>${header|n}
+<%include file="/shared/app/stop_select_form.mako", args="is_mobile=True"/>
+${footer|n}

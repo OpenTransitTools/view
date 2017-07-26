@@ -16,18 +16,16 @@
 </script>
 </%def>
 
-#
-# event call to GA
-# _gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);
-#
+##
+## event call to GA
+## _gaq.push(['_trackEvent', 'TripPlanner', 'Submit', ' Advanced Trip Planner submit']);
+##
 <%def name="event(app, evt, desc)">onClick="_gaq.push(['_trackEvent', '${app}', '${evt}', '${desc}']);"</%def>
-
 <%def name="empty_method()"></%def>
-<%def name="trip_submit()"><%event('TripPlanner', 'Submit', 'Trip Planner submit')%></%def>
+<%def name="trip_submit()"><% event('TripPlanner', 'Submit', 'Trip Planner submit') %></%def>
 
 
 select_route=event('StopsStations', 'Submit', 'MainForm Select-a-line submit')
 find_stop=event('StopsStations', 'Submit', 'MainForm Search submit')
 trip_submit=event('TripPlanner', 'Submit', 'Trip Planner submit')
 trip_adv_submit=event('TripPlanner', 'Submit', 'Advanced Trip Planner submit')
-

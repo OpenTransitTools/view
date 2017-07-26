@@ -1,46 +1,9 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/mobile/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 <%
-    itinerary = plib.get_itinerary(plan)
-    extra_params = util.get_extra_params()
-%>
-<%def name="title()">${plib.itin_page_title(plan)}</%def>
-<%def name="meta_data()">${meta.tripplanner()}</%def>
-<%def name="side_bar()">
-    <div>
-        ${side.sidebar_adverts(adverts)}
-        ${side.planner(plan)}
-    </div>
-</%def>
-
-<%def name="app_css()">${page.tripplanner_css()}</%def>
-<script src="${util.url_domain()}/scripts/triptools.js"></script>
-<%def name="bottom()">${plib.bottom_disclaimer()} ${plib.set_planner_text_cookie()}</%def>
-
-<div class="standardheader">
-    <h1><a href="planner_form.html"><i class="fa-tp-outline h1icon"></i></a> ${_(u'Your trip on TriMet')}</h1>
-</div><!-- .standardheader --> 
-
-<div class="fullwidth">
-    <div class="contentcontainer">
-        <div class="row">
-            <div class="col-xs-12">
-                ##
-                ## main content
-                ##
-                ${plib.render_trip_details(plan, itinerary, extra_params)}
-                ${plib.render_tabs(plan, extra_params)}
-                ${plib.render_itinerary(itinerary, extra_params)}
-                ${plib.render_fares(itinerary, util.url_domain() + '/fares/index.htm')}
-                ${plib.render_alerts(itinerary)}
-                ${plib.render_console(plan, extra_params)}
-                ${util.cache_geocodes_in_browser(cache)}
-            </div><!-- .col -->
-        </div><!-- .row -->
-    </div><!-- .contentcontainer -->
-</div><!-- .fullwidth -->
+    title = plib.itin_page_title_str(plan)
+    header, footer = util.get_header_footer(title, is_mobile=True)
+%>${header|n}
+<%include file="/shared/app/planner.mako", args="is_mobile=True"/>
+${footer|n}
