@@ -13,9 +13,6 @@
         {'u':'planner.html', 'p':'from=2::-122.5,45.5&to=zoo::-122.5,45.5&Hour=12&Minute=35&AmPm=pm'},
         {'u':'planner.html', 'p':'from=2::-122.5,45.5&to=zoo::-122.5,45.5&Hour=12&Minute=35&AmPm=pm&mode=BICYCLE', 'n':'Bike Only Trip'},
         {'u':'planner_walk.html', 'p':'mode=WALK&from=45.448814,-122.631935&to=45.443102,-122.636399', 'n':'NOTE: Separate Walk Direction Planner Page'},
-        {'u':'adverts.html', 'p':'', 'n':'Adverts testing page'},
-        {'u':'/map/trimet-ssi.htm', 'path':'', 'p':'from=zoo&to=pdx', 'n':'example of the embedded trip planner form via server-side includes (note the url params populating the form, and the Spanish localization)'},
-        {'u':'pform_standalone.html', 'p':'from=2&to=834', 'n':'basic embedded trip planner form (outside the home page, as opposed to the server-side include above)'},
         {'u':'', 'p':'', 'n':''},
 
         {'label': 'Stop Pages'},

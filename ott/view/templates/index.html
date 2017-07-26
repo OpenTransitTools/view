@@ -1,17 +1,11 @@
 ## -*- coding: utf-8 -*-
-<%inherit file="/desktop/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
-<%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
-<%def name="title()">TriMet: Trip Planner</%def>
-<%def name="meta_data()">${meta.stop()}</%def>
-<%def name="side_bar()"></%def>
-<%def name="app_css()"></%def>
-<%def name="stations_selected()">class="selected"</%def>
 %if util.is_test() or util.has_url_param('debug'):
+<%
+    header, footer = util.get_header_footer("OTT VIEW index.html", is_mobile=False)
+%>${header|n}
 <%include file="/shared/app/test.mako"/>
+${footer|n}
 %else:
-<meta http-equiv="refresh" content="0; url=http://trimet.org" />
+<meta http-equiv="refresh" content="0; url=${util.get_ini_param('ott.home_page')}" />
 %endif
