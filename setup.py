@@ -4,7 +4,6 @@ import setuptools
 from setuptools import setup, find_packages
 setuptools.dist.Distribution(dict(setup_requires='Babel')) # for message_extractors line below (else warnings / errors)
 
-
 here = os.path.abspath(os.path.dirname(__file__))
 README = open(os.path.join(here, 'README.md')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
@@ -34,10 +33,6 @@ if sys.version_info[:2] < (2, 7):
 #
 dev_extras = (
     'zc.buildout',
-    'coverage>=3.5.2',
-    'paramiko == 1.14.2',
-    'fabric>=1.4.3',
-    'zest.releaser>=3.37',
 )
 
 # when you run: bin/py setup.py extract_messages
