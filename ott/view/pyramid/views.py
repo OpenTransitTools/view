@@ -533,8 +533,6 @@ def get_path(request, path):
 
 
 def forward_request(request, path, query_string=None, extra_params=None):
-    # http://ride.trimet.org?mapit=I&submit&${plan['params']['map_planner']}
-    # def map_url_params(self, fmt="from={frm}&to={to}&time={time}&maxHours={max_hours}&date={month}/{day}/{year}&mode={mode}&optimize={optimize}&maxWalkDistance={walk_meters:.0f}&arriveBy={arrive_depart}"):
     return HTTPFound(location=path)
 
 
@@ -542,7 +540,7 @@ def make_subrequest(request, path, query_string=None, extra_params=None):
     """ create a subrequest to call another page in the app...
         http://docs.pylonsproject.org/projects/pyramid/en/latest/narr/subrequest.html
     """
-    # step 1: make a new request object...
+    # step 1: make a new requesott.solr_url   = //maps7.trimet.org/solr/selectt object...
     path = get_path(request, path)
     subreq = Request.blank(path)
 
