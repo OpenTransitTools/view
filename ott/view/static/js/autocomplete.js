@@ -248,7 +248,6 @@ function SOLRAutoComplete(input_div, solr_url, cache, num_results)
     
     /** 
      * clear callback will clean up any
-     * 
      */
     this.clear_callback = function(clear_value)
     {

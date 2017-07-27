@@ -41,16 +41,16 @@ function tpGoogleAnalytics(ga, content)
 function doClear(thisfield, defaulttext) {
     thisfield.className='highlight';
     if (thisfield.value == thisfield.defaultValue) {
-	thisfield.value = "";
+        thisfield.value = "";
     }
 }
 function doText(thisfield, defaulttext) {
     if (thisfield.value == "") {
-	thisfield.value = thisfield.defaultValue;
-	thisfield.className='regular';
+        thisfield.value = thisfield.defaultValue;
+        thisfield.className='regular';
     }
     else {
-	thisfield.className='regular-complete';
+        thisfield.className='regular-complete';
     }
 }
 function doClassHighlight(thisfield) {
