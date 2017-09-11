@@ -1,4 +1,5 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+
 ##
 ## routines for stop / stop_schedule pages
 ##
@@ -31,7 +32,7 @@
 %></%def>
 
 
-<%def name="page_title_str(stop)"><% return "{} {} - {}".format(_(u'Stop ID'), stop['stop_id'], stop['name'].replace(' & ', ' %26 '))%></%def>
+<%def name="page_title_str(stop)"><% return u"{} {} - {}".format(_(u'Stop ID'), stop['stop_id'], stop['name'].encode('utf-8').replace(' & ', ' %26 '))%></%def>
 <%def name="page_title(stop)">${page_title_str(stop)}</%def>
 
 <%def name="stop_title_str(stop, escape=True)"><%
@@ -39,7 +40,7 @@
     if stop['direction'] and len(stop['direction']) > 0:
         ret_val = ret_val + ", " + stop['direction']
     if escape:
-        ret_val = ret_val.replace(' & ', ' %26 ')
+        ret_val = ret_val.encode('utf-8').replace(' & ', ' %26 ')
     return ret_val
 %></%def>
 
