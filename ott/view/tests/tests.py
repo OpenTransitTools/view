@@ -36,7 +36,6 @@ class MyTestCase(unittest.TestCase):
         self.assertRegexpMatches(u, str)
 
 
-#class DontRunTests():
 class ViewTests(MyTestCase):
 
     def test_stops_near(self):
