@@ -3,17 +3,13 @@ import unittest
 import urllib
 import contextlib
 
-PORT="33333"
+PORT = "33333"
 
-class MyTestCase(unittest.TestCase):
-    def call_url_match_list(self, url, list):
-        u = call_url(url)
-        for l in list:
-            self.assertRegexpMatches(u, l)
-    
-    def call_url_match_string(self, url, str):
-        u = call_url(url)
-        self.assertRegexpMatches(u, str)
+
+def set_port(port):
+    global PORT
+    PORT = port
+
 
 def get_url(svc_name, params=None):
     ret_val = "http://localhost:{0}/{1}".format(PORT, svc_name)
@@ -21,11 +17,24 @@ def get_url(svc_name, params=None):
         ret_val = "{0}?{1}".format(ret_val, params)
     return ret_val
 
+
 def call_url(url):
     ret_json = None
     with contextlib.closing(urllib.urlopen(url)) as f:
         ret_json = f.read()
     return ret_json
+
+
+class MyTestCase(unittest.TestCase):
+    def call_url_match_list(self, url, list):
+        u = call_url(url)
+        for l in list:
+            self.assertRegexpMatches(u, l)
+
+    def call_url_match_string(self, url, str):
+        u = call_url(url)
+        self.assertRegexpMatches(u, str)
+
 
 #class DontRunTests():
 class ViewTests(MyTestCase):
@@ -205,4 +214,3 @@ class GeoCoderTests(MyTestCase):
         for m in ['', 'm/']:
             url = get_url(m + 'planner.html', 'from=834 XX Portland')
             self.call_url_match_list(url, ["834 SE MILL", "834 SE LAMBERT"])
-
