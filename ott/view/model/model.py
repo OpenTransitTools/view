@@ -45,10 +45,6 @@ class Model(Base):
             log.warning(e)
         return ret_val
 
-    def get_adverts(self, get_params, **kwargs):
-        ret_val = self.stream_json('adverts', get_params)
-        return ret_val
-
 
 def main():
     m=Model()

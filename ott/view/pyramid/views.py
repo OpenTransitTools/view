@@ -45,9 +45,6 @@ def do_view_config(config):
     config.add_route('qrcode_desktop',                          '/qrcode')
     config.add_route('qrcode_mobile',                           '/m/qrcode')
     config.add_route('qrcode_ws',                               '/ws/qrcode')
-    config.add_route('adverts_desktop',                         '/adverts.html')
-    config.add_route('adverts_mobile',                          '/m/adverts.html')
-    config.add_route('adverts_ws',                              '/ws/adverts.html')
 
     ###
     ### DESKTOP PAGES
@@ -151,8 +148,6 @@ def planner_geocode(request):
             geo_place = html_utils.get_first_param(request, 'to')
 
         ret_val = geocode_utils.call_geocoder(request, geo_place, geo_type)
-        adverts = request.model.get_adverts(request,  **request.params)
-        ret_val['adverts'] = adverts
     except Exception, e:
         log.warning('{0} exception:{1}'.format(request.path, e))
         ret_val = make_subrequest(request, '/exception.html')
@@ -453,18 +448,6 @@ def qrcode(request):
     img_io = qr_to_stream(content)
     response.app_iter = img_io
     return response
-
-
-@view_config(route_name='adverts_desktop', renderer='adverts.html')
-@view_config(route_name='adverts_mobile',  renderer='adverts.html')
-@view_config(route_name='adverts_ws',      renderer='adverts.html')
-def adverts(request):
-    ret_val = {}
-    ret_val['bus_adverts']     = request.model.get_adverts("mode=bus&_LOCALE_=en",  **request.params)
-    ret_val['bus_adverts_es']  = request.model.get_adverts("mode=bus&_LOCALE_=es",  **request.params)
-    ret_val['rail_adverts']    = request.model.get_adverts("mode=rail&_LOCALE_=en", **request.params)
-    ret_val['rail_adverts_es'] = request.model.get_adverts("mode=rail&_LOCALE_=es", **request.params)
-    return ret_val
 
 
 @view_config(route_name='index_desktop', renderer='index.html')
