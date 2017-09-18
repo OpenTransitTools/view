@@ -441,10 +441,10 @@ def sparkline(request):
 @view_config(route_name='qrcode_mobile')
 @view_config(route_name='qrcode_ws')
 def qrcode(request):
-    """ streams a qrcode image for the param 'content' (defaults to http://trimet.org)
+    """ streams a qrcode image for the param 'content' (defaults to http://opentransittools.org)
     """
     response = Response(content_type='image/png')
-    content = html_utils.get_first_param(request, 'content', 'http://trimet.org')
+    content = html_utils.get_first_param(request, 'content', 'http://opentransittools.org')
     img_io = qr_to_stream(content)
     response.app_iter = img_io
     return response
