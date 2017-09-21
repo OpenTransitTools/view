@@ -11,10 +11,12 @@ def set_port(port):
     PORT = port
 
 
-def get_url(svc_name, params=None):
+def get_url(svc_name, params=None, lang=None):
     ret_val = "http://localhost:{0}/{1}".format(PORT, svc_name)
     if params:
         ret_val = "{0}?{1}".format(ret_val, params)
+    if lang:
+        ret_val = "{0}&_LOCALE_={1}".format(ret_val, lang)
     return ret_val
 
 
@@ -187,24 +189,28 @@ class GeoCoderTests(MyTestCase):
             "A+Ave+Chandler+Lake+Oswego+(Stop+ID+2)",
             "Stop ID 8",
         ]
-        for m in ['', 'm/']:
-            for p in places:
-                url = get_url(m + 'stops_near.html', 'place=' + p)
-                self.call_url_match_list(url, "stopimage/format/png/width/340/height/300/zoom/6")
+        for l in [None, 'es']:
+            for m in ['', 'm/']:
+                for p in places:
+                    url = get_url(m + 'stops_near.html', 'place=' + p, l)
+                    self.call_url_match_list(url, "stopimage/format/png/width/340/height/300/zoom/6")
 
     def test_stops_near_geocode_route_stops(self):
-        for m in ['', 'm/']:
-            for s in self.route_stops:
-                url = get_url(m + 'stops_near.html', 'place=' + s[0])
-                self.call_url_match_list(url, s[1])
+        for l in [None, 'es']:
+            for m in ['', 'm/']:
+                for s in self.route_stops:
+                    url = get_url(m + 'stops_near.html', 'place=' + s[0], l)
+                    self.call_url_match_list(url, s[1])
 
     def test_stops_near_geocode(self):
-        for m in ['', 'm/']:
-            for s in self.stops:
-                url = get_url(m + 'stops_near.html', 'place=' + s[0])
-                self.call_url_match_string(url, s[1])
+        for l in [None, 'es']:
+            for m in ['', 'm/']:
+                for s in self.stops:
+                    url = get_url(m + 'stops_near.html', 'place=' + s[0], l)
+                    self.call_url_match_string(url, s[1])
 
     def test_geocode(self):
-        for m in ['', 'm/']:
-            url = get_url(m + 'planner.html', 'from=834 XX Portland')
-            self.call_url_match_list(url, ["834 SE MILL", "834 SE LAMBERT"])
+        for l in [None, 'es']:
+            for m in ['', 'm/']:
+                url = get_url(m + 'planner.html', 'from=834 XX Portland', l)
+                self.call_url_match_list(url, ["834 SE MILL", "834 SE LAMBERT"])
