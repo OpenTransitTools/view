@@ -167,8 +167,7 @@ class GeoCoderTests(MyTestCase):
         ['10111', 'NW Bethany &amp; West Union'],
         ['10089', 'NW Bethany &amp; West Union'],
         ['13685', 'NW Laidlaw &amp; Bethany'],
-        ['6830',  'SW 158th &amp; Jay'],
-        ['8444455  ddaxxxdfas asdfasfas', 'We cannot find'],
+        ['6830',  'SW 158th &amp; Jay']
     ]
 
     route_stops = [
@@ -209,8 +208,21 @@ class GeoCoderTests(MyTestCase):
                     url = get_url(m + 'stops_near.html', 'place=' + s[0], l)
                     self.call_url_match_string(url, s[1])
 
+    def test_not_found_geocode(self):
+        for m in ['', 'm/']:
+            for s in self.stops:
+                url = get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas')
+                self.call_url_match_string(url, 'We cannot find')
+
+    def test_not_found_geocode_es(self):
+        for m in ['', 'm/']:
+            for s in self.stops:
+                url = get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas', 'es')
+                self.call_url_match_string(url, 'Lugar indefinido')
+
     def test_geocode(self):
         for l in [None, 'es']:
             for m in ['', 'm/']:
                 url = get_url(m + 'planner.html', 'from=834 XX Portland', l)
                 self.call_url_match_list(url, ["834 SE MILL", "834 SE LAMBERT"])
+
