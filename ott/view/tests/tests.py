@@ -66,7 +66,7 @@ class ViewTests(MyTestCase):
             # test place as just a coord
             url = get_url(m + 'stops_near.html', 'place=Stop ID 2')
             s = call_url(url)
-            self.assertRegexpMatches(s, "A Ave &amp; Chandler Eastbound")
+            self.assertRegexpMatches(s, "A Ave &amp; Chandler")
 
             # test interpolated address
             url = get_url(m + 'stops_near.html', 'place=888 Lambert St&show_more=true')
@@ -159,18 +159,18 @@ class ViewTests(MyTestCase):
 class GeoCoderTests(MyTestCase):
     stops = [
         ['834',   '834 SE LAMBERT ST'],
-        ['2',     'A Ave &amp; Chandler Eastbound'],
-        ['10093', 'NW Bethany &amp; Laidlaw Northbound'],
-        ['10092', '4700 Block NW Bethany Northbound'],
-        ['10108', '4700 Block NW Bethany Southbound'],
-        ['10107', 'NW Bethany &amp; Laidlaw Southbound'],
-        ['10114', 'NW Bethany &amp; Oak Hills Dr Southbound'],
-        ['8920',  'SW Walker &amp; Butner Westbound'],
-        ['5590',  'SW Tualatin Valley Hwy &amp; Market Centre Eastbound'],
-        ['10111', 'NW Bethany &amp; West Union Southbound'],
-        ['10089', 'NW Bethany &amp; West Union Northbound'],
-        ['13685', 'NW Laidlaw &amp; Bethany Eastbound'],
-        ['6830',  'SW 158th &amp; Jay Northbound'],
+        ['2',     'A Ave &amp; Chandler'],
+        ['10093', 'NW Bethany &amp; Laidlaw'],
+        ['10092', '4700 Block NW Bethany'],
+        ['10108', '4700 Block NW Bethany'],
+        ['10107', 'NW Bethany &amp; Laidlaw'],
+        ['10114', 'NW Bethany &amp; Oak Hills Dr'],
+        ['8920',  'SW Walker &amp; Butner'],
+        ['5590',  'SW Tualatin Valley Hwy &amp; Market Centre'],
+        ['10111', 'NW Bethany &amp; West Union'],
+        ['10089', 'NW Bethany &amp; West Union'],
+        ['13685', 'NW Laidlaw &amp; Bethany'],
+        ['6830',  'SW 158th &amp; Jay'],
         ['8444455  ddaxxxdfas asdfasfas', 'We cannot find'],
     ]
 
