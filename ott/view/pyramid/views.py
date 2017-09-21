@@ -1,6 +1,3 @@
-import logging
-log = logging.getLogger(__file__)
-
 import StringIO
 import re
 
@@ -16,6 +13,7 @@ from pyramid.events import subscriber
 
 from ott.view.model.model import Model
 from ott.view.model.mock import Mock
+from ott.view.model.place import Place
 
 from ott.view.utils import schedule_tabs
 from ott.view.utils import geocode_utils
@@ -27,7 +25,9 @@ from ott.utils import object_utils
 from ott.utils import transit_utils
 from ott.utils.parse import TripParamParser
 
-from ott.view.model.place import Place
+import logging
+log = logging.getLogger(__file__)
+
 
 
 def do_view_config(config):
