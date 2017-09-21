@@ -149,11 +149,6 @@ class ViewTests(MyTestCase):
             self.assertRegexpMatches(s,"Plan a trip to 834 SE MILL ST")
             self.assertRegexpMatches(s,"ride.trimet.org")
 
-    def test_homepage_form(self):
-        url = get_url('pform_standalone.html', 'from=PDX::45.587546,-122.592925&to=ZOO')
-        s = call_url(url)
-        self.assertRegexpMatches(s, 'type="text" id="from" name="from" value="PDX"')
-        self.assertRegexpMatches(s, 'type="text" id="going" name="to" value="ZOO"')
 
 #class DontRunTests():
 class GeoCoderTests(MyTestCase):
