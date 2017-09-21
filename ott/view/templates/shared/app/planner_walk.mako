@@ -1,8 +1,6 @@
 ## -*- coding: utf-8 -*-
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
 <%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
@@ -10,7 +8,6 @@
     title = _(u'Your trip instructions')
 %>
 
-${page.tripplanner_css()}
 <script src="${util.url_domain()}/scripts/triptools.js"></script>
 
 ##

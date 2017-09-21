@@ -1,15 +1,12 @@
 ## -*- coding: utf-8 -*-
 <%page args="is_mobile=False, title=''"/>
 <%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
-<%namespace name="page"  file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner_utils.mako"/>
 <%namespace name="pform" file="/shared/utils/planner_form_utils.mako"/>
 <%namespace name="form"  file="/shared/utils/form_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
 %>
-
-${page.tripplanner_css()}
 ${form.autocomplete_css_includes()}
 ${form.autocomplete_js_includes()}
 ${form.planner_form_js_includes()}
