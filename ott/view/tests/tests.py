@@ -44,11 +44,19 @@ class MyTestCase(unittest.TestCase):
         port = ini.get('ott.svr_port', 'app:main', PORT)
         set_port(port)
 
-        global URL_FILE
-        URL_FILE = open(os.path.join(dir, "urlfile.txt"), 'a')
+        url_file = ini.get('ott.test_urlfile', 'app:main')
+        if url_file:
+            global URL_FILE
+            URL_FILE = open(os.path.join(dir, url_file), "a+")
+
+        test_domain = ini.get('ott.test_domain', 'app:main')
+        if test_domain:
+            global DOMAIN
+            DOMAIN = test_domain
 
     def tearDown(self):
         if URL_FILE:
+            URL_FILE.flush()
             URL_FILE.close()
 
     def call_url_match_list(self, url, list):
@@ -227,15 +235,13 @@ class GeoCoderTests(MyTestCase):
 
     def test_not_found_geocode(self):
         for m in ['', 'm/']:
-            for s in self.stops:
-                url = get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas')
-                self.call_url_match_string(url, 'We cannot find')
+            url = get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas')
+            self.call_url_match_string(url, 'We cannot find')
 
     def test_not_found_geocode_es(self):
         for m in ['', 'm/']:
-            for s in self.stops:
-                url = get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas', 'es')
-                self.call_url_match_string(url, 'Lugar indefinido')
+            url = get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas', 'es')
+            self.call_url_match_string(url, 'Lugar indefinido')
 
     def test_geocode(self):
         for l in [None, 'es']:
