@@ -5,6 +5,9 @@
 .settings
 COMMIT_EDITMSG
 nohup.out
+urlfile.txt
+c:/
+C:/
 *.log
 *.tar
 *.gz

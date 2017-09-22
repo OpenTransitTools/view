@@ -8,7 +8,8 @@ from ott.utils import config_util
 from ott.utils import file_utils
 
 PORT = "33333"
-
+DOMAIN = "localhost"
+URL_FILE = None
 
 def set_port(port):
     global PORT
@@ -16,11 +17,13 @@ def set_port(port):
 
 
 def get_url(svc_name, params=None, lang=None):
-    ret_val = "http://localhost:{0}/{1}".format(PORT, svc_name)
+    ret_val = "http://{}:{}/{}".format(DOMAIN, PORT, svc_name)
     if params:
         ret_val = "{0}?{1}".format(ret_val, params)
     if lang:
         ret_val = "{0}&_LOCALE_={1}".format(ret_val, lang)
+    if URL_FILE:
+        URL_FILE.write(ret_val)
     return ret_val
 
 
@@ -39,8 +42,12 @@ class MyTestCase(unittest.TestCase):
         port = ini.get('ott.svr_port', 'app:main', PORT)
         set_port(port)
 
+        global URL_FILE
+        URL_FILE = open(os.path.join(dir, "urlfile.txt"), 'w+')
+
     def tearDown(self):
-        pass
+        if URL_FILE:
+            URL_FILE.close()
 
     def call_url_match_list(self, url, list):
         u = call_url(url)
