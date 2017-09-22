@@ -23,7 +23,9 @@ def get_url(svc_name, params=None, lang=None):
     if lang:
         ret_val = "{0}&_LOCALE_={1}".format(ret_val, lang)
     if URL_FILE:
-        URL_FILE.write(ret_val)
+        url = ret_val.replace(" ", "+")
+        URL_FILE.write(url)
+        URL_FILE.write("\n")
     return ret_val
 
 
@@ -43,7 +45,7 @@ class MyTestCase(unittest.TestCase):
         set_port(port)
 
         global URL_FILE
-        URL_FILE = open(os.path.join(dir, "urlfile.txt"), 'w+')
+        URL_FILE = open(os.path.join(dir, "urlfile.txt"), 'a')
 
     def tearDown(self):
         if URL_FILE:
