@@ -1,7 +1,11 @@
+import os
+import sys
 import unittest
-
 import urllib
 import contextlib
+
+from ott.utils import config_util
+from ott.utils import file_utils
 
 PORT = "33333"
 
@@ -28,6 +32,16 @@ def call_url(url):
 
 
 class MyTestCase(unittest.TestCase):
+    def setUp(self):
+        #import pdb; pdb.set_trace()
+        dir = file_utils.get_project_root_dir()
+        ini = config_util.ConfigUtil('development.ini', run_dir=dir)
+        port = ini.get('ott.svr_port', 'app:main', PORT)
+        set_port(port)
+
+    def tearDown(self):
+        pass
+
     def call_url_match_list(self, url, list):
         u = call_url(url)
         for l in list:
@@ -173,12 +187,6 @@ class GeoCoderTests(MyTestCase):
     route_stops = [
         ['929',  ['044', '054', '056'] ],
     ]
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
 
     def test_stops_near_stop_id(self):
         ''' check that the following place queries hit a stop page (via the stop image url)
