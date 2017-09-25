@@ -9,7 +9,9 @@ from ott.utils import file_utils
 
 PORT = "33333"
 DOMAIN = "localhost"
+PATH = None
 URL_FILE = None
+
 
 def set_port(port):
     global PORT
@@ -17,7 +19,11 @@ def set_port(port):
 
 
 def get_url(svc_name, params=None, lang=None):
-    ret_val = "http://{}:{}/{}".format(DOMAIN, PORT, svc_name)
+    #import pdb; pdb.set_trace()
+    if PATH:
+        ret_val = "http://{}:{}/{}/{}".format(DOMAIN, PORT, PATH, svc_name)
+    else:
+        ret_val = "http://{}:{}/{}".format(DOMAIN, PORT, svc_name)
     if params:
         ret_val = "{0}?{1}".format(ret_val, params)
     if lang:
@@ -38,10 +44,12 @@ def call_url(url):
 
 class MyTestCase(unittest.TestCase):
     def setUp(self):
-        #import pdb; pdb.set_trace()
         dir = file_utils.get_project_root_dir()
         ini = config_util.ConfigUtil('development.ini', run_dir=dir)
-        port = ini.get('ott.svr_port', 'app:main', PORT)
+
+        port = ini.get('ott.test_port', 'app:main')
+        if not port:
+            port = ini.get('ott.svr_port', 'app:main', PORT)
         set_port(port)
 
         url_file = ini.get('ott.test_urlfile', 'app:main')
@@ -53,6 +61,11 @@ class MyTestCase(unittest.TestCase):
         if test_domain:
             global DOMAIN
             DOMAIN = test_domain
+
+        test_path = ini.get('ott.test_path', 'app:main')
+        if test_path:
+            global PATH
+            PATH = test_path
 
     def tearDown(self):
         if URL_FILE:
