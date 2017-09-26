@@ -134,7 +134,7 @@
     return ret_val
 %></%def>
 
-<%def name="clean_name(name)"><% return name.replace('%26', '&').replace('%27', "'") %></%def>
+<%def name="clean_name(name)"><% return name.replace('%26', '&').replace('%27', "'").replace('%20', ' ') %></%def>
 
 <%def name="name_city_stopid(name, city, type=None, id=None)"><%
     ret_val = _(u'Undefined')
@@ -146,7 +146,7 @@
             city = ', ' + city
         else:
             city = ''
-        ret_val = clean_name(name) + city + stop
+        ret_val = clean_name(name) + clean_name(city) + stop
     except:
         pass
     return ret_val
