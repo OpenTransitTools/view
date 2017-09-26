@@ -141,13 +141,21 @@
 #
 # If we can't find a place in the geocoder, or if we find multiple places, you'll see this msg...
 #
-<%def name="geocoder_msg(geocoder_results, geo_place, geo_type=None)">
-    %if geocoder_results and len(geocoder_results) > 0:
-    ${_(u'We found multiple')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'locations')} ${_(u'for')}: ${geo_place}
-    %else:
-    ${_(u'We cannot find a')} <i>${_(geo_type) if geo_type else ''}</i> ${_(u'location')} ${_(u'for')}: ${geo_place}
-    %endif
-</%def>
+<%def name="geocoder_msg_str(geocoder_results, geo_place, geo_type=None)"><%
+    ret_val = ""
+    if geo_type:
+        geo_type = "<i>{}</i>".format(_(geo_type))
+    else:
+        geo_type = ''
+
+    if geocoder_results and len(geocoder_results) > 0:
+        ret_val = "{} {} {} {}: {}".format(_(u'We found multiple'), geo_type, _(u'locations'), _(u'for'), geo_place)
+    else:
+        ret_val = "{} {} {} {}: {}".format(_(u'We cannot find a'), geo_type, _(u'location'), _(u'for'), geo_place)
+    return ret_val
+%></%def>
+
+<%def name="geocoder_msg(geocoder_results, geo_place, geo_type=None)">${geocoder_msg_str(geocoder_results, geo_place, geo_type)}</%def>
 
 #
 # hidden param to indicate whether some input has already been geocoded

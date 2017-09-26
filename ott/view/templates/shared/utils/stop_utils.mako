@@ -47,14 +47,14 @@
 <%def name="stop_title(stop)">${stop_title_str(stop, False)}</%def>
 <%def name="str_title(stop)"><% return page_title_str(stop) %></%def>
 
-
 <%def name="simple_header(title=None, sub_title=None)"> <%
     if title is None:
         title = _(u'Stops & Stations')
 %>
 <div class="standardheader">
     <h1>
-        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${title}
+        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a>
+        ${title}
         %if sub_title:
         <br/>
         <small>${sub_title}</small>

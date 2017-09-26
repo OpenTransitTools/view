@@ -62,7 +62,7 @@ def do_from_to_geocode_check(request):
 
         @return: a modified query string, and any extra params needed for the geocoder 
     '''
-    ret_val = {'query_string':None, 'geocode_param':None, 'from':None, 'to':None, 'cache':[]}
+    ret_val = {'query_string': None, 'geocode_param': None, 'from': None, 'to': None, 'cache': []}
 
     # step 1: check for from & to coord information in the url
     has_from_coord = geo_utils.is_param_a_coord(request, 'from')
