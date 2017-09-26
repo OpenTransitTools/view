@@ -144,14 +144,14 @@
 <%def name="geocoder_msg_str(geocoder_results, geo_place, geo_type=None)"><%
     ret_val = ""
     if geo_type:
-        geo_type = "'{}'".format(_(geo_type))
+        geo_type = u"'{}'".format(_(geo_type))
     else:
         geo_type = ''
 
     if geocoder_results and len(geocoder_results) > 0:
-        ret_val = "{} {} {} {}: {}".format(_(u'We found multiple'), geo_type, _(u'locations'), _(u'for'), geo_place)
+        ret_val = u"{} {} {} {}: {}".format(_(u'We found multiple'), geo_type, _(u'locations'), _(u'for'), geo_place)
     else:
-        ret_val = "{} {} {} {}: {}".format(_(u'We cannot find a'), geo_type, _(u'location'), _(u'for'), geo_place)
+        ret_val = u"{} {} {} {}: {}".format(_(u'We cannot find a'), geo_type, _(u'location'), _(u'for'), geo_place)
     return ret_val
 %></%def>
 
