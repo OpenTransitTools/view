@@ -144,7 +144,7 @@
 <%def name="geocoder_msg_str(geocoder_results, geo_place, geo_type=None)"><%
     ret_val = ""
     if geo_type:
-        geo_type = "<i>{}</i>".format(_(geo_type))
+        geo_type = "'{}'".format(_(geo_type))
     else:
         geo_type = ''
 

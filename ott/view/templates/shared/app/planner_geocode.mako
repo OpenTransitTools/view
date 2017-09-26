@@ -16,7 +16,6 @@ ${plib.simple_header(title)}
     <div class="contentcontainer">
         <div class="row">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                ${page.trip_planner(_(u'Uncertain Location'), extra_params, 'form')}
                 <h2 class="error">
                     ${form.geocoder_msg(geocoder_results, geo_place, geo_type)}
                 </h2>
