@@ -157,7 +157,7 @@
     if name and len(name) > 0:
         ret_val = clean_name(name)
 
-    city = localize_str(city)
+    city = clean_name(city)
     tn = localize_str(type_name, type_name)
     type_name = unicode_to_str(tn, type_name) # have to do this for .format()
     if stop_id is None:
