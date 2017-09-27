@@ -68,7 +68,14 @@
 ##
 ## string page title ... for feedback / emailing (mostly)
 ##
-<%def name="str_title(plan)"><% from ott.utils import transit_utils; return transit_utils.plan_title(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])%></%def>
+<%def name="str_title(plan)"><%
+    from ott.utils import transit_utils;
+    if plan:
+        ret_val = transit_utils.plan_title(_(u'Trip Planner'), plan['from']['name'], _(u'to'), plan['to']['name'])
+    else:
+        ret_val = ""
+    return ret_val
+%></%def>
 
 ##
 ## for feedback form ... briefly describe the trip request
@@ -85,6 +92,7 @@
 ## header details w/ from & to details, plus optional trip details & edit links
 ##
 <%def name="render_trip_details(plan, itinerary=None, extra_params='')">
+    %if plan:
     <div class="details group" id="details">
         <p class="details-trip"><span><strong>${_(u'From')}</strong></span> ${plan['from']['name']}</p>
         <p class="details-trip"><span><strong>${_(u'To')}</strong></span> ${plan['to']['name']}</p>
@@ -96,6 +104,7 @@
         </div>
         %endif
     </div><!-- end #details -->
+    %endif
 </%def>
 
 
@@ -103,7 +112,7 @@
 ## option tabs
 ##
 <%def name="render_tabs(plan, extra_params)">
-%if len(plan['itineraries']) > 1:
+%if plan and len(plan['itineraries']) > 1:
     <ol id="plannertabs" class="group">
         ${itin_tab(plan['itineraries'], 0, _(u'Best bet'), extra_params)}
         ${itin_tab(plan['itineraries'], 1, _(u'Option 2'), extra_params)}
@@ -117,12 +126,13 @@
 ## (loop over the legs, and render them
 ##
 <%def name="render_itinerary(itinerary, extra_params, no_expand=False, is_mobile=False)">
-    %if has_transit(itinerary):
-    <ol id="itinerary" class="transit">
-    %else:
-    <ol id="itinerary" class="walkbike">
-    <% no_expand=True %>
-    %endif
+    %if itinerary:
+        %if has_transit(itinerary):
+        <ol id="itinerary" class="transit">
+        %else:
+        <ol id="itinerary" class="walkbike">
+        <% no_expand=True %>
+        %endif
         ##
         ## loop through the legs between start and end elements
         ## ${render_leg(leg, n)}
@@ -130,12 +140,14 @@
             ${_render_leg(itinerary, n, is_mobile, extra_params, no_expand)}
         %endfor
     </ol><!-- end #itinerary -->
+    %endif
 </%def>
 
 ##
 ## bottom console buttons for email, feedback, print, etc...
 ##
 <%def name="render_console(plan, extra_params)">
+    %if plan:
     <div class="console">
         <div class="row">
 
@@ -151,7 +163,6 @@
         
         </div><!-- .row -->
     </div><!-- end #console -->
-
     <p><small>${_(u'Times shown are estimates based on schedules and can be affected by traffic, road conditions, detours and other factors. Before you go, check')}
         <a href="/transittracker/about.htm" onClick="_gaq.push(['_trackEvent', 'Trip Planner Ads','ClickTo', '/transittracker/about.htm']);">TransitTracker</a>&trade;
         ${_(u'for real-time arrival information and any Service Alerts that may affect your trip.')}
@@ -159,13 +170,16 @@
         ${_(u'Call 503-238-RIDE (7433) or text your Stop ID to 27299.')}
         %endif
     </small></p>
+    %else:
+        ${_(u'Uncertain planner problem.')}
+    %endif
 </%def>
 
 ##
 ##
 ##
 <%def name="render_alerts(itinerary)">
-    %if itinerary['has_alerts']:
+    %if itinerary and itinerary['has_alerts']:
     <div class="box group" id="alerts">
         %for alert in itinerary['alerts']:
         ## TODO issue #5599
@@ -183,7 +197,7 @@
 </%def>
 
 <%def name="render_fares(itinerary, fares_url)">
-%if has_fare(itinerary):
+%if itinerary and has_fare(itinerary):
 <p class="fare">${_(u'Fare for this trip')}: <a href="${fares_url}">${_(u'Adult')}: ${itinerary['fare']['adult']}, ${_(u'Youth')}: ${itinerary['fare']['youth']}, ${_(u'Honored Citizen')}: ${itinerary['fare']['honored']}</a></p>
 %endif
 </%def>
