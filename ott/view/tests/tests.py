@@ -7,78 +7,68 @@ import contextlib
 from ott.utils import config_util
 from ott.utils import file_utils
 
-PORT = "33333"
-DOMAIN = "localhost"
-PATH = None
-URL_FILE = None
-
-
-def set_port(port):
-    global PORT
-    PORT = port
-
-
-def get_url(svc_name, params=None, lang=None):
-    #import pdb; pdb.set_trace()
-    if PATH:
-        ret_val = "http://{}:{}/{}/{}".format(DOMAIN, PORT, PATH, svc_name)
-    else:
-        ret_val = "http://{}:{}/{}".format(DOMAIN, PORT, svc_name)
-    if params:
-        ret_val = "{0}?{1}".format(ret_val, params)
-    if lang:
-        ret_val = "{0}&_LOCALE_={1}".format(ret_val, lang)
-    if URL_FILE:
-        url = ret_val.replace(" ", "+")
-        URL_FILE.write(url)
-        URL_FILE.write("\n")
-    return ret_val
-
-
-def call_url(url):
-    ret_json = None
-    with contextlib.closing(urllib.urlopen(url)) as f:
-        ret_json = f.read()
-    return ret_json
-
 
 class MyTestCase(unittest.TestCase):
+    domain = "localhost"
+    port = "33333"
+    path = None
+    url_file = None
+
+    def get_url(self, svc_name, params=None, lang=None):
+        # import pdb; pdb.set_trace()
+        if self.path:
+            ret_val = "http://{}:{}/{}/{}".format(self.domain, self.port, self.path, svc_name)
+        else:
+            ret_val = "http://{}:{}/{}".format(self.domain, self.port, svc_name)
+        if params:
+            ret_val = "{0}?{1}".format(ret_val, params)
+        if lang:
+            ret_val = "{0}&_LOCALE_={1}".format(ret_val, lang)
+        if self.url_file:
+            url = ret_val.replace(" ", "+")
+            self.url_file.write(url)
+            self.url_file.write("\n")
+        return ret_val
+
+    def call_url(self, url):
+        ret_json = None
+        with contextlib.closing(urllib.urlopen(url)) as f:
+            ret_json = f.read()
+        return ret_json
+
     def setUp(self):
         dir = file_utils.get_project_root_dir()
         ini = config_util.ConfigUtil('development.ini', run_dir=dir)
 
         port = ini.get('ott.test_port', 'app:main')
         if not port:
-            port = ini.get('ott.svr_port', 'app:main', PORT)
-        set_port(port)
+            port = ini.get('ott.svr_port', 'app:main', self.port)
+        self.port = port
 
         url_file = ini.get('ott.test_urlfile', 'app:main')
         if url_file:
-            global URL_FILE
-            URL_FILE = open(os.path.join(dir, url_file), "a+")
+            self.url_file = open(os.path.join(dir, url_file), "a+")
 
         test_domain = ini.get('ott.test_domain', 'app:main')
         if test_domain:
-            global DOMAIN
-            DOMAIN = test_domain
+            self.domain = test_domain
 
         test_path = ini.get('ott.test_path', 'app:main')
         if test_path:
-            global PATH
-            PATH = test_path
+            self.path = test_path
 
     def tearDown(self):
-        if URL_FILE:
-            URL_FILE.flush()
-            URL_FILE.close()
+        if self.url_file:
+            url_file.flush()
+            url_file.close()
 
     def call_url_match_list(self, url, list):
-        u = call_url(url)
+        u = self.call_url(url)
         for l in list:
             self.assertRegexpMatches(u, l)
 
     def call_url_match_string(self, url, str):
-        u = call_url(url)
+        u = self.call_url(url)
         self.assertRegexpMatches(u, str)
 
 
@@ -88,35 +78,35 @@ class ViewTests(MyTestCase):
         for m in ['', 'm/']:
             ''' '''
             # test place and placeCoord
-            url = get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
-            s = call_url(url)
+            url = self.get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"miles away")
             self.assertRegexpMatches(s,"SE Division")
             self.assertRegexpMatches(s,"XTCvsAdamAnt")
 
             # test named coord
-            url = get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627')
-            s = call_url(url)
+            url = self.get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"miles away")
 
             # test named coord w/ city
-            url = get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627::Portland')
-            s = call_url(url)
+            url = self.get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627::Portland')
+            s = self.call_url(url)
             self.assertRegexpMatches(s, "miles away")
 
             # test place as just a coord
-            url = get_url(m + 'stops_near.html', 'place=45.468602,-122.65762')
-            s = call_url(url)
+            url = self.get_url(m + 'stops_near.html', 'place=45.468602,-122.65762')
+            s = self.call_url(url)
             self.assertRegexpMatches(s, "miles away")
 
             # test place as just a coord
-            url = get_url(m + 'stops_near.html', 'place=Stop ID 2')
-            s = call_url(url)
+            url = self.get_url(m + 'stops_near.html', 'place=Stop ID 2')
+            s = self.call_url(url)
             self.assertRegexpMatches(s, "A Ave &amp; Chandler")
 
             # test interpolated address
-            url = get_url(m + 'stops_near.html', 'place=888 Lambert St&show_more=true')
-            s = call_url(url)
+            url = self.get_url(m + 'stops_near.html', 'place=888 Lambert St&show_more=true')
+            s = self.call_url(url)
             self.assertRegexpMatches(s, "Tacoma")
 
             # test known address from MA file
@@ -125,8 +115,8 @@ class ViewTests(MyTestCase):
             self.assertRegexpMatches(s, "Tacoma")
 
             # test ambiguous address from interpolated system...
-            url = get_url(m + 'stops_near.html', 'place=834 Lambert&show_more=true')
-            s = call_url(url)
+            url = self.get_url(m + 'stops_near.html', 'place=834 Lambert&show_more=true')
+            s = self.call_url(url)
             self.assertRegexpMatches(s, "Uncertain location")
             self.assertRegexpMatches(s, "834 SE LAMBERT CIRCLE")
             self.assertRegexpMatches(s, "834 SE LAMBERT ST")
@@ -134,69 +124,68 @@ class ViewTests(MyTestCase):
     def test_stop_select_form(self):
         ''' routes ws: list of route '''
         for m in ['', 'm/']:
-            url = get_url(m + 'stop_select_form.html')
-            s = call_url(url)
+            url = self.get_url(m + 'stop_select_form.html')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"MAX Blue")
 
     def test_stop_select_list(self):
         ''' route stops ws: stop select for each route direction '''
         for m in ['', 'm/']:
-            url = get_url(m + 'stop_select_list.html', 'route=100')
-            s = call_url(url)
+            url = self.get_url(m + 'stop_select_list.html', 'route=100')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"MAX Blue")
             self.assertRegexpMatches(s,"Hatfield")
 
     def test_stop(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'stop.html', 'stop_id=2')
-            s = call_url(url)
+            url = self.get_url(m + 'stop.html', 'stop_id=2')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"Lake Oswego")
 
     def test_localization(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'stop.html', 'stop_id=2&_LOCALE_=es')
-            s = call_url(url)
+            url = self.get_url(m + 'stop.html', 'stop_id=2&_LOCALE_=es')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"Lake Oswego")
 
     def test_stop_schedule(self):
         for m in ['', 'm/']:
             for t in ['&sort=destination', '&sort=time']:
-                url = get_url(m + 'stop_schedule.html', 'stop_id=2' + t)
-                s = call_url(url)
+                url = self.get_url(m + 'stop_schedule.html', 'stop_id=2' + t)
+                s = self.call_url(url)
                 self.assertRegexpMatches(s,"Lake Oswego")
 
-                url = get_url(m + 'stop_schedule.html', 'stop_id=2&more' + t)
-                s = call_url(url)
+                url = self.get_url(m + 'stop_schedule.html', 'stop_id=2&more' + t)
+                s = self.call_url(url)
                 self.assertRegexpMatches(s,"Lake Oswego")
 
     def test_plan_form(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'planner_form.html', 'from=PDX::45.587546,-122.592925&to=ZOO')
-            s = call_url(url)
+            url = self.get_url(m + 'planner_form.html', 'from=PDX::45.587546,-122.592925&to=ZOO')
+            s = self.call_url(url)
             self.assertRegexpMatches(s, 'type="text" id="from" name="from" value="PDX"')
             self.assertRegexpMatches(s, 'type="text" id="going" name="to" value="ZOO"')
 
     def test_plan_trip(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'planner.html', 'to=pdx::45.587546,-122.592925&from=zoo::45.5092,-122.7133&Hour=9&Minute=0&AmPm=pm')
-            s = call_url(url)
+            url = self.get_url(m + 'planner.html', 'to=pdx::45.587546,-122.592925&from=zoo::45.5092,-122.7133&Hour=9&Minute=0&AmPm=pm')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"MAX Red Line")
 
     def test_plan_walk(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'planner_walk.html', 'mode=WALK&from=pdx::45.587546,-122.592925&to=zoo')
-            s = call_url(url)
+            url = self.get_url(m + 'planner_walk.html', 'mode=WALK&from=pdx::45.587546,-122.592925&to=zoo')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"Airport Way")
 
     def test_map_place(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'map_place.html', 'name=834 SE MILL ST&city=Portland&lon=-122.65705&lat=45.509865')
-            s = call_url(url)
+            url = self.get_url(m + 'map_place.html', 'name=834 SE MILL ST&city=Portland&lon=-122.65705&lat=45.509865')
+            s = self.call_url(url)
             self.assertRegexpMatches(s,"Plan a trip to 834 SE MILL ST")
             self.assertRegexpMatches(s,"ride.trimet.org")
 
 
-#class DontRunTests():
 class GeoCoderTests(MyTestCase):
     stops = [
         ['834',   '834 SE LAMBERT ST'],
@@ -229,7 +218,7 @@ class GeoCoderTests(MyTestCase):
         for l in [None, 'es']:
             for m in ['', 'm/']:
                 for p in places:
-                    url = get_url(m + 'stops_near.html', 'place=' + p, l)
+                    url = self.get_url(m + 'stops_near.html', 'place=' + p, l)
                     self.call_url_match_list(url, "stopimage/format/png/width/340/height/300/zoom/6")
 
     def test_stops_near_geocode_route_stops(self):
