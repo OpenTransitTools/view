@@ -8,7 +8,7 @@ from ott.utils import config_util
 from ott.utils import file_utils
 
 
-class MyTestCase(unittest.TestCase):
+class OttTestCase(unittest.TestCase):
     domain = "localhost"
     port = "33333"
     path = None
@@ -72,7 +72,7 @@ class MyTestCase(unittest.TestCase):
         self.assertRegexpMatches(u, str)
 
 
-class ViewTests(MyTestCase):
+class ViewTests(OttTestCase):
 
     def test_stops_near(self):
         for m in ['', 'm/']:
@@ -110,8 +110,8 @@ class ViewTests(MyTestCase):
             self.assertRegexpMatches(s, "Tacoma")
 
             # test known address from MA file
-            url = get_url(m + 'stops_near.html', 'place=834 Lambert St&show_more=true')
-            s = call_url(url)
+            url = self.get_url(m + 'stops_near.html', 'place=834 Lambert St&show_more=true')
+            s = self.call_url(url)
             self.assertRegexpMatches(s, "Tacoma")
 
             # test ambiguous address from interpolated system...
@@ -186,7 +186,7 @@ class ViewTests(MyTestCase):
             self.assertRegexpMatches(s,"ride.trimet.org")
 
 
-class GeoCoderTests(MyTestCase):
+class GeoCoderTests(OttTestCase):
     stops = [
         ['834',   '834 SE LAMBERT ST'],
         ['2',     'A Ave &amp; Chandler'],
@@ -225,29 +225,29 @@ class GeoCoderTests(MyTestCase):
         for l in [None, 'es']:
             for m in ['', 'm/']:
                 for s in self.route_stops:
-                    url = get_url(m + 'stops_near.html', 'place=' + s[0], l)
+                    url = self.get_url(m + 'stops_near.html', 'place=' + s[0], l)
                     self.call_url_match_list(url, s[1])
 
     def test_stops_near_geocode(self):
         for l in [None, 'es']:
             for m in ['', 'm/']:
                 for s in self.stops:
-                    url = get_url(m + 'stops_near.html', 'place=' + s[0], l)
+                    url = self.get_url(m + 'stops_near.html', 'place=' + s[0], l)
                     self.call_url_match_string(url, s[1])
 
     def test_not_found_geocode(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas')
+            url = self.get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas')
             self.call_url_match_string(url, 'We cannot find')
 
     def test_not_found_geocode_es(self):
         for m in ['', 'm/']:
-            url = get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas', 'es')
+            url = self.get_url(m + 'stops_near.html', 'place=' + '8444455  ddaxxxdfas asdfasfas', 'es')
             self.call_url_match_string(url, 'Lugar indefinido')
 
     def test_geocode(self):
         for l in [None, 'es']:
             for m in ['', 'm/']:
-                url = get_url(m + 'planner.html', 'from=834 XX Portland', l)
+                url = self.get_url(m + 'planner.html', 'from=834 XX Portland', l)
                 self.call_url_match_list(url, ["834 SE MILL", "834 SE LAMBERT"])
 
