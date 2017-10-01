@@ -62,20 +62,20 @@ class ViewTests(OttTestCase):
         for m in ['', 'm/']:
             url = self.get_url(m + 'stop_select_list.html', 'route=100')
             s = self.call_url(url)
-            self.assertRegexpMatches(s,"MAX Blue")
-            self.assertRegexpMatches(s,"Hatfield")
+            self.assertRegexpMatches(s, "MAX Blue")
+            self.assertRegexpMatches(s, "Hatfield")
 
     def test_stop(self):
         for m in ['', 'm/']:
             url = self.get_url(m + 'stop.html', 'stop_id=2')
             s = self.call_url(url)
-            self.assertRegexpMatches(s,"Lake Oswego")
+            self.assertRegexpMatches(s, "Lake Oswego")
 
     def test_localization(self):
         for m in ['', 'm/']:
             url = self.get_url(m + 'stop.html', 'stop_id=2&_LOCALE_=es')
             s = self.call_url(url)
-            self.assertRegexpMatches(s,"Lake Oswego")
+            self.assertRegexpMatches(s, "Lake Oswego")
 
     def test_stop_schedule(self):
         for m in ['', 'm/']:
@@ -86,7 +86,7 @@ class ViewTests(OttTestCase):
 
                 url = self.get_url(m + 'stop_schedule.html', 'stop_id=2&more' + t)
                 s = self.call_url(url)
-                self.assertRegexpMatches(s,"Lake Oswego")
+                self.assertRegexpMatches(s, "Lake Oswego")
 
     def test_plan_form(self):
         for m in ['', 'm/']:
@@ -152,7 +152,7 @@ class GeoCoderTests(OttTestCase):
             for m in ['', 'm/']:
                 for p in places:
                     url = self.get_url(m + 'stops_near.html', 'place=' + p, l)
-                    self.call_url_match_list(url, "stopimage/format/png/width/340/height/300/zoom/6")
+                    self.call_url_match_string(url, "stop[_schedule]*.html.stop_id.")
 
     def test_stops_near_geocode_route_stops(self):
         for l in [None, 'es']:
