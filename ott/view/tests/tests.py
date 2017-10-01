@@ -99,20 +99,24 @@ class ViewTests(OttTestCase):
         for m in ['', 'm/']:
             url = self.get_url(m + 'planner.html', 'to=pdx::45.587546,-122.592925&from=zoo::45.5092,-122.7133&Hour=9&Minute=0&AmPm=pm')
             s = self.call_url(url)
-            self.assertRegexpMatches(s,"MAX Red Line")
+            self.assertRegexpMatches(s, "MAX Red Line")
+            self.assertRegexpMatches(s, "MAX Red Line")
+            self.assertNotRegexpMatches(s, "localhost")
+            self.assertNotRegexpMatches(s, self.port)
 
     def test_plan_walk(self):
         for m in ['', 'm/']:
             url = self.get_url(m + 'planner_walk.html', 'mode=WALK&from=pdx::45.587546,-122.592925&to=zoo')
             s = self.call_url(url)
             self.assertRegexpMatches(s,"Airport Way")
+            self.assertNotRegexpMatches(s, "localhost")
+            self.assertNotRegexpMatches(s, self.port)
 
     def test_map_place(self):
         for m in ['', 'm/']:
             url = self.get_url(m + 'map_place.html', 'name=834 SE MILL ST&city=Portland&lon=-122.65705&lat=45.509865')
             s = self.call_url(url)
             self.assertRegexpMatches(s,"Plan a trip to 834 SE MILL ST")
-            self.assertRegexpMatches(s,"ride.trimet.org")
 
 
 class GeoCoderTests(OttTestCase):
