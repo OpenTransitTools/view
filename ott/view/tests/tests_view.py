@@ -4,50 +4,51 @@ from ott.utils.tests.ott_test_case import OttTestCase
 class ViewTests(OttTestCase):
 
     def test_stops_near(self):
-        for m in ['', 'm/']:
-            # test place and placeCoord
-            url = self.get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "miles away")
-            self.assertRegexpMatches(s, "SE Division")
-            self.assertRegexpMatches(s, "XTCvsAdamAnt")
+        for l in ['es', None]:
+            for m in ['', 'm/']:
+                # test place and placeCoord
+                url = self.get_url(m + 'stops_near.html', 'placeCoord=45.5,-122.5&place=XTCvsAdamAnt', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "[miles away|millas]")
+                self.assertRegexpMatches(s, "SE Division")
+                self.assertRegexpMatches(s, "XTCvsAdamAnt")
 
-            # test named coord
-            url = self.get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "miles away")
+                # test named coord
+                url = self.get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "[miles away|millas]")
 
-            # test named coord w/ city
-            url = self.get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627::Portland')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "miles away")
+                # test named coord w/ city
+                url = self.get_url(m + 'stops_near.html', 'place=834 SE LAMBERT ST::45.468602,-122.657627::Portland', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "[miles away|millas]")
 
-            # test place as just a coord
-            url = self.get_url(m + 'stops_near.html', 'place=45.468602,-122.65762')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "miles away")
+                # test place as just a coord
+                url = self.get_url(m + 'stops_near.html', 'place=45.468602,-122.65762', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "[miles away|millas]")
 
-            # test place as just a coord
-            url = self.get_url(m + 'stops_near.html', 'place=Stop ID 2')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "A Ave &amp; Chandler")
+                # test place as just a coord
+                url = self.get_url(m + 'stops_near.html', 'place=Stop ID 2', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "A Ave &amp; Chandler")
 
-            # test interpolated address
-            url = self.get_url(m + 'stops_near.html', 'place=888 Lambert St&show_more=true')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "Tacoma")
+                # test interpolated address
+                url = self.get_url(m + 'stops_near.html', 'place=888 Lambert St&show_more=true', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "Tacoma")
 
-            # test known address from MA file
-            url = self.get_url(m + 'stops_near.html', 'place=834 Lambert St&show_more=true')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "Tacoma")
+                # test known address from MA file
+                url = self.get_url(m + 'stops_near.html', 'place=834 Lambert St&show_more=true', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "Tacoma")
 
-            # test ambiguous address from interpolated system...
-            url = self.get_url(m + 'stops_near.html', 'place=834 Lambert&show_more=true')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "Uncertain location")
-            self.assertRegexpMatches(s, "834 SE LAMBERT CIRCLE")
-            self.assertRegexpMatches(s, "834 SE LAMBERT ST")
+                # test ambiguous address from interpolated system...
+                url = self.get_url(m + 'stops_near.html', 'place=834 Lambert&show_more=true', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "[Uncertain location|Lugar indefinido]")
+                self.assertRegexpMatches(s, "834 SE LAMBERT CIRCLE")
+                self.assertRegexpMatches(s, "834 SE LAMBERT ST")
 
     def test_stop_select_form(self):
         ''' routes ws: list of route '''
@@ -97,17 +98,19 @@ class ViewTests(OttTestCase):
     def test_plan_trip(self):
         url = self.ini.get('ott.host_url', 'app:main')
         mailto = "mailto.*{}.*planner.html".format(url.replace(":", "%3A"))
-        for m in ['', 'm/']:
-            url = self.get_url(m + 'planner.html', 'to=pdx::45.587546,-122.592925&from=zoo::45.5092,-122.7133&Hour=9&Minute=0&AmPm=pm')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "MAX Red Line")
-            self.assertRegexpMatches(s, mailto)
+        for l in ['es', None]:
+            for m in ['', 'm/']:
+                url = self.get_url(m + 'planner.html', 'to=pdx::45.587,-122.592&from=zoo::45.509,-122.713&Hour=9&Minute=0&AmPm=pm', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "MAX Red Line")
+                self.assertRegexpMatches(s, mailto)
 
     def test_plan_walk(self):
-        for m in ['', 'm/']:
-            url = self.get_url(m + 'planner_walk.html', 'mode=WALK&from=pdx::45.587546,-122.592925&to=zoo')
-            s = self.call_url(url)
-            self.assertRegexpMatches(s, "Airport Way")
+        for l in ['es', None]:
+            for m in ['', 'm/']:
+                url = self.get_url(m + 'planner_walk.html', 'mode=WALK&from=pdx::45.587546,-122.592925&to=zoo', l)
+                s = self.call_url(url)
+                self.assertRegexpMatches(s, "Airport Way")
 
     def test_map_place(self):
         for m in ['', 'm/']:
