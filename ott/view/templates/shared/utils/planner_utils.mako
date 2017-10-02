@@ -442,9 +442,11 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             dir = s['relative_direction']
             if dir != None:
                 dir = dir.lower().replace('_', ' ').strip()
-                if dir == ('elevator'):
+                if dir == 'elevator':
                     turn = _(u'Take the elevator to level ') + name
                     instruct_verb = None
+                elif dir == 'depart':
+                    turn = _(u'Depart') + " " + _(u'from') + " " + _(name)
                 elif dir not in ('continue'):
                     turn = _(u'Turn') + " " + _(dir) + " " + _(u'on') + " " + _(name)
                 else:
