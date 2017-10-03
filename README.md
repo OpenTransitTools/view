@@ -28,3 +28,8 @@ update localizations:
   1. bin/python setup.py update_catalog # updates your localized .po files (those originally created by init_catalog)
   1. make changes to .pot files
   1. bin/python setup.py compile_catalog # generates the .mo files
+
+api:
+  1. https://trimet.org/ride/header.html?header=__BLAH___%20~~BLAH~~~%20_*BLAH*_%20_**BLA**_&second_header=This%20is%20%5BTriMet%5D(https://en.wikipedia.org/wiki/TriMet)%27s%20Wiki%20Entry&sub_header=N%C3%BAmero%20uno%20buenos%20d%C3%ADas&title=N%C3%BAmero%20uno%20buenos%20d%C3%ADas&emergency_content=This%20Is%20not%20an%20emergency&icon_cls=fa-ss-outline&icon_url=https://twitter.com/trimet
+
+
