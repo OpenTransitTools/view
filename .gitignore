@@ -8,6 +8,7 @@ nohup.out
 urlfile.txt
 c:/
 C:/
+logs/*
 *.log
 *.tar
 *.gz
