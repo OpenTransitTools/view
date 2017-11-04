@@ -14,6 +14,18 @@
 
 
 ##
+## appends Agency Name: to title
+##
+<%def name="append_agency_title(title, plus_str=': ')"><%
+    try:
+        ret_val = get_agency_ini() + title
+    except:
+        ret_val = title
+    return ret_val
+%></%def>
+
+
+##
 ## return values from the .ini that pserve reads
 ## the ini variables come from the [app:main] section
 ##
@@ -32,7 +44,7 @@
 <%def name="url_domain()"><% return get_ini_param('ott.url_domain', '') %></%def>
 <%def name="is_test()"><% return get_ini_param('ott.is_test') %></%def>
 <%def name="img_url()">${url_domain()}/images/triptools</%def>
-
+<%def name="get_svr_port()"><% return get_ini_param('ott.svr_port', request.server_port) %></%def>
 
 ##
 ## return a formatted error message for exception.html

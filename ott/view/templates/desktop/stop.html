@@ -2,6 +2,12 @@
 <%namespace name="su" file="/shared/utils/stop_utils.mako"/>
 <%
     header, footer = su.get_stop_header_footer(stop, is_mobile=False)
+
+    title =
+    header = client_utils.cached_wget_header(title=title, port=svr_port, is_mobile=is_mobile, onload=onload)
+    footer = client_utils.cached_wget_footer(port=svr_port, is_mobile=is_mobile)
+
+
 %>${header|n}
 <%include file="/shared/app/stop.mako", args="is_mobile=False"/>
 ${footer|n}

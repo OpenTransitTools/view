@@ -32,6 +32,21 @@
 %></%def>
 
 
+##
+## appends Agency Name: to title
+##
+<%def name="append_agency_title(stop, plus_str=': ')"><%
+    try:
+        ret_val = get_agency_ini(plus_str) + page_title_str(stop)
+    except:
+        try:
+            ret_val = page_title_str(stop)
+        except:
+            ret_val = "stop"
+    return ret_val
+%></%def>
+
+
 <%def name="page_title_str(stop)"><% return u"{} {} - {}".format(_(u'Stop ID'), stop['stop_id'], stop['name'].encode('utf-8').replace(' & ', ' %26 '))%></%def>
 <%def name="page_title(stop)">${page_title_str(stop)}</%def>
 
