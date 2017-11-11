@@ -9,16 +9,24 @@
 <%namespace name="rs"   file="/shared/utils/route_select_utils.mako"/>
 
 ##
+## append agency and stop name together
+##
+<%def name="get_stop_title(stop, is_mobile=False)"><%
+    title = util.get_agency_ini() + page_title_str(stop)
+    return title
+%></%def>
+
+##
 ## return header and footer, with H1 element made for stop pages
 ##
 <%def name="get_stop_header_footer(stop, is_mobile=False, url='stop_select_form.html')"><%
-    title = util.get_agency_ini() + page_title_str(stop)
+    title = get_stop_title(stop, is_mobile)
     name = make_name_id(stop)
     sub_name = stop_title_str(stop)
     svr_port = util.get_ini_param('ott.svr_port', request.server_port)
 
     from ott.view_header_footer.utils import client_utils
-    header = client_utils.wget_header(
+    header = client_utils.cached_wget_header(
         port=svr_port,
         is_mobile=is_mobile,
         title=title,
@@ -27,7 +35,7 @@
         icon_cls="fa-ss-outline h1icon",
         icon_url=url
     )
-    footer = client_utils.wget_footer(port=svr_port, is_mobile=is_mobile)
+    footer = client_utils.cached_wget_footer(port=svr_port, is_mobile=is_mobile)
     return header, footer
 %></%def>
 
