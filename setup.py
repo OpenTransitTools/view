@@ -11,12 +11,6 @@ CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 requires = [
     'ott.utils',
     'ott.view_header_footer',
-    'Babel',
-    'lingua',
-    'pyramid < 1.8',
-    'pyramid_mako',
-    'mako',
-    'waitress',
     'pillow',
     'simplejson',
     'qrcode'

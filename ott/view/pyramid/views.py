@@ -29,7 +29,6 @@ import logging
 log = logging.getLogger(__file__)
 
 
-
 def do_view_config(config):
     """ adds the views (see below) and static directories to pyramid's config
     """
