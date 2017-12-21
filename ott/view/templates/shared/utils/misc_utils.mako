@@ -65,7 +65,7 @@
 ##
 ## return agency string
 ##
-<%def name="get_agency_ini(plus_str=': ', def_val='')"><%
+<%def name="get_agency_ini(plus_str=' - ', def_val='')"><%
     ret_val = def_val
     str = get_ini_param('ott.agency_name')
     if str:
