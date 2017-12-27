@@ -160,6 +160,7 @@ def planner(request):
     """ will either call the trip planner, or if we're missing params, redirect to the ambiguous geocode page
         basically, call the geocode checker, and then either call the ambiguous geocoder page, or plan the trip planner
     """
+    # import pdb; pdb.set_trace()
     try:
         ret_val = {}
         gc = geocode_utils.do_from_to_geocode_check(request)
