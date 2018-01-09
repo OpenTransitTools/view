@@ -1,6 +1,5 @@
 ## -*- coding: utf-8 -*-
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
 <%namespace name="plib" file="/shared/utils/planner_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
