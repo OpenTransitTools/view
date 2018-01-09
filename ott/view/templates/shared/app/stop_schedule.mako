@@ -1,9 +1,6 @@
 ## -*- coding: utf-8 -*-
 <%page args="is_mobile=False"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="form" file="/shared/utils/form_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="su"   file="/shared/utils/stop_utils.mako"/>
 <%namespace name="ssu"  file="/shared/utils/stop_schedule_utils.mako"/>
 <%
@@ -12,13 +9,9 @@
     stop = stop_sched['stop']
     name = su.make_name_id(stop)
     stop_params = su.make_url_params(stop)
+    has_alerts = stop_sched['has_alerts']
 %>
-<div class="standardheader">
-    <h1>
-        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Schedule for')}${page.stop_schedule(name, extra_params, stop_params, stop, stop_sched['has_alerts'])}<br/>
-        <small>${su.stop_title(stop)}</small>
-    </h1>
-</div><!-- .standardheader -->
+${ssu.page_header(name, stop, has_alerts, extra_params)}
 
 <div class="fullwidth">
     <div class="contentcontainer">
