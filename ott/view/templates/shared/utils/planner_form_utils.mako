@@ -106,6 +106,15 @@
 </%def>
 
 ##
+## old simple header
+##
+<%def name="trip_planner_header()">
+    <div class="standardheader">
+        <h1><i class="tmfa-tp-outline h1icon"></i> ${_(u'Plan your trip')}</h1>
+    </div><!-- .standardheader -->
+</%def>
+
+##
 ## large trip planner form on planner_form.html
 ##
 <%def name="planner_form(form_action='planner.html', is_mobile=False, is_homepage=False, agency='TriMet')">
@@ -174,7 +183,6 @@
                 </div><!-- .row -->
             </fieldset>
 
-
             <h3>${_(u'Trip preferences')}</h3>
             <div class="row">
                 <div class="col-xs-12 col-sm-4">
@@ -211,9 +219,6 @@
                     </fieldset> 
                 </div><!-- .col -->
             </div><!-- .row -->                        
-
-        
-
 
             <fieldset class="submit">
                 ${form.get_extra_params_hidden_inputs()}

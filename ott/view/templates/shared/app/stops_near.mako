@@ -15,7 +15,7 @@
 
 <div class="standardheader">
     <h1>
-        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}
+        <a href="stop_select_form.html"><i class="tmfa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}
     </h1>
         <div class="first">
         <p class="h1sub">

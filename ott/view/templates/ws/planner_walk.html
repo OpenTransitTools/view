@@ -1,17 +1,12 @@
 ## -*- coding: utf-8 -*-
 <%inherit file="/ws/base.html"/>
 <%namespace name="util" file="/shared/utils/misc_utils.mako"/>
-<%namespace name="side" file="/shared/utils/sidebar_utils.mako"/>
-<%namespace name="meta" file="/shared/utils/meta_utils.mako"/>
-<%namespace name="page" file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="plib"  file="/shared/utils/planner_utils.mako"/>
 <%
     is_mobile = True
     itinerary = plib.get_itinerary(plan)
     extra_params = util.get_extra_params()
 %>
-${page.trip_planner(_(u'Walking Directions'), extra_params, 'planner')}
-
 ##
 ## main content
 ##

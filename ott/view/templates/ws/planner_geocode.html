@@ -2,20 +2,16 @@
 <%inherit file="/ws/base.html"/>
 <%namespace name="util"  file="/shared/utils/misc_utils.mako"/>
 <%namespace name="form"  file="/shared/utils/form_utils.mako"/>
-<%namespace name="page"  file="/shared/utils/pagetype_utils.mako"/>
 <%namespace name="pform" file="/shared/utils/planner_form_utils.mako"/>
 <%
     extra_params = util.get_extra_params()
     type_img_url = pform.from_to_img_url(geo_type)
 %>
 <%def name="app_css()">
-${page.tripplanner_css()}
 ${form.autocomplete_css_includes()}
 </%def>
 <%def name="js_onload()">javascript:checkgps();</%def>
 ${form.gps_form_scriptlet(id=geo_type, form='ambig')}
-
-${page.trip_planner(_(u'Uncertain location'), extra_params, 'form')}
 
 <h2 class="error">
     %if type_img_url:
