@@ -11,6 +11,7 @@
     stop_params = su.make_url_params(stop)
     has_alerts = stop_sched['has_alerts']
 %>
+
 ${ssu.page_header(name, stop, has_alerts, extra_params)}
 
 <div class="fullwidth">
