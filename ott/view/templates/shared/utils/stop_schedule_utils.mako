@@ -156,7 +156,7 @@ ${_(t['dow'])}<br/><small>${t['name']}</small>
                    from ott.view.utils import agency_template
                    url = agency_template.make_url_template()
                 %>
-                <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="tt-icon"><i class="fa-tt-outline"></i><span> ${_(u'Next arrivals')}</span></a>                
+                <a href="${url.get_arrivals_url(stop_id=hs['stop_id'], route_id=hs['route_id'], device=is_mobile)}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="tt-icon"><i class="tmfa-tt-outline"></i><span> ${_(u'Next arrivals')}</span></a>
             </h3>
             <ul class="sortbydestination">
                 %for s in ss['stoptimes']:

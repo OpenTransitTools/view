@@ -212,7 +212,7 @@
 </p>
 <p class="hidden-xs">
     ${imap_a_link(name, lon, lat, extra_params, True)}
-       <i class="fa-mapmarker-outline"></i> ${_(u'View on Interactive Map')}</a>
+       <i class="tmfa-mapmarker-outline"></i> ${_(u'View on Interactive Map')}</a>
 </p>
 </%def>
 

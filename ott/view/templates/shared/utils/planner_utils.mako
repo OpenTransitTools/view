@@ -25,7 +25,7 @@
 %>
 <div class="standardheader">
     <h1>
-        <a href="planner_form.html"><i class="fa-tp-outline h1icon"></i></a> ${title}
+        <a href="planner_form.html"><i class="tmfa-tp-outline h1icon"></i></a> ${title}
         %if sub_title:
         <br/>
         <small>${sub_title}</small>
@@ -235,19 +235,19 @@
     '''
     ret_val = ''
     if mode == util.attr.BUS:
-        ret_val = 'fa-bus'
+        ret_val = 'tmfa-bus'
     if mode == util.attr.CAR:
-        ret_val = 'fa-car'
+        ret_val = 'tmfa-car'
     if mode == util.attr.BICYCLE:
-        ret_val = 'fa-bike'
+        ret_val = 'tmfa-bike'
     if mode == util.attr.WALK:
-        ret_val = 'fa-walk'
+        ret_val = 'tmfa-walk'
     if mode == util.attr.RAIL:
-        ret_val = 'fa-wes'
+        ret_val = 'tmfa-wes'
     if mode == util.attr.TRAM:
-        ret_val = 'fa-max'
+        ret_val = 'tmfa-max'
     if mode == util.attr.GONDOLA:
-        ret_val = 'fa-aerialtram'
+        ret_val = 'tmfa-aerialtram'
 
     return ret_val
 %></%def>
