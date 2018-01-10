@@ -31,7 +31,7 @@
         title=title,
         header=name,
         sub_header=sub_name,
-        icon_cls="fa-ss-outline h1icon",
+        icon_cls="tmfa-ss-outline h1icon",
         icon_url=url
     )
     footer = client_utils.cached_wget_footer(port=svr_port, is_mobile=is_mobile)
@@ -72,10 +72,11 @@
 <%def name="simple_header(title=None, sub_title=None)"> <%
     if title is None:
         title = _(u'Stops & Stations')
+
 %>
 <div class="standardheader">
     <h1>
-        <a href="stop_select_form.html"><i class="fa-ss-outline h1icon"></i></a>
+        <a href="stop_select_form.html"><i class="tmfa-ss-outline h1icon"></i></a>
         ${title}
         %if sub_title:
         <br/>

@@ -149,7 +149,10 @@
 <%def name="clean_name(name, def_val='')"><%
     ret_val = def_val
     if name:
-        ret_val = name.replace('%26', '&').replace('%27', "'").replace('%20', ' ')
+        if name == 'None' or name == 'null':
+            ret_val = def_val
+        else:
+            ret_val = name.replace('%26', '&').replace('%27', "'").replace('%20', ' ')
     return ret_val
 %></%def>
 
@@ -159,7 +162,7 @@
         stop = ''
         if type == 'stop':
             stop = " (" + _(u'Stop ID') + " " + id + ")"
-        if city:
+        if city and city != 'None':
             city = ', ' + city
         else:
             city = ''

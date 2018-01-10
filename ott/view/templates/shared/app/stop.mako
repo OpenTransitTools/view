@@ -19,13 +19,13 @@
                     %if 'direction' in r:
                     ${r['direction']}<br/>
                     %endif
-                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], route_id=r['route_id'], device=is_mobile)}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="route-icons"><i class="fa-tt-outline"></i><br />
+                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], route_id=r['route_id'], device=is_mobile)}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="route-icons"><i class="tmfa-tt-outline"></i><br />
                         ${_(u'Next arrivals')}</a>
 
-                    <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedule for this stop/station')}" class="route-icons"><i class="fa-schedule"></i><br />
+                    <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedule for this stop/station')}" class="route-icons"><i class="tmfa-schedule"></i><br />
                         ${_(u'Schedule')}</a>
 
-                    <a href="${url.get_route_url(route_id=r['route_id'], device=is_mobile)}" title="${_(u'Show route map and schedules for this line')}" class="route-icons"><i class="fa-map"></i><br />
+                    <a href="${url.get_route_url(route_id=r['route_id'], device=is_mobile)}" title="${_(u'Show route map and schedules for this line')}" class="route-icons"><i class="tmfa-map"></i><br />
                         ${_(u'Route info')}</a>
                 </p>
                 %endfor
@@ -33,13 +33,12 @@
                 %if len(stop['routes']) > 1:
                 <h2>${_(u'All routes')}</h2>
                 <p>
-                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], device=is_mobile)}" class="route-icons"><i class="fa-tt-outline"></i><br />
+                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], device=is_mobile)}" class="route-icons"><i class="tmfa-tt-outline"></i><br />
                         ${_(u'Next arrivals')}</a>
-                    <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}${extra_params}" alt="${_(u'Schedule')}" class="route-icons"><i class="fa-schedule"></i><br />
+                    <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}${extra_params}" alt="${_(u'Schedule')}" class="route-icons"><i class="tmfa-schedule"></i><br />
                         ${_(u'Schedule')}</a>
                 </p>
                 %endif
-
 
                 %if has_alerts:
                     ${util.alerts(stop['alerts'])}
