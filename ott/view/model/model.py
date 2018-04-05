@@ -1,10 +1,10 @@
+from ott.view.model.base import Base
+from ott.utils import object_utils
+
 import simplejson as json
 import urllib
 import logging
 log = logging.getLogger(__file__)
-
-from ott.view.model.base import Base
-from ott.utils import object_utils
 
 
 class Model(Base):
@@ -32,7 +32,7 @@ class Model(Base):
         try:
             val = object_utils.to_url_param_val(search)
             ret_val = self.stream_json('geocode', "place={0}".format(val))
-        except Exception, e:
+        except Exception as e:
             log.warning(e)
         return ret_val
 
@@ -41,13 +41,13 @@ class Model(Base):
         try:
             val = object_utils.to_url_param_val(search)
             ret_val = self.stream_json('atis_geocode', "place={0}".format(val))
-        except Exception, e:
+        except Exception as e:
             log.warning(e)
         return ret_val
 
 
 def main():
-    m=Model()
+    m = Model()
     print m.get_stop_schedule_single()
     print m.get_stop_schedule_multiple()
     print m.get_stop_schedule_by_time()

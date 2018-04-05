@@ -50,10 +50,10 @@ class Base(object):
         return url
 
     def stream_json(self, svc, args, extra=None):
-        ''' utility class to stream .json
-        '''
-        #import pdb; pdb.set_trace()
-        ret_val={}
+        """ utility class to stream .json
+        """
+        # import pdb; pdb.set_trace()
+        ret_val = {}
         url = self.get_service_url(svc, args)
         if extra:
             url = url + "&" + extra
@@ -64,19 +64,18 @@ class Base(object):
         return ret_val
 
     def get_json(self, file, path='ott/view/static/mock/'):
-        ''' utility class to load a static .json file for mock'ing a service
-        '''
+        """ utility class to load a static .json file for mock'ing a service
+        """
         ret_val={}
         try:
             with open(file) as f:
                 ret_val = json.load(f)
-        except:
+        except Exception as e:
             try:
                 path = os.path.join(path, file)
                 with open(path) as f:
                     ret_val = json.load(f)
-            except:
+            except Exception as e:
                 log.info("Couldn't open file : {0} (or {1})".format(file, path))
 
         return ret_val
-

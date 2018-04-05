@@ -87,9 +87,9 @@ def cmdline():
     log.info(here + " " + mako_dir)
 
     # make the mako views
-    settings={}
+    settings = {}
     settings['mako.directories'] = mako_dir
-    config=make_config(settings)
+    config = make_config(settings)
     views.do_view_config(config)
 
     # serve app
