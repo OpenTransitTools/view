@@ -4,10 +4,9 @@ from pyramid.config import Configurator
 from pyramid.events import subscriber
 from pyramid.events import ApplicationCreated
 from pyramid.events import NewRequest
-
-from ott.view.pyramid import views
 from wsgiref.simple_server import make_server
 
+from ott.view.pyramid import views
 from ott.view_header_footer.pyramid import views as views_header_footer
 from ott.view_header_footer.pyramid import app as app_header_footer
 

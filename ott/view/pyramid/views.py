@@ -23,7 +23,7 @@ from ott.utils.img.qr import qr_to_stream
 from ott.utils import html_utils
 from ott.utils import object_utils
 from ott.utils import transit_utils
-from ott.utils.parse.url import TripParamParser
+from ott.utils.parse.url.trip_param_parser import TripParamParser
 
 import logging
 log = logging.getLogger(__file__)
