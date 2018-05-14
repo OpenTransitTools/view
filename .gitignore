@@ -23,8 +23,7 @@ logs/*
 .*~
 *~
 *.bak
-x
-
+vu
 *.properties
 *.classpath
 
