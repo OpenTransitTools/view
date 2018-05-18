@@ -11,7 +11,8 @@
 ## append agency and stop name together
 ##
 <%def name="get_stop_title(stop, is_mobile=False)"><%
-    title = util.get_agency_ini() + page_title_str(stop)
+##    title = util.get_agency_ini() + page_title_str(stop)
+    title = page_title_str(stop)
     return title
 %></%def>
 
@@ -44,7 +45,8 @@
 ##
 <%def name="append_agency_title(stop, plus_str=': ')"><%
     try:
-        ret_val = get_agency_ini(plus_str) + page_title_str(stop)
+##        ret_val = get_agency_ini(plus_str) + page_title_str(stop)
+        ret_val = page_title_str(stop)
     except:
         try:
             ret_val = page_title_str(stop)
@@ -74,15 +76,13 @@
         title = _(u'Stops & Stations')
 
 %>
-<div class="standardheader">
-    <h1>
-        <a href="stop_select_form.html"><i class="tmfa-ss-outline h1icon"></i></a>
-        ${title}
-        %if sub_title:
-        <br/>
-        <small>${sub_title}</small>
-        %endif
-    </h1>
+<div class="standardheader wide">
+    <h1><a href="stop_select_form.html"><i class="tmfa-ss-outline h1icon"></i></a> ${title}</h1>
+    %if sub_title:
+    <div class="first">
+        <p>${sub_title}</p>
+    </div>
+    %endif
 </div><!-- .standardheader -->
 </%def>
 
@@ -172,9 +172,7 @@
     %if list and 'stops' in list:
     %for s in list['stops']:
     <li>
-        <h3><a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${s['name']} ${s['direction']}</a></h3>
-        <p class="h1sub">${_(u'Stop ID')} ${s['stop_id']}</p>
-        
+        <h3><a href="stop.html?stop_id=${s['stop_id']}${extra_params}" title="${_(u'Show more information about this stop/station')}">${s['name']} ${s['direction']}</a> <small>${_(u'Stop ID')} ${s['stop_id']}</small></h3>
         <p>${round(s['distance'], 2)} ${_(u'miles away')} <span class="separator">&nbsp;|&nbsp;</span> ${planner_walk_link(place, s, _('Walking directions'), extra_params)}<br />
             ${routes_served(s, rte_url_tmpl)}</p>
     </li>
@@ -183,7 +181,7 @@
 
     %if more_link:
     <li>
-        <p align="center"><a href="stops_near.html?has_geocode=true&show_more=true&${util.prep_url_params(params)}${extra_params}" class="showmorestops">${_(u'Show more stops')}</a></p>
+        <p class="hcenter"><a href="stops_near.html?has_geocode=true&show_more=true&${util.prep_url_params(params)}${extra_params}" class="showmorestops">${_(u'Show more stops')}</a></p>
     </li>
     %endif
 </ul>

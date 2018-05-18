@@ -12,7 +12,7 @@ ${su.simple_header()}
 <div class="fullwidth">
     <div class="contentcontainer">
         <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div class="col-xs-12">
                 <h2>Select a ${route_name} stop</h2>
                 ${rs.route_stop_dropdown(route_stops)}
             </div><!-- .col -->

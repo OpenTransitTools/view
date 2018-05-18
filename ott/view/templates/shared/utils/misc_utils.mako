@@ -5,7 +5,8 @@
 ##
 <%def name="get_header_footer(title, is_mobile=False, onload=None)"><%
     from ott.view_header_footer.utils import client_utils
-    title = get_agency_ini() + title
+##title = get_agency_ini() + title
+    title = title
     svr_port = get_ini_param('ott.svr_port', request.server_port)
     header = client_utils.cached_wget_header(title=title, port=svr_port, is_mobile=is_mobile, onload=onload)
     footer = client_utils.cached_wget_footer(port=svr_port, is_mobile=is_mobile)
@@ -18,7 +19,8 @@
 ##
 <%def name="append_agency_title(title, plus_str=': ')"><%
     try:
-        ret_val = get_agency_ini() + title
+##ret_val = get_agency_ini() + title
+        ret_val = title
     except:
         ret_val = title
     return ret_val
@@ -434,7 +436,7 @@
 <%def name="list_to_str(list, sep=', ')">${sep.join(list)}</%def>
 
 <%def name="alerts_inline_icon_link(img_url='/global/img/icon-alert.png')">
-    <a href="#alerts" class="stop-alert"><img src="${url_domain()}${img_url}" alt="${_(u'Service alert at this stop')}" title="${_(u'Service alert at this stop')}" /></a>
+    <a href="#alerts" class="stop-alert"><i class="tmfa-alert-solid red"></i></a> 
 </%def>
 
 <%def name="alerts(alert_list, img_url='/global/img/icon-alert.png')">

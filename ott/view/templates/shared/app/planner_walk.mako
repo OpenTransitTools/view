@@ -6,8 +6,7 @@
     itinerary = plib.get_itinerary(plan)
     title = _(u'Your trip instructions')
 %>
-
-<script src="${util.url_domain()}/scripts/triptools.js"></script>
+<script src="${util.url_domain()}/global/js/triptools.js"></script>
 
 ##
 ## main content

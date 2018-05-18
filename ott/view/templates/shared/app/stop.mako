@@ -9,12 +9,12 @@
     extra_params = util.get_extra_params()
 %>
 <div class="fullwidth">
-    <div class="contentcontainer">
+    <div class="contentcontainer compact">
         <div class="row">
             <div class="col-xs-12 col-sm-7 col-md-8 col-lg-7">
 
                 %for r in stop['routes']:
-                <h2>${r['name']}</h2>
+                <h3>${r['name']}</h3>
                 <p>
                     %if 'direction' in r:
                     ${r['direction']}<br/>
@@ -31,7 +31,7 @@
                 %endfor
 
                 %if len(stop['routes']) > 1:
-                <h2>${_(u'All routes')}</h2>
+                <h3>${_(u'All routes')}</h3>
                 <p>
                     <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], device=is_mobile)}" class="route-icons"><i class="tmfa-tt-outline"></i><br />
                         ${_(u'Next arrivals')}</a>

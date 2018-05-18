@@ -12,7 +12,7 @@ ${su.simple_header()}
 <div class="fullwidth">
     <div class="contentcontainer">
         <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div class="col-xs-12">
                 ${su.stop_select_form()}
                 ${form.autocomplete_search_input()}
                 <%include file="stop_related_links.mako"/>
@@ -20,24 +20,6 @@ ${su.simple_header()}
         </div><!-- .row -->
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
-
-<style type="text/css">
-.content h2 { /* hide unhelpful heading */
-    display: none;
-}
-.content form.triptools-form fieldset label { /* match h2 */
-    font-size: 24px;
-    font-weight: 300;
-    line-height: 1em;
-    color: #333;
-    padding: .5em 0;
-}
-@media only screen and (min-width: 768px) { /* sm screens and up */
-    .content form.triptools-form fieldset label {
-        font-size: 32px;
-    }
-}
-</style>
 
 ${form.select_form_scriptlet()}
 ${form.autocomplete_css_includes()}

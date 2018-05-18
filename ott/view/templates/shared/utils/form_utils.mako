@@ -30,7 +30,7 @@
     %if list and len(list) > 0:
         <!-- Ambiguous address list - choose a specific address leading to nearest stops -->
         <fieldset>
-            <label for="${id}">${name}:</label>
+            <label for="${id}"><h2>${name}:</h2></label>
             <input type="hidden" name="geo_type" value="${id}"/>
             <select size="${size}" id="${id}" name="${param_name}" onFocus="doClassHighlight(this);" onBlur="doClassRegular(this);" class="regular">
                 %for l in list:
@@ -56,7 +56,7 @@
 %>
     <!-- Text box for re-geocoding a string -->
     <fieldset>
-        <label for="${id}">${name}:</label>
+        <label for="${id}"><h2>${name}:</h2></label>
         <input type="hidden" name="geo_type" value="${id}"/>
         <input type="hidden" id="${id}_coord" name="${id}Coord" value="${coord}"/>
         <input type="text" id="${id}" name="${id}" value="${place}" size="${size}" maxlength="${maxlength}" class="regular" />

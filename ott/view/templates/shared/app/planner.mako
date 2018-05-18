@@ -29,5 +29,5 @@ ${plib.simple_header(title)}
     </div><!-- .contentcontainer -->
 </div><!-- .fullwidth -->
 
-<script src="${util.url_domain()}/scripts/triptools.js"></script>
+<script src="${util.url_domain()}/global/js/triptools.js"></script>
 ${plib.set_planner_text_cookie()}

@@ -23,14 +23,13 @@
     if title is None:
         title = "{} {}".format(_(u'Plan your trip on'), util.get_agency_ini(plus_str=None))
 %>
-<div class="standardheader">
-    <h1>
-        <a href="planner_form.html"><i class="tmfa-tp-outline h1icon"></i></a> ${title}
-        %if sub_title:
-        <br/>
-        <small>${sub_title}</small>
-        %endif
-    </h1>
+<div class="standardheader wide">
+    <h1><a href="planner_form.html"><i class="tmfa-tp-outline h1icon"></i></a> ${title}</h1>
+    %if sub_title:
+    <div class="first">
+        <p>${sub_title}</p>
+    </div>
+    %endif
 </div><!-- .standardheader -->
 </%def>
 
@@ -191,8 +190,7 @@
 </%def>
 
 <%def name="plan_alert_content(alert)">
-    <p><img src="${util.url_domain()}/global/img/icon-alert.png" width="12" />
-        <small><span class="alert-text">${alert['text']}</span> <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#"> ${_(u'More')}</a></span></small>
+    <p class="small"><i class="tmfa-alert-solid red"></i> <span class="alert-text">${alert['text']}</span> <span class="alert-time">${_(u'As of')} ${alert['start_date_pretty']} <a href="${alert['url']}" target="#"> ${_(u'More')}</a></span>
     </p>
 </%def>
 
@@ -483,7 +481,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %endif
 
             %if leg['to']['stop']:
-            <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+            <small class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</small>
             %endif
         </p>
 
@@ -527,7 +525,7 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
                 ${leg['to']['name']}
             %endif
             %if leg['to']['stop']:
-                <span class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</span>
+                <small class="stopid">${_(u'Stop ID')}&nbsp;${leg['to']['stop']['id']}</small>
             %endif
         </p>
 
@@ -617,14 +615,14 @@ ${_(u'which continues as ')} ${interline} (${_(u'stay on board')})
             %>
             <a href="${from_sched}${extra_params}" title="${_(u'Show schedule for')} ${from_name}" class="step-time"><span>${start_time}</span></a> ${_(u'Board')} ${get_route_link(route_name, route_url, route_mode)}${get_interline_note(interline)}
             %if leg['alerts']:
-            <a href="#alerts" title="${_(u'A Service Alert is in effect that may affect this trip. Click for details.')}" class="step-alert"><img src="${util.url_domain()}/global/img/icon-alert.png" width="12" /></a>
+            <a href="#alerts" title="${_(u'A Service Alert is in effect that may affect this trip. Click for details.')}" class="step-alert"><i class="tmfa-alert-solid red small"></i></a>
             %endif
         </p>
     </li>
 
     <li>
         <div class="step-number"><span>${j}</span></div>
-        <p><a href="${to_sched}${extra_params}" title="${_(u'Show schedule for')} ${to_name}" class="step-time"><span>${end_time}</span></a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop')}">${to_name}</a> <span class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</span></p>
+        <p><a href="${to_sched}${extra_params}" title="${_(u'Show schedule for')} ${to_name}" class="step-time"><span>${end_time}</span></a> ${_(u'Get off at')} <a href="${leg['to']['stop']['info']}${extra_params}" title="${_(u'Show more information about this stop')}">${to_name}</a> <small class="stopid">${_(u'Stop ID')}&nbsp;${to_stop}</small></p>
     </li>
 </%def>
 

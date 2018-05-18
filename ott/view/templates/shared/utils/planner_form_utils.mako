@@ -109,7 +109,7 @@
 ## old simple header
 ##
 <%def name="trip_planner_header()">
-    <div class="standardheader">
+    <div class="standardheader wide">
         <h1><i class="tmfa-tp-outline h1icon"></i> ${_(u'Plan your trip')}</h1>
     </div><!-- .standardheader -->
 </%def>
@@ -126,7 +126,7 @@
         to_form_def   = _(u'To')
 %>
 <div id="plantrip" class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+    <div class="col-xs-12">
         <form name="itin" id="itin_id" method="GET" action="${form_action}" class="triptools-form">
             <fieldset class="normal">
                 <label for="from">${_(u'From')}</label>
@@ -149,7 +149,7 @@
 
             <fieldset class="departwhen-units">
                 <div class="row">
-                    <div class="col-xs-12 col-ms-6 col-sm-6">
+                    <div class="col-xs-12 col-ms-12 col-sm-6 col-md-4">
                         <select name="Hour" id="Hour" tabindex="4" class="regular">
                             %for i in range(1, 13):
                                 ${util.option(i, i, util.compare_values(params['Hour'], i))}
@@ -169,7 +169,7 @@
                             ${util.option('pm', _(u'pm'), not params['is_am'])}
                         </select>
                     </div><!-- .col -->
-                    <div class="col-xs-12 col-ms-6 col-sm-6">
+                    <div class="col-xs-12 col-ms-12 col-sm-6 col-md-8">
                         <div id="departwhen-date">
                             <b>${_(u'on')}</b>
                             <select name="month" id="Month" tabindex="7" class="regular">

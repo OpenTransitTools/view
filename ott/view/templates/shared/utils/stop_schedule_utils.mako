@@ -8,16 +8,17 @@
 
 
 <%def name="page_header(name='', stop=None, has_alerts=False, extra_parameters='')">
-<div class="standardheader">
+<div class="standardheader wide">
     <h1>
         <a href="stop_select_form.html?from_stop_schedule${extra_parameters}"><i class="tmfa-ss-outline h1icon"></i></a>
          ${_(u'Schedule for')} <a href="stop.html?${request.query_string}">${name}</a>
         %if has_alerts is True:
         ${util.alerts_inline_icon_link()}
-        %endif
-        <br/>
-        <small>${su.stop_title(stop)}</small>
+        %endif        
     </h1>
+    <div class="first">
+        <p>${su.stop_title(stop)}</p>
+    </div>
 </div><!-- .standardheader -->
 </%def>
 

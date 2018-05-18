@@ -10,21 +10,18 @@
     more_link = not util.has_url_param('show_more')
 %>
 
-<div class="standardheader">
+<div class="standardheader wide">
     <h1>
         <a href="stop_select_form.html"><i class="tmfa-ss-outline h1icon"></i></a> ${_(u'Stops & Stations')}
     </h1>
-        <div class="first">
-        <p class="h1sub">
-        ${_(u'Stops near')} <b>${util.map_place_link(place)}</b>
-        </p>
-        </div>
 </div><!-- .standardheader -->
 
 <div class="fullwidth">
-    <div class="contentcontainer">
+    <div class="contentcontainer compact">
         <div class="row">
-            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+            <div class="col-xs-12">
+                <h3 class="hcenter">${_(u'Stops near')} <b>${util.map_place_link(place)}</b></h3>
+                <p>&nbsp;</p>
                 ${su.stops_list(nearest, rte_url_tmpl, more_link, params, extra_params)}
                 ${util.cache_geocodes_in_browser(cache)}
             </div><!-- .col -->

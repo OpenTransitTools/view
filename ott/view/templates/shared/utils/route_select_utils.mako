@@ -6,7 +6,7 @@
     <form action="${url}" method="get" class="triptools-form">
         <fieldset>
             ${form.get_extra_params_hidden_inputs()}
-            <label for="route">${_(u"Select a line")}:</label>
+            <label for="route"><h2>${_(u"Select a line")}:</h2></label>
             
             <div class="field">
                 <div class="field-control">
