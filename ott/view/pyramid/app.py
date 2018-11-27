@@ -61,7 +61,7 @@ def application_created_subscriber(event):
         I'm called at startup of the Pyramid app.  
     """
     #log.info('Starting pyramid server -- visit me on http://127.0.0.1:8080')
-    print event
+    print(event)
 
 
 @subscriber(NewRequest)

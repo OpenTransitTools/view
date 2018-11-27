@@ -16,9 +16,9 @@ TODAY=_('Today')
 
 
 def use_previous_day(request):
-    ''' rules to show previous date vs. today's date.  the problem is that 2am is yesterday
+    """ rules to show previous date vs. today's date.  the problem is that 2am is yesterday
         in transit data terms, so show customer yesterday's data for early morning queries
-    '''
+    """
     ret_val = False
     if date_utils.get_hour() < 3:
         day = html_utils.get_first_param_as_int(request, 'day')
@@ -27,8 +27,8 @@ def use_previous_day(request):
     return ret_val
 
 def get_tabs(request, url):
-    ''' make the set of tabs on the schedule page
-    '''
+    """ make the set of tabs on the schedule page
+    """
     #import pdb; pdb.set_trace()
     is_prev_day = use_previous_day(request)
     if is_prev_day:
@@ -50,8 +50,8 @@ def get_tabs(request, url):
     return ret_val
 
 def make_date_tabs(date, uri, is_prev_day, tab_id, highlight_more_tab=False, translate=ret_me, fmt='%m/%d/%Y', smfmt='%m/%d', pttyfmt='%A, %B %d, %Y'):
-    ''' return our set 4 date tabs and the more tab
-    '''
+    """ return our set 4 date tabs and the more tab
+    """
 
     # step 1: save off today as well as some other calculations
     today = datetime.date.today()
@@ -101,9 +101,9 @@ def make_date_tabs(date, uri, is_prev_day, tab_id, highlight_more_tab=False, tra
     return tabs
 
 def make_tab_obj(name, id, date=None, uri=None, append=None):
-    ''' for the date tab on the stop schedule page, we expect an object that has a name and a url
+    """ for the date tab on the stop schedule page, we expect an object that has a name and a url
         this method builds that structure, and most importantly, the url for those tabs
-    '''
+    """
     ret_val = {}
 
     # put the name of the tab first (and strip off any leading / trailing ZEROs if the name is a date)

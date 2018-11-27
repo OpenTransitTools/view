@@ -23,8 +23,8 @@ class GeoCoderTests(OttTestCase):
     ]
 
     def test_stops_near_stop_id(self):
-        ''' check that the following place queries hit a stop page (via the stop image url)
-        '''
+        """ check that the following place queries hit a stop page (via the stop image url)
+        """
         places = [
             "2",
             "A+Ave+Chandler+Lake+Oswego+(Stop+ID+2)",

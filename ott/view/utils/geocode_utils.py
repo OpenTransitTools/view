@@ -10,8 +10,8 @@ from ott.utils import geo_utils
 ##
 
 def call_solr_geocoder(request, place):
-    '''  call the geocoder service
-    '''
+    """  call the geocoder service
+    """
     ret_val = None
     if place:
         res = request.model.get_geocode(place)
@@ -20,8 +20,8 @@ def call_solr_geocoder(request, place):
     return ret_val
 
 def call_atis_geocoder(request, place):
-    '''  call the geocoder service
-    '''
+    """  call the geocoder service
+    """
     ret_val = None
     if place:
         res = request.model.get_atis_geocode(place)
@@ -30,8 +30,8 @@ def call_atis_geocoder(request, place):
     return ret_val
 
 def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Undefined'):
-    ''' hybrid ATIS / SOLR geocoder
-    '''
+    """ hybrid ATIS / SOLR geocoder
+    """
     ret_val = {
         "count" : 0,
         "geo_type" : geo_type,
@@ -56,12 +56,12 @@ def call_geocoder(request, geo_place=None, geo_type='place', no_geocode_msg='Und
     return ret_val
 
 def do_from_to_geocode_check(request):
-    ''' checks whether we have proper coordinates for the from & to params
+    """ checks whether we have proper coordinates for the from & to params
         if we're missing a coordinate, we'll geocode and see if there's a direct hit
         if no direct hit, we return the geocode_paaram that tells the ambiguous redirect page what to do...
 
         @return: a modified query string, and any extra params needed for the geocoder 
-    '''
+    """
     ret_val = {'query_string': None, 'geocode_param': None, 'from': None, 'to': None, 'cache': []}
 
     # step 1: check for from & to coord information in the url
@@ -130,13 +130,13 @@ def has_content(geo, el='geocoder_results'):
     try:
         if geo and el in geo and geo[el][0] and len(geo[el][0]) > 0:
             ret_val = True
-    except Exception, e:
+    except Exception as e:
         log.warning('exception:{0}'.format(e))
         ret_val = False
     return ret_val
 
 def make_autocomplete_cache(frm, doc):
-    ''' take a SOLR doc, and make an entry for the autocomplete cache
-    '''
+    """ take a SOLR doc, and make an entry for the autocomplete cache
+    """
     ret_val = {'label':frm, 'lat':doc['lat'], 'lon':doc['lon']}
     return ret_val

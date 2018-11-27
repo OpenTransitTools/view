@@ -2,25 +2,28 @@ import logging
 logging.basicConfig()
 log = logging.getLogger(__file__)
 
-''' From http://docs.pylonsproject.org/projects/pyramid_cookbook/en/latest/templates/mako_i18n.html
+""" From http://docs.pylonsproject.org/projects/pyramid_cookbook/en/latest/templates/mako_i18n.html
     orig (http://blog.abourget.net/2011/1/13/pyramid-and-mako:-how-to-do-i18n-the-pylons-way/)
-'''
+"""
 from pyramid.i18n import get_localizer, TranslationStringFactory
+
 
 def mock_translator(str):
     return str
+
 
 def get_translator(request):
     ret_val = mock_translator
     try:
         if request.translate:
             ret_val = request.translate
-    except Exception, e:
+    except Exception as e:
         log.warn(e)
     return ret_val
 
+
 def is_between_zero_one(f):
-    ''' check string, int, float for a numeric value 0 > and <= 1 '''
+    """ check string, int, float for a numeric value 0 > and <= 1 """
     ret_val = False
     try:
         if isinstance(f, (int, long, float)) and f > 0 and f <= 1:
@@ -29,12 +32,13 @@ def is_between_zero_one(f):
             f = float(f)
             if f > 0.0 and f <= 1.0:
                 ret_val = True
-    except Exception, e:
+    except Exception as e:
         log.warn(e)
     return ret_val
 
+
 def is_fraction_of_one(f):
-    ''' check to see if a string looks like a fraction with numbers on either side '''
+    """ check to see if a string looks like a fraction with numbers on either side """
     ret_val = False
     try:
         s = f.split('/')
@@ -49,6 +53,7 @@ def add_renderer_globals(event):
     request = event['request']
     event['_'] = request.translate
     event['localizer'] = request.localizer
+
 
 #tf = TranslationStringFactory('YOUR_GETTEXT_DOMAIN')
 tsf = TranslationStringFactory('view')

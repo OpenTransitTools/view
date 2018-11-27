@@ -1,15 +1,15 @@
-''' Agency Template is a set of urls specific to the agencies home website for other 
+""" Agency Template is a set of urls specific to the agencies home website for other 
     infomration webapps that the trip planner can link to (like alerts services, real-time 
     vehicle predictions, maps, etc...)
-'''
+"""
 import re
 
 
 AGENCY_TEMPLATE = None
 
 def make_url_template():
-    ''' 
-    '''
+    """ 
+    """
     global AGENCY_TEMPLATE
     if AGENCY_TEMPLATE is None:
         AGENCY_TEMPLATE = AgencyTemplate()
@@ -18,8 +18,8 @@ def make_url_template():
 
 class AgencyTemplate(object):
     def __init__(self):
-        ''' TODO: read a config file, to populate this cache for different agencies
-        '''
+        """ TODO: read a config file, to populate this cache for different agencies
+        """
         self.template_cache = { 
                 'TriMet' : {
                     'desktop' : {
@@ -38,13 +38,13 @@ class AgencyTemplate(object):
                 }
         }
 
-        ''' TODO: make agency=None in param calls, and use the get_agency() call to initialize '''
+        """ TODO: make agency=None in param calls, and use the get_agency() call to initialize """
         self.default_agency = 'TriMet'
         self.route_id_cleanup = '\D.*'
 
     def clean_route_id(self, route_id):
-        ''' cleans the route_id parameter.  needed because TriMet started using id.future type route ids for route name changes
-        '''
+        """ cleans the route_id parameter.  needed because TriMet started using id.future type route ids for route name changes
+        """
         ret_val = route_id
         if self.route_id_cleanup:
             ret_val = re.sub(self.route_id_cleanup, '', route_id)
@@ -62,7 +62,7 @@ class AgencyTemplate(object):
             if isinstance(device, bool):
                 device = self.device_type(device)
             ret_val = self.template_cache[agency][device][template]
-        except Exception, e:
+        except Exception as e:
             #log.debug(e)
             pass
         return ret_val
@@ -128,16 +128,18 @@ class AgencyTemplate(object):
     def desktop_route_url(self, route_id, agency=None, def_val=None):
         return self.get_route_url(route_id, agency, 'desktop', def_val)
 
+
 def test():
     a = AgencyTemplate()
     for d in ['desktop', 'mobile']:
-        print a.get_arrivals_url(2, device=d)
-        print a.get_arrivals_url(2, 78, device=d)
-        print a.get_alerts_url(device=d)
-        print a.get_alerts_url(1, device=d)
-        print a.get_stop_img_url(2, device=d)
-        print a.get_interactive_map_url(3, 4, device=d)
-        print a.get_route_url(1, device=d)
+        print(a.get_arrivals_url(2, device=d))
+        print(a.get_arrivals_url(2, 78, device=d))
+        print(a.get_alerts_url(device=d))
+        print(a.get_alerts_url(1, device=d))
+        print(a.get_stop_img_url(2, device=d))
+        print(a.get_interactive_map_url(3, 4, device=d))
+        print(a.get_route_url(1, device=d))
+
 
 if __name__ == "__main__":
     test()

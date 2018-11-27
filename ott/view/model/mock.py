@@ -1,7 +1,3 @@
-import simplejson as json
-import urllib
-
-from ott.utils import html_utils
 from ott.utils import transit_utils
 from ott.utils.modes import Modes
 
@@ -61,14 +57,14 @@ class Mock(Base):
 
 def main():
     m = Mock()
-    #print m.get_stop()
-    #print m.get_route_stops_list()
-    print m.get_stop_schedule_single()
-    print m.get_stop_schedule_multiple()
-    print m.get_stop_schedule_by_time()
+    #print(m.get_stop())
+    #print(m.get_route_stops_list())
+    print(m.get_stop_schedule_single())
+    print(m.get_stop_schedule_multiple())
+    print(m.get_stop_schedule_by_time())
     routes=m.get_routes()['routes']
     for r in routes:
-        print r
+        print(r)
 
 
 if __name__ == '__main__':

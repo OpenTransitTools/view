@@ -147,7 +147,7 @@ def planner_geocode(request):
             geo_place = html_utils.get_first_param(request, 'to')
 
         ret_val = geocode_utils.call_geocoder(request, geo_place, geo_type)
-    except Exception, e:
+    except Exception as e:
         log.warning('{0} exception:{1}'.format(request.path, e))
         ret_val = make_subrequest(request, '/exception.html')
     return ret_val
@@ -184,7 +184,7 @@ def planner(request):
                 if ret_val and 'error' in ret_val:
                     msg = object_utils.get_error_message(ret_val)
                     ret_val = make_subrequest(request, '/exception.html', 'error_message={0}'.format(msg))
-    except Exception, e:
+    except Exception as e:
         log.warning('{0} exception:{1}'.format(request.path, e))
         ret_val = make_subrequest(request, '/exception.html')
 
@@ -213,7 +213,7 @@ def stop(request):
 
     try:
         stop = request.model.get_stop(request.query_string, **request.params)
-    except Exception, e:
+    except Exception as e:
         log.warning('{0} exception:{1}'.format(request.path, e))
 
     if stop and stop['has_errors'] is not True:
@@ -239,7 +239,7 @@ def stop_schedule(request):
         html_tabs = schedule_tabs.get_tabs(request, url)
         stop_sched = request.model.get_stop_schedule(request.query_string, **request.params)
         alerts = transit_utils.get_stoptime_alerts(stop_sched)
-    except Exception, e:
+    except Exception as e:
         log.warning('{0} exception:{1}'.format(request.path, e))
 
     if html_tabs and stop_sched and stop_sched['has_errors'] is not True:
@@ -260,7 +260,7 @@ def stop_select_form(request):
     routes = None
     try:
         routes = request.model.get_routes(request.query_string, **request.params)
-    except Exception, e:
+    except Exception as e:
         log.warning('{0} exception:{1}'.format(request.path, e))
 
     if routes and routes['has_errors'] is not True:
@@ -284,7 +284,7 @@ def stop_select_list(request):
             ret_val['route_stops'] = route_stops
         else:
             ret_val = make_subrequest(request, '/stop_select_form.html')
-    except Exception, e:
+    except Exception as e:
         log.warning('{0} exception:{1}'.format(request.path, e))
         ret_val = make_subrequest(request, '/exception.html', 'app_name=Stop Select List')
     return ret_val

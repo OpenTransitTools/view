@@ -51,14 +51,14 @@ class ViewTests(OttTestCase):
                 self.assertRegexpMatches(s, "834 SE LAMBERT ST")
 
     def test_stop_select_form(self):
-        ''' routes ws: list of route '''
+        """ routes ws: list of route """
         for m in ['', 'm/']:
             url = self.get_url(m + 'stop_select_form.html')
             s = self.call_url(url)
             self.assertRegexpMatches(s, "MAX Blue")
 
     def test_stop_select_list(self):
-        ''' route stops ws: stop select for each route direction '''
+        """ route stops ws: stop select for each route direction """
         for m in ['', 'm/']:
             url = self.get_url(m + 'stop_select_list.html', 'route=100')
             s = self.call_url(url)
