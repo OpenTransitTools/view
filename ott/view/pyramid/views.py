@@ -159,6 +159,13 @@ def planner_geocode(request):
 def planner(request):
     """ will either call the trip planner, or if we're missing params, redirect to the ambiguous geocode page
         basically, call the geocode checker, and then either call the ambiguous geocoder page, or plan the trip planner
+
+        Map Redirect URLs:
+          http://trimet.org/ride/planner.html?from=pdx&to=zoo&mapit=a
+          http://trimet.org/ride/planner.html?from=888+SE+Lambert&to=ZOO%3A%3A45.5097%2C-122.71629&mapit=a
+          http://trimet.org/ride/planner.html?from=CL%3A%3A45.4684%2C-122.657&to=ZOO%3A%3A45.5097%2C-122.71629&mode=RAIL%2CTRAM%2CSUBWAY%2CFUNICULAR%2CGONDOLA%2CBICYCLE&hour=12&minute=30&ampm=pm&month=1&day=15&walk=3219&optimize=SAFE&arr=A&mapit=a
+
+          https://modbeta.trimet.org/ride/#/?fromPlace=PDX%2C%20Portland%3A%3A45.589178%2C-122.593464&toPlace=Oregon%20Zoo%2C%20Portland%3A%3A45.510185%2C-122.715861&date=2019-01-15&time=13%3A38&arriveBy=true&mode=TRAM%2CRAIL%2CGONDOLA%2CBICYCLE&showIntermediateStops=true&maxWalkDistance=4828&maxBikeDistance=4828&optimize=SAFE&bikeSpeed=3.58&ignoreRealtimeUpdates=true&companies=
     """
     # import pdb; pdb.set_trace()
     try:
@@ -556,6 +563,8 @@ def get_model(request):
         # TODO ... multi-threading/
         # do something to create a model...
         url = html_utils.get_ini_param(request, 'ott.controller')
+        # TODO: have map_url config'd here ... have hard-coded ride.trimet.org above
+        # map_url = html_utils.get_ini_param(request, 'ott.map_url')
         MODEL_GLOBAL = Model(url)
     return MODEL_GLOBAL
 
