@@ -181,14 +181,17 @@ def planner(request):
                 params.set_to(gc['to'])
 
                 # when Arr(ive) flag is set to latest, we do an arrive by at 1:30am the next day
-                # import pdb; pdb.set_trace()
                 if params.is_latest():
                     params.date_offset(day_offset=1)
+
+                # import pdb; pdb.set_trace()
                 if "ride.trimet.org" in request.model.map_url:
-                    map_params = params.map_url_params()
+                    ride_params = params.map_url_params()
+                    map_url = "{}?submit&{}".format(request.model.map_url, ride_params)
                 else:
                     map_params = params.mod_url_params()
-                ret_val = forward_request(request, "{}?submit&{}".format(request.model.map_url, map_params))
+                    map_url = "{}{}".format(request.model.map_url, map_params)
+                ret_val = forward_request(request, map_url)
             else:
                 ret_val = request.model.get_plan(gc['query_string'], **request.params)
                 ret_val['cache'] = gc['cache']
