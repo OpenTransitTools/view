@@ -190,7 +190,7 @@ def planner(request):
                     map_url = "{}?submit&{}".format(request.model.map_url, ride_params)
                 else:
                     map_params = params.mod_url_params()
-                    map_url = "{}{}".format(request.model.map_url, map_params)
+                    map_url = "{}?{}".format(request.model.map_url, map_params)
                 ret_val = forward_request(request, map_url)
             else:
                 ret_val = request.model.get_plan(gc['query_string'], **request.params)
