@@ -11,11 +11,11 @@ log = logging.getLogger(__file__)
 
 
 class Base(object):
-    def __init__(self, services_domain=None):
+    def __init__(self, services_domain=None, map_url=None):
+        # import pdb; pdb.set_trace()
         self.service_cache = {}
-        self.services_domain = 'http://localhost:44444' 
-        if services_domain:
-            self.services_domain = services_domain 
+        self.services_domain = services_domain if services_domain else "http://localhost:44444"
+        self.map_url = map_url if map_url else "http://ride.trimet.org"
 
     def get_plan(self, get_params, **kwargs): pass
 
@@ -52,7 +52,6 @@ class Base(object):
     def stream_json(self, svc, args, extra=None):
         """ utility class to stream .json
         """
-        # import pdb; pdb.set_trace()
         ret_val = {}
         url = self.get_service_url(svc, args)
         if extra:

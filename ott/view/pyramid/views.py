@@ -181,10 +181,14 @@ def planner(request):
                 params.set_to(gc['to'])
 
                 # when Arr(ive) flag is set to latest, we do an arrive by at 1:30am the next day
+                # import pdb; pdb.set_trace()
                 if params.is_latest():
                     params.date_offset(day_offset=1)
-                map_params = params.map_url_params()
-                ret_val = forward_request(request, 'http://ride.trimet.org?submit&' + map_params)
+                if "ride.trimet.org" in request.model.map_url:
+                    map_params = params.map_url_params()
+                else:
+                    map_params = params.mod_url_params()
+                ret_val = forward_request(request, "{}?submit&{}".format(request.model.map_url, map_params))
             else:
                 ret_val = request.model.get_plan(gc['query_string'], **request.params)
                 ret_val['cache'] = gc['cache']
@@ -562,9 +566,8 @@ def get_model(request):
         # TODO ... better way to attach this to view?
         # TODO ... multi-threading/
         # do something to create a model...
-        url = html_utils.get_ini_param(request, 'ott.controller')
-        # TODO: have map_url config'd here ... have hard-coded ride.trimet.org above
-        # map_url = html_utils.get_ini_param(request, 'ott.map_url')
-        MODEL_GLOBAL = Model(url)
+        svc_url = html_utils.get_ini_param(request, 'ott.controller')
+        map_url = html_utils.get_ini_param(request, 'ott.map_url')
+        MODEL_GLOBAL = Model(svc_url, map_url)
     return MODEL_GLOBAL
 
