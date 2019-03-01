@@ -283,6 +283,11 @@
 </%def>
 
 
+##
+## note default values are set in 2 places:
+##   - ott/utils/html_utils.py
+##   - ott/view/static/js/dynamic_forms.js
+##
 <%def name="walk_form_option(sel_key, is_mobile=False)">
 <%
     opts = [ 

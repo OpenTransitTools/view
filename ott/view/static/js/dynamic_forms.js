@@ -6,7 +6,7 @@ function DynamicForms(walk_label, bike_label, short_dist, long_dist)
     this.walk_label = walk_label || 'Walk distance';
     this.bike_label = bike_label || 'Bike distance';
 
-    this.short_dist = short_dist || 1609;
+    this.short_dist = short_dist || 1260;
     this.long_dist  = long_dist  || 4828;
 
     function do_walk_only(change)
