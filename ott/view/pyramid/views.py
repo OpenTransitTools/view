@@ -1,5 +1,9 @@
-import StringIO
 import re
+
+try:
+    from StringIO import StringIO ## for Python 2
+except ImportError:
+    from io import StringIO ## for Python 3
 
 from pyramid.request import Request
 from pyramid.response import Response

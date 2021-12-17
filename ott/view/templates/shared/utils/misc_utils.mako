@@ -36,7 +36,7 @@
     try:
         ret_val = request.registry.settings[name]
         ret_val.strip()
-    except Exception, e:
+    except Exception as e:
         #print e
         pass
     return ret_val
