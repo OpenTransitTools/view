@@ -13,7 +13,8 @@ requires = [
     'ott.view_header_footer',
     'pillow',
     'simplejson',
-    'qrcode'
+    'qrcode',
+    'requests'
 ]
 
 #

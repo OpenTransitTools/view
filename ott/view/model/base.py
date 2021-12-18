@@ -1,9 +1,6 @@
-import simplejson as json
-import urllib
-import contextlib
-import re
 import os
-
+import re
+import requests
 from ott.utils import object_utils
 
 import logging
@@ -39,7 +36,7 @@ class Base(object):
             url = "{0}/{1}".format(self.services_domain, svc)
             url = re.sub(r"/+", "/", url)     # get rid of extra /, ala http://x/y//z///b
             url = url.replace(":/", "://")    # fix http:// part from line above...
-            url = urllib.quote_plus(url, safe="%/:=?&~#+!$,;'@()*[]")
+            #url = urllib.quote_plus(url, safe="%/:=?&~#+!$,;'@()*[]")
             self.service_cache[svc] = url
             ret_val = url
         return ret_val
@@ -56,15 +53,17 @@ class Base(object):
         url = self.get_service_url(svc, args)
         if extra:
             url = url + "&" + extra
-        log.info("calling service: {0}".format(url))
-        with contextlib.closing(urllib.urlopen(url)) as stream:
-            otp = stream.read()
-            ret_val = json.loads(otp)
+        try:
+            log.info("calling service: {0}".format(url))
+            ret_val = requests.get(url).json()
+        except Exception as e:
+            log.error(e)
         return ret_val
 
     def get_json(self, file, path='ott/view/static/mock/'):
         """ utility class to load a static .json file for mock'ing a service
         """
+        import simplejson as json
         ret_val={}
         try:
             with open(file) as f:
@@ -76,5 +75,4 @@ class Base(object):
                     ret_val = json.load(f)
             except Exception as e:
                 log.info("Couldn't open file : {0} (or {1})".format(file, path))
-
         return ret_val
