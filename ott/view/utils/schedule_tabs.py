@@ -37,7 +37,8 @@ def get_tabs(request, url):
         date  = html_utils.get_first_param_as_date(request)
         month = html_utils.get_first_param_as_int(request, 'month')
         day   = html_utils.get_first_param_as_int(request, 'day')
-        date  = date_utils.set_date(date, month, day)
+        year  = date_utils.normalize_year(month)
+        date  = date_utils.set_date(date, month, day, year)
 
     more   = html_utils.get_first_param(request, 'more')
     tab_id = html_utils.get_first_param_as_int(request, 'tab_id', 0)
