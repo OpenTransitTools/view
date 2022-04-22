@@ -198,7 +198,7 @@
 ## static map block
 <%def name="static_map_img(map_url)"><img src="${map_url}" alt="${_(u'Stop location on a map')}" class="img" /></%def>
 
-<%def name="imap_a_link(name, lon, lat, extra_params, imap_cls=False)"><a ${'class="interactivemap"' if imap_cls else '' | n} target="#" href="http://ride.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'InteractiveMapLink', 'Stop page link']);"></%def>
+<%def name="imap_a_link(name, lon, lat, extra_params, imap_cls=False)"><a ${'class="interactivemap"' if imap_cls else '' | n} target="#" href="http://maps.trimet.org/?zoom=16&pLat=${lat}&pLon=${lon}&pText=${name}${extra_params}" onClick="_gaq.push(['_trackEvent', 'TripPlanner', 'InteractiveMapLink', 'Stop page link']);"></%def>
 <%def name="imap_a_link_via_stop(stop, extra_params, imap_cls=False)">${imap_a_link(stop['name'], stop['lon'], stop['lat'], extra_params, imap_cls)}</%def>
 
 
@@ -228,7 +228,7 @@
     if is_mobile:
         w=300
         h=240
-    map_url = "//ride.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/9/coord/{2},{3}/extraparams/f\
+    map_url = "//maps.trimet.org/eapi/ws/V1/mapimage/format/png/width/{0}/height/{1}/zoom/9/coord/{2},{3}/extraparams/f\
 ormat_options=layout:place".format(w, h, lon, lat)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
 %></%def>
@@ -240,7 +240,7 @@ ormat_options=layout:place".format(w, h, lon, lat)
     if is_mobile:
         w=300
         h=240
-    map_url = "//ride.trimet.org/eapi/ws/V1/stopimage/format/png/width/{0}/height/{1}/zoom/6/extraparams/format_options\
+    map_url = "//maps.trimet.org/eapi/ws/V1/stopimage/format/png/width/{0}/height/{1}/zoom/6/extraparams/format_options\
 =layout:scale/id/{2}".format(w, h, stop_id)
     map_and_links(map_url, name, lon, lat, extra_params, is_mobile)
 %></%def>
