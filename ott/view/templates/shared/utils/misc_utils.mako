@@ -1,4 +1,4 @@
-## -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 ##
 ## return generic header and footer
@@ -275,12 +275,13 @@
 
 ##
 ## from / to links
+## HIST: FXP 7/2024 (tora urls)
 ## TODO: fix these urls, so that urls are dynamic / off depending upon agency, etc...\
 ##
 <%def name="plan_a_trip_links(name, lon, lat, extra_params='')">
 <h3>${_(u'Plan a trip')}</h3>
-<p><a href="/#/planner/form/to=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'to')} ${name}" class="tripplanner"><i class="tmfa-tp-outline"></i> ${_(u'To here')}</a></p>
-<p><a href="/#/planner/form/from=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'from')} ${name}" class="tripplanner"><i class="tmfa-tp-outline"></i> ${_(u'From here')}</a></p>
+<p><a href="/home/planner?toPlace=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'to')} ${name}" class="tripplanner"><i class="tmfa-tp-outline"></i> ${_(u'To here')}</a></p>
+<p><a href="/home/planner?fromPlace=${make_named_coord(name, lat, lon)}${extra_params}" title="${_(u'Plan a trip')} ${_(u'from')} ${name}" class="tripplanner"><i class="tmfa-tp-outline"></i> ${_(u'From here')}</a></p>
 </%def>
 
 ##
