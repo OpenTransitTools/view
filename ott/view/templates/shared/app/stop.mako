@@ -19,7 +19,7 @@
                     %if 'direction' in r:
                     ${r['direction']}<br/>
                     %endif
-                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], route_id=r['route_id'], device=is_mobile)}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="route-icons"><i class="tmfa-tt-outline"></i><br />
+                    <a href="//trimet.org/home/stop/${stop['stop_id']}?route=${r['route_id']}" title="${_(u'Get real-time arrival information from TransitTracker')}" class="route-icons"><i class="tmfa-tt-outline"></i><br />
                         ${_(u'Next arrivals')}</a>
 
                     <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}&route=${r['route_id']}${extra_params}" title="${_(u'Show schedule for this stop/station')}" class="route-icons"><i class="tmfa-schedule"></i><br />
@@ -33,7 +33,7 @@
                 %if len(stop['routes']) > 1:
                 <h3>${_(u'All routes')}</h3>
                 <p>
-                    <a href="${url.get_arrivals_url(stop_id=stop['stop_id'], device=is_mobile)}" class="route-icons"><i class="tmfa-tt-outline"></i><br />
+                    <a href="//trimet.org/home/stop/${stop['stop_id']}" class="route-icons"><i class="tmfa-tt-outline"></i><br />
                         ${_(u'Next arrivals')}</a>
                     <a href="stop_schedule.html?stop_id=${stop['stop_id']}&month=${stop['date_info']['month']}&day=${stop['date_info']['day']}${extra_params}" alt="${_(u'Schedule')}" class="route-icons"><i class="tmfa-schedule"></i><br />
                         ${_(u'Schedule')}</a>
