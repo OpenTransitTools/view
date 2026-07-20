@@ -53,13 +53,16 @@ class Base(object):
         """ utility class to stream .json
         """
         ret_val = {}
-        url = self.get_service_url(svc, args)
-        if extra:
-            url = url + "&" + extra
-        log.info("calling service: {0}".format(url))
-        with contextlib.closing(urllib.urlopen(url)) as stream:
-            otp = stream.read()
-            ret_val = json.loads(otp)
+        try:
+            url = self.get_service_url(svc, args)
+            if extra:
+                url = url + "&" + extra
+            log.info("calling service: {0}".format(url))
+            with contextlib.closing(urllib.urlopen(url)) as stream:
+                otp = stream.read()
+                ret_val = json.loads(otp)
+        except Exception as e:
+            ret_val = {}
         return ret_val
 
     def get_json(self, file, path='ott/view/static/mock/'):
